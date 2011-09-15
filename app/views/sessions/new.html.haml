@@ -10,6 +10,9 @@
     %br>/
     = password_field_tag :password
   .field
+    = check_box_tag :remember_me, 1, params[:remember_me]
+    = label_tag :remember_me
+  .field
     = submit_tag :Submit
 
 = link_to "Back", root_path
