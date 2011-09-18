@@ -25,8 +25,19 @@
 
 .notice {
     color: green;
+    border-style:solid;
+    border-width:1px;
+    border-color: green;
+    margin-bottom:5px;
+    padding:5px;
 }
 
 .alert {
+    color: red;
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+    margin-bottom: 5px;
+    padding: 5px;
     color: red;
 }
