@@ -1,18 +1,16 @@
-%h1 Sign in
-
-= form_tag session_path do
-  .field
-    = label_tag :username
-    %br/
-    = text_field_tag :username
-  .field
-    = label_tag :password
-    %br>/
-    = password_field_tag :password
-  .field
-    = check_box_tag :remember_me, 1, params[:remember_me]
-    = label_tag :remember_me
-  .field
-    = submit_tag :Submit
-
-= link_to "Back", root_path
+!= content_for :title, 'Sign in'
+!= form_tag session_path do
+  
+  %fieldset
+    %ul
+      %li
+        != label_tag :username
+        != text_field_tag :username
+      %li
+        != label_tag :password
+        != password_field_tag :password
+      %li
+        != check_box_tag :remember_me, 1, params[:remember_me]
+        != label_tag :remember_me
+    != submit_tag "Sign in"
+  != link_to "Back", root_path

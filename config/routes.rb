@@ -1,7 +1,9 @@
 Dengue::Application.routes.draw do
+  
+  
   resources :users, :only => [:new, :create]
-
   resource :session, :only => [:new, :create, :destroy]
+  resources :reports, :except =>  [:show]
 
   root :to => 'home#index'
 

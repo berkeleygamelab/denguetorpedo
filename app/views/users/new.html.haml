@@ -1,21 +1,18 @@
-%h1 Register
+!= content_for :title, 'Register'
 
-= form_for(@user) do |f|
-  = f.error_messages
+!= form_for(@user) do |f|
+  != f.error_messages
 
-  .field
-    = f.label :username
-    %br>/
-    = f.text_field :username
-  .field
-    = f.label :password
-    %br>/
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    %br>/
-    = f.password_field :password_confirmation
-  .actions
-    = f.submit "Submit"
-
-= link_to 'Back', root_path
+  %fieldset
+    %ul
+      %li
+        != f.label :username
+        != f.text_field :username
+      %li
+        != f.label :password
+        != f.password_field :password
+      %li
+        != f.label :password_confirmation
+        != f.password_field :password_confirmation
+    != f.submit "Register"
+  != link_to 'Back', root_path

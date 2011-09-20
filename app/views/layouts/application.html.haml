@@ -2,25 +2,32 @@
 %html
   %head
     %title Dengue
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
+    != stylesheet_link_tag "application"
+    != javascript_include_tag "application"
+    != csrf_meta_tags
+    != yield :head
   
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
     #main_header
       #nav
-        = link_to "Dengue", root_path, :style => "font-size: 1.2em;"
+        != link_to "Dengue", root_path, :style => "font-size: 1.2em;"
+        - if @current_user
+          != link_to "Add a Report", new_report_path, :style => "font-size: 1.2em;"
+          != link_to "My Reports", reports_path, :style => "font-size: 1.2em;"
+      
       %p(style="float: right;")
         - if @current_user
-          = @current_user.username
-          = link_to "Lagout", session_path, :method => :delete
+          != @current_user.username
+          != link_to "Lagout", session_path, :method => :delete
         - else
-          = link_to "Sign in", new_session_path
-          = link_to "Register", new_user_path
+          != link_to "Sign in", new_session_path
+          != link_to "Register", new_user_path
 
       .clear
-      
-      - flash.each do |key, msg|
-        = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
     
-    = yield
+    %h1!= yield :title  
+    
+    - flash.each do |key, msg|
+      != content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
+
+    != yield
