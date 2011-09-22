@@ -1,8 +1,11 @@
 Dengue::Application.routes.draw do
   
   
+  get "password_resets/new"
+
   resources :users, :only => [:new, :create]
   resource :session, :only => [:new, :create, :destroy]
+  resources :password_resets, :only => [:new, :create, :edit, :update]
   resources :reports, :except =>  [:show]
 
   root :to => 'home#index'

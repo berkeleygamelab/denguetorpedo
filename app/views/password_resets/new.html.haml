@@ -1,0 +1,11 @@
+%h1 Reset Password
+
+= form_tag password_resets_path, :method => :post do
+  %fieldset
+    %ul
+      %li
+        = label_tag :email
+        = text_field_tag :email
+    = submit_tag "Submit"
+  = link_to "Back", new_user_path
+  
