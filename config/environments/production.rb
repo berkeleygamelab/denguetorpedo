@@ -66,7 +66,7 @@ Dengue::Application.configure do
          :port => 587,
          :domain => 'reportdengue@gmail.com',
          :authentication => :plain,
-         :user_name => 'reportdengu',
+         :user_name => 'reportdengue',
          :password => 'dengue@!$'
    }
 end
