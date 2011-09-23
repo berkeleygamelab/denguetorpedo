@@ -43,8 +43,15 @@ class ReportReader < ActionMailer::Base
     parser = MailParser::Parser.new(email)
         
     if parser.report && parser.nation && parser.city && parser.address && parser.state
-      logger.debug "parsed data = nation: " + parser.nation + " address: " + parser.address + " neighborhood: " + parser.neighborhood + " city: " + parser.city + " state: " + parser.state + " report: " + parser.report
-      report = Report.new(:user_id => user.id, :nation => nation, :address => address, :neighborhood => neighborhood, :city => city, :state => state, :report => report)
+      
+      if parser.neighborhood.nil?
+        neighborhood = ""
+      else
+        neighborhood = parser.neighborhood
+      end
+      
+      logger.debug "parsed data = nation: " + parser.nation + " address: " + parser.address + " neighborhood: " + neighborhood + " city: " + parser.city + " state: " + parser.state + " report: " + parser.report
+      report = Report.new(:user_id => user.id, :nation => parser.nation, :address => parser.address, :neighborhood => neighborhood, :city => parser.city, :state => parser.state, :report => parser.report)
 
       if report.save 
         logger.info "new report sucessfully added"
