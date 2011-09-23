@@ -4,7 +4,7 @@ module MailParser
     attr_reader :report, :nation, :city, :address, :neighborhood, :state
     
     def initialize(input, type = 'email')
-      if (type == 'emiail')
+      if (type == 'email')
         text_body = MMS2R::Media.new(input).body
       elsif (type == 'sms')
         text_body = input
