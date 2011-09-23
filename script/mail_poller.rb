@@ -9,6 +9,7 @@ loop do
     gmail.inbox.emails.each do |email|
       email = gmail.imap.uid_fetch(email.uid, 'RFC822').first.attr['RFC822']
       ReportReader.receive(email)
+      email.delete!
     end
   end
   sleep(3)
