@@ -43,7 +43,7 @@ Dengue::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-   config.assets.precompile += %w( search.js )
+  # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -55,6 +55,8 @@ Dengue::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
+  config.action_mailer.default_url_options = { host: "http://dengue-staging.herokuapp.com" }
+  
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   

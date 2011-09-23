@@ -1,5 +1,3 @@
-require 'base64'
-
 class ReportReader < ActionMailer::Base
   default from: "reportdengue@gmail.com"
   
