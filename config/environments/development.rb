@@ -29,5 +29,17 @@ Dengue::Application.configure do
   config.assets.debug = true
 
   #config.action_mailer.default_url_options = { host: "localhost:3000" }
+  
+  config.action_mailer.delivery_method = :smtp
+   # Gmail SMTP server setup
+   config.action_mailer.smtp_settings = {
+         :address => "smtp.gmail.com",
+         :enable_starttls_auto => true,
+         :port => 587,
+         :domain => 'reportdengue@gmail.com',
+         :authentication => :plain,
+         :user_name => 'reportdengu',
+         :password => 'dengue@!$'
+   }
 
 end
