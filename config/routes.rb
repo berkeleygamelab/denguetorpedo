@@ -4,7 +4,10 @@ Dengue::Application.routes.draw do
   resources :users, :only => [:new, :create]
   resource :session, :only => [:new, :create, :destroy]
   resources :reports, :except =>  [:show]
-
+  resources :reports do
+     post 'sms', :on => :collection
+   end
+   
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

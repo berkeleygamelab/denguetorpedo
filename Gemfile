@@ -19,6 +19,11 @@ gem 'geokit'
 gem 'gmaps4rails'
 gem 'twilio-ruby'
 gem 'dynamic_form'
+gem 'ruby-gmail'
+gem 'foreman'
+gem 'daemons'
+gem 'mms2r'
+gem 'mime'
 
 # Gems used only for assets and not required
 # in production environments by default.
