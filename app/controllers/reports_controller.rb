@@ -58,7 +58,7 @@ class ReportsController < ApplicationController
         neighborhood = parser.neighborhood
       end
       
-      logger.debug "Parsed data = nation: " + parser.nation + " address: " + parser.address + " neighborhood: " + parser.neighborhood + " city: " + parser.city + " state: " + parser.state + " report: " + parser.report
+      logger.debug "Parsed data = nation: " + parser.nation + " address: " + parser.address + " neighborhood: " + neighborhood + " city: " + parser.city + " state: " + parser.state + " report: " + parser.report
       report = Report.new(:user_id => user.id, :nation => parser.nation, :address => parser.address, :neighborhood => neighborhood, :city => parser.city, :state => parser.state, :report => parser.report)
       
       if report.save 
