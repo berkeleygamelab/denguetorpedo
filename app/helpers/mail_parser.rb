@@ -31,6 +31,9 @@ module MailParser
           result = /(?:#address|#a) ([^#]+)/i.match(text_body)
         when 'neighborhood'
           result = /(?:#neighborhood|#h) ([^#]+)/i.match(text_body)
+          if result.nil?
+            result = ""
+          end
         when 'state'
           result = /(?:#state|#s) ([^#]+)/i.match(text_body)
         else 
