@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
       password = ApplicationHelper.temp_password_generator
       logger.info password
       user = User.new(:username => login, :password => password, :password_confirmation => password)
-      log.info user.inspect
+      logger.info user.inspect
       
       if user.save
         logger.info "new user created and send welcome report"
