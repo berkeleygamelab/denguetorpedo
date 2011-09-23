@@ -1,25 +1,25 @@
-!= content_for :title, 'My Reports'
+= content_for :title, 'My Reports'
 - @reports.each do |report|
   - address = "http://maps.google.com/maps/api/staticmap?zoom=16&size=320x240&maptype=roadmap&markers=color:red|" + report.complete_address + "&sensor=false"
   - address.gsub!(/ /, '+')
   .report_summary
     #actions
-      != link_to "Edit", edit_report_path(report) 
-      != link_to "Delete", report, :confirm => "Are You sure?", :method => :delete
+      = link_to "Edit", edit_report_path(report) 
+      = link_to "Delete", report, :confirm => "Are You sure?", :method => :delete
     #body
       %h4 nation
-      != report.nation
+      = report.nation
       %h4 state
-      != report.state
+      = report.state
       %h4 city
-      != report.city
+      = report.city
       %h4 address
-      != report.address
+      = report.address
       %h4 neighborhood
-      != report.neighborhood
+      = report.neighborhood
       %h4 report
-      != report.report
+      = report.report
     %p
-    != image_tag (address), :border => 0
+    = image_tag (address), :border => 0
   #timestamp
-    != report.strftime_updated_at
+    = report.strftime_updated_at
