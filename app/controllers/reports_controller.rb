@@ -48,7 +48,7 @@ class ReportsController < ApplicationController
     end
     
     logger.info "parsing the sms text..."
-    parser = MailParser::Parser.new(params[:Body])
+    parser = MailParser::Parser.new(params[:Body], 'sms')
     
     if parser.report && parser.nation && parser.city && parser.address && parser.state
       logger.debug "Parsed data = nation: " + nation + " address: " + address + " neighborhood: " + neighborhood + " city: " + city + " state: " + state + " report: " + report
