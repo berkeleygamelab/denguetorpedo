@@ -51,8 +51,8 @@ class ReportsController < ApplicationController
     parser = MailParser::Parser.new(params[:Body], 'sms')
     
     if parser.report && parser.nation && parser.city && parser.address && parser.state
-      logger.debug "Parsed data = nation: " + nation + " address: " + address + " neighborhood: " + neighborhood + " city: " + city + " state: " + state + " report: " + report
-      report = Report.new(:user_id => user.id, :nation => nation, :address => address, :neighborhood => neighborhood, :city => city, :state => state, :report => report)
+      logger.debug "Parsed data = nation: " + parser.nation + " address: " + parser.address + " neighborhood: " + parser.neighborhood + " city: " + parser.city + " state: " + parser.state + " report: " + parser.report
+      report = Report.new(:user_id => user.id, :nation => parser.nation, :address => parser.address, :neighborhood => parser.neighborhood, :city => parser.city, :state => parser.state, :report => parser.report)
       
       if report.save 
         logger.info("New report sucessfully added")
