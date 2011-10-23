@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
 
   has_many :reports
-
+  belongs_to :house
+  has_many :events, :foreign_key => "creator_id"
+  has_many :event_comments
 
   def generate_token(column)
     begin
