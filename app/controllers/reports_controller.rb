@@ -1,14 +1,14 @@
 class ReportsController < ApplicationController
   def index
-    @reports = @current_user.reports
+    @reports = @current_user.created_reports
   end
   
   def new
-    @report = @current_user.reports.new
+    @report = @current_user.created_reports.new
   end
   
   def create
-    @report = @current_user.reports.build(params[:report])
+    @report = @current_user.created_reports.build(params[:report])
     if @report.save
       flash[:notice] = "Report successfully created"
       redirect_to reports_url
@@ -75,7 +75,7 @@ class ReportsController < ApplicationController
   end
   
   def update
-    @report = @current_user.reports.find(params[:id])
+    @report = @current_user.created_reports.find(params[:id])
     if @report.update_attributes(params[:report])
       flash[:notice] = "Successfully updated profile"
       redirect_to reports_url
@@ -85,7 +85,7 @@ class ReportsController < ApplicationController
   end
   
   def destroy
-    @current_user.reports.find(params[:id]).destroy
+    @current_user.created_reports.find(params[:id]).destroy
     redirect_to reports_url
   end  
 end
