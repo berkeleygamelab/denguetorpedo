@@ -30,16 +30,16 @@ Dengue::Application.configure do
 
   config.action_mailer.default_url_options = { host: "http://dengue-staging.herokuapp.com" }
   
+  # Gmail SMTP
   config.action_mailer.delivery_method = :smtp
-   # Gmail SMTP server setup
-   config.action_mailer.smtp_settings = {
-         :address => "smtp.gmail.com",
-         :enable_starttls_auto => true,
-         :port => 587,
-         :domain => 'reportdengue@gmail.com',
-         :authentication => :plain,
-         :user_name => 'reportdengue',
-         :password => 'dengue@!$'
-   }
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :enable_starttls_auto => true,
+    :port => 587,
+    :domain => 'gmail.com',
+    :authentication => :plain,
+    :user_name => 'reportdengue',
+    :password => 'dengue@!$'
+  }
 
 end
