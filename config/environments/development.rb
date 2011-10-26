@@ -32,11 +32,12 @@ Dengue::Application.configure do
   
   # Gmail SMTP
   config.action_mailer.delivery_method = :smtp
+   # Gmail SMTP server setup
   config.action_mailer.smtp_settings = {
     :address => "smtp.gmail.com",
     :enable_starttls_auto => true,
     :port => 587,
-    :domain => 'gmail.com',
+    :domain => 'reportdengue@gmail.com',
     :authentication => :plain,
     :user_name => 'reportdengue',
     :password => 'dengue@!$'

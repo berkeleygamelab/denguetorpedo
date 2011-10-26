@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   def show
-    @user = @current_user
+    @user = User.find_by_id(params[:id])
 
     respond_to do |format|
       format.html

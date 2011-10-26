@@ -10,8 +10,12 @@ class User < ActiveRecord::Base
   # filters
   before_create { generate_token(:auth_token) }
 
-  has_many :reports
-
+  has_many :created_reports, :class_name => "Report", :foreign_key => "reporter_id"
+  has_many :claimed_reports, :class_name => "Report", :foreign_key => "claimer_id"
+  has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id"
+  belongs_to :house
+  has_many :events, :foreign_key => "creator_id"
+  has_many :event_comments
 
   def generate_token(column)
     begin

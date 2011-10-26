@@ -1,6 +1,7 @@
 = content_for :title, 'My Reports'
+
 - @reports.each do |report|
-  - address = "http://maps.google.com/maps/api/staticmap?zoom=16&size=320x240&maptype=roadmap&markers=color:red|" + report.complete_address + "&sensor=false"
+  - address = "http://maps.google.com/maps/api/staticmap?zoom=16&size=320x240&maptype=roadmap&markers=color:red|#{report.complete_address}&sensor=false"
   - address.gsub!(/ /, '+')
   .report_summary
     #actions

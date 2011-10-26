@@ -1,7 +1,9 @@
 class Report < ActiveRecord::Base
   acts_as_gmappable
   
-  belongs_to :user
+  belongs_to :reporter, :class_name => "User"
+  belongs_to :claimer, :class_name => "User"
+  belongs_to :eliminator, :class_name => "User"
   
   def strftime_updated_at
     self.updated_at.strftime("Reported on %m/%d/%Y")
