@@ -1,7 +1,5 @@
 Dengue::Application.routes.draw do
   
-  get "house/index"
-
   get "password_resets/new"
 
   resources :users, :only => [:new, :create, :show]
