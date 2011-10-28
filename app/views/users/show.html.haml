@@ -1,9 +1,31 @@
 - if @user.nil?
   %p User not found.
 - elsif not @isPrivatePage
+  %p= "Name: #{@user.username}"
+  %p
+    House: 
+    = link_to @user.house.name, house_path(@user.house)
+    %ul
+      - for neighbor in @user.neighbors
+        %li= link_to neighbor.username, user_path(neighbor)
+  %p
+    Points:
+    = @user.points || 0
+  %p
+    Created reports:
+    = @user.created_reports.count
+  %p
+    Claimed reports:
+    = @user.claimed_reports.count
+  %p
+    Eliminated reports:
+    = @user.eliminated_reports.count
+  %p Prevention Ideas:
+  %ul
+    - for event in @preventionIdeas
+      %li= event.description
   
   -# display the user's public page
 - else
   -# display the user's private page 
-- end
   

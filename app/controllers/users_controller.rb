@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   # GET /users
   def show
     @user = User.find_by_id(params[:id])
-    @isPrivatePage = (@current_user != nil and @current_user == @user)
-
+    @isPrivatePage = (@current_user != nil && @current_user == @user)
+    @preventionIdeas = (@user != nil && @user.events.where(:category => PREVENTION_IDEA).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
+    
     respond_to do |format|
       format.html
     end
