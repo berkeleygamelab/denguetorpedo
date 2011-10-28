@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   def show
     @user = User.find_by_id(params[:id])
+    @isPrivatePage = (@current_user != nil and @current_user == @user)
 
     respond_to do |format|
       format.html
