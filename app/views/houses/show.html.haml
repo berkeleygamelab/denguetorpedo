@@ -1,17 +1,16 @@
-- if not @isPrivatePage
-  - if @house.nil?
-    %p House not found
-  - else
-    %p= "Name: #{@house.name}"
-    %p= "Points: #{@house.points}"
-    %p= "Total reports: #{@house.num_reports}"
-    %p Members:
-    %ul
-      - for member in @house.members
-        %li= link_to member.username || user.phone_number, user_path(member)
-    %p= "Featured Event: #{@house.featured_event.description}"
-    %ul
-      - for comment in @house.featured_event.comments
-        %li = comment.content
+- if @house.nil?
+  %p House not found.
+- elsif not @isPrivatePage
+  %p= "Name: #{@house.name}"
+  %p= "Points: #{@house.points}"
+  %p= "Total reports: #{@house.num_reports}"
+  %p Members:
+  %ul
+    - for member in @house.members
+      %li= link_to member.username || user.phone_number, user_path(member)
+  %p= "Featured Event: #{@house.featured_event.description}"
+  %ul
+    - for comment in @house.featured_event.comments
+      %li = comment.content
 - else
   %p Private page

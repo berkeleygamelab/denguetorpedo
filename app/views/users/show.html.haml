@@ -1,6 +1,7 @@
 - if @user.nil?
-  %p No such user.
-- elsif @current_user.nil? or @user.id != @current_user.id
+  %p User not found.
+- elsif not @isPrivatePage
+  
   -# display the user's public page
 - else
   -# display the user's private page 
