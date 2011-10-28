@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def index
-    @reports = @current_user.created_reports
+    @reports = User.find(params[:user_id]).reports
   end
   
   def new
@@ -10,10 +10,9 @@ class ReportsController < ApplicationController
   def create
     @report = @current_user.created_reports.build(params[:report])
     if @report.save
-      flash[:notice] = "Report successfully created"
-      redirect_to reports_url
+      redirect_to user_reports_url, notice: "Report successfully created"
     else
-      render :action => :new
+      render "new"
     end
   end
   
@@ -77,15 +76,14 @@ class ReportsController < ApplicationController
   def update
     @report = @current_user.created_reports.find(params[:id])
     if @report.update_attributes(params[:report])
-      flash[:notice] = "Successfully updated profile"
-      redirect_to reports_url
+      redirect_to user_reports_url, notice: "Successfully updated report"
     else
-      render :action => 'edit'
+      render "edit"
     end
   end
   
   def destroy
     @current_user.created_reports.find(params[:id]).destroy
-    redirect_to reports_url
+    redirect_to user_reports_url
   end  
 end

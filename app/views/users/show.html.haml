@@ -1,9 +1,9 @@
 - if @user.nil?
   %p User not found.
 - elsif not @isPrivatePage
-  
-  -# display the user's public page
+  = @user.username 
+  %p public page
 - else
-  -# display the user's private page 
-- end
+  = @user.username
+  %p private page
   

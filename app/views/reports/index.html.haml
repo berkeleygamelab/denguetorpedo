@@ -5,8 +5,9 @@
   - address.gsub!(/ /, '+')
   .report_summary
     #actions
-      = link_to "Edit", edit_report_path(report) 
-      = link_to "Delete", report, :confirm => "Are You sure?", :method => :delete
+      - if @current_user
+        = link_to "Edit", edit_user_report_path(@current_user, report) 
+        = link_to "Delete", [@current_user, report], :confirm => "Are You sure?", :method => :delete
     #body
       %h4 nation
       = report.nation

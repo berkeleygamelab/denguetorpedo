@@ -1,5 +1,6 @@
 = content_for :title, 'Edit Report'
-= form_for @report, :url => {:action => "update"} do |f|
+
+= form_for [@current_user, @report], :url => {:action => "update"} do |f|
   = f.error_messages
   
   %fieldset
