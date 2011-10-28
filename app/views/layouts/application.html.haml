@@ -12,12 +12,15 @@
       #nav
         = link_to "Dengue", root_path, :style => "font-size: 1.2em;"
         - if @current_user
-          = link_to "Add a Report", new_report_path, :style => "font-size: 1.2em;"
-          = link_to "My Reports", reports_path, :style => "font-size: 1.2em;"
+          = link_to "Profile", user_path(@current_user), :style => "font-size: 1.2em;"
+          = link_to "Add a Report", new_user_report_path(@current_user), :style => "font-size: 1.2em;"
+          = link_to "My Reports", user_reports_path(@current_user), :style => "font-size: 1.2em;"
+        = link_to "Help", "help.html", :style => "font-size: 1.2em;"
 
       %p(style="float: right;")
         - if @current_user
           = @current_user.username
+          = link_to "Edit My Profile", edit_user_path(@current_user)
           = link_to "Lagout", session_path, :method => :delete
         - else
           = link_to "Sign in", new_session_path

@@ -1,5 +1,3 @@
-require 'base64'
-
 class ReportReader < ActionMailer::Base
   default from: "reportdengue@gmail.com"
   
@@ -7,23 +5,23 @@ class ReportReader < ActionMailer::Base
     @login = login
     @password = password
     @url = "http://reportdengue.herokuapp.com/login"
-    mail(:to => email_addrs)
+    mail(:to => email_addrs, :subject => "Welcome to Report Dengue")
   end
 
   def report_added_notification(email_addrs)
-    mail(:to => email_addrs)
+    mail(:to => email_addrs, :subject => "Report Dengue has successfully added your report")
   end
 
   def report_failed_notification(email_addrs)
-    mail(:to => email_addrs)
+    mail(:to => email_addrs, :subject => "Report Dengue has failed to add your report")
   end
 
   def incomplete_information(email_addrs)
-    mail(:to => email_addrs)
+    mail(:to => email_addrs, :subject => "Your report contain incomplete information")
   end
 
   def user_failed_to_create(email_addrs)
-    mail(:to => email_addrs)
+    mail(:to => email_addrs, :subject => "Report Dengue is unable to create an account for you")
   end
     
   def receive(email)

@@ -1,16 +1,16 @@
 Dengue::Application.routes.draw do
   
   get "password_resets/new"
+  post "reports/sms"
 
-  resources :users, :only => [:new, :create, :show]
+  resources :users, :except => [:index, :destroy] do
+    resources :reports, :except => [:show]
+  end
+  
   resources :houses
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]
-  resources :reports, :except =>  [:show]
-  resources :reports do
-     post 'sms', :on => :collection
-  end
-   
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

@@ -6,9 +6,9 @@ require 'gmail'
 
 loop do
   Gmail.new('reportdengue', 'dengue@!$') do |gmail|
-    gmail.inbox.emails.each do |email|
-      email = gmail.imap.uid_fetch(email.uid, 'RFC822').first.attr['RFC822']
-      ReportReader.receive(email)
+    gmail.inbox.emails(:unread).each do |email|
+      ReportReader.receive(gmail.imap.uid_fetch(email.uid, 'RFC822').first.attr['RFC822'])
+      email.mark(:read)
     end
   end
   sleep(3)

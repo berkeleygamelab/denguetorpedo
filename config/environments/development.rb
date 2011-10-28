@@ -28,8 +28,9 @@ Dengue::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
+  config.action_mailer.default_url_options = { host: "http://dengue-staging.herokuapp.com" }
   
+  # Gmail SMTP
   config.action_mailer.delivery_method = :smtp
    # Gmail SMTP server setup
   config.action_mailer.smtp_settings = {
@@ -41,4 +42,5 @@ Dengue::Application.configure do
     :user_name => 'reportdengue',
     :password => 'dengue@!$'
   }
+
 end
