@@ -1,9 +1,11 @@
 - if @user.nil?
   %p User not found.
 - elsif not @isPrivatePage
+  = image_tag @user.profile_photo.url
   = @user.username 
   %p public page
 - else
+  = image_tag @user.profile_photo.url
   = @user.username
   %p private page
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027201205) do
+ActiveRecord::Schema.define(:version => 20111028095910) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "content"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(:version => 20111027201205) do
     t.integer  "status"
     t.integer  "eliminator_id"
     t.integer  "claimer_id"
+    t.string   "before_photo_name"
+    t.string   "after_photo_name"
+    t.string   "before_photo_file_name"
+    t.string   "before_photo_content_type"
+    t.integer  "before_photo_file_size"
+    t.datetime "before_photo_updated_at"
+    t.string   "after_photo_file_name"
+    t.string   "after_photo_content_type"
+    t.integer  "after_photo_file_size"
+    t.datetime "after_photo_updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -74,6 +84,10 @@ ActiveRecord::Schema.define(:version => 20111027201205) do
     t.string   "address"
     t.integer  "points"
     t.integer  "house_id"
+    t.string   "profile_photo_file_name"
+    t.string   "profile_photo_content_type"
+    t.integer  "profile_photo_file_size"
+    t.datetime "profile_photo_updated_at"
   end
 
 end

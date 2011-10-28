@@ -17,5 +17,8 @@
       %li
         = f.label :password_confirmation
         = f.password_field :password_confirmation
+      %li
+        = f.file_field :profile_photo
+        
     = f.submit "update"
 = link_to 'Back', user_path(@current_user)

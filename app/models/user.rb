@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :auth_token
   has_secure_password
+  has_attached_file :profile_photo, :styles => { :small => "150x150>" }
 
   # validates
   validates :username, :uniqueness => true
@@ -15,7 +16,6 @@ class User < ActiveRecord::Base
   has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id"
   has_many :events, :foreign_key => "creator_id"
   has_many :event_comments
-  
   belongs_to :house
 
   def generate_token(column)
