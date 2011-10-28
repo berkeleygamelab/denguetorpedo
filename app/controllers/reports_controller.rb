@@ -17,7 +17,7 @@ class ReportsController < ApplicationController
   end
   
   def edit
-    @report = @current_user.reports.find(params[:id])
+    @report = @current_user.created_reports.find(params[:id])
   end
   
   def sms
