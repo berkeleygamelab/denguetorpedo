@@ -1,5 +1,7 @@
 Dengue::Application.routes.draw do
   
+  get "event_comments/create"
+
   get "password_resets/new"
   post "reports/sms"
 
@@ -10,6 +12,7 @@ Dengue::Application.routes.draw do
   resources :houses
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]
+  resources :event_comments
 
   root :to => 'home#index'
 
