@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
   end
   
   def reports
-    created_reports | claimed_reports | eliminated_reports
+    results = created_reports.includes(:reporter, :claimer, :eliminator) |
+      claimed_reports.includes(:reporter, :claimer, :eliminator) |
+      eliminated_reports.includes(:reporter, :claimer, :eliminator)
+    results.sort! do |l, r| l.updated_at <=> r.updated_at end
+    results
   end
 end

@@ -1,6 +1,6 @@
 - if @user.nil?
   %p User not found.
-- elsif not @isPrivatePage
+- else
   %p= "Name: #{@user.username}"
   %p
     House: 
@@ -24,8 +24,28 @@
   %ul
     - for event in @preventionIdeas
       %li= event.description
-  
-  -# display the user's public page
-- else
-  -# display the user's private page 
-  
+
+  - if @isPrivatePage
+    %p My Reports
+    %ul
+      - for report in @user.reports
+        %li
+          %p
+            Report ID:
+            = report.id
+          %p (Picture1)
+          %p (Picture2)
+          %p
+            Reporter:
+            = link_to report.reporter.username, user_path(report.reporter)
+          - if report.claimer
+            %p
+              Claimer:
+              = link_to report.claimer.username, user_path(report.claimer)
+          - if report.eliminator
+            %p
+              Eliminator:
+              = link_to report.eliminator.username, user_path(report.eliminator)
+      
+
+
