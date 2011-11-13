@@ -1,51 +1,62 @@
 - if @user.nil?
   %p User not found.
 - else
-  %p= "Name: #{@user.username}"
-  %p
-    House: 
-    = link_to @user.house.name, house_path(@user.house)
-    %ul
-      - for neighbor in @user.neighbors
-        %li= link_to neighbor.username, user_path(neighbor)
-  %p
-    Points:
-    = @user.points || 0
-  %p
-    Created reports:
-    = @user.created_reports.count
-  %p
-    Claimed reports:
-    = @user.claimed_reports.count
-  %p
-    Eliminated reports:
-    = @user.eliminated_reports.count
-  %p Prevention Ideas:
-  %ul
-    - for event in @preventionIdeas
-      %li= event.description
+  .left
+    #user-summary
+      = image_tag "Sunflower.gif"
+      #user-summary-details
+        %p= @user.username
+        %p
+          = @user.points
+          pts
+        %ul
+          - for neighbor in @user.neighbors
+            %li= link_to neighbor.username, user_path(neighbor)
+        %p
+          = @user.created_reports.count
+          Unresolved
+        %p
+          = @user.claimed_reports.count
+          Claimed
+        %p
+          = @user.eliminated_reports.count
+          Eliminations
+    - if @isPrivatePage
+      %ul#user-reports-list
+        - for report in @user.reports
+          %li
+            %p
+              Report #: 
+              = report.id
+            %p (Picture1)
+            %p (Picture2)
+            %p= report.report
+            %p
+              Reporter:
+              = link_to report.reporter.username, user_path(report.reporter)
+            - if report.claimer
+              %p
+                Claimer:
+                = link_to report.claimer.username, user_path(report.claimer)
+            - else
+              %p Unclaimed
+            - if report.eliminator
+              %p
+                Eliminator:
+                = link_to report.eliminator.username, user_path(report.eliminator)
+            - else
+              %p Unresolved
+  .right
+    #user-house-summary
+      %p
+        member of
+        = link_to @user.house.name, house_path(@user.house)
+    #user-surrounding-map
+    #user-prevention-ideas
+      %p Prevention Ideas:
+      %ul
+        - for event in @preventionIdeas
+          %li= event.description
 
-  - if @isPrivatePage
-    %p My Reports
-    %ul
-      - for report in @user.reports
-        %li
-          %p
-            Report ID:
-            = report.id
-          %p (Picture1)
-          %p (Picture2)
-          %p
-            Reporter:
-            = link_to report.reporter.username, user_path(report.reporter)
-          - if report.claimer
-            %p
-              Claimer:
-              = link_to report.claimer.username, user_path(report.claimer)
-          - if report.eliminator
-            %p
-              Eliminator:
-              = link_to report.eliminator.username, user_path(report.eliminator)
-      
 
 
