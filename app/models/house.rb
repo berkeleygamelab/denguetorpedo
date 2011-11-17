@@ -2,6 +2,7 @@ class House < ActiveRecord::Base
   has_many :members, :class_name => "User"
   has_many :events, :through => :members
   belongs_to :featured_event, :class_name => "Event"
+  belongs_to :location
 
   def points
     # TODO: change this to use a SQL query because this is probably not that efficient

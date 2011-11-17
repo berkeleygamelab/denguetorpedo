@@ -36,26 +36,31 @@ ActiveRecord::Schema.define(:version => 20111028095910) do
   add_index "events", ["creator_id"], :name => "index_events_on_creator_id"
 
   create_table "houses", :force => true do |t|
-    t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "featured_event_id"
+    t.integer  "location_id"
   end
 
-  create_table "reports", :force => true do |t|
+  create_table "locations", :force => true do |t|
     t.string   "nation"
     t.string   "state"
     t.string   "city"
-    t.string   "address"
     t.string   "neighborhood"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reports", :force => true do |t|
     t.text     "report"
     t.integer  "reporter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
     t.integer  "status"
     t.integer  "eliminator_id"
     t.integer  "claimer_id"
@@ -69,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20111028095910) do
     t.string   "after_photo_content_type"
     t.integer  "after_photo_file_size"
     t.datetime "after_photo_updated_at"
+    t.integer  "location_id"
   end
 
   create_table "users", :force => true do |t|
@@ -81,7 +87,6 @@ ActiveRecord::Schema.define(:version => 20111028095910) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.integer  "phone_number"
-    t.string   "address"
     t.integer  "points"
     t.integer  "house_id"
     t.string   "profile_photo_file_name"
