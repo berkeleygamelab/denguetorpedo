@@ -8,9 +8,15 @@
   %ul
     - for member in @house.members
       %li= link_to member.username || user.phone_number, user_path(member)
-  %p= "Featured Event: #{@house.featured_event.description}"
-  %ul
-    - for comment in @house.featured_event.comments
-      %li = comment.content
+  - unless @house.featured_event.nil?
+    %p= "Featured Event: #{@house.featured_event.description}"
+    %ul
+      - for comment in @house.featured_event.comments
+        %li= comment.content
+    = form_for @comment do |f|
+      = f.text_area :content
+      = f.text_field :event_id, :type => :hidden, :value => @house.featured_event.id
+      = f.text_field :user_id, :type => :hidden, :value => @current_user && @current_user.id
+      = f.submit "Post"
 - else
   %p Private page

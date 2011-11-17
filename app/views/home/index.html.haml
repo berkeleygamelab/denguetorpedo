@@ -1,5 +1,11 @@
+- content_for :nav_bar do
+  %p Report
+  %p Eliminate
+  %p Get Rewards
+
 = gmaps4rails(@locations, false, true)
-= content_for :title, 'Home'
+
+
 
 %footer
   = yield :scripts
