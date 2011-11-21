@@ -7,5 +7,9 @@ class Report < ActiveRecord::Base
   def strftime_updated_at
     self.updated_at.strftime("Reported on %m/%d/%Y")
   end
+    
+  def self.unverified_reports
+        Report.where("status = '2'")
+  end
   
 end

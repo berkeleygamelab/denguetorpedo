@@ -5,6 +5,37 @@
 
 = gmaps4rails(@locations, false, true)
 
+= content_for :title, 'Home'
+
+- content_for :neighborhood_box do |index|
+  .neighborhood_box(:id => index)
+    .neighborhood_map
+      = gmaps4rails(@report_locations[index])
+      
+    .neighborhood_houses
+      - for house in @houses[index]
+        %p= "#{ house.points } points"
+      - end
+          
+    .points
+      %p= "#{ @houses[index].collect{|h| h.points}.reduce(:+) } points"
+    
+- end
+
+  .featured_neighborhoods_box
+    %p Featured neighborhoods:
+    - @neighborhoods.each_with_index |neighborhood, index| 
+      .featured_neighborhood(:id => index)
+        %p= neighborhood.rank
+        %p= neighborhood.name
+        
+        # WARNING - PICTURES AND PAPERCLIP NOT IMPLEMENTED AND INTEGRATED YET
+        %p= neighborhood.picture
+    - end
+    
+    - (0...@neighborhoods.count).each do |index|
+        content_for :neighborhood_box, index
+    - end
 
 
 %footer

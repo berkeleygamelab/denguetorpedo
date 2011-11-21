@@ -1,7 +1,15 @@
 class HomeController < ApplicationController
-  def index
-    reports = Report.includes(:location).where("location_id IS NOT NULL")
-    @locations = reports.map do |r| r.location end
-    @locations = @locations.to_gmaps4rails
-  end
+    def index
+      # NEIGHBORHOOD MODEL HAS NOT BEEN IMPLEMENTED AND INTEGRATED WITH THE APP YET!!!!
+      
+        @neighborhoods = Neighborhood.top_five
+        @houses_list = @neighborhoods.collect { |n| n.houses }
+        @houses_maps = @houses_list.collect do |houses| 
+          houses.collect{ |h| h.location }.to_gmaps4rails
+        end
+    end
+    
+    
 end
+
+

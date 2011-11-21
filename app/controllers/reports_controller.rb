@@ -19,6 +19,10 @@ class ReportsController < ApplicationController
   def edit
     @report = @current_user.created_reports.find(params[:id])
   end
+    
+  def verification
+    @unverified_reports = Report.unverified_reports
+  end
   
   def sms
     logger = Logger.new(STDOUT)  
