@@ -20,4 +20,28 @@ class House < ActiveRecord::Base
 
     reports.size
   end
+
+  def num_open_reports
+    reports = Set.new
+    for m in members
+      reports.merge(m.created_reports)
+    end
+    reports.size
+  end
+
+  def num_claimed_reports
+    reports = Set.new
+    for m in members
+      reports.merge(m.claimed_reports)
+    end
+    reports.size
+  end
+
+  def num_resolved_reports
+    reports = Set.new
+    for m in members
+      reports.merge(m.eliminated_reports)
+    end
+    reports.size
+  end
 end

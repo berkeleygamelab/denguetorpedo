@@ -8,25 +8,22 @@
     = yield :head
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
-    #main_header
-      #nav
-        = link_to "Dengue Torpedo", root_path, :style => "font-size: 1.2em;"
-        = yield :nav_bar
-
-      %p(style="float: right;")
-        - if @current_user
-          = link_to @current_user.username, user_path(@current_user)
-          = link_to "Lagout", session_path, :method => :delete
-        - else
-          = link_to "Sign in", new_session_path
-          = link_to "Register", new_user_path
-
-      .clear
+    #logo_sub
+      
+    .navbar{:style => "background-image:url(/assets/bg_header_nav.png); background-repeat:no-repeat"}
+      .button_right_top
+        LOGIN
+        .button_right_tops
+          or register
+      .button_tran
+        MAKE REPORTS
+      .button_tran
+        CLAIM_REPORTS
+      .button_tran
+        FORUM
 
     - flash.each do |key, msg|
       = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
-
-    %h1= yield :title  
 
     = yield
 

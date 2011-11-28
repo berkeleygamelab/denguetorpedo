@@ -1,3 +1,208 @@
 // Place all the styles related to the House controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.house_name{
+    float:left;
+    padding: 5px;
+    color: black;
+    font-weight: bold;
+    font-size:20px;
+}
+
+.house_address{
+    float:left;
+    margin-top:12px;
+    font-size: 14px;
+}
+
+.house_photo{
+    margin-left:0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    *              {
+    max-height: 180px;
+    max-width: 240px;
+    }
+}
+
+.right_info{
+    width: 200px;
+    height: 100px;
+    float: left;
+    margin-left:20px;
+}
+
+.neighborhood{
+    margin-top: 10px;
+    font-family : Handwriting - Dakota;
+    font-size:16px;
+    color:#00CCCC;
+}
+
+.city_country{
+    font-size: 14px;
+}
+
+.members_text{
+    margin-top:50px;
+    font-size: 12px;
+}
+
+.members_group{
+    height:65px;
+    width: 240px;
+}
+
+.members_photo{
+    height:60px;
+    width: 59px;
+    background-color:gray;
+    float:left;
+    margin-right:5px;
+}
+
+.blog{
+    height:815px;
+    width:540px;
+    background-color:#D5D7C3;
+    margin-top:30px;
+}
+
+.house_points_bar{
+    width:361px;
+    height:64px; 
+    background-color:#D5D7C3;
+    float:right;
+}
+
+
+.house_reports_status{
+    margin-top:40px;
+    float:right;
+}
+
+.points{
+    color:black;
+    font-size:24px;
+    font-weight:bold;
+    text-align:right;
+    padding:15px;
+}
+
+
+.house_reports_status .statuses {
+    font-size: 12px;
+    color: #000000;
+    font-weight: bold;
+    float: left;
+    line-height: 25px;
+    text-align:center;
+    padding: 0 5px 0 0;
+    margin: 0 5px 0 5px;
+    width: 105px;
+}
+    
+.house_reports_status .resolved {
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: bold;
+    float: left;
+    line-height: 25px;
+    text-align:center;
+    padding: 0 22px 0 22px;
+    background-color: #c4c7b4;
+    margin: 0 5px 0 5px;
+    width: 33px;
+}
+    
+.house_reports_status .open {
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: bold;
+    float: left;
+    line-height: 25px;
+    text-align:center;
+    padding: 0 22px 0 22px;
+    background-color: #ff6600;
+    margin: 0 5px 0 5px;
+    width: 33px;
+}
+    
+.house_reports_status .claimed {
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: bold;
+    float: left;
+    line-height: 25px;
+    text-align:center;
+    padding: 0 22px 0 22px;
+    background-color: #00cccc;
+    margin: 0 5px 0 5px;
+    width: 33px;
+}
+
+.house_reports_status .description1 {
+    font-size: 9px;
+    color: #000000;
+    float: left;
+    line-height: 15px;
+    text-align:center;
+    padding: 0 22px 0 22px;
+    margin: 0 5px 0 125px;
+    width: 33px;
+}
+    
+.house_reports_status .description2 {
+    font-size: 14px;
+    color: #000000;
+    float: left;
+    line-height: 25px;
+    text-align:left;
+    padding: 0 22px 0 0;
+    margin: 15px 5px 10px 25px;
+    width: 233px;
+}
+    
+.house_reports_status .description {
+    font-size: 9px;
+    color: #000000;
+    
+    float: left;
+    line-height: 15px;
+    text-align:center;
+    padding: 0 22px 0 22px;
+    
+    margin: 0 5px 0 5px;
+    width: 33px;
+}
+    
+.house_reports_list{
+    height:788px;
+    width:351px;
+    margin-top:20px;
+    border: 3px solid #a8aa9a;
+    background-color:white;
+    float:right;
+}
+
+.house_reports_list .map{
+    background-image: url(images/map_fabia.png);
+    width: 310px;
+    height: 175px;
+    margin-left:0px;
+    margin-bottom:10px;
+    padding-top: 0px;
+    padding-left: 0px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    margin-top:20px;
+    margin-left:20px;
+}
+
+.house_reports_list .report{
+    margin-left:20px;
+    margin-top:5px;
+    height:85px;
+    width:310px;
+    background-image:url(images/reportbg1.png);
+}
