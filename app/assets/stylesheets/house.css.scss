@@ -19,9 +19,9 @@
     margin-left:0px;
     padding-top: 0px;
     padding-left: 0px;
-    *              {
-    max-height: 180px;
-    max-width: 240px;
+    * {
+        max-height: 180px;
+        max-width: 240px;
     }
 }
 
@@ -186,7 +186,7 @@
 }
 
 .house_reports_list .map{
-    background-image: url(images/map_fabia.png);
+    background-image: url(/assets/map_fabia.png);
     width: 310px;
     height: 175px;
     margin-left:0px;
@@ -204,5 +204,5 @@
     margin-top:5px;
     height:85px;
     width:310px;
-    background-image:url(images/reportbg1.png);
+    background-image:url(/assets/reportbg1.png);
 }

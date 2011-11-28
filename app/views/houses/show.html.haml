@@ -1,10 +1,7 @@
 .main_column
   .house_profile_info
-    .house_name
-      = @house.name
-      's House
-    .house_address
-      = @house.location.complete_address
+    .house_name= "#{@house.name}'s House"
+    .house_address= @house.location.complete_address
   .clearfloat
 
   .info
@@ -32,14 +29,15 @@
     .description claimed
     .clearfloat
     .statuses Report Statuses
-    .resolved= @house.num_resolved_reports
-    .open= @house.num_open_reports
-    .claimed= @house.num_claimed_reports
+    .resolved= @house.eliminated_reports.size
+    .open= @house.created_reports.size
+    .claimed= @house.claimed_reports.size
     .clearfloat
 
   .house_reports_list
     .map
-
+    - for report in @house.reports
+      .report= report.report
 
 
 -#- if @house.nil?
