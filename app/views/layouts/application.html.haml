@@ -12,9 +12,10 @@
       
     .navbar{:style => "background-image:url(/assets/bg_header_nav.png); background-repeat:no-repeat"}
       .button_right_top
-        LOGIN
+        = link_to "LOGIN", new_session_path
         .button_right_tops
-          or register
+          or
+          = link_to "Register", new_user_path
       .button_tran
         MAKE REPORTS
       .button_tran

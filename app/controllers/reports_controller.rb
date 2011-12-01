@@ -4,20 +4,58 @@ class ReportsController < ApplicationController
   end
   
   def new
-    @report = @current_user.created_reports.new
+    unless @current_user.nil?
+      @report = @current_user.created_reports.new
+      @report.location = Location.new
+    else
+      render :nothing => true
+    end
   end
   
   def create
-    @report = @current_user.created_reports.build(params[:report])
-    if @report.save
-      redirect_to user_reports_url, notice: "Report successfully created"
+    unless @current_user.nil?
+      loc_hash = params[:location]
+      location = Location.new(:nation => loc_hash[:nation],
+                              :state => loc_hash[:state],
+                              :city => loc_hash[:city],
+                              :neighborhood => loc_hash[:neighborhood],
+                              :address => loc_hash[:address])
+      geocode = Gmaps4rails.geocode(location.complete_address())
+      if geocode.size != 1
+        return render :nothing => true # TODO: give a helpful message if geocoding failed
+      end
+      lat = geocode[0][:lat]
+      lon = geocode[0][:lng]
+      geocode = geocode[0]
+      
+      existing_loc = Location.where(:latitude => lat, :longitude => lon)
+      if existing_loc.size == 0
+        unless location.save
+          return render :nothing => true
+        end
+        loc = location
+      else
+        loc = existing_loc[0]
+      end
+      
+      @report = @current_user.created_reports.build(params[:report])
+      @report.location_id = loc.id
+      if @report.save
+        redirect_to user_reports_url, notice: "Report successfully created"
+      else
+        render "new"
+      end
     else
-      render "new"
+      render :nothing => true
     end
   end
   
   def edit
-    @report = @current_user.created_reports.find(params[:id])
+    unless @current_user.nil?
+      @report = @current_user.created_reports.find(params[:id])
+    else
+      render :nothing => true
+    end
   end
     
   def verification
@@ -78,16 +116,24 @@ class ReportsController < ApplicationController
   end
   
   def update
-    @report = @current_user.created_reports.find(params[:id])
-    if @report.update_attributes(params[:report])
-      redirect_to user_reports_url, notice: "Successfully updated report"
+    unless @current_user.nil?
+      @report = @current_user.created_reports.find(params[:id])
+      if @report.update_attributes(params[:report])
+        redirect_to user_reports_url, notice: "Successfully updated report"
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      render :nothing => true
     end
   end
   
   def destroy
-    @current_user.created_reports.find(params[:id]).destroy
-    redirect_to user_reports_url
-  end  
+    unless @current_user.nil?
+      @current_user.created_reports.find(params[:id]).destroy
+      redirect_to user_reports_url
+    else
+      render :nothing => true
+    end
+  end
 end
