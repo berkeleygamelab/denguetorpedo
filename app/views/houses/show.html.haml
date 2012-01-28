@@ -1,4 +1,5 @@
-.main_column
+.container_12
+.grid_7
   .house_profile_info
     .house_name= "#{@house.name}'s House"
     .house_address= @house.location.complete_address
@@ -14,15 +15,17 @@
       .members_group
         - for member in @house.members
           .members_photo
-  .clearfloat
 
-  .blog
-
-.second_column
+.grid_5
   .house_points_bar
     .points
       = @house.points
       pts
+
+.grid_7
+  .blog
+	 
+.grid_5
   .house_reports_status
     .description1 resolved
     .description open
