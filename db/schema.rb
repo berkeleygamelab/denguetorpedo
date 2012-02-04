@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028095910) do
+ActiveRecord::Schema.define(:version => 20120204224909) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "content"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20111028095910) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
+    t.boolean  "is_verifier",                :default => false
   end
 
 end
