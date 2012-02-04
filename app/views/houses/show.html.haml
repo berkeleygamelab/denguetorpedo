@@ -1,22 +1,64 @@
-- if @house.nil?
-  %p House not found.
-- elsif not @isPrivatePage
-  %p= "Name: #{@house.name}"
-  %p= "Points: #{@house.points}"
-  %p= "Total reports: #{@house.num_reports}"
-  %p Members:
-  %ul
-    - for member in @house.members
-      %li= link_to member.username || user.phone_number, user_path(member)
-  - unless @house.featured_event.nil?
-    %p= "Featured Event: #{@house.featured_event.description}"
-    %ul
-      - for comment in @house.featured_event.comments
-        %li= comment.content
-    = form_for @comment do |f|
-      = f.text_area :content
-      = f.text_field :event_id, :type => :hidden, :value => @house.featured_event.id
-      = f.text_field :user_id, :type => :hidden, :value => @current_user && @current_user.id
-      = f.submit "Post"
-- else
-  %p Private page
+.main_column
+  .house_profile_info
+    .house_name= "#{@house.name}'s House"
+    .house_address= @house.location.complete_address
+  .clearfloat
+
+  .info
+    .house_photo{:style => "float:left;"}
+      = image_tag "house_pic.jpg"
+    .right_info
+      .neighborhood= @house.location.neighborhood
+      .city_country= "#{@house.location.city}, #{@house.location.state} #{@house.location.nation}"
+      .members_text Members
+      .members_group
+        - for member in @house.members
+          .members_photo
+  .clearfloat
+
+  .blog
+
+.second_column
+  .house_points_bar
+    .points
+      = @house.points
+      pts
+  .house_reports_status
+    .description1 resolved
+    .description open
+    .description claimed
+    .clearfloat
+    .statuses Report Statuses
+    .resolved= @house.eliminated_reports.size
+    .open= @house.created_reports.size
+    .claimed= @house.claimed_reports.size
+    .clearfloat
+
+  .house_reports_list
+    .map
+    - for report in @house.reports
+      .report= report.report
+
+
+-#- if @house.nil?
+-#  %p House not found.
+-#- elsif not @isPrivatePage
+-#  %p= "Name: #{@house.name}"
+-#  %p= "Points: #{@house.points}"
+-#  %p= "Total reports: #{@house.num_reports}"
+-#  %p Members:
+-#  %ul
+-#    - for member in @house.members
+-#      %li= link_to member.username || user.phone_number, user_path(member)
+-#  - unless @house.featured_event.nil?
+-#    %p= "Featured Event: #{@house.featured_event.description}"
+-#    %ul
+-#      - for comment in @house.featured_event.comments
+-#        %li= comment.content
+-#    = form_for @comment do |f|
+-#      = f.text_area :content
+-#      = f.text_field :event_id, :type => :hidden, :value => @house.featured_event.id
+-#      = f.text_field :user_id, :type => :hidden, :value => @current_user && @current_user.id
+-#      = f.submit "Post"
+-#- else
+-#  %p Private page

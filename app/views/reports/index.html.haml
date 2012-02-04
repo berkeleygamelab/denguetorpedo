@@ -1,7 +1,7 @@
 = content_for :title, 'My Reports'
 
 - @reports.each do |report|
-  - address = "http://maps.google.com/maps/api/staticmap?zoom=16&size=320x240&maptype=roadmap&markers=color:red|#{report.complete_address}&sensor=false"
+  - address = "http://maps.google.com/maps/api/staticmap?zoom=16&size=320x240&maptype=roadmap&markers=color:red|#{report.location.complete_address}&sensor=false"
   - address.gsub!(/ /, '+')
   .report_summary
     #actions
@@ -9,18 +9,18 @@
         = link_to "Edit", edit_user_report_path(@current_user, report) 
         = link_to "Delete", [@current_user, report], :confirm => "Are You sure?", :method => :delete
     #body
-      %h4 nation
-      = report.nation
-      %h4 state
-      = report.state
-      %h4 city
-      = report.city
-      %h4 address
-      = report.address
-      %h4 neighborhood
-      = report.neighborhood
       %h4 report
       = report.report
+      %h4 nation
+      = report.location.nation
+      %h4 state
+      = report.location.state
+      %h4 city
+      = report.location.city
+      %h4 address
+      = report.location.address
+      %h4 neighborhood
+      = report.location.neighborhood
     %p
     = image_tag (address), :border => 0
   #timestamp

@@ -1,63 +1,43 @@
 - if @user.nil?
   %p User not found.
 - else
-  .left
-    #user-summary
+  .main_column_personal
+    .profile_photo
       = image_tag "Sunflower.gif"
-      #user-summary-details
-        %p= @user.username
-        %p
-          = @user.points
-          pts
-        %ul
-          - for neighbor in @user.neighbors
-            %li= link_to neighbor.username, user_path(neighbor)
-        %p
-          = @user.created_reports.count
-          Unresolved
-        %p
-          = @user.claimed_reports.count
-          Claimed
-        %p
-          = @user.eliminated_reports.count
-          Eliminations
-    - if @isPrivatePage
-      %ul#user-reports-list
-        - for report in @user.reports
-          %li
-            %p
-              Report #: 
-              = report.id
-            %p (Picture1)
-            %p (Picture2)
-            %p= report.report
-            %p
-              Reporter:
-              = link_to report.reporter.username, user_path(report.reporter)
-            - if report.claimer
-              %p
-                Claimer:
-                = link_to report.claimer.username, user_path(report.claimer)
-            - else
-              %p Unclaimed
-            - if report.eliminator
-              %p
-                Eliminator:
-                = link_to report.eliminator.username, user_path(report.eliminator)
-            - else
-              %p Unresolved
-  .right
-    #user-house-summary
-      %p
-        member of
-        = link_to @user.house.name, house_path(@user.house)
-    #user-surrounding-map
-    #user-prevention-ideas
-      %p Prevention Ideas:
-      %ul
-        - for event in @preventionIdeas
-          %li= event.description
+    .personal_profile_info
+      .name= @user.username
+      .neighborhood= @user.house.location.neighborhood if defined? @user.house.location.neighborhood
+      .personal_points= "#{@user.points} pts"
+    .neighbors_container
+      .neighbors_text neighbors 
+      .neighbors_all
+        - for neighbor in @user.neighbors
+          .neighbor_photo
+    .clearfloat
+    .report_filters_personal
+      .stars
+        .number 20
+        .text Stars
+      .open
+        .number= @user.created_reports.count
+        .text Open
+      .claimed
+        .number= @user.claimed_reports.count
+        .text Claimed
+      .resolved
+        .number 15
+        .text Resolved
+      .eliminations
+        .number= @user.eliminated_reports.count
+        .text Eliminations
+    .personal_reports_list
+      .report
+      .report
+      .report
+      .report
+  
+  .second_column_personal
+    .house_link
+    .map
+    .prevention_ideas
 
-
-
->>>>>>> 98fd02d69ae15269d12dfbc29cfafd4c26391081

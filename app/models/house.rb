@@ -1,6 +1,9 @@
 class House < ActiveRecord::Base
   has_many :members, :class_name => "User"
   has_many :events, :through => :members
+  has_many :created_reports, :through => :members
+  has_many :claimed_reports, :through => :members
+  has_many :eliminated_reports, :through => :members
   belongs_to :featured_event, :class_name => "Event"
   belongs_to :location
 
@@ -9,15 +12,8 @@ class House < ActiveRecord::Base
     members.map {|m| m.points}.sum
   end
 
-  def num_reports
+  def reports
     # TODO: change this to use a SQL query
-    reports = Set.new
-    for m in members
-      reports.merge(m.created_reports)
-      reports.merge(m.claimed_reports)
-      reports.merge(m.eliminated_reports)
-    end
-
-    reports.size
+    created_reports | claimed_reports | eliminated_reports
   end
 end
