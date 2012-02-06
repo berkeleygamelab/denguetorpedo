@@ -8,23 +8,18 @@
     = yield :head
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
-    #logo_sub
-      
-    .navbar{:style => "background-image:url(/assets/bg_header_nav.png); background-repeat:no-repeat"}
-      .button_right_top
-        = link_to "LOGIN", new_session_path
-        .button_right_tops
-          or
-          = link_to "Register", new_user_path
-      .button_tran
-        MAKE REPORTS
-      .button_tran
-        CLAIM_REPORTS
-      .button_tran
-        FORUM
-
+    %nav#main_nav_bar
+      = image_tag("bg_logo1.png", :id => "logo")
+      %section#login
+        = link_to "Login", new_session_path
+        or 
+        = link_to "Register", new_user_path, :id => "register"
+      = link_to "MAKE REPORTS", new_session_path,:class => "main_nav_button"
+      = link_to "CLAIM REPORTS", new_session_path,:class => "main_nav_button"
+      = link_to "HEAT MAP", new_session_path,:class => "main_nav_button"
+      = link_to "FORUM", new_session_path,:class => "main_nav_button"
+    
     - flash.each do |key, msg|
       = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
-
-    = yield
+    = yield :content
 

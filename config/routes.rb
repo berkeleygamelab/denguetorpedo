@@ -13,6 +13,7 @@ Dengue::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]
   resources :event_comments
+  resources :verifications
 
   root :to => 'home#index'
 

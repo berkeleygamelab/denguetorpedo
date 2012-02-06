@@ -1,13 +1,12 @@
 class Location < ActiveRecord::Base
   acts_as_gmappable
 
-  validates :latitude, :uniqueness => true
-  validates :longitude, :uniqueness => true
+  validates :latitude, :uniqueness => { :scope => :longitude }
 
   def complete_address
     ret = self.address
-    ret += ", " + self.neighborhood unless self.neighborhood.nil?
-    ret += "#{self.city}, #{self.state}, #{self.nation}"
+#    ret += (", " + self.neighborhood + ' ') unless self.neighborhood.nil?
+    ret += " #{self.city}, #{self.state}, #{self.nation}"
     ret
   end
 

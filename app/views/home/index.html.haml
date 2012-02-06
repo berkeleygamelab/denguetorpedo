@@ -1,42 +1,14 @@
-- content_for :nav_bar do
-  %p Report
-  %p Eliminate
-  %p Get Rewards
-
-= gmaps4rails(@locations, false, true)
-
-= content_for :title, 'Home'
-
-- content_for :neighborhood_box do |index|
-  .neighborhood_box(:id => index)
-    .neighborhood_map
-      = gmaps4rails(@report_locations[index])
-      
-    .neighborhood_houses
-      - for house in @houses[index]
-        %p= "#{ house.points } points"
-      - end
-          
-    .points
-      %p= "#{ @houses[index].collect{|h| h.points}.reduce(:+) } points"
-    
-- end
-
-  .featured_neighborhoods_box
-    %p Featured neighborhoods:
-    - @neighborhoods.each_with_index |neighborhood, index| 
-      .featured_neighborhood(:id => index)
-        %p= neighborhood.rank
-        %p= neighborhood.name
-        
-        # WARNING - PICTURES AND PAPERCLIP NOT IMPLEMENTED AND INTEGRATED YET
-        %p= neighborhood.picture
-    - end
-    
-    - (0...@neighborhoods.count).each do |index|
-        content_for :neighborhood_box, index
-    - end
-
-
-%footer
-  = yield :scripts
+- content_for :content do
+  %section#home_orange_promotion
+    %ul#promotion_list
+      %li ABOUT
+      %li REPORT
+      %li CLAIM
+      %li ELIMINATE
+      %li REWARDS
+  %section#neighborhoods
+    %h4 Neighborhoods
+  %section#houses
+    %h4 Houses within the neighborhood
+  %section#sponsors
+    %h4 Sponsors
