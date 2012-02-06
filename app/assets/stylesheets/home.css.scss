@@ -1,3 +1,72 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+section#home_orange_promotion {
+  background-image: url("bg_orange_promotion.png");
+  width: 960px;
+  height: 482px;
+  background-repeat: no-repeat;
+  margin-top: -7px;
+}
+
+section ul#promotion_list {
+  list-style-type: none;
+  padding-top: 90px;
+  margin-left: 30px;
+}
+
+section ul#promotion_list li {
+  border-style: solid;
+  border-width: 3px;
+  border-color: #fbb180;
+  border-radius: 2px;
+  width: 145px;
+  height: 30px;
+  margin-top: 10px;
+  padding-top: 5px;
+  background: #fb984d;
+  color: #f76300;
+  text-align:center;
+  font-size: 15px;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+
+section#neighborhoods {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bcbfa9;
+  border-radius: 2px;
+  background: #e2e5cf;
+  width: 380px;
+  height: 800px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  float: left;
+}
+
+section#houses {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bcbfa9;
+  border-radius: 2px;
+  background: #e2e5cf;
+  width: 570px;
+  height: 500px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  float: right;
+}
+
+section#sponsors {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bcbfa9;
+  border-radius: 2px;
+  background: #e2e5cf;
+  width: 570px;
+  height: 290px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  float: right;
+}
