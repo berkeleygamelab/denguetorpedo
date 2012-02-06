@@ -13,7 +13,7 @@ group :production do
   gem 'pg'
 end
 
-# gem 'thin'
+gem 'thin'
 gem 'haml'
 gem 'geokit'
 gem 'gmaps4rails'

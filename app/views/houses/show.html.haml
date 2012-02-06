@@ -1,44 +1,47 @@
-.main_column
-  .house_profile_info
-    .house_name= "#{@house.name}'s House"
-    .house_address= @house.location.complete_address
-  .clearfloat
-
-  .info
-    .house_photo{:style => "float:left;"}
-      = image_tag "house_pic.jpg"
-    .right_info
-      .neighborhood= @house.location.neighborhood
-      .city_country= "#{@house.location.city}, #{@house.location.state} #{@house.location.nation}"
-      .members_text Members
-      .members_group
-        - for member in @house.members
-          .members_photo
-  .clearfloat
-
-  .blog
-
-.second_column
-  .house_points_bar
-    .points
-      = @house.points
-      pts
-  .house_reports_status
-    .description1 resolved
-    .description open
-    .description claimed
+.container_12
+  .grid_7
+    .house_profile_info
+      .house_name= "#{@house.name}'s House"
+      .house_address= @house.location.complete_address
     .clearfloat
-    .statuses Report Statuses
-    .resolved= @house.eliminated_reports.size
-    .open= @house.created_reports.size
-    .claimed= @house.claimed_reports.size
-    .clearfloat
-
-  .house_reports_list
-    .map
-    - for report in @house.reports
-      .report= report.report
-
+  
+    .info
+      .house_photo{:style => "float:left;"}
+        = image_tag "house_pic.jpg"
+      .right_info
+        .neighborhood= @house.location.neighborhood
+        .city_country= "#{@house.location.city}, #{@house.location.state} #{@house.location.nation}"
+        .members_text Members
+        .members_group
+          - for member in @house.members
+            .members_photo
+  
+  .grid_5
+    .house_points_bar
+      .points
+        = @house.points
+        pts
+  
+  .grid_7
+    .blog
+  	 
+  .grid_5
+    .house_reports_status
+      .description1 resolved
+      .description open
+      .description claimed
+      .clearfloat
+      .statuses Report Statuses
+      .resolved= @house.eliminated_reports.size
+      .open= @house.created_reports.size
+      .claimed= @house.claimed_reports.size
+      .clearfloat
+  
+    .house_reports_list
+      .map
+      - for report in @house.reports
+        .report= report.report
+  
 
 -#- if @house.nil?
 -#  %p House not found.
