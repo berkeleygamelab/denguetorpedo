@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "event_comments", ["event_id"], :name => "index_event_comments_on_event_id"
@@ -29,15 +29,15 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.text     "description"
     t.integer  "praised"
     t.integer  "category"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "events", ["creator_id"], :name => "index_events_on_creator_id"
 
   create_table "houses", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "name"
     t.integer  "featured_event_id"
     t.integer  "location_id"
@@ -52,15 +52,15 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "reports", :force => true do |t|
     t.text     "report"
     t.integer  "reporter_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "status"
     t.integer  "eliminator_id"
     t.integer  "claimer_id"
@@ -79,13 +79,13 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.string   "username"
     t.string   "password_digest"
     t.string   "auth_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "email"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.integer  "phone_number"
-    t.integer  "points"
+    t.integer  "points",                     :default => 0
     t.integer  "house_id"
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"

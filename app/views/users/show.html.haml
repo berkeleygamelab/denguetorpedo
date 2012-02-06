@@ -1,43 +1,40 @@
-- if @user.nil?
-  %p User not found.
-- else
-  .main_column_personal
-    .profile_photo
-      = image_tag "Sunflower.gif"
-    .personal_profile_info
-      .name= @user.username
-      .neighborhood= @user.house.location.neighborhood if defined? @user.house.location.neighborhood
-      .personal_points= "#{@user.points} pts"
-    .neighbors_container
-      .neighbors_text neighbors 
-      .neighbors_all
-        - for neighbor in @user.neighbors
-          .neighbor_photo
-    .clearfloat
-    .report_filters_personal
-      .stars
-        .number 20
-        .text Stars
-      .open
-        .number= @user.created_reports.count
-        .text Open
-      .claimed
-        .number= @user.claimed_reports.count
-        .text Claimed
-      .resolved
-        .number 15
-        .text Resolved
-      .eliminations
-        .number= @user.eliminated_reports.count
-        .text Eliminations
-    .personal_reports_list
-      .report
-      .report
-      .report
-      .report
-  
-  .second_column_personal
-    .house_link
-    .map
-    .prevention_ideas
+.main_column_personal
+  .profile_photo
+    = image_tag "Sunflower.gif"
+  .personal_profile_info
+    .name= @user.username
+    .neighborhood= @neighborhood unless @neighborhood.nil?
+    .personal_points= "#{@user.points} pts"
+  .neighbors_container
+    .neighbors_text neighbors 
+    .neighbors_all
+      - for neighbor in @user.neighbors
+        .neighbor_photo
+  .clearfloat
+  .report_filters_personal
+    .stars
+      .number 20
+      .text Stars
+    .open
+      .number= @user.created_reports.count
+      .text Open
+    .claimed
+      .number= @user.claimed_reports.count
+      .text Claimed
+    .resolved
+      .number 15
+      .text Resolved
+    .eliminations
+      .number= @user.eliminated_reports.count
+      .text Eliminations
+  .personal_reports_list
+    .report
+    .report
+    .report
+    .report
+
+.second_column_personal
+  .house_link
+  .map
+  .prevention_ideas
 

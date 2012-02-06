@@ -1,61 +1,52 @@
 class ReportsController < ApplicationController
+
+  before_filter :require_login, :except => [:sms, :verification]
+
   def index
-    @reports = User.find(params[:user_id]).reports
+    @reports = @current_user.reports
   end
   
   def new
-    unless @current_user.nil?
-      @report = @current_user.created_reports.new
-      @report.location = Location.new
-    else
-      render :nothing => true
-    end
+    @report = @current_user.created_reports.new
+    @report.location = Location.new
   end
   
   def create
-    unless @current_user.nil?
-      loc_hash = params[:location]
-      location = Location.new(:nation => loc_hash[:nation],
-                              :state => loc_hash[:state],
-                              :city => loc_hash[:city],
-                              :neighborhood => loc_hash[:neighborhood],
-                              :address => loc_hash[:address])
-      geocode = Gmaps4rails.geocode(location.complete_address())
-      if geocode.size != 1
-        return render :nothing => true # TODO: give a helpful message if geocoding failed
+    loc_hash = params[:location]
+    location = Location.new(:nation => loc_hash[:nation],
+                            :state => loc_hash[:state],
+                            :city => loc_hash[:city],
+                            :neighborhood => loc_hash[:neighborhood],
+                            :address => loc_hash[:address])
+    geocode = Gmaps4rails.geocode(location.complete_address())
+    if geocode.size != 1
+      return render :nothing => true # TODO: give a helpful message if geocoding failed
+    end
+    lat = geocode[0][:lat]
+    lon = geocode[0][:lng]
+    geocode = geocode[0]
+    
+    existing_loc = Location.where(:latitude => lat, :longitude => lon)
+    if existing_loc.size == 0
+      unless location.save
+        return render :nothing => true
       end
-      lat = geocode[0][:lat]
-      lon = geocode[0][:lng]
-      geocode = geocode[0]
-      
-      existing_loc = Location.where(:latitude => lat, :longitude => lon)
-      if existing_loc.size == 0
-        unless location.save
-          return render :nothing => true
-        end
-        loc = location
-      else
-        loc = existing_loc[0]
-      end
-      
-      @report = @current_user.created_reports.build(params[:report])
-      @report.location_id = loc.id
-      if @report.save
-        redirect_to user_reports_url, notice: "Report successfully created"
-      else
-        render "new"
-      end
+      loc = location
     else
-      render :nothing => true
+      loc = existing_loc[0]
+    end
+    
+    @report = @current_user.created_reports.build(params[:report])
+    @report.location_id = loc.id
+    if @report.save
+      redirect_to user_reports_url, notice: "Report successfully created"
+    else
+      render "new"
     end
   end
   
   def edit
-    unless @current_user.nil?
-      @report = @current_user.created_reports.find(params[:id])
-    else
-      render :nothing => true
-    end
+    @report = @current_user.created_reports.find(params[:id])
   end
     
   def verification
@@ -116,24 +107,16 @@ class ReportsController < ApplicationController
   end
   
   def update
-    unless @current_user.nil?
-      @report = @current_user.created_reports.find(params[:id])
-      if @report.update_attributes(params[:report])
-        redirect_to user_reports_url, notice: "Successfully updated report"
-      else
-        render "edit"
-      end
+    @report = @current_user.created_reports.find(params[:id])
+    if @report.update_attributes(params[:report])
+      redirect_to user_reports_url, notice: "Successfully updated report"
     else
-      render :nothing => true
+      render "edit"
     end
   end
   
   def destroy
-    unless @current_user.nil?
-      @current_user.created_reports.find(params[:id]).destroy
-      redirect_to user_reports_url
-    else
-      render :nothing => true
-    end
+    @current_user.created_reports.find(params[:id]).destroy
+    redirect_to user_reports_url
   end
 end
