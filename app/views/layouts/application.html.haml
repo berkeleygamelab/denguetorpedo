@@ -9,7 +9,7 @@
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
     %nav#main_nav_bar
-      = image_tag("bg_logo1.png", :id => "logo")
+      = link_to image_tag("bg_logo1.png", :id => "logo"), root_path
       %section#login
         = link_to "Login", new_session_path
         or 

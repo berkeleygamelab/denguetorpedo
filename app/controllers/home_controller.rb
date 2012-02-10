@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  
   def index
     # NEIGHBORHOOD MODEL HAS NOT BEEN IMPLEMENTED AND INTEGRATED WITH THE APP YET!!!!
     #@neighborhoods = Neighborhood.top_five
@@ -6,6 +7,7 @@ class HomeController < ApplicationController
     #@houses_maps = @houses_list.collect do |houses| 
     #  houses.collect{ |h| h.location }.to_gmaps4rails
     #end
+    @houses = House.all
   end  
 end
 

@@ -8,6 +8,10 @@
       %li REWARDS
   %section#neighborhoods
     %h4 Neighborhoods
+    %ul
+    - @houses.each do |house|
+      %li
+        = link_to house.name, house_path(house)
   %section#houses
     %h4 Houses within the neighborhood
   %section#sponsors

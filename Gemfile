@@ -11,9 +11,9 @@ end
 
 group :production do
   gem 'pg'
-  gem 'thin'
 end
 
+gem 'thin'
 gem 'haml'
 gem 'geokit'
 gem 'gmaps4rails'

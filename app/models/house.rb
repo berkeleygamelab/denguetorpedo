@@ -9,11 +9,20 @@ class House < ActiveRecord::Base
 
   def points
     # TODO: change this to use a SQL query because this is probably not that efficient
-    members.map {|m| m.points}.sum
+    members.map {|m| m.points.nil? ? 0 : m.points }.sum
   end
 
   def reports
     # TODO: change this to use a SQL query
     created_reports | claimed_reports | eliminated_reports
   end
+  
+  def neighborhood
+    self.location.neighborhood
+  end
+  
+  def complete_address
+    self.location.complete_address
+  end
+  
 end
