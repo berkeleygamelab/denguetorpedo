@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>Gemfile</string>
+	<string>app/models/user.rb</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -26,9 +26,23 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
+				<integer>18</integer>
+				<key>line</key>
+				<integer>37</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>6</integer>
+		</dict>
+		<key>Gemfile.lock</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>15</integer>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -47,7 +61,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>55</integer>
+			<integer>0</integer>
 		</dict>
 		<key>app/assets/stylesheets/home.css.scss</key>
 		<dict>
@@ -61,7 +75,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>18</integer>
+			<integer>0</integer>
 		</dict>
 		<key>app/controllers/home_controller.rb</key>
 		<dict>
@@ -99,6 +113,20 @@
 				<integer>20</integer>
 				<key>line</key>
 				<integer>8</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>app/controllers/verifications_controller.rb</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>3</integer>
+				<key>line</key>
+				<integer>14</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -180,9 +208,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>70</integer>
+				<integer>23</integer>
 				<key>line</key>
-				<integer>3</integer>
+				<integer>45</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -194,9 +222,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>16</integer>
+				<integer>19</integer>
 				<key>line</key>
-				<integer>13</integer>
+				<integer>12</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -216,20 +244,6 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
-		</dict>
-		<key>app/views/houses/show.html.haml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>4</integer>
-				<key>line</key>
-				<integer>26</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>14</integer>
 		</dict>
 		<key>app/views/layouts/application.html.haml</key>
 		<dict>
@@ -341,24 +355,26 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
+			<integer>15</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
 		<string>app/controllers/home_controller.rb</string>
+		<string>Gemfile.lock</string>
 		<string>db/schema.rb</string>
 		<string>app/assets/stylesheets/application.css.scss</string>
 		<string>app/views/home/index.html.haml</string>
 		<string>Gemfile</string>
+		<string>app/controllers/verifications_controller.rb</string>
+		<string>app/models/user.rb</string>
 		<string>app/views/houses/index.html.erb</string>
-		<string>app/views/houses/show.html.haml</string>
 		<string>app/assets/stylesheets/home.css.scss</string>
 		<string>app/views/layouts/application.html.haml</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{233, 0}, {1129, 878}}</string>
+	<string>{{153, 318}, {1038, 710}}</string>
 </dict>
 </plist>

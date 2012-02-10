@@ -1,6 +1,107 @@
 // Place all the styles related to the House controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@mixin section-base {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bcbfa9;
+  border-radius: 2px;
+  background: #e2e5cf;
+}
+
+#house_detail {
+ float: left;
+ margin-top: 80px;
+ width: 610px;
+ height: auto;
+}
+
+#house_posts {
+  @include section-base;
+  float: left;
+  margin-top: 10px;
+  width:  610px;
+  height: 695px;
+}
+
+#house_reports {
+  @include section-base;
+  float: right;
+  margin-top: 80px;
+  width:  330px;
+  height: 865px;
+}
+
+#house_highlight {
+  @include section-base;
+  float: left;
+  margin-top: 10px;
+  width: 610px;
+  height: 150px;
+}
+
+#house_photo {
+  @include section-base;
+  background: #FFF;
+  float: left;
+  width: 200px;
+  height: 200px;
+  margin-left: 0px;
+}
+
+#house_stats_box {
+  @include section-base;
+  width: 150px;
+  height: 40px;
+  color: #FFF;
+  background: #00cccc;
+  padding-top: 15px;
+}
+
+#house_stats ul {
+  list-style-type: none;
+}
+
+#house_stats li {
+  list-style-type: none;
+  display: inline;
+  float: left;
+  text-align: center;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+#house_members ul {
+  list-style-type: none;
+}
+
+#house_members li {
+  list-style-type: none;
+  display: inline;
+  float: left;
+}
+
+#house_member_photo {
+  @include section-base;
+  background: #FFF;
+  width: 75px;
+  height: 75px;
+  margin-left: 0px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
 .house_name{
     float:left;
     padding: 5px;
