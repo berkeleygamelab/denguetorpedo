@@ -17,14 +17,14 @@ u8 = User.create(:username => "QuiGonJinn", :password => "asdf123", :email => "f
 u9 = User.create(:username => "R2-D2", :password => "asdf123", :email => "foo9@foo.com")
 u10 = User.create(:username => "C-3PO", :password => "asdf123", :email => "foo10@foo.com")
 u11 = User.create(:username => "ObiWanKenobi", :password => "asdf123", :email => "foo11@foo.com")
-p "users created"
+puts "users created"
 
 l1 = Location.create(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2521 Regent St.")
 l2 = Location.create(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "North Side", :address => "1628 Spruce St.")
 l3 = Location.create(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "3850 Park Blvd.")
 l4 = Location.create(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2400 Durant Ave.")
 l5 = Location.create(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2627 Hillegass Ave.")
-p "locations created"
+puts "locations created"
 
 h1 = House.create(:name => "Tatooine")
 h1.location = l1
@@ -56,7 +56,7 @@ h5.location = l4
 h1.members << u2
 h5.members << u5
 h5.save
-p "members added"
+puts "members added"
 
 r1 = Report.create(:report => "Let's rescue Princess Leia!")
 r1.reporter = u1
@@ -93,7 +93,7 @@ r7.location = u7.house.location
 r7.claimer = u7
 r7.eliminator = u10
 r7.save
-p "reports created"
+puts "reports created"
 
 e1 = Event.create(:creator_id => u1.id, :description => "destroy the death star!", :praised => true)
 e1.comments << EventComment.create(:content => "we need to do it fast!", :user_id => u1.id)
@@ -102,5 +102,5 @@ Event.create(:creator_id => u11.id, :description => "train Luke as a Jedi", :pra
 e1.comments << EventComment.create(:content => "don't use your eyes", :user_id => u11.id)
 e1.comments << EventComment.create(:content => "be angry, you must not", :user_id => u6.id)
 Event.create(:creator_id => u5.id, :description => "convert Anakin to the dark side")
-p "events and comments created"
+puts "events and comments created"
 
