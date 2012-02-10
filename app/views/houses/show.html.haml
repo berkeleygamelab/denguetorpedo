@@ -1,5 +1,5 @@
 - content_for :content do
-  %section#house_detail
+  #house_detail
     %h2= @house.name + " @" + @house.neighborhood    
     %figure#house_photo
     %ul#house_stats
@@ -15,10 +15,11 @@
       - @house.members.each do |member|
         %li
           %figure#house_member_photo
-  %section#house_reports
+  #house_reports
     %h4 Reports section
-  %section#house_highlight
-    %h4 House Highlight section
-  %section#house_posts
+  #house_highlight
+    %p
+      %h3 House Highlight
+  #house_posts
     %h4 Posts section
  

@@ -34,11 +34,15 @@
 }
 
 #house_highlight {
-  @include section-base;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #bcbfa9;
+  border-radius: 2px;
+  background: #FFF;
   float: left;
   margin-top: 10px;
-  width: 610px;
-  height: 150px;
+  width: 607px;
+  height: 200px;
 }
 
 #house_photo {
@@ -85,8 +89,8 @@
 #house_member_photo {
   @include section-base;
   background: #FFF;
-  width: 75px;
-  height: 75px;
+  width: 85px;
+  height: 85px;
   margin-left: 0px;
   margin-right: 10px;
   margin-bottom: 5px;
