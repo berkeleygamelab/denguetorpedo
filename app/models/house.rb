@@ -9,7 +9,7 @@ class House < ActiveRecord::Base
 
   def points
     # TODO: change this to use a SQL query because this is probably not that efficient
-    members.map {|m| m.points.nil? ? 0 : m.points }.sum
+    members.sum(:points)
   end
 
   def self.all_in_neighborhoods(neighborhoods)
