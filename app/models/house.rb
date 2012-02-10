@@ -12,6 +12,10 @@ class House < ActiveRecord::Base
     members.map {|m| m.points.nil? ? 0 : m.points }.sum
   end
 
+  def self.all_in_neighborhoods(neighborhoods)
+    House.joins(:location).where(:locations => {:neighborhood => neighborhoods})
+  end
+
   def reports
     # TODO: change this to use a SQL query
     created_reports | claimed_reports | eliminated_reports
