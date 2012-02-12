@@ -6,6 +6,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield :head
+    = yield :scripts
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
     %nav#main_nav_bar

@@ -6,17 +6,13 @@ class Location < ActiveRecord::Base
   has_one :house
 
   def points
-    if house.nil?
-      0
-    else
-      house.points
-    end
+    house.nil? ? 0 : house.points
   end
 
-  def self.top_neighborhoods(n)
+  def self.top_neighborhoods(n = 0)
     neighborhood_points = Location.joins(:house => :members).group(:neighborhood).count("users.points")
-    sorted_neighborhoods = neighborhood_points.to_a.sort do |i, j| j[1] <=> i[1] end.map do |x| x[0] end
-    sorted_neighborhoods[0, n]
+    sorted_neighborhoods = neighborhood_points.to_a.sort {|i, j| j[1] <=> i[1]}.map {|x| x[0]} 
+    n ? sorted_neighborhoods : sorted_neighborhoods[0, n]
   end
 
   def complete_address

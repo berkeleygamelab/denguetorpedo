@@ -1,7 +1,6 @@
 Dengue::Application.routes.draw do
   
   get "event_comments/create"
-
   get "password_resets/new"
   post "reports/sms"
 

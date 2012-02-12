@@ -6,5 +6,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require gmaps4rails/bing.js
 //= require gmaps4rails/googlemaps.js
+//= require gmaps4rails/mapquest.js
+//= require gmaps4rails/openlayers.js
+//= require gmaps4rails/all_apis.js
 //= require_tree .
+
+$(function() {
+  $("#neighborhood_list li a").live("click", function() {
+    $("#neighborhood_list li").removeClass("hilite");
+    $(this).parent().parent().addClass("hilite");
+    return true;
+  });
+  $("#neighborhood_list li a").live("click", function() {
+    $.getScript(this.href);
+    return false;
+  });
+});

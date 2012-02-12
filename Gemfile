@@ -16,7 +16,7 @@ end
 gem 'thin'
 gem 'haml'
 gem 'geokit'
-gem 'gmaps4rails'
+gem 'gmaps4rails', '~> 1.4.5'
 gem 'twilio-ruby'
 gem 'dynamic_form'
 gem 'ruby-gmail'
@@ -30,7 +30,7 @@ gem 'paperclip'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.2.3"
+  gem 'sass-rails', "~> 3.2.3"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
 end

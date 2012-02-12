@@ -1,18 +1,15 @@
 - content_for :content do
-  %section#home_orange_promotion
+  #home_orange_promotion
     %ul#promotion_list
       %li ABOUT
       %li REPORT
       %li CLAIM
       %li ELIMINATE
       %li REWARDS
-  %section#neighborhoods
-    %h4 Neighborhoods
-    %ul
-    - @houses.each do |house|
-      %li
-        = link_to house.name, house_path(house)
-  %section#houses
-    %h4 Houses within the neighborhood
-  %section#sponsors
+  #neighborhoods
+    = render "neighborhood_list"
+  #houses
+    = render "house_list"
+  #sponsors
     %h4 Sponsors
+    

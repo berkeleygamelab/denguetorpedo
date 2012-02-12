@@ -1,0 +1,8 @@
+%h4 Houses within #{@selected_neighborhood}
+= gmaps4rails(@houses_gmap_json, false, true)
+%ul#house_list
+  - @houses.each do |house|
+    %li
+      = link_to house.name, house_path(house)
+      #house_photo_thumb
+      #house_points= "#{house.points} points" 
