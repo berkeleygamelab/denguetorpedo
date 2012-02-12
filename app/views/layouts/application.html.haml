@@ -22,5 +22,5 @@
     
     - flash.each do |key, msg|
       = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
-    = yield :content
+    = yield
 
