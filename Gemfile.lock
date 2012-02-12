@@ -155,7 +155,7 @@ DEPENDENCIES
   dynamic_form
   foreman
   geokit
-  gmaps4rails (>= 1.4.5)
+  gmaps4rails (~> 1.4.5)
   haml
   jquery-rails
   mime
