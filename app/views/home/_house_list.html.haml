@@ -1,6 +1,5 @@
 %h4 Houses within #{@selected_neighborhood}
 = gmaps(:markers => { :data => @houses_gmap_json }, :map_options => { :maxZoom => 12 })
-= gmaps4rails(@houses_map_json, false, true)
 %ul#house_list
   - @houses.each do |house|
     %li
