@@ -1,0 +1,5 @@
+%h4 Select a Neighborhood
+%ul#neighborhood_list
+  - @all_neighborhoods.each do |neighborhood|  
+    %li{:class => is_hilited_neighborhood?(@selected_neighborhood, neighborhood)}
+      %h4= link_to "#{neighborhood}", root_path(:neighborhood => "#{neighborhood}")

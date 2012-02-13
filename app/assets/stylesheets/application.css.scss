@@ -68,6 +68,7 @@ a:hover, a:active, a:focus {
     font-weight: bold;
     border-radius: 5px;
     box-shadow: 3px 3px 3px #888888;
+    
     &:hover{
         background-image: url("bg_button_hover.png");
     }
@@ -92,6 +93,7 @@ section#login {
       border:none;
       color: #00cccc;
   }
+  
   #register {
     display: block;
     margin-top: 5px;

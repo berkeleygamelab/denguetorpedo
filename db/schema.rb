@@ -64,8 +64,7 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.integer  "status"
     t.integer  "eliminator_id"
     t.integer  "claimer_id"
-    t.string   "before_photo_name"
-    t.string   "after_photo_name"
+    t.integer  "location_id"
     t.string   "before_photo_file_name"
     t.string   "before_photo_content_type"
     t.integer  "before_photo_file_size"
@@ -74,7 +73,6 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.string   "after_photo_content_type"
     t.integer  "after_photo_file_size"
     t.datetime "after_photo_updated_at"
-    t.integer  "location_id"
   end
 
   create_table "users", :force => true do |t|
@@ -87,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.integer  "phone_number"
-    t.integer  "points",                     :default => 0
+    t.integer  "points",                     :default => 0,     :null => false
     t.integer  "house_id"
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"

@@ -5,4 +5,5 @@ module ApplicationHelper
     char_bank.shuffle.shuffle.shuffle!
     (1..8).collect{|a| char_bank[rand(char_bank.size)] }.join
   end
+    
 end

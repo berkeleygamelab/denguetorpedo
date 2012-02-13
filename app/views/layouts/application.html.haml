@@ -6,10 +6,11 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield :head
+    = yield :scripts
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
     %nav#main_nav_bar
-      = image_tag("bg_logo1.png", :id => "logo")
+      = link_to image_tag("bg_logo1.png", :id => "logo"), root_path
       %section#login
         = link_to "Login", new_session_path
         or 
@@ -21,5 +22,5 @@
     
     - flash.each do |key, msg|
       = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
-    = yield :content
+    = yield
 
