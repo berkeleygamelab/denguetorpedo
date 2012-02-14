@@ -15,7 +15,22 @@
       %li
         %figure#house_member_photo
 #house_reports
-  %h4 Reports section
+  %h4 House Reports
+  %ul#report_buttons
+    %li#house_open_report_button 
+      = @house.created_reports.count
+      %br Open
+    %li#house_claimed_report_button 
+      = @house.claimed_reports.count
+      %br Claimed
+    %li#house_resolved_report_button 
+      = @house.eliminated_reports.count
+      %br Resolved
+      
+      
+  - @house.reports.each do |report|
+    = render "/reports/open_report"
+    %p= report.report
 #house_highlight
   %p
     %h3 House Highlight

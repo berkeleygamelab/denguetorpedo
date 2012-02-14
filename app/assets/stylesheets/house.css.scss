@@ -63,28 +63,29 @@
   padding-top: 15px;
 }
 
-#house_stats ul {
+ul#house_stats  {
   list-style-type: none;
+  li {
+    list-style-type: none;
+    display: inline;
+    float: left;
+    text-align: center;
+    margin-right: 30px;
+    margin-bottom: 30px;
+  }
 }
 
-#house_stats li {
+ul#house_members {
   list-style-type: none;
-  display: inline;
-  float: left;
-  text-align: center;
-  margin-right: 30px;
-  margin-bottom: 30px;
+  
+  li {
+    list-style-type: none;
+    display: inline;
+    float: left;
+  }
 }
 
-#house_members ul {
-  list-style-type: none;
-}
 
-#house_members li {
-  list-style-type: none;
-  display: inline;
-  float: left;
-}
 
 #house_member_photo {
   @include section-base;
@@ -96,6 +97,37 @@
   margin-bottom: 5px;
   margin-top: 5px;
 }
+
+ul#report_buttons  {
+  list-style-type: none;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  
+  li {
+     list-style-type: none;
+      display: inline-block;
+      width: 100px;
+      height: 45px;
+      background: #FFF;
+      border-radius: 2px;
+      text-align: center;
+      color: #FFF;
+  }
+  #house_open_report_button {
+    background: #F66C00;
+  }
+  #house_claimed_report_button {
+    background: #40CBCD;
+  }
+  #house_resolved_report_button {
+    background: #C4C8B2;
+  }
+}
+
+
+
+
+
 
 
 

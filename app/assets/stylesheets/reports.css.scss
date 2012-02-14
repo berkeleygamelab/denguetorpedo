@@ -2,6 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin section-base {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #bcbfa9;
+  border-radius: 2px;
+  background: #e2e5cf;
+}
+
+.report {
+  @include section-base;
+  width: 309px;
+  height: 150px;
+  background: #FFF;
+  margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .header{
     margin-top:20px;
 

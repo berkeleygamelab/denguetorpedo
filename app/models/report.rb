@@ -11,5 +11,5 @@ class Report < ActiveRecord::Base
   def self.unverified_reports
         Report.where("status = '2'")
   end
-  
+    
 end
