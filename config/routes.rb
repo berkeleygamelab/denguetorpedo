@@ -1,5 +1,8 @@
 Dengue::Application.routes.draw do
   
+  get "forums/index"
+  match "forums" => "forums#index"
+
   get "event_comments/create"
   get "password_resets/new"
   post "reports/sms"
