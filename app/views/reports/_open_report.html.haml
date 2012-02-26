@@ -9,7 +9,7 @@
   #bottom_section
     #status
       Open
-    %h4== Reporter: #{open_report.reporter.username}
+    %h4== Reporter: #{open_report.reporter.username unless open_report.reporter.nil?}
     %h4 Eliminator: Pending...
     #time_stamp
       = open_report.strftime_updated_at

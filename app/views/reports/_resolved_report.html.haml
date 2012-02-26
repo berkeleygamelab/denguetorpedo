@@ -9,7 +9,7 @@
   #bottom_section
     #status
       Open
-    %h4== Reporter: #{resolved_report.reporter.username}
-    %h4== Eliminator: #{resolved_report.eliminator.username}
+    %h4== Reporter: #{resolved_report.reporter.username unless resolved_report.reporter.nil?}
+    %h4== Eliminator: #{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
     #time_stamp
       = resolved_report.strftime_updated_at
