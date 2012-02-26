@@ -2,25 +2,79 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@mixin section-base {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #bcbfa9;
-  border-radius: 2px;
-  background: #e2e5cf;
-}
+$background-color: #F5F7E0;
+$orange: #FF6600;
+$blue: #00CCCC;
+$light-gray: #C4C7B4;
+$max-width: 1040px;
 
 .report {
-  @include section-base;
-  width: 309px;
-  height: 150px;
-  background: #FFF;
-  margin-left: 10px;
+  width: auto;
+  height: auto;
+  background: $background-color;
+  margin: 0px 10px 10px 10px;
+  border-style: solid;
+  border-color: $light-gray;
+  border-width: 2px;
+  border-radius: 2px;
+  color: #000000;
+  font-size: 12px;
+
+  #before_photo {
+    float: left;
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+    background: $light-gray;
+  }
+  #after_photo {
+    float: left;
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+    background: $light-gray;
+  }
+  #report_content {
+    float: left;
+    margin: 5px;
+    width: 145px;
+    height: auto;
+  }
+  #bottom_section {
+    padding: 5px;
+    clear: both;
+    width: auto;
+    height: 50px;
+  }
+  #status {
+     padding-top: 5px;
+     margin-top: 20px;
+     width: 70px;
+     height: 25px;
+     float: right;
+     color: #FFFFFF;
+     text-align: center;
+     
+   }
 }
 
+#claimed_report {
+  #status {
+    background: $blue;
+  }
+}
 
+#open_report {
+  #status {
+    background: $orange;
+  }
+}
 
-
+#resolved_report {
+  #status {
+    background: $light-gray;
+  }
+}
 
 
 

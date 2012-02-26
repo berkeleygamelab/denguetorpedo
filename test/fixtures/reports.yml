@@ -8,6 +8,7 @@ one:
   neighborhood: MyString
   report: MyText
   user_id: 1
+  status: 0
 
 two:
   nation: MyString
@@ -17,3 +18,14 @@ two:
   neighborhood: MyString
   report: MyText
   user_id: 1
+  status: 1
+
+three:
+  nation: MyString
+  state: MyString
+  city: MyString
+  address: MyString
+  neighborhood: MyString
+  report: MyText
+  user_id: 1
+  status: 2

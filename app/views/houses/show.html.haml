@@ -1,39 +1,58 @@
-#house_detail
-  %h2= @house.name + " @" + @house.neighborhood    
-  %figure#house_photo
-  %ul#house_stats
-    %li 
-      Points
-      %section#house_stats_box
-        = @house.points
-    %li 
-      Neighborhood
-      %section#house_stats_box
-        = @house.neighborhood
-  %ul#house_members
-    - @house.members.each do |member|
-      %li
-        %figure#house_member_photo
-#house_reports
-  %h4 House Reports
-  %ul#report_buttons
-    %li#house_open_report_button 
-      = @house.created_reports.count
-      %br Open
-    %li#house_claimed_report_button 
-      = @house.claimed_reports.count
-      %br Claimed
-    %li#house_resolved_report_button 
-      = @house.eliminated_reports.count
-      %br Resolved
-      
-      
-  - @house.reports.each do |report|
-    = render "/reports/open_report"
-    %p= report.report
-#house_highlight
-  %p
-    %h3 House Highlight
-#house_posts
-  %h4 Posts section
+#left_section
+  #house_detail
+    %h2= @house.name + " @" + @house.neighborhood    
+    %figure#house_photo
+    %ul#house_stats
+      %li 
+        Points
+        %section#house_stats_box
+          = @house.points
+      %li 
+        Neighborhood
+        %section#house_stats_box
+          = @house.neighborhood
+    %ul#house_members
+      - @house.members.each do |member|
+        %li
+          %figure#house_member_photo
+  
+  #house_highlight
+    %p
+      %h3 House Highlight
+  #house_posts
+    %h4 Posts section
+
+#right_section
+  #house_points
+    %h2== #{@house.points} points
+  #house_reports
+    %h4 House Reports:
+    = gmaps(:markers => { :data => @house_reports_gmap_json }, :map_options => { :maxZoom => 12 }, :map_options => { :id => "reports_map" })
+    %ul#report_status
+      %li#house_open_report_button 
+        = @house.created_reports.count
+        %br Open
+      %li#house_claimed_report_button 
+        = @house.claimed_reports.count
+        %br Claimed
+      %li#house_resolved_report_button 
+        = @house.eliminated_reports.count
+        %br Resolved   
+    - @house.reports.each do |report|
+      - if report.status == 0
+        = render :partial => "/reports/open_report", :object => report
+      - if report.status == 1
+        = render :partial => "/reports/claimed_report", :object => report
+      - if report.status == 2
+        = render :partial => "/reports/resolved_report", :object => report
+
+
+
+
+
+
+
+
+
+
  

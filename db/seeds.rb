@@ -58,36 +58,36 @@ h5.members << u5
 h5.save
 puts "members added"
 
-r1 = Report.create(:report => "Let's rescue Princess Leia!")
+r1 = Report.create(:report => "Let's rescue Princess Leia!", :status => 0)
 r1.reporter = u1
 r1.location = u1.house.location
 r1.claimer = u1
 r1.save
-r2 = Report.create(:report => "I find your lack of faith...disturbing...")
+r2 = Report.create(:report => "I find your lack of faith...disturbing...", :status => 1)
 r2.reporter = u2
 r2.claimer = u2
 r2.location = u2.house.location
 r2.save
-r3 = Report.create(:report => "Use the force...")
+r3 = Report.create(:report => "Use the force...", :status => 2)
 r3.reporter = u6
 r3.location = u6.house.location
 r3.save
-r4 = Report.create(:report => "If you strike me down, I shall become more powerful that you ever imagine.")
+r4 = Report.create(:report => "If you strike me down, I shall become more powerful that you ever imagine.", :status => 0)
 r4.reporter = u11
 r4.location = Location.create(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Temescal", :address => "474 66th St.")
 r4.claimer = u2
 r4.save
-r5 = Report.create(:report => "Luck...I am your father...")
+r5 = Report.create(:report => "Luck...I am your father...", :status => 1)
 r5.reporter = u2
 r5.claimer = u2
 r5.eliminator = u2
 r5.location = Location.create(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "North Side", :address => "1860 Leroy Ave")
 r5.save
-r6 = Report.create(:report => "Beep Beep Beep Beep...")
+r6 = Report.create(:report => "Beep Beep Beep Beep...", :status => 2)
 r6.reporter = u9
 r6.location = u9.house.location
 r6.save
-r7 = Report.create(:report => "Made the kesser run in less than twelve parsecs")
+r7 = Report.create(:report => "Made the kesser run in less than twelve parsecs", :status => 0)
 r7.reporter = u7
 r7.location = u7.house.location
 r7.claimer = u7

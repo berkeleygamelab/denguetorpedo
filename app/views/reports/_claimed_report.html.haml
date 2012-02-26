@@ -1,1 +1,15 @@
 .report#claimed_report
+  %h4== Report #{claimed_report.id}: #{claimed_report.complete_address}
+  #before_photo
+    before
+  #after_photo
+    after
+  #report_content
+    = claimed_report.report
+  #bottom_section
+    #status
+      Claimed
+    %h4== Reporter: #{claimed_report.reporter.username}
+    %h4== Claimed: #{claimed_report.claimer.username}
+    #time_stamp
+      = claimed_report.strftime_updated_at
