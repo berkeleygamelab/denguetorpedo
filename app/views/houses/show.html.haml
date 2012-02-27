@@ -27,7 +27,7 @@
     %h2== #{@house.points} points
   #house_reports
     %h4 House Reports:
-    = gmaps(:markers => { :data => @house_reports_gmap_json }, :map_options => { :maxZoom => 12 }, :map_options => { :id => "reports_map" })
+    = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
     %ul#report_status
       %li#house_open_report_button 
         = @house.created_reports.count
@@ -38,7 +38,7 @@
       %li#house_resolved_report_button 
         = @house.eliminated_reports.count
         %br Resolved   
-    - @house.reports.each do |report|
+    - for report in @house.reports
       - if report.status == 0
         = render :partial => "/reports/open_report", :object => report
       - if report.status == 1

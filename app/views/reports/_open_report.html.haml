@@ -1,15 +1,15 @@
-.report#open_report
+.report.open_report
   %h4== Report #{open_report.id}: #{open_report.complete_address}
-  #before_photo
+  .before_photo
     before
-  #after_photo
+  .after_photo
     after
-  #report_content
+  .report_content
     = open_report.report
-  #bottom_section
-    #status
+  .bottom_section
+    .status
       Open
     %h4== Reporter: #{open_report.reporter.username unless open_report.reporter.nil?}
     %h4 Eliminator: Pending...
-    #time_stamp
+    .time_stamp
       = open_report.strftime_updated_at

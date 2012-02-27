@@ -8,6 +8,16 @@ $blue: #00CCCC;
 $light-gray: #C4C7B4;
 $max-width: 1040px;
 
+
+@mixin photo {
+  float: left;
+  margin: 5px;
+  width: 100px;
+  height: 100px;
+  background-color: $light-gray;
+}
+
+
 .report {
   width: auto;
   height: auto;
@@ -20,33 +30,26 @@ $max-width: 1040px;
   color: #000000;
   font-size: 12px;
 
-  #before_photo {
-    float: left;
-    margin: 5px;
-    width: 100px;
-    height: 100px;
-    background: $light-gray;
+  .before_photo {
+    @include photo;
   }
-  #after_photo {
-    float: left;
-    margin: 5px;
-    width: 100px;
-    height: 100px;
-    background: $light-gray;
+
+  .after_photo {
+    @include photo;
   }
-  #report_content {
+  .report_content {
     float: left;
     margin: 5px;
     width: 145px;
     height: auto;
   }
-  #bottom_section {
+  .bottom_section {
     padding: 5px;
     clear: both;
     width: auto;
     height: 50px;
   }
-  #status {
+  .status {
      padding-top: 5px;
      margin-top: 20px;
      width: 70px;
@@ -54,24 +57,23 @@ $max-width: 1040px;
      float: right;
      color: #FFFFFF;
      text-align: center;
-     
    }
 }
 
-#claimed_report {
-  #status {
+.claimed_report {
+  .status {
     background: $blue;
   }
 }
 
-#open_report {
-  #status {
+.open_report {
+  .status {
     background: $orange;
   }
 }
 
-#resolved_report {
-  #status {
+.resolved_report {
+  .status {
     background: $light-gray;
   }
 }

@@ -1,15 +1,15 @@
-.report#resolved_report
+.report.resolved_report
   == Report #{resolved_report.id}: #{resolved_report.complete_address}
-  #before_photo
+  .before_photo
     before
-  #after_photo
+  .after_photo
     after
-  #report_content
+  .report_content
     = resolved_report.report
-  #bottom_section
-    #status
+  .bottom_section
+    .status
       Open
     %h4== Reporter: #{resolved_report.reporter.username unless resolved_report.reporter.nil?}
     %h4== Eliminator: #{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
-    #time_stamp
+    .time_stamp
       = resolved_report.strftime_updated_at
