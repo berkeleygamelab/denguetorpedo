@@ -12,9 +12,9 @@
         %section#house_stats_box
           = @house.neighborhood
     %ul#house_members
-      - @house.members.each do |member|
+      - for member in @house.members
         %li
-          %figure#house_member_photo
+          %figure.house_member_photo
   
   #house_highlight
     %p
@@ -29,15 +29,18 @@
     %h4 House Reports:
     = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
     %ul#report_status
-      %li#house_open_report_button 
-        = @house.created_reports.count
-        %br Open
+      %li#house_open_report_button
+        %a{:href => "#"}
+          = @house.created_reports.count
+          %br Open
       %li#house_claimed_report_button 
-        = @house.claimed_reports.count
-        %br Claimed
+        %a{:href => "#"}
+          = @house.claimed_reports.count
+          %br Claimed
       %li#house_resolved_report_button 
-        = @house.eliminated_reports.count
-        %br Resolved   
+        %a{:href => "#"}
+          = @house.eliminated_reports.count
+          %br Resolved   
     - for report in @house.reports
       - if report.status == 0
         = render :partial => "/reports/open_report", :object => report
@@ -46,13 +49,3 @@
       - if report.status == 2
         = render :partial => "/reports/resolved_report", :object => report
 
-
-
-
-
-
-
-
-
-
- 

@@ -78,33 +78,21 @@ ul#report_status  {
       border-radius: 2px;
       text-align: center;
       color: #FFF;
+
+      a{
+          color: white;
+      }
   }
   #house_open_report_button {
-    background: $orange;
+    background-color: $orange;
   }
   #house_claimed_report_button {
-    background: $blue;
+    background-color: $blue;
   }
   #house_resolved_report_button {
-    background: $light-gray;
+    background-color: $light-gray;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #house_detail {
  float: left;
@@ -173,7 +161,7 @@ ul#house_members {
   }
 }
 
-#house_member_photo {
+.house_member_photo {
   @include section-base;
   background: #FFF;
   width: 65px;
