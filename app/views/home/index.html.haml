@@ -1,14 +1,26 @@
 #home_orange_promotion
-  %ul#promotion_list
-    %li ABOUT
-    %li REPORT
-    %li CLAIM
-    %li ELIMINATE
-    %li REWARDS
+ #registration
+  = form_for(@user) do |f|
+   = f.error_messages
+   %a#title Register
+   %p
+    = f.label :username
+    = f.text_field :username
+    %p
+    = f.label :email
+    = f.text_field :email
+   %p
+    = f.label :password
+    = f.password_field :password
+   %p
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+   = f.submit "Submit"
+  // = link_to 'Back', root_path
 #neighborhoods
-  = render "neighborhood_list"
+ = render "neighborhood_list"
 #houses
-  = render "house_list"
+ = render "house_list"
 #sponsors
-  %h4 Sponsors
+ %h4 Sponsors
     

@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   has_attached_file :profile_photo, :styles => { :small => "150x150>" }
 
   # validates
-  validates :username, :uniqueness => true
-  validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
-  validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "password_digest.nil?"
-  validates :points, :numericality => { :only_integer => true }
+   validates :username, :uniqueness => true
+   validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
+   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "password_digest.nil?"
+   validates :points, :numericality => { :only_integer => true }
 
   # filters
   before_create { generate_token(:auth_token) }

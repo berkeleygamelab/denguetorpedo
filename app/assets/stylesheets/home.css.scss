@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$light-orange: #faa063;
+$orange: #f76300;
+$lightest-orange: #fbb180;
+$dark_orange: #d0590a;
+$standard_font: "Arial Black", Gadget, sans-serif;
+
 @mixin section-base {
   border-style: solid;
   border-width: 1px;
@@ -26,18 +32,68 @@ ul#promotion_list {
   li {
     border-style: solid;
     border-width: 3px;
-    border-color: #fbb180;
+    border-color: $lightest-orange;
     border-radius: 2px;
     width: 145px;
     height: 30px;
     margin-top: 10px;
     padding-top: 5px;
-    background: #fb984d;
-    color: #f76300;
+    background: $light-orange;
+    color: $orange;
     text-align:center;
     font-size: 15px;
-    font-family: "Arial Black", Gadget, sans-serif;
+    font-family: $standard_font
   }  
+}
+#registration{
+
+  padding-top: 50px;
+  padding-left:600px;
+
+
+  input {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border: 0px;
+    background: $light-orange;
+    width: 220px;
+    color: white;
+    height: 33px;
+    font-size: 16px;
+    font-family: "Lucida Grande";
+    &[type = "submit"] {
+      width: 75;
+      margin-left: 150px;
+      background: $dark_orange;
+      &:hover {
+        background: white;
+        color: $dark_orange;
+        cursor: pointer;
+      }
+      width: 70px;
+    }
+  }
+
+  a {
+    &#title{
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    font-size: 18px;
+    color: white;
+  }
+  label {
+    margin-left: 5px;
+    margin-top: 10px;
+    position: absolute;
+    background: transparent;
+    z-index: 1;
+    color: white;
+    font-size:16px;
+    font-family: "Lucida Grande";
+    cursor: text;
+   }
 }
 
 

@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    @user = User.new
     @all_neighborhoods = ["All Neighborhoods"] + Location.top_neighborhoods
 
     if params[:neighborhood].nil? or params[:neighborhood] == "All Neighborhoods"
