@@ -4,17 +4,13 @@
    = f.error_messages
    %a#title Register
    %p
-    = f.label :username
-    = f.text_field :username
+    = f.text_field :username, :placeholder => "Username"
    %p
-    = f.label :email
-    = f.text_field :email
+    = f.text_field :email, :placeholder => "Email"
    %p
-    = f.label :password
-    = f.password_field :password
+    = f.password_field :password, :placeholder => "Password"
    %p
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
+    = f.password_field :password_confirmation, :placeholder => "Password Confirmation"
    = f.submit "Submit"
 
 #neighborhoods
