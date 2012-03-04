@@ -1,8 +1,6 @@
 %h4 Houses within #{@selected_neighborhood}
-= gmaps(:markers => { :data => @houses_gmap_json }, :map_options => { :maxZoom => 12 })
 %ul#house_list
   - @houses.each do |house|
     %li
       = link_to house.name, house_path(house)
       #house_photo_thumb
-      #house_points= "#{house.points} points"

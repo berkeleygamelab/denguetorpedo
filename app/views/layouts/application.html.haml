@@ -7,19 +7,21 @@
     = csrf_meta_tags
     = yield :head
     = yield :scripts
-
+    
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
     %nav#main_nav_bar
-      = link_to image_tag("bg_logo1.png", :id => "logo"), root_path
-      %section#login
-        = link_to "Login", new_session_path
-        or 
-        = link_to "Register", new_user_path, :id => "register"
-      = link_to "MAKE REPORTS", new_session_path,:class => "main_nav_button"
-      = link_to "CLAIM REPORTS", new_session_path,:class => "main_nav_button"
-      = link_to "HEAT MAP", new_session_path,:class => "main_nav_button"
-      = link_to "FORUM", new_session_path,:class => "main_nav_button"
-    
+      = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
+      .main_nav_button
+        = link_to "LEARN", new_session_path
+        .main_nav_button_sub about dengue
+      .main_nav_button
+        = link_to "PLAY", new_session_path
+        .main_nav_button_sub How?
+      .main_nav_button
+        = link_to "WIN", new_session_path
+        .main_nav_button_sub What?
+      #login
+      
     - flash.each do |key, msg|
       = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
     = yield

@@ -1,18 +1,13 @@
 class HomeController < ApplicationController
   def index
     @user = User.new
-    @all_neighborhoods = ["All Neighborhoods"] + Location.top_neighborhoods
+    @all_neighborhoods = Location.top_neighborhoods
 
-    if params[:neighborhood].nil? or params[:neighborhood] == "All Neighborhoods"
-      @selected_neighborhood = 'All Neighborhood'
-      @houses = House.all
+    if params[:neighborhood].nil?
+      @houses = House.all_in_neighborhoods(@all_neighborhoods.first)
     else
-      @selected_neighborhood = params[:neighborhood]
-      @houses = House.all_in_neighborhoods(@selected_neighborhood)
+      @houses = House.all_in_neighborhoods(params[:neighborhood])
     end
-
-    @houses_gmap_json = @houses.map {|house| house.location}.to_gmaps4rails
-
   end
   
 end

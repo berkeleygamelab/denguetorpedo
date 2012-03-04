@@ -7,6 +7,7 @@ $orange: #f76300;
 $lightest-orange: #fbb180;
 $dark_orange: #d0590a;
 $standard_font: "Arial Black", Gadget, sans-serif;
+$max-width: 1040px;
 
 @mixin section-base {
   border-style: solid;
@@ -17,34 +18,24 @@ $standard_font: "Arial Black", Gadget, sans-serif;
 }
 
 #home_orange_promotion {
-  background-image: url("bg_orange_promotion.png");
-  width: 960px;
-  height: 482px;
+  background-image: url("home_images/orange_section_bg.png");
+  width: $max-width;
+  height: 402px;
   background-repeat: no-repeat;
-  margin-top: -7px;
 }
 
-ul#promotion_list {
-  list-style-type: none;
-  padding-top: 90px;
-  margin-left: 30px;
-  
-  li {
-    border-style: solid;
-    border-width: 3px;
-    border-color: $lightest-orange;
-    border-radius: 2px;
-    width: 145px;
-    height: 30px;
-    margin-top: 10px;
-    padding-top: 5px;
-    background: $light-orange;
-    color: $orange;
-    text-align:center;
-    font-size: 15px;
-    font-family: $standard_font
-  }  
+#neighborhood_search {
+  clear: both;
+  h2 {
+    float: left;
+  }
+  input {
+    width: 500px;
+    height: 25px;
+    margin-left: 105px;
+  }
 }
+
 #registration{
 
   padding-top: 50px;
@@ -99,51 +90,73 @@ ul#promotion_list {
 
 #neighborhoods {
   @include section-base;
-  width: 250px;
-  height: 800px;
-  margin-top: -10px;
-  margin-bottom: 20px;
-  float: left;
+  width: 1040-45px;
+  height: auto;
+  padding-left: 45px;
+  padding-top: 20px
 }
 
 ul#neighborhood_list {
   list-style-type: none;
-  
+  margin-bottom: 20px;
   li {
-    height: 50px;
-    padding: 5px;
-    border-bottom-style: solid;
-    border-top-style: solid;
-    border-width: 1px;
-    border-color: #bcbfa9;
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 20px;
+    margin-top: 20px
   }
   
-  li:hover {
-    background: #FFF;
-  }
-  
-  .hilite {
-    background: #FFF;
+  .neighborhood_selection {
+    width: 300px;
+    height: 300px;
+
+    .neighborhood_selection_header {
+      width: auto;
+      height: 30px;
+      background: #65665c;
+      margin-bottom: 5px;
+      text-align: center;
+      padding-top: 10px;
+      a {
+        color: #FFFFFF;
+      }
+    }
+
+    .neighborhood_selection_photo {
+      width: auto;
+      height: 255px;
+      background: #FFFFFF;
+    }
   }
 }
 
+
+
+
+
+
+
 #houses {
   @include section-base;
-  width: 700px;
-  height: 800px;
-  margin-top: -10px;
-  margin-bottom: 20px;
-  float: right;
+  width: $max-width;
+  height: auto;
 }
 
 ul#house_list {
   list-style-type: none;
-  margin: 10px;
+  
+  li {
+    list-style-type: none;
+    display: inline-block;
+    min-width: 128px;
+    height: 150px;
+    text-align: center;
+  }
   
   #house_photo_thumb {
-    width: 110px;
-    height: 100px;
-    background: #FFF;
+    width: 115px;
+    height: 95px;
+    background: #FFFFFF;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5px;
@@ -159,23 +172,12 @@ ul#house_list {
     margin-right: auto;
     padding-top: 5px;
   }
-  
-  li {
-    list-style-type: none;
-    display: inline-block;
-    min-width: 128px;
-    height: 150px;
-    text-align: center;
-  }
 }
 
 #sponsors {
   @include section-base;
-  width: 960px;
+  width: $max-width;
   height: 200px;
-  margin-top: -13px;
-  margin-bottom: 20px;
-  float: left;
 }
 
 .map_container {

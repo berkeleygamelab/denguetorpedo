@@ -1,9 +1,2 @@
 // This file is used for AJAX and dynamically update the house list when a neighborhood is selected
 $('#houses').html('<%= escape_javascript(render("house_list")) %>');
-Gmaps.map = new Gmaps4RailsGoogle();
-Gmaps.map.map_options.maxZoom = 12;
-Gmaps.map.initialize();
-Gmaps.map.markers = <%= raw @houses_gmap_json %>
-Gmaps.map.markers_conf.do_clustering = true;
-Gmaps.map.create_markers();
-Gmaps.map.adjustMapToBounds();
