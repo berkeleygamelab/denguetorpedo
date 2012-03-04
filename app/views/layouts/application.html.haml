@@ -11,7 +11,17 @@
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
   - if @is_home == "home_nav"
     %div{:id => "home_nav_bar"}
-      = link_to image_tag("home_images/logo.png", :id => "logo"), root_path 
+      = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
+      .main_nav_button
+        = link_to "LEARN", new_session_path
+        .main_nav_button_sub about dengue
+      .main_nav_button
+        = link_to "PLAY", new_session_path
+        .main_nav_button_sub How?
+      .main_nav_button
+        = link_to "WIN", new_session_path
+        .main_nav_button_sub What?
+      #login
   - else
     %div{:id => "non_home_nav_bar"} 
       = link_to image_tag("non_home_nav/short_logo.png", :id => "logo"), root_path
@@ -25,7 +35,8 @@
         = link_to "WIN", new_session_path
         .main_nav_button_sub What?
       #login
-    - flash.each do |key, msg|
-      = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
-    = yield
+    
+  - flash.each do |key, msg|
+    = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
+  = yield
 
