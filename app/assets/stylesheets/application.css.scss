@@ -108,7 +108,9 @@ height: 105px;
   margin-left: 15px;
 	input{
 		border-radius: 5px;
-		margin:5px 5px 0px 5px;
+		margin-right:10px;
+		margin-top:5px;
+		margin-left:20px;
 		width: 175px;
 		height: 18px;
 		border: 0px;
@@ -123,8 +125,8 @@ height: 105px;
 		&[type = "submit"] {
 		      //position:absolute;
 			  position:relative;
-		   	  left:55px;
-			  top:-85px;
+		   	  left: 65px;
+			  top:-91px;
 			  width: 75px;
 			  height: 32px;
 		      
