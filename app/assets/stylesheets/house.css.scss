@@ -14,15 +14,9 @@ $max-height: 1250px;
   border-width: 1px;
   border-color: $background-color;
   border-radius: 2px;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
-#right_section {
-  float: right;
-  width: 420px;
-  height: $max-height;
-  margin: 0px;
-}
 
 #left_section {
   float: left;
@@ -31,99 +25,16 @@ $max-height: 1250px;
   margin: 0px;
 }
 
-#house_points {
-  margin-left: 10px;
-  width: auto;
-  height: 45px;
-  background: $light-gray;
-  text-align: right;
-  padding-top: 15px;
-  color: #000000;
-  h2 {
-    margin-right: 15px;
-  }
-}
-
-#reports_map {
-  width: auto;
-  height: 300px;
-}
-
-#house_reports {
-  margin-top: 10px;
-  margin-left: 10px;
-  width:  auto;
-  height: auto;
-  background: #FFFFFF;
-  border-style: solid;
-  border-width: 4px;
-  border-color: $light-gray;
-  border-radius: 2px;
-}
-
-ul#report_status  {
-  list-style-type: none;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: auto;
-  padding-left: 2px;
-  
-  li {
-     list-style-type: none;
-      display: inline-block;
-      width: 123px;
-      height: 45px;
-      background: #FFF;
-      border-radius: 2px;
-      text-align: center;
-      color: #FFF;
-
-      a{
-          color: white;
-      }
-  }
-  #house_open_report_button {
-    background-color: $orange;
-  }
-  #house_claimed_report_button {
-    background-color: $blue;
-  }
-  #house_resolved_report_button {
-    background-color: $light-gray;
-  }
-}
-
 #house_detail {
- float: left;
- margin-top: 80px;
- width: 610px;
- height: auto;
-}
-
-#house_posts {
-  @include section-base;
   float: left;
-  margin-top: 10px;
-  width:  610px;
-  height: 695px;
-}
-
-#house_highlight {
-  border-style: solid;
-  border-width: 3px;
-  border-color: #bcbfa9;
-  border-radius: 2px;
-  background: #FFF;
-  float: left;
-  margin-top: 10px;
-  width: 607px;
-  height: 200px;
+  margin-top: 80px;
+  width: 610px;
+  height: auto;
 }
 
 #house_photo {
   @include section-base;
-  background: #FFF;
+  background-color: #FFF;
   float: left;
   width: 200px;
   height: 200px;
@@ -134,8 +45,8 @@ ul#report_status  {
   @include section-base;
   width: 150px;
   height: 40px;
-  color: #FFF;
-  background: #00cccc;
+  color: #FFFFFF;
+  background-color: #00cccc;
   padding-top: 15px;
 }
 
@@ -163,7 +74,7 @@ ul#house_members {
 
 .house_member_photo {
   @include section-base;
-  background: #FFF;
+  background-color: #FFFFFF;
   width: 65px;
   height: 65px;
   margin-left: 0px;
@@ -171,3 +82,169 @@ ul#house_members {
   margin-bottom: 5px;
   margin-top: 5px;
 }
+
+#house_highlight {
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bcbfa9;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    float: left;
+    margin-top: 10px;
+    width: 607px;
+    height: 200px;
+}
+
+#house_posts {
+    @include section-base;
+    float: left;
+    margin-top: 10px;
+    width: 610px;
+    color: black;
+    background-color: rgb(213,215,195);
+
+    > h3 {
+        margin-bottom: 8px; 
+    }
+
+    figure.image_placeholder {
+        width: 100%;
+        margin: 0;
+        background-color: white;
+    }
+
+    #events_list {
+        width: 80px;
+        float: left;
+        margin-left: 8px;
+
+        li {
+            list-style-type: none;
+            margin: 0;
+            margin-bottom: 6px;
+            figure {
+                height: 80px; 
+            }
+        }
+
+    }
+    #event_info {
+        width: 506px;
+        float: left;
+        margin-left: 8px;
+
+        .event_photo {
+            height: 400px;
+            margin-bottom: 8px;
+        }
+        .event_description {
+            margin-bottom: 8px;
+        }
+        .event_comments {
+            background-color: rgb(229,231,209);
+        }
+        .comment {
+            float: none;
+            list-style-type: none;
+            height: auto;
+            width: auto;
+            display: block;
+
+            .commenter_photo.image_placeholder {
+                float: left;
+                margin-top: 8px;
+                margin-left: 8px;
+                width: 80px;
+                height: 80px;
+            }
+            .comment_text {
+                float: left;
+                margin-top: 8px;
+                margin-left: 8px;
+            }
+        }
+
+        .new_event_comment {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            .comment_content_field {
+                width: 100%;
+                height: 80px;
+                padding: 0;
+            }
+        }
+    }
+}
+
+
+
+#right_section {
+  float: right;
+  width: 420px;
+  height: $max-height;
+  margin: 0px;
+}
+
+#house_points {
+  margin-left: 10px;
+  width: auto;
+  height: 45px;
+  background-color: $light-gray;
+  text-align: right;
+  padding-top: 15px;
+  color: #000000;
+  h2 {
+    margin-right: 15px;
+  }
+}
+
+#reports_map {
+  width: auto;
+  height: 300px;
+}
+
+#house_reports {
+  margin-top: 10px;
+  margin-left: 10px;
+  width:  auto;
+  height: auto;
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-width: 4px;
+  border-color: $light-gray;
+  border-radius: 2px;
+}
+
+ul#report_status  {
+  list-style-type: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: auto;
+  padding-left: 2px;
+  
+  li {
+     list-style-type: none;
+      display: inline-block;
+      width: 123px;
+      height: 45px;
+      background-color: #FFFFFF;
+      border-radius: 2px;
+      text-align: center;
+      color: #FFF;
+
+      a{
+          color: white;
+      }
+  }
+  #house_open_report_button {
+    background-color: $orange;
+  }
+  #house_claimed_report_button {
+    background-color: $blue;
+  }
+  #house_resolved_report_button {
+    background-color: $light-gray;
+  }
+}
+
