@@ -51,19 +51,25 @@ $max-width: 1040px;
     border: 0px;
     background: $light-orange;
     width: 220px;
+	opacity:.75;
     color: white;
     height: 33px;
     font-size: 16px;
     font-family: "Lucida Grande";
+	  &:focus {
+		opacity: 1;
+	      }
     &[type = "submit"] {
-      width: 75;
+      //width: 75;
+      padding: 5px;
+	  opacity:.75;
       margin-left: 150px;
       background: $dark_orange;
       &:hover {
-        background: white;
-        color: $dark_orange;
+        opacity: 1;
         cursor: pointer;
       }
+
       width: 70px;
     }
   }
@@ -77,17 +83,7 @@ $max-width: 1040px;
     font-size: 18px;
     color: white;
   }
-  label {
-    margin-left: 5px;
-    margin-top: 10px;
-    position: absolute;
-    background: transparent;
-    z-index: 1;
-    color: white;
-    font-size:16px;
-    font-family: "Lucida Grande";
-    cursor: text;
-   }
+
 }
 
 
