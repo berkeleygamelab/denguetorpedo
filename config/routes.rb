@@ -1,5 +1,7 @@
 Dengue::Application.routes.draw do
   
+  get "events/show"
+
   get "forums/index"
   match "forums" => "forums#index"
 
@@ -15,6 +17,7 @@ Dengue::Application.routes.draw do
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]
   resources :event_comments
+  resources :events, :only => [:show]
   resources :verifications
 
   root :to => 'home#index'

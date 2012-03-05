@@ -1,6 +1,7 @@
 class House < ActiveRecord::Base
   has_many :members, :class_name => "User"
   has_many :events, :through => :members
+  has_many :comments, :through => :events
   has_many :created_reports, :through => :members
   has_many :claimed_reports, :through => :members
   has_many :eliminated_reports, :through => :members
