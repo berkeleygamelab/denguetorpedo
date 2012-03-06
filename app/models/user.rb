@@ -56,6 +56,6 @@ class User < ActiveRecord::Base
   end
   
   def reports
-    Report.includes(:reporter, :claimer, :eliminator).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", 1, 1, 1).reorder(:updated_at).reverse_order.uniq
+    Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", 1, 1, 1).reorder(:updated_at).reverse_order.uniq
   end
 end

@@ -9,7 +9,6 @@ class House < ActiveRecord::Base
   belongs_to :location
 
   def points
-    # TODO: change this to use a SQL query because this is probably not that efficient
     members.sum(:points)
   end
 
@@ -26,7 +25,9 @@ class House < ActiveRecord::Base
   end
 
   def reports
-    Report.find_by_sql(%Q(SELECT DISTINCT "reports".* FROM "reports", "users" WHERE (("reports".reporter_id = "users".id OR "reports".claimer_id = "users".id OR "reports".eliminator_Id = "users".id) AND "users".house_id = #{id}) ORDER BY "reports".updated_at DESC))
+    _reports = Report.find_by_sql(%Q(SELECT DISTINCT "reports".* FROM "reports", "users" WHERE (("reports".reporter_id = "users".id OR "reports".claimer_id = "users".id OR "reports".eliminator_Id = "users".id) AND "users".house_id = #{id}) ORDER BY "reports".updated_at DESC))
+    ActiveRecord::Associations::Preloader.new(_reports, [:location]).run
+    _reports
   end
   
 end
