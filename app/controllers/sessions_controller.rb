@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       end
       redirect_to user_url(user.id), :notice => "Signed in!"
     else
-      redirect_to new_session_path, :alert => "Invalid username or password."
+      redirect_to root_url, :alert => "Invalid username or password."
     end
   end
 

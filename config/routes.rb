@@ -5,11 +5,12 @@ Dengue::Application.routes.draw do
   get "forums/index"
   match "forums" => "forums#index"
 
+
   get "event_comments/create"
   get "password_resets/new"
   post "reports/sms"
 
-  resources :users, :except => [:index, :destroy] do
+  resources :users, :except => [:destroy] do
     resources :reports, :except => [:show]
   end
   
