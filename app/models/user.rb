@@ -56,10 +56,6 @@ class User < ActiveRecord::Base
   end
   
   def reports
-    results = created_reports.includes(:reporter, :claimer, :eliminator) |
-      claimed_reports.includes(:reporter, :claimer, :eliminator) |
-      eliminated_reports.includes(:reporter, :claimer, :eliminator)
-    results.sort! do |l, r| l.updated_at <=> r.updated_at end
-    results
+    Report.includes(:reporter, :claimer, :eliminator).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", 1, 1, 1).reorder(:updated_at).reverse_order.uniq
   end
 end

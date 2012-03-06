@@ -17,17 +17,16 @@ class House < ActiveRecord::Base
     House.joins(:location).where(:locations => {:neighborhood => neighborhoods})
   end
 
-  def reports
-    # TODO: change this to use a SQL query
-    created_reports | claimed_reports | eliminated_reports
-  end
-  
   def neighborhood
     self.location.neighborhood
   end
   
   def complete_address
     self.location.complete_address
+  end
+
+  def reports
+    Report.find_by_sql(%Q(SELECT DISTINCT "reports".* FROM "reports", "users" WHERE (("reports".reporter_id = "users".id OR "reports".claimer_id = "users".id OR "reports".eliminator_Id = "users".id) AND "users".house_id = #{id}) ORDER BY "reports".updated_at DESC))
   end
   
 end
