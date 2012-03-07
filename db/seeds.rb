@@ -24,7 +24,15 @@ l2 = Location.create!(:nation => "United States", :state => "California", :city 
 l3 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "3850 Park Blvd.")
 l4 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2400 Durant Ave.")
 l5 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2627 Hillegass Ave.")
+l6 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2539 Durant Ave.")
+l7 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2525 Regent St.")
+l8 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2424 Channing Way.")
+l9 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "North Side", :address => "1701 Euclid Ave.")
+l10 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "North Side", :address => "2022 Cedar St.")
+l11 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "479 65th St.")
+l12 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "454 Alcatraz Ave.")
 puts "locations created"
+sleep 1
 
 h1 = House.create!(:name => "Tatooine", :location_id => l1.id)
 h1.members << u1
@@ -51,6 +59,15 @@ h5 = House.create!(:name => "Death Star", :location_id => l4.id)
 h1.members << u2
 h5.members << u5
 h5.save!
+
+h6 = House.create!(:name => "foo1", :location_id => l6.id)
+h7 = House.create!(:name => "foo2", :location_id => l7.id)
+h8 = House.create!(:name => "foo3", :location_id => l8.id)
+h9 = House.create!(:name => "foo4", :location_id => l9.id)
+h10 = House.create!(:name => "foo5", :location_id => l10.id)
+h11 = House.create!(:name => "foo6", :location_id => l11.id)
+h12 = House.create!(:name => "foo7", :location_id => l12.id)
+
 puts "members added"
 
 r1 = Report.create!(:report => "Let's rescue Princess Leia!", :status => 0, :reporter_id => u1.id, :location_id => u1.house.location.id)
