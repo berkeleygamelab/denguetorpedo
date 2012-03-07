@@ -80,7 +80,7 @@ $registration_width:232px;
     border: 0px;
     background: $light-orange;
     width: $registration_width;
-	opacity:.75;
+	opacity:.65;
     color: white;
     height: 33px;
     font-size: 16px;
@@ -99,7 +99,7 @@ $registration_width:232px;
       &:hover {
         opacity: 1;
         cursor: pointer;
-		background: #4E6868;
+		background: $darkest_orange;
       }
 
     }
