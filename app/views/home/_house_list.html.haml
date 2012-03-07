@@ -1,6 +1,31 @@
-%h4 Houses within #{@selected_neighborhood}
+%h3 Houses in #{@selected_neighborhood}
 %ul#house_list
   - @houses.each do |house|
     %li
-      = link_to house.name, house_path(house)
       #house_photo_thumb
+        = link_to image_tag("home_images/house_photo_thumb.jpg"), house_path(house)
+      = link_to house.name, house_path(house)
+
+#neighborhood_status
+  #neighborhood_button
+    = link_to "go to #{@selected_neighborhood}", root_path
+  #total_reports_in_neighborhood
+    %h1 #{@total_reports_in_neighborhood}
+    %h3 Total Reports Made in #{@selected_neighborhood}
+  %ul
+    %li 
+      .neighborhood_report_status#neighborhood_open_reports
+      %h2 493 
+      %h4 open
+    %li 
+      .neighborhood_report_status#neighborhood_claimed_reports
+      %h2 234 
+      %h4 claimed
+    %li 
+      .neighborhood_report_status#neighborhood_resolved_reports
+      %h2 10003 
+      %h4 resolved
+      
+      
+    
+      

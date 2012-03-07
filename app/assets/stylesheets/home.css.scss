@@ -3,13 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $light-orange: #faa063;
-$orange: #f76300;
+$orange: #FF6600;
 $lightest-orange: #fbb180;
 $dark_orange: #d0590a;
 $darkest_orange: #C64F00;
 $standard_font: "Arial Black", Gadget, sans-serif;
 $max-width: 1040px;
 $registration_width:232px;
+$blue: #00CCCC;
+$light-gray: #C4C7B4;
 
 @mixin section-base {
   border-style: solid;
@@ -26,15 +28,19 @@ $registration_width:232px;
   height: 402px;  
 }
 
-#neighborhood_search {
+#neighborhood_search {  
   clear: both;
   h2 {
     float: left;
   }
   input {
-    width: 500px;
+    width: 550px;
     height: 25px;
     margin-left: 105px;
+  }
+  button {
+    width: 60px;
+    height: 30px;
   }
 }
 
@@ -42,6 +48,7 @@ $registration_width:232px;
   border-radius: 5px;
   padding-top: 30px;
   padding-left:760px;
+  
 	#errorExplanation {
 	  width: $registration_width;
 	  border-radius:5px;
@@ -80,32 +87,38 @@ $registration_width:232px;
     border: 0px;
     background: $light-orange;
     width: $registration_width;
-	opacity:.65;
+	  opacity:.65;
     color: white;
     height: 33px;
     font-size: 16px;
     font-family: "Lucida Grande";
+	  
+	  &::-webkit-input-placeholder {
+        color: white;
+    }
+    &::-moz-placeholder {
+        color: white;
+    }
+	  
 	  &:focus {
-		opacity: 1;
-	      }
+		  opacity: 1;
+	  }
+	  
     &[type = "submit"] {
-      //width: 75;
       padding: 5px;
-	  opacity:.75;
-      margin-left: 150px;
-	  color:white;
-	  background-color:transparent;
-	  width: 70px;
+	    opacity:.75;
+      margin-left: 169px;
+	    color:white;
+	    background-color: $darkest_orange;
+	    width: 70px;
+      
       &:hover {
         opacity: 1;
         cursor: pointer;
-		background: $darkest_orange;
+		    background: #fa9652;
       }
-
     }
   }
-
-
   a {
     &#title{
       &:hover {
@@ -120,7 +133,6 @@ $registration_width:232px;
 
 
 #neighborhoods {
-  @include section-base;
   width: 1040-45px;
   height: auto;
   padding-left: 45px;
@@ -157,58 +169,128 @@ ul#neighborhood_list {
       width: auto;
       height: 255px;
       background: #FFFFFF;
+      img {
+        margin: 0px;
+      }
     }
   }
 }
 
-
-
-
-
-
-
 #houses {
-  @include section-base;
-  width: $max-width;
-  height: auto;
+  width: 1040-45px;
+  height: 280px;
+  padding-left: 45px;
 }
 
 ul#house_list {
   list-style-type: none;
+  width: 660px;
+  height: 90%;
+  float: left;
   
   li {
     list-style-type: none;
     display: inline-block;
-    min-width: 128px;
+    min-width: 125px;
     height: 150px;
     text-align: center;
+    
+    #house_photo_thumb {
+      width: 115px;
+      height: 90px;
+      margin-top: 5px;
+    }
+    
+    a {
+      font-size: 12px;
+    }
   }
+}
+
+#neighborhood_status {
+  width: 300px;
+  height: 90%;
+  float: left;
   
-  #house_photo_thumb {
-    width: 115px;
-    height: 95px;
-    background: #FFFFFF;
+  #neighborhood_button {
+    border-radius: 5px;
+    width: 80%;
+    height: 35px;
+    background: #00cc66;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    padding-top: 8px;
+    a {
+      font-size: 20px;
+    }
   }
-  
-  #house_points {
-    width: 110px;
-    height: 25px;
-    background: #CCCBBA;
-    border-radius: 2px;
+  #total_reports_in_neighborhood {
+    width: 80%;
+    height: 70px;
+    margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 5px;
+    padding-top: 10px;
+    text-align: center;
+  }
+  ul {
+    list-style-type: none;
+    width: 80%;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    li {
+      list-style-type: none;
+      display: inline-block;
+      width: 78px;
+      height: 100px;
+      float: left;
+      text-align: center;
+      
+      .neighborhood_report_status {
+        width: 45px;
+        height: 45px;
+        border-radius: 5px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      #neighborhood_open_reports {
+        background: $orange;
+      }
+      #neighborhood_claimed_reports {
+        background: $blue;
+      }
+      #neighborhood_resolved_reports {
+        background: $light-gray;
+      }
+    }
   }
 }
 
 #sponsors {
-  @include section-base;
-  width: $max-width;
-  height: 200px;
+  background: #e2e5cf;
+  width: 1040-45;
+  height: 190px;
+  padding-left: 45px;
+  padding-top: 10px;
+  
+  ul {
+    list-style-type: none;
+    li {
+      border-style: solid;
+      border-width: 1px;
+      border-color: #bcbfa9;
+      list-style-type: none;
+      display: inline-block;
+      margin-top: 10px;
+      margin-right: 25px;
+      margin-left: 25px
+    }
+  }
 }
 
 .map_container {
