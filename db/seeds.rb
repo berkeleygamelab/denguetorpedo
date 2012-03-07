@@ -24,16 +24,18 @@ l2 = Location.create!(:nation => "United States", :state => "California", :city 
 l3 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "3850 Park Blvd.")
 l4 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2400 Durant Ave.")
 l5 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2627 Hillegass Ave.")
+sleep 2
 l6 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2539 Durant Ave.")
 l7 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2525 Regent St.")
 l8 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2424 Channing Way.")
 l9 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "North Side", :address => "1701 Euclid Ave.")
 l10 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "North Side", :address => "2022 Cedar St.")
+sleep 2
 l11 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "479 65th St.")
 l12 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "454 Alcatraz Ave.")
 l13 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2702 Stuart St.")
 puts "locations created"
-sleep 1
+sleep 2
 
 h1 = House.create!(:name => "Tatooine", :location_id => l1.id)
 h1.members << u1
