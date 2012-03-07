@@ -3,6 +3,9 @@ class Report < ActiveRecord::Base
   belongs_to :claimer, :class_name => "User"
   belongs_to :eliminator, :class_name => "User"
   belongs_to :location
+
+  validates :reporter_id, :presence => true
+  validates :location_id, :presence => true
   
   def strftime_updated_at
     self.updated_at.strftime("Reported on %m/%d/%Y")
