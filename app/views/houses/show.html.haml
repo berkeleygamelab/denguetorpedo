@@ -31,8 +31,6 @@
         = render :partial => "/events/event", :object => @house.events.first
 
 #right_section
-  #house_points
-    %h2== #{@house.points} points
   #house_reports
     %h4 House Reports:
     = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
