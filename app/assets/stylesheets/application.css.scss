@@ -77,12 +77,12 @@ a:hover, a:active, a:focus {
   float: left;
 }
 
-.alert { 
+.flash.alert{ 
 	border:none;
+	color:black;
 	position:absolute;
-	margin-top:-108px;
+	margin-top:-105px;
 	margin-left:705px;
-	text-align:left;
 	font-size:10px;
 	font-color:black;
 	width:$login-width;	

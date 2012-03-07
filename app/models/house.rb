@@ -8,6 +8,8 @@ class House < ActiveRecord::Base
   belongs_to :featured_event, :class_name => "Event"
   belongs_to :location
 
+  validates :location_id, :presence => true
+
   def points
     members.sum(:points)
   end

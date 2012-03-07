@@ -14,7 +14,8 @@
             \- Anonymous
       .clearfloat
 
-= form_for @comment do |f|
-  = f.text_area :content, :class => "comment_content_field"
-  = f.text_field :event_id, :style => "display: none;", :value => @comment.event_id
-  = f.submit "Submit"
+- unless @current_user.nil?
+  = form_for @comment do |f|
+    = f.text_area :content, :class => "comment_content_field"
+    = f.text_field :event_id, :style => "display: none;", :value => @comment.event_id
+    = f.submit "Submit"
