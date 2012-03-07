@@ -1,15 +1,13 @@
 class EventCommentsController < ApplicationController
+  before_filter :create, :only => [:create]
 
   def show
 
   end
   
   def create
-    unless @user.nil?
-      params[:event_comment][:user_id] = @user.id
-    end
+    params[:event_comment][:user_id] = @current_user.id
     EventComment.create(params[:event_comment])
     redirect_to :back
   end
-
 end
