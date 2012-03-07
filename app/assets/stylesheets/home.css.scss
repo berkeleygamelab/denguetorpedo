@@ -37,11 +37,26 @@ $registration_width:232px;
     margin-left: 105px;
   }
 }
+.flash.notice{
+		font-size:14px;
+		height:0px;
+		color:white;
+		font-style:italic;
+		border:none;
+		padding:0px;
+		opacity:.75;
+		background:transparent;
+		position:absolute;
+		margin:0px 0px 0px 760px;
+		margin-top:10px;
+	}
 
+			
 #registration{
   border-radius: 5px;
   padding-top: 30px;
   padding-left:760px;
+
 	#errorExplanation {
 	  width: $registration_width;
 	  border-radius:5px;
@@ -92,7 +107,7 @@ $registration_width:232px;
       //width: 75;
       padding: 5px;
 	  opacity:.75;
-      margin-left: 150px;
+      margin-left: 168px;
 	  color:white;
 	  background-color:transparent;
 	  width: 70px;

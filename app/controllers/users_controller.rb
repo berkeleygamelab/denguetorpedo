@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      redirect_to root_url, notice: 'Signed up!'
+      redirect_to root_url, notice: 'Welcome, combat citizen '  + @user.username + '!'
     else
       @all_neighborhoods = Location.top_neighborhoods
       @is_home = "home_nav"
