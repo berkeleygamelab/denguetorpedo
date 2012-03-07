@@ -31,6 +31,7 @@ l9 = Location.create!(:nation => "United States", :state => "California", :city 
 l10 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "North Side", :address => "2022 Cedar St.")
 l11 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "479 65th St.")
 l12 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "454 Alcatraz Ave.")
+l13 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2702 Stuart St.")
 puts "locations created"
 sleep 1
 
