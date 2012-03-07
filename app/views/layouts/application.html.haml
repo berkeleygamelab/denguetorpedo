@@ -50,7 +50,8 @@
 
           = text_field_tag :username, nil, :placeholder => "Username"
           = submit_tag "login"
-          = password_field_tag :password, nil, :placeholder => "Password"
+          #password
+            = password_field_tag :password, nil, :placeholder => "Password"
           %br
           = check_box_tag :remember_me, 1, params[:remember_me]
           = label_tag :remember_me

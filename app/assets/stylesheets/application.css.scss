@@ -13,6 +13,7 @@ $blue: #00CCCC;
 $light-gray: #C4C7B4;
 $max-width: 1040px;
 $dark-gray: #4E6868;
+$login-width: 160px;
 
 body {
   font: 100%/1.4 Lucida Grande, sans-serif;
@@ -23,6 +24,7 @@ body {
   width: $max-width;
   margin-left: auto;
   margin-right: auto;
+
 }
 
 ul, ol, dl {
@@ -74,6 +76,21 @@ height: 105px;
   margin-right: 20px;
   float: left;
 }
+.alert{ 
+	border:none;
+	position:absolute;
+	margin-top:-108px;
+	margin-left:705px;
+	text-align:left;
+	font-size:10px;
+	font-color:black;
+	width:$login-width;	
+	height:10px;
+	padding-top:0px;
+	border-width:0px;
+	}
+
+
 
 .main_nav_button {
   width:auto;
@@ -102,7 +119,7 @@ height: 105px;
   background-repeat: no-repeat;
   background-position: center, top;
   width: 303px;
-  height: 95px;
+  height: 86px;
   float: left;
   margin-right: 10px;
   margin-left: 15px;
@@ -112,9 +129,9 @@ height: 105px;
 		text-align: left;
 		border-radius: 5px;
 		margin-right:10px;
-		margin-top:5px;
+		margin-top:15px;
 		margin-left:10px;
-		width:160px;
+		width:$login-width;
 		height: 10px;
 		border: 0px;
 		padding: 5px;
@@ -122,7 +139,9 @@ height: 105px;
 		background-color: white;
 		opacity:.70;
 		font-size: 12px;
-
+		&#password{
+			margin-top:5px;
+		}
 		&:focus {
 	        opacity: 1;
 	      }
