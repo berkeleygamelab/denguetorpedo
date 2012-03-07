@@ -68,6 +68,7 @@ h9 = House.create!(:name => "foo4", :location_id => l9.id)
 h10 = House.create!(:name => "foo5", :location_id => l10.id)
 h11 = House.create!(:name => "foo6", :location_id => l11.id)
 h12 = House.create!(:name => "foo7", :location_id => l12.id)
+h12 = House.create!(:name => "foo8", :location_id => l13.id)
 
 puts "members added"
 
