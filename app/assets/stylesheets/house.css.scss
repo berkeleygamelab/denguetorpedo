@@ -7,7 +7,13 @@ $orange: #FF6600;
 $blue: #00CCCC;
 $light-gray: #C4C7B4;
 $max-width: 1040px;
-$max-height: 1250px;
+
+
+figure.image_placeholder {
+    width: 100%;
+    margin: 0;
+    background-color: white;
+}
 
 @mixin section-base {
   border-style: solid;
@@ -21,7 +27,6 @@ $max-height: 1250px;
 #left_section {
   float: left;
   width: 616px;
-  height: $max-height;
   margin: 0px;
 }
 
@@ -107,11 +112,6 @@ ul#house_members {
         margin-bottom: 8px; 
     }
 
-    figure.image_placeholder {
-        width: 100%;
-        margin: 0;
-        background-color: white;
-    }
 
     #events_list {
         width: 80px;
@@ -181,7 +181,6 @@ ul#house_members {
 #right_section {
   float: right;
   width: 420px;
-  height: $max-height;
   margin: 0px;
 }
 
@@ -246,5 +245,21 @@ ul#report_status  {
   #house_resolved_report_button {
     background-color: $light-gray;
   }
+}
+
+#houses_in_neighborhood {
+    margin-left: 30px;
+    li {
+        list-style-type: none;
+        display: inline;
+
+        figure {
+            max-width: 60px;
+            height: 60px;
+            display: inline-block;
+            margin-right: 4px;
+            margin-top: 10px;
+        }
+    }
 }
 
