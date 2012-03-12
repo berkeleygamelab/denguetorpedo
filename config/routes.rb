@@ -1,7 +1,7 @@
 Dengue::Application.routes.draw do
   
   get "events/show"
-
+  get "log_out" => "sessions#destroy", :as => "log_out"
   get "forums/index"
   match "forums" => "forums#index"
 
@@ -10,7 +10,7 @@ Dengue::Application.routes.draw do
   get "password_resets/new"
   post "reports/sms"
 
-  resources :users, :except => [:destroy] do
+  resources :users, :except => [:index, :destroy] do
     resources :reports, :except => [:show]
   end
   

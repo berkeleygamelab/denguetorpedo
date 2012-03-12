@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   def index
-    @user = User.new
+    if flash[:form].nil?
+      @user = User.new
+    else
+      @user = flash[:form]
+    end
     @all_neighborhoods = Location.top_neighborhoods
     @is_home = "home_nav"
     

@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-
-  def index
-    redirect_to root_url;
-  end
   
   def show
     @user = User.find_by_id(params[:id])
@@ -30,14 +26,8 @@ class UsersController < ApplicationController
       cookies[:auth_token] = @user.auth_token
       redirect_to root_url, notice: 'Welcome, combat citizen '  + @user.username + '!'
     else
-      @all_neighborhoods = Location.top_neighborhoods
-      @is_home = "home_nav"
-      if params[:neighborhood].nil?
-        @houses = House.all_in_neighborhoods(@all_neighborhoods.first)
-      else
-        @houses = House.all_in_neighborhoods(params[:neighborhood])
-      end
-      render "home/index"
+      flash[:form] = @user
+      redirect_to root_path
     end
   end
 

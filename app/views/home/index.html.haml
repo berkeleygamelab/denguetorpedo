@@ -1,7 +1,7 @@
 #home_orange_promotion
  #registration
   = form_for(@user) do |f|
-   = f.error_messages
+   = error_messages_for @user
    #blank_space
    %a#title Register
    %p
