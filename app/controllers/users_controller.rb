@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-
-  def index
-    redirect_to root_url;
-  end
   
   def show
     @user = User.find_by_id(params[:id])
@@ -19,10 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-    @user = User.new
-  end
-
   def create
     @user = User.new(params[:user])
     
@@ -30,14 +22,7 @@ class UsersController < ApplicationController
       cookies[:auth_token] = @user.auth_token
       redirect_to root_url, notice: 'Signed up!'
     else
-      @all_neighborhoods = Location.top_neighborhoods
-      @is_home = "home_nav"
-      if params[:neighborhood].nil?
-        @houses = House.all_in_neighborhoods(@all_neighborhoods.first)
-      else
-        @houses = House.all_in_neighborhoods(params[:neighborhood])
-      end
-      render "home/index"
+      redirect_to root_url, :flash => { :error => @user.errors.full_messages.to_sentence }
     end
   end
 

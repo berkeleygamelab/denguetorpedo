@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     @user = User.new
+    
     @all_neighborhoods = Location.top_neighborhoods
     @is_home = "home_nav"
     

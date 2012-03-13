@@ -10,7 +10,7 @@ Dengue::Application.routes.draw do
   get "password_resets/new"
   post "reports/sms"
 
-  resources :users, :except => [:destroy] do
+  resources :users, :except => [:destroy, :index, :new] do
     resources :reports, :except => [:show]
   end
   

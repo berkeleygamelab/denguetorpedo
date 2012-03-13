@@ -1,28 +1,18 @@
 #home_orange_promotion
- #registration
-  = form_for(@user) do |f|
-   = f.error_messages
-   %a#title Register
-   %p
-    = f.text_field :username, :placeholder => "Username"
-   %p
-    = f.text_field :email, :placeholder => "Email"
-   %p
-    = f.password_field :password, :placeholder => "Password"
-   %p
-    = f.password_field :password_confirmation, :placeholder => "Password Confirmation"
-   = f.submit "Submit"
-
+  - flash.each do |key, msg|
+    = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
+  #registration
+    = render "users/new"
 #neighborhoods
- = render "home/neighborhood_list"
+  = render "home/neighborhood_list"
 #houses
- = render "home/house_list"
+  = render "home/house_list"
 
 #sponsors
- %h3 Local Sponsors in #{@selected_neighborhood}
- %ul
-  %li= image_tag("home_images/sponsor1.png")
-  %li= image_tag("home_images/sponsor2.png")
-  %li= image_tag("home_images/sponsor3.png")
-  %li= image_tag("home_images/sponsor4.png")
-  %li= image_tag("home_images/sponsor5.png")
+  %h3 Local Sponsors in #{@selected_neighborhood}
+  %ul
+    %li= image_tag("home_images/sponsor1.png")
+    %li= image_tag("home_images/sponsor2.png")
+    %li= image_tag("home_images/sponsor3.png")
+    %li= image_tag("home_images/sponsor4.png")
+    %li= image_tag("home_images/sponsor5.png")
