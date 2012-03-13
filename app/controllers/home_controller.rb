@@ -1,6 +1,13 @@
 class HomeController < ApplicationController
   def index
+  
     @user = User.new
+    
+    #if (params[:user].nil?)
+      
+    #else
+    #  @user = User.new(:username => params[:user][:username], :email => params[:user][:email])
+    #end
     
     @all_neighborhoods = Location.top_neighborhoods
     @is_home = "home_nav"

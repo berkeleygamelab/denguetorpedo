@@ -1,12 +1,8 @@
-#neighborhood_search
-  %h2 Leading Neighborhoods
-  %input{:type => 'text', :placeholder => "Search by neighborhood, city, country"}
-  %button Search
 %ul#neighborhood_list
   - @all_neighborhoods.each_with_index do |neighborhood, index|  
     %li
       .neighborhood_selection
         .neighborhood_selection_header
-          %h3= link_to "#{index+1}: #{neighborhood}", root_path(:neighborhood => neighborhood), :remote => true
+          %h3= link_to "No.#{index+1}: #{neighborhood}", root_path(:neighborhood => neighborhood), :remote => true
         .neighborhood_selection_photo
           = link_to image_tag("home_images/neighborhood#{index+1}.png"), root_path(:neighborhood => neighborhood), :remote => true
