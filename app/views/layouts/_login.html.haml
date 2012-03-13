@@ -1,13 +1,12 @@
 - if @current_user.nil?
- #login
-  = form_tag session_path do
-
-   = text_field_tag :username, nil, :placeholder => "Username"
-   = password_field_tag :password, nil, :placeholder => "Password"
-   = submit_tag "login"
-   %br
-   = check_box_tag :remember_me, 1, params[:remember_me]
-   = label_tag :remember_me
-   = link_to "Forgot password?", new_password_reset_path
+  #login
+    = form_tag session_path do
+      = text_field_tag :username, nil, :placeholder => "Username"
+      = password_field_tag :password, nil, :placeholder => "Password"
+      = submit_tag "login"
+      %br
+      = check_box_tag :remember_me, 1, params[:remember_me]
+      = label_tag :remember_me
+      = link_to "Forgot password?", new_password_reset_path
 - else
- = link_to "Logout", log_out_path
+  = link_to "Logout", session_path, :method => :destroy
