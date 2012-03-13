@@ -123,10 +123,20 @@ a:hover, a:active, a:focus {
   margin-right: 10px;
   margin-left: 15px;
   text-align: left;
-
+	&a{
+		position:absolute;
+		margin-left:94px;
+		margin-top:-10px;
+		opacity:.5;
+		&:hover {
+	        opacity: 1;
+			cursor:pointer;
+	      }
+	}
+	
 	input{
 		text-align: left;
-		border-radius: 5px;
+		border-radius: 3px;
 		margin-right:10px;
 		margin-top:15px;
 		margin-left:10px;
@@ -144,17 +154,20 @@ a:hover, a:active, a:focus {
 		&:focus {
 	        opacity: 1;
 	      }
-	
-		&[type = "checkbox"], [type = "submit"] {
-			padding: 0px;
+
+		&[type = "checkbox"] {
+			padding: 5px;
+			height:10px;
 			width:15px;
-			margin: 0px;
+			margin-top:6px;
+			margin-right:0px;
 			margin-left:8px;
 		}
 	}
 
 	input[type = "submit"] {
 		  position:absolute;
+		  border-radius:3px;
 	      text-align:center;
 		  width: 75px;
 		  height: 32px;
@@ -163,6 +176,7 @@ a:hover, a:active, a:focus {
 	      padding: 5px;
 		  opacity:.8;
 	      background: $dark-gray;
+	      margin-top:-20px;
 		&:hover {
 	        opacity: 1;
 			cursor:pointer;

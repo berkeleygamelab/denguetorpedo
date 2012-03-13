@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      redirect_to root_url, notice: 'Signed up!'
+      redirect_to root_url, notice: 'Welcome, combat citizen '  + @user.username + '!'
     else
       redirect_to root_url, :flash => { :error => @user.errors.full_messages.to_sentence }
     end

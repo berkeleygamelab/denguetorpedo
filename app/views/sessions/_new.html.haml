@@ -1,0 +1,11 @@
+#login
+  = form_tag session_path do
+
+    = text_field_tag :username, nil, :placeholder => "Username"
+    = submit_tag "login"
+    #password
+      = password_field_tag :password, nil, :placeholder => "Password"
+    %br
+    = check_box_tag :remember_me, 1, params[:remember_me]
+    = label_tag :remember_me
+    = link_to "Forgot password?", new_password_reset_path

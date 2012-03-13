@@ -1,7 +1,7 @@
 Dengue::Application.routes.draw do
   
   get "events/show"
-
+  get "log_out" => "sessions#destroy", :as => "log_out"
   get "forums/index"
   match "forums" => "forums#index"
 

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       else
         cookies[:auth_token] = user.auth_token
       end
-      redirect_to user_url(user.id), :notice => "Signed in!"
+      redirect_to root_url, :notice => "Signed in!"
     else
       redirect_to root_url, :alert => "Invalid username or password."
     end
