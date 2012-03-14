@@ -1,7 +1,8 @@
 #home_orange_promotion
-  - flash.each do |key, msg|
-    = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
-  #registration
+  #registration  
+    - flash.each do |key, msg|
+      = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
+    #blank_space
     = render "users/new"
 
 #neighborhood_search

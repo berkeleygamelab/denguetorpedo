@@ -83,46 +83,20 @@ $light-gray: #C4C7B4;
 		margin-top:10px;
 	}
 
+	
 #blank_space{
-		height:80px;
-		display:hidden;
-	}			
+	display:hidden;
+	height:70px;
+}		
 #registration{
   border-radius: 5px;
   padding-top: 30px;
   padding-left:760px;
-
-	#errorExplanation {
-	  position:absolute;
-	  width: $registration_width;
-	  border-radius:3px;
-	  border:0px;
-	  padding: 3px;
-	  margin-bottom: 10px;
-	  background: $darkest_orange;
-	  opacity:.8;
-	  color:white;
-	}
-	#errorExplanation ul li {	  
-	  font-size: 10px;
-	  list-style: none;
-	}
-	#errorExplanation p {
-	opacity:0;
-	font-size:0px;
-	height:0px;
-	margin-bottom: 0px;
-	padding: 0px;
-	}
-	#errorExplanation h2 {
-	padding: 0px;
-	font-size: 0px;
-	margin: 0px;
-	}
-
-	.field_with_errors {
-		background-color: $darkest_orange;
-		border-radius:3px;
+  width:$registration_width;
+	.flash.error{
+		color:white;
+		width:inherit;
+		position:absolute;
 	}
   input {
     border-radius: 3px;
