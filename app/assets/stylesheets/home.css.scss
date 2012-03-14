@@ -86,7 +86,7 @@ $light-gray: #C4C7B4;
 	
 #blank_space{
 	display:hidden;
-	height:70px;
+	height:100px;
 }		
 #registration{
   border-radius: 5px;
@@ -94,6 +94,9 @@ $light-gray: #C4C7B4;
   padding-left:760px;
   width:$registration_width;
 	.flash.error{
+		background:$darkest-orange;
+		padding:5px;
+		font-size:12px;
 		color:white;
 		width:inherit;
 		position:absolute;
