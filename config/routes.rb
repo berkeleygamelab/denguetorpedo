@@ -1,10 +1,7 @@
 Dengue::Application.routes.draw do
   
   get "events/show"
-  get "log_out" => "sessions#destroy", :as => "log_out"
   get "forums/index"
-  match "forums" => "forums#index"
-
 
   get "event_comments/create"
   get "password_resets/new"
@@ -20,6 +17,7 @@ Dengue::Application.routes.draw do
   resources :event_comments, :only => [:create]
   resources :events, :only => [:show]
   resources :verifications
+  resources :forums, :onlly => [:index]
 
   root :to => 'home#index'
 
