@@ -1,11 +1,7 @@
 Dengue::Application.routes.draw do
   
-  get "events/show"
-  get "forums/index"
-  match "forums" => "forums#index"
   match "/home/:id" => "home#index", :as => "Home"
 
-  get "event_comments/create"
   get "password_resets/new"
   post "reports/sms"
 
