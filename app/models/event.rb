@@ -9,6 +9,16 @@ class Event < ActiveRecord::Base
 
   after_initialize :default_values
 
+  def category_s
+    if category == STORY
+      "Story"
+    elsif category == PREVENTION_IDEA
+      "Prevention Idea"
+    elsif category == SPECIAL_EVENT
+      "Special Event"
+    end
+  end
+
   private
   def default_values
     self.praised ||= 0

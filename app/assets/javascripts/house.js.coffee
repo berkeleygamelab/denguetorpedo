@@ -15,3 +15,5 @@ $ ->
         $('.report').hide()
         $('.resolved_report').show()
         return false
+
+    $('.event_comments .comment:nth-child(odd)').addClass('comment_alternate_color')

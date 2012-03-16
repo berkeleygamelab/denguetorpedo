@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204224909) do
+ActiveRecord::Schema.define(:version => 20120316060311) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "content"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120204224909) do
     t.integer  "category"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "title"
   end
 
   add_index "events", ["creator_id"], :name => "index_events_on_creator_id"
