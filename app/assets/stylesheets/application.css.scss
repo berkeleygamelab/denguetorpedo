@@ -228,13 +228,11 @@ a:hover, a:active, a:focus {
 }
 
 p.alert {
- border-width: 0px;
- height: $login_error_height;
- vertical-align: text-top;
- padding-top: 0px;
- padding-bottom: 0px;
- margin_right: -5px;
+  border-width: 0px;
+  height: $login_error_height;
+  vertical-align: text-top;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin_right: -5px;
 }
-
-
 
