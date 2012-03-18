@@ -14,6 +14,7 @@ $light-gray: #C4C7B4;
 $max-width: 1040px;
 $dark-gray: #4E6868;
 $login-width: 160px;
+$login_error_height: 14px;
 
 @mixin nav_bar {
     background-repeat: no-repeat;
@@ -127,8 +128,7 @@ a:hover, a:active, a:focus {
   margin-right: 10px;
   margin-left: 15px;
   text-align: left;
- 
-	
+
     ul {
       list-style-type: none;
       li {
@@ -149,7 +149,6 @@ a:hover, a:active, a:focus {
         text-align: left;
         border-radius: 3px;
         margin-right: 10px;
-        margin-top: 14px;
         margin-left: 10px;
         width: $login-width;
         height: 12px;
@@ -159,7 +158,7 @@ a:hover, a:active, a:focus {
         background-color: White;
         opacity:.70;
         font-size: 14px;
-        
+
         &#password{
             margin-top:5px;
         }
@@ -195,6 +194,11 @@ a:hover, a:active, a:focus {
             cursor:pointer;
         }
     }
+
+    #error {
+     height: $login_error_height;
+     margin-left: 5px;
+    }
 }
 
 #footer {
@@ -222,4 +226,15 @@ a:hover, a:active, a:focus {
 .lightgray_text {
     @include colored_text(LightGray);
 }
+
+p.alert {
+ border-width: 0px;
+ height: $login_error_height;
+ vertical-align: text-top;
+ padding-top: 0px;
+ padding-bottom: 0px;
+ margin_right: -5px;
+}
+
+
 

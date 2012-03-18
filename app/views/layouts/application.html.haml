@@ -13,13 +13,13 @@
     %div{:id => "home_nav_bar"}
       = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
       = render "layouts/navbar_buttons"
-      = render "layouts/login"
+      = render "sessions/new"
 
   - else
     %div{:id => "non_home_nav_bar"} 
       = link_to image_tag("non_home_nav/short_logo.png", :id => "logo"), root_path
       = render "layouts/navbar_buttons"
-      = render "layouts/login"
+      = render "sessions/new"
 
   = yield
   

@@ -1,4 +1,4 @@
-= form_for(@user) do |f|
+= form_for(@user, :html => {:autocomplete => "off"}) do |f|
  = error_messages_for @user
  %a#title Register
  %p
