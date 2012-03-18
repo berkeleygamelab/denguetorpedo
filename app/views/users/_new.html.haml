@@ -1,5 +1,5 @@
-= form_for(@user) do |f|
- = f.error_messages
+= form_for(@user, :html => {:autocomplete => "off"}) do |f|
+ = error_messages_for @user
  %a#title Register
  %p
   = f.text_field :username, :placeholder => "Username"

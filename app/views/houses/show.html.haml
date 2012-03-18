@@ -1,34 +1,36 @@
 #left_section
   #house_detail
-    %h2= @house.name + " @" + @house.neighborhood    
+    %h2
+      = @house.name
+      %span#house_address
+        = @house.location.address
     %figure#house_photo
     %ul#house_stats
       %li 
-        Points
-        %section#house_stats_box
-          = @house.points
-      %li 
         Neighborhood
-        %section#house_stats_box
+        %section.house_stats_box#neighborhood_box
           = @house.neighborhood
-    %ul#house_members
-      - for member in @house.members.slice(0, 4)
-        %li
-          %figure.house_member_photo
+        = "#{@house.location.city}, #{@house.location.nation}"
+      %li 
+        Points
+        %section.house_stats_box#house_points_box
+          = @house.points
+
+  %h3 Members
+  %ul#house_members
+    - for member in @house.members.slice(0, 4)
+      %li
+        %figure.image_placeholder.house_member_photo
   
-  #house_highlight
-    %h3 House Highlight
-  #house_posts
-    %h3 Posts section
-    #events_list
-      %ul
-        - for event in @house.events
-          %li
-            = link_to event, :remote => true do
-              %figure.image_placeholder
-    #event_info 
-      - if @house.events.size > 0
-        = render :partial => "/events/event", :object => @house.events.first
+  %h3 House Posts
+  %ul#event_list
+    - for event in @house.events
+      %li
+        = link_to event, :remote => true do
+          %figure.image_placeholder.event_photo
+  #event_info 
+    - if @house.events.size > 0
+      = render :partial => "/events/event", :object => @house.events.first
 
 #right_section
   #house_reports

@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
   def index
-  
-    @user = User.new
+
+    if (flash[:user].nil?)
+      @user = User.new
+    else
+      @user = flash[:user]
+    end
     
     #if (params[:user].nil?)
       

@@ -1,26 +1,25 @@
 #home_orange_promotion
-  #registration  
-    - flash.each do |key, msg|
-      = content_tag :div, msg, :class => [key, :flash], :id => [key, :flash]
-    #blank_space
-    = render "users/new"
+ - if @current_user.nil?
+  #registration
+   #blank_space
+   = render "users/new"
 
 #neighborhood_search
-  %h2 Leading Neighborhoods
-  #neighborhood_search_background
-    %input{:type => 'text', :placeholder => "Search by neighborhood, city, country"}
-    %button Find
+ %h2 Leading Neighborhoods
+ #neighborhood_search_background
+  %input{:type => 'text', :placeholder => "Search by neighborhood, city, country"}
+  %button Find
     
 #neighborhoods
-  = render "home/neighborhood_list"
+ = render "home/neighborhood_list"
 #houses
-  = render "home/house_list"
+ = render "home/house_list"
 
 #sponsors
-  %h3 Local Sponsors in #{@selected_neighborhood}
-  %ul
-    %li= image_tag("home_images/sponsor1.png")
-    %li= image_tag("home_images/sponsor2.png")
-    %li= image_tag("home_images/sponsor3.png")
-    %li= image_tag("home_images/sponsor4.png")
-    %li= image_tag("home_images/sponsor5.png")
+ %h3 Local Sponsors in #{@selected_neighborhood}
+ %ul
+  %li= image_tag("home_images/sponsor1.png")
+  %li= image_tag("home_images/sponsor2.png")
+  %li= image_tag("home_images/sponsor3.png")
+  %li= image_tag("home_images/sponsor4.png")
+  %li= image_tag("home_images/sponsor5.png")
