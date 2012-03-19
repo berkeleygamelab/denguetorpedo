@@ -20,7 +20,8 @@ class UsersController < ApplicationController
     
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      redirect_to root_url, notice: "Welcome, combat citizen #{@user.username}!"
+      redirect_to edit_user_path(@user.id)
+      /redirect_to root_url, notice: "Welcome, combat citizen #{@user.username}!"/
     else
       flash[:user] = @user
       redirect_to root_url
