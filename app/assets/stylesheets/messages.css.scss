@@ -1,43 +1,46 @@
 .field_with_errors {
-    padding: 2px;
-    background-color: red;
-    display: table; }
+  padding: 2px;
+  background-color: Red;
+  display: table;
+}
 
 #errorExplanation {
-    width: 450px;
-    border: 2px solid red;
-    padding: 7px;
-    padding-bottom: 0;
-    margin-bottom: 20px;
-    background-color: #f0f0f0;
-    h2 {
-        text-align: left;
-        font-weight: bold;
-        padding: 5px 5px 5px 15px;
-        font-size: 1.2em;
-        margin: -7px;
-        margin-bottom: 0px;
-        background-color: #c00;
-        color: #fff; }
-    ul li {
-        font-size: 1.2em;
-        list-style: square; } }
+  width: 450px;
+  border: 2px solid Red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 1.2em;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: White; }
+  ul li {
+    font-size: 1.2em;
+    list-style: square;
+  }
+}
 
 .notice {
-    color: green;
-    border-style:solid;
-    border-width:1px;
-    border-color: green;
-    margin-bottom:5px;
-    padding:5px;
+  color: Green;
+  border-style:solid;
+  border-width:1px;
+  border-color: Green;
+  margin-bottom:5px;
+  padding: 5px;
 }
 
 .alert {
-    color: red;
-    border-style: solid;
-    border-width: 1px;
-    border-color: red;
-    margin-bottom: 5px;
-    padding: 5px;
-    color: red;
+  color: Red;
+  border-style: solid;
+  border-width: 1px;
+  border-color: Red;
+  margin-bottom: 5px;
+  padding: 5px;
+  color: Red;
 }

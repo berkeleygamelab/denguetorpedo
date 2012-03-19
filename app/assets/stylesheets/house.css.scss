@@ -9,9 +9,9 @@ $max-width: 1040px;
 
 
 figure.image_placeholder {
-    margin: 0;
-    background-color: black;
-    display: inline-block;
+  margin: 0;
+  background-color: black;
+  display: inline-block;
 }
 
 @mixin section-base {
@@ -36,8 +36,8 @@ figure.image_placeholder {
 }
 
 #house_address {
-    color: gray;
-    margin-left: 16px;
+  color: Gray;
+  margin-left: 16px;
 }
 
 #house_photo {
@@ -50,39 +50,39 @@ figure.image_placeholder {
 }
 
 ul#house_stats  {
-    li {
-        list-style-type: none;
-        float: left;
-        text-align: center;
-        margin-right: 30px;
-        margin-bottom: 30px;
-        font-size: 14px;
-    }
+  li {
+    list-style-type: none;
+    float: left;
+    text-align: center;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    font-size: 14px;
+  }
 }
 
 .house_stats_box {
-    @include section-base;
-    width: 150px;
-    height: 50px;
-    color: white;
-    font-size: 20px;
-    line-height: 50px;
+  @include section-base;
+  width: 150px;
+  height: 50px;
+  color: white;
+  font-size: 20px;
+  line-height: 50px;
 }
 
 #neighborhood_box {
-    background-color: LightGray;
+  background-color: LightGray;
 }
 
 #house_points_box {
-    background-color: #00cccc;
+  background-color: #00cccc;
 }
 
 
 ul#house_members {
-    li {
-        list-style-type: none;
-        display: inline;
-    }
+  li {
+    list-style-type: none;
+    display: inline;
+  }
 }
 
 .house_member_photo {
@@ -95,66 +95,66 @@ ul#house_members {
 }
 
 ul#event_list {
-    li {
-        list-style-type: none;
-        display: inline;
-    }
-    .event_photo {
-        width: 65px;
-        height: 65px;
-    }
+  li {
+    list-style-type: none;
+    display: inline;
+  }
+  .event_photo {
+    width: 65px;
+    height: 65px;
+  }
 }
 
 
 #event_info {
-    margin-top: 10px;
-    border-style: solid;
-    border-color: LightGray;
-    padding: 10px;
-    background-color: white;
+  margin-top: 10px;
+  border-style: solid;
+  border-color: LightGray;
+  padding: 10px;
+  background-color: white;
 
-    .event_photo {
-        height: 400px;
-        width: 100%;
-        margin-bottom: 8px;
-    }
-    .event_description {
-        margin-bottom: 8px;
-    }
-    .comment {
-        list-style-type: none;
-        padding: 10px; 
+  .event_photo {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .event_description {
+    margin-bottom: 8px;
+  }
+  .comment {
+    list-style-type: none;
+    padding: 10px; 
 
-        .commenter_photo {
-            float: left;
-            width: 80px;
-            height: 80px;
-        }
-        .comment_text {
-            padding-left: 8px;
-            overflow: hidden;
-        }
-        .commenter_name {
-            float: left;
-        }
-        .comment_date {
-            float: right;
-        }
+    .commenter_photo {
+      float: left;
+      width: 80px;
+      height: 80px;
     }
+    .comment_text {
+      padding-left: 8px;
+      overflow: hidden;
+    }
+    .commenter_name {
+      float: left;
+    }
+    .comment_date {
+      float: right;
+    }
+  }
 
-    .new_event_comment {
-        margin-top: 12px;
-        margin-bottom: 12px;
-        .comment_content_field {
-            width: 100%;
-            height: 80px;
-            padding: 0;
-        }
+  .new_event_comment {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    .comment_content_field {
+      width: 100%;
+      height: 80px;
+      padding: 0;
     }
+  }
 }
 
 .comment_alternate_color {
-    background-color: WhiteSmoke;    
+  background-color: WhiteSmoke;    
 }
 
 
@@ -203,18 +203,18 @@ ul#report_status  {
   padding-left: 2px;
   
   li {
-     list-style-type: none;
-      display: inline-block;
-      width: 123px;
-      height: 45px;
-      background-color: #FFFFFF;
-      border-radius: 2px;
-      text-align: center;
-      color: #FFF;
+    list-style-type: none;
+    display: inline-block;
+    width: 123px;
+    height: 45px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    text-align: center;
+    color: #FFF;
 
-      a{
-          color: white;
-      }
+    a{
+      color: white;
+    }
   }
   #house_open_report_button {
     background-color: $orange;
@@ -228,18 +228,18 @@ ul#report_status  {
 }
 
 #houses_in_neighborhood {
-    margin-left: 30px;
-    li {
-        list-style-type: none;
-        display: inline;
+  margin-left: 30px;
+  li {
+    list-style-type: none;
+    display: inline;
 
-        figure {
-            max-width: 60px;
-            height: 60px;
-            display: inline-block;
-            margin-right: 4px;
-            margin-top: 10px;
-        }
+    figure {
+      max-width: 60px;
+      height: 60px;
+      display: inline-block;
+      margin-right: 4px;
+      margin-top: 10px;
     }
+  }
 }
 

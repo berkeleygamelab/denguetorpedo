@@ -5,153 +5,153 @@
 @import "RegistrationForm";
 
 .main_column_personal{
-	width: 630px;
-	height:1000px;
-	float:left;
+  width: 630px;
+  height:1000px;
+  float:left;
 }
 
 .profile_photo{
-	height:115px;
-	width:88px;
-	margin-top:20px;
-	float:left;
+  height:115px;
+  width:88px;
+  margin-top:20px;
+  float:left;
 }
 
 .personal_profile_info{
-    margin-top:20px;
-    margin-left:10px;
-    width: 200px;
-    height:100px;
-    float:left;
+  margin-top:20px;
+  margin-left:10px;
+  width: 200px;
+  height:100px;
+  float:left;
 
-    .name {
-	font-size:24px;
-	color:black;
-	font-weight:bold;
-    }
-    .personal_points {
-	font-size:24px;
-	color:#FB4E1C;
-    }
+  .name {
+    font-size:24px;
+    color:black;
+    font-weight:bold;
+  }
+  .personal_points {
+    font-size:24px;
+    color:#FB4E1C;
+  }
 }
 
 .neighbors_container{
-	margin-top:20px;
-	height:110px;
-	width:330px;
-	background-color:#E9ECD6;
-	float:left;
+  margin-top:20px;
+  height:110px;
+  width:330px;
+  background-color:#E9ECD6;
+  float:left;
 }
 
 .neighbors_text{
-	font-size:14px;
-	margin-left:28px;
-	margin-top:10px;
+  font-size:14px;
+  margin-left:28px;
+  margin-top:10px;
 }
 
 .neighbors_all{
-	margin-top:10px;
-	margin-left:25px;
+  margin-top:10px;
+  margin-left:25px;
 }
 
 
 .neighbor_photo{
-	height:48px;
-	width:42px;
-	background-color:gray;
-	margin-left:3px;
-	float:left;
+  height:48px;
+  width:42px;
+  background-color:gray;
+  margin-left:3px;
+  float:left;
 }
 
 .report_filters_personal{
-    width:100%;
-    height: 35px;
-    margin-top:20px;
+  width:100%;
+  height: 35px;
+  margin-top:20px;
 
-    .text{
-        font-size:12px;
-        color:black;
-        text-align:right;
-        margin-top:7px;
-        margin-right:7px;
-        width:auto;
-        float:right;
-    }
+  .text{
+    font-size:12px;
+    color:black;
+    text-align:right;
+    margin-top:7px;
+    margin-right:7px;
+    width:auto;
+    float:right;
+  }
+  .number {
+    float:left;
+    width:30px;
+    color:white;
+    text-align:right;
+    font-size:16px;
+    margin-top:5px;
+    margin-left:5px;
+    margin-right:5px;
+  }
+  .stars, .open, .claimed, .resolved, .eliminations {
+    width: 117px;
+    height: 32px;
+    margin-right: 6px;
+    float: left;
+  }
+  .stars {
+    background-color: #E9ECD6
+  }
+  .open {
+    background-color: #FB4E1C
+  }
+  .claimed {
+    background-color: #00CCCC;
+  }
+  .resolved {
+    background-color: #C4C7B4;
+  }
+  .eliminations {
+    background-color: #999999;
     .number {
-        float:left;
-       	width:30px;
-       	color:white;
-       	text-align:right;
-       	font-size:16px;
-       	margin-top:5px;
-       	margin-left:5px;
-       	margin-right:5px;
+      width: 20px;
     }
-    .stars, .open, .claimed, .resolved, .eliminations {
-        width: 117px;
-        height: 32px;
-        margin-right: 6px;
-        float: left;
-    }
-    .stars {
-        background-color: #E9ECD6
-    }
-    .open {
-        background-color: #FB4E1C
-    }
-    .claimed {
-        background-color: #00CCCC;
-    }
-    .resolved {
-        background-color: #C4C7B4;
-    }
-    .eliminations {
-        background-color: #999999;
-        .number {
-            width: 20px;
-        }
-    }
+  }
 }
 
 .personal_reports_list .report{
-	margin-top:5px;
-	height:142px;
-	width:612px;
-	float:left;
-	background-image:url(/assets/reportbg_l1.png);
+  margin-top:5px;
+  height:142px;
+  width:612px;
+  float:left;
+  background-image:url(/assets/reportbg_l1.png);
 }
 
 
 .second_column_personal{
 //    width: 320px; had an error in the Dengue.css, but surprisingly that made it look normal
 //    height:1000px;
+  float:right;
+
+  .map {
+    background-image: url(/assets/map_fabia.png);
+    width: 300px;
+    height: 175px;
+    margin-left:0px;
+    margin-bottom:10px;
+    padding-top: 0px;
+    padding-left: 0px;
+    background-repeat: no-repeat;
     float:right;
-        
-    .map {
-        background-image: url(/assets/map_fabia.png);
-        width: 300px;
-       	height: 175px;
-       	margin-left:0px;
-       	margin-bottom:10px;
-       	padding-top: 0px;
-       	padding-left: 0px;
-       	background-repeat: no-repeat;
-       	float:right;
-    }
+  }
 }
 
 
 .house_link{
-	width:298px;
-	height:141px;
-	border: 1px solid #C4C7B4;
-	background-color: white;
+  width:298px;
+  height:141px;
+  border: 1px solid #C4C7B4;
+  background-color: white;
 }
 
 .prevention_ideas{
-	width: 298px;
-	height: 483px;
-	background-color:#E9ECD6;
-	margin-top:10px;
+  width: 298px;
+  height: 483px;
+  background-color:#E9ECD6;
+  margin-top:10px;
 }
 

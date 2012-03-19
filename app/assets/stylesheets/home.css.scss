@@ -67,24 +67,23 @@ $light-gray: #C4C7B4;
 }
 
 
-.flash.notice{
-		font-size:14px;
-		height:14px;
-		color:white;
-		font-style:italic;
-		border:none;
-		padding:0px;
-		opacity:.75;
-		background:transparent;
-		position:absolute;
-		margin:0px 0px 0px 760px;
-		margin-top:10px;
-	}
-
+.flash.notice {
+  font-size:14px;
+  height:14px;
+  color:white;
+  font-style:italic;
+  border:none;
+  padding:0px;
+  opacity:.75;
+  background:transparent;
+  position:absolute;
+  margin:0px 0px 0px 760px;
+  margin-top:10px;
+}
 
 #blank_space{
-	display: hidden;
-	height: 80px;
+  display: hidden;
+  height: 80px;
 }
 
 #neighborhoods {
