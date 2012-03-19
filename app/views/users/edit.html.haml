@@ -1,15 +1,16 @@
 = content_for :title, 'Update Profile'
-
-#registration
-  = form_for(@user, :url => {:action => "update"}, :html => {:autocomplete => "off"}) do |f|
-    = error_messages_for @user
-    %a#title Register
-    .Register_Field
-      = f.text_field :username, :placeholder => "Username"
-    .Register_Field
-      = f.text_field :email, :placeholder => "Email"
-    .Register_Field
-      = f.password_field :password, :placeholder => "Password"
-    .Register_Field
-      = f.password_field :password_confirmation, :placeholder => "Password Confirmation"
-    = f.submit "Submit"
+.update_background
+  .update_padding
+    #registration
+      = form_for(@user, :url => {:action => "update"}, :html => {:autocomplete => "off"}) do |f|
+        = error_messages_for @user
+        %a#title Update Profile
+        .Register_Field
+          = f.text_field :username, :placeholder => "Username"
+        .Register_Field
+          = f.text_field :email, :placeholder => "Email"
+        .Register_Field
+          = f.password_field :password, :placeholder => "Password"
+        .Register_Field
+          = f.password_field :password_confirmation, :placeholder => "Password Confirmation"
+        = f.submit "Update"

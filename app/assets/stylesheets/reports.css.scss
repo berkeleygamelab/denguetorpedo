@@ -2,12 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$background-color: #F5F7E0;
-$orange: #FF6600;
-$blue: #00CCCC;
-$light-gray: #C4C7B4;
-$max-width: 1040px;
-
+@import "variables";
 
 @mixin photo {
   float: left;

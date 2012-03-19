@@ -1,10 +1,4 @@
-$background-color: #F5F7E0;
-$orange: #FF6600;
-$blue: #00CCCC;
-$light-gray: #C4C7B4;
-$max-width: 1040px;
-$dark-gray: #4E6868;
-$login-width: 160px;
+@import "variables";
 
 #logged_in_section{
   float:right;

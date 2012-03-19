@@ -2,14 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$orange: #FF6600;
-$dark_orange: #d0590a;
-$standard_font: "Arial Black", Gadget, sans-serif;
-$max-width: 1040px;
-$blue: #00CCCC;
-$light-gray: #C4C7B4;
-
-@import "RegistrationForm";
+@import "variables";
 
 @mixin section-base {
   border-style: solid;
@@ -230,7 +223,7 @@ ul#house_list {
 
 #sponsors {
   background: #e2e5cf;
-  width: 1040-45;
+  width: 1040px;
   height: 190px;
   padding-left: 25px;
   padding-top: 10px;

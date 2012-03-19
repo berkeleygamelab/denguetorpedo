@@ -2,11 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$background-color: #F5F7E0;
-$orange: #FF6600;
-$blue: #00CCCC;
-$max-width: 1040px;
-
+@import "variables";
 
 figure.image_placeholder {
   margin: 0;
@@ -74,7 +70,7 @@ ul#house_stats  {
 }
 
 #house_points_box {
-  background-color: #00cccc;
+  background-color: $blue;
 }
 
 

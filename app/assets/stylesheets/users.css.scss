@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "RegistrationForm";
+@import "variables";
 
 .main_column_personal{
   width: 630px;
@@ -100,10 +100,10 @@
     background-color: #FB4E1C
   }
   .claimed {
-    background-color: #00CCCC;
+    background-color: $blue;
   }
   .resolved {
-    background-color: #C4C7B4;
+    background-color: $light-gray;
   }
   .eliminations {
     background-color: #999999;
@@ -154,4 +154,16 @@
   background-color:#E9ECD6;
   margin-top:10px;
 }
+
+.update_background {
+  .update_padding {
+    padding-left: 100px;
+    padding-top: 100px;
+  }
+  background-color: $background_orange;
+  background-repeat: repeat;
+  width: $max-width;
+  height: 402px;
+}
+
 

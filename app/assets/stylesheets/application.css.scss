@@ -7,14 +7,7 @@
 *= require_tree .
 */
 
-$background-color: #F5F7E0;
-$orange: #FF6600;
-$blue: #00CCCC;
-$light-gray: #C4C7B4;
-$max-width: 1040px;
-$dark-gray: #4E6868;
-$login-width: 160px;
-$login_error_height: 14px;
+@import "variables";
 
 @mixin nav_bar {
   background-repeat: no-repeat;
