@@ -6,22 +6,14 @@
 
 figure.image_placeholder {
   margin: 0;
-  background-color: black;
+  background-color: Black;
   display: inline-block;
-}
-
-@mixin section-base {
-  border-style: solid;
-  border-width: 1px;
-  border-color: $background-color;
-  border-radius: 2px;
 }
 
 
 #left_section {
   float: left;
   width: 616px;
-  margin: 0px;
 }
 
 #house_detail {
@@ -32,36 +24,30 @@ figure.image_placeholder {
 }
 
 #house_address {
-  color: Gray;
   margin-left: 16px;
 }
 
 #house_photo {
-  @include section-base;
-  background-color: #FFF;
   float: left;
   width: 200px;
   height: 200px;
-  margin-left: 0px;
+  margin-right: 30px;
 }
 
 ul#house_stats  {
   li {
-    list-style-type: none;
     float: left;
     text-align: center;
     margin-right: 30px;
     margin-bottom: 30px;
-    font-size: 14px;
   }
 }
 
 .house_stats_box {
-  @include section-base;
   width: 150px;
   height: 50px;
-  color: white;
-  font-size: 20px;
+  color: White;
+  font-size: 1.6em;
   line-height: 50px;
 }
 
@@ -76,7 +62,6 @@ ul#house_stats  {
 
 ul#house_members {
   li {
-    list-style-type: none;
     display: inline;
   }
 }
@@ -92,7 +77,6 @@ ul#house_members {
 
 ul#event_list {
   li {
-    list-style-type: none;
     display: inline;
   }
   .event_photo {
@@ -157,7 +141,6 @@ ul#event_list {
 #right_section {
   float: right;
   width: 420px;
-  margin: 0px;
 }
 
 #house_points {
@@ -167,7 +150,7 @@ ul#event_list {
   background-color: LightGray;
   text-align: right;
   padding-top: 15px;
-  color: #000000;
+  color: White;
   h2 {
     margin-right: 15px;
   }
@@ -206,10 +189,10 @@ ul#report_status  {
     background-color: #FFFFFF;
     border-radius: 2px;
     text-align: center;
-    color: #FFF;
+    color: White;
 
-    a{
-      color: white;
+    a {
+      color: White;
     }
   }
   #house_open_report_button {
@@ -226,7 +209,6 @@ ul#report_status  {
 #houses_in_neighborhood {
   margin-left: 30px;
   li {
-    list-style-type: none;
     display: inline;
 
     figure {

@@ -17,24 +17,34 @@
 }
 
 @mixin colored_text($color) {
-    color: $color;
+  color: $color;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  ms-text-size-adjust: 100%;
+}
+
+body, button, input, select, textarea {
+  font-family: sans-serif;
+  font-color: #333;
 }
 
 body {
-  font: 12px Lucida Grande, sans-serif;
+  font-size: 12px;
   background: $background-color;
   margin: 0;
   padding: 0;
-  color: #999;
   width: $max-width;
   margin-left: auto;
   margin-right: auto;
-  color: #333333;
 }
 
 ul, ol, dl {
   padding: 0;
   margin: 0;
+  list-style-type: none;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -45,12 +55,7 @@ a img {
   border: none;
 }
 
-a:link {
-  color: #333333;
-  text-decoration: none;
-}
-
-a:visited {
+a:link, a:visited {
   color: #333333;
   text-decoration: none;
 }
@@ -76,18 +81,18 @@ a:hover, a:active, a:focus {
   float: left;
 }
 
+/*
 .flash.alert{ 
-  border:none;
+  border: none;
   
-  position:absolute;
-  margin-top:-105px;
-  margin-left:700px;
-  font-size:12px;
-  font-color:black;
-  height:10px;
-  padding-top:3px;
-  border-width:0px;
+  position: absolute;
+  margin-top: -105px;
+  margin-left: 700px;
+  height: 10px;
+  padding-top: 3px;
+  border-width: 0px;
 }
+*/
 
 .main_nav_button {
   width:auto;
@@ -98,7 +103,6 @@ a:hover, a:active, a:focus {
   margin-right: 30px;
   font-family: "Arial Black", Gadget, sans-serif;
   font-size: 32px;
-  color: #00cccc;
   font-weight: bold;
   
   .main_nav_button_sub {
@@ -122,19 +126,16 @@ a:hover, a:active, a:focus {
   margin-left: 15px;
   text-align: left;
 
-  ul {
-    list-style-type: none;
-    li {
-      display: inline;
-      padding-right: 100px;
-    }
+  li {
+    display: inline;
+    padding-right: 100px;
   }
   
   &a {
-    opacity:.5;
+    opacity: 0.5;
     &:hover {
       opacity: 1;
-      cursor:pointer;
+      cursor: pointer;
     }
   }
   
@@ -149,7 +150,7 @@ a:hover, a:active, a:focus {
     padding: 5px;
     color: Gray;
     background-color: White;
-    opacity:.70;
+    opacity: 0.7;
     font-size: 14px;
 
     &#password{
@@ -184,7 +185,7 @@ a:hover, a:active, a:focus {
       
     &:hover {
       opacity: 1;
-      cursor:pointer;
+      cursor: pointer;
     }
   }
 
@@ -201,8 +202,8 @@ a:hover, a:active, a:focus {
 }
 
 .clearfloat { 
-  clear:both;
-  height:0;
+  clear: both;
+  height: 0;
   font-size: 1px;
   line-height: 0px;
 }
@@ -218,6 +219,10 @@ a:hover, a:active, a:focus {
 
 .lightgray_text {
   @include colored_text(LightGray);
+}
+
+.darkgray_text {
+  @include colored_text(DarkGray);
 }
 
 p.alert {
