@@ -41,6 +41,7 @@
   }
 
   input, input:focus {
+    border-radius: $input_border_radius;
     width: 545px;
     height: 30px;
     outline: none;
@@ -52,7 +53,7 @@
     width: 60px;
     height: 30px;
     background: #bfc1b0;
-    border-radius: 5px;
+    border-radius: $button_border_radius;
     color: white;
     font-size: 15px;
     border: none;
@@ -126,7 +127,7 @@ ul#neighborhood_list {
 }
 
 #houses {
-  width: 1040-45px;
+  width: 1040px;
   height: 280px;
   padding-left: 45px;
 }
@@ -163,7 +164,7 @@ ul#house_list {
   float: left;
   
   #neighborhood_button {
-    border-radius: 5px;
+    border-radius: $button_border_radius;
     width: 80%;
     height: 35px;
     background: #00cc66;

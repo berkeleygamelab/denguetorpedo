@@ -141,7 +141,7 @@ a:hover, a:active, a:focus {
   
   input{
     text-align: left;
-    border-radius: 3px;
+    border-radius: $input_border_radius;
     margin-right: 10px;
     margin-left: 10px;
     width: $login-width;
@@ -173,7 +173,7 @@ a:hover, a:active, a:focus {
   input[type = "submit"] {			
     position:absolute;
     margin-top:-22px;
-    border-radius:3px;
+    border-radius: $button_border_radius;
     text-align:center;
     width: 75px;
     height: 32px;
