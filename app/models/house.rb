@@ -1,4 +1,6 @@
 class House < ActiveRecord::Base
+  attr_accessible :name
+
   has_many :members, :class_name => "User"
   has_many :events, :through => :members
   has_many :comments, :through => :events
@@ -7,6 +9,9 @@ class House < ActiveRecord::Base
   has_many :eliminated_reports, :through => :members
   belongs_to :featured_event, :class_name => "Event"
   belongs_to :location
+
+  accepts_nested_attributes_for :location, :allow_destroy => true
+  attr_accessible :location_id, :location_attributes
 
   validates :location_id, :presence => true
 

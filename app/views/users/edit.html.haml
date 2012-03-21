@@ -13,4 +13,13 @@
           = f.password_field :password, :placeholder => "Password"
         .Register_Field
           = f.password_field :password_confirmation, :placeholder => "Password Confirmation"
+
+        = f.fields_for :house do |h|
+          = h.text_field :name, :placeholder => "House Name"
+          = h.fields_for :location do |l|
+            = l.text_field :address, :placeholder => "Address"
+            = l.text_field :neighborhood, :placeholder => "Neighborhood"
+            = l.text_field :city, :placeholder => "City"
+            = l.text_field :state, :placeholder => "State"
+            = l.text_field :nation, :placeholder => "Country"
         = f.submit "Update"

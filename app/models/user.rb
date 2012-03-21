@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   has_many :event_comments
   belongs_to :house
 
+  accepts_nested_attributes_for :house, :allow_destroy => true
+  attr_accessible :house_attributes
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

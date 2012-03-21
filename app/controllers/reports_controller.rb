@@ -12,29 +12,7 @@ class ReportsController < ApplicationController
   end
   
   def create
-    loc_hash = params[:location]
-    location = Location.new(:nation => loc_hash[:nation],
-                            :state => loc_hash[:state],
-                            :city => loc_hash[:city],
-                            :neighborhood => loc_hash[:neighborhood],
-                            :address => loc_hash[:address])
-    geocode = Gmaps4rails.geocode(location.complete_address())
-    if geocode.size != 1
-      return render :nothing => true # TODO: give a helpful message if geocoding failed
-    end
-    lat = geocode[0][:lat]
-    lon = geocode[0][:lng]
-    geocode = geocode[0]
-    
-    existing_loc = Location.where(:latitude => lat, :longitude => lon)
-    if existing_loc.size == 0
-      unless location.save
-        return render :nothing => true
-      end
-      loc = location
-    else
-      loc = existing_loc[0]
-    end
+    loc = Location.find_or_create(params[:location])
     
     @report = @current_user.created_reports.build(params[:report])
     @report.location_id = loc.id
