@@ -158,12 +158,18 @@
 .update_background {
   .update_padding {
     padding-left: 100px;
-    padding-top: 100px;
+    padding-top: 150px;
   }
+  .update_width {
+    width: 372px;
+
+    @import "ErrorExplaination"
+  }
+
   background-color: $background_orange;
   background-repeat: repeat;
   width: $max-width;
-  height: 402px;
+  height: 800px;
 }
 
 

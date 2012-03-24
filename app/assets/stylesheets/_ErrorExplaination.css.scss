@@ -1,0 +1,28 @@
+@import "variables";
+
+#errorExplanation {
+  border-radius:$input_border_radius;
+  border:0px;
+  padding: 3px;
+  background: $darkest_orange;
+  opacity:.8;
+  color:white;
+  width: inherit;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: none;
+}
+#errorExplanation p {
+  opacity:0;
+  font-size:0px;
+  height:0px;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+#errorExplanation h2 {
+  padding: 0px;
+  font-size: 0px;
+  margin: 0px;
+}

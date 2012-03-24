@@ -1,25 +1,42 @@
 = content_for :title, 'Update Profile'
 .update_background
   .update_padding
-    #registration
-      = form_for(@user, :url => {:action => "update"}, :html => {:autocomplete => "off"}) do |f|
-        = error_messages_for @user
-        %a#title Update Profile
-        .Register_Field
-          = f.text_field :username, :placeholder => "Username"
-        .Register_Field
-          = f.text_field :email, :placeholder => "Email"
-        .Register_Field
-          = f.password_field :password, :placeholder => "Password"
-        .Register_Field
-          = f.password_field :password_confirmation, :placeholder => "Password Confirmation"
+    .update_width
+      = error_messages_for @user
+      #registration
+        = form_for(@user, :url => {:action => "update"}, :html => {:autocomplete => "off"}) do |f|
+          %a#title Update Profile
+          .Register_Field
+            = f.label "Username"
+            = f.text_field :username
+          .Register_Field
+            = f.label "Email"
+            = f.text_field :email
+          .Register_Field
+            = f.label "Password"
+            = f.password_field :password
+          .Register_Field
+            = f.label "Password Confirmation"
+            = f.password_field :password_confirmation
 
-        = f.fields_for :house do |h|
-          = h.text_field :name, :placeholder => "House Name"
-          = h.fields_for :location do |l|
-            = l.text_field :address, :placeholder => "Address"
-            = l.text_field :neighborhood, :placeholder => "Neighborhood"
-            = l.text_field :city, :placeholder => "City"
-            = l.text_field :state, :placeholder => "State"
-            = l.text_field :nation, :placeholder => "Country"
-        = f.submit "Update"
+          = f.fields_for :house do |h|
+            .Register_Field
+              = h.label "House Name"
+              = h.text_field :name
+            = h.fields_for :location do |l|
+              .Register_Field
+                = l.label "Address"
+                = l.text_field :address
+              .Register_Field
+                = l.label "Neighborhood"
+                = l.text_field :neighborhood
+              .Register_Field
+                = l.label "City"
+                = l.text_field :city
+              .Register_Field
+                = l.label "State"
+                = l.text_field :state
+              .Register_Field
+                = l.label "Country"
+                = l.text_field :nation
+          = f.submit "Update"
