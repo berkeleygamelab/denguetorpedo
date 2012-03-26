@@ -27,6 +27,7 @@ gem 'mime'
 gem 'bcrypt-ruby'
 gem 'paperclip'
 gem 'ruby-gmail'
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.

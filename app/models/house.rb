@@ -14,6 +14,7 @@ class House < ActiveRecord::Base
   attr_accessible :location_id, :location_attributes
 
   validates :location_id, :presence => true
+  validates :location_id, :uniqueness => true
 
   def points
     members.sum(:points)

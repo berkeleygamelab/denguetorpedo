@@ -31,6 +31,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = @current_user
+    @user.house ||= House.new
+    @user.house.location ||= Location.new
   end
   
   def update
