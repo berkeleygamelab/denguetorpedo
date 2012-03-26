@@ -1,0 +1,16 @@
+== SMS system documentation
+
+Our SMS system connect to Gmail and process emails in our Gmail account - denguereport
+To start running the SMS system along with the web server, simply execute the following command in the terminal:
+
+  foreman start
+  
+This command will execute the Procfile in the project folder. The Procfile specifies our application to start a web process and a worker process.
+It is almost common nowadays that a web application will require some kind worker process that handles background tasks. This is exactly what the 
+Procfile is doing. The two commands are:
+  
+  web: bundle exec thin start -p $PORT
+  worker: bundle exec rake starting_mail_poller
+  
+The first command executes a Thin web server and the second command executes a rake task "starting_mail_poller"
+

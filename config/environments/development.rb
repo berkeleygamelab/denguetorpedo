@@ -30,6 +30,8 @@ Dengue::Application.configure do
 
   config.action_mailer.default_url_options = { host: "http://dengue-staging.herokuapp.com" }
   
+  config.log_level = :debug
+   
   # Gmail SMTP
   config.action_mailer.delivery_method = :smtp
    # Gmail SMTP server setup
