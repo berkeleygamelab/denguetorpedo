@@ -1,7 +1,7 @@
 == SMS system documentation
 
 Our SMS system connect to Gmail and process emails in our Gmail account - denguereport
-To start running the SMS system along with the web server, simply execute the following command in the terminal:
+To start running the SMS system along with the web server on the localhost, simply execute the following command in the terminal:
 
   foreman start
   
@@ -14,3 +14,10 @@ Procfile is doing. The two commands are:
   
 The first command executes a Thin web server and the second command executes a rake task "starting_mail_poller"
 
+---------------------------------------------------------------------------------------------------------------------------------------
+To run the SMS system on Heroku.
+After deploy the app on to heroku, simply execute
+
+heroku scale worker=1 
+
+use the --app option if you have more than one app.
