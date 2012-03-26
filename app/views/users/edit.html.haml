@@ -6,37 +6,29 @@
       #registration
         = form_for(@user, :url => {:action => "update"}, :html => {:autocomplete => "off"}) do |f|
           %a#title Update Profile
-          .Register_Field
+          .register_field
             = f.label "Username"
             = f.text_field :username
-          .Register_Field
+          .register_field
             = f.label "Email"
             = f.text_field :email
-          .Register_Field
+          .register_field
             = f.label "Password"
             = f.password_field :password
-          .Register_Field
+          .register_field
             = f.label "Password Confirmation"
             = f.password_field :password_confirmation
 
           = f.fields_for :house do |h|
-            .Register_Field
+            .register_field
               = h.label "House Name"
               = h.text_field :name
             = h.fields_for :location do |l|
-              .Register_Field
+              .register_field
                 = l.label "Address"
                 = l.text_field :address
-              .Register_Field
+              .register_field
                 = l.label "Neighborhood"
                 = l.text_field :neighborhood
-              .Register_Field
-                = l.label "City"
-                = l.text_field :city
-              .Register_Field
-                = l.label "State"
-                = l.text_field :state
-              .Register_Field
-                = l.label "Country"
-                = l.text_field :nation
           = f.submit "Update"
+

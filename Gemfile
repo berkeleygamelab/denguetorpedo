@@ -27,7 +27,7 @@ gem 'mime'
 gem 'bcrypt-ruby'
 gem 'paperclip'
 gem 'ruby-gmail'
-gem 'therubyracer'
+gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -13,16 +13,6 @@
         = f.label :report
         = f.text_area :report
       = fields_for @report.location do |location_form|
-        %li
-          = location_form.label :nation
-          = location_form.text_field :nation
-        %li
-          = location_form.label :state
-          = location_form.text_field :state
-        %li
-          = location_form.label :city
-          = location_form.text_field :city
-        %li
           = location_form.label :address
           = location_form.text_field :address
         %li
@@ -30,3 +20,4 @@
           = location_form.text_field :neighborhood
 
   = f.submit "submit"
+

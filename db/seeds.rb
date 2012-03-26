@@ -19,21 +19,21 @@ u10 = User.create!(:username => "C-3PO", :password => "asdf123", :email => "foo1
 u11 = User.create!(:username => "ObiWanKenobi", :password => "asdf123", :email => "foo11@foo.com")
 puts "users created"
 
-l1 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2521 Regent St.")
-l2 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "North Side", :address => "1628 Spruce St.")
-l3 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "3850 Park Blvd.")
-l4 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2400 Durant Ave.")
-l5 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2627 Hillegass Ave.")
+l1 = Location.create!(:address => "2521 Regent St. Berkeley, CA", :neighborhood => "South Side")
+l2 = Location.create!(:address => "1628 Spruce St. Berkeley, CA", :neighborhood => "North Side")
+l3 = Location.create!(:address => "3850 Park Blvd. Oakland, CA", :neighborhood => "Oakland")
+l4 = Location.create!(:address => "2400 Durant Ave. Berkeley, CA", :neighborhood => "South Side")
+l5 = Location.create!(:address => "2627 Hillegass Ave. Berkeley, CA", :neighborhood => "South Side")
 sleep 2
-l6 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2539 Durant Ave.")
-l7 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2525 Regent St.")
-l8 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2424 Channing Way.")
-l9 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "North Side", :address => "1701 Euclid Ave.")
-l10 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "North Side", :address => "2022 Cedar St.")
+l6 = Location.create!(:address => "2539 Durant Ave. Berkeley, CA", :neighborhood => "South Side")
+l7 = Location.create!(:address => "2525 Regent St. Berkeley, CA", :neighborhood => "South Side")
+l8 = Location.create!(:address => "2424 Channing Way. Berkeley, CA", :neighborhood => "South Side")
+l9 = Location.create!(:address => "1701 Euclid Ave, Berkeley, CA", :neighborhood => "North Side")
+l10 = Location.create!(:address => "2022 Cedar St. Oakland, CA", :neighborhood => "North Side")
 sleep 2
-l11 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "479 65th St.")
-l12 = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Oakland", :address => "454 Alcatraz Ave.")
-l13 = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "South Side", :address => "2702 Stuart St.")
+l11 = Location.create!(:address => "479 65th St. Oakland, CA", :neighborhood => "Oakland")
+l12 = Location.create!(:address => "454 Alcatraz Ave. Oakland, CA", :neighborhood => "Oakland")
+l13 = Location.create!(:address => "2702 Stuart St. Berkeley, CA", :neighborhood => "South Side")
 puts "locations created"
 sleep 2
 
@@ -83,13 +83,13 @@ r2.save!
 r3 = Report.create!(:report => "Use the force...", :status => 2, :reporter_id => u6.id, :location_id => u6.house.location.id)
 r3.save!
 r4 = Report.create!(:report => "If you strike me down, I shall become more powerful that you ever imagine.", :status => 0, :reporter_id => u11.id, :location_id => -1)
-r4.location = Location.create!(:nation => "United States", :state => "California", :city => "Oakland", :neighborhood => "Temescal", :address => "474 66th St.")
+r4.location = Location.create!(:address => "474 66th St. Oakland, CA", :neighborhood => "Oakland")
 r4.claimer = u2
 r4.save!
 r5 = Report.create!(:report => "Luck...I am your father...", :status => 1, :reporter_id => u2.id, :location_id => -1)
 r5.claimer = u2
 r5.eliminator = u2
-r5.location = Location.create!(:nation => "United States", :state => "California", :city => "Berkeley", :neighborhood => "North Side", :address => "1860 Leroy Ave")
+r5.location = Location.create!(:address => "1860 Leroy Ave. Berkeley, CA", :neighborhood => "Oakland")
 r5.save!
 r6 = Report.create!(:report => "Beep Beep Beep Beep...", :status => 2, :reporter_id => u9.id, :location_id => u9.house.location.id)
 r6.save!
