@@ -7,15 +7,13 @@
     %figure#house_photo.image_placeholder
     %ul#house_stats
       %li 
-        Neighborhood
         %section.house_stats_box#neighborhood_box
           = @house.neighborhood
         = "#{@house.location.city}, #{@house.location.nation}"
-      %li 
-        Points
+      %li         
         %section.house_stats_box#house_points_box
           = @house.points
-
+          %a Points
   %h3 Members
   %ul#house_members
     - for member in @house.members.slice(0, 4)
