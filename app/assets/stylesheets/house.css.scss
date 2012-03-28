@@ -10,7 +10,9 @@ figure.image_placeholder {
   display: inline-block;
 }
 
-
+#left_section, #right_section {
+	margin-top:30px;
+}
 #left_section {
   float: left;
   width: 616px;
@@ -18,7 +20,7 @@ figure.image_placeholder {
 
 #house_detail {
   float: left;
-  margin-top: 24px;
+ // margin-top: 24px;
   width: 610px;
   height: auto;
 }
@@ -162,7 +164,6 @@ ul#event_list {
 }
 
 #house_reports {
-  margin-top: 10px;
   margin-left: 10px;
   width:  auto;
   height: auto;
@@ -185,14 +186,15 @@ ul#report_status  {
     list-style-type: none;
     display: inline-block;
     width: 123px;
-    height: 45px;
+    height: 40px;
     background-color: #FFFFFF;
-    border-radius: 2px;
     text-align: center;
     color: White;
-
+	border-radius:3px;
+	padding-top:10px;
     a {
       color: White;
+	  font-size:14px;
     }
   }
   #house_open_report_button {
