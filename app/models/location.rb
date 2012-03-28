@@ -1,3 +1,5 @@
+require 'active_support/core_ext'
+
 class Location < ActiveRecord::Base
   acts_as_gmappable :callback => :geocode_results
 
@@ -49,7 +51,7 @@ class Location < ActiveRecord::Base
     # construct the Location object using the argument
     if address.class == String
       location = Location.new(:address => address)
-    elsif address.class == Hash
+    elsif address.class <= Hash
       location = Location.new(address)
     else
       return nil
