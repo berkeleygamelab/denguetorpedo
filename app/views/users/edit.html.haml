@@ -29,6 +29,6 @@
                 = l.text_field :address
               .register_field
                 = l.label "Neighborhood"
-                = l.text_field :neighborhood
+                = l.select :neighborhood, [['South Side', 'South Side'], ['North Side', 'North Side'], ['Oakland', 'Oakland']]
           = f.submit "Update"
 
