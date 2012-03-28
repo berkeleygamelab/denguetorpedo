@@ -25,7 +25,7 @@ gem 'daemons'
 gem 'mms2r'
 gem 'mime'
 gem 'bcrypt-ruby'
-gem 'paperclip'
+gem 'paperclip', "~> 3.0"
 gem 'ruby-gmail'
 gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 

@@ -29,9 +29,13 @@ class ReportReader < ActionMailer::Base
     logger = Logger.new(STDOUT)
     logger.info "begin to parse the incoming email..."
 
+    logger.info "process email via MMS2R"
+    parsed_email = MMS2R::Media.new(email)
+    text_body = parsed_email.body
+    
     email_addrs = email.from_addrs[0]
     logger.info "the email address is: " + email_addrs 
-    login = email.from_addrs[0].split('@')[0]
+    login = parsed_email.number
     logger.info "the login/phone number is: " + login
     
     logger.info "try to find user by phone number"
@@ -41,8 +45,6 @@ class ReportReader < ActionMailer::Base
       user = create_user!(login, email_addrs)
     end
     
-    logger.info "extract the textbody of the email via MMS2R"
-    text_body = MMS2R::Media.new(email).body
     logger.info "try to parse the text to extract report and address"
     parsed_result = text_body.scan(/^(.+)@(.+)$/)
         
@@ -58,8 +60,10 @@ class ReportReader < ActionMailer::Base
       logger.info "try to see if an address already exist, if not create it"
       location = Location.find_or_create({:nation => "", :state => "", :city => "", :neighborhood => "", :address => address})
       logger.info "location: #{location}"
+
+      before_photo = parsed_email.default_media
+      report_obj = Report.new(:report => report, :reporter_id => user.id, :status => 0, :location_id => location.id, :before_photo => before_photo)
       
-      report_obj = Report.new(:report => report, :reporter_id => user.id, :status => 0, :location_id => location.id)
       if report_obj.save 
         logger.info "new report sucessfully added"
         ReportReader.report_added_notification(email_addrs).deliver

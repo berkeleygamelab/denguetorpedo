@@ -1,9 +1,9 @@
 .report.open_report
   %h4== Report #{open_report.id}: #{open_report.complete_address}
   .before_photo
-    before
+    = image_tag open_report.before_photo(:thumb)
   .after_photo
-    after
+    = image_tag open_report.after_photo(:thumb)
   .report_content
     = open_report.report
   .bottom_section

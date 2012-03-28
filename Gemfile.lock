@@ -78,9 +78,10 @@ GEM
       uuidtools (>= 2.1.1)
     multi_json (1.1.0)
     nokogiri (1.5.0)
-    paperclip (2.7.0)
-      activerecord (>= 2.3.0)
-      activesupport (>= 2.3.2)
+    paperclip (3.0.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
       cocaine (>= 0.0.2)
       mime-types
     pg (0.13.2)
@@ -163,7 +164,7 @@ DEPENDENCIES
   jquery-rails
   mime
   mms2r
-  paperclip
+  paperclip (~> 3.0)
   pg
   rails (~> 3.2.1)
   ruby-gmail

@@ -75,4 +75,7 @@ Dengue::Application.configure do
     :user_name => 'reportdengue',
     :password => 'dengue@!$'
   }
+  
+  # Paperclip gem: ImageMagic path
+   Paperclip.options[:command_path] = "/usr/local/bin/convert"
 end
