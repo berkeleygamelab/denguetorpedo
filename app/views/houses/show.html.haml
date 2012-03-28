@@ -8,8 +8,9 @@
     %ul#house_stats
       %li 
         %section.house_stats_box#neighborhood_box
-          = @house.neighborhood
-        = "#{@house.location.city}, #{@house.location.nation}"
+          .neighborhood= @house.neighborhood
+          .city_state= @house.location.city
+
       %li         
         %section.house_stats_box#house_points_box
           = @house.points

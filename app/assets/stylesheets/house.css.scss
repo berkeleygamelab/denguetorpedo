@@ -47,18 +47,24 @@ ul#house_stats  {
 
 .house_stats_box {
   width: 150px;
-  height: 50px;
+  height: 45px;
   color: White;
   font-size: 1.6em;
-  line-height: 50px;
+  line-height: 20px;
+  padding-top:8px;
+  border-radius:3px;
 }
 
 #neighborhood_box {
   background-color: LightGray;
+	.city_state{
+		font-size:16px;
+	}
 }
 
 #house_points_box {
   background-color: $blue;
+
 }
 
 
