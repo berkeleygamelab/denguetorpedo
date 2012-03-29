@@ -11,7 +11,7 @@ class Report < ActiveRecord::Base
   validates :location_id, :presence => true
   
   def strftime_updated_at
-    self.updated_at.strftime("Reported on %m/%d/%Y")
+    self.updated_at.strftime("%m/%d/%Y")
   end
     
   def self.unverified_reports

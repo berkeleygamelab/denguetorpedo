@@ -1,15 +1,21 @@
 .report.claimed_report
   %h4== Report #{claimed_report.id}: #{claimed_report.complete_address}
   .before_photo
-    before
-  .after_photo
-    after
+
+  .status
+    Claimed
+  .time_stamp
+    = claimed_report.strftime_updated_at
+
   .report_content
-    = claimed_report.report
-  .bottom_section
-    .status
-      Claimed
-    %h4== Reporter: #{claimed_report.reporter.username unless claimed_report.reporter.nil?}
-    %h4== Claimed: #{claimed_report.claimer.username unless claimed_report.reporter.nil?}
-    .time_stamp
-      = claimed_report.strftime_updated_at
+    %p
+      "
+      = claimed_report.report
+      %a "
+
+    %a Reporter: 
+    %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
+    %br
+    %a Claimed: 
+    %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
+  
