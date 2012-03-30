@@ -1,6 +1,27 @@
+%script(type="text/javascript" src="jquery-1.7.1.min.js")
+%script(type="text/javascript" src="jquery.nivo.slider.pack.js")
+<script type="text/javascript">$(window).load(function() { $('#slider').nivoSlider(); }); </script>
+<link rel="stylesheet" href="default.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="nivo-slider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="slider.css" type="text/css" media="screen" />
 #home_orange_promotion
   - if @current_user.nil?
+    
+    %div#wrapper
+      %div(class="slider-wrapper theme-default")
+        %div.ribbon
+          %div(id="slider" class="nivoSlider")
+            //%p= image_tag("rio12.jpg", :width=>"1024", :height=>"576", :alt=>"")
+            //%p= image_tag("workshop.jpg", :width=>"1024", :height=>"576", :alt=>"")
+            //%p= image_tag("fun.jpg", :width=>"1024", :height=>"576", :alt=>"", :title=>"Get involve in the game around your neighborhood!")
+            //%p= image_tag("giving.jpg", :width=>"1024", :height=>"576", :alt=>"", :data_transition=>"slideInLeft")
+            //%p= image_tag("saopaulo.jpg", :width=>"1024", :height=>"576", :alt=>"", :title=>"#htmlcaption")
+          %div(id="htmlcaption" class="nivo-html-caption")
+            %strong Sao Paulo
+        \.
+          
     = render "users/new"
+
 
 #neighborhood_search
   %h2 Leading Neighborhoods
