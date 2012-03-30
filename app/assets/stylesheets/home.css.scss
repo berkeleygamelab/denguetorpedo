@@ -36,14 +36,19 @@
     float: left;
     font-size: 20px;
     padding-top: 7px;
+    position:relative;
+    top:-150px;
   }
 
   #neighborhood_search_background {
     background: #e2e5cf;
     padding: 5px;
     width: 615px;
-    float: left;
+    float: right;
     margin-left: 75px;
+    position:relative;
+    top:-150px;
+    
   }
 
   input, input:focus {
