@@ -27,7 +27,7 @@
 
 #neighborhood_search {
   width: 1040px;
-  height: 100px;
+  height: 70px;
   padding-left: 45px;
   padding-right: 45px;
   padding-top: 20px;
@@ -37,7 +37,7 @@
     font-size: 20px;
     padding-top: 7px;
     position:relative;
-    top:-150px;
+    top:-180px;
   }
 
   #neighborhood_search_background {
@@ -47,7 +47,8 @@
     float: right;
     margin-left: 75px;
     position:relative;
-    top:-150px;
+    top:-180px;
+    right:100px;
     
   }
 
