@@ -1,6 +1,6 @@
 @import "variables";
 
-.prefix_760{
+.registration_padding{
  padding-left: 760px;
 }
 
@@ -15,6 +15,11 @@
 
 #registration{
   width: inherit;
+
+  .top_padding {
+    padding-top: 100px;
+  }
+
   .flash.error{
     background:$darkest_orange;
     padding:5px;

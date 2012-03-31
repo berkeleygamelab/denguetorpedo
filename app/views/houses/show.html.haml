@@ -2,26 +2,34 @@
   #house_detail
     %h2
       = @house.name
-      %span#house_address.darkgray_text
+      %span#house_address.gray_text
         = @house.location.address
     %figure#house_photo.image_placeholder
     %ul#house_stats
-      %li 
+      %li
+        .gray_text
+          %a community
         %section.house_stats_box#neighborhood_box
           .neighborhood= @house.neighborhood
-          .city_state= @house.location.city
+          .city_state
+            = @house.location.city
+            %span
+              = @house.location.nation
 
-      %li         
+      %li
+        .gray_text
+          %a points
         %section.house_stats_box#house_points_box
-          = @house.points
-          %a Points
-  %h3 Members
+          .points
+            = @house.points
+            %a Points
+  %h3.darkgray_text Members
   %ul#house_members
     - for member in @house.members.slice(0, 4)
       %li
         %figure.image_placeholder.house_member_photo
   
-  %h3 House Posts
+  %h3.darkgray_text House Posts
   %ul#event_list
     - for event in @house.events
       %li

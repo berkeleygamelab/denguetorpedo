@@ -17,7 +17,7 @@
 }
 
 @mixin colored_text($color) {
-  color: gray;
+  color: $color;
 }
 
 html {
@@ -222,7 +222,12 @@ a:hover, a:active, a:focus {
 }
 
 .darkgray_text {
-  @include colored_text(DarkGray);
+  @include colored_text($dark_gray);
+}
+
+.absolute {
+  width: inherit;
+  position: absolute;
 }
 
 p.alert {
