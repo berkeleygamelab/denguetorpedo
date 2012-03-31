@@ -11,9 +11,8 @@
       = claimed_report.report
       %a "
 
-    %a Reporter: 
+    %a Reporter:
     %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
     %br
-    %a Claimed: 
+    %a Claimed:
     %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
-  
