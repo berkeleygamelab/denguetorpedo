@@ -8,7 +8,6 @@ Dengue::Application.routes.draw do
   resources :users, :except => [:destroy, :index, :new] do
     resources :reports, :except => [:show]
   end
-  
   resources :houses
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]
@@ -16,6 +15,7 @@ Dengue::Application.routes.draw do
   resources :events, :only => [:show]
   resources :verifications
   resources :forums, :only => [:index]
+  resources :neighborhoods, :only => [:show]
 
   root :to => 'home#index'
 
