@@ -3,3 +3,5 @@ $ ->
         $("#neighborhood_list li").removeClass("hilite")
         $(this).parent().parent().addClass("hilite")
         return true
+
+    $("#slider").nivoSlider()

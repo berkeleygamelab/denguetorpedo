@@ -13,16 +13,16 @@
 }
 
 #home_orange_promotion {
-  //background-image: url("home_images/orange_section_bg.png");
-  //background-repeat: no-repeat;
   width: $max-width;
   height: 402px;
   z-index: -2;
-}
 
-.prefix_760 {
-  position:relative;
-  top:-400px;
+  
+  .theme-default #slider {
+    width: 1040px;
+    height: 402px;
+    z-index: -1;
+  }
 }
 
 #neighborhood_search {
