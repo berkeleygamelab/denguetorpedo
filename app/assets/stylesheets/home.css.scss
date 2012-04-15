@@ -13,15 +13,21 @@
 }
 
 #home_orange_promotion {
-  background-image: url("home_images/orange_section_bg.png");
-  background-repeat: no-repeat;
+  //background-image: url("home_images/orange_section_bg.png");
+  //background-repeat: no-repeat;
   width: $max-width;
   height: 402px;
+  z-index: -2;
+}
+
+.prefix_760 {
+  position:relative;
+  top:-400px;
 }
 
 #neighborhood_search {
   width: 1040px;
-  height: auto;
+  height: 50px;
   padding-left: 45px;
   padding-right: 45px;
   padding-top: 20px;
@@ -30,14 +36,20 @@
     float: left;
     font-size: 20px;
     padding-top: 7px;
+    position:relative;
+    top:-215px;
   }
 
   #neighborhood_search_background {
     background: #e2e5cf;
     padding: 5px;
     width: 615px;
-    float: left;
-    margin-left: 75px;
+    float: right;
+    margin-left: 250px;
+    position:relative;
+    top:-260px;
+    left: -100px;
+    
   }
 
   input, input:focus {
