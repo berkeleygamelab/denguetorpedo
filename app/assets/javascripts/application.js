@@ -11,4 +11,5 @@
 //= require gmaps4rails/mapquest.js
 //= require gmaps4rails/openlayers.js
 //= require gmaps4rails/all_apis.js
+//= require jquery.nivo.slider.js
 //= require_tree .
