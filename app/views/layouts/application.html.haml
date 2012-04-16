@@ -9,21 +9,21 @@
     = yield :scripts
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
-  - if @is_home == "home_nav"
-    %div{:id => "home_nav_bar"}
-      = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
-      = render "layouts/navbar_buttons"
-      = render "layouts/login"
+    - if @is_home == "home_nav"
+      %div{:id => "home_nav_bar"}
+        = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
+        = render "layouts/navbar_buttons"
+        = render "layouts/login"
 
-  - else
-    %div{:id => "non_home_nav_bar"} 
-      = link_to image_tag("non_home_nav/short_logo.png", :id => "logo"), root_path
-      = render "layouts/navbar_buttons"
-      = render "layouts/login"
+    - else
+      %div{:id => "non_home_nav_bar"} 
+        = link_to image_tag("non_home_nav/short_logo.png", :id => "logo"), root_path
+        = render "layouts/navbar_buttons"
+        = render "layouts/login"
 
-  = yield
+    = yield
   
-  #footer
-    F.A.Q   |   Contact   |   About
-    %br 2012(C)Social Apps Lab, UC Berkeley
+    #footer
+      F.A.Q   |   Contact   |   About
+      %br 2012(C)Social Apps Lab, UC Berkeley
 

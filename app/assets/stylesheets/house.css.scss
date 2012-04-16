@@ -11,8 +11,9 @@ figure.image_placeholder {
 }
 
 #left_section, #right_section {
-	margin-top:30px;
+  margin-top:30px;
 }
+
 #left_section {
   float: left;
   width: 616px;
@@ -41,10 +42,6 @@ figure.image_placeholder {
 }
 
 ul#house_stats  {
-
-  .neighborhood {
-  }
-
   .points {
     padding-top: 5px;
   }
@@ -71,16 +68,15 @@ ul#house_stats  {
 #neighborhood_box {
   background-color: gray;
   border-radius: $button_border_radius;
-	.city_state{
-		font-size:.75em;
-	}
+  .city_state{
+    font-size:.75em;
+  }
   margin-bottom: 5px;
 }
 
 #house_points_box {
   background-color: $blue;
   border-radius: $button_border_radius;
-
 }
 
 
