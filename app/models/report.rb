@@ -7,6 +7,10 @@ class Report < ActiveRecord::Base
   belongs_to :eliminator, :class_name => "User"
   belongs_to :location
 
+  def neighborhood
+    location.neighborhood
+  end
+
   validates :reporter_id, :presence => true
   validates :location_id, :presence => true
   

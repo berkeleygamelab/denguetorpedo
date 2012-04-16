@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328061859) do
+ActiveRecord::Schema.define(:version => 20120415224516) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "content"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20120328061859) do
     t.string   "nation"
     t.string   "state"
     t.string   "city"
-    t.string   "neighborhood"
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
@@ -56,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20120328061859) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.string   "formatted_address"
+    t.integer  "neighborhood_id"
+  end
+
+  create_table "neighborhoods", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "reports", :force => true do |t|

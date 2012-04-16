@@ -10,6 +10,12 @@ class House < ActiveRecord::Base
   belongs_to :featured_event, :class_name => "Event"
   belongs_to :location
 
+  validates :location_id, :presence => true
+
+  def neighborhood
+    location.neighborhood
+  end
+
   accepts_nested_attributes_for :location, :allow_destroy => true
   attr_accessible :location_id, :location_attributes
 
@@ -20,14 +26,6 @@ class House < ActiveRecord::Base
     members.sum(:points)
   end
 
-  def self.all_in_neighborhoods(neighborhoods)
-    House.joins(:location).where(:locations => {:neighborhood => neighborhoods})
-  end
-
-  def neighborhood
-    self.location.neighborhood
-  end
-  
   def complete_address
     self.location.complete_address
   end

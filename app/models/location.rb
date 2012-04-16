@@ -4,8 +4,11 @@ class Location < ActiveRecord::Base
   acts_as_gmappable :callback => :geocode_results
 
   validates :latitude, :uniqueness => { :scope => :longitude }
+  validates :neighborhood_id, :presence => true
 
   has_one :house
+  belongs_to :neighborhood
+  has_many :reports
 
   def geocode_results(data)
     # reset all these fields so we can extract it from the geocoding data
@@ -24,19 +27,13 @@ class Location < ActiveRecord::Base
     self.nation = components["country"]
     self.state = components["administrative_area_level_1"]
     self.city = components["locality"] || components["administrative_level_3"] || components["administrative_level_2"]
-    self.neighborhood = components["neighborhood"] || self.neighborhood
+    self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood.name)
     self.address = "#{components['street_number']} #{components['route']}"
     self.formatted_address = data["formatted_address"]
   end
 
   def points
     house.nil? ? 0 : house.points
-  end
-
-  def self.top_neighborhoods(n = 0)
-    neighborhood_points = Location.joins(:house => :members).group(:neighborhood).count("users.points")
-    sorted_neighborhoods = neighborhood_points.to_a.sort {|i, j| j[1] <=> i[1]}.map {|x| x[0]} 
-    n ? sorted_neighborhoods : sorted_neighborhoods[0, n]
   end
 
   def complete_address

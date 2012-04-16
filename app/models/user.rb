@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   has_attached_file :profile_photo, :styles => { :small => "150x150>" }
 
   # validates
-   validates :username, :uniqueness => true
-   validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
-   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "password_digest.nil?"
-   validates :points, :numericality => { :only_integer => true }
+  validates :username, :uniqueness => true
+  validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
+  validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "password_digest.nil?"
+  validates :points, :numericality => { :only_integer => true }
 
   # filters
   before_create { generate_token(:auth_token) }
@@ -19,6 +19,15 @@ class User < ActiveRecord::Base
   has_many :events, :foreign_key => "creator_id"
   has_many :event_comments
   belongs_to :house
+
+  # helper associations
+  def location
+    house && house.location
+  end
+
+  def neighborhood
+    location && location.neighborhood
+  end
 
   accepts_nested_attributes_for :house, :allow_destroy => true
   attr_accessible :house_attributes
