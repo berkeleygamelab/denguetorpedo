@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120415224516) do
+ActiveRecord::Schema.define(:version => 20120418075338) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "content"
@@ -60,8 +60,9 @@ ActiveRecord::Schema.define(:version => 20120415224516) do
 
   create_table "neighborhoods", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "coordinator_id"
   end
 
   create_table "reports", :force => true do |t|
@@ -100,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20120415224516) do
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
     t.boolean  "is_verifier",                :default => false
+    t.boolean  "is_fully_registered",        :default => false
+    t.boolean  "is_health_agent",            :default => false
   end
 
 end
