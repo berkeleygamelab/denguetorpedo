@@ -63,7 +63,7 @@ class UsersController < ApplicationController
         house = House.find_by_name(house_attributes[:name])
         if house.nil?
           house = House.new(:name => house_attributes[:name])
-          house.location = Location.find_or_create(location_attributes)
+          house.location = Location.find_or_create(location_attributes[:address])
           successful &&= house.save
         end
 

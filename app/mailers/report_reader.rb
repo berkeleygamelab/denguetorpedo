@@ -58,7 +58,7 @@ class ReportReader < ActionMailer::Base
       
       logger.info "report: #{report}, address: #{address}"
       logger.info "try to see if an address already exist, if not create it"
-      location = Location.find_or_create({:nation => "", :state => "", :city => "", :neighborhood => "", :address => address})
+      location = Location.find_or_create(address)
       logger.info "location: #{location}"
 
       before_photo = parsed_email.default_media
