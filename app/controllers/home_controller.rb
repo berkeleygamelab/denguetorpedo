@@ -17,13 +17,18 @@ class HomeController < ApplicationController
     @is_home = "home_nav"
     
     if params[:neighborhood].nil?
-      @selected_neighborhood = @all_neighborhoods.first
+      if @all_neighborhoods.first.nil?
+        @selected_neighborhood = Neighborhood.new
+      else 
+        @selected_neighborhood = @all_neighborhoods.first
+      end
     else
       @selected_neighborhood = Neighborhood.find(params[:neighborhood])
     end
+    
     @houses = @selected_neighborhood.houses
-
     @total_reports_in_neighborhood = @selected_neighborhood.reports.count
+  
   end
 
 end

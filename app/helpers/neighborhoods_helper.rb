@@ -1,2 +1,2 @@
-module NeighborhoodHelper
+module NeighborhoodsHelper
 end
