@@ -141,11 +141,13 @@ ul#neighborhood_list {
   }
 }
 
-#houses {
-  width: 680px;
-  height: 300px;
-  padding-left: 45px;
-  float: left;
+.home {
+  #houses {
+    width: 680px;
+    height: 300px;
+    padding-left: 45px;
+    float: left;
+  }
 }
 
 ul#house_list {

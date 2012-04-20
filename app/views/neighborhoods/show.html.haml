@@ -22,14 +22,30 @@
     = @neighborhood.members.count
     participants
 .clearfloat
+%hr
 #middle_section
-  %h2 Houses
   #left_section
-    %ul
+    %a#houses_button{:href => '#'} Houses
+    %a#participants_button{:href => '#'} Participants
+    %a#health_agents_button{:href => '#'} Health Agents
+    %ul#houses
+      - for house in @neighborhood.houses
+        %li.member
+          %figure.image_placeholder.photo
+          %p= house.name
+    %ul#participants
       - for member in @neighborhood.members
-        %li
-          = member.username
-          = member.house.name
+        %li.member
+          %figure.image_placeholder.photo
+          %p= member.username
+          %p= member.house.name
+    %ul#health_agents
+      - for agent in @neighborhood.health_agents
+        %li.member
+          %figure.image_placeholder.photo
+          %p= agent.username
+          %p= agent.house.name
+
   #right_section
     %h3 Community Coordinator
     .featured_agent_section
@@ -61,6 +77,7 @@
         %li= image_tag("home_images/sponsor4.png")
     
 .clearfloat
+%hr
 #bottom_section
   %h2 Community News
 .clearfloat
