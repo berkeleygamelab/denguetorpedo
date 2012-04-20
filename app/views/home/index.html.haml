@@ -27,7 +27,7 @@
 
 #neighborhood_status
   #neighborhood_button
-    = link_to "go to #{@selected_neighborhood.name}", root_path
+    = link_to "go to #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
   #total_reports_in_neighborhood
     %h1 #{@total_reports_in_neighborhood}
     %h3 Total Reports Made in #{@selected_neighborhood.name}
