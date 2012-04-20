@@ -9,6 +9,7 @@
  * March 2010
  */
  
+ 
 /* The Nivo Slider styles */
 .nivoSlider {
 	position:relative;
@@ -33,13 +34,11 @@
 }
 /* The slices and boxes in the Slider */
 .nivo-slice {
-  display:none;
 	position:absolute;
 	z-index:5;
 	height:100%;
 }
 .nivo-box {
-  display:none;
 	position:absolute;
 	z-index:5;
 }

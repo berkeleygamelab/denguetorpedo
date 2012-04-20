@@ -11,8 +11,8 @@
         #htmlcaption.nivo-html-caption
           %strong Sao Paulo
         
-        - if @current_user.nil?
-          = render "users/new"
+          - if @current_user.nil?
+            = render "users/new"
 
 #neighborhood_search
   %h2 Leading Neighborhoods
@@ -24,6 +24,26 @@
   = render "home/neighborhood_list"
 #houses
   = render "home/house_list"
+
+#neighborhood_status
+  #neighborhood_button
+    = link_to "go to #{@selected_neighborhood.name}", root_path
+  #total_reports_in_neighborhood
+    %h1 #{@total_reports_in_neighborhood}
+    %h3 Total Reports Made in #{@selected_neighborhood.name}
+  %ul
+    %li
+      .neighborhood_report_status#neighborhood_open_reports
+      %h2 49 
+      %h4 open
+    %li 
+      .neighborhood_report_status#neighborhood_claimed_reports
+      %h2 234 
+      %h4 claimed
+    %li 
+      .neighborhood_report_status#neighborhood_resolved_reports
+      %h2 10003 
+      %h4 resolved
 
 #sponsors
   %h3 Local Sponsors in #{@selected_neighborhood.name}

@@ -17,19 +17,25 @@
   height: 402px;
 }
 
+.prefix_760 {
+  position:relative;
+  top:-350px;
+}
+
 #neighborhood_search {
-  width: 1040px;
+  width: 995px;
   height: 50px;
   padding-left: 45px;
-  padding-right: 45px;
   padding-top: 20px;
-
+  margin-bottom: 20px;
+  
   h2 {
     float: left;
     font-size: 20px;
     padding-top: 7px;
-    position:relative;
-    top:-215px;
+    
+    position:absolute;
+    top: 560px;
   }
 
   #neighborhood_search_background {
@@ -37,11 +43,10 @@
     padding: 5px;
     width: 615px;
     float: right;
-    margin-left: 250px;
-    position:relative;
-    top:-260px;
-    left: -100px;
+    margin-left: 320px;
     
+    position:absolute;
+    top: 560px;
   }
 
   input, input:focus {
@@ -85,10 +90,11 @@
 }
 
 #neighborhoods {
-  width: 1040px;
-  height: auto;
+  width: 995px;
+  height:auto;
   padding-left: 45px;
-  padding-top: 20px
+  padding-top: 20px;
+  margin-top: 130px;
 }
 
 ul#neighborhood_list {
@@ -111,18 +117,23 @@ ul#neighborhood_list {
       background: #65665c;
       margin-bottom: 5px;
       text-align: left;
-      padding-top: 10px;
+      padding-top: 15px;
       padding-right: 10px;
       padding-left: 10px;
       a {
         color: #FFFFFF;
+        display: block;
+      }
+      &:hover {
+        cursor: pointer;
       }
     }
 
     .neighborhood_selection_photo {
       width: auto;
-      height: 255px;
+      height: auto;
       background: #FFFFFF;
+      
       img {
         margin: 0px;
       }
@@ -131,16 +142,16 @@ ul#neighborhood_list {
 }
 
 #houses {
-  width: 1040px;
-  height: 280px;
+  width: 680px;
+  height: 300px;
   padding-left: 45px;
+  float: left;
 }
 
 ul#house_list {
   list-style-type: none;
-  width: 660px;
+  width: auto;
   height: 90%;
-  float: left;
   
   li {
     list-style-type: none;
@@ -165,7 +176,8 @@ ul#house_list {
 #neighborhood_status {
   width: 300px;
   height: 90%;
-  float: left;
+  float: right;
+  margin-top: 25px;
   
   #neighborhood_button {
     border-radius: $button_border_radius;
@@ -175,11 +187,17 @@ ul#house_list {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 8px;
+    padding-top: 12px;
     a {
+      color: #333;
       font-size: 20px;
+      display: block;
+    }
+    &:hover {
+      cursor: pointer;
     }
   }
+  
   #total_reports_in_neighborhood {
     width: 80%;
     height: 70px;
@@ -227,17 +245,19 @@ ul#house_list {
 }
 
 #sponsors {
+
   background: #e2e5cf;
-  width: 1040px;
+  width: 950px;
   height: 190px;
-  padding-left: 25px;
-  padding-top: 10px;
   margin-left: 45px;
-  margin-right: 45px;
+  padding-top: 10px;
+  clear: both;
   
   ul {
     list-style-type: none;
+    padding-left: 25px;
     li {
+      height: 135px;
       border-style: solid;
       border-width: 1px;
       border-color: #bcbfa9;
@@ -245,10 +265,11 @@ ul#house_list {
       display: inline-block;
       margin-top: 10px;
       margin-right: 20px;
-      margin-left: 20px
+      margin-left: 20px;
     }
   }
 }
+
 
 .map_container {
   width: auto;
