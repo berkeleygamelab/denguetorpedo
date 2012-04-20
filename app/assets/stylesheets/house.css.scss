@@ -10,14 +10,22 @@ figure.image_placeholder {
   display: inline-block;
 }
 
-#left_section, #right_section {
-  margin-top:30px;
+.houses { // each page has an overarching class of the controller name and action name
+  #left_section, #right_section {
+    margin-top:30px;
+  }
+  
+  #left_section {
+    float: left;
+    width: 616px;
+  }
+
+  #right_section {
+    float: right;
+    width: 420px;
+  }
 }
 
-#left_section {
-  float: left;
-  width: 616px;
-}
 
 #house_detail {
   .house_name {
@@ -160,11 +168,6 @@ ul#event_list {
   background-color: WhiteSmoke;    
 }
 
-
-#right_section {
-  float: right;
-  width: 420px;
-}
 
 #house_points {
   margin-left: 10px;
