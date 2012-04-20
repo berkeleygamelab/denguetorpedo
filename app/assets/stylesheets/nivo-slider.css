@@ -13,6 +13,7 @@
 /* The Nivo Slider styles */
 .nivoSlider {
 	position:relative;
+	z-index: -2;
 }
 .nivoSlider img {
 	position:absolute;

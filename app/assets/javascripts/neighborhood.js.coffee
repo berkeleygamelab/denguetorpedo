@@ -2,19 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
-  $('#houses_button').click -> (ev)
-    $('.neighborhoods #houses').show()
-    $('.neighborhoods #participants').hide()
-    $('.neighborhoods #health_agents').hide()
-    return false
-  $('#participants_button').click -> (ev)
-    $('.neighborhoods #houses').hide()
-    $('.neighborhoods #participants').show()
-    $('.neighborhoods #health_agents').hide()
-    return false
-  $('#health_agents_button').click -> (ev)
-    $('.neighborhoods #houses').hide()
-    $('.neighborhoods #participants').hide()
-    $('.neighborhoods #health_agents').show()
-    return false
+    $('#houses_button').click ->
+        $('.neighborhoods #houses').show()
+        $('.neighborhoods #participants').hide()
+        $('.neighborhoods #health_agents').hide()
+        return false
+    $('#participants_button').click ->
+        $('.neighborhoods #houses').hide()
+        $('.neighborhoods #participants').show()
+        $('.neighborhoods #health_agents').hide()
+        return false
+    $('#health_agents_button').click ->
+        $('.neighborhoods #houses').hide()
+        $('.neighborhoods #participants').hide()
+        $('.neighborhoods #health_agents').show()
+        return false
 
