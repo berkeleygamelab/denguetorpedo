@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-import "variables";
+@import "variables";
 
 
 @mixin neighborhood_status_button {
@@ -63,7 +63,7 @@ import "variables";
   }
 }
 
-left_section {
+#left_section {
   float: left;
   width: 650px;
 }
