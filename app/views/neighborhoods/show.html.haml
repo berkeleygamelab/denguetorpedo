@@ -1,39 +1,100 @@
 #top_section
-  %h2 Neighborhood of #{@neighborhood.name}
-  %p
-    rank
-    = @neighborhood.rank # doesn't actually work yet...
-  %p
-    = @neighborhood.reports.count
-    made
-  %p
-    = @neighborhood.reports.where(:status => 0).count
-    open
-  %p
-    = @neighborhood.reports.where(:status => 1).count
-    claimed
-  %p
-    = @neighborhood.reports.where(:status => 2).count
-    resolved
-  %p
-    = @neighborhood.houses.count
-    houses
-  %p
-    = @neighborhood.members.count
-    participants
-.clearfloat
-#middle_section
-  %h2 Houses
-  #left_section
+  #neighborhood_of
+    %h2.inline.darkgray_text Neighborhood of
+    #blank_space.inline
+    %h1.inline#neighborhood_name #{@neighborhood.name}
+  #neighborhood_status_bar
     %ul
+      %li
+        #rank_box.inline
+          %h2.inline No.
+          /* doesn't actually work yet... */
+          %h2.inline #{@neighborhood.rank}
+          /*                               */
+      %li
+        #status_text
+          %h1 #{@neighborhood.reports.count}
+          %h3 total reports made
+      %li
+        #neighborhood_open_report_button
+          .button_text
+            %h1.darkgray_text #{@neighborhood.reports.where(:status => 0).count}
+            %p.darkgray_text open
+      %li
+        #neighborhood_claimed_report_button
+          .button_text
+            %h1.darkgray_text #{@neighborhood.reports.where(:status => 1).count}
+            %p.darkgray_text claimed
+      %li
+        #neighborhood_resolved_report_button
+          .button_text
+            %h1.darkgray_text #{@neighborhood.reports.where(:status => 2).count}
+            %p.darkgray_text resolved
+      %li
+        #status_text
+          %h1.darkgray_text #{@neighborhood.houses.count}
+          %h3.darkgray_text houses
+      %li
+        #status_text
+          %h1.darkgray_text #{@neighborhood.members.count}
+          %h3.darkgray_text participants
+.clearfloat
+%hr
+#middle_section
+  #left_section
+    %a#houses_button{:href => '#'} Houses
+    %a#participants_button{:href => '#'} Participants
+    %a#health_agents_button{:href => '#'} Health Agents
+    %ul#houses
+      - for house in @neighborhood.houses
+        %li.member
+          %figure.image_placeholder.photo
+          %p= house.name
+    %ul#participants
       - for member in @neighborhood.members
-        %li
-          = member.username
-          = member.house.name
+        %li.member
+          %figure.image_placeholder.photo
+          %p= member.username
+          %p= member.house.name
+    %ul#health_agents
+      - for agent in @neighborhood.health_agents
+        %li.member
+          %figure.image_placeholder.photo
+          %p= agent.username
+          %p= agent.house.name
+
   #right_section
     %h3 Community Coordinator
+    .featured_agent_section
+      .agent_photo
+      #h3 Benson Ma
+      .agent_description
+        UC Berkeley Student. Major in Bioengineering and Computer Science.
+      .view_profile  
+        view profile    
     %h3 Featured Health Agent
+    .featured_agent_section
+      .agent_photo
+      #h3 Katie Fleming
+      .agent_description
+        UC Berkeley Student. Major in Anthropology
+      .view_profile  
+        view profile
+    %h3 Local Sponsors
+    #local_sponsors_section
+      %ul
+        %li= image_tag("home_images/sponsor1.png")
+        %li= image_tag("home_images/sponsor2.png")
+        %li= image_tag("home_images/sponsor3.png")
+        %li= image_tag("home_images/sponsor4.png")
+        %li= image_tag("home_images/sponsor5.png")
+        %li= image_tag("home_images/sponsor1.png")
+        %li= image_tag("home_images/sponsor2.png")
+        %li= image_tag("home_images/sponsor3.png")
+        %li= image_tag("home_images/sponsor4.png")
+    
 .clearfloat
+%hr
 #bottom_section
   %h2 Community News
 .clearfloat

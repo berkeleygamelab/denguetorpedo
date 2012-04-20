@@ -13,6 +13,7 @@
 /* The Nivo Slider styles */
 .nivoSlider {
 	position:relative;
+	z-index: -2;
 }
 .nivoSlider img {
 	position:absolute;
@@ -34,13 +35,11 @@
 }
 /* The slices and boxes in the Slider */
 .nivo-slice {
-	display:block;
 	position:absolute;
 	z-index:5;
 	height:100%;
 }
 .nivo-box {
-	display:block;
 	position:absolute;
 	z-index:5;
 }

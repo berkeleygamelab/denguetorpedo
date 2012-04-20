@@ -1,19 +1,17 @@
 #home_orange_promotion
-  - if @current_user.nil?
-    #wrapper
-      .slider-wrapper.theme-default
-        .ribbon
-          #slider.nivoSlider
-            = image_tag("orange_section_bg.jpg", :width=>"1040", :height=>"402",:alt=>"")
-            = image_tag("rio12.jpg", :width=>"1040", :height=>"402", :alt=>"")
-            = image_tag("sp_scaled.jpg", :width=>"1040", :height=>"402", :alt=>"", :title=>"Get involved in the game around your neighborhood!")
-            = image_tag("giving_scaled.jpg", :width=>"1040", :height=>"402", :alt=>"", :data_transition=>"slideInLeft")
-            = image_tag("conference_scaled.jpg", :width=>"1040", :height=>"402", :alt=>"")
-          #htmlcaption.nivo-html-caption
-            %strong Sao Paulo
-          
-    = render "users/new"
-
+  #wrapper
+    .slider-wrapper.theme-default
+      .ribbon
+        #slider.nivoSlider
+          = image_tag("orange_section_bg.jpg", :width=>"1040", :height=>"402",:alt=>"")
+          = image_tag("rio12.jpg", :width=>"1040", :height=>"402", :alt=>"")
+          = image_tag("sp_scaled.jpg", :width=>"1040", :height=>"402", :alt=>"", :title=>"Get involved in the game around your neighborhood!")
+          = image_tag("giving_scaled.jpg", :width=>"1040", :height=>"402", :alt=>"", :data_transition=>"slideInLeft")
+          = image_tag("conference_scaled.jpg", :width=>"1040", :height=>"402", :alt=>"")
+        #htmlcaption.nivo-html-caption
+          %strong Sao Paulo
+      - if @current_user.nil?
+        = render "users/new"  
 
 #neighborhood_search
   %h2 Leading Neighborhoods
@@ -25,6 +23,26 @@
   = render "home/neighborhood_list"
 #houses
   = render "home/house_list"
+
+#neighborhood_status
+  #neighborhood_button
+    = link_to "go to #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
+  #total_reports_in_neighborhood
+    %h1 #{@total_reports_in_neighborhood}
+    %h3 Total Reports Made in #{@selected_neighborhood.name}
+  %ul
+    %li
+      .neighborhood_report_status#neighborhood_open_reports
+      %h2 49 
+      %h4 open
+    %li 
+      .neighborhood_report_status#neighborhood_claimed_reports
+      %h2 234 
+      %h4 claimed
+    %li 
+      .neighborhood_report_status#neighborhood_resolved_reports
+      %h2 10003 
+      %h4 resolved
 
 #sponsors
   %h3 Local Sponsors in #{@selected_neighborhood.name}

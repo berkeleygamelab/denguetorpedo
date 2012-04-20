@@ -9,7 +9,7 @@
     = yield :scripts
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
-    - if @is_home == "home_nav"
+    - if @is_home == "non_home_nav_bar"
       %div{:id => "home_nav_bar"}
         = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
         = render "layouts/navbar_buttons"

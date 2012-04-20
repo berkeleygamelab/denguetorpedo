@@ -8,10 +8,10 @@ class User < ActiveRecord::Base
   validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "password_digest.nil?"
   validates :points, :numericality => { :only_integer => true }
-  validates :is_fully_registered, :presence => true
-  validates :is_community_coordinator, :presence => true
+#  validates :is_fully_registered, :presence => true
+#  validates :is_community_coordinator, :presence => true
 #  validates :is_community_coordinator, :uniquness => { :scope => ??? } TODO: only want one coordinator per community
-  validates :is_health_agent, :presence => true
+#  validates :is_health_agent, :presence => true
 
   # filters
   before_create { generate_token(:auth_token) }
