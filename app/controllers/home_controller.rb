@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     #  @user = User.new(:username => params[:user][:username], :email => params[:user][:email])
     #end
     
-    @all_neighborhoods = Neighborhood.all
+    @all_neighborhoods = Neighborhood.limit(6)
     @is_home = "home_nav"
     
     if params[:neighborhood].nil?
