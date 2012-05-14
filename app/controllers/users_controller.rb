@@ -4,17 +4,16 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_id(params[:id])
+    render :text => "User not found." and return if @user.nil?
+    
     @isPrivatePage = (@current_user != nil && @current_user == @user)
     @preventionIdeas = (@user != nil && @user.events.where(:category => PREVENTION_IDEA).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
     @neighborhood = @user.neighborhood
-
-    if @user.nil?
-      render :text => "User not found." and return
-    end
+    @reports = @user.reports
     
-    respond_to do |format|
-      format.html
-    end
+    # respond_to do |format|
+    #   format.html
+    # end
   end
 
   def create
