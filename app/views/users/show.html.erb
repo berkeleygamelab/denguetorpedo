@@ -1,0 +1,61 @@
+<div class="main_column_personal">
+  <div class="profile_photo">
+    <%= image_tag "Sunflower.gif" %>
+  </div>
+  <div class="personal_profile_info">
+    <div class="name"><%= @user.username %></div>
+    <div class="neighborhood"><%= @neighborhood unless @neighborhood.nil? %></div>
+    <div class="personal_points"><%= "#{@user.points} pts" %></div>
+  </div>
+  <div class="neighbors_container">
+    <div class="neighbors_text">neighbors</div>
+    <div class="neighbors_all">
+      <% for neighbor in @user.neighbors %>
+        <div class="neighbor_photo">
+        </div>
+	<% end %>
+    </div>
+  </div>
+  <div class="clearfloat">
+  </div>
+  <div class="report_filters_personal">
+    <div class="stars">
+      <div class="number">20</div>
+      <div class="text">Stars</div>
+    </div>
+    <div class="open">
+      <div class="number"><%= @user.created_reports.count %></div>
+      <div class="text">Open</div>
+    </div>
+    <div class="claimed">
+      <div class="number"><%= @user.claimed_reports.count %></div>
+      <div class="text">Claimed</div>
+    </div>
+    <div class="resolved">
+      <div class="number">15</div>
+      <div class="text">Resolved</div>
+    </div>
+    <div class="eliminations">
+      <div class="number"><%= @user.eliminated_reports.count %></div>
+      <div class="text">Eliminations</div>
+    </div>
+  </div>
+  <div class="personal_reports_list">
+    <div class="report">
+    </div>
+    <div class="report">
+    </div>
+    <div class="report">
+    </div>
+    <div class="report">
+    </div>
+  </div>
+</div>
+<div class="second_column_personal">
+  <div class="house_link">
+  </div>
+  <div class="map">
+  </div>
+  <div class="prevention_ideas">
+  </div>
+</div>
