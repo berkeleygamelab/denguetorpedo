@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     @reports = @user.reports
   end
 
+  def new
+    @user = User.new
+  end
+  
   def create
     @user = User.new(params[:user])
     
@@ -20,7 +24,7 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user.id)
     else
       flash[:user] = @user
-      redirect_to root_url
+      render new_user_path(@user)
     end
   end
 

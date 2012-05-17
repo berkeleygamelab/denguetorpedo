@@ -1,114 +1,42 @@
 @import "variables";
 
-.registration_padding{
- padding-left: 760px;
-}
-
-.prefix_480{
-  padding-left: 480px;
-}
-
-.register_width {
-  width: 240px;
-  @import "ErrorExplaination";
-}
-
 #registration{
-  width: inherit;
-  margin-top: -300px;
+  width: $max-width;
+  font-color: #333;
+  padding-top: 150px;
+  padding-left: 50px;
   
-  .top_padding {
-    padding-top: 100px;
+  h1 {
+    margin-bottom: 10px;
   }
-
-  .flash.error{
-    background:$darkest_orange;
-    padding:5px;
-    font-size:12px;
-    color:white;
-    width:inherit;
-    position:absolute;
-  }
-
-  .field_with_errors {
-    background-color: $darkest_orange;
-    border-radius: $input_border_radius;
-    margin-right: -5px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
-  .register_field {
-    display: table-row;
-  }
-
+  
   label {
-    display: table-cell;
-    vertical-align: top;
-    text-align: right;
-    padding-top: 15px;
-    padding-right: 10px;
-    color: $dark-gray;
-    font-size: 1em;
+    font-size: 16px;
+    display: block;
   }
 
   input {
-    display: tabel-cell;
-    float: right;
+    display: block;
     border-radius: $input_border_radius;
-    padding-left:5px;
     border: 0px;
     background: $light-orange;
     width: $field_width;
-    opacity:.65;
-    color: white;
     height: 33px;
     font-size: 16px;
-    font-family: "Lucida Grande";
     margin-top: 5px;
     margin-bottom: 5px;
-
-    &::-webkit-input-placeholder {
-      color: white;
-    }
-    &::-moz-placeholder {
-      color: white;
-    }
-
-    &:focus {
-      opacity: 1;
-    }
-
-    &[type = "submit"] {
+    
+    &[type = "Submit"] {
       border-radius: $button_border_radius;
+      width: 75px;
       padding: 5px;
-      opacity:.75;
-      margin-left: 168px;
-      color:white;
-      background-color:transparent;
-      width: 70px;
-      opacity:.75;
-      margin-left: 169px;
-      color:white;
-      background-color: $darkest_orange;
-      width: 70px;
+      background-color: $blue;
+      opacity: .8;
 
-
-      &:hover {
-        opacity: 1;
-        cursor: pointer;
-        background: #fa9652;
-      }
+       &:hover {
+         opacity: 1;
+         cursor: pointer;
+       }
     }
   }
-  a {
-    &#title{
-      &:hover {
-        text-decoration: none;
-      }
-    }
-    font-size: 18px;
-    color: white;
-  }
-
 }

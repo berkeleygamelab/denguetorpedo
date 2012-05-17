@@ -1,21 +1,18 @@
-= content_for :title, 'Register'
-
-= form_for(@user) do |f|
-  = f.error_messages
-
-  %fieldset
-    %ul
-      %li
-        = f.label :username
-        = f.text_field :username
-      %li
-        = f.label :email
-        = f.text_field :email
-      %li
-        = f.label :password
-        = f.password_field :password
-      %li
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation
+#registration
+  %h1 Registration
+  = form_for(@user) do |f|
+    = f.error_messages
+    
+    = f.label :username
+    = f.text_field :username   
+    
+    = f.label :email
+    = f.text_field :email  
+   
+    = f.label :password      
+    = f.password_field :password
+     
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+   
     = f.submit "Register"
-= link_to 'Back', root_path
