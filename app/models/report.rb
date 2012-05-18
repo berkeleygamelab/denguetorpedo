@@ -6,7 +6,7 @@ class Report < ActiveRecord::Base
   belongs_to :claimer, :class_name => "User"
   belongs_to :eliminator, :class_name => "User"
   belongs_to :location
-
+  
   def neighborhood
     location.neighborhood
   end
@@ -25,5 +25,5 @@ class Report < ActiveRecord::Base
   def complete_address
     self.location.complete_address
   end
-    
+  
 end

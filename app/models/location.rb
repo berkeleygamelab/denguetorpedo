@@ -49,6 +49,7 @@ class Location < ActiveRecord::Base
     if address.class == String
       location = Location.new(:address => address)
     elsif address.class <= Hash
+      logger.debug(address)
       location = Location.new(address)
     else
       return nil

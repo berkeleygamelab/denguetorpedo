@@ -13,8 +13,8 @@
         = f.label :report
         = f.text_area :report
       = fields_for @report.location do |location_form|
-          = location_form.label :address
-          = location_form.text_field :address
+        = location_form.label :address
+        = location_form.text_field :address
         %li
           = location_form.label :neighborhood
           = location_form.text_field :neighborhood

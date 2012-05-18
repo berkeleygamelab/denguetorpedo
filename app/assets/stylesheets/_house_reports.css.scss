@@ -44,18 +44,21 @@
 
 .report.open_report {
   background:url("house_images/report_open.png");
+  background-size: 100%;
   background-repeat:no-repeat;
   @include house_report;
 }
 
 .report.claimed_report {
   background:url("house_images/report_claimed.png");
+  background-size: 100%;
   background-repeat:no-repeat;
   @include house_report;
 }
 
 .report.resolved_report {
   background:url("house_images/report_resolved.png");
+  background-size: 100%;
   background-repeat:no-repeat;
   @include house_report;
 }

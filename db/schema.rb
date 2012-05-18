@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418075338) do
+ActiveRecord::Schema.define(:version => 20120518060735) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "content"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(:version => 20120418075338) do
   end
 
   add_index "events", ["creator_id"], :name => "index_events_on_creator_id"
+
+  create_table "feeds", :force => true do |t|
+    t.string   "target_type"
+    t.integer  "target_id"
+    t.string   "feed_type"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+  end
 
   create_table "houses", :force => true do |t|
     t.datetime "created_at",        :null => false
