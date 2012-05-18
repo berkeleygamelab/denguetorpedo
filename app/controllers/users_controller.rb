@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_id(params[:id])
-    render :text => "User not found." and return if @user.nil?
+    head :not_found and return if @user.nil?
     
     @isPrivatePage = (@current_user != nil && @current_user == @user)
     @preventionIdeas = (@user != nil && @user.events.where(:category => PREVENTION_IDEA).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
@@ -14,11 +14,12 @@ class UsersController < ApplicationController
     
     @stats_hash = (@reports.present? ? {"opened" => @reports.first.opened_count, "claimed" => @reports.first.claimed_count, "eliminated" => @reports.first.eliminated_count, "resolved" => @reports.first.resolved_count} : {"opened" => 0, "claimed" => 0, "eliminated" => 0, "resolved" => 0})
     
-    # respond_to do |format|
-    #   format.html
-    # end
   end
 
+  def new
+    @user = User.new
+  end
+  
   def create
     @user = User.new(params[:user])
     
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user.id)
     else
       flash[:user] = @user
-      redirect_to root_url
+      render new_user_path(@user)
     end
   end
 

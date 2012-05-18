@@ -1,11 +1,8 @@
 <%= content_for :title, 'Update Profile' %>
-<div class="update_background">
-  <div class="update_padding">
-    <div class="update_width">
       <%= error_messages_for @user %>
       <div id="registration">
         <%= form_for(@user, :url => {:action => "update"}, :html => {:autocomplete => "off"}) do |f| %>
-          <a id="title">Update Profile</a>
+          <h1>Update Profile</h1>
           <div class="register_field">
             <%= f.label "Username" %>
             <%= f.text_field :username %>
@@ -40,7 +37,4 @@
           <%= f.submit "Update" %>
 		<% end %>
       </div>
-    </div>
-  </div>
-</div>
 <% end %>

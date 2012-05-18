@@ -74,7 +74,7 @@ h13 = House.create!(:name => "foo8", :location_id => l13.id)
 
 puts "members added"
 
-r1 = Report.create!(:report => "Let's rescue Princess Leia!", :status => 0, :reporter_id => u1.id, :location_id => u1.house.location.id)
+r1 = Report.create!(:report => "Let's rescue Princess Leia!", :status => 1, :reporter_id => u1.id, :location_id => u1.house.location.id)
 r1.claimer = u1
 r1.save!
 r2 = Report.create!(:report => "I find your lack of faith...disturbing...", :status => 1, :reporter_id => u2.id, :location_id => u2.house.location.id)
@@ -82,18 +82,18 @@ r2.claimer = u2
 r2.save!
 r3 = Report.create!(:report => "Use the force...", :status => 2, :reporter_id => u6.id, :location_id => u6.house.location.id)
 r3.save!
-r4 = Report.create!(:report => "If you strike me down, I shall become more powerful that you ever imagine.", :status => 0, :reporter_id => u11.id, :location_id => -1)
+r4 = Report.create!(:report => "If you strike me down, I shall become more powerful that you ever imagine.", :status => 1, :reporter_id => u11.id, :location_id => -1)
 r4.location = Location.create!(:address => "474 66th St. Oakland, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("Oakland"))
 r4.claimer = u2
 r4.save!
-r5 = Report.create!(:report => "Luck...I am your father...", :status => 1, :reporter_id => u2.id, :location_id => -1)
+r5 = Report.create!(:report => "Luck...I am your father...", :status => 2, :reporter_id => u2.id, :location_id => -1)
 r5.claimer = u2
 r5.eliminator = u2
 r5.location = Location.create!(:address => "1860 Leroy Ave. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("Oakland"))
 r5.save!
-r6 = Report.create!(:report => "Beep Beep Beep Beep...", :status => 2, :reporter_id => u9.id, :location_id => u9.house.location.id)
+r6 = Report.create!(:report => "Beep Beep Beep Beep...", :status => 0, :reporter_id => u9.id, :location_id => u9.house.location.id)
 r6.save!
-r7 = Report.create!(:report => "Made the kesser run in less than twelve parsecs", :status => 0, :reporter_id => u7.id, :location_id => u7.house.location.id)
+r7 = Report.create!(:report => "Made the kesser run in less than twelve parsecs", :status => 2, :reporter_id => u7.id, :location_id => u7.house.location.id)
 r7.claimer = u7
 r7.eliminator = u10
 r7.save!
