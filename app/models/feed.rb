@@ -3,8 +3,9 @@ class Feed < ActiveRecord::Base
   belongs_to :target, :polymorphic => true
   belongs_to :user
   
-  def self.create_from_object(object, user_id, type)
-    feed = Feed.new(:target => object, :user_id => user_id, :feed_type => type)
-    return feed.save ? feed : false
+  def self.create_from_object(target, user_id, type)
+    feed = Feed.new(:user_id => user_id, :feed_type => type)
+    feed.target = target
+    feed.save ? feed : false
   end
 end

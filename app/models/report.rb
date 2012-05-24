@@ -6,6 +6,7 @@ class Report < ActiveRecord::Base
   belongs_to :claimer, :class_name => "User"
   belongs_to :eliminator, :class_name => "User"
   belongs_to :location
+  has_many :feeds, :as => :target
   
   def neighborhood
     location.neighborhood
