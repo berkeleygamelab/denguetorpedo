@@ -1,5 +1,4 @@
-= content_for :title, 'My Reports'
-
+%h1 My Reportss
 - @reports.each do |report|
   - address = "http://maps.google.com/maps/api/staticmap?zoom=16&size=320x240&maptype=roadmap&markers=color:red|#{report.location.complete_address}&sensor=false"
   - address.gsub!(/ /, '+')
