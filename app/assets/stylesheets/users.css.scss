@@ -4,6 +4,41 @@
 
 @import "variables";
 
+.user_form {
+  width: $max-width;
+  padding-left: 50px;
+  
+  label {
+    font-size: 16px;
+    display: block;
+  }
+  
+  input {
+    display: block;
+    border-radius: $input_border_radius;
+    border: 0px;
+    background: $light-orange;
+    width: $field_width;
+    height: 33px;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+    &[type = "Submit"] {
+      border-radius: $button_border_radius;
+      width: 75px;
+      padding: 5px;
+      background-color: $blue;
+      opacity: .8;
+
+       &:hover {
+         opacity: 1;
+         cursor: pointer;
+       }
+    }
+  }
+}
+
 .main_column_personal{
 	width: 630px;
 	height:1000px;
@@ -80,7 +115,6 @@
   margin-top:10px;
   margin-left:25px;
 }
-
 
 .neighbor_photo{
   height:48px;
@@ -209,7 +243,6 @@
 		height: auto;
 	}
 }
-
 
 .house_link{
   width:298px;

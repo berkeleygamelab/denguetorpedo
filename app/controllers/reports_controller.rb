@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   before_filter :require_login, :except => [:sms, :verification]
 
   def index
-    @reports = @current_user.reports
+    @reports = @current_user.reports_with_stats
   end
   
   def new

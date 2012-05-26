@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_login, :only => [:edit, :update]
   
   def index
-    
+    @users = User.all
   end
   
   def show
@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     @reports = @user.reports_with_stats
     
     @stats_hash = (@reports.present? ? {"opened" => @reports.first.opened_count, "claimed" => @reports.first.claimed_count, "eliminated" => @reports.first.eliminated_count, "resolved" => @reports.first.resolved_count} : {"opened" => 0, "claimed" => 0, "eliminated" => 0, "resolved" => 0})
-    
   end
 
   def new
@@ -84,6 +83,12 @@ class UsersController < ApplicationController
     else
       render "edit"
     end  
+  end
+  
+  def destroy
+    @user = User.find(params[:user_id])
+    @user.destroy
+    redirect_to users_path
   end
 
 end

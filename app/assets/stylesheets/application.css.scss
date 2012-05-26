@@ -11,28 +11,25 @@
 
 @mixin nav_bar {
   background-repeat: no-repeat;
-  background-position: center, top;
+  background-position: top;
   width: $max-width;
-  height: 102px;
+  height: 180px;
 }
 
 @mixin colored_text($color) {
   color: $color;
 }
 
-html {
+html, body, button, input, select, textarea {
+  font-family: Verdana, Geneva, sans-serif;
+  font-color: #333;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   ms-text-size-adjust: 100%;
 }
 
-body, button, input, select, textarea {
-  font-family: sans-serif;
-  font-color: #333;
-}
-
 body {
-  font-size: 12px;
+  font-size: 13px;
   background: $background-color;
   margin: 0;
   padding: 0;
@@ -47,8 +44,9 @@ ul, ol, dl {
   list-style-type: none;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+caption, h1, h2, h3, h4, h5, h6, p {
   margin: 0px;
+  margin-bottom: 10px;
 }
 
 a img {
@@ -67,7 +65,6 @@ a:hover, a:active, a:focus {
 #non_home_nav_bar {
   @include nav_bar;
   background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
-  float: left;
 }
 
 #home_nav_bar {
@@ -79,25 +76,11 @@ a:hover, a:active, a:focus {
   margin-left: 45px;
   margin-right: 20px;
   float: left;
-  //z-index: 1;
 }
 
 .inline {
   display: inline;
 }
-
-/*
-.flash.alert{ 
-  border: none;
-  
-  position: absolute;
-  margin-top: -105px;
-  margin-left: 700px;
-  height: 10px;
-  padding-top: 3px;
-  border-width: 0px;
-}
-*/
 
 .main_nav_button {
   width:auto;
@@ -106,14 +89,12 @@ a:hover, a:active, a:focus {
   margin-top: 10px;
   margin-left: 30px;
   margin-right: 30px;
-  font-family: "Arial Black", Gadget, sans-serif;
   font-size: 32px;
   font-weight: bold;
   
   .main_nav_button_sub {
-    color: White;
+    color: #FFF;
     font-size: 20px;
-    font-family: "Arial", Gadget, sans-serif;
     font-weight: normal;
     margin-top: -5px;
     text-align: center;
