@@ -1,0 +1,32 @@
+.user_form
+  %h1 Update Profile
+  = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
+    = f.error_messages
+    
+    = f.label :username
+    = f.text_field :username   
+    
+    = f.label :email
+    = f.text_field :email
+    
+    = f.label "Profile Photo"
+    = f.file_field :profile_photo  
+   
+    = f.label :password      
+    = f.password_field :password
+     
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    
+    = f.fields_for :house do |house_form|
+      = house_form.label "House Name"
+      = house_form.text_field :name
+    
+    = f.fields_for :location do |location_form|
+      = location_form.label "House Address"
+      = location_form.text_field :address
+      
+      = location_form.label "Neighborhood"
+      = location_form.select :neighborhood,  [['South Side', 'South Side'], ['North Side', 'North Side'], ['Oakland', 'Oakland']]
+   
+    = f.submit "Update"

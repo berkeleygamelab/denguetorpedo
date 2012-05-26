@@ -1,7 +1,7 @@
 <div class="main_column_personal">
 	<div class="profile_main">
 		<div class="profile_photo">
-			<%= image_tag "arrows.png", :width => "150", :height => "150" %>
+		  <%= image_tag @user.profile_photo.url(:small) %>
 		</div>
 		<div class="personal_profile_info">
 			<div class="name">
