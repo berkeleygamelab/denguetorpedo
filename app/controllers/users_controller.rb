@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   before_filter :require_login, :only => [:edit, :update]
   
+  def index
+    
+  end
+  
   def show
     @user = User.find_by_id(params[:id])
     head :not_found and return if @user.nil?

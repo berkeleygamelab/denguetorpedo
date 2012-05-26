@@ -24,7 +24,7 @@
 
 #neighborhood_status
   #neighborhood_button
-    = link_to "go to #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
+    = link_to "Go to #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
   #total_reports_in_neighborhood
     %h1 #{@total_reports_in_neighborhood}
     %h3 Total Reports Made in #{@selected_neighborhood.name}
@@ -39,7 +39,7 @@
       %h4 claimed
     %li 
       .neighborhood_report_status#neighborhood_resolved_reports
-      %h2 10003 
+      %h2 759 
       %h4 resolved
 
 #sponsors
