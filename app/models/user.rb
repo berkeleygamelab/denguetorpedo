@@ -76,31 +76,5 @@ class User < ActiveRecord::Base
   def reports
     Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", id, id, id).reorder(:updated_at).reverse_order.uniq
   end
-
-  def open_report(report)
-    Feed.create_from_object(report, self.id, "reported")
-  end
-  
-  def claim_report(report)
-    report.claimer = self
-    report.status = 1
-    if report.save
-      Feed.create_from_object(report, self.id, "claimed")
-      report
-    else
-      false
-    end
-  end
-  
-  def eliminate_report(report)
-    report.eliminator = self
-    report.status = 2
-    if report.save
-      Feed.create_from_object(report, self.id, "eliminated")
-      return report
-    else
-      return false
-    end
-  end
-  
+ 
 end

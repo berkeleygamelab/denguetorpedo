@@ -9,6 +9,9 @@ class Event < ActiveRecord::Base
   validates :praised, :presence => true
 
   after_initialize :default_values
+  after_create do |event|
+    Feed.create_from_object(event, event.creator_id, "event")
+  end
 
   def category_s
     if category == STORY
