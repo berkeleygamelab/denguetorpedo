@@ -7,6 +7,7 @@ gem 'rails', '~> 3.2.1'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
 end
 
 group :production do
@@ -51,4 +52,6 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'factory_girl_rails'
+  gem 'capybara'
 end
