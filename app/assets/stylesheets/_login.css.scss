@@ -31,7 +31,6 @@
   
   input{
     text-align: left;
-    border-radius: $input_border_radius;
     margin-right: 10px;
     width: $login-width;
     height: 12px;
@@ -48,7 +47,6 @@
     
     &:focus {
       opacity: 1;
-      outline: none;
     }
     
     &[type = "checkbox"] {

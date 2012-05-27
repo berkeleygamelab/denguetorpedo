@@ -20,7 +20,7 @@
   color: $color;
 }
 
-html, body, button, input, select, textarea {
+html, body, button, input, select, textarea, label {
   font-family: Verdana, Geneva, sans-serif;
 <<<<<<< HEAD
   font-color: #333;
@@ -48,6 +48,12 @@ ul, ol, dl {
   list-style-type: none;
 }
 
+input, input:focus {
+  //border: 0px;
+  outline: none;
+  border-radius: $input_border_radius;
+  
+}
 caption, h1, h2, h3, h4, h5, h6, p {
   margin: 0px;
   margin-bottom: 10px;

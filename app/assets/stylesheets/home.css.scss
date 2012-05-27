@@ -44,20 +44,18 @@
     width: 615px;
     float: right;
     margin-left: 320px;
-    
     position:absolute;
     top: 560px;
   }
 
   input, input:focus {
-    border-radius: $input_border_radius;
     width: 545px;
     height: 30px;
-    outline: none;
     border: none;
     font-size: 15px;
     margin-right: 3px;
   }
+  
   button {
     width: 60px;
     height: 30px;
