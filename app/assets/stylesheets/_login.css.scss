@@ -81,7 +81,7 @@
   }
 }
 
-#logged_in_section{
+#logged_in{
   width: 303px;
   height: 90px;
   float: left;
@@ -94,4 +94,13 @@
     margin: 0px;
     font-color: #333333;
   }
+}
+
+#login_error {
+  border-width: 0px;
+  height: $login_error_height;
+  vertical-align: text-top;
+  margin-bottom: 5px;
+  margin-right: -5px;
+  font-color: $red_alert;  
 }

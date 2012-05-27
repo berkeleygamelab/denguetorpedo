@@ -9,13 +9,6 @@
 
 @import "variables";
 
-@mixin nav_bar {
-  background-repeat: no-repeat;
-  background-position: top;
-  width: 100%;
-  height: 150px;
-}
-
 @mixin colored_text($color) {
   color: $color;
 }
@@ -48,7 +41,6 @@ input, input:focus {
   //border: 0px;
   outline: none;
   border-radius: $input_border_radius;
-  
 }
 
 span {
@@ -74,18 +66,19 @@ a:hover, a:active, a:focus {
 }
 
 #home_nav_bar {
-  @include nav_bar;
   background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 100%;
+  height: 150px;
+  position: relative;
+  z-index: 2;
 }
 
 #logo {
   margin-left: 45px;
   margin-right: 20px;
   float: left;
-}
-
-.inline {
-  display: inline;
 }
 
 .main_nav_button {
@@ -122,7 +115,7 @@ a:hover, a:active, a:focus {
 
 // Define some common classes.
 .bold_text {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .gray_text {
@@ -140,14 +133,5 @@ a:hover, a:active, a:focus {
 .absolute {
   width: inherit;
   position: absolute;
-}
-
-p.alert {
-  border-width: 0px;
-  height: $login_error_height;
-  vertical-align: text-top;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin_right: -5px;
 }
 
