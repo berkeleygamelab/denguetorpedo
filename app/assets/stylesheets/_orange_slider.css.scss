@@ -1,0 +1,32 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+#orange_slider {
+  width: $max-width;
+  height: 500px;
+  margin-top: -70px;
+  margin-bottom: -70px;
+  padding-top: 70px;
+  
+  background-image: url(home_images/orange_section_bg.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  z-index: 0;
+  
+  #video {
+    background: #000000;
+    width: 300px;
+    height: 220px;
+    margin-left: 45px;
+    float: left;
+  }
+  
+  .slider {
+    width:  600px;
+    height: 220px;
+    margin-left: 400px;
+  }
+}

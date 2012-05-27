@@ -9,23 +9,22 @@
     = yield :scripts
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
-    - if @is_home == "non_home_nav_bar"
-      %div{:id => "home_nav_bar"}
-        = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
-        = render "layouts/navbar_buttons"
-        = render "layouts/login"
-
-    - else
-      %div{:id => "non_home_nav_bar"} 
-        = link_to image_tag("non_home_nav/short_logo.png", :id => "logo"), root_path
-        = render "layouts/navbar_buttons"
-        = render "layouts/login"
-
-    #wrapper
-      = yield
-      #push
+    #home_nav_bar 
+      = link_to image_tag("non_home_nav/short_logo.png", :id => "logo"), root_path
+      .main_nav_button
+        = link_to "LEARN", root_path
+        %span About dengue
+      .main_nav_button
+        = link_to "PLAY", root_path
+        %span How?
+      .main_nav_button
+        = link_to "WIN", root_path
+        %span What?
+      = render "layouts/login"
+    
+    = yield
   
     #footer
-      F.A.Q   |   Contact   |   About
-      %br 2012 © Regents of the University of California | Created by the Social Apps Labs
+      %span F.A.Q   |   Contact   |   About
+      %span 2012 © Regents of the University of California | Created by the Social Apps Labs
 
