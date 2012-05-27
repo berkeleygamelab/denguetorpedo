@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120518060735) do
+ActiveRecord::Schema.define(:version => 20120527204312) do
 
   create_table "event_comments", :force => true do |t|
     t.string   "content"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20120518060735) do
     t.integer  "creator_id"
     t.text     "description"
     t.integer  "praised"
-    t.integer  "category"
+    t.integer  "category_cd"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "title"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(:version => 20120518060735) do
   create_table "feeds", :force => true do |t|
     t.string   "target_type"
     t.integer  "target_id"
-    t.string   "feed_type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "feed_type_cd", :limit => 255
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "user_id"
   end
 
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(:version => 20120518060735) do
     t.integer  "reporter_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
-    t.integer  "status"
+    t.integer  "status_cd"
     t.integer  "eliminator_id"
     t.integer  "claimer_id"
     t.integer  "location_id"

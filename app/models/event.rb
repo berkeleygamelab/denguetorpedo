@@ -8,19 +8,11 @@ class Event < ActiveRecord::Base
   validates :category, :presence => true
   validates :praised, :presence => true
 
+  as_enum :category, [:story, :prevention_idea, :special_event]
+
   after_initialize :default_values
   after_create do |event|
-    Feed.create_from_object(event, event.creator_id, "event")
-  end
-
-  def category_s
-    if category == STORY
-      "Story"
-    elsif category == PREVENTION_IDEA
-      "Prevention Idea"
-    elsif category == SPECIAL_EVENT
-      "Special Event"
-    end
+    Feed.create_from_object(event, event.creator_id, :event)
   end
 
   private
