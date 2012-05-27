@@ -18,14 +18,9 @@
       = check_box_tag :remember_me, 1, params[:remember_me]
       = label_tag :remember_me
     
-
-
 - else
-  %div#logged_in_section
-    %a#logged_in_message logged in as:
-    %a#username #{@current_user.username}
-    %a#logout_link
-      %br
-      = link_to "Logout", session_path, :method => :delete
-      %br
-      = link_to "Account Settings", edit_user_path(@current_user.id)
+  #logged_in_section
+    %h4 Welcome! #{@current_user.username}
+    %ul
+      %li= link_to "Logout", session_path, :method => :delete
+      %li= link_to "Account Settings", edit_user_path(@current_user.id)
