@@ -16,12 +16,10 @@ class UsersController < ApplicationController
     @house = @user.house
     @reports = @user.reports
     
-    @stats_hash = Hash.new do |hash, key| hash[key] = 0 end
-    if @reports.present?
-      @stats_hash['opened'] = @reports.first.created_reports.count
-      @stats_hash['claimed'] = @reports.first.claimed_reports.count
-      @stats_hash['eliminated'] = @reports.first.eliminated_reports.count
-    end 
+    @stats_hash = {}
+    @stats_hash['opened'] = @user.created_reports.count
+    @stats_hash['claimed'] = @user.claimed_reports.count
+    @stats_hash['eliminated'] = @user.eliminated_reports.count
   end
 
   def new
