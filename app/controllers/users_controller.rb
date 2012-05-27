@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_login, :only => [:edit, :update]
   
   def index
-    @users = User.all
+    
   end
   
   def show
@@ -14,9 +14,14 @@ class UsersController < ApplicationController
     @preventionIdeas = (@user != nil && @user.events.where(:category => PREVENTION_IDEA).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
     @neighborhood = @user.neighborhood
     @house = @user.house
-    @reports = @user.reports_with_stats
+    @reports = @user.reports
     
-    @stats_hash = (@reports.present? ? {"opened" => @reports.first.opened_count, "claimed" => @reports.first.claimed_count, "eliminated" => @reports.first.eliminated_count, "resolved" => @reports.first.resolved_count} : {"opened" => 0, "claimed" => 0, "eliminated" => 0, "resolved" => 0})
+    @stats_hash = Hash.new do |hash, key| hash[key] = 0 end
+    if @reports.present?
+      @stats_hash['opened'] = @reports.first.created_reports.count
+      @stats_hash['claimed'] = @reports.first.claimed_reports.count
+      @stats_hash['eliminated'] = @reports.first.eliminated_reports.count
+    end 
   end
 
   def new
@@ -83,12 +88,6 @@ class UsersController < ApplicationController
     else
       render "edit"
     end  
-  end
-  
-  def destroy
-    @user = User.find(params[:user_id])
-    @user.destroy
-    redirect_to users_path
   end
 
 end

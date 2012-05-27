@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
       lat = house.location.latitude
       lon = house.location.longitude
       dist_str = "((locations.latitude - #{lat}) * (locations.latitude - #{lat}) + (locations.longitude - #{lon}) * (locations.longitude - #{lon}))"
-      Report.find_by_sql("SELECT reports.* FROM reports, locations WHERE reports.location_id = locations.id ORDER BY #{dist_str} LIMIT #{n};")
+      Report.joins(:location).order(dist_str).limit(n)
     end
   end
 
@@ -69,44 +69,12 @@ class User < ActiveRecord::Base
       lat = house.location.latitude
       lon = house.location.longitude
       dist_str = "((locations.latitude - #{lat}) * (locations.latitude - #{lat}) + (locations.longitude - #{lon}) * (locations.longitude - #{lon}))"
-      User.find_by_sql("SELECT users.* FROM users, locations, houses WHERE houses.id != #{house.id} AND users.house_id = houses.id AND houses.location_id = locations.id ORDER BY #{dist_str} LIMIT #{n};")
+      User.joins(:house => :location).where("houses.id != ?", house.id).order(dist_str).limit(n)
     end
   end
   
-  # def reports
-  #   Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", 1, 1, 1).reorder(:updated_at).reverse_order.uniq
-  # end
-  
-  def reports_with_stats
-    Report.select("reports.*, 
-    (select count(*) from reports where eliminator_id = #{self.id}) as eliminated_count, 
-    (select count(*) from reports where claimer_id = #{self.id}) as claimed_count, 
-    (select count(*) from reports where reporter_id = #{self.id} and claimer_id IS NOT NULL and eliminator_id IS NOT NULL) as resolved_count, 
-    (select count(*) from reports where reporter_id = #{self.id} and claimer_id IS NULL and eliminator_id IS NULL) as opened_count").where(["reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", self.id, self.id, self.id]).includes([:reporter, :claimer, :eliminator, :location])
+  def reports
+    Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", id, id, id).reorder(:updated_at).reverse_order.uniq
   end
-  
-  def open_report(report)
-    Feed.create_from_object(report, self.id, "made")
-  end
-  
-  def claim_report(report)
-    report.update_attributes({:claimer_id => self.id, :status => 1})
-    if report.save
-      Feed.create_from_object(report, self.id, "claimed")
-      return report
-    else
-      return false
-    end
-  end
-  
-  def eliminate_report(report)
-    report.update_attributes({:eliminator_id => self.id, :status => 2})
-    if report.save
-      Feed.create_from_object(report, self.id, "eliminated")
-      return report
-    else
-      return false
-    end
-  end
-  
+ 
 end
