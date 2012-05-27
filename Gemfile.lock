@@ -158,6 +158,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
     shared-mime-info (0.1)
+    simple_enum (1.5.1)
+      activesupport (>= 3.0.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -211,6 +213,7 @@ DEPENDENCIES
   rspec-rails
   ruby-gmail
   sass-rails (~> 3.2.3)
+  simple_enum
   sqlite3
   therubyracer
   thin
