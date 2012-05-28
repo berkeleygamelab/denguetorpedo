@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(:version => 20120527204312) do
   create_table "feeds", :force => true do |t|
     t.string   "target_type"
     t.integer  "target_id"
-    t.integer  "feed_type_cd", :limit => 255
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.integer  "feed_type_cd"
   end
 
   create_table "houses", :force => true do |t|
