@@ -49,11 +49,11 @@
   </div> -->
   <div class="personal_reports_list">
 	<% @reports.each do |report| %>
-		<% if report.status == 0 %>
+		<% if report.status == :reported %>
 			<%= render :partial => "/reports/open_report", :object => report %>
-		<% elsif report.status == 1 %>
+		<% elsif report.status == :claimed %>
 			<%= render :partial => "/reports/claimed_report", :object => report %>
-		<% elsif report.status == 2 %>
+		<% elsif report.status == :eliminated %>
 			<%= render :partial => "/reports/resolved_report", :object => report %>
 		<% end %>
 	<% end %>
@@ -70,11 +70,11 @@
 	</div>
 	<div class="recent_reports">
 		<% @reports.each do |report| %>
-			<% if report.status == 0 %>
+			<% if report.status == :reported %>
 				<%= render :partial => "/reports/open_report", :object => report %>
-			<% elsif report.status == 1 %>
+			<% elsif report.status == :claimed %>
 				<%= render :partial => "/reports/claimed_report", :object => report %>
-			<% elsif report.status == 2 %>
+			<% elsif report.status == :eliminated %>
 				<%= render :partial => "/reports/resolved_report", :object => report %>
 			<% end %>
 			<!-- <div class="report_item sb">
