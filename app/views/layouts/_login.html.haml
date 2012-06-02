@@ -9,10 +9,8 @@
       = submit_tag "login"
       = link_to 'Register', new_user_path, :id => "register_button"
       = link_to "Forgot password?", new_password_reset_path
-      %br
       = check_box_tag :remember_me, 1, params[:remember_me]
-      = label_tag :remember_me
-    
+      = label_tag :remember_me   
 - else
   #logged_in
     %h4 Welcome! #{@current_user.username}
