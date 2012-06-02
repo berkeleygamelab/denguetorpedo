@@ -17,7 +17,6 @@ class ReportsController < ApplicationController
     @report = @current_user.created_reports.build(params[:report])
     @report.location_id = loc.id
     if @report.save
-      @current_user.open_report(@report)
       redirect_to user_reports_url, notice: "Report successfully created"
     else
       render "new"

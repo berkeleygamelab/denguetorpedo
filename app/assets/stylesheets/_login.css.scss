@@ -2,15 +2,15 @@
 
 #register_button {
   position:absolute;
-  margin-top: 15px;
-  margin-left: 25px;
+  margin-top: -24px;
+  margin-left: 60px;
   border-radius: $button_border_radius;
   text-align:center;
   width: 65px;
   height: 20px;
-  color: White;
+  padding: 6px;
+  color: #FFFFFF;
   font-size: 14px;
-  padding: 5px;
   background: $dark-gray;
   text-decoration: none;
   opacity: .8;
@@ -22,41 +22,31 @@
 }
 
 #login {
-  background-image: url("home_images/login_bg.png");
-  background-repeat: no-repeat;
-  background-position: center, top;
   width: 303px;
   height: 90px;
   float: left;
   margin-right: 10px;
   margin-left: 15px;
   text-align: left;
-
-  li {
-    display: inline;
-    padding-right: 100px;
-  }
   
   input{
     text-align: left;
-    border-radius: $input_border_radius;
     margin-right: 10px;
-    margin-left: 10px;
     width: $login-width;
     height: 12px;
     border: 0px;
     padding: 5px;
     color: Gray;
-    background-color: White;
+    background-color: #FFFFFF;
     opacity: 0.7;
     font-size: 14px;
 
     &#password{
       margin-top:5px;
     }
+    
     &:focus {
       opacity: 1;
-      outline-color:white;
     }
     
     &[type = "checkbox"] {
@@ -64,20 +54,17 @@
       height:10px;
       width:15px;
       margin-top:6px;
-      margin-right:0px;
-      margin-left:8px;
     }
   }
   
   input[type = "submit"] {			
-    position:absolute;
-    margin-top:-24px;
-    margin-left: 25px;
+    position: absolute;
+    margin-top: -24px;
     border-radius: $button_border_radius;
-    text-align:center;
-    width: 75px;
+    text-align: center;
+    width: 55px;
     height: 32px;
-    color: White;
+    color: #FFFFFF;
     font-size: 14px;
     padding: 5px;
     background: $dark-gray;
@@ -94,31 +81,26 @@
   }
 }
 
-#logged_in_section{
+#logged_in{
+  width: 303px;
+  height: 90px;
+  float: left;
+  margin-top: 15px;
+  margin-right: 10px;
+  margin-left: 50px;
+  text-align: left;
   
-  float:right;
-  margin-right:45px;
-  margin-top: 10px;
-  font-size:12px;
-  color:$dark-gray;
-  
-  a {
-    &:hover {
-      text-decoration: none;
-    }
-    &#logged_in_message {
-      font-size:14px;
-    }
-    &#username {
-      font-size:14px;
-      color:white;
-      font-style:italic;
-    }
-    &#logout_link {
-      margin-left:20px;
-      &:hover{
-       	cursor:pointer;
-      }
-    }
+  h4 {
+    margin: 0px;
+    font-color: #333333;
   }
+}
+
+#login_error {
+  border-width: 0px;
+  height: $login_error_height;
+  vertical-align: text-top;
+  margin-bottom: 5px;
+  margin-right: -5px;
+  font-color: $red_alert;  
 }

@@ -11,12 +11,15 @@ class UsersController < ApplicationController
     head :not_found and return if @user.nil?
     
     @isPrivatePage = (@current_user != nil && @current_user == @user)
-    @preventionIdeas = (@user != nil && @user.events.where(:category => PREVENTION_IDEA).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
+    @preventionIdeas = (@user != nil && @user.events.where(:category_cd => Event.prevention_idea).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
     @neighborhood = @user.neighborhood
     @house = @user.house
-    @reports = @user.reports_with_stats
+    @reports = @user.reports
     
-    @stats_hash = (@reports.present? ? {"opened" => @reports.first.opened_count, "claimed" => @reports.first.claimed_count, "eliminated" => @reports.first.eliminated_count, "resolved" => @reports.first.resolved_count} : {"opened" => 0, "claimed" => 0, "eliminated" => 0, "resolved" => 0})
+    @stats_hash = {}
+    @stats_hash['opened'] = @user.created_reports.count
+    @stats_hash['claimed'] = @user.claimed_reports.count
+    @stats_hash['eliminated'] = @user.eliminated_reports.count
   end
 
   def new
@@ -83,12 +86,6 @@ class UsersController < ApplicationController
     else
       render "edit"
     end  
-  end
-  
-  def destroy
-    @user = User.find(params[:user_id])
-    @user.destroy
-    redirect_to users_path
   end
 
 end

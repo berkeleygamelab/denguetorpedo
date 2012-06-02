@@ -7,6 +7,7 @@ gem 'rails', '~> 3.2.1'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
 end
 
 group :production do
@@ -28,6 +29,7 @@ gem 'bcrypt-ruby'
 gem 'paperclip', "~> 3.0"
 gem 'ruby-gmail'
 gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
+gem 'simple_enum'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -51,4 +53,6 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'factory_girl_rails'
+  gem 'capybara'
 end

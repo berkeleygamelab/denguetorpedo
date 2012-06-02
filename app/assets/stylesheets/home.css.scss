@@ -12,28 +12,15 @@
   background: #e2e5cf;
 }
 
-#home_orange_promotion {
-  width: $max-width;
-  height: 402px;
-}
-
-.prefix_760 {
-  position:relative;
-  top:-350px;
-}
-
 #neighborhood_search {
   width: 995px;
   height: 50px;
   padding-left: 45px;
-  padding-top: 20px;
-  margin-bottom: 20px;
   
   h2 {
     float: left;
     font-size: 20px;
     padding-top: 7px;
-    
     position:absolute;
     top: 560px;
   }
@@ -44,20 +31,18 @@
     width: 615px;
     float: right;
     margin-left: 320px;
-    
     position:absolute;
     top: 560px;
   }
 
   input, input:focus {
-    border-radius: $input_border_radius;
     width: 545px;
     height: 30px;
-    outline: none;
     border: none;
     font-size: 15px;
     margin-right: 3px;
   }
+  
   button {
     width: 60px;
     height: 30px;
@@ -69,40 +54,17 @@
   }
 }
 
-
-.flash.notice {
-  font-size:14px;
-  height:14px;
-  color:white;
-  font-style:italic;
-  border:none;
-  padding:0px;
-  opacity:.75;
-  background:transparent;
-  position:absolute;
-  margin:0px 0px 0px 760px;
-  margin-top:10px;
-}
-
-#blank_space{
-  display: hidden;
-  height: 80px;
-}
-
 #neighborhoods {
   width: 995px;
   height:auto;
   padding-left: 45px;
-  padding-top: 20px;
-  margin-top: 130px;
 }
 
 ul#neighborhood_list {
-  list-style-type: none;
   margin-bottom: 20px;
+  
   li {
     display: inline-block;
-    list-style-type: none;
     margin-right: 20px;
     margin-top: 20px
   }
@@ -120,11 +82,12 @@ ul#neighborhood_list {
       padding-top: 15px;
       padding-right: 10px;
       padding-left: 10px;
-      a {
+      
+      a, h3 {
         color: #FFFFFF;
         display: block;
       }
-      &:hover {
+      a:hover {
         cursor: pointer;
       }
     }
@@ -151,12 +114,10 @@ ul#neighborhood_list {
 }
 
 ul#house_list {
-  list-style-type: none;
   width: auto;
   height: 90%;
   
   li {
-    list-style-type: none;
     display: inline-block;
     min-width: 115px;
     height: auto;
@@ -210,7 +171,6 @@ ul#house_list {
     text-align: center;
   }
   ul {
-    list-style-type: none;
     width: 80%;
     height: 100px;
     margin-top: 10px;
@@ -218,7 +178,6 @@ ul#house_list {
     margin-right: auto;
     
     li {
-      list-style-type: none;
       display: inline-block;
       width: 78px;
       height: 100px;
@@ -256,14 +215,12 @@ ul#house_list {
   clear: both;
   
   ul {
-    list-style-type: none;
     padding-left: 25px;
     li {
       height: 135px;
       border-style: solid;
       border-width: 1px;
       border-color: #bcbfa9;
-      list-style-type: none;
       display: inline-block;
       margin-top: 10px;
       margin-right: 20px;
@@ -271,7 +228,6 @@ ul#house_list {
     }
   }
 }
-
 
 .map_container {
   width: auto;
