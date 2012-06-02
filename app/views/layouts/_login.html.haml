@@ -6,14 +6,18 @@
     = form_tag session_path do
       = text_field_tag :username, nil, :placeholder => "Username"
       = password_field_tag :password, nil, :placeholder => "Password"
-      = submit_tag "login"
-      = link_to 'Register', new_user_path, :id => "register_button"
-      = link_to "Forgot password?", new_password_reset_path
+      %br
+      = label_tag :remember_me
       = check_box_tag :remember_me, 1, params[:remember_me]
-      = label_tag :remember_me   
+      = submit_tag "login"
+    = link_to 'Register', new_user_path, :id => "register_button"
+    = link_to "Forgot password?", new_password_reset_path, :id => "forgot_password"  
+      
 - else
   #logged_in
     %h4 Welcome! #{@current_user.username}
     %ul
       %li= link_to "Account Settings", edit_user_path(@current_user.id)
       %li= link_to "Logout", session_path, :method => :delete
+      
+      
