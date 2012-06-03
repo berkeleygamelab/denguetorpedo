@@ -29,7 +29,7 @@ class Report < ActiveRecord::Base
   end
     
   def self.unverified_reports
-    Report.where("status = 2")
+    Report.where(:status_cd => Report.reported)
   end
   
   def complete_address

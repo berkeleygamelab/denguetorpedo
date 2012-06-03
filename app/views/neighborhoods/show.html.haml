@@ -13,30 +13,30 @@
           /*                               */
       %li
         #status_text
-          %h1 #{@neighborhood.reports.count}
+          %h1= @neighborhood.reports.count
           %h3 total reports made
       %li
         #neighborhood_open_report_button
           .button_text
-            %h1.darkgray_text #{@neighborhood.reports.where(:status => 0).count}
+            %h1.darkgray_text= @neighborhood.reports.where(:status_cd => Report.reported).count
             %p.darkgray_text open
       %li
         #neighborhood_claimed_report_button
           .button_text
-            %h1.darkgray_text #{@neighborhood.reports.where(:status => 1).count}
+            %h1.darkgray_text= @neighborhood.reports.where(:status_cd => Report.claimed).count
             %p.darkgray_text claimed
       %li
         #neighborhood_resolved_report_button
           .button_text
-            %h1.darkgray_text #{@neighborhood.reports.where(:status => 2).count}
+            %h1.darkgray_text= @neighborhood.reports.where(:status_cd => Report.eliminated).count
             %p.darkgray_text resolved
       %li
         #status_text
-          %h1.darkgray_text #{@neighborhood.houses.count}
+          %h1.darkgray_text= @neighborhood.houses.count
           %h3.darkgray_text houses
       %li
         #status_text
-          %h1.darkgray_text #{@neighborhood.members.count}
+          %h1.darkgray_text= @neighborhood.members.count
           %h3.darkgray_text participants
 .clearfloat
 #middle_section
