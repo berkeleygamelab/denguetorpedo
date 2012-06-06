@@ -14,8 +14,6 @@ Dengue::Application.routes.draw do
   resources :houses
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]
-  resources :event_comments, :only => [:create]
-  resources :events, :only => [:show]
   resources :verifications
   resources :forums, :only => [:index]
   resources :neighborhoods, :only => [:show]
