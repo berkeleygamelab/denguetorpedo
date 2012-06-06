@@ -17,6 +17,7 @@ Dengue::Application.routes.draw do
   resources :verifications
   resources :forums, :only => [:index]
   resources :neighborhoods, :only => [:show]
+  resources :posts
 
   root :to => 'home#index'
 
