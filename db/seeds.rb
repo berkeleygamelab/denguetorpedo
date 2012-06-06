@@ -100,12 +100,12 @@ r7.eliminator = u10
 r7.save!
 puts "reports created"
 
-e1 = Event.create!(:creator_id => u1.id, :description => "destroy the death star!", :praised => 1, :category => :special_event)
-e1.comments << EventComment.new(:content => "we need to do it fast!", :user_id => u1.id)
-e1.comments << EventComment.new(:content => "let's deliver a torpedo to the center of the death star.", :user_id => u7.id)
-Event.create(:creator_id => u11.id, :description => "train Luke as a Jedi", :praised => true, :category => :story)
-e1.comments << EventComment.new(:content => "don't use your eyes", :user_id => u11.id)
-e1.comments << EventComment.new(:content => "be angry, you must not", :user_id => u6.id)
-Event.create(:creator_id => u5.id, :description => "convert Anakin to the dark side", :category => :special_event)
+e1 = Post.create!(:user_id => u1.id, :content => "destroy the death star!")
+e1.children << Post.new(:content => "we need to do it fast!", :user_id => u1.id)
+e1.children << Post.new(:content => "let's deliver a torpedo to the center of the death star.", :user_id => u7.id)
+e2 = Post.create(:user_id => u11.id, :content => "train Luke as a Jedi")
+e2.children << Post.new(:content => "don't use your eyes", :user_id => u11.id)
+e2.children << Post.new(:content => "be angry, you must not", :user_id => u6.id)
+e3 = Post.create(:user_id => u5.id, :content => "convert Anakin to the dark side")
 puts "events and comments created"
 
