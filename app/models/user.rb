@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   has_many :claimed_reports, :class_name => "Report", :foreign_key => "claimer_id"
   has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id"
   has_many :feeds
+  has_many :posts
   
   belongs_to :house
 
