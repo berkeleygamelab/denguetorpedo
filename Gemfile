@@ -17,7 +17,7 @@ end
 gem 'thin'
 gem 'haml'
 gem 'geokit'
-gem 'gmaps4rails', '~> 1.4.5'
+gem 'gmaps4rails'
 gem 'twilio-ruby'
 gem 'dynamic_form'
 gem 'ruby-gmail'
