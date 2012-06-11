@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "variables";
-
+@import "grid";
 @mixin section-base {
   border-style: solid;
   border-width: 1px;
@@ -13,38 +13,35 @@
 }
 
 #neighborhood_search {
-  width: 995px;
-  height: 50px;
-  padding-left: 45px;
-  
-  h2 {
-    float: left;
+
+  height: 90px;   
+  margin-top: 20px; 
+  .columnoff1 {
+    margin-top: 40px;
     font-size: 20px;
-    padding-top: 7px;
-    position:absolute;
-    top: 560px;
+    
   }
 
   #neighborhood_search_background {
+    @include grid-column(12);
+    @include grid-offset(2,2);
     background: #e2e5cf;
-    padding: 5px;
-    width: 615px;
-    float: right;
-    margin-left: 320px;
-    position:absolute;
-    top: 560px;
+    padding: 10px;
+    height: 30px;
+
   }
 
   input, input:focus {
-    width: 545px;
+    @include grid-column(10);
     height: 30px;
     border: none;
     font-size: 15px;
-    margin-right: 3px;
+
   }
   
   button {
-    width: 60px;
+    @include grid-column(2);
+    @include grid-offset(10);
     height: 30px;
     background: #bfc1b0;
     border-radius: $button_border_radius;
@@ -55,13 +52,18 @@
 }
 
 #neighborhoods {
-  width: 995px;
-  height:auto;
-  padding-left: 45px;
+
+  #temp {
+    @include grid-column(14);
+    @include grid-offset(1,1);
+    background: #000000;
+    height: 300px;
+  }
 }
 
 ul#neighborhood_list {
-  margin-bottom: 20px;
+  @include grid-column(14);
+  @include grid-offset(1,1);
   
   li {
     display: inline-block;

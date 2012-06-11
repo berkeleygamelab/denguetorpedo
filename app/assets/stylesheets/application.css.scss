@@ -7,96 +7,50 @@
 *= require_tree .
 */
 
-@import "variables";
 
+@import "variables";
+@import "grid";
 @mixin colored_text($color) {
   color: $color;
 }
 
-html, body, button, input, select, textarea, label {
-  font-family: Verdana, Geneva, sans-serif;
-  font-color: #333333;
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-  ms-text-size-adjust: 100%;
+#login_bg {
+  position: absolute;
+  background: rgb(140,228,228);
+  opacity: 0.8;
+  right: 40px;
+  width: 320px;
+  height: 95px;
 }
-
-body {
-  font-size: 13px;
-  background: $background-color;
-  margin: 0px;
-  padding: 0px;  
-  width: $max_width;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-ul, ol, dl {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-input, input:focus {
-  //border: 0px;
-  outline: none;
-  border-radius: $input_border_radius;
-}
-
-span {
-  display: block;
-}
-
-caption, h1, h2, h3, h4, h5, h6, p {
-  margin: 0px;
-  margin-bottom: 10px;
-}
-
-a img {
-  border: none;
-}
-
-a:link, a:visited {
-  color: #333333;
-  text-decoration: none;
-}
-
-a:hover, a:active, a:focus {
-  text-decoration: underline;
-}
-
-#home_nav_bar {
-  background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
-  background-repeat: no-repeat;
-  background-position: top;
-  width: 100%;
-  height: 150px;
-  position: relative;
-  z-index: 2;
-}
-
 #logo {
-  margin-left: 45px;
-  margin-right: 20px;
-  float: left;
+  position: absolute;
+  left: 40px;
+  width: 130px;
 }
+#home_nav_bar {
+  background-color: $blue;
+  //background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
+  //background-repeat: no-repeat;
+  //background-position: top;
+  padding: 0px 40px;
+  height: 105px;
+  z-index: 2;
+  border-bottom: 4px solid #ffffff;
+}
+
 
 .main_nav_button {
-  width:auto;
   height: 50px;
-  float: left;
-  margin-top: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
   font-size: 32px;
   font-weight: bold;
-  
+  margin-top: 25px;
+  text-align: center;
   span {
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: normal;
-    margin-top: -5px;
-    text-align: center;
+    
+    margin-top: 8px;
   }
 }
 
@@ -134,4 +88,3 @@ a:hover, a:active, a:focus {
   width: inherit;
   position: absolute;
 }
-

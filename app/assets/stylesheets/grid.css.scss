@@ -1,0 +1,97 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+.container:before,
+.container:after {
+    content:"";
+    display:table;
+}
+.container:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+    zoom:1;
+}
+
+// Column Widths
+@mixin grid($i) {
+   width: $column-width * $i + $gutter-width * ($i - 1);
+}
+@mixin grid-plus($i, $plus) {
+   width: $column-width * $i + $gutter-width * ($i - 1) + $plus;
+}
+@for $i from 1 through $columns {
+  .grid-#{$i} { @include grid($i); }
+}
+
+// Page, Row, Column
+@mixin grid-page($i: $columns) {
+  @extend .clearfix;
+   width: $column-width * $i + $gutter-width * $i;
+  margin: 0 auto;
+}
+@mixin grid-row($page: false) {
+  @extend .clearfix;
+  width: auto;
+  position: relative;
+  
+  // rows directly inside a page don't need the negative margin
+  @if $page {
+    margin: 0 0;
+  } @else {
+    margin: 0 (-$gutter-width / 2);
+    }
+}
+@mixin grid-column($i: false) {
+  margin: 0 ($gutter-width / 2);
+  float: left;
+  .ie6 & { display: inline; }
+  
+  @if $i {
+    @include grid($i);
+  }
+  position: absolute;
+}
+// offsets
+@mixin grid-offset($before: 1, $after: 0){
+@if $before {
+@include grid-column-empty($before, before);
+}
+@if $after {
+@include grid-column-empty($after, after);
+}
+}
+
+@mixin grid-column-empty($i: 1, $position: after) {
+  $margin: $column-width * $i + $gutter-width * $i + ($gutter-width / 2);
+  
+  @if $position == after {
+    margin-right: $margin;
+  } @else {
+    margin-left: $margin;
+  }
+}
+
+.page {
+  @include grid-page;
+}
+.row {
+  @include grid-row;
+  clear:both;
+  position: relative;
+}
+.page > .row {
+  margin: 0;
+}
+.column {
+  @include grid-column;
+}
+
+// Box
+.box {
+  margin-bottom: $gutter-width;
+}

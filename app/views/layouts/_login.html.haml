@@ -1,17 +1,25 @@
+
 - if @current_user.nil?
   #login
-    #login_error
+    #login_error.row
       = flash[:alert]
             
     = form_tag session_path do
-      = text_field_tag :username, nil, :placeholder => "Username"
-      = password_field_tag :password, nil, :placeholder => "Password"
-      %br
-      = label_tag :remember_me
-      = check_box_tag :remember_me, 1, params[:remember_me]
+      .row
+        .span3 
+          = text_field_tag :username, nil, :placeholder => "Username"
+      .row
+        .span3
+          = password_field_tag :password, nil, :placeholder => "Password"       
+      .row
+        .span2
+          = label_tag :remember_me
+          = check_box_tag :remember_me, 1, params[:remember_me]
+
+          = link_to "Forgot password?", new_password_reset_path, :id => "forgot_password"  
       = submit_tag "Login"
-    = link_to 'Register', new_user_path, :id => "register_button"
-    = link_to "Forgot password?", new_password_reset_path, :id => "forgot_password"  
+  #nav_login
+       
       
 - else
   #logged_in
@@ -19,5 +27,3 @@
     %ul
       %li= link_to "Account Settings", edit_user_path(@current_user.id)
       %li= link_to "Logout", session_path, :method => :delete
-      
-      

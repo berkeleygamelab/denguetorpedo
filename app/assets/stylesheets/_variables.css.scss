@@ -1,4 +1,8 @@
-$background-color: #F5F7E0;
+
+
+
+
+$background-color: #fdffe9;
 $orange: #FF6600;
 $blue: #00CCCC;
 $light-gray: #C4C7B4;
@@ -11,9 +15,13 @@ $background_orange: #F86128;
 
 $registration_width: 232px;
 $field_width:232px;
-$login-width: 160px;
+$login-width: 150px;
 $max-width: 1040px;
 $login_error_height: 14px;
 $button_border_radius: 5px;
 $input_border_radius: 3px;
 
+// Configuration for grid
+$column-width: 55px;
+$gutter-width: 10px;
+$columns: 16;

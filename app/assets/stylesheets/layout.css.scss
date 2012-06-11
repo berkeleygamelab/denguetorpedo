@@ -1,0 +1,78 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$gridColumns: 16;
+$gridColumnWidth: 55px;
+$gridGutterWidth: 10px;
+$gridColumnWidthLarge: 60px;
+$gridGutterWidthLarge: 10px;
+$gridRowWidth: ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1))+80;
+@import 'bootstrap';
+@import "variables";
+
+
+html, body, button, input, select, textarea, label {
+  font-family: Verdana, Geneva, sans-serif;
+  font-color: #333333;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  ms-text-size-adjust: 100%;
+  background: #dddddd;
+}
+
+body {
+  background: #dfdfd;
+  
+}
+
+
+ul, ol, dl {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+input, input:focus {
+  //border: 0px;
+  outline: none;
+  border-radius: $input_border_radius;
+}
+
+span {
+  display: block;
+}
+
+caption, h1, h2, h3, h4, h5, h6, p {
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+a img {
+  border: none;
+}
+
+a:link, a:visited {
+  color: #333333;
+  text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: underline;
+}
+
+// establishes page width and centers
+
+body, #container {
+  font-size: 13px;
+  width: $gridRowWidth;
+  margin: 0 auto;
+  margin-top: 10px;
+  position: relative;
+  background: $background-color;
+
+}
+body > #container { 
+  height: auto;
+  min-height: 100%;
+  
+}
