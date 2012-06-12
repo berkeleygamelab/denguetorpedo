@@ -9,15 +9,16 @@ $gridGutterWidthLarge: 10px;
 $gridRowWidth: ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1))+80;
 @import 'bootstrap';
 @import "variables";
-
-
+html {
+  background: #dddddd;
+}
 html, body, button, input, select, textarea, label {
   font-family: Verdana, Geneva, sans-serif;
   font-color: #333333;
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   ms-text-size-adjust: 100%;
-  background: #dddddd;
+  
 }
 
 body {

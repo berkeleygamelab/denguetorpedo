@@ -30,6 +30,9 @@ class HomeController < ApplicationController
     @total_reports_in_neighborhood = @selected_neighborhood.reports.count
   
   end
+  
+  
+  
 
 end
 

@@ -3,9 +3,9 @@
   #register_error
     = flash[:alert]       
   = form_tag session_path do
-    = telephone_field_tag :username, nil, :placeholder => "Phone Number"
+    = telephone_field_tag :phone, nil, :placeholder => "Phone Number"
 
-    = email_field_tag :username, nil, :placeholder => "Email Address"
+    = email_field_tag :email, nil, :placeholder => "Email Address"
 
     = text_field_tag :username, nil, :placeholder => "Username"
 

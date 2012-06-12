@@ -6,9 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require gmaps4rails/bing.js
-//= require gmaps4rails/googlemaps.js
-//= require gmaps4rails/mapquest.js
-//= require gmaps4rails/openlayers.js
-//= require gmaps4rails/all_apis.js
+//= require gmaps4rails/gmaps4rails.bing.js
+//= require gmaps4rails/gmaps4rails.googlemaps.js
+//= require gmaps4rails/gmaps4rails.mapquest.js
+//= require gmaps4rails/gmaps4rails.openlayers.js
 //= require_tree .
