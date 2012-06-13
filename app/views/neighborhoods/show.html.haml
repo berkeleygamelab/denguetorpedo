@@ -19,14 +19,43 @@
     .span2
       53
 .row
-  .span10.offset1
+  .span11.offset1
     %ul#neighborhood_house_list
       - @houses.each do |house|
         %li.neighborhood_house_photo_thumb.span3
           = link_to image_tag("home_images/neighborhood1.png"), house_path(house)
-          -#= link_to house.name, house_path(house)
+          = link_to house.name, house_path(house)
       - if @houses.count < 7
         - (9 - @houses.count).times do          
           %li.neighborhood_house_photo_thumb.span3
-            = image_tag("home_images/neighborhood1.png")
-            -#%br Future House
+            = image_tag("home_images/neighborhood2.png")
+            Future House
+
+  #neighborhood_right_panel.span4
+    .row
+      #neighborhood_coordinator.span4
+        %h4 Community Coordinator
+        .neighborhood_profile_box
+    .row
+      #neighborhood_health_agent.span4
+        %h4 Featured Health Agent
+        .neighborhood_profile_box
+    .row
+      #neighborhood_sponsors.span4
+        %h4 Local Sponsors
+        .neighborhood_sponsor_box
+.row
+  .offset1
+    #neighborhood_news
+      %h4 Community News
+      %ul
+        %li.span4
+          Design Your Logo
+        %li.span4
+          Photography Exhibit
+        %li.span4
+          Dengue and Public Health
+      
+      
+    
+    

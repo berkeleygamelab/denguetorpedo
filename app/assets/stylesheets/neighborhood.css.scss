@@ -15,12 +15,47 @@
 
 ul#neighborhood_house_list {
   list-style-type: none;
-  li {
+  li.neighborhood_house_photo_thumb {
     margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 10px;   
+    width: 220px;
     
   }
 }
-
+#neighborhood_right_panel {
+  h4 {
+    color: $dark-gray;
+    margin-bottom: 5px;
+  }
+  #neighborhood_coordinator, #neighborhood_health_agent {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .neighborhood_profile_box {
+    background: white;
+    height: 125px;
+    border: 2px solid $gray;
+  }
+  .neighborhood_sponsor_box {
+    background: $light-gray;
+    height: 250px;
+  }
+}
+#neighborhood_news {
+  margin-top: 20px;
+  
+  ul {
+    li {
+      background: white;
+      border: 2px solid $gray;
+      width: 310px;
+      margin-left: 0px;
+      margin-right: 10px;
+      height: 240px;
+    }
+  }
+}
 
 #top_section {
 
