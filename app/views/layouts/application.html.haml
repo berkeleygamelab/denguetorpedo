@@ -15,7 +15,7 @@
           -# if logged in use short_logo, generate dashboard bar
           -if @current_user.nil?
             -##login_bg
-            = link_to image_tag("non_home_nav/long_logo.png", :id => "logo"), root_path
+            = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
             .main_nav_button.span2.offset4
               = link_to "LEARN", root_path
               %span About dengue
@@ -29,7 +29,7 @@
               = render "layouts/login"
           -else
             %ul
-              = link_to image_tag("non_home_nav/short_logo.png", :id => "logo_short"), root_path
+              = link_to "sdfsdf", root_path
               %li.main_nav_button.span2.offset4
                 = link_to "LEARN", root_path
                 %span About dengue
@@ -66,9 +66,7 @@
               Redeem
       
         
-          
-
-          
+           
           
       = yield
   

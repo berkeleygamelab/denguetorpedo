@@ -21,16 +21,13 @@
   width: 320px;
   height: 95px;
 }
+
 #logo {
   position: absolute;
   left: 70px;
   width: 150px;
 }
-#logo_short {
-  position: absolute;
-  left: 70px;
-  width: 150px;
-}
+
 #home_nav_bar {
   background-color: $blue;
   //background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
@@ -54,8 +51,6 @@ ul#dashboard_bar {
     margin-right: 20px;
   }
 }
-
-
 
 .main_nav_button {
   height: 50px;
