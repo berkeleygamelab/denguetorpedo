@@ -16,17 +16,3 @@ Scenario: log in with username and password
   And  I fill in "password" with "asdf123"
   And  I press "login"
   Then I should be on LukeSkywalker's user page
-
-Scenario: find movie with same director
-  Given I am on the details page for "Star Wars"
-  When  I follow "Find Movies With Same Director"
-  Then  I should be on the Similar Movies page for "Star Wars"
-  And   I should see "THX-1138"
-  But   I should not see "Blade Runner"
-
-Scenario: can't find similar movies if we don't know director (sad path)
-  Given I am on the details page for "Alien"
-  Then  I should not see "Ridley Scott"
-  When  I follow "Find Movies With Same Director"
-  Then  I should be on the home page
-  And   I should see "'Alien' has no director info"
