@@ -20,46 +20,46 @@
     #neighborhood_search_background.span12.offset2
       %input.span10{:type => 'text', :placeholder => "Search by neighborhood, city, country"}
       %button Find
-  %br
-  .row
-    .columnoff1
-      %h2 Leading Neighborhoods
+.row
+  %h2.offset1 Leading Neighborhoods
   
 -#    
 .row
-
-  #temp
-    -#= render "home/neighborhood_list"
+  .span15.offset1
+    = render "home/neighborhood_list"
 .row
-  #houses
+  #houses.offset1.span11
     = render "home/house_list"
 
-#neighborhood_status.row
-  #neighborhood_button.row
-    = link_to "Go to #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
-  #total_reports_in_neighborhood
-    %h1 #{@total_reports_in_neighborhood}
-    %h3 Total Reports Made in #{@selected_neighborhood.name}
-  %ul
-    %li
-      .neighborhood_report_status#neighborhood_open_reports
-      %h2 49 
-      %h4 open
-    %li 
-      .neighborhood_report_status#neighborhood_claimed_reports
-      %h2 234 
-      %h4 claimed
-    %li 
-      .neighborhood_report_status#neighborhood_resolved_reports
-      %h2 759 
-      %h4 resolved
-
-#sponsors
-  %h3 Local Sponsors in #{@selected_neighborhood.name}
-  %ul
-    %li= image_tag("home_images/sponsor1.png")
-    %li= image_tag("home_images/sponsor2.png")
-    %li= image_tag("home_images/sponsor3.png")
-    %li= image_tag("home_images/sponsor4.png")
-    %li= image_tag("home_images/sponsor5.png")
-
+  #neighborhood_status.offset11
+    #neighborhood_button
+      = link_to "Go to #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
+    #total_reports_in_neighborhood
+      %h1 #{@total_reports_in_neighborhood}
+      %h4 
+        Total Reports Made in 
+        %u #{@selected_neighborhood.name}
+    %ul
+      %li
+        .neighborhood_report_status#neighborhood_open_reports
+        %h2 49 
+        %h4 open
+      %li 
+        .neighborhood_report_status#neighborhood_claimed_reports
+        %h2 234 
+        %h4 claimed
+      %li 
+        .neighborhood_report_status#neighborhood_resolved_reports
+        %h2 759 
+        %h4 resolved
+.row
+  %h3.offset1 Local Sponsors in #{@selected_neighborhood.name}
+  #sponsors.offset1
+    
+    %ul
+      %li= image_tag("home_images/sponsor1.png")
+      %li= image_tag("home_images/sponsor2.png")
+      %li= image_tag("home_images/sponsor3.png")
+      %li= image_tag("home_images/sponsor4.png")
+      %li= image_tag("home_images/sponsor5.png")
+  

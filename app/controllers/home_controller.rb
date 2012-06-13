@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     #  @user = User.new(:username => params[:user][:username], :email => params[:user][:email])
     #end
     
-    @all_neighborhoods = Neighborhood.limit(6)
+    @all_neighborhoods = Neighborhood.limit(3)
     @is_home = "home_nav"
     
     if params[:neighborhood].nil?
@@ -26,7 +26,7 @@ class HomeController < ApplicationController
       @selected_neighborhood = Neighborhood.find(params[:neighborhood])
     end
     
-    @houses = @selected_neighborhood.houses
+    @houses = @selected_neighborhood.houses.limit(10)
     @total_reports_in_neighborhood = @selected_neighborhood.reports.count
   
   end
