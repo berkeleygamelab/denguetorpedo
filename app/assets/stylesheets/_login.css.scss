@@ -96,14 +96,23 @@
 #logged_in{
   width: 303px;
   height: 90px;
-  float: left;
-  margin-top: 15px;
+  
+  margin-top: 5px;
   margin-right: 10px;
-  margin-left: 50px;
+  margin-left: 0px;
   text-align: left;
   
-  h4 {
-    margin: 0px;
+  ul {
+  }
+  #dashboard_search {
+    margin-left: 0px;
+    margin-top: 6px;
+    input {
+      width: 250px;
+    }
+  }
+  h3 {
+    margin-bottom: 0px;
     font-color: #333333;
   }
 }

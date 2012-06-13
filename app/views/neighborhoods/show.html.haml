@@ -1,121 +1,32 @@
-#top_section
-  #neighborhood_of
-    %h2.inline.darkgray_text Neighborhood of
-    #blank_space.inline
-    %h1.inline#neighborhood_name #{@neighborhood.name}
-  #neighborhood_status_bar
-    %ul
-      %li
-        #rank_box.inline
-          %h2.inline No.
-          /* doesn't actually work yet... */
-          %h2.inline #{@neighborhood.rank}
-          /*                               */
-      %li
-        #status_text
-          %h1= @neighborhood.reports.count
-          %h3 total reports made
-      %li
-        #neighborhood_open_report_button
-          .button_text
-            %h1.darkgray_text= @neighborhood.reports.where(:status_cd => Report.reported).count
-            %p.darkgray_text open
-      %li
-        #neighborhood_claimed_report_button
-          .button_text
-            %h1.darkgray_text= @neighborhood.reports.where(:status_cd => Report.claimed).count
-            %p.darkgray_text claimed
-      %li
-        #neighborhood_resolved_report_button
-          .button_text
-            %h1.darkgray_text= @neighborhood.reports.where(:status_cd => Report.eliminated).count
-            %p.darkgray_text resolved
-      %li
-        #status_text
-          %h1.darkgray_text= @neighborhood.houses.count
-          %h3.darkgray_text houses
-      %li
-        #status_text
-          %h1.darkgray_text= @neighborhood.members.count
-          %h3.darkgray_text participants
-.clearfloat
-#middle_section
-  #left_section
-    %a#houses_button{:href => '#'} Houses
-    %a#participants_button{:href => '#'} Participants
-    %a#health_agents_button{:href => '#'} Health Agents
-    %ul#houses
-      - for house in @neighborhood.houses
-        %li.member
-          %figure.image_placeholder.photo
-          %p= house.name
-    %ul#participants
-      - for member in @neighborhood.members
-        %li.member
-          %figure.image_placeholder.photo
-          %p= member.username
-          %p= member.house.name
-    %ul#health_agents
-      - for agent in @neighborhood.health_agents
-        %li.member
-          %figure.image_placeholder.photo
-          %p= agent.username
-          %p= agent.house.name
-
-  #right_section
-    %h3 Community Coordinator
-    .featured_agent_section
-      .agent_photo
-      #h3 Benson Ma
-      .agent_description
-        UC Berkeley Student. Major in Bioengineering and Computer Science.
-      .view_profile  
-        view profile    
-    %h3 Featured Health Agent
-    .featured_agent_section
-      .agent_photo
-      #h3 Katie Fleming
-      .agent_description
-        UC Berkeley Student. Major in Anthropology
-      .view_profile  
-        view profile
-    %h3 Local Sponsors
-    #local_sponsors_section
-      %ul
-        %li= image_tag("home_images/sponsor1.png")
-        %li= image_tag("home_images/sponsor2.png")
-        %li= image_tag("home_images/sponsor3.png")
-        %li= image_tag("home_images/sponsor4.png")
-        %li= image_tag("home_images/sponsor5.png")
-        %li= image_tag("home_images/sponsor1.png")
-        %li= image_tag("home_images/sponsor2.png")
-        %li= image_tag("home_images/sponsor3.png")
-        %li= image_tag("home_images/sponsor4.png")
-    
-.clearfloat
-#bottom_section
-  %h2 Community News
-  .news_block
-    .title How to Design Your Own Logo
-    .type course
-    .content
-      %figure.image_placeholder.photo
-      .message Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    .clearfloat
-  .news_block
-    .title Photography Exhibit
-    .type event
-    .content
-      %figure.image_placeholder.photo
-      .message Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    .clearfloat
-  .news_block
-    .title Dengue and Public Health
-    .type lecture
-    .content
-      %figure.image_placeholder.photo
-      .message Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    .clearfloat
-
-
-.clearfloat
+.row
+  .span8.offset1
+    Neighborhood of
+    #{@neighborhood.name}
+.row
+  #neighborhood_stats
+    .span2.offset1
+      No. 1
+    .span3
+      1700REPORTS
+    .span2
+      493
+    .span2
+      234
+    .span2
+      1003
+    .span2
+      14
+    .span2
+      53
+.row
+  .span10.offset1
+    %ul#neighborhood_house_list
+      - @houses.each do |house|
+        %li.neighborhood_house_photo_thumb.span3
+          = link_to image_tag("home_images/neighborhood1.png"), house_path(house)
+          -#= link_to house.name, house_path(house)
+      - if @houses.count < 7
+        - (9 - @houses.count).times do          
+          %li.neighborhood_house_photo_thumb.span3
+            = image_tag("home_images/neighborhood1.png")
+            -#%br Future House

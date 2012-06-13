@@ -1,7 +1,7 @@
 
 - if @current_user.nil?
   #login
-    #login_error.row
+    #login_error
       = flash[:alert]
             
     = form_tag session_path do
@@ -23,7 +23,15 @@
       
 - else
   #logged_in
-    %h4 Welcome! #{@current_user.username}
-    %ul
-      %li= link_to "Account Settings", edit_user_path(@current_user.id)
-      %li= link_to "Logout", session_path, :method => :delete
+    .row
+      %h3.span4 
+        Welcome! #{@current_user.username}
+    .row
+      %ul
+        %li.span3 
+          = link_to "Account Settings", edit_user_path(@current_user.id)
+        %li.span1 
+          = link_to "Logout", session_path, :method => :delete
+    .row
+      #dashboard_search.span3
+        %input{:type => 'text', :placeholder => "Search by neighborhood, city, country"}

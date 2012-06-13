@@ -23,12 +23,12 @@
 }
 #logo {
   position: absolute;
-  left: 40px;
+  left: 70px;
   width: 150px;
 }
 #logo_short {
   position: absolute;
-  left: 40px;
+  left: 70px;
   width: 150px;
 }
 #home_nav_bar {
@@ -36,14 +36,25 @@
   //background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
   //background-repeat: no-repeat;
   //background-position: top;
-  padding: 0px 30px;
-  height: 105px;
+
+  height: 90px;
   z-index: 2;
   border-bottom: 4px solid #ffffff;
 }
-ul#dash_navbar {  
-  color: white;
+
+ul#dashboard_bar {
+  margin-top: 10px;
+
+  li {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  li.spacer
+  {
+    margin-right: 20px;
+  }
 }
+
 
 
 .main_nav_button {
@@ -52,6 +63,7 @@ ul#dash_navbar {
   font-weight: bold;
   margin-top: 25px;
   text-align: center;
+  padding-left: 0px;
   span {
     color: #FFFFFF;
     font-size: 17px;
