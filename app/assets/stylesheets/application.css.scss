@@ -7,64 +7,50 @@
 *= require_tree .
 */
 
-
 @import "variables";
+
 @mixin colored_text($color) {
   color: $color;
-}
-
-#login_bg {
-  position: absolute;
-  background: rgb(140,228,228);
-  opacity: 0.8;
-  right: 30px;
-  width: 320px;
-  height: 95px;
 }
 
 #logo {
   position: absolute;
   left: 70px;
   width: 150px;
+  z-index: 1;
 }
 
 #home_nav_bar {
   background-color: $blue;
-  //background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
-  //background-repeat: no-repeat;
-  //background-position: top;
-
-  height: 90px;
-  z-index: 2;
-  border-bottom: 4px solid #ffffff;
+  height: 70px;
 }
 
-ul#dashboard_bar {
-  margin-top: 10px;
+#white_spacer {
+  background-color: #ffffff;
+  height: 5px;
+  box-shadow: inset 0px 1px 2px #8A8A88;
+}
 
+
+ul#dashboard_bar {
+  
+  margin-top: 10px;
   li {
     margin-right: 10px;
     margin-bottom: 10px;
   }
-  li.spacer
-  {
+  
+  li.spacer{
     margin-right: 20px;
   }
 }
 
-.main_nav_button {
-  height: 50px;
-  font-size: 32px;
-  font-weight: bold;
-  margin-top: 25px;
+.main_nav_button { 
   text-align: center;
-  padding-left: 0px;
-  span {
-    color: #FFFFFF;
-    font-size: 17px;
-    font-weight: normal;
-    
-    margin-top: 8px;
+  margin-top: 10px;
+  h3 {
+    color: #ffffff;
+    margin-top: -5px;
   }
 }
 
@@ -79,23 +65,6 @@ ul#dashboard_bar {
   height: 0;
   font-size: 1px;
   line-height: 0px;
-}
-
-// Define some common classes.
-.bold_text {
-  font-weight: bold;
-}
-
-.gray_text {
-  @include colored_text(Gray);
-}
-
-.lightgray_text {
-  @include colored_text(LightGray);
-}
-
-.darkgray_text {
-  @include colored_text($dark_gray);
 }
 
 .absolute {

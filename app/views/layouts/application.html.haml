@@ -14,35 +14,34 @@
         .row
           -# if logged in use short_logo, generate dashboard bar
           -if @current_user.nil?
-            -##login_bg
-            = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
-            .main_nav_button.span2.offset4
-              = link_to "LEARN", root_path
-              %span About dengue
-            .main_nav_button.span1.offset1
-              = link_to "PLAY", root_path
-              %span &nbsp;&nbsp;How?
-            .main_nav_button.span2.offset1
-              = link_to "WIN", root_path
-              %span What?
-            .span3.offset1
-              = render "layouts/login"
+            %ul
+              = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
+              %li.main_nav_button.span2.offset4
+                %h1= link_to "LEARN", root_path
+                %h3 About dengue
+              %li.main_nav_button.span1.offset1
+                %h1= link_to "PLAY", root_path
+                %h3 &nbsp;&nbsp;How?
+              %li.main_nav_button.span2.offset1
+                %h1= link_to "WIN", root_path
+                %h3 What?
+              %li.span3.offset1
+                = render "layouts/login"
           -else
             %ul
-              = link_to "sdfsdf", root_path
+              = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
               %li.main_nav_button.span2.offset4
-                = link_to "LEARN", root_path
-                %span About dengue
+                %h1= link_to "LEARN", root_path
+                %h3 About dengue
               %li.main_nav_button.span1.offset1
-                = link_to "PLAY", root_path
-                %span &nbsp;&nbsp;How?
+                %h1= link_to "PLAY", root_path
+                %h3 &nbsp;&nbsp;How?
               %li.main_nav_button.span2.offset1
-                = link_to "WIN", root_path
-                %span What?
+                %h1= link_to "WIN", root_path
+                %h3 What?
               %li.span4.offset1
-                = render "layouts/login"
-            
-             
+                = render "layouts/login" 
+      
       -if !@current_user.nil?
         .row
           %ul#dashboard_bar
@@ -64,7 +63,7 @@
             %li.span2
               = image_tag("http://placehold.it/32x32")
               Redeem
-      
+      #white_spacer
         
            
           
