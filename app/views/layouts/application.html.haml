@@ -64,7 +64,6 @@
               = image_tag("http://placehold.it/32x32")
               Redeem
               
-     
         #action_bar  
           .row
             .span6.offset1         
@@ -86,11 +85,9 @@
               #action_map
                 = image_tag("http://placehold.it/220x160")
 
-      #white_spacer  
-          
-
-          
-      
+      #white_spacer
+      - if !current_page?(root_url)
+        .push_down
       = yield
   
   #footer
