@@ -21,13 +21,16 @@
   width: 320px;
   height: 95px;
 }
-
 #logo {
   position: absolute;
   left: 70px;
   width: 150px;
 }
-
+#logo_short {
+  position: absolute;
+  left: 70px;
+  width: 150px;
+}
 #home_nav_bar {
   background-color: $blue;
   //background-image: url(non_home_nav/nav_bar_bg_no_orange.png);
@@ -80,13 +83,10 @@ ul#dashboard_bar {
   }
   #action_picture {
 
-<<<<<<< HEAD
   }
 }
 
 
-=======
->>>>>>> f29315592c99de1c1c7e6e7b77f1f09aeb7f01f2
 .main_nav_button {
   height: 50px;
   font-size: 32px;
