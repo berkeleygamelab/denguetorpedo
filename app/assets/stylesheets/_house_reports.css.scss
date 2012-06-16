@@ -1,15 +1,22 @@
 @import "variables";
 
 @mixin house_report{
-  height:150px;
+
+  height: 150px;
   padding-top:10px;
   padding-left:5px;
-  border-width:0px;
+  
+  border-style: solid;
+  border-width: 2px;
+  border-color: LightGray;
+  background-color: white;
+  
   h4{
     font-size:14px;
     margin-left:5px;
     margin-top:5px;
   }
+  
   .time_stamp{
     position:absolute;
     margin-top:34px;
@@ -17,25 +24,26 @@
     color:Gray;
     font-size:12px;
   }
+  
   .status{
     border-radius:3px;
     margin-top:0px;
     margin-right:20px;
   }
+  
   .report_content{
-
     &p{
       font-size:14px;
       font-style:italic;
       margin-bottom:5px;
     }
   }
+  
   a{
-
     font-size:12px;
     font-style:bold;
     color:gray;
-
+    
     &.user{
       color:$blue;
     }
@@ -43,22 +51,22 @@
 }
 
 .report.open_report {
-  background:url("house_images/report_open.png");
-  background-size: 100%;
-  background-repeat:no-repeat;
+  #background:url("house_images/report_open.png");
+  #background-size: 100%;
+  #background-repeat:no-repeat;
   @include house_report;
 }
 
 .report.claimed_report {
-  background:url("house_images/report_claimed.png");
-  background-size: 100%;
-  background-repeat:no-repeat;
+  #background:url("house_images/report_claimed.png");
+  #background-size: 100%;
+  #background-repeat:no-repeat;
   @include house_report;
 }
 
 .report.resolved_report {
-  background:url("house_images/report_resolved.png");
-  background-size: 100%;
-  background-repeat:no-repeat;
+  #background:url("house_images/report_resolved.png");
+  #background-size: 100%;
+  #background-repeat:no-repeat;
   @include house_report;
 }

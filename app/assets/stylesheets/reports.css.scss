@@ -12,7 +12,6 @@
   background-color: $light-gray;
 }
 
-
 .report {
   width: auto;
   height: auto;
@@ -32,18 +31,21 @@
   .after_photo {
     @include photo;
   }
+  
   .report_content {
     float: left;
     margin: 5px;
     width: 145px;
     height: auto;
   }
+  
   .bottom_section {
     padding: 5px;
     clear: both;
     width: auto;
     height: 50px;
   }
+  
   .status {
      padding-top: 5px;
      margin-top: 20px;

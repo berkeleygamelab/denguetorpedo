@@ -4,7 +4,6 @@
 
 @import "variables";
 
-
 @mixin neighborhood_status_button {
   margin-bottom: -10px;
   width: 50px;
@@ -23,6 +22,7 @@ ul#neighborhood_house_list {
     
   }
 }
+
 #neighborhood_right_panel {
   h4 {
     color: $dark-gray;
@@ -42,6 +42,7 @@ ul#neighborhood_house_list {
     height: 250px;
   }
 }
+
 #neighborhood_news {
   margin-top: 20px;
   
@@ -55,14 +56,6 @@ ul#neighborhood_house_list {
       height: 240px;
     }
   }
-}
-
-#top_section {
-
-}
-
-#middle_section {
-  margin-top: 60px;
 }
 
 #neighborhood_name {
@@ -202,7 +195,6 @@ ul#neighborhood_house_list {
     }
   }
 }
-
 
 #bottom_section {
   .news_block {
