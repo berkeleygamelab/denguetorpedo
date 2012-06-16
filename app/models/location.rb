@@ -1,6 +1,7 @@
 require 'active_support/core_ext'
 
 class Location < ActiveRecord::Base
+  attr_accessible
   acts_as_gmappable :callback => :geocode_results
 
   validates :latitude, :uniqueness => { :scope => :longitude }
@@ -50,7 +51,7 @@ class Location < ActiveRecord::Base
       location = Location.new(:address => address)
     elsif address.class <= Hash
       logger.debug(address)
-      location = Location.new(address)
+      location = Location.new(address) # TODO: fix security issue...
     else
       return nil
     end

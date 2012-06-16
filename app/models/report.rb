@@ -1,4 +1,6 @@
 class Report < ActiveRecord::Base
+  attr_accessible :report
+
   has_attached_file :before_photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   has_attached_file :after_photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   
