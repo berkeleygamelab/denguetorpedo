@@ -10,6 +10,10 @@ class Location < ActiveRecord::Base
   belongs_to :neighborhood
   has_many :reports
 
+  def neighborhood_name
+    self.neighborhood && self.neighborhood.name
+  end
+
   def geocode_results(data)
     # reset all these fields so we can extract it from the geocoding data
     self.nation = nil
@@ -27,7 +31,7 @@ class Location < ActiveRecord::Base
     self.nation = components["country"]
     self.state = components["administrative_area_level_1"]
     self.city = components["locality"] || components["administrative_level_3"] || components["administrative_level_2"]
-    self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood.name)
+    self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
     self.address = "#{components['street_number']} #{components['route']}"
     self.formatted_address = data["formatted_address"]
   end
@@ -47,9 +51,9 @@ class Location < ActiveRecord::Base
   def self.find_or_create(address)
     # construct the Location object using the argument
     if address.class == String
-      location = Location.new(:address => address)
+      location = Location.new
+      location.address = address
     elsif address.class <= Hash
-      logger.debug(address)
       location = Location.new(address) # TODO: fix security issue...
     else
       return nil
@@ -58,7 +62,7 @@ class Location < ActiveRecord::Base
     # if the id argument is also passed, return the existing object that matches the id
     if location.id != nil
       existing_location = Location.find(location.id)
-      return existing_location if existing_location != nil
+      return existing_location unless existing_location.nil?
     end
 
     # do the geocoding

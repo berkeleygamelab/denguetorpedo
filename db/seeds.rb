@@ -19,21 +19,21 @@ u10 = User.create!(:username => "C-3PO", :password => "asdf123", :email => "foo1
 u11 = User.create!(:username => "ObiWanKenobi", :password => "asdf123", :email => "foo11@foo.com")
 puts "users created"
 
-l1 = Location.create!(:address => "2521 Regent St. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("South Side"))
-l2 = Location.create!(:address => "1628 Spruce St. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("North Side"))
-l3 = Location.create!(:address => "3850 Park Blvd. Oakland, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("Oakland"))
-l4 = Location.create!(:address => "2400 Durant Ave. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("South Side"))
-l5 = Location.create!(:address => "2627 Hillegass Ave. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("South Side"))
+l1 = Location.find_or_create("2521 Regent St. Berkeley, CA")
+l2 = Location.find_or_create("1628 Spruce St. Berkeley, CA")
+l3 = Location.find_or_create("3850 Park Blvd. Oakland, CA")
+l4 = Location.find_or_create("2400 Durant Ave. Berkeley, CA")
+l5 = Location.find_or_create("2627 Hillegass Ave. Berkeley, CA")
 sleep 2
-l6 = Location.create!(:address => "2539 Durant Ave. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("South Side"))
-l7 = Location.create!(:address => "2525 Regent St. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("South Side"))
-l8 = Location.create!(:address => "2424 Channing Way. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("South Side"))
-l9 = Location.create!(:address => "1701 Euclid Ave, Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("North Side"))
-l10 = Location.create!(:address => "2022 Cedar St. Oakland, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("North Side"))
+l6 = Location.find_or_create("2539 Durant Ave. Berkeley, CA")
+l7 = Location.find_or_create("2525 Regent St. Berkeley, CA")
+l8 = Location.find_or_create("2424 Channing Way. Berkeley, CA")
+l9 = Location.find_or_create("1701 Euclid Ave, Berkeley, CA")
+l10 = Location.find_or_create("2022 Cedar St. Oakland, CA")
 sleep 2
-l11 = Location.create!(:address => "479 65th St. Oakland, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("Oakland"))
-l12 = Location.create!(:address => "454 Alcatraz Ave. Oakland, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("Oakland"))
-l13 = Location.create!(:address => "2702 Stuart St. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("South Side"))
+l11 = Location.find_or_create("479 65th St. Oakland, CA")
+l12 = Location.find_or_create("454 Alcatraz Ave. Oakland, CA")
+l13 = Location.find_or_create("2702 Stuart St. Berkeley, CA")
 puts "locations created"
 sleep 2
 
@@ -74,26 +74,27 @@ h13 = House.create!(:name => "foo8", :location_id => l13.id)
 
 puts "members added"
 
-r1 = Report.create!(:report => "Let's rescue Princess Leia!", :status => :claimed, :reporter_id => u1.id, :location_id => u1.house.location.id)
+puts 
+r1 = Report.create_from_user("Let's rescue Princess Leia!", :status => :claimed, :reporter => u1, :location => u1.house.location)
 r1.claimer = u1
 r1.save!
-r2 = Report.create!(:report => "I find your lack of faith...disturbing...", :status => :claimed, :reporter_id => u2.id, :location_id => u2.house.location.id)
+r2 = Report.create_from_user("I find your lack of faith...disturbing...", :status => :claimed, :reporter => u2, :location => u2.house.location)
 r2.claimer = u2
 r2.save!
-r3 = Report.create!(:report => "Use the force...", :status => :reported, :reporter_id => u6.id, :location_id => u6.house.location.id)
+r3 = Report.create_from_user("Use the force...", :status => :reported, :reporter => u6, :location => u6.house.location)
 r3.save!
-r4 = Report.create!(:report => "If you strike me down, I shall become more powerful that you ever imagine.", :status => :claimed, :reporter_id => u11.id, :location_id => -1)
-r4.location = Location.create!(:address => "474 66th St. Oakland, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("Oakland"))
+r4 = Report.create_from_user("If you strike me down, I shall become more powerful that you ever imagine.", :status => :claimed, :reporter => u11, :location => l12)
+r4.location = Location.find_or_create("474 66th St. Oakland, CA")
 r4.claimer = u2
 r4.save!
-r5 = Report.create!(:report => "Luck...I am your father...", :status => :eliminated, :reporter_id => u2.id, :location_id => -1)
+r5 = Report.create_from_user("Luck...I am your father...", :status => :eliminated, :reporter => u2, :location => l11)
 r5.claimer = u2
 r5.eliminator = u2
-r5.location = Location.create!(:address => "1860 Leroy Ave. Berkeley, CA", :neighborhood => Neighborhood.find_or_initialize_by_name("Oakland"))
+r5.location = Location.find_or_create("1860 Leroy Ave. Berkeley, CA")
 r5.save!
-r6 = Report.create!(:report => "Beep Beep Beep Beep...", :status => :reported, :reporter_id => u9.id, :location_id => u9.house.location.id)
+r6 = Report.create_from_user("Beep Beep Beep Beep...", :status => :reported, :reporter => u9, :location => u9.house.location)
 r6.save!
-r7 = Report.create!(:report => "Made the kesser run in less than twelve parsecs", :status => :eliminated, :reporter_id => u7.id, :location_id => u7.house.location.id)
+r7 = Report.create_from_user("Made the kesser run in less than twelve parsecs", :status => :eliminated, :reporter => u7, :location => u7.house.location)
 r7.claimer = u7
 r7.eliminator = u10
 r7.save!
