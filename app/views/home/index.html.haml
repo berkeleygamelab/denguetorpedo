@@ -15,6 +15,7 @@
         %span This video is borrowed from Youtube for dengue education. Video credit belongs to its perspective owner.      
       #register_pane.span4
         = render "home/register_form"
+
 #neighborhood_search
   .row
     #neighborhood_search_background.span12.offset2
@@ -22,23 +23,28 @@
       %button Find
 .row
   %h2.offset1 Leading Neighborhoods
-  
--#    
+    
 .row
   .span15.offset1
     = render "home/neighborhood_list"
+    
 .row
-  #houses.offset1.span11
+  #houses.span11.offset1
     = render "home/house_list"
-
+    
   #neighborhood_status.offset11
     #neighborhood_button
-      = link_to "Go to #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
+      - if @selected_neighborhood.id.nil?
+        = link_to "Visit Future Neighborhood", root_path
+      - else 
+        = link_to "Visit #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
+      
     #total_reports_in_neighborhood
       %h1 #{@total_reports_in_neighborhood}
       %h4 
         Total Reports Made in 
         %u #{@selected_neighborhood.name}
+      
     %ul
       %li
         .neighborhood_report_status#neighborhood_open_reports
@@ -52,10 +58,10 @@
         .neighborhood_report_status#neighborhood_resolved_reports
         %h2 759 
         %h4 resolved
+  
 .row
   %h3.offset1 Local Sponsors in #{@selected_neighborhood.name}
-  #sponsors.offset1
-    
+  #sponsors.offset1    
     %ul
       %li= image_tag("home_images/sponsor1.png")
       %li= image_tag("home_images/sponsor2.png")
