@@ -49,11 +49,11 @@ class UsersController < ApplicationController
 
     user_attributes = params[:user]
     house_attributes = user_attributes[:house_attributes]
-    location_attributes = house_attributes[:location_attributes]
+    location_attributes = user_attributes[:location]
 
     # delete the nested attributes
     user_attributes.delete :house_attributes
-    house_attributes.delete :location_attributes
+    house_attributes.delete :location
 
     successful = @user.update_attributes(user_attributes)
 
@@ -75,7 +75,6 @@ class UsersController < ApplicationController
           house.location = Location.find_or_create(location_attributes[:address])
           successful &&= house.save
         end
-
         @user.house = house
         successful &&= @user.save
       end

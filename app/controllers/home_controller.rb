@@ -15,8 +15,6 @@ class HomeController < ApplicationController
     
     @all_neighborhoods = Neighborhood.limit(3)
     
-    #@is_home = "home_nav"
-    
     if params[:neighborhood].nil?
       if @all_neighborhoods.first.nil?
         @selected_neighborhood = Neighborhood.new

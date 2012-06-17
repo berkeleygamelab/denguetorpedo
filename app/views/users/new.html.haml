@@ -2,17 +2,10 @@
   %h1 Registration
   = form_for(@user) do |f|
     = f.error_messages
-    
-    = f.label :username
-    = f.text_field :username   
-    
-    = f.label :email
-    = f.text_field :email  
-   
-    = f.label :password      
-    = f.password_field :password
-     
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-   
-    = f.submit "Register"
+
+    = f.text_field :phone_number, :placeholder => "Phone Number"
+    = f.text_field :email, :placeholder => "Email Address"
+    = f.text_field :username, :placeholder => "Username"
+    = f.password_field :password, :placeholder => "Password"
+    = f.password_field :password_confirmation, :placeholder => "Confirm Password"
+    = f.submit "Finish"
