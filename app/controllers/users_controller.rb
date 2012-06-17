@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     head :not_found and return if @user.nil?
     
     @isPrivatePage = (@current_user != nil && @current_user == @user)
-    @preventionIdeas = (@user != nil && @user.events.where(:category_cd => Event.prevention_idea).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
     @neighborhood = @user.neighborhood
     @house = @user.house
     @reports = @user.reports

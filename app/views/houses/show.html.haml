@@ -31,12 +31,12 @@
       .span9
         %h3 House Posts
         %ul#event_list
-        - for event in @house.events
+        - for post in @house.posts
           %li
-            = link_to event, :remote => true do
+            = link_to post, :remote => true do
               %figure.image_placeholder.event_photo  
         #event_info 
-        - if @house.events.size > 0
+        - if @house.posts.exists?
           = render :partial => "/events/event", :object => @house.events.first
   .span6
     .row

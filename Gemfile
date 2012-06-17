@@ -30,6 +30,7 @@ gem 'paperclip', "~> 3.0"
 gem 'ruby-gmail'
 gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 gem 'simple_enum'
+gem 'awesome_nested_set'
 
 # Gems used only for assets and not required
 # in production environments by default.
