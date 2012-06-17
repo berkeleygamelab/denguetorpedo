@@ -8,6 +8,8 @@ class Neighborhood < ActiveRecord::Base
   belongs_to :coordinator, :class_name => "User"
   has_many :health_agents, :through => :houses, :source => "members", :conditions => "is_health_agent = 1"
 
+  validates :name, :presence => true
+
   def rank
     0
   end

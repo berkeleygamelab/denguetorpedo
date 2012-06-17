@@ -12,8 +12,21 @@ class Report < ActiveRecord::Base
   
   validates :reporter_id, :presence => true
   validates :location_id, :presence => true
+  validates :status, :presence => true
 
   as_enum :status, [:reported, :claimed, :eliminated]
+
+  def self.create_from_user(report_content, params)
+    create(:report => report_content) do |r|
+      r.reporter_id = params[:reporter].id
+      r.location_id = params[:location].id
+      r.status = params[:status]
+
+      # optional parameters
+      r.claimer_id = params[:claimer] && params[:claimer].id
+      r.eliminator_id = params[:eliminator] && params[:eliminator].id
+    end
+  end
 
   # callback to create the feeds
   after_save do |report|
