@@ -19,11 +19,13 @@
   width: 150px;
   z-index: 1;
 }
+
 #logo_short {
   position: absolute;
   left: 70px;
   width: 150px;
 }
+
 #home_nav_bar {
   background-color: $blue;
   height: 70px;
@@ -47,6 +49,7 @@ ul#dashboard_bar {
     margin-right: 20px;
   }
 }
+
 #action_bar {
   
   margin-left: 11px;

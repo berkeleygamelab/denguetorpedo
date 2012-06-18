@@ -3,13 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "variables";
-@mixin section-base {
-  border-style: solid;
-  border-width: 1px;
-  border-color: #bcbfa9;
-  border-radius: 2px;
-  background: #e2e5cf;
-}
 
 #neighborhood_search {
 
@@ -18,20 +11,16 @@
   
 
   #neighborhood_search_background {
-
     background: #e2e5cf;
     padding: 10px;
     height: 30px;
-
   }
 
   input, input:focus {
-
     height: 30px;
     border: none;
     font-size: 15px;
     margin-top: -4px;
-
   }
   
   button {
@@ -57,15 +46,12 @@
 }
 
 ul#neighborhood_list {
-
-  
   li {
     margin-left: 10px;
     display: inline-block;
     margin-right: 10px;
     margin-top: 20px
   }
-  
   .neighborhood_selection {
     width: 300px;
     height: 300px;
@@ -200,7 +186,6 @@ ul#house_list {
 }
 
 #sponsors {
-
   background: #e2e5cf;
   width: 950px;
   height: 160px;
