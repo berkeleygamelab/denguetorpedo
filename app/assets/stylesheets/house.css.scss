@@ -4,120 +4,38 @@
 
 @import "variables";
 
-figure.image_placeholder {
-  margin: 0;
-  background-color: Black;
-  display: inline-block;
-}
-
-.houses { // each page has an overarching class of the controller name and action name
-  #left_section, #right_section {
-    margin-top:30px;
-  }
-  
-  #left_section {
-    float: left;
-    width: 616px;
-  }
-
-  #right_section {
-    float: right;
-    width: 420px;
-  }
-}
-
-
 #house_detail {
-  .house_name {
-    display: inline;
-  }
-  float: left;
-  width: 610px;
-  height: auto;
-}
-
-#house_address {
-  margin-left: 16px;
+  margin-left: 40px;
 }
 
 #house_photo {
-  float: left;
-  width: 200px;
-  height: 200px;
-  margin-right: 30px;
-  margin-top:10px;
-  margin-bottom: 15px;
-}
-
-ul#house_stats  {
-  .points {
-    padding-top: 5px;
-  }
-
-  li {
-    float: left;
-    text-align: center;
-    margin-right: 30px;
-    margin-bottom: 30px;
-  }
-}
-
-.house_stats_box {
-  margin-top:5px;
   width: 150px;
-  height: 45px;
-  color: White;
-  font-size: 1.6em;
-  line-height: 20px;
-  padding-top:8px;
-  border-radius:3px;
+  height: 150px;
 }
 
-#neighborhood_box {
-  background-color: gray;
-  border-radius: $button_border_radius;
-  .city_state{
-    font-size:.75em;
-  }
-  margin-bottom: 5px;
+#neighbor_photo {
+  width: 60px;
+  height: 60px;
 }
 
-#house_points_box {
-  background-color: $blue;
-  border-radius: $button_border_radius;
-}
-
-
-ul#house_members {
-	margin-bottom:15px;
+#house_members {
   li {
     display: inline;
   }
-}
-
-.house_member_photo {
-  width: 65px;
-  height: 65px;
-  margin-left: 0px;
-  margin-right: 10px;
-  margin-bottom: 5px;
-  margin-top: 5px;
 }
 
 ul#event_list {
-  margin-bottom:15px;
   li {
     display: inline;
   }
+  
   .event_photo {
     width: 65px;
     height: 65px;
   }
 }
 
-
 #event_info {
-  margin-top: 10px;
   border-style: solid;
   border-width:2px;
   border-color: LightGray;
@@ -168,82 +86,42 @@ ul#event_list {
   background-color: WhiteSmoke;    
 }
 
-
-#house_points {
-  margin-left: 10px;
-  width: auto;
-  height: 45px;
-  background-color: LightGray;
-  text-align: right;
-  padding-top: 15px;
-  color: White;
-  h2 {
-    margin-right: 15px;
-  }
-}
-
 #reports_map {
   width: auto;
-  height: 300px;
+  height: 200px;
 }
 
-#house_reports {
-  margin-left: 10px;
-  width:  auto;
-  height: auto;
-  //background-color: #FFFFFF;
-  //border-style: solid;
-  //border-width: 2px;
-  //border-color: LightGray;
-  //border-radius: 3px;
+#list_of_house_reports{
+  margin-top: 10px;
 }
 
-ul#report_status  {
-  list-style-type: none;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: auto;
-  padding-left: 2px;
-  
-  li {
-    list-style-type: none;
-    display: inline-block;
-    width: 123px;
-    height: 40px;
-    background-color: #FFFFFF;
-    text-align: center;
-    color: White;
-	border-radius:3px;
-	padding-top:10px;
-    a {
-      color: White;
-	  font-size:14px;
-    }
-  }
-  #house_open_report_button {
-    background-color: $orange;
-  }
-  #house_claimed_report_button {
-    background-color: $blue;
-  }
-  #house_resolved_report_button {
-    background-color: gray;
-  }
-}
+#house_open_report_button {
+   background-color: $orange;
+   width: 118px;
+   height: 40px;
+   border-radius:2px;
+   text-align: center;
+ }
+ #house_claimed_report_button {
+   background-color: $blue;
+   width: 118px;
+   height: 40px;
+   border-radius:2px;
+   text-align: center;
+ }
+ #house_resolved_report_button {
+   background-color: gray;
+   width: 118px;
+   height: 40px;
+   border-radius:2px;
+   text-align: center;
+ }
 
 #houses_in_neighborhood {
-  margin-left: 30px;
   li {
     display: inline;
-
-    figure {
-      max-width: 60px;
-      height: 60px;
-      display: inline-block;
-      margin-right: 4px;
-      margin-top: 10px;
-    }
   }
 }
+
+
 

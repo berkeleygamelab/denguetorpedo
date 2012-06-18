@@ -5,11 +5,11 @@ class Feed < ActiveRecord::Base
 
   validates :target_id, :uniqueness => { :scope => :feed_type_cd }
 
-  as_enum :feed_type, [:reported, :claimed, :eliminated, :event, :event_comment]
+  as_enum :feed_type, [:reported, :claimed, :eliminated, :post]
   
   def self.create_from_object(target, user_id, type)
     feed = Feed.new(:user_id => user_id, :feed_type => type)
     feed.target = target
-    feed.save ? feed : false
+    feed.save! ? feed : false
   end
 end

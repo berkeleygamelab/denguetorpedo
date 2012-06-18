@@ -1,75 +1,83 @@
-#left_section
-  #house_detail
-    %h2
-      = @house.name
-      %span#house_address.gray_text
-        = @house.location.address
-    %figure#house_photo.image_placeholder
-    %ul#house_stats
-      %li
-        .gray_text
-        %section.house_stats_box#neighborhood_box
-          .neighborhood= @house.neighborhood.name
-          .city_state
-            = @house.location.city
-            %span
-              = @house.location.nation
+.row
+  .span8.offset1
+    %h1= @house.name + ", " + @house.location.address
+.row
+  .span9.offset1
+    .row
+      .span2
+        #house_photo.image_placeholder
+      #house_detail.span6
+        %ul
+          %li 
+            %h3 Neighborhood
+          %li
+            = @house.neighborhood.name + ", " + @house.location.city + " " + @house.location.nation
+          %li 
+            %h3 Points
+          %li
+            = @house.points.to_s + " points"
+          %li
+            %h3 House Badges
+          %li You don't have any badge yet.     
+    .row
+      .span9
+        #house_members
+          %h3 House Memebers
+          %ul
+          - for member in @house.members.slice(0, 4)
+            %li
+              = image_tag member.profile_photo.url(:small)
+    .row
+      .span9
+        %h3 House Posts
+        %ul#event_list
+        - for post in @house.posts
+          %li
+            = link_to post, :remote => true do
+              %figure.image_placeholder.event_photo  
+        #event_info 
+        - if @house.posts.exists?
+          = render :partial => "/events/event", :object => @house.events.first
+  .span6
+    .row
+      #house_reports.span6
+        %h3 Reports nearby this house:
+        .row
+          = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
+        .row
+          #report_status_bar
+            #house_open_report_button.span1
+              %a{:href => "#"}
+                = @house.created_reports.count
+                %br Open
+            #house_claimed_report_button.span1 
+              %a{:href => "#"}
+                = @house.claimed_reports.count
+                %br Claimed
+            #house_resolved_report_button.span1
+              %a{:href => "#"}
+                = @house.eliminated_reports.count
+                %br Resolved 
+        .row
+          #list_of_house_reports
+          - for report in @house.reports
+            .row
+            - if report.status == :reported
+              = render :partial => "/reports/open_report", :object => report
+            - if report.status == :claimed
+              = render :partial => "/reports/claimed_report", :object => report
+            - if report.status == :eliminated
+              = render :partial => "/reports/resolved_report", :object => report
+             
+    .row
+      #houses_in_neighborhood.span6
+        %h3 Houses that are nearby: 
+        - if @neighbors.count > 1 
+          %p You don't have any neighbors that are in the game
+        - else
+          %ul
+          - for house in @neighbors
+            %li
+              #neighbor_photo.image_placeholder
 
-      %li
-        .gray_text
-
-        %section.house_stats_box#house_points_box
-          .points
-            = @house.points
-            %a Points
-  %h3.darkgray_text Members
-  %ul#house_members
-    - for member in @house.members.slice(0, 4)
-      %li
-        %figure.image_placeholder.house_member_photo
-  
-  %h3.darkgray_text House Posts
-  %ul#event_list
-    - for event in @house.events
-      %li
-        = link_to event, :remote => true do
-          %figure.image_placeholder.event_photo
-  #event_info 
-    - if @house.events.size > 0
-      = render :partial => "/events/event", :object => @house.events.first
-
-#right_section
-  #house_reports
-    %h4 House Reports:
-    = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
-    %ul#report_status
-      %li#house_open_report_button
-        %a{:href => "#"}
-          = @house.created_reports.count
-          %br Open
-      %li#house_claimed_report_button 
-        %a{:href => "#"}
-          = @house.claimed_reports.count
-          %br Claimed
-      %li#house_resolved_report_button 
-        %a{:href => "#"}
-          = @house.eliminated_reports.count
-          %br Resolved   
-    - for report in @house.reports
-      - if report.status == :reported
-        = render :partial => "/reports/open_report", :object => report
-      - if report.status == :claimed
-        = render :partial => "/reports/claimed_report", :object => report
-      - if report.status == :eliminated
-        = render :partial => "/reports/resolved_report", :object => report
-
-  #houses_in_neighborhood
-    %ul
-      - for house in @neighbors
-        - if house.id == @house.id
-          - next
-        %li
-          = link_to house do
-            %figure.image_placeholder
-
-.clearfloat
+    

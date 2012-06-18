@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     head :not_found and return if @user.nil?
     
     @isPrivatePage = (@current_user != nil && @current_user == @user)
-    @preventionIdeas = (@user != nil && @user.events.where(:category_cd => Event.prevention_idea).order("created_at DESC")) # PREVENTION_IDEA is defined in config/environment.rg
     @neighborhood = @user.neighborhood
     @house = @user.house
     @reports = @user.reports
@@ -49,11 +48,11 @@ class UsersController < ApplicationController
 
     user_attributes = params[:user]
     house_attributes = user_attributes[:house_attributes]
-    location_attributes = house_attributes[:location_attributes]
+    location_attributes = user_attributes[:location]
 
     # delete the nested attributes
     user_attributes.delete :house_attributes
-    house_attributes.delete :location_attributes
+    house_attributes.delete :location
 
     successful = @user.update_attributes(user_attributes)
 
@@ -75,7 +74,6 @@ class UsersController < ApplicationController
           house.location = Location.find_or_create(location_attributes[:address])
           successful &&= house.save
         end
-
         @user.house = house
         successful &&= @user.save
       end

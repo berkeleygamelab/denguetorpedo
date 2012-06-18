@@ -5,5 +5,14 @@ Given /the following users exist/ do |users_table|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that user to the database here.
     User.create!(user)
-  end  
+  end
+
 end
+
+Given /^I am logged in as "([^\"]*)" with password "([^\"]*)"$/ do |username, password|
+  visit root_url
+  fill_in "username", :with => username
+  fill_in "password", :with => password
+  click_button "Login"
+end
+

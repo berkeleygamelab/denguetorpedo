@@ -18,6 +18,8 @@ module NavigationHelpers
       '/'
     when /^(.*)'s user page$/i
       user_path(User.find_by_username($1))
+    when /^(.*)'s edit user page$/i
+      edit_user_path(User.find_by_username($1).id)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

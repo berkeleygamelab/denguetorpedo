@@ -14,7 +14,6 @@ class HomeController < ApplicationController
     #end
     
     @all_neighborhoods = Neighborhood.limit(3)
-    @is_home = "home_nav"
     
     if params[:neighborhood].nil?
       if @all_neighborhoods.first.nil?

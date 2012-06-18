@@ -11,30 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120527204312) do
-
-  create_table "event_comments", :force => true do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "event_comments", ["event_id"], :name => "index_event_comments_on_event_id"
-  add_index "event_comments", ["user_id"], :name => "index_event_comments_on_user_id"
-
-  create_table "events", :force => true do |t|
-    t.integer  "creator_id"
-    t.text     "description"
-    t.integer  "praised"
-    t.integer  "category_cd"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "title"
-  end
-
-  add_index "events", ["creator_id"], :name => "index_events_on_creator_id"
+ActiveRecord::Schema.define(:version => 20120605074150) do
 
   create_table "feeds", :force => true do |t|
     t.string   "target_type"
@@ -73,6 +50,20 @@ ActiveRecord::Schema.define(:version => 20120527204312) do
     t.datetime "updated_at",     :null => false
     t.integer  "coordinator_id"
   end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "content"
+    t.integer  "type_cd"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "reports", :force => true do |t|
     t.text     "report"

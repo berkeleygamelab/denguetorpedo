@@ -1,18 +1,10 @@
 #register
   %h3 Register
-  #register_error
-    = flash[:alert]       
-  = form_tag session_path do
-    = telephone_field_tag :phone, nil, :placeholder => "Phone Number"
-
-    = email_field_tag :email, nil, :placeholder => "Email Address"
-
-    = text_field_tag :username, nil, :placeholder => "Username"
-
-    = password_field_tag :password, nil, :placeholder => "Password"
-
-    = password_field_tag :password, nil, :placeholder => "Confirm Password"
-
-    // = label_tag :remember_me
-    // = check_box_tag :remember_me, 1, params[:remember_me]
-    = submit_tag "Finish"
+  = form_for(@user) do |f|
+    = f.error_messages
+    = f.text_field :phone_number, :placeholder => "Phone Number"
+    = f.text_field :email, :placeholder => "Email Address"
+    = f.text_field :username, :placeholder => "Username"
+    = f.password_field :password, :placeholder => "Password"
+    = f.password_field :password_confirmation, :placeholder => "Confirm Password"
+    = f.submit "Finish"
