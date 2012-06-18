@@ -14,8 +14,8 @@
 }
 
 #neighbor_photo {
-  width: 60px;
-  height: 60px;
+  width: 59px;
+  height: 59px;
 }
 
 #house_members {
@@ -24,6 +24,86 @@
   }
 }
 
+#house_reports {
+  background: #e2e5cf;
+  min-height: 860px;
+}
+
+#reports_map {
+  width: 100%;
+  height: 180px;
+}
+
+#list_of_house_reports{
+  margin-top: 10px;
+}
+
+#house_all_report_button {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+  
+  background-color: $red;
+  width: 66px;
+  border-radius:2px;
+  text-align: center;
+  a {
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+  }
+}
+
+#house_open_report_button {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+  background-color: $orange;
+  width: 66px;
+  border-radius:2px;
+  text-align: center;
+  a {
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+  }
+}
+
+#house_claimed_report_button {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+  background-color: $blue;
+  width: 66px;
+  border-radius:2px;
+  text-align: center;
+  a {
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+  }
+}
+ 
+#house_resolved_report_button {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000000;
+  background-color: gray;
+  width: 66px;
+  border-radius:2px;
+  text-align: center;
+  a {
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+  }
+}
+
+#houses_in_neighborhood {
+  overflow: auto;
+  width: auto;
+  hight: 100px;
+  
+  li {
+    display: inline;
+  }
+}
+
+
+
+/* Hose posts stuff need to fix */
 ul#event_list {
   li {
     display: inline;
@@ -86,42 +166,10 @@ ul#event_list {
   background-color: WhiteSmoke;    
 }
 
-#reports_map {
-  width: auto;
-  height: 200px;
-}
 
-#list_of_house_reports{
-  margin-top: 10px;
-}
 
-#house_open_report_button {
-   background-color: $orange;
-   width: 118px;
-   height: 40px;
-   border-radius:2px;
-   text-align: center;
- }
- #house_claimed_report_button {
-   background-color: $blue;
-   width: 118px;
-   height: 40px;
-   border-radius:2px;
-   text-align: center;
- }
- #house_resolved_report_button {
-   background-color: gray;
-   width: 118px;
-   height: 40px;
-   border-radius:2px;
-   text-align: center;
- }
 
-#houses_in_neighborhood {
-  li {
-    display: inline;
-  }
-}
+
 
 
 

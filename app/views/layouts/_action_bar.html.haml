@@ -1,0 +1,20 @@
+#action_bar  
+  .row
+    .span6.offset1         
+      .action_active
+        -#= image_tag('icons/neighborhood.png')
+        = image_tag("http://placehold.it/160x160")
+      .action_inactive
+        -#= image_tag('icons/home.png')
+        = image_tag("http://placehold.it/96x96")
+      .action_inactive
+        -#= image_tag('icons/user_32.png')
+        = image_tag("http://placehold.it/96x96")
+    .span2
+      %h2.action_data 23941 points
+    .span3
+      #action_picture
+        = image_tag("http://placehold.it/160x160")
+    .span4
+      #action_map
+        = image_tag("http://placehold.it/220x160")

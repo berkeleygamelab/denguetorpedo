@@ -1,12 +1,12 @@
 .row
-  .span8.offset1
+  .span10.offset1
     %h1= @house.name + ", " + @house.location.address
 .row
-  .span9.offset1
+  .span10.offset1
     .row
       .span2
         #house_photo.image_placeholder
-      #house_detail.span6
+      #house_detail.span7
         %ul
           %li 
             %h3 Neighborhood
@@ -20,44 +20,62 @@
             %h3 House Badges
           %li You don't have any badge yet.     
     .row
-      .span9
-        #house_members
-          %h3 House Memebers
-          %ul
-          - for member in @house.members.slice(0, 4)
-            %li
-              = image_tag member.profile_photo.url(:small)
+      .span10
+        %h3 House Memebers
+        - for member in @house.members.slice(0, 4)
+          #house_members.span1
+            .row
+              = link_to image_tag( member.profile_photo.url(:small)), user_path(member)
+            .row
+              = link_to member.username, user_path(member)
     .row
-      .span9
-        %h3 House Posts
-        %ul#event_list
+      .span10
+        = render :partial => "/posts/new"
+    
+    .row
+      .span10
+        #house_post_list
+        #ul
         - for post in @house.posts
           %li
             = link_to post, :remote => true do
               %figure.image_placeholder.event_photo  
-        #event_info 
-        - if @house.posts.exists?
-          = render :partial => "/events/event", :object => @house.events.first
-  .span6
+  
+  
+  
+  .span5
     .row
-      #house_reports.span6
-        %h3 Reports nearby this house:
+      %h3.span5 Reports nearby this house:
+      #house_reports.span5
         .row
-          = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
+          .span5
+            = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
         .row
-          #report_status_bar
-            #house_open_report_button.span1
-              %a{:href => "#"}
-                = @house.created_reports.count
-                %br Open
-            #house_claimed_report_button.span1 
-              %a{:href => "#"}
-                = @house.claimed_reports.count
-                %br Claimed
-            #house_resolved_report_button.span1
-              %a{:href => "#"}
-                = @house.eliminated_reports.count
-                %br Resolved 
+          .span5
+            #report_status_bar
+              %ul
+                %li
+                  #house_all_report_button.span1
+                    .row
+                      %a{:href => "#"}= @house.reports.count
+                    .row All 
+                %li
+                  #house_open_report_button.span1
+                    .row
+                      %a{:href => "#"}= @house.created_reports.count
+                    .row Open
+                %li 
+                  #house_claimed_report_button.span1 
+                    .row
+                      %a{:href => "#"}= @house.claimed_reports.count
+                    .row Claimed
+                %li
+                  #house_resolved_report_button.span1
+                    .row
+                      %a{:href => "#"}= @house.eliminated_reports.count
+                    .row Resolved
+                  
+              
         .row
           #list_of_house_reports
           - for report in @house.reports
@@ -70,14 +88,15 @@
               = render :partial => "/reports/resolved_report", :object => report
              
     .row
-      #houses_in_neighborhood.span6
-        %h3 Houses that are nearby: 
-        - if @neighbors.count > 1 
-          %p You don't have any neighbors that are in the game
-        - else
-          %ul
-          - for house in @neighbors
-            %li
-              #neighbor_photo.image_placeholder
-
+      .span5
+        %h3 Neighbors: 
+        #houses_in_neighborhood
+          - if @neighbors.count == 1 
+            %p You don't have any neighbors that are in the game
+          - else
+            %ul
+            - for neighbor in @neighbors
+              %li
+                =link_to image_tag("http://placehold.it/57x57"), house_path(neighbor)
+              
     

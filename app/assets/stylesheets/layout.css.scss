@@ -12,28 +12,25 @@ $gridRowWidth: ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridCol
 @import 'bootstrap';
 @import "variables";
 
-html {
-  background: #dddddd;
-}
-
 html, body, button, input, select, textarea, label {
   font-family: Verdana, Geneva, sans-serif;
   font-color: #333333;
   font-size: 100%;
   font-size: 13px;
   -webkit-text-size-adjust: 100%;
-  ms-text-size-adjust: 100%; 
+  ms-text-size-adjust: 100%;
 }
-#content {
-  margin-top: 15px;
+
+html {
+  background: #dddddd;
 }
 
 body {
   background: #dfdfd;
   box-shadow: 0px 2px 10px #333333;
-  margin-top: 10px;
+  margin-top: 0px;
+  height: 100%;
 }
-
 
 ul, ol, dl {
   padding: 0px;
@@ -41,7 +38,7 @@ ul, ol, dl {
   list-style-type: none;
 }
 
-input, input:focus {
+textarea, textarea:focus , input, input:focus {
   background-color: #ffffff;
   border: 0px;
   outline: none;

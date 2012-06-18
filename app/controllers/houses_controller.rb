@@ -9,12 +9,13 @@ class HousesController < ApplicationController
     head :not_found and return if @house.nil?
 
     @house_reports_gmap_json = @house.reports.map {|report| report.location}.to_gmaps4rails
+    @post = Post.new
 
-    if @house.posts.exists?
-      @post = @house.posts.first
-      @post_comment = Post.new
-      @post_comment = @post.id
-    end
+    #if @house.posts.exists?
+    #  @post = @house.posts.first
+    #  @post_comment = Post.new
+    #  @post_comment = @post.id
+    #end
 
     @neighbors = House.joins(:location).where(:locations => {:neighborhood_id => @house.neighborhood.id})
   end

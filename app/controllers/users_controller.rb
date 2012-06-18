@@ -53,7 +53,8 @@ class UsersController < ApplicationController
     # delete the nested attributes
     user_attributes.delete :house_attributes
     house_attributes.delete :location
-
+    
+    @user.profile_photo = params[:user][:profile_photo]
     successful = @user.update_attributes(user_attributes)
 
     if successful

@@ -10,71 +10,20 @@
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
     #container
-      #home_nav_bar
-        .row
-          %ul
-            = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
-            %li.main_nav_button.span2.offset4
-              %h1= link_to "LEARN", root_path
-              %h3 About dengue
-            %li.main_nav_button.span1.offset1
-              %h1= link_to "PLAY", root_path
-              %h3 &nbsp;&nbsp;How?
-            %li.main_nav_button.span2.offset1
-              %h1= link_to "WIN", root_path
-              %h3 What?  
-            %li.span3
-              = render "layouts/login"
+      = render "layouts/home_nav"
       
       -if !@current_user.nil?
-        .row
-          %ul#dashboard_bar
-            %li.span2.offset4
-              = image_tag("http://placehold.it/32x32")
-              Feed
-            %li.span2
-              = image_tag("http://placehold.it/32x32")
-              Report
-            %li.span2.spacer
-              = image_tag("http://placehold.it/32x32")
-              Notifications
-            %li.span2.spacer
-              = image_tag("http://placehold.it/32x32")
-              Leaderboard
-            %li.span2
-              = image_tag("http://placehold.it/32x32")
-              Edit
-            %li.span2
-              = image_tag("http://placehold.it/32x32")
-              Redeem
-              
-        #action_bar  
-          .row
-            .span6.offset1         
-              .action_active
-                -#= image_tag('icons/neighborhood.png')
-                = image_tag("http://placehold.it/160x160")
-              .action_inactive
-                -#= image_tag('icons/home.png')
-                = image_tag("http://placehold.it/96x96")
-              .action_inactive
-                -#= image_tag('icons/user_32.png')
-                = image_tag("http://placehold.it/96x96")
-            .span2
-              %h2.action_data 23941 points
-            .span3
-              #action_picture
-                = image_tag("http://placehold.it/160x160")
-            .span4
-              #action_map
-                = image_tag("http://placehold.it/220x160")
-
+        = render "layouts/dashboard"
+        = render "layouts/action_bar"    
       #white_spacer
+      
       - if !current_page?(root_url)
         .push_down
-      = yield
-  
-  #footer
-    %span F.A.Q   |   Contact   |   About
-    %span 2012 © Regents of the University of California | Created by the Social Apps Labs
+      
+      #content
+        = yield
+    
+      #footer
+        %span F.A.Q   |   Contact   |   About
+        %span 2012 © Regents of the University of California | Created by the Social Apps Labs
 
