@@ -4,6 +4,48 @@
 
 @import "variables";
 
+
+#user_right_panel {
+  height: 1000px;
+  background: $light-gray;
+
+}
+#user_recent_activity {
+  ul#user_activity_list {
+    margin-top: 5px;
+    li.user_activity_item {
+      background: white;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: 2px solid #f0f0f0;
+      .user_activity_thumb {
+        width: 64px;
+      }
+      .user_activity_options {
+        margin-left: -30px;
+        float: right;
+      }
+      .user_activity_headline {
+      }
+      .user_activity_location {
+            text-align: right;
+      }  
+      .user_activity_balloon {
+          float: left;
+        
+      }
+
+      .user_activity_icons {
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+      }
+      
+    }
+  }
+}
+
+//OLD BELOW HERE
 .user_form {
   width: $max-width;
   padding-left: 50px;
