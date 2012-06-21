@@ -1,21 +1,21 @@
 #dashboard_bar
-  .row
+  .offset4
     %ul
-      %li.span2.offset4
+      %li
+        = image_tag("icons/profile_icon.png")
+        = link_to 'My Profile', user_path(@current_user)
+      %li
+        = image_tag("icons/house_icon.png")
+        = link_to 'My House', house_path(@current_user.house)
+      %li
+        = image_tag("icons/neighborhood_icon.png")
+        = link_to 'My Neighborhood', neighborhood_path(@current_user.neighborhood)
+      %li
+        = image_tag("icons/make_report_icon.png")
+        Make a Report
+      %li
         = image_tag("http://placehold.it/32x32")
-        Feed
-      %li.span2
+        = link_to 'Account Settings', edit_user_path(@current_user)
+      %li
         = image_tag("http://placehold.it/32x32")
-        Report
-      %li.span2.spacer
-        = image_tag("http://placehold.it/32x32")
-        Notifications
-      %li.span2.spacer
-        = image_tag("http://placehold.it/32x32")
-        Leaderboard
-      %li.span2
-        = image_tag("http://placehold.it/32x32")
-        Edit
-      %li.span2
-        = image_tag("http://placehold.it/32x32")
-        Redeem
+        = link_to "Logout", session_path, :method => :delete

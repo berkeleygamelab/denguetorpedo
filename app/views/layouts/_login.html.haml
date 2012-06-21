@@ -13,14 +13,9 @@
 - else
   #logged_in
     .row
-      %h3.span4 
+      %h3.span4
         Welcome! #{@current_user.username}
     .row
-      %ul
-        %li.span3 
-          = link_to "Account Settings", edit_user_path(@current_user.id)
-        %li.span1 
-          = link_to "Logout", session_path, :method => :delete
-    .row
-      #dashboard_search.span3
-        %input{:type => 'text', :placeholder => "Search by neighborhood, city, country"}
+      #dashboard_search
+        .span4
+          %input{:type => 'text', :placeholder => "Search by neighborhood, city, country"}

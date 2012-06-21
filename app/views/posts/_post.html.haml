@@ -1,0 +1,15 @@
+.post_feed
+  .row
+    .span1
+      .post_feed_profile_photo
+        = link_to image_tag(post.user.profile_photo.url(:small)), user_path(post.user)
+    .span9
+      .row
+        .post_feed_title
+          %h3= post.title
+      .row
+        .span10
+          .post_feed_content
+            = post.content
+      
+      

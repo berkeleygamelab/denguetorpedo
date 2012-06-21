@@ -8,18 +8,16 @@ class House < ActiveRecord::Base
   has_many :eliminated_reports, :through => :members
   belongs_to :location
 
-  validates :location_id, :presence => true
-
-  def neighborhood
-    location.neighborhood
-  end
-
   accepts_nested_attributes_for :location, :allow_destroy => true
   attr_accessible :location_id, :location_attributes
 
   validates :location_id, :presence => true
   validates :location_id, :uniqueness => true
 
+  def neighborhood
+    location.neighborhood
+  end
+  
   def points
     members.sum(:points)
   end
