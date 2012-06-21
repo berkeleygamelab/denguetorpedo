@@ -20,10 +20,15 @@
       - if !current_page?(root_url)
         .push_down
       
-      #content
-        = yield
-    
-      #footer
-        %span F.A.Q   |   Contact   |   About
-        %span 2012 © Regents of the University of California | Created by the Social Apps Labs
+
+      = yield
+  
+  #footer
+    %span 
+      =link_to "F.A.Q", faq_path 
+      |     
+      =link_to "Contact", contact_path 
+      |  
+      =link_to "About", about_path
+    %span 2012 © Regents of the University of California | Created by the Social Apps Labs
 

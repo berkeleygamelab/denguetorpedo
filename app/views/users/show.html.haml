@@ -1,0 +1,47 @@
+#content  
+  .row
+    #user_recent_activity.span11.offset1
+      .row
+        %h3.span11
+          Your Recent Activity
+      .row
+        .span8          
+          -# add filter functionality
+          =link_to 'All', '#'
+          |
+          =link_to 'Reports', '#'
+          |
+          =link_to 'Blog', '#'
+      .row
+        %ul#user_activity_list.span11
+          - 6.times do
+            %li.user_activity_item
+              .row
+                .user_activity_thumb.span2
+                  = image_tag('http://placehold.it/64x64')
+                .user_activity_thumb.span2
+                  = image_tag('http://placehold.it/64x64')
+                .span7
+                  .row
+                    .user_activity_headline.span2
+                      %h4 Made a Report
+                  
+                    .span5
+                      .row
+                        .span3.user_activity_location
+                          in Saratoga, CA
+                        .span2.user_activity_balloon
+                          [A]
+                    
+                  .row
+                    .user_activity_content.span7
+                      Lorem ipsum dolor sit amet consectur adpliscing elit ped do sid barm ipla 
+                      fara poti incidunt ut labore et dolore dolo mada 
+                .user_activity_options.span2
+                  1 Day Ago
+                  .user_activity_icons
+                    [B] [C]
+    #user_right_panel.span4
+      Coupon Panel
+          
+        
