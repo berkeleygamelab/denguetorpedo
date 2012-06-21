@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   # associations
   belongs_to :user
   has_one :feed, :as => :target
+  belongs_to :wall, :polymorphic => true
 
   # validations
   validates :user_id, :presence => true

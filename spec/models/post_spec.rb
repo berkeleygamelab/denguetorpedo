@@ -58,4 +58,34 @@ describe Post do
     p = Post.create :content => "sfsdf", :user_id => 1
     p.valid?.should be_true
   end
+
+  it "can belong to a wall" do
+    u1 = User.create!(:username => "LukeSkywalker", :password => "asdf123", :email => "foo1@foo.com")
+    u2 = User.create!(:username => "YodaYoda", :password => "asdf123", :email => "foo2@foo.com")
+    l1 = Location.find_or_create("2521 Regent St. Berkeley, CA")
+    l2 = Location.find_or_create("1628 Spruce St. Berkeley, CA")
+    h1 = House.create!(:name => "Tatooine", :location_id => l1.id)
+    h2 = House.create!(:name => "Dagoba", :location_id => l2.id)
+    h1.members << u1
+    h2.members << u2
+
+    p1 = Post.create!(:title => "baaa", :content => "I'm a cow") do |p|
+      p.user = u1
+      p.wall = h1
+    end
+    p2 = Post.create!(:title => "meow", :content => "I'm a cat") do |p|
+      p.user = u2
+      p.wall = h2
+    end
+    p3 = Post.create!(:title => ":)", :content => "I'm a human") do |p|
+      p.user = u1
+      p.wall = h2
+    end
+
+    h1.posts.count.should == 1
+    h2.posts.count.should == 2
+    h1.posts.should include(p1)
+    h2.posts.should include(p2)
+    h2.posts.should include(p3)
+  end
 end

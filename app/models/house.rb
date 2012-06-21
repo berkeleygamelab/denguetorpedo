@@ -2,7 +2,7 @@ class House < ActiveRecord::Base
   attr_accessible :name
 
   has_many :members, :class_name => "User"
-  has_many :posts, :through => :members
+  has_many :posts, :as => :wall
   has_many :created_reports, :through => :members
   has_many :claimed_reports, :through => :members
   has_many :eliminated_reports, :through => :members

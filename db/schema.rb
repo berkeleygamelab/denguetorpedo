@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605074150) do
+ActiveRecord::Schema.define(:version => 20120621064508) do
 
   create_table "feeds", :force => true do |t|
     t.string   "target_type"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(:version => 20120605074150) do
     t.integer  "rgt"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "wall_id"
+    t.string   "wall_type"
   end
 
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
