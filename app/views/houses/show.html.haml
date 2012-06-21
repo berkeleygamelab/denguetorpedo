@@ -28,21 +28,18 @@
               = link_to image_tag( member.profile_photo.url(:small)), user_path(member)
             .row
               = link_to member.username, user_path(member)
+              
     .row
       .span10
         = render :partial => "/posts/new"
-    
+        
     .row
       .span10
-        #house_post_list
-        #ul
-        - for post in @house.posts
-          %li
-            = link_to post, :remote => true do
-              %figure.image_placeholder.event_photo  
-  
-  
-  
+        %h3 What's happening?
+        %ul
+          - for post in @house.posts
+            %li= render :partial => "/posts/post", :locals => {:post => post}
+    
   .span5
     .row
       %h3.span5 Reports nearby this house:
