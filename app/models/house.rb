@@ -1,4 +1,9 @@
 class House < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :search, :against => :name,
+    using: {tsearch: {dictionary: 'english'}},
+    associated_against: {location: :formatted_address}
+
   attr_accessible :name
 
   has_many :members, :class_name => "User"

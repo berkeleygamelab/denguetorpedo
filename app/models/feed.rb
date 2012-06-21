@@ -1,15 +1,20 @@
 class Feed < ActiveRecord::Base
-  attr_accessible :feed_type, :target_id, :target_type, :user_id
+  # associations
   belongs_to :target, :polymorphic => true
   belongs_to :user
 
+  # validations
   validates :target_id, :uniqueness => { :scope => :feed_type_cd }
 
   as_enum :feed_type, [:reported, :claimed, :eliminated, :post]
-  
+
   def self.create_from_object(target, user_id, type)
-    feed = Feed.new(:user_id => user_id, :feed_type => type)
-    feed.target = target
-    feed.save! ? feed : false
+    feed = Feed.create do |feed|
+      feed.user_id = user_id
+      feed.target = target
+      feed.feed_type = type
+    end
+
+    return feed
   end
 end

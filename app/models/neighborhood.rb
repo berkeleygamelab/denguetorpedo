@@ -1,4 +1,9 @@
 class Neighborhood < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :search, :against => :name,
+    using: {tsearch: {dictionary: 'english'}},
+    associated_against: {locations: :formatted_address}
+
   attr_accessible :name
 
   has_many :locations

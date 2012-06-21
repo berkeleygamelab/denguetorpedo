@@ -2,10 +2,19 @@ require 'active_support/core_ext'
 
 class Location < ActiveRecord::Base
   attr_accessible
+
+  include PgSearch
+  pg_search_scope :search, :against => :formatted_address,
+    using: {tsearch: {dictionary: 'english'}}
+
+  # gmap4rails
   acts_as_gmappable :callback => :geocode_results, :validation => true
+
+  # validations
   validates :latitude, :uniqueness => { :scope => :longitude }
   validates :neighborhood_id, :presence => true
 
+  # assocations
   has_one :house
   belongs_to :neighborhood
   has_many :reports
