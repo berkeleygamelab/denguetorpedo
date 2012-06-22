@@ -13,6 +13,6 @@ Given /^I am logged in as "([^\"]*)" with password "([^\"]*)"$/ do |username, pa
   visit root_url
   fill_in "username", :with => username
   fill_in "password", :with => password
-  click_button "Login"
+  click_button "Log In"
 end
 

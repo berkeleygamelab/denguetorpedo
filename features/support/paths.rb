@@ -20,6 +20,8 @@ module NavigationHelpers
       user_path(User.find_by_username($1))
     when /^(.*)'s edit user page$/i
       edit_user_path(User.find_by_username($1).id)
+    when /^the registration failure page$/i
+      '/users'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
