@@ -22,7 +22,7 @@
         .span11.offset1    
           .user_profile_picture
             -#= image_tag('icons/neighborhood.png')
-            =link_to image_tag("darthvader.jpg"), edit_user_path(@current_user)
+            =link_to image_tag("darthvader.jpg"), '#'
           .user_house_picture
             -#= image_tag('icons/home.png')
             =link_to image_tag("tiefighter.jpg"), house_path(@house)
@@ -55,7 +55,7 @@
             = render :partial => "users/resolved_report", :object => report
       .row
         %ul#user_activity_list.span11
-          - 6.times do
+          - 3.times do
             %li.user_activity_item
               .row
                 .user_activity_thumb.span2
