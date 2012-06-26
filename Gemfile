@@ -53,8 +53,12 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
-  gem 'factory_girl_rails'
-  gem 'capybara'
+  gem 'cucumber-rails'
+end
+
+group :test, :development do
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
+  gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'launchy'          # a useful debugging aid for user stories
 end
