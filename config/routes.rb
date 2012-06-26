@@ -1,7 +1,7 @@
 Dengue::Application.routes.draw do
   
   get "dashboard/index"
-
+  match '/reports' => 'reports#index'
   match "/home/:id" => "home#index", :as => "Home"
   match "/faq" => 'home#faq'
   match '/contact' => 'home#contact'
