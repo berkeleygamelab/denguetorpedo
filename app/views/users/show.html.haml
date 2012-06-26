@@ -1,4 +1,36 @@
 #content  
+  #user_top_bar 
+
+    #user_top_text
+      .row
+        .span3.offset4
+          %h1.user_name 
+            = @user.username            
+        .span2
+          %h1.user_points 
+            23941 
+            %br points 
+      .row
+        .user_force_position.span2.offset4
+          %h3.user_house 
+            =link_to @house.name, house_path(@house)
+        .span2
+          %h3.user_neighborhood 
+            =link_to @neighborhood.name, neighborhood_path(@neighborhood)
+    .row
+      #user_top_pictures
+        .span11.offset1    
+          .user_profile_picture
+            -#= image_tag('icons/neighborhood.png')
+            =link_to image_tag("darthvader.jpg"), edit_user_path(@current_user)
+          .user_house_picture
+            -#= image_tag('icons/home.png')
+            =link_to image_tag("tiefighter.jpg"), house_path(@house)
+          .user_neighborhood_picture
+            -#= image_tag('icons/user_32.png')
+            =link_to image_tag("deathstar.jpg"), neighborhood_path(@neighborhood)
+      #user_right_panel.span4.offset12
+        Coupon Panel
   .row
     #user_recent_activity.span11.offset1
       .row
@@ -13,25 +45,33 @@
           |
           =link_to 'Blog', '#'
       .row
+        #user_reports
+        - for report in @user.reports
+          - if report.status == :reported
+            = render :partial => "users/open_report", :object => report
+          - if report.status == :claimed
+            = render :partial => "users/claimed_report", :object => report
+          - if report.status == :eliminated
+            = render :partial => "users/resolved_report", :object => report
+      .row
         %ul#user_activity_list.span11
           - 6.times do
             %li.user_activity_item
               .row
                 .user_activity_thumb.span2
-                  = image_tag('http://placehold.it/64x64')
-                .user_activity_thumb.span2
-                  = image_tag('http://placehold.it/64x64')
+                  = image_tag('http://placehold.it/80x80')
+
                 .span7
                   .row
                     .user_activity_headline.span2
-                      %h4 Made a Report
+                      %h4 Blog Post
                   
                     .span5
                       .row
                         .span3.user_activity_location
                           in Saratoga, CA
                         .span2.user_activity_balloon
-                          [A]
+
                     
                   .row
                     .user_activity_content.span7
@@ -40,8 +80,11 @@
                 .user_activity_options.span2
                   1 Day Ago
                   .user_activity_icons
-                    [B] [C]
-    #user_right_panel.span4
-      Coupon Panel
+                    =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+                    =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+                    
+                    
+      
+
           
         

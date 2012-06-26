@@ -4,19 +4,37 @@
 .row
   #neighborhood_stats
     .span2.offset1
-      No. 1
+      #rank_box
+        %b No. 1
     .span3
-      1700REPORTS
+      %b 1700
+      %br total reports made
     .span2
-      493
+      .row
+        #neighborhood_open_report_button.span1 
+        .span1
+          %b 493
+          %br open
     .span2
-      234
+      .row
+        #neighborhood_claimed_report_button.span1 
+        .span1
+          %b 290
+          %br claimed
     .span2
-      1003
+      .row
+        #neighborhood_resolved_report_button.span1 
+        .span1
+          %b 1003
+          %br eliminated
     .span2
-      14
+      .house_count
+        %b 14
+        %br houses
     .span2
-      53
+      .participant_count
+        %b 53
+        %br participants
 .row
   .span11.offset1
     %ul#neighborhood_house_list

@@ -8,7 +8,7 @@ giving.jpg: giving-d9a6ac0b90a8463648aa6fcf95edd4cc.jpg
 giving_scaled.jpg: giving_scaled-e90df497cdd646c956821ffea69489cd.jpg
 home_images/house_photo_thumb.jpg: home_images/house_photo_thumb-fd05a15d907136b55c818be7583e10bd.jpg
 home_images/login_bg.png: home_images/login_bg-6a784eb228ccd89d30254a97f80d28ec.png
-home_images/logo.png: home_images/logo-998f045ce807a22a3a6299cb3c36b9b0.png
+home_images/logo.png: home_images/logo-f9229c20d591e3e821e75235d3d0c0ad.png
 home_images/nav_bar_bg.png: home_images/nav_bar_bg-83a544cb7c5e03be1fa8600ed1a72b61.png
 home_images/neighborhood1.png: home_images/neighborhood1-b7138bbecc55cb5a6724ed23e8c9258b.png
 home_images/neighborhood2.png: home_images/neighborhood2-b98db38a36cb420dffde8f038af99400.png
@@ -23,11 +23,22 @@ house_images/report_claimed.png: house_images/report_claimed-110aec13870df41d420
 house_images/report_open.png: house_images/report_open-929da26c5a516cce5654650ba756b49b.png
 house_images/report_resolved.png: house_images/report_resolved-866c329c819d57fde623638b39ee29f7.png
 icons/coupon.png: icons/coupon-aa9b8b9b3c10509041c1189f7eda3d6a.png
+icons/coupon_icon.png: icons/coupon_icon-aa9b8b9b3c10509041c1189f7eda3d6a.png
 icons/home.png: icons/home-b58a9142728044b2bf0b69a2cec8d138.png
+icons/house_icon.png: icons/house_icon-b58a9142728044b2bf0b69a2cec8d138.png
+icons/make_report_icon.png: icons/make_report_icon-74c54acbcbed7bc4796f063d6031bf00.png
 icons/makereport.png: icons/makereport-74c54acbcbed7bc4796f063d6031bf00.png
 icons/neighborhood.png: icons/neighborhood-e864a1781bbc988faec5d77d61f67907.png
+icons/neighborhood_icon.png: icons/neighborhood_icon-d7b4e8b47323ee58346572853394d888.png
 icons/notification.png: icons/notification-640224e5a1f57539bd5a2ecf1511e6fc.png
+icons/notification_icon.png: icons/notification_icon-640224e5a1f57539bd5a2ecf1511e6fc.png
+icons/profile_icon.png: icons/profile_icon-34a546af732e45161ce98e781db5135f.png
+icons/reports icon/delete2.png: icons/reports icon/delete2-bc288dc791638d102ce415d46b26ce4a.png
+icons/reports icon/edit.png: icons/reports icon/edit-cfa65e972a6d6aaef117891b94b90ec3.png
+icons/reports icon/emptystar.png: icons/reports icon/emptystar-609c537cfe530d0af03ddba657fc7e0c.png
+icons/reports icon/star.png: icons/reports icon/star-21e9122f8f618206c9bae40784589dd5.png
 icons/reports.png: icons/reports-d732eed1f7c88f3fd09d49c16943cee9.png
+icons/reports_icon.png: icons/reports_icon-d732eed1f7c88f3fd09d49c16943cee9.png
 icons/user_32.png: icons/user_32-34a546af732e45161ce98e781db5135f.png
 kids_scaled.jpg: kids_scaled-cf0bc46e4c2b2d716595b9948519dbb6.jpg
 loading.gif: loading-f4f3bf7283eaff292efbd1812a2ff134.gif
@@ -48,7 +59,7 @@ neighborhood_default.png: neighborhood_default-d8128f7a267a4fd7b751752bfbc1afa7.
 non_home_nav/long_logo.png: non_home_nav/long_logo-365c01548c930bfa93a15f83b5dd5b02.png
 non_home_nav/nav_bar_bg_no_orange.png: non_home_nav/nav_bar_bg_no_orange-823a07aaf71beee0ae817c55ea9fde65.png
 non_home_nav/nav_bar_bg_no_orange.psd: non_home_nav/nav_bar_bg_no_orange-3d343c3ce5cfda1538ff053c727d9783.psd
-non_home_nav/short_logo.png: non_home_nav/short_logo-e7b3b45c2d46cfc86d50cbfed4e0c691.png
+non_home_nav/short_logo.png: non_home_nav/short_logo-36661d4ad4135c2e4b2b0b46114d3346.png
 orange_slider_bg.jpg: orange_slider_bg-85c00e37a58672e8c9bb8c761eb069aa.jpg
 rio.jpg: rio-069295450bb7c9ccb7eefcc973a3212c.jpg
 rio1.jpg: rio1-16ae71595b683953e2f07cc8551d3738.jpg
@@ -58,7 +69,7 @@ saopaulo.jpg: saopaulo-ab7251ff6e78e0bb806681b8bc917633.jpg
 sp_scaled.jpg: sp_scaled-9c80ca26425861a235fdb80571afd1cf.jpg
 steiner.jpg: steiner-208e576093539fb22166ef7a21714c7e.jpg
 workshop.jpg: workshop-2876b3a8666b551a3cc265eb171c693e.jpg
-application.js: application-6b4ed88cdb302347b0ff31c6168ea4fb.js
-application.css: application-9c6e5e6d8c10f5499d98c8687b738198.css
+application.js: application-f22acd8f3c379e61fba0c9dba0cf7e8c.js
+application.css: application-496fc65337296aa81c36b10898730685.css
 glyphicons-halflings-white.png: glyphicons-halflings-white-13553a5bf21ae3cc374006592488ec64.png
 glyphicons-halflings.png: glyphicons-halflings-f6675c325532ec11a984d58e172b8e2a.png

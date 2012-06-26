@@ -1,0 +1,41 @@
+
+    
+    
+    
+.user_report.user_resolved_report
+  .row
+    .span8
+      %h4== Report #{resolved_report.id}: #{resolved_report.complete_address}
+    .span2.user_report_time
+      = resolved_report.strftime_updated_at
+      
+  .row
+    .span2.user_before_photo
+      =image_tag 'http://placehold.it/100x100'
+    .span2.user_after_photo
+      =image_tag 'http://placehold.it/100x100'
+    .span6
+      .row
+        .user_report_content.span6
+          %p
+            "
+            = resolved_report.report            
+            "
+      .row.user_report_people
+        Reporter:
+        %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}
+        %br
+        Eliminated by:
+        %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
+    .span1.user_resolved_report.status
+      Resolved
+  .row
+    .span2.offset9
+      .user_report_options
+        =link_to (image_tag 'icons/reports icon/star.png', :id=>'user_report_favorite'), '#'
+        =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+
+  
+  
+
+		
