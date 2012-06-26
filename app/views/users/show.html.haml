@@ -1,4 +1,35 @@
 #content  
+  #user_top_bar 
+    
+    #user_top_text
+      .row
+        .span3.offset4
+          %h1.user_name Username             
+        .span2
+          %h1.user_points 
+            23941 
+            %br points 
+      .row
+        .user_force_position.span2.offset4
+          %h3.user_house 
+            =link_to 'House', '#'
+        .span2
+          %h3.user_neighborhood 
+            =link_to 'Neighborhood', '#'
+    .row
+      #user_top_pictures
+        .span11.offset1         
+          .user_profile_picture
+            -#= image_tag('icons/neighborhood.png')
+            = image_tag("http://placehold.it/160x160")
+          .user_house_picture
+            -#= image_tag('icons/home.png')
+            = image_tag("http://placehold.it/96x96")
+          .user_neighborhood_picture
+            -#= image_tag('icons/user_32.png')
+            = image_tag("http://placehold.it/96x96")
+      #user_right_panel.span4.offset12
+        Coupon Panel
   .row
     #user_recent_activity.span11.offset1
       .row
@@ -12,6 +43,16 @@
           =link_to 'Reports', '#'
           |
           =link_to 'Blog', '#'
+      .row
+        #user_reports
+        - for report in @house.reports
+          .row
+          - if report.status == :reported
+            = render :partial => "users/open_report", :object => report
+          - if report.status == :claimed
+            = render :partial => "users/claimed_report", :object => report
+          - if report.status == :eliminated
+            = render :partial => "users/resolved_report", :object => report
       .row
         %ul#user_activity_list.span11
           - 6.times do
@@ -41,7 +82,9 @@
                   1 Day Ago
                   .user_activity_icons
                     [B] [C]
-    #user_right_panel.span4
-      Coupon Panel
+                    
+                    
+      
+
           
         

@@ -50,46 +50,7 @@ ul#dashboard_bar {
   }
 }
 
-#action_bar {
-  
-  margin-left: 11px;
-  margin-top: 10px;
-  list-style-type: none;
-  
-  .action_active {
-    margin-top: 10px;
-    display: inline;
-    img {
-    //width: 128px;
-    }
-  }
-  .action_inactive {
-    
-    display: inline;
-    margin-right: 11;
-    img {
-      padding-top: 32px;
-     //width: 96px;
-    }
-  }
-  .action_data {
-    text-align: center;
-    color: orange;
-    margin-top: 40px;
-  }
-  #action_picture {
 
-  }
-}
-
-.main_nav_button { 
-  text-align: center;
-  margin-top: 10px;
-  h3 {
-    color: #ffffff;
-    margin-top: -5px;
-  }
-}
 
 #footer {
   padding: 10px;

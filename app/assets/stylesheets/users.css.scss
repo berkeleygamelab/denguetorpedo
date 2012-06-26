@@ -6,11 +6,162 @@
 
 
 #user_right_panel {
+  position: absolute;
   height: 1000px;
   background: $light-gray;
 
 }
+#user_reports {
+  margin-top: 10px;
+}
+    .user_report_time {
+      text-align: right;
+      margin-left: 50px;
+    }
+
+    .user_report {
+      background-color: white;
+      border-style: solid;
+      border-width: 2px;
+      padding: 10px;
+      margin: 0px 0px 10px 10px;
+    }
+    .user_before_photo, .user_after_photo {
+      margin: 10px 0px 0px 10px;
+      width: 100px;
+      height: 100px;
+    }
+
+    .user_report_content {
+      margin-top: 10px;
+
+    }
+
+    .user_report_status {
+        margin-top: 10px;
+       padding-top: 5px;
+       margin-left: 50px;
+       width: 70px;
+       height: 25px;
+       color: #FFFFFF;
+       text-align: center;
+       border-radius: 3px;
+     }
+    .user_report_people {
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+    #user_report_favorite {
+      
+
+    }
+    #user_report_delete {
+      
+    }
+    .user_report_options {
+      margin-top: -30px;
+      margin-right: 30px;
+      float: right;
+    }
+  
+  .user_claimed_report {
+     border-color: $blue;
+    .user_report_status {
+      background: $blue;
+    }
+  }
+  
+  .user_open_report {
+    border-color: $orange;
+    .status {
+      background: $orange;
+    }
+  }
+  
+  .user_resolved_report {
+    border-color: $light-gray;
+    .status {
+      background: $light-gray;
+    }
+  }
+
+
+#user_top_bar {
+  
+
+  list-style-type: none;
+  #user_top_pictures {
+
+      .user_profile_picture{
+      margin-top: 10px;
+      display: inline;
+      img {
+      //width: 128px;
+      }
+    }
+    .user_house_picture, .user_neighborhood_picture{
+      
+      display: inline;
+      margin-right: 11;
+      img {
+        padding-top: 15px;
+       //width: 96px;
+      }
+    }
+    .user_neighborhood_picture {
+
+
+
+    }
+  }
+
+  #user_top_text {
+    z-index: 1;
+    position: absolute;
+    h3 {
+      font-size: 12px;
+      line-height: 24px;
+    }
+    .user_force_position {
+
+      width: 90px;
+      margin-left: 242px;
+    }
+    .user_name {
+      
+      margin-left: -28px;
+    
+  }
+    .user_house {
+
+      font-size: 14px;
+      width: 100px;
+
+    }
+    .user_neighborhood {
+
+ 
+    }
+    .user_points {
+      text-align: center;
+      padding-top: 60px;
+    }
+  }
+  
+}
+
+.main_nav_button { 
+  text-align: center;
+  margin-top: 10px;
+  h3 {
+    color: #ffffff;
+    margin-top: -5px;
+  }
+}
+
+
 #user_recent_activity {
+  margin-top: 20px;
   ul#user_activity_list {
     margin-top: 5px;
     li.user_activity_item {
