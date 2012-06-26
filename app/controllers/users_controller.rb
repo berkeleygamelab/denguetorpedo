@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     
     @isPrivatePage = (@current_user != nil && @current_user == @user)
     @neighborhood = @user.neighborhood
+    
     @house = @user.house
     @reports = @user.reports
     

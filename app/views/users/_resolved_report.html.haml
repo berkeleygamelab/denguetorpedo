@@ -14,9 +14,9 @@
       =image_tag 'http://placehold.it/100x100'
     .span2.user_after_photo
       =image_tag 'http://placehold.it/100x100'
-    .span5
+    .span6
       .row
-        .user_report_content.span7
+        .user_report_content.span6
           %p
             "
             = resolved_report.report            
@@ -27,7 +27,7 @@
         %br
         Eliminated by:
         %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
-    .span1.user_report_status
+    .span1.user_resolved_report.status
       Resolved
   .row
     .span2.offset9

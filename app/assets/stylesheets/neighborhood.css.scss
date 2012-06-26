@@ -5,17 +5,32 @@
 @import "variables";
 
 @mixin neighborhood_status_button {
-  margin-bottom: -10px;
+
   width: 50px;
   height: 40px;
   border-radius: $button_border_radius;
-  margin-right: 50px;
+
+}
+
+#neighborhood_stats {
+  margin-top: 10px;
+  font-size: 14px;
+  b {
+    font-size: 15px;
+  }
+  .house_count {
+    text-align: center;
+  }
+  .participant_count {
+    text-align: center;
+  }
 }
 
 ul#neighborhood_house_list {
   list-style-type: none;
+  margin-top: 10px;
   li.neighborhood_house_photo_thumb {
-    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 0px;
     margin-right: 10px;   
     width: 220px;
@@ -29,7 +44,6 @@ ul#neighborhood_house_list {
     margin-bottom: 5px;
   }
   #neighborhood_coordinator, #neighborhood_health_agent {
-    margin-top: 10px;
     margin-bottom: 10px;
   }
   .neighborhood_profile_box {
@@ -62,19 +76,8 @@ ul#neighborhood_house_list {
   margin-left: 5px;
 }
 
-#neighborhood_status_bar {
-  ul {
-    margin-top: 30px;
-  }
-  li {
-    list-style-type: none;
-    display: inline-block;
-    vertical-align: bottom;
-    margin-right: 57px;
-  }
-  .button_text {
-    padding-left: 60px;
-  }
+
+
   #neighborhood_open_report_button {
     @include neighborhood_status_button;
     background-color: $orange;
@@ -89,21 +92,13 @@ ul#neighborhood_house_list {
   }
   #rank_box {
     background-color:$light-gray;
-    padding-top: 20px;
-    padding-bottom: 17px;
-    padding-right: 10px;
-    padding-left:10px;
-  }
-  #status_text {
     text-align: center;
-    margin-bottom: -10px;
+    padding: 10px 5px 10px 5px;
+    width: 80px;
   }
-}
+    
 
-#left_section {
-  float: left;
-  width: 650px;
-}
+ 
 
 .neighborhoods {
   #houses_button, #participants_button, #health_agents_button {
@@ -181,19 +176,6 @@ ul#neighborhood_house_list {
   margin-bottom: 5px;
   padding: 10px;
 
-  ul {
-    list-style-type: none;
-    li {
-      list-style-type: none;
-      display: inline-block;
-      float: left;
-      margin: 2.5px;
-      img {
-        width: 89px;
-        height: 89px;
-      }
-    }
-  }
 }
 
 #bottom_section {
