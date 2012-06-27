@@ -24,13 +24,13 @@
     .span1.user_report_status
       Open
   .row
-    .span2.offset9
-      .user_report_options
-        =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+    .user_report_options
+      =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+      -if @isPrivatePage
         =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
 
-  
-  
+
+
 
 
 

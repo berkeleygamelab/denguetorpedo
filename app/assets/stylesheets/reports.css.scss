@@ -5,12 +5,117 @@
 @import "variables";
 
 @mixin photo {
+
   float: left;
   margin: 5px;
   width: 100px;
   height: 100px;
   background-color: $light-gray;
 }
+#report_map,#report_sponsors {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  background: gray;
+  height: 400px;
+  margin-left: 20px;
+}
+
+
+#report_buttons {
+    
+  .active {
+    font-weight: bold;
+  }  
+  .reports_feed_button {
+      background: $red;
+  }
+  .reports_open_button {
+    background-color: $orange;
+  }
+  .reports_claimed_button {
+    background-color: $blue;
+  }
+  .reports_resolved_button {
+    background-color: gray;
+  }   
+  input{
+
+    height: 30px;
+    border: 0px;
+    color: gray;
+    background-color: #FFFFFF;
+    opacity: 1;
+    font-size: 13px;
+    margin-top: 2px;
+
+    &:focus {
+
+    }
+    
+  }
+  
+  input[type = "submit"] {      
+    color: black;
+
+    border: 2px solid $gray;
+    border-radius: $button_border_radius;
+    text-align: center;
+
+    height: 36px;
+    font-size: 13px;
+    padding: 8px 5px;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+  }
+    
+  form {
+  
+    }
+    
+ 
+  .reports_button_container {
+    padding: auto;
+
+    margin-left: 10px;
+    margin-right: 10px;
+    
+  }
+  
+}
+
+
+#report_stats {
+  font-size: 14px;
+  margin-top: 10px;
+  
+  #rank_box {
+    background-color:$light-gray;
+    text-align: center;
+    padding: 10px 5px 10px 5px;
+    width: 80px;
+  }
+  
+}
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+// old below here ~~
 
 .report {
   width: auto;

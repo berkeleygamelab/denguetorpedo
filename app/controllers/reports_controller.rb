@@ -4,8 +4,12 @@ class ReportsController < ApplicationController
 
   def index
     @reports = @current_user.reports
+    @view = params[:view]
+    if @view.nil?
+      @view = 'recent'
+    end
   end
-  
+
   def new
     @report = @current_user.created_reports.new
     @report.location = Location.new

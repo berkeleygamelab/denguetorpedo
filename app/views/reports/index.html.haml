@@ -1,3 +1,83 @@
+.row
+  .span8.offset1
+    %h1 Your Dengue Score
+.row
+  #report_stats
+    .span2.offset1
+      #rank_box
+        %b No. 1
+    .span2
+      #point_box
+        %b 2390
+        %br Points earned
+    .span3
+      %b 1700
+      %br report contributions
+    .span9
+      .row#report_buttons
+        .span.reports_button_container
+          -if @view =='recent'
+            =button_to 'Recent Reports', {:action=>"index", :view=>'recent'}, :class=>'reports_feed_button active'
+          -else
+            =button_to 'Recent Reports', {:action=>"index", :view=>'recent'}, :class=>'reports_feed_button'
+          
+        .span.reports_button_container
+          -if @view == 'open'
+            =button_to 'Open a Report', {:action=>"index", :view=>'open'}, :class=>'reports_open_button active'
+          -else
+            =button_to 'Open a Report', {:action=>"index", :view=>'open'}, :class=>'reports_open_button'
+        .span.reports_button_container
+          -if @view =='claim'
+            =button_to 'Claim a Report', {:action=>"index", :view=>'claim'}, :class=>'reports_claimed_button active'
+          -else
+            =button_to 'Claim a Report', {:action=>"index", :view=>'claim'}, :class=>'reports_claimed_button'
+        .span.reports_button_container
+          -if @view =='eliminate'
+            =button_to 'Eliminate a Report', {:action=>"index", :view=>'eliminate'}, :class=>'reports_resolved_button active'
+          -else
+            =button_to 'Eliminate a Report', {:action=>"index", :view=>'eliminate'}, :class=>'reports_resolved_button'
+          
+-if @view == 'recent'
+  .row
+    .span9.offset1
+      #user_reports
+      - for report in @current_user.reports
+        - if report.status == :reported
+          = render :partial => "users/open_report", :object => report
+        - if report.status == :claimed
+          = render :partial => "users/claimed_report", :object => report
+        - if report.status == :eliminated
+          = render :partial => "users/resolved_report", :object => report
+    .span6
+      .row
+        #report_map Google Map
+      .row
+        #report_sponsors Local Sponsors
+      
+  
+      
+          
+-elsif @view == 'open'
+
+
+-elsif @view == 'claim'
+
+-elsif @view == 'eliminate'
+
+-else
+  Something went wrong!
+
+
+
+
+
+
+
+
+
+
+
+
 %h1 My Reportss
 - @reports.each do |report|
   - address = "http://maps.google.com/maps/api/staticmap?zoom=16&size=320x240&maptype=roadmap&markers=color:red|#{report.location.complete_address}&sensor=false"
