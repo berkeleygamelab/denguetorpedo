@@ -46,21 +46,13 @@
     background-color: #FFFFFF;
     opacity: 1;
     font-size: 13px;
-    margin-top: 2px;
-
-    &:focus {
-
-    }
-    
-  }
-  
+    margin-top: 2px;   
+  }  
   input[type = "submit"] {      
     color: black;
-
     border: 2px solid $gray;
     border-radius: $button_border_radius;
     text-align: center;
-
     height: 36px;
     font-size: 13px;
     padding: 8px 5px;
@@ -68,22 +60,13 @@
       cursor: pointer;
       text-decoration: underline;
     }
-
   }
-    
-  form {
-  
-    }
-    
- 
+
   .reports_button_container {
     padding: auto;
-
     margin-left: 10px;
-    margin-right: 10px;
-    
-  }
-  
+    margin-right: 10px;    
+  }  
 }
 
 

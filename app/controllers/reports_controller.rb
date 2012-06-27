@@ -4,10 +4,7 @@ class ReportsController < ApplicationController
 
   def index
     @reports = @current_user.reports
-    @view = params[:view]
-    if @view.nil?
-      @view = 'recent'
-    end
+    @view = params[:view] || 'recent'
   end
 
   def new

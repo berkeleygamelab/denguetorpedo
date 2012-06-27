@@ -16,28 +16,28 @@
     .span9
       .row#report_buttons
         .span.reports_button_container
-          -if @view =='recent'
-            =button_to 'Recent Reports', {:action=>"index", :view=>'recent'}, :class=>'reports_feed_button active'
-          -else
-            =button_to 'Recent Reports', {:action=>"index", :view=>'recent'}, :class=>'reports_feed_button'
+          - if @view =='recent'
+            = button_to 'Recent Reports', {:action=>"index", :view=>'recent'}, :class=>'reports_feed_button active'
+          - else
+            = button_to 'Recent Reports', {:action=>"index", :view=>'recent'}, :class=>'reports_feed_button'
           
         .span.reports_button_container
-          -if @view == 'open'
-            =button_to 'Open a Report', {:action=>"index", :view=>'open'}, :class=>'reports_open_button active'
-          -else
-            =button_to 'Open a Report', {:action=>"index", :view=>'open'}, :class=>'reports_open_button'
+          - if @view == 'open'
+            = button_to 'Open a Report', {:action=>"index", :view=>'open'}, :class=>'reports_open_button active'
+          - else
+            = button_to 'Open a Report', {:action=>"index", :view=>'open'}, :class=>'reports_open_button'
         .span.reports_button_container
-          -if @view =='claim'
-            =button_to 'Claim a Report', {:action=>"index", :view=>'claim'}, :class=>'reports_claimed_button active'
-          -else
-            =button_to 'Claim a Report', {:action=>"index", :view=>'claim'}, :class=>'reports_claimed_button'
+          - if @view =='claim'
+            = button_to 'Claim a Report', {:action=>"index", :view=>'claim'}, :class=>'reports_claimed_button active'
+          - else
+            = button_to 'Claim a Report', {:action=>"index", :view=>'claim'}, :class=>'reports_claimed_button'
         .span.reports_button_container
-          -if @view =='eliminate'
-            =button_to 'Eliminate a Report', {:action=>"index", :view=>'eliminate'}, :class=>'reports_resolved_button active'
-          -else
-            =button_to 'Eliminate a Report', {:action=>"index", :view=>'eliminate'}, :class=>'reports_resolved_button'
+          - if @view =='eliminate'
+            = button_to 'Eliminate a Report', {:action=>"index", :view=>'eliminate'}, :class=>'reports_resolved_button active'
+          - else
+            = button_to 'Eliminate a Report', {:action=>"index", :view=>'eliminate'}, :class=>'reports_resolved_button'
           
--if @view == 'recent'
+- if @view == 'recent'
   .row
     .span9.offset1
       #user_reports
@@ -57,14 +57,14 @@
   
       
           
--elsif @view == 'open'
+- elsif @view == 'open'
 
 
--elsif @view == 'claim'
+- elsif @view == 'claim'
 
--elsif @view == 'eliminate'
+- elsif @view == 'eliminate'
 
--else
+- else
   Something went wrong!
 
 
