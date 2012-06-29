@@ -4,7 +4,6 @@ class ReportsController < ApplicationController
 
   def index
     @reports = @current_user.reports
-    @view = params[:view] || 'recent'
   end
 
   def new
@@ -16,11 +15,13 @@ class ReportsController < ApplicationController
     loc = Location.find_or_create(params[:location])
     
     @report = @current_user.created_reports.build(params[:report])
-    @report.location_id = loc.id
+    if not loc.nil?
+      @report.location_id = loc.id
+    end
     if @report.save
       redirect_to user_reports_url, notice: "Report successfully created"
     else
-      render "new"
+      render :action=>"index", :view=>'open'
     end
   end
   
