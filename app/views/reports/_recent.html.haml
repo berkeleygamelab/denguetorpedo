@@ -1,0 +1,8 @@
+#user_reports
+  - for report in @current_user.reports
+    - if report.status == :reported
+      = render :partial => 'reports/open', :object => report
+    - if report.status == :claimed
+      = render :partial => 'reports/claimed', :object => report
+    - if report.status == :eliminated
+      = render :partial => 'reports/resolved', :object => report

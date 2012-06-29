@@ -1,23 +1,14 @@
-.header
-  .title REPORT A SITE
-  .sub virtual SMS
-.clearfloat
 
-= content_for :title, 'Add a Report'
-= form_for @report, :url => {:action => "create"} do |f|
-  = f.error_messages
-  
-  %fieldset
-    %ul
-      %li
-        = f.label :report
-        = f.text_area :report
-      = fields_for @report.location do |location_form|
-        = location_form.label :address
-        = location_form.text_field :address
-        %li
-          = location_form.label :neighborhood
-          = location_form.text_field :neighborhood
-
-  = f.submit "submit"
-
+#reports_open
+  = form_tag :action => "create", :multipart => true do
+    .row
+      
+      .span7
+        %h3 Enter a short description of your report:
+        = text_area_tag :report, nil, :placeholder=>'Report Description', :id=>'report_content'
+        %h3 Enter the address of your report location:
+        = text_field_tag :loc, nil, :placeholder=>'Report Location'
+        %h3 Upload your report image:
+        = file_field_tag :before_photo
+      
+    = submit_tag "submit"

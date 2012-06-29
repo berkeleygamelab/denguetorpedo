@@ -8,6 +8,7 @@ Dengue::Application.routes.draw do
   get "password_resets/new"
   post "reports/sms"
 
+
   resources :users do
     resources :reports, :except => [:show]
   end

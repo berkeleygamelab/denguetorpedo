@@ -1,5 +1,7 @@
+-#= gmaps4rails(@json)
 .row
   .span8.offset1
+    = flash[:notice]
     %h1 Your Dengue Score
 .row
   #report_stats
@@ -15,39 +17,32 @@
       %br report contributions
     .span9
       .row#report_buttons
-        .span.reports_button_container
-          - if params[:view] =='recent'
-            = button_to 'Recent Reports', {:action=>'index', :view=>'recent'}, :class=>'reports_feed_button active'
-          - else
-            = button_to 'Recent Reports', {:action=>'index', :view=>'recent'}, :class=>'reports_feed_button'
-          
-        .span.reports_button_container
-          - if params[:view] == 'open'
-            = button_to 'Open a Report', {:action=>'index', :view=>'open'}, :class=>'reports_open_button active'
-          - else
-            = button_to 'Open a Report', {:action=>'index', :view=>'open'}, :class=>'reports_open_button'
-        .span.reports_button_container
-          - if params[:view] =='claim'
-            = button_to 'Claim a Report', {:action=>'index', :view=>'claim'}, :class=>'reports_claimed_button active'
-          - else
-            = button_to 'Claim a Report', {:action=>'index', :view=>'claim'}, :class=>'reports_claimed_button'
-        .span.reports_button_container
-          - if params[:view] =='eliminate'
-            = button_to 'Eliminate a Report', {:action=>'index', :view=>'eliminate'}, :class=>'reports_resolved_button active'
-          - else
-            = button_to 'Eliminate a Report', {:action=>'index', :view=>'eliminate'}, :class=>'reports_resolved_button'
-          
+
+        - if params[:view] =='recent'
+          = link_to 'Recent Reports', {:action=>'index', :view=>'recent'}, :class=>'bttn reports_feed_button active'
+        - else
+          = link_to 'Recent Reports', {:action=>'index', :view=>'recent'}, :class=>'bttn reports_feed_button'
+        
+
+        - if params[:view] == 'open'
+          = link_to 'Open a Report', {:action=>'index', :view=>'open'}, :class=>'bttn reports_open_button active'
+        - else
+          = link_to 'Open a Report', {:action=>'index', :view=>'open'}, :class=>'bttn reports_open_button'
+
+        - if params[:view] =='claim'
+          = link_to 'Claim a Report', {:action=>'index', :view=>'claim'}, :class=>'bttn reports_claimed_button active'
+        - else
+          = link_to 'Claim a Report', {:action=>'index', :view=>'claim'}, :class=>'bttn reports_claimed_button'
+
+        - if params[:view] =='eliminate'
+          = link_to 'Eliminate a Report', {:action=>'index', :view=>'eliminate'}, :class=>'bttn reports_resolved_button active'
+        - else
+          = link_to 'Eliminate a Report', {:action=>'index', :view=>'eliminate'}, :class=>'bttn reports_resolved_button'
+        
 - if params[:view] == 'recent'
   .row
     .span9.offset1
-      #user_reports
-      - for report in @current_user.reports
-        - if report.status == :reported
-          = render :partial => 'users/open_report', :object => report
-        - if report.status == :claimed
-          = render :partial => 'users/claimed_report', :object => report
-        - if report.status == :eliminated
-          = render :partial => 'users/resolved_report', :object => report
+      = render :partial => 'reports/recent', :action=>'index'
     .span6
       .row
         #report_map Google Map
@@ -58,7 +53,12 @@
       
           
 - elsif params[:view] == 'open'
-  = render :partial => 'reports/new'
+  .row
+    .span9.offset1
+      = render :partial => 'reports/new', :action=>'new'
+    .span6
+      .row
+        #report_map Google Map
 
 - elsif params[:view] == 'claim'
 

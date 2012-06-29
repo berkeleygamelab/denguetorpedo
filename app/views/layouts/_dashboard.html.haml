@@ -12,7 +12,7 @@
         = link_to 'My Neighborhood', neighborhood_path(@current_user.neighborhood)
       %li
         = image_tag("icons/make_report_icon.png")
-        = link_to 'My Reports', {:action=>'index', :view=>'recent'}
+        = link_to 'My Reports', {:controller=> 'reports', :action=>'index', :view=>'recent'}
         = image_tag("http://placehold.it/32x32")
         = link_to 'Account Settings', edit_user_path(@current_user)
       %li
