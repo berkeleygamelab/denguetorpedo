@@ -2,13 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2.6'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-group :development, :test do
-  gem 'rspec-rails'
-end
-
 gem 'pg'
 
 gem 'thin'
@@ -55,6 +48,7 @@ group :test do
 end
 
 group :test, :development do
+  gem 'rspec-rails'
   gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
   gem 'database_cleaner' # to clear Cucumber's test database between runs
   gem 'capybara'         # lets Cucumber pretend to be a web browser
