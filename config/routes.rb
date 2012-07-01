@@ -12,6 +12,7 @@ Dengue::Application.routes.draw do
   resources :users do
     resources :reports, :except => [:show]
   end
+  
   resources :dashboard
   resources :reports
   resources :houses
