@@ -6,7 +6,6 @@ describe Feed do
     u1 = User.create!(:username => "LukeSkywalker", :password => "asdf123", :email => "foo1@foo.com")
     u2 = User.create!(:username => "DarthVader", :password => "asdf123", :email => "foo2@foo.com")
     l1 = Location.find_or_create("2521 Regent St. Berkeley, CA")
-    l1.id.should == 1
 
     r1 = Report.create_from_user("foo", :reporter => u1, :claimer => u1, :location => l1, :status => :claimed)
     Feed.count.should == 2
