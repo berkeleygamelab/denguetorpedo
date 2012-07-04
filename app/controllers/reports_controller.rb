@@ -44,8 +44,11 @@ class ReportsController < ApplicationController
         redirect_to :action=>'index', view: 'open'
         return
       end
-      if !params[:before_photo].nil? || params[:report] != ''
-        @report.before_photo = params[:before_photo]
+      if params[:before_photo].nil? || params[:before_photo] == ''
+          puts 'DIDNT SAVE FILE'
+      else
+          puts 'SAVING FILE'
+          @report.update_attributes(:before_photo => params[:before_photo])
       end
       if @report.save
         flash[:notice] = 'Report posted succesfully.'

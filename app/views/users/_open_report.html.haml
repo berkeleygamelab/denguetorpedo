@@ -8,7 +8,10 @@
       
   .row
     .span2.user_before_photo
-      =image_tag 'http://placehold.it/100x100'
+      - if open_report.before_photo.file?
+        = image_tag open_report.before_photo.url(:thumb)
+      - else
+        = image_tag 'http://placehold.it/100x100'
     .span7
       .row
         .user_report_content.span7
@@ -21,7 +24,7 @@
         %a.user==#{open_report.reporter.username unless open_report.reporter.nil?}
         %br
         =link_to 'Claim this report!', '#'
-    .span1.user_report_status
+    .span1.user_report_status.status
       Open
   .row
     .user_report_options

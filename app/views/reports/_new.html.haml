@@ -1,6 +1,6 @@
 
 #reports_open
-  = form_tag :action => "create", :multipart => true do
+  = form_tag( :url=>{:action => "create"}, :html=>{:multipart => true} ) do
     .row
       
       .span7
@@ -12,3 +12,6 @@
         = file_field_tag :before_photo
       
     = submit_tag "submit"
+    
+
+  

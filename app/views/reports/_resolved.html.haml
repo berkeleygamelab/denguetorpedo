@@ -4,7 +4,7 @@
     
 .rp_report.rp_resolved_report
   .row
-    .span8
+    .span6
       %h4== Report #{resolved.id}: #{resolved.complete_address}
     .span2.rp_report_time
       = resolved.strftime_updated_at
@@ -14,9 +14,9 @@
       =image_tag 'http://placehold.it/100x100'
     .span2.rp_after_photo
       =image_tag 'http://placehold.it/100x100'
-    .span5
+    .span4
       .row
-        .rp_report_content.span5
+        .rp_report_content.span4
           %p
             "
             = resolved.report            
