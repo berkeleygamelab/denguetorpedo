@@ -18,5 +18,9 @@ class HousesController < ApplicationController
     #end
 
     @neighbors = House.joins(:location).where(:locations => {:neighborhood_id => @house.neighborhood.id})
+    @highlightHouseItem = ""
+    if (@current_user != nil && @current_user.house_id == @house.id)
+      @highlightHouseItem = "nav_highlight"
+    end 
   end
 end

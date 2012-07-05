@@ -12,9 +12,15 @@
   ul {
     margin: -15px;
     float: left;
+    
     li {
+      height: 40px;
       display: inline;
       margin-right: 5px;
     }
   }
+}
+
+.nav_highlight {
+  background-color: #F5D1BA;
 }

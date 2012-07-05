@@ -2,20 +2,26 @@
   .offset4
     %ul
       %li
-        = image_tag("icons/profile_icon.png")
-        = link_to 'My Profile', user_path(@current_user)
+        .nav_item.span2(style="width: 110px;" class=@highlightProfileItem)
+          = image_tag("icons/profile_icon.png")
+          = link_to 'My Profile', user_path(@current_user)
       %li
-        = image_tag("icons/house_icon.png")
-        = link_to 'My House', house_path(@current_user.house)
+        .nav_item.span2(style="width: 110px;" class=@highlightHouseItem)
+          = image_tag("icons/house_icon.png")
+          = link_to 'My House', house_path(@current_user.house)
       %li
-        = image_tag("icons/neighborhood_icon.png")
-        = link_to 'My Neighborhood', neighborhood_path(@current_user.neighborhood)
+        .nav_item.span3(style="width: 160px;" class=@highlightNeighborhoodItem)
+          = image_tag("icons/neighborhood_icon.png")
+          = link_to 'My Neighborhood', neighborhood_path(@current_user.neighborhood)
       %li
-        = image_tag("icons/make_report_icon.png")
-        Make a Report
+        .nav_item.span2(style="width: 110px;" class=@highlightReportItem)
+          = image_tag("icons/make_report_icon.png")
+          My Report
       %li
-        = image_tag("http://placehold.it/32x32")
-        = link_to 'Account Settings', edit_user_path(@current_user)
+        .nav_item.span3(style="width: 160px;" class=@highlightAccountItem)
+          = image_tag("icons/account_setting_icon.png")
+          = link_to 'Account Settings', edit_user_path(@current_user)
       %li
-        = image_tag("http://placehold.it/32x32")
-        = link_to "Logout", session_path, :method => :delete
+        .nav_item.span2(style="width: 110px;")
+          = image_tag("icons/logout_icon.png")
+          = link_to "Logout", session_path, :method => :delete

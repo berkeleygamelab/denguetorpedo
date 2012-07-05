@@ -5,7 +5,7 @@
   .span10.offset1
     .row
       .span2
-        #house_photo.image_placeholder
+        = image_tag("default_images/house_default_image.png")
       #house_detail.span7
         %ul
           %li 
@@ -25,10 +25,13 @@
         - for member in @house.members.slice(0, 4)
           #house_members.span1
             .row
-              = link_to image_tag( member.profile_photo.url(:small)), user_path(member)
+              - if (member.profile_photo_file_name.nil?)
+                = link_to image_tag("default_images/profile_default_image.png"), user_path(member)
+              - else
+                = link_to image_tag(member.profile_photo.url(:small)), user_path(member)
             .row
               = link_to member.username, user_path(member)
-              
+                  
     .row
       .span10
         = render :partial => "/posts/new"

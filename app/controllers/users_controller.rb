@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     head :not_found and return if @user.nil?
     
     @isPrivatePage = (@current_user != nil && @current_user == @user)
+    @highlightProfileItem = ""
+    if @isPrivatePage
+      @highlightProfileItem = "nav_highlight"
+    end
     @neighborhood = @user.neighborhood
     
     @house = @user.house
@@ -42,6 +46,7 @@ class UsersController < ApplicationController
     @user = @current_user
     @user.house ||= House.new
     @user.house.location ||= Location.new
+    @highlightAccountItem = "nav_highlight"
   end
   
   def update
