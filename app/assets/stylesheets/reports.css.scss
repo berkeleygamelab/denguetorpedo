@@ -5,17 +5,17 @@
 @import "variables";
 
 @mixin photo {
-
   float: left;
   margin: 5px;
   width: 100px;
   height: 100px;
   background-color: $light-gray;
 }
+
 // OPEN/RESOLVED/CLAIMED PARTIALS
 .rp_report_time {
-    text-align: right;
-    float: right;
+  text-align: right;
+  float: right;
 }
 
 .rp_report {
@@ -33,30 +33,35 @@
 
 .rp_report_content {
   margin-top: 10px;
-
 }
 
 .rp_report_status {
   float: right;
-    margin-top: 10px;
-   padding-top: 5px;
-   width: 70px;
-   height: 25px;
-   color: #FFFFFF;
-   text-align: center;
-   border-radius: 3px;
- }
+  margin-top: 10px;
+  padding-top: 5px;
+  width: 70px;
+  height: 25px;
+  color: #FFFFFF;
+  text-align: center;
+  border-radius: 3px;
+}
+
 .rp_report_people {
   margin-left: 10px;
   margin-top: 10px;
+  .user {
+    color: #00CCCC;
+  }
 }
+
 #user_report_favorite {
   
-
 }
+
 #user_report_delete {
   
 }
+
 .rp_report_options {
   margin-top: -30px;
   float: right;
@@ -64,12 +69,15 @@
 
 .rp_claimed_report {
   border-color: $blue;
+  
   .status {
     background: $blue;
   }
 }
+
 .rp_open_report {
   border-color: $orange;
+  
   .status {
     background: $orange;
   }
@@ -77,6 +85,7 @@
 
 .rp_resolved_report {
   border-color: $light-gray;
+  
   .status {
     margin-top: 10px;
      padding-top: 5px;
@@ -92,7 +101,7 @@
 
 
 // MAIN REPORTS CSS
-#report_map,#report_sponsors {
+#report_map, #report_sponsors {
   margin-top: 10px;
   margin-bottom: 30px;
   background: gray;
@@ -106,10 +115,18 @@
   background: white;
   border: 4px solid $light-gray; 
   padding: 10px 20px;
-  input, #before_photo, #report_content{
+  
+  #report_content {
+    border: 2px solid $gray;
+    width: 520px;
+    height: 100px;
+  }
+  
+  #report_address {
     border: 2px solid $gray;
     width: 520px;
   }
+  
   input[type="submit"] {
     font-size: 14px;
     width: 100px;
@@ -119,28 +136,34 @@
     vertical-align: middle;
     padding: 8px;
   }
+  
   h3 {
     font-weight: normal;
     font-style: italic;
   }
 }
+
 #report_buttons {
     
   .active {
     font-weight: bold;
-  }  
+  }
+    
   .reports_feed_button {
       background: $red;
   }
+  
   .reports_open_button {
     background-color: $orange;
   }
+  
   .reports_claimed_button {
     background-color: $blue;
   }
   .reports_resolved_button {
     background-color: gray;
-  }   
+  }
+     
   input{
 
     height: 30px;
@@ -150,7 +173,8 @@
     opacity: 1;
     font-size: 13px;
     margin-top: 2px;   
-  }  
+  }
+    
   .bttn  {      
     color: black;
     border: 2px solid $gray;
@@ -163,13 +187,13 @@
       cursor: pointer;
       text-decoration: underline;
     }
+    
     &:mousedown {
       border-bottom: thick dotted #ff0000;
     }
   }
   
 }
-
 
 #report_stats {
   font-size: 14px;

@@ -2,7 +2,7 @@
 .row
   .span8.offset1
     = flash[:notice]
-    %h1 Your Dengue Score
+    %h1 My Dengue Reports
 .row
   #report_stats
     .span2.offset1
@@ -17,64 +17,22 @@
       %br report contributions
     .span9
       .row#report_buttons
+        = link_to 'Recent Reports', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
+        = link_to 'Open a Report', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
+        = link_to 'Claim a Report', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
+        = link_to 'Eliminate a Report', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
 
-        - if params[:view] =='recent'
-          = link_to 'Recent Reports', {:action=>'index', :view=>'recent'}, :class=>'bttn reports_feed_button active'
-        - else
-          = link_to 'Recent Reports', {:action=>'index', :view=>'recent'}, :class=>'bttn reports_feed_button'
-        
-
-        - if params[:view] == 'open'
-          = link_to 'Open a Report', {:action=>'index', :view=>'open'}, :class=>'bttn reports_open_button active'
-        - else
-          = link_to 'Open a Report', {:action=>'index', :view=>'open'}, :class=>'bttn reports_open_button'
-
-        - if params[:view] =='claim'
-          = link_to 'Claim a Report', {:action=>'index', :view=>'claim'}, :class=>'bttn reports_claimed_button active'
-        - else
-          = link_to 'Claim a Report', {:action=>'index', :view=>'claim'}, :class=>'bttn reports_claimed_button'
-
-        - if params[:view] =='eliminate'
-          = link_to 'Eliminate a Report', {:action=>'index', :view=>'eliminate'}, :class=>'bttn reports_resolved_button active'
-        - else
-          = link_to 'Eliminate a Report', {:action=>'index', :view=>'eliminate'}, :class=>'bttn reports_resolved_button'
-        
-- if params[:view] == 'recent'
   .row
     .span9.offset1
-      = render :partial => 'reports/recent', :action=>'index'
+      - if params[:view] == 'recent'
+        = render :partial => 'reports/recent', :action=>'index'
+      - elsif params[:view] == 'open'
+        = render :partial => 'reports/new'
+      - elsif params[:view] == 'claim'
+
+      - else params[:view] == 'eliminate'
     .span6
       .row
         #report_map Google Map
       .row
         #report_sponsors Local Sponsors
-      
-  
-      
-          
-- elsif params[:view] == 'open'
-  .row
-    .span9.offset1
-      = render :partial => 'reports/new', :action=>'new'
-    .span6
-      .row
-        #report_map Google Map
-
-- elsif params[:view] == 'claim'
-
-- elsif params[:view] == 'eliminate'
-
-- else
-  Something went wrong!
-
-
-
-
-
-
-
-
-
-
-
-

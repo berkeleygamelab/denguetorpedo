@@ -5,51 +5,62 @@ class ReportsController < ApplicationController
   def index
     #@json = User.all.to_gmaps4rails
     @reports = @current_user.reports
+  
+    @highlightReportItem = ""
+    if (@current_user != nil) 
+      @highlightReportItem = "nav_highlight"
+    end
+    
+    @reports_feed_button_active = ""
+    @reports_open_button_active = ""
+    @reports_claimed_button_active = ""
+    @reports_resolved_button_active = ""
+    
+    if params[:view].nil? 
+      params[:view] = 'recent'
+    end
+    
+    if params[:view] == 'recent'
+      @reports_feed_button_active = "active"
+    elsif params[:view] == 'open'
+      @reports_open_button_active = "active"
+      @report = Report.new
+    elsif params[:view] == 'claim'
+      @reports_claimed_button_active = "active"
+    else params[:view] == 'eliminate'
+      @reports_resolved_button_active = "active"
+    end
   end
 
   def new
-    
+    @report = Report.new
   end
   
   def create    
 
-
-
-        #report content
-    #reporter id
-    #claimer id
-    #location id
-    #before file name
-    #before file size
-    #before file content
-    #before file updated_at
-    
     if request.post?
       if params[:report].nil? || params[:report] == ''
         flash[:notice] = 'You must enter a report description.'
         redirect_to :action=>'index', view: 'open'
         return
-      elsif params[:loc].nil? || params[:loc] == ''
+      elsif params[:location].nil? || params[:location] == ''
         flash[:notice] = 'You must enter an address.'
         redirect_to :action=>'index', view: 'open'
         return
       end
-      location = params[:loc]
-      loc = Location.find_or_create(location)
+    
+      location = Location.find_or_create(params[:location])
+      
       begin
-      @report = Report.create_from_user(params[:report], 
-            :status=>:reported, :reporter=>@current_user, :location=>loc )
+        @report = Report.create_from_user(params[:report][:report], :status => :reported, :reporter => @current_user, :location => location)
+        @report.before_photo = params[:report][:before_photo]
       rescue
         flash[:notice] = 'Address is invalid or does not exist.'
         redirect_to :action=>'index', view: 'open'
         return
       end
-      if params[:before_photo].nil? || params[:before_photo] == ''
-          puts 'DIDNT SAVE FILE'
-      else
-          puts 'SAVING FILE'
-          @report.update_attributes(:before_photo => params[:before_photo])
-      end
+    
+      
       if @report.save
         flash[:notice] = 'Report posted succesfully.'
         redirect_to :action=>'index', view: 'recent'
@@ -58,6 +69,7 @@ class ReportsController < ApplicationController
         redirect_to :action=>"index", view: 'open'
       end
     end
+  
   end
   
   def edit

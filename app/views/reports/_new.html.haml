@@ -1,15 +1,13 @@
-
 #reports_open
-  = form_tag( :url=>{:action => "create"}, :html=>{:multipart => true} ) do
+  = form_for(@report, :url => {:action => "create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     .row
-      
       .span7
         %h3 Enter a short description of your report:
-        = text_area_tag :report, nil, :placeholder=>'Report Description', :id=>'report_content'
+        = f.text_area :report, :placeholder => 'Report Description', :id => 'report_content'
         %h3 Enter the address of your report location:
-        = text_field_tag :loc, nil, :placeholder=>'Report Location'
+        = text_field_tag :location, nil, :placeholder => 'Report Location', :id => 'report_address'
         %h3 Upload your report image:
-        = file_field_tag :before_photo
+        = f.file_field :before_photo
       
     = submit_tag "submit"
     
