@@ -3,23 +3,60 @@ class ReportsController < ApplicationController
   before_filter :require_login, :except => [:sms, :verification]
 
   def index
-    @reports = @current_user.reports_with_stats
+    #@json = User.all.to_gmaps4rails
+    @reports = @current_user.reports
   end
-  
+
   def new
-    @report = @current_user.created_reports.new
-    @report.location = Location.new
+    
   end
   
-  def create
-    loc = Location.find_or_create(params[:location])
+  def create    
+
+
+
+        #report content
+    #reporter id
+    #claimer id
+    #location id
+    #before file name
+    #before file size
+    #before file content
+    #before file updated_at
     
-    @report = @current_user.created_reports.build(params[:report])
-    @report.location_id = loc.id
-    if @report.save
-      redirect_to user_reports_url, notice: "Report successfully created"
-    else
-      render "new"
+    if request.post?
+      if params[:report].nil? || params[:report] == ''
+        flash[:notice] = 'You must enter a report description.'
+        redirect_to :action=>'index', view: 'open'
+        return
+      elsif params[:loc].nil? || params[:loc] == ''
+        flash[:notice] = 'You must enter an address.'
+        redirect_to :action=>'index', view: 'open'
+        return
+      end
+      location = params[:loc]
+      loc = Location.find_or_create(location)
+      begin
+      @report = Report.create_from_user(params[:report], 
+            :status=>:reported, :reporter=>@current_user, :location=>loc )
+      rescue
+        flash[:notice] = 'Address is invalid or does not exist.'
+        redirect_to :action=>'index', view: 'open'
+        return
+      end
+      if params[:before_photo].nil? || params[:before_photo] == ''
+          puts 'DIDNT SAVE FILE'
+      else
+          puts 'SAVING FILE'
+          @report.update_attributes(:before_photo => params[:before_photo])
+      end
+      if @report.save
+        flash[:notice] = 'Report posted succesfully.'
+        redirect_to :action=>'index', view: 'recent'
+      else
+        flash[:notice] = 'Report failed to post.'
+        redirect_to :action=>"index", view: 'open'
+      end
     end
   end
   

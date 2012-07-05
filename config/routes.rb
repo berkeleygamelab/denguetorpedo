@@ -1,13 +1,13 @@
 Dengue::Application.routes.draw do
   
   get "dashboard/index"
-
   match "/home/:id" => "home#index", :as => "Home"
   match "/faq" => 'home#faq'
   match '/contact' => 'home#contact'
   match 'about' => 'home#about'
   get "password_resets/new"
   post "reports/sms"
+
 
   resources :users do
     resources :reports, :except => [:show]

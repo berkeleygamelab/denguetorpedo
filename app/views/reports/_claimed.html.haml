@@ -1,0 +1,32 @@
+.rp_report.rp_claimed_report
+  .row
+    .span6
+      %h4== Report #{claimed.id}: #{claimed.complete_address}
+    .span2.rp_report_time
+      = claimed.strftime_updated_at
+      
+  .row
+    .span2.rp_before_photo
+      =image_tag 'http://placehold.it/100x100'
+    .span5
+      .row
+        .rp_report_content.span5
+          %p
+            "
+            = claimed.report            
+            "
+      .row.rp_report_people
+        Reporter:
+        %a.user==#{claimed.reporter.username unless claimed.reporter.nil?}
+        %br
+        Claimed by:
+        %a.user==#{claimed.claimer.username unless claimed.reporter.nil?}
+    .span1.rp_report_status.status
+      Claimed
+  .row
+    .rp_report_options
+      =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+      =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+
+  
+  

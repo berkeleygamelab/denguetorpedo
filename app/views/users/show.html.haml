@@ -22,20 +22,19 @@
         .span11.offset1    
           .user_profile_picture
             -#= image_tag('icons/neighborhood.png')
-            =link_to image_tag("darthvader.jpg"), edit_user_path(@current_user)
+            =link_to image_tag("darthvader.jpg"), '#'
           .user_house_picture
             -#= image_tag('icons/home.png')
             =link_to image_tag("tiefighter.jpg"), house_path(@house)
           .user_neighborhood_picture
             -#= image_tag('icons/user_32.png')
             =link_to image_tag("deathstar.jpg"), neighborhood_path(@neighborhood)
-      #user_right_panel.span4.offset12
-        Coupon Panel
+
   .row
     #user_recent_activity.span11.offset1
       .row
         %h3.span11
-          Your Recent Activity
+          #{@user.username}'s Recent Activity
       .row
         .span8          
           -# add filter functionality
@@ -55,7 +54,7 @@
             = render :partial => "users/resolved_report", :object => report
       .row
         %ul#user_activity_list.span11
-          - 6.times do
+          - 3.times do
             %li.user_activity_item
               .row
                 .user_activity_thumb.span2
@@ -81,8 +80,10 @@
                   1 Day Ago
                   .user_activity_icons
                     =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
-                    =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
-                    
+                    -if @isPrivatePage
+                      =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+    #user_right_panel.span4
+      Coupon Panel
                     
       
 

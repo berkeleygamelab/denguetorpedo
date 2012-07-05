@@ -54,6 +54,7 @@ class Location < ActiveRecord::Base
       location = Location.new
       location.address = address
     elsif address.class <= Hash
+      puts 'hash!@#@!#'
       location = Location.new(address) # TODO: fix security issue...
     else
       return nil
@@ -66,6 +67,7 @@ class Location < ActiveRecord::Base
     end
 
     # do the geocoding
+    puts "location is %s", address
     geocode = Gmaps4rails.geocode(location.complete_address())
     if geocode.size != 1
       return nil

@@ -6,7 +6,8 @@
 
 
 #user_right_panel {
-  margin-left: 810px;
+  margin-top: -150px;
+  margin-left: 30px;
   height: 1000px;
   background: $light-gray;
 
@@ -60,13 +61,12 @@
     }
     .user_report_options {
       margin-top: -30px;
-      margin-right: 30px;
       float: right;
     }
   
   .user_claimed_report {
     border-color: $blue;
-    .user_report_status {
+    .status {
       background: $blue;
     }
   }

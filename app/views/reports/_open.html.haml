@@ -1,0 +1,39 @@
+
+.rp_report.rp_open_report
+  .row
+    .span6
+      %h4== Report #{open.id}: #{open.complete_address}
+    .span2.rp_report_time
+      = open.strftime_updated_at
+      
+  .row
+    .span2.rp_before_photo
+      =image_tag 'http://placehold.it/100x100'
+    .span5
+      .row
+        .rp_report_content.span5
+          %p
+            "
+            = open.report            
+            "
+      .row.rp_report_people
+        Reporter:
+        %a.user==#{open.reporter.username unless open.reporter.nil?}
+        %br
+        =link_to 'Claim this report!', '#'
+    .span1.rp_report_status.status
+      Open
+  .row
+    .rp_report_options
+      =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+      =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+
+
+
+
+
+
+
+
+
+
