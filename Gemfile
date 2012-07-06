@@ -54,7 +54,6 @@ gem 'jquery-rails'
 
 group :test do
   gem 'cucumber-rails'
-	gem 'gmaps4rails'
 end
 
 group :test, :development do
