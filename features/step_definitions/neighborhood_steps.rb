@@ -5,6 +5,5 @@ Given /the following neighborhoods exist/ do |neighborhoods_table|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that neighborhood to the database here.
     n = Neighborhood.create!(neighborhood)
-    n.save
   end  
 end

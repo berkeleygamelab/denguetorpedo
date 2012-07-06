@@ -5,6 +5,5 @@ Given /the following houses exist/ do |houses_table|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that neighborhood to the database here.
     h = House.create!(house)
-    h.save
   end  
 end

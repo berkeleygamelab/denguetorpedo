@@ -38,7 +38,7 @@ Scenario: access a house page after logging in
   And   I should see "Neighborhood"
   And   I should see "Elmwood"
   And   I should see "House Badges"
-  And   I should see "Write Something..."
+  And   I should see "Write a Blog about Dengue..."
   And   I should see "What's happening?"
 
 Scenario: access a house page without logging in
@@ -47,7 +47,7 @@ Scenario: access a house page without logging in
   And   I should see "Neighborhood"
   And   I should see "Elmwood"
   And   I should see "House Memebers"
-  And   I should see "Write Something..."
+  And   I should see "Write a Blog about Dengue..."
   And   I should see "What's happening?"
   And   I should see "LukeSkywalker"
   And   I should see "NoobSkywalker"
