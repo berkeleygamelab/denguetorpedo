@@ -5,7 +5,7 @@ Given /the following users exist/ do |users_table|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that user to the database here.
     u = User.new(user)
-    u.house = House.find_by_id(user['house_id']) if user['house_id']
+    u.house_id = user['house_id'] if user['house_id']
     u.save
   end
 
