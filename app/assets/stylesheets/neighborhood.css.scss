@@ -5,11 +5,9 @@
 @import "variables";
 
 @mixin neighborhood_status_button {
-
   width: 50px;
   height: 40px;
   border-radius: $button_border_radius;
-
 }
 
 #neighborhood_stats {
@@ -76,30 +74,39 @@ ul#neighborhood_house_list {
   margin-left: 5px;
 }
 
+#neighborhood_open_report_button {
+  @include neighborhood_status_button;
+  background-color: $orange;
+}
+  
+#neighborhood_claimed_report_button {
+  @include neighborhood_status_button;
+  background-color: $blue;
+}
+  
+#neighborhood_resolved_report_button {
+  @include neighborhood_status_button;
+  background-color: gray;
+}
 
-
-  #neighborhood_open_report_button {
-    @include neighborhood_status_button;
-    background-color: $orange;
-  }
-  #neighborhood_claimed_report_button {
-    @include neighborhood_status_button;
-    background-color: $blue;
-  }
-  #neighborhood_resolved_report_button {
-    @include neighborhood_status_button;
-    background-color: gray;
-  }
-  #rank_box {
-    background-color:$light-gray;
-    text-align: center;
-    padding: 10px 5px 10px 5px;
-    width: 80px;
-  }
+#visit_neighborhood_button {
+  width: 205px;
+  height: 20px;
+  margin-left: 30px;
+  border-radius: $button_border_radius;
+  background-color: green;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 5px 10px 5px;
+}
+  
+#rank_box {
+  background-color:$light-gray;
+  text-align: center;
+  padding: 10px 5px 10px 5px;
+  width: 80px;
+}
     
-
- 
-
 .neighborhoods {
   #houses_button, #participants_button, #health_agents_button {
     font-size: 1.2em;
