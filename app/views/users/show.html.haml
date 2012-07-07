@@ -44,44 +44,20 @@
           |
           =link_to 'Blog', '#'
       .row
-        #user_reports
-        - for report in @user.reports
-          - if report.status == :reported
-            = render :partial => "users/open_report", :object => report
-          - if report.status == :claimed
-            = render :partial => "users/claimed_report", :object => report
-          - if report.status == :eliminated
-            = render :partial => "users/resolved_report", :object => report
+        - if @isPrivatePage
+          = render :partial => 'new_post'
       .row
-        %ul#user_activity_list.span11
-          - 3.times do
-            %li.user_activity_item
-              .row
-                .user_activity_thumb.span2
-                  = image_tag('http://placehold.it/80x80')
-
-                .span7
-                  .row
-                    .user_activity_headline.span2
-                      %h4 Blog Post
-                  
-                    .span5
-                      .row
-                        .span3.user_activity_location
-                          in Saratoga, CA
-                        .span2.user_activity_balloon
-
-                    
-                  .row
-                    .user_activity_content.span7
-                      Lorem ipsum dolor sit amet consectur adpliscing elit ped do sid barm ipla 
-                      fara poti incidunt ut labore et dolore dolo mada 
-                .user_activity_options.span2
-                  1 Day Ago
-                  .user_activity_icons
-                    =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
-                    -if @isPrivatePage
-                      =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+        #user_reports
+          - for report in @user.reports
+            - if report.status == :reported
+              = render :partial => "users/open_report", :object => report
+            - if report.status == :claimed
+              = render :partial => "users/claimed_report", :object => report
+            - if report.status == :eliminated
+              = render :partial => "users/resolved_report", :object => report
+      .row
+        - for post in @user_posts
+          = render :partial => "users/show_post", :object => post
     #user_right_panel.span4
       Coupon Panel
                     
