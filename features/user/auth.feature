@@ -10,10 +10,6 @@ Background: users in database
 	|	id	|	username   		|	password		|	auth_token	      			|	email			    |
 	|	1  	|	LukeSkywalker	|	secret			|	_uEsTkHWkhrlSlxTNWmSQQ	|	foo1@foo.com	|
 
-  And the following neighborhoods exist:
-	|	id	|	name   		|	coordinator_id	|
-	|	1 	|	Elmwood		|	1       				|
-	
 	
 Scenario: login (happy path)
   When  I go to the root url

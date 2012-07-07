@@ -4,7 +4,9 @@ Given /the following users exist/ do |users_table|
   users_table.hashes.each do |user|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that user to the database here.
-    User.create!(user)
+    u = User.new(user)
+    u.house_id = user['house_id'] if user['house_id']
+    u.save
   end
 
 end

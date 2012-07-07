@@ -22,6 +22,13 @@ module NavigationHelpers
       edit_user_path(User.find_by_username($1).id)
     when /^the registration failure page$/i
       '/users'
+    when /^my dashboard page$/i
+      ''
+    when /^the house page for "(.*)"$/i
+      house_path(User.find_by_username($1).house.id)
+    when /^the "(.*)" house page$/i
+      house_path(House.find_by_name($1).id)
+      
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
