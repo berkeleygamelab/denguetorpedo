@@ -4,8 +4,18 @@ class ReportsController < ApplicationController
 
   def index
     #@json = User.all.to_gmaps4rails
-    @reports = @current_user.reports
-  
+    if (params[:claimed_report] != nil)
+      puts 'afjdklsafjdklsa' 
+      report = Report.find(params[:claimed_report])
+      if report.status_cd == 0
+        report.update_attribute(:status_cd, 1)
+        report.update_attribute(:claimer_id, @current_user.id)
+        flash[:notice] = 'You successfully claimed this report!'
+      else
+        flash[:notice] = 'You cannot claim this report.'
+      end
+    end
+    @current_report = params[:report]
     @highlightReportItem = ""
     if (@current_user != nil) 
       @highlightReportItem = "nav_highlight"
@@ -15,6 +25,15 @@ class ReportsController < ApplicationController
     @reports_open_button_active = ""
     @reports_claimed_button_active = ""
     @reports_resolved_button_active = ""
+    
+    @reports = Report.find(:all, :from => 'reports',
+    :conditions => ['reports.claimer_id = ? or reports.reporter_id = ? or reports.eliminator_id = ?', @current_user.id, @current_user.id, @current_user.id],
+    :order => 'updated_at desc')
+    @claim_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ?', 0],
+    :order => 'updated_at desc')
+    @eliminate_feed = Report.find(:all, :from => 'reports', 
+    :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], 
+    :order => 'updated_at desc')
     
     if params[:view].nil? 
       params[:view] = 'recent'
@@ -35,7 +54,7 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
   end
-  
+
   def create    
 
     if request.post?

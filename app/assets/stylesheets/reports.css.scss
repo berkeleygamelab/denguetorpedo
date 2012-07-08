@@ -17,7 +17,25 @@
   text-align: right;
   float: right;
 }
-
+.claim_button {
+  line-height: 25px;
+  font-size: 15px;
+  
+}
+.claim_prompt {
+  margin-top: 5px;
+  color: $red;
+  .confirm_button {
+    width: 100px;
+    border: 2px solid $light-gray;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    padding: 2px 4px;
+    border-radius: 8px;
+     
+  }
+}
 .rp_report {
   background-color: white;
   border-style: solid;
