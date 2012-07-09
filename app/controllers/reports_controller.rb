@@ -151,13 +151,41 @@ class ReportsController < ApplicationController
       @account.sms.messages.create(:from => '+15109854798', :to => params[:From], :body  => 'We could not understand your report because some hashtags were missing...')
     end
   end
-  
+  def eliminate
+    
+  end
   def update
-    @report = @current_user.created_reports.find(params[:id])
-    if @report.update_attributes(params[:report])
-      redirect_to user_reports_url, notice: "Successfully updated report"
-    else
-      render "edit"
+    if request.put?
+      @report = Report.find(params[:report_id])
+      puts 'fdsjalkfjdsaklfjdsklafjadskl'
+      if params[:eliminate][:after_photo] != nil
+        begin
+          puts @report
+          puts params[:eliminate][:after_photo]           
+          @report.after_photo = params[:eliminate][:after_photo]
+          puts '1'
+          @report.update_attribute(:status_cd, 2)
+          puts '2'
+          @report.update_attribute(:eliminator_id, @current_user.id)
+        rescue
+          flash[:notice] = 'An error has occurred!'
+          redirect_to :action=>'index', view: 'eliminate'
+          return
+        end
+      
+        
+        if @report.save
+          flash[:notice] = 'You eliminated this report!'
+          redirect_to :action=>'index', view: 'recent'
+        else
+          #for some reason save causes error here, but in view it looks OK
+          flash[:notice] = 'An error has occurred'
+          redirect_to :action=>"index", view: 'eliminate'
+        end
+      else
+        redirect_to :action=>"index", view: 'eliminate'
+      end
+          
     end
   end
   
