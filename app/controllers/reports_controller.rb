@@ -46,7 +46,7 @@ class ReportsController < ApplicationController
       @report = Report.new
     elsif params[:view] == 'claim'
       @reports_claimed_button_active = "active"
-    else params[:view] == 'eliminate'
+    else #params[:view] == 'eliminate'
       @reports_resolved_button_active = "active"
     end
   end
@@ -157,15 +157,10 @@ class ReportsController < ApplicationController
   def update
     if request.put?
       @report = Report.find(params[:report_id])
-      puts 'fdsjalkfjdsaklfjdsklafjadskl'
       if params[:eliminate][:after_photo] != nil
         begin
-          puts @report
-          puts params[:eliminate][:after_photo]           
           @report.after_photo = params[:eliminate][:after_photo]
-          puts '1'
           @report.update_attribute(:status_cd, 2)
-          puts '2'
           @report.update_attribute(:eliminator_id, @current_user.id)
         rescue
           flash[:notice] = 'An error has occurred!'
