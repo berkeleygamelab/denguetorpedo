@@ -1,5 +1,5 @@
 #user_reports
-  - for report in @current_user.reports
+  - for report in @reports
     - if report.status == :reported
       = render :partial => 'reports/open', :object => report
     - if report.status == :claimed

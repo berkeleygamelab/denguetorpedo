@@ -17,7 +17,28 @@
   text-align: right;
   float: right;
 }
-
+.expand_button {
+  line-height: 30px;
+  font-size: 15px;
+  
+}
+.confirm_prompt {
+  margin-top: 5px;
+  color: $red;
+  .confirm_button, input[type='submit'] { 
+    border: 2px solid $light-gray;
+    color: black;
+    font-size: 12px;
+    text-align: center;
+    padding: 2px 10px;
+    border-radius: 8px;
+   
+  }
+  .eliminate_cancel {
+    margin-left: -30px;
+    margin-top: 2px;
+  }
+}
 .rp_report {
   background-color: white;
   border-style: solid;
@@ -47,7 +68,7 @@
 }
 
 .rp_report_people {
-  margin-left: 10px;
+  margin-left: 0px;
   margin-top: 10px;
   .user {
     color: #00CCCC;

@@ -1,3 +1,5 @@
+:javascript 
+  $(".collapse").collapse()
 .rp_report.rp_open_report
   .row
     .span6
@@ -18,7 +20,17 @@
         Reporter:
         =link_to open.reporter.username, user_path(open.reporter), :class => "user"
         %br
-        =link_to 'Claim this report!', '#'
+        %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}}       
+          .expand_button Claim this report!
+        
+        %div{id:"claim_prompt"+(open.id).to_s, class:"collapse"}
+          #report_buttons.confirm_prompt
+            Confirm selection:
+            = link_to 'Claim!', reports_path(:view=>'recent', :claimed_report=>open), :class=>'confirm_button'
+            %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
+              Cancel
+          
+   
     .span1.rp_report_status.status
       Open
   .row

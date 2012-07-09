@@ -29,10 +29,12 @@
       - elsif params[:view] == 'open'
         = render :partial => 'reports/new'
       - elsif params[:view] == 'claim'
-
+        = render :partial => 'reports/claim_list'
       - else params[:view] == 'eliminate'
+        = render :partial => 'reports/eliminate_list'
     .span6
       .row
         #report_map Google Map
       .row
-        #report_sponsors Local Sponsors
+        - if params[:view] != 'open'
+          #report_sponsors Local Sponsors

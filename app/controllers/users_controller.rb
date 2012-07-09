@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     
     @house = @user.house
     @reports = @user.reports
-    
+    @user_posts = []
     @stats_hash = {}
     @stats_hash['opened'] = @user.created_reports.count
     @stats_hash['claimed'] = @user.claimed_reports.count

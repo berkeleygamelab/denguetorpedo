@@ -15,6 +15,7 @@ Dengue::Application.routes.draw do
   
   resources :dashboard
   resources :reports
+  put 'reports' => 'reports#update'
   resources :houses
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]

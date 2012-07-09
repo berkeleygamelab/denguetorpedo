@@ -4,8 +4,18 @@ class ReportsController < ApplicationController
 
   def index
     #@json = User.all.to_gmaps4rails
-    @reports = @current_user.reports
-  
+    if (params[:claimed_report] != nil)
+      puts 'afjdklsafjdklsa' 
+      report = Report.find(params[:claimed_report])
+      if report.status_cd == 0
+        report.update_attribute(:status_cd, 1)
+        report.update_attribute(:claimer_id, @current_user.id)
+        flash[:notice] = 'You successfully claimed this report!'
+      else
+        flash[:notice] = 'You cannot claim this report.'
+      end
+    end
+    @current_report = params[:report]
     @highlightReportItem = ""
     if (@current_user != nil) 
       @highlightReportItem = "nav_highlight"
@@ -15,6 +25,15 @@ class ReportsController < ApplicationController
     @reports_open_button_active = ""
     @reports_claimed_button_active = ""
     @reports_resolved_button_active = ""
+    
+    @reports = Report.find(:all, :from => 'reports',
+    :conditions => ['reports.claimer_id = ? or reports.reporter_id = ? or reports.eliminator_id = ?', @current_user.id, @current_user.id, @current_user.id],
+    :order => 'updated_at desc')
+    @claim_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ?', 0],
+    :order => 'updated_at desc')
+    @eliminate_feed = Report.find(:all, :from => 'reports', 
+    :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], 
+    :order => 'updated_at desc')
     
     if params[:view].nil? 
       params[:view] = 'recent'
@@ -35,7 +54,7 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
   end
-  
+
   def create    
 
     if request.post?
@@ -132,13 +151,41 @@ class ReportsController < ApplicationController
       @account.sms.messages.create(:from => '+15109854798', :to => params[:From], :body  => 'We could not understand your report because some hashtags were missing...')
     end
   end
-  
+  def eliminate
+    
+  end
   def update
-    @report = @current_user.created_reports.find(params[:id])
-    if @report.update_attributes(params[:report])
-      redirect_to user_reports_url, notice: "Successfully updated report"
-    else
-      render "edit"
+    if request.put?
+      @report = Report.find(params[:report_id])
+      puts 'fdsjalkfjdsaklfjdsklafjadskl'
+      if params[:eliminate][:after_photo] != nil
+        begin
+          puts @report
+          puts params[:eliminate][:after_photo]           
+          @report.after_photo = params[:eliminate][:after_photo]
+          puts '1'
+          @report.update_attribute(:status_cd, 2)
+          puts '2'
+          @report.update_attribute(:eliminator_id, @current_user.id)
+        rescue
+          flash[:notice] = 'An error has occurred!'
+          redirect_to :action=>'index', view: 'eliminate'
+          return
+        end
+      
+        
+        if @report.save
+          flash[:notice] = 'You eliminated this report!'
+          redirect_to :action=>'index', view: 'recent'
+        else
+          #for some reason save causes error here, but in view it looks OK
+          flash[:notice] = 'An error has occurred'
+          redirect_to :action=>"index", view: 'eliminate'
+        end
+      else
+        redirect_to :action=>"index", view: 'eliminate'
+      end
+          
     end
   end
   
