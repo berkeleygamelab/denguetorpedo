@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
   validates :points, :numericality => { :only_integer => true }
+  validates :phone_number, :numericality => true, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true
 #  validates :is_fully_registered, :presence => true
 #  validates :is_community_coordinator, :presence => true
 #  validates :is_community_coordinator, :uniquness => { :scope => ??? } TODO: only want one coordinator per community
