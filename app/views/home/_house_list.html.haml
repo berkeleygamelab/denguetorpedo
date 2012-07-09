@@ -1,13 +1,12 @@
-%h3 Houses in #{@selected_neighborhood.name}
 %ul#house_list
-  
   - @houses.each do |house|
     %li
       #house_photo_thumb
         = link_to image_tag("default_images/house_default_image.png"), house_path(house)
       = link_to house.name, house_path(house)
-  - if @houses.count < 6
-    - (10 - @houses.count).times do
+  
+  - if @houses.count < 14
+    - (14 - @houses.count).times do
       %li
         #house_photo_thumb
           = image_tag("default_images/house_default_image.png")

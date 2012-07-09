@@ -22,44 +22,53 @@
     #neighborhood_search_background.span12.offset2
       %input.span10{:type => 'text', :placeholder => "Search by neighborhood, city, country"}
       %button Find
+
 .row
   %h2.offset1 Leading Neighborhoods
     
 .row
   .span15.offset1
     = render "home/neighborhood_list"
-    
+.row 
+  %h3.offset1#status_of_neighborhood Status of #{@selected_neighborhood.name}
+
 .row
-  #houses.span11.offset1
+  #neighborhood_stats
+    .span2.offset1
+      #rank_box
+        %b No. 1
+    .span3
+      %b 1700
+      %br total reports made
+    .span2
+      .row
+        #neighborhood_open_report_button.span1 
+        .span1
+          %b 493
+          %br open
+    .span2
+      .row
+        #neighborhood_claimed_report_button.span1 
+        .span1
+          %b 290
+          %br claimed
+    .span2
+      .row
+        #neighborhood_resolved_report_button.span1 
+        .span1
+          %b 1003
+          %br eliminated
+    .span5
+      .row
+        #visit_neighborhood_button.span3
+          = render "home/visit_neighborhood_button"
+.row
+  %h3.offset1#houses_in_neighborhood Houses in #{@selected_neighborhood.name}
+        
+.row
+  #houses.span15.offset1
     = render "home/house_list"
     
-  #neighborhood_status.offset11
-    #neighborhood_button
-      - if @selected_neighborhood.id.nil?
-        = link_to "Visit Future Neighborhood", root_path
-      - else 
-        = link_to "Visit #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
-      
-    #total_reports_in_neighborhood
-      %h1 #{@total_reports_in_neighborhood}
-      %h4 
-        Total Reports Made in 
-        %u #{@selected_neighborhood.name}
-      
-    %ul
-      %li
-        .neighborhood_report_status#neighborhood_open_reports
-        %h2 49 
-        %h4 open
-      %li 
-        .neighborhood_report_status#neighborhood_claimed_reports
-        %h2 234 
-        %h4 claimed
-      %li 
-        .neighborhood_report_status#neighborhood_resolved_reports
-        %h2 759 
-        %h4 resolved
-  
 .row
   %h3.offset1 Local Sponsors in #{@selected_neighborhood.name}
   #sponsors.offset1    

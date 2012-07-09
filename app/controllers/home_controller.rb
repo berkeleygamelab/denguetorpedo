@@ -7,12 +7,6 @@ class HomeController < ApplicationController
       @user = flash[:user]
     end
     
-    #if (params[:user].nil?)
-      
-    #else
-    #  @user = User.new(:username => params[:user][:username], :email => params[:user][:email])
-    #end
-    
     @all_neighborhoods = Neighborhood.limit(3)
     
     if params[:neighborhood].nil?
@@ -27,7 +21,7 @@ class HomeController < ApplicationController
     
     @houses = @selected_neighborhood.houses.limit(10)
     @total_reports_in_neighborhood = @selected_neighborhood.reports.count
-  
+    
   end
   
   
