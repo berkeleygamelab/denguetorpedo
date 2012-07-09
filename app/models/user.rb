@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates :points, :numericality => { :only_integer => true }
   validates :phone_number, :numericality => true, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true
   validates :email, :format => { :with => EMAIL_REGEX }, :allow_nil => true
+  validates :email, :uniqueness => true, :unless => "email.nil?"
 #  validates :is_fully_registered, :presence => true
 #  validates :is_community_coordinator, :presence => true
 #  validates :is_community_coordinator, :uniquness => { :scope => ??? } TODO: only want one coordinator per community
