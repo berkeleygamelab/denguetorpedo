@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   end
   
   def show
+    
+    @post = Post.create
+
+    @user_posts = Post.find(:all, :from => 'posts', :conditions => ['posts.user_id = ?', @current_user.id])
     @user = User.find_by_id(params[:id])
     head :not_found and return if @user.nil?
     
@@ -19,7 +23,18 @@ class UsersController < ApplicationController
     
     @house = @user.house
     @reports = @user.reports
-    @user_posts = []
+    
+    @feed_active_all = ''
+    @feed_active_reports = ''
+    @feed_active_posts = ''
+    if params[:filter] == 'reports'
+      @feed_active_reports = 'active'
+    elsif params[:filter] == 'posts'
+      @feed_active_posts = 'active'
+    else
+      @feed_active_all = 'active'
+    end
+
     @stats_hash = {}
     @stats_hash['opened'] = @user.created_reports.count
     @stats_hash['claimed'] = @user.claimed_reports.count

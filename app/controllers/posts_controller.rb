@@ -11,9 +11,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    params[:post][:user_id] = @current_user.id
-    Post.create params[:post]
-    redirect_to :back
+    if request.post?
+      params[:post][:user_id] = @current_user.id
+      Post.create params[:post]
+      redirect_to :back
+    end
   end
 
   def show

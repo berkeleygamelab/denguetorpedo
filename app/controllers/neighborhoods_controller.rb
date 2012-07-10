@@ -12,5 +12,15 @@ class NeighborhoodsController < ApplicationController
       @highlightNeighborhoodItem = "nav_highlight"
     end
     
+    
+    @participants = @neighborhood.members.limit(13)
+    @participants_view_active = ''
+    @houses_view_active = ''
+    if params[:view] == 'participants'
+      @participants_view_active = 'active'
+    else # view == houses
+      @houses_view_active = 'active '
+    end
+    
   end
 end

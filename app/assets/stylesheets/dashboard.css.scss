@@ -5,22 +5,29 @@
 @import "variables";
 
 #dashboard_bar {
-  background-color: #FF6600;
+  background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0px 1px 1px #BFBEBD;
   height: 40px;
+  border-width: 0px 0px 3px 0px;
+  border-style: solid;
+  border-color: $orange;
   
   ul {
     margin: -15px;
+    margin-left: -34px;
     float: left;
     
     li {
       height: 40px;
       display: inline;
       margin-right: 10px;
+      padding-right: 2px;
     }
   }
 }
 
 .nav_highlight {
-  background-color: #F5D1BA;
+  background-color: $light-gray;
+  font-weight: bold;
+
 }

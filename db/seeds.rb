@@ -120,6 +120,7 @@ r7.save!
 
 puts "reports created"
 
+
 e1 = Post.create!(:user_id => u1.id, :content => "Over this weeken, I am creating a fight dengue party. I would like to invite everyone to join")
 e1.children << Post.new(:content => "I would like to know if there are new technique to eliminate dengue. Would anyone like to share?", :user_id => u1.id)
 e1.children << Post.new(:content => "Hey guys! Let's keep it up. We are winning over our neighborhoods!", :user_id => u7.id)
@@ -127,5 +128,6 @@ e2 = Post.create(:user_id => u11.id, :content => "Here's a new method I discover
 e2.children << Post.new(:content => "I don't have any plan this weekend. Anyone would like to get together for a beer?", :user_id => u11.id)
 e2.children << Post.new(:content => "I am debating on what kind rewards to redeem. Anyone any suggestion?", :user_id => u6.id)
 e3 = Post.create(:user_id => u5.id, :content => "Looks like the health agent has contacted me that this season the breakout rate has slowed down!")
+
 puts "events and comments created"
 

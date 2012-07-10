@@ -36,17 +36,40 @@
         %b 53
         %br participants
 .row
-  .span11.offset1
-    %ul#neighborhood_house_list
-      - @houses.each do |house|
-        %li.neighborhood_house_photo_thumb.span3
-          = link_to image_tag("home_images/neighborhood1.png"), house_path(house)
-          = link_to house.name, house_path(house)
-      - if @houses.count < 7
-        - (9 - @houses.count).times do          
+  #neighborhood_view
+    .span2.offset1
+      = link_to 'Houses', neighborhood_path(@current_user.neighborhood), :class => @houses_view_active
+    .span2
+      = link_to 'Participants', neighborhood_path(@current_user.neighborhood, :view => 'participants'), :class => @participants_view_active
+%br
+.row
+  - if params[:view] == 'participants'
+    .span11.offset1
+      %ul#neighborhood_participants_list
+        - @participants.each do |participant|
+          %li.neighborhood_participant_photo_thumb.span3
+            - if participant.profile_photo.nil?
+              = link_to image_tag("darthvader.jpg"), user_path(participant)
+            - else
+              = link_to image_tag("default_images/profile_default_image.png"), user_path(participant)
+            = link_to participant.username, user_path(participant)
+        - if @participants.count < 9
+          - (12 - @participants.count).times do          
+            %li.neighborhood_participant_photo_thumb.span3
+              = image_tag("default_images/profile_default_image.png")
+              Future Participant
+  - else 
+    .span11.offset1
+      %ul#neighborhood_house_list
+        - @houses.each do |house|
           %li.neighborhood_house_photo_thumb.span3
-            = image_tag("home_images/neighborhood2.png")
-            Future House
+            = link_to image_tag("home_images/neighborhood1.png"), house_path(house)
+            = link_to house.name, house_path(house)
+        - if @houses.count < 7
+          - (9 - @houses.count).times do          
+            %li.neighborhood_house_photo_thumb.span3
+              = image_tag("home_images/neighborhood2.png")
+              Future House
 
   #neighborhood_right_panel.span4
     .row

@@ -37,27 +37,33 @@
           #{@user.username}'s Recent Activity
       .row
         .span8          
-          -# add filter functionality
-          =link_to 'All', '#'
+          =link_to 'All', user_path(@current_user, :filter => 'all'), :class => @feed_active_all
           |
-          =link_to 'Reports', '#'
+          =link_to 'Reports', user_path(@current_user, :filter => 'reports'), :class => @feed_active_reports
           |
-          =link_to 'Blog', '#'
+          =link_to 'Blog', user_path(@current_user, :filter => 'posts'), :class => @feed_active_posts
       .row
-        - if @isPrivatePage
-          = render :partial => 'new_post'
+        .span10
+          - if @isPrivatePage
+            %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
+              %h3.expand_button Write a new post
+            
+            %div{id:"new_post", class:"collapse"}            
+              = render :partial => 'posts/new'
       .row
-        #user_reports
-          - for report in @user.reports
-            - if report.status == :reported
-              = render :partial => "users/open_report", :object => report
-            - if report.status == :claimed
-              = render :partial => "users/claimed_report", :object => report
-            - if report.status == :eliminated
-              = render :partial => "users/resolved_report", :object => report
+        - if params[:filter] != 'posts'
+          #user_reports
+            - for report in @user.reports
+              - if report.status == :reported
+                = render :partial => "users/open_report", :object => report
+              - if report.status == :claimed
+                = render :partial => "users/claimed_report", :object => report
+              - if report.status == :eliminated
+                = render :partial => "users/resolved_report", :object => report
       .row
-        - for post in @user_posts
-          = render :partial => "users/show_post", :object => post
+        - if params[:filter] != 'reports'
+          - for p in @user_posts
+            = render :partial => "users/show_post", :object => p
     #user_right_panel.span4
       Coupon Panel
                     

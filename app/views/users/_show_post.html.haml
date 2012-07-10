@@ -7,7 +7,8 @@
       .span7
         .row
           .user_activity_headline.span2
-            %h4 post.title
+            %h4
+              = show_post.title
         
           .span5
             .row
@@ -15,9 +16,9 @@
           
         .row
           .user_activity_content.span7
-            post.content
+            = show_post.content
       .user_activity_options.span2
-        post.strftime_update_at
+        = show_post.updated_at
         .user_activity_icons
           =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
           -if @isPrivatePage
