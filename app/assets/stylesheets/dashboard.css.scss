@@ -14,17 +14,20 @@
   
   ul {
     margin: -15px;
+    margin-left: -34px;
     float: left;
     
     li {
       height: 40px;
       display: inline;
       margin-right: 10px;
+      padding-right: 2px;
     }
   }
 }
 
 .nav_highlight {
   background-color: $light-gray;
+  font-weight: bold;
 
 }
