@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     @post = Post.create
 
     @user_posts = Post.find(:all, :from => 'posts', :conditions => ['posts.user_id = ?', @current_user.id])
-    puts @user_posts
     @user = User.find_by_id(params[:id])
     head :not_found and return if @user.nil?
     
