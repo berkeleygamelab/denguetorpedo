@@ -92,7 +92,7 @@
              
     .row
       .span5
-        %h3 Neighbors: 
+        %h3 Neighbors in #{@house.neighborhood.name}: 
         #houses_in_neighborhood
           - if @neighbors.count == 1 
             %p You don't have any neighbors that are in the game
