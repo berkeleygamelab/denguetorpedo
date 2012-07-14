@@ -66,14 +66,6 @@
   margin-top: 10px;
 }
     
-#user_report_favorite {
-      
-}
-    
-#user_report_delete {
-      
-}
-    
 .user_report_options {
   margin-top: -30px;
   float: right;
@@ -248,7 +240,7 @@
     margin-left: 10px;
     
     &[type = "file"] {
-      background-color: $background-color;
+      background-color: white;
     }
     
     &[type = "Submit"] {
@@ -271,61 +263,61 @@
 }
 
 .main_column_personal{
-	width: 630px;
-	height:1000px;
-	margin-left: 44px;
-	float:left;
-	h3 {
-		margin-top: 20px;
-		color: #888888;
-		font-weight: lighter;
-		font-size: 15px;
-	}
+  width: 630px;
+  height:1000px;
+  margin-left: 44px;
+  float:left;
+  h3 {
+    margin-top: 20px;
+    color: #888888;
+    font-weight: lighter;
+    font-size: 15px;
+  }
 }
 
 .profile_main {
-	margin-top: 40px;
-	.profile_photo{
-		height:150px;
-		width:150px;
-		display: inline-block;
-		vertical-align: text-top;
-		border: 1px solid #bbbbbb;
-	}
-	.personal_profile_info{
-		vertical-align: text-top;
-		display: inline-block;
-		margin-left: 15px;
-		width: 450px;
-
-		.name {
-			font-size:24px;
-			color:#666666;
-		}
-		.stats {
-			text-align: center;
-			.subcolumn {
-				width: 30%;
-				display: inline-block;
-				vertical-align: text-top;
-				color: #969696;
-				margin: 5px;
-				.category {
-					font-weight: lighter;
-					text-shadow: 0px 1px #FFFFFF;
-					padding: 5px;
-					font-size: 13px;
-				}
-				.value {
-					background-color: #00CDCB;
-					color: white;
-					padding: 17px 20px;
-					font-size: 15px;
-					border-radius: 2px;
-				}
-			}
-		}
-	}
+  margin-top: 40px;
+  .profile_photo{
+    height:150px;
+    width:150px;
+    display: inline-block;
+    vertical-align: text-top;
+    border: 1px solid #bbbbbb;
+  }
+  .personal_profile_info{
+    vertical-align: text-top;
+    display: inline-block;
+    margin-left: 15px;
+    width: 450px;
+    
+    .name {
+      font-size:24px;
+      color:#666666;
+    }
+    .stats {
+      text-align: center;
+      .subcolumn {
+        width: 30%;
+        display: inline-block;
+        vertical-align: text-top;
+        color: #969696;
+        margin: 5px;
+        .category {
+          font-weight: lighter;
+          text-shadow: 0px 1px #FFFFFF;
+          padding: 5px;
+          font-size: 13px;
+        }
+        .value {
+          background-color: #00CDCB;
+          color: white;
+          padding: 17px 20px;
+          font-size: 15px;
+          border-radius: 2px;
+        }
+      }
+    }
+  }
 }
 
 .neighbors_container{
@@ -415,64 +407,61 @@
 
 
 .second_column_personal{
-//    width: 320px; had an error in the Dengue.css, but surprisingly that made it look normal
-//    height:1000px;
-  float:left;
-
-	.map {
-		background-image: url(arrows.png);
-		width: 300px;
-		height: 175px;
-		margin-left:0px;
-		margin-bottom:10px;
-		padding-top: 0px;
-		padding-left: 0px;
-		background-repeat: no-repeat;
-		float:right;
-	}
-	.report_stats {
-		padding: 15px 0;
-		width: 300px;
-		text-align: center;
-		margin: auto;
-		vertical-align: text-top;
-		.stats {
-			display: inline-block;
-			margin: 5px;
-			width: 95px;
-			padding: 7px 17px;
-			line-height: 20px;
-			text-align: left;
-			.value {
-				vertical-align: middle;
-				font-size: 20px;
-				float: left;
-			}
-			.category {
-				vertical-align: middle;
-				font-size: 13px;
-				margin-left: 10px;
-				font-weight: lighter;
-			}
-		}
-		/*nt sure about these values, perhaps use alpha channel? */
-		#opened {
-			background-color: rgba(254, 209, 161, 1);
-		}
-		#claimed {
-			background-color: rgba(177, 240, 223, 1);
-		}
-		#eliminated {
-			background-color: rgba(223, 224, 207, 1);
-		}
-		#resolved {
-			background-color: rgba(236, 238, 216, 1);
-		}
-	}
-	.recent_reports {
-		width: 320px;
-		height: auto;
-	}
+  float: left;
+  .map {
+    background-image: url(arrows.png);
+    width: 300px;
+    height: 175px;
+    margin-left:0px;
+    margin-bottom:10px;
+    padding-top: 0px;
+    padding-left: 0px;
+    background-repeat: no-repeat;
+    float:right;
+  }
+  .report_stats {
+    padding: 15px 0;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    vertical-align: text-top;
+    .stats {
+      display: inline-block;
+      margin: 5px;
+      width: 95px;
+      padding: 7px 17px;
+      line-height: 20px;
+      text-align: left;
+      .value {
+        vertical-align: middle;
+        font-size: 20px;
+        float: left;
+      }
+      .category {
+        vertical-align: middle;
+        font-size: 13px;
+        margin-left: 10px;
+        font-weight: lighter;
+      }
+    }
+    /*nt sure about these values, perhaps use alpha channel? */
+    #opened {
+      background-color: rgba(254, 209, 161, 1);
+    }
+    #claimed {
+      background-color: rgba(177, 240, 223, 1);
+    }
+    #eliminated {
+      background-color: rgba(223, 224, 207, 1);
+    }
+    #resolved {
+      background-color: rgba(236, 238, 216, 1);
+    }
+  }
+  .recent_reports {
+    width: 320px;
+    height: auto;
+  }
 }
 
 .house_link{
@@ -490,7 +479,6 @@
 }
 
 .update_background {
-  
   .update_width {
     width: 372px;
     @import "ErrorExplaination"
