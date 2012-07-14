@@ -21,6 +21,9 @@ class NeighborhoodsController < ApplicationController
     else # view == houses
       @houses_view_active = 'active '
     end
-    
+    @random_sponsors = []
+    9.times do
+      @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')
+    end
   end
 end

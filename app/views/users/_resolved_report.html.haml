@@ -17,10 +17,9 @@
     .span6
       .row
         .user_report_content.span6
-          %p
-            "
-            = resolved_report.report            
-            "
+          "
+          = resolved_report.report            
+          "
       .row.user_report_people
         Reporter:
         %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}

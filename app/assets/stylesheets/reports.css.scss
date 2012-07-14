@@ -4,13 +4,7 @@
 
 @import "variables";
 
-@mixin photo {
-  float: left;
-  margin: 5px;
-  width: 100px;
-  height: 100px;
-  background-color: $light-gray;
-}
+
 
 // OPEN/RESOLVED/CLAIMED PARTIALS
 .rp_report_time {
@@ -43,6 +37,7 @@
   background-color: white;
   border-style: solid;
   border-width: 2px;
+  border-radius: 3px;
   padding: 10px;
   margin: 0px 0px 10px 10px;
 }
@@ -54,6 +49,9 @@
 
 .rp_report_content {
   margin-top: 10px;
+  font-size: 14px;
+  font-style: italic;
+  text-shadow: 0 1px 1px #828282;
 }
 
 .rp_report_status {
@@ -125,9 +123,22 @@
 #report_map, #report_sponsors {
   margin-top: 10px;
   margin-bottom: 30px;
-  background: gray;
-  height: 400px;
+  background: $light-gray;
+  height: 395px;
   margin-left: 20px;
+  border: 2px solid gray;
+  border-radius: 2px;
+  ul {
+    padding: 20px 0px 0px 10px;
+    li.sponsor {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid gray;
+    margin: 5px;
+  }
+  }
+  
 }
 
 #reports_open {
@@ -165,9 +176,11 @@
 }
 
 #report_buttons {
-    
+
+  font-size: 13px;
   .active {
-    font-weight: bold;
+    text-decoration: underline;
+    font-size: 17px;
   }
     
   .reports_feed_button {
@@ -182,7 +195,7 @@
     background-color: $blue;
   }
   .reports_resolved_button {
-    background-color: gray;
+    background-color: $light-gray;
   }
      
   input{
@@ -197,12 +210,11 @@
   }
     
   .bttn  {      
-    color: black;
+    color: white;
     border: 2px solid $gray;
     border-radius: 8px;
     text-align: center;
 
-    font-size: 13px;
     padding: 8px 5px;
     &:hover {
       cursor: pointer;
@@ -228,84 +240,5 @@
   }
   
 }
-  
-  
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-// old below here ~~
-
-.report {
-  width: auto;
-  height: auto;
-  background-color: $background-color;
-  margin: 0px 10px 10px 10px;
-  border-style: solid;
-  border-color: $light-gray;
-  border-width: 2px;
-  border-radius: 2px;
-  color: #000000;
-  font-size: 12px;
-
-  .before_photo {
-    @include photo;
-  }
-
-  .after_photo {
-    @include photo;
-  }
-  
-  .report_content {
-    float: left;
-    margin: 5px;
-    width: 145px;
-    height: auto;
-  }
-  
-  .bottom_section {
-    padding: 5px;
-    clear: both;
-    width: auto;
-    height: 50px;
-  }
-  
-  .status {
-     padding-top: 5px;
-     margin-top: 20px;
-     width: 70px;
-     height: 25px;
-     float: right;
-     color: #FFFFFF;
-     text-align: center;
-   }
-}
-
-.claimed_report {
-  .status {
-    background: $blue;
-  }
-}
-
-.open_report {
-  .status {
-    background: $orange;
-  }
-}
-
-.resolved_report {
-  .status {
-    background: $light-gray;
-  }
-}
 

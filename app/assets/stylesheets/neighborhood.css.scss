@@ -39,7 +39,7 @@ ul#neighborhood_participants_list {
     margin-bottom: 10px;
     margin-left: 0px;
     margin-right: 10px;
-    width: 150px;
+    width: 165px;
   }
 }
 ul#neighborhood_house_list {
@@ -67,10 +67,44 @@ ul#neighborhood_house_list {
     background: white;
     height: 125px;
     border: 2px solid $gray;
+    padding: 10px 0px;
+    .neighborhood_pf_picture {
+      border: 1px solid $dark-gray;
+      margin-top: 10px;
+      width: 100px;
+    }
+    .neighborhood_person_name {
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: bold;
+      padding-bottom: 5px;
+      text-shadow: none;
+      color: #909090;
+      font-style: normal;
+      text-decoration: underline;
+    }
+    .neighborhood_quote {
+      width: 110px;
+      font-size: 12px;
+      font-style: italic;
+      text-shadow: 0 1px 1px #828282;
+    }
   }
   .neighborhood_sponsor_box {
     background: $light-gray;
-    height: 250px;
+    height: 220px;
+    padding: 15px 2px 15px 12px;
+    ul {
+      list-style-type: none;
+      
+    }
+    .sponsor_thumb {
+      margin: 0px 10px 10px 0px;
+      background: white;
+      width: 65px;
+      height: 65px;
+      border: 1px solid gray;
+    }
   }
 }
 
@@ -79,13 +113,32 @@ ul#neighborhood_house_list {
   
   ul {
     li {
+      padding: 10px;
       background: white;
       border: 2px solid $gray;
-      width: 310px;
+      width: 290px;
       margin-left: 0px;
       margin-right: 10px;
-      height: 240px;
+      height: 220px;
     }
+  }
+  .neighborhood_news_title {
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-shadow: none;
+    color: #909090;
+    font-style: normal;
+    text-decoration: underline;
+  }
+  .neighborhood_news_thumb {
+    border: 1px solid $dark-gray;
+    width: 100px;
+    height: 100px;
+    background: gray;
+  }
+  .neighborhood_news_content {
+    width: 160px;
   }
 }
 

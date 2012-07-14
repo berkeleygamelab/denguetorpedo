@@ -15,10 +15,9 @@
     .span7
       .row
         .user_report_content.span7
-          %p
-            "
-            = open_report.report            
-            "
+          "
+          = open_report.report            
+          "
       .row.user_report_people
         Reporter:
         %a.user==#{open_report.reporter.username unless open_report.reporter.nil?}

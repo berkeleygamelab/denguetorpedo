@@ -47,4 +47,38 @@
     height: 220px;
     margin-left: 400px;
   }
+  
+  #orange_pull_up {
+    color: $dark-gray;
+    width: 50px;
+    float: right;
+    margin: 26px 20px 0px 0px;
+    font-style: italic;
+    border: 2px solid $dark-gray;
+    line-height: 18px;
+    .extra_border {
+      border: 1px;
+      
+      width: 50px;
+      height: 0px;
+      margin: 2px -2px;
+      border-style: solid;
+      border-color: $dark-gray;
+      
+    }
+  }
+}
+#orange_border {
+  border-top: 3px solid white;
+  margin-top: -5px;
+  position: absolute;
+  background: $orange;
+  height: 3px;
+  width: 100%;
+  #orange_pull_down {
+    float: right;
+    color: $dark-gray;
+    width: 70px;
+    font-style: italic;
+  }
 }

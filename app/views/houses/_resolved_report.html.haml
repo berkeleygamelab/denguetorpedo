@@ -1,0 +1,27 @@
+.hr_report.hr_resolved
+  .row
+    .span1
+      .hr_before_photo
+        = image_tag resolved_report.before_photo
+    .span2
+      .hr_status
+      %b Report # #{resolved_report.id}
+      .row
+        .span2
+          %a Reporter:
+          %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}
+      .row
+        .span2
+          %a Eliminator: 
+          %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
+
+    .span3.hr_address
+      #{resolved_report.complete_address}
+  .row
+    .span1
+      .hr_after_photo
+        = image_tag resolved_report.after_photo
+    .span5.report_content_res      
+      "
+      = resolved_report.report
+      "

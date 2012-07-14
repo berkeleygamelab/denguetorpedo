@@ -4,13 +4,43 @@
 
 @import "variables";
 
-#house_detail {
-  margin-left: 40px;
+#reports_map_temp {
+  margin: 8px;
+  border: 2px solid gray;
 }
-
+#house_neighborhood {
+  text-align: center;
+  #house_neighborhood_bg {
+    margin-top: 2px;
+    background: $light-gray;
+    color: white;
+    border-radius: 2px;
+    padding: 10px 5px;
+    font-size: 16px;
+  }
+}
+#house_points_bg {
+    text-align: center;
+    margin: 2px 0px 0px -45px;
+    width: 120px;
+    background: $blue;
+    color: white;
+    border-radius: 2px;
+    padding: 10px 5px;
+    font-size: 16px;
+}
+#house_badges {
+  margin-top: 20px;
+}
+.house_gray {
+  text-shadow: 1px 1px 1px $light-gray;
+  color: gray;
+  font-weight: normal;
+  display: inline;
+}
 #house_photo {
-  width: 150px;
-  height: 150px;
+  width: 225px;
+
 }
 
 #neighbor_photo {
@@ -21,6 +51,7 @@
 #house_reports {
   background: #e2e5cf;
   min-height: 860px;
+  padding-left: 5px;
 }
 
 #reports_map {
@@ -75,7 +106,7 @@
 #house_resolved_report_button {
   color: #ffffff;
   text-shadow: 1px 1px 1px #000000;
-  background-color: gray;
+  background-color: #B4B7A4;
   width: 66px;
   border-radius:2px;
   text-align: center;
@@ -88,16 +119,81 @@
 #houses_in_neighborhood {
   overflow: auto;
   width: auto;
-  hight: 100px;
+  height: 100px;
   
   li {
     display: inline;
   }
 }
 
+// hr = house report
+.hr_report {
+  width: auto;
+  height: auto;
+  background-color: white;
+  margin: 0px 10px 10px 10px;
 
+  color: #000000;
+  font-size: 12px;
+  padding: 10px 5px;
+  .hr_address {
+    width: 160px;
+    background: #dfdfdf;
+    padding: 5px 3px;
+  }
+  .hr_before_photo {
+    width: 60px;
+  }
 
+  .hr_after_photo {
+    margin-top: 5px;
+    width: 60px;
+  }
 
+  .report_content {
+    width: 360px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-style: italic;
+    text-shadow: 0 1px 1px #828282;
+  }
+  .report_content_res {
+    margin-top: 10px;
+    width: 300px;
+    font-size: 14px;
+    font-style: italic;
+    text-shadow: 0 1px 1px #828282;
+  }
+  .bottom_section {
+    padding: 5px;
+    clear: both;
+    width: auto;
+    height: 50px;
+  }
+  
+  .status {
+     padding-top: 5px;
+     margin-top: 20px;
+     width: 70px;
+     height: 25px;
+     float: right;
+     color: #FFFFFF;
+     text-align: center;
+   }
+}
+
+.hr_open {
+  border: 2px solid $orange;
+  border-radius: 2px;
+}
+.hr_claimed {
+  border: 2px solid $blue;
+  border-radius: 2px;
+}
+.hr_resolved {
+  border: 2px solid $light-gray;
+  border-radius: 2px;
+}
 
 
 

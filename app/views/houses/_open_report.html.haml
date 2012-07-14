@@ -1,0 +1,24 @@
+.hr_report.hr_open
+  .row
+    .span1
+      .hr_before_photo
+        = image_tag open_report.before_photo
+    .span2
+      .hr_status
+      %b Report # #{open_report.id}
+      .row
+        .span2
+          %a Reporter:
+          %a.user==#{open_report.reporter.username unless open_report.reporter.nil?}
+      .row
+        .span2
+          %a Eliminator: Pending
+    .span3.hr_address
+      #{open_report.complete_address}
+  .row
+    .span6
+      .report_content
+        "
+        = open_report.report
+        "
+          

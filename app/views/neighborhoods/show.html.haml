@@ -1,6 +1,9 @@
 .row
   .span8.offset1
-    %h1 Neighborhood of #{@neighborhood.name}
+    - if @neighborhood == @current_user.neighborhood
+      %h1 My Neighborhood - #{@neighborhood.name}
+    - else 
+      %h1 Neighborhood of #{@neighborhood.name}
 .row
   #neighborhood_stats
     .span2.offset1
@@ -79,25 +82,76 @@
       #neighborhood_coordinator.span4
         %h4 Community Coordinator
         .neighborhood_profile_box
+          .span1.neighborhood_pf_picture
+            = image_tag 'carlos_chagas.jpg'                      
+          .span3.neighborhood_quote
+            .neighborhood_person_name
+              Carlos Chagas
+            "Let's work hard to fight against the dengue virus." 
+            
+              
     .row
       #neighborhood_health_agent.span4
         %h4 Featured Health Agent
         .neighborhood_profile_box
+          .span1.neighborhood_pf_picture
+            = image_tag 'oswaldo_cruz.jpg'
+          .span3.neighborhood_quote
+            .neighborhood_person_name
+              Oswaldo Cruz              
+            "We must control the population and growth of mosquitoes"
     .row
       #neighborhood_sponsors.span4
         %h4 Local Sponsors
+        
         .neighborhood_sponsor_box
+          %ul
+            - @random_sponsors.each do |sponsor|
+              %li.span1.sponsor_thumb
+                = image_tag sponsor
+ 
+        
 .row
   .offset1
     #neighborhood_news
       %h4 Community News
       %ul
         %li.span4
-          Design Your Logo
+          .row
+            .span4
+              .neighborhood_news_title
+                Design Your Logo
+          %br
+          .row
+            .span1.neighborhood_news_thumb
+              = image_tag 'rails.png'            
+            .span3.neighborhood_news_content
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud... 
+          
         %li.span4
-          Photography Exhibit
+          .row
+            .span4
+              .neighborhood_news_title
+                Photography Exhibit Event
+          %br
+          .row
+            .span1.neighborhood_news_thumb
+              = image_tag 'camera.png'            
+            .span3.neighborhood_news_content
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud... 
+          
         %li.span4
-          Dengue and Public Health
+          .row
+            .span4
+              .neighborhood_news_title
+                Dengue and Public Health
+          %br
+          .row
+            .span1.neighborhood_news_thumb
+              = image_tag 'dengue.jpg'            
+            .span3.neighborhood_news_content
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud... 
+                   
       
       
     

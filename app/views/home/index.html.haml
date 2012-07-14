@@ -1,4 +1,13 @@
--if @current_user.nil?
+:javascript 
+  $(".collapse").collapse({
+    toggle: false
+    });
+#orange_border
+  #orange_toggle.collapse.in
+    %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}, :id => 'orange_pull_down'}
+      Pull Down
+
+#orange_toggle.collapse
   #orange_slider
     .row
       #top.row
@@ -16,6 +25,11 @@
           %span This video is borrowed from Youtube for dengue education. Video credit belongs to its perspective owner.      
         #register_pane.span4
           = render "home/register_form"
+        .row
+          #orange_pull_up.span1
+            .extra_border
+            Pull Up
+              
 
 #neighborhood_search
   .row

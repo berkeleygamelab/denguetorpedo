@@ -1,19 +1,22 @@
 .post_form
   %h3 Write a Blog about Dengue...
   .row
-    .span10
+    .span8
       = form_for(@post) do |f|
         .row
-          .span10
+          .span8
             = f.error_messages
         .row
-          .span10
-            = f.text_field :title, :placeholder => "Give a Title", :id => 'post_title'
+          .span8
+            = f.text_field :title, :placeholder => "Give a Title", :class => 'span8'
         .row
-          .span10
-            = f.text_area :content, :placeholder => "What is this about?", :id => 'post_content'
+          .span8
+            = f.text_area :content, :placeholder => "What is this about?", :class => 'span8'
         .row
-          .span9
-            %hr#post_spacer  
-          .span1
-            = f.submit "Post", :id => 'post_submit'
+          .row
+            .span2.offset6
+              = f.submit "Post", :id => 'post_submit'
+          .row
+            .span8
+              %hr#post_spacer  
+            

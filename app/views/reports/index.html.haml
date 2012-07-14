@@ -1,8 +1,12 @@
 -#= gmaps4rails(@json)
+:javascript 
+  $(".collapse").collapse({
+    toggle: false
+    });
 .row
   .span8.offset1
     = flash[:notice]
-    %h1 My Dengue Reports
+    %h1 Dengue Reports
 .row
   #report_stats
     .span2.offset1
@@ -20,7 +24,7 @@
         = link_to 'Recent Reports', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
         = link_to 'Open a Report', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
         = link_to 'Claim a Report', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
-        = link_to 'Eliminate a Report', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
+        = link_to 'Resolve a Report', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
 
   .row
     .span9.offset1
@@ -34,7 +38,12 @@
         = render :partial => 'reports/eliminate_list'
     .span6
       .row
-        #report_map Google Map
+        #report_map
+          = image_tag 'report_map.png'
       .row
         - if params[:view] != 'open'
-          #report_sponsors Local Sponsors
+          #report_sponsors
+            %ul
+              - @random_sponsors.each do |sponsor|
+                %li.span1.sponsor
+                  = image_tag sponsor
