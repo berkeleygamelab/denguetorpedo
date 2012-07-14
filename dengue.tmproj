@@ -151,6 +151,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{444, -26}, {911, 900}}</string>
+	<string>{{444, 0}, {911, 900}}</string>
 </dict>
 </plist>

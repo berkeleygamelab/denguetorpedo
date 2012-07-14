@@ -8,12 +8,14 @@
             = @user.username            
         .span2
           %h1.user_points 
-            23941 
-            %br points 
+            23941 points 
       .row
         .user_force_position.span2.offset4
-          %h3.user_house 
-            =link_to @house.name, house_path(@house)
+          %h3.user_house
+            - if @house
+              = link_to @house.name, house_path(@house)
+            - else 
+              = link_to "Create My House", edit_user_path(@current_user)
         .span2
           %h3.user_neighborhood 
             =link_to @neighborhood.name, neighborhood_path(@neighborhood)
@@ -21,17 +23,27 @@
       #user_top_pictures
         .span11.offset1    
           .user_profile_picture
-            -#= image_tag('icons/neighborhood.png')
-            =link_to image_tag("darthvader.jpg"), '#'
+            - if @user.profile_photo_file_name.nil?
+              = image_tag("default_images/profile_default_image.png")
+            - else 
+              = image_tag(@user.profile_photo.url(:large))
           .user_house_picture
-            -#= image_tag('icons/home.png')
-            =link_to image_tag("tiefighter.jpg"), house_path(@house)
+            - if @house.profile_photo_file_name.nil?
+              = link_to image_tag("default_images/house_default_image.png"), house_path(@house)
+            - else 
+              = link_to image_tag(@user.house.profile_photo.url(:medium)), house_path(@house)
           .user_neighborhood_picture
-            -#= image_tag('icons/user_32.png')
-            =link_to image_tag("deathstar.jpg"), neighborhood_path(@neighborhood)
+            =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
 
   .row
     #user_recent_activity.span11.offset1
+      .row
+        .span10
+          - if @isPrivatePage
+            %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
+              %h3.expand_button Write a new post
+            %div{id:"new_post", class:"collapse"}            
+              = render :partial => 'posts/new'
       .row
         %h3.span11
           #{@user.username}'s Recent Activity
@@ -42,14 +54,6 @@
           =link_to 'Reports', user_path(@current_user, :filter => 'reports'), :class => @feed_active_reports
           |
           =link_to 'Blog', user_path(@current_user, :filter => 'posts'), :class => @feed_active_posts
-      .row
-        .span10
-          - if @isPrivatePage
-            %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
-              %h3.expand_button Write a new post
-            
-            %div{id:"new_post", class:"collapse"}            
-              = render :partial => 'posts/new'
       .row
         - if params[:filter] != 'posts'
           #user_reports

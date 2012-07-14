@@ -48,10 +48,10 @@
       %ul#neighborhood_participants_list
         - @participants.each do |participant|
           %li.neighborhood_participant_photo_thumb.span3
-            - if participant.profile_photo.nil?
-              = link_to image_tag("darthvader.jpg"), user_path(participant)
-            - else
+            - if participant.profile_photo_file_name.nil?
               = link_to image_tag("default_images/profile_default_image.png"), user_path(participant)
+            - else
+              = link_to image_tag(participant.profile_photo.url(:large)), user_path(participant)
             = link_to participant.username, user_path(participant)
         - if @participants.count < 9
           - (12 - @participants.count).times do          
@@ -63,12 +63,15 @@
       %ul#neighborhood_house_list
         - @houses.each do |house|
           %li.neighborhood_house_photo_thumb.span3
-            = link_to image_tag("home_images/neighborhood1.png"), house_path(house)
+            - if house.profile_photo_file_name.nil?
+              = link_to image_tag("default_images/house_default_image.png"), house_path(house)
+            - else 
+              = link_to image_tag(house.profile_photo.url(:medium)), house_path(house)
             = link_to house.name, house_path(house)
         - if @houses.count < 7
           - (9 - @houses.count).times do          
             %li.neighborhood_house_photo_thumb.span3
-              = image_tag("home_images/neighborhood2.png")
+              = image_tag("default_images/house_default_image.png")
               Future House
 
   #neighborhood_right_panel.span4

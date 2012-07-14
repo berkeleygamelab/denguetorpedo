@@ -1,5 +1,7 @@
 class House < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :profile_photo
+  
+  has_attached_file :profile_photo, :styles => {:small => "60x60>", :medium => "150x150>" , :large => "200x200>"}
 
   has_many :members, :class_name => "User"
   has_many :posts, :as => :wall

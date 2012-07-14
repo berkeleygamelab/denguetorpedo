@@ -1,8 +1,8 @@
 .user_form
-  %h1 Update Profile
+  %h1 Account Settings
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
-    
+    %h2 User Setting
     = f.label :username
     = f.text_field :username   
     
@@ -12,19 +12,17 @@
     = f.label "Profile Photo"
     = f.file_field :profile_photo  
     
-    = f.label :password      
-    = f.password_field :password
-     
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-    
-    = f.fields_for :house do |house_form|
-      = house_form.label "House Name"
-      = house_form.text_field :name
-    
+    = link_to "Reset Password", edit_password_reset_path(@current_user), :id => "reset_password_link" 
+        
+    %h2 House Setting
     = f.fields_for :location do |location_form|
       = location_form.label "House Address"
       = location_form.text_field :address
-      = location_form.label "Neighborhood"
-      = location_form.select :neighborhood,  [['South Side', 'South Side'], ['North Side', 'North Side'], ['Oakland', 'Oakland']]
+      
+    = f.fields_for :house do |house_form|
+      = house_form.label "House Name"
+      = house_form.text_field :name
+      = house_form.label "House Photo"
+      = house_form.file_field :profile_photo
+  
     = f.submit "Update"
