@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @feed_active_all = ''
     @feed_active_reports = ''
     @feed_active_posts = ''
+    
     if params[:filter] == 'reports'
       @feed_active_reports = 'active'
     elsif params[:filter] == 'posts'
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
     
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      redirect_to edit_user_path(@user.id)
+      redirect_to edit_user_path(@user)
     else
       flash[:user] = @user
       render new_user_path(@user)
@@ -75,12 +76,17 @@ class UsersController < ApplicationController
     user_attributes.delete :house_attributes
     house_attributes.delete :location
     
-    @user.profile_photo = params[:user][:profile_photo]
+    # only save profile photo if user uploads one
+    if (params[:user][:profile_photo])
+      @user.profile_photo = params[:user][:profile_photo] 
+    end
+    
     successful = @user.update_attributes(user_attributes)
-
+    
     if successful
       # if the house name is blank, remove this uers's house
       if house_attributes[:name].blank?
+        
         if @user.house_id != nil
           @user.house_id = nil
           @user.save
@@ -98,6 +104,10 @@ class UsersController < ApplicationController
         end
         @user.house = house
         successful &&= @user.save
+      end
+      if (house_attributes[:profile_photo])
+        @user.house.profile_photo = house_attributes[:profile_photo]
+        successful &&= @user.house.save
       end
     end
 

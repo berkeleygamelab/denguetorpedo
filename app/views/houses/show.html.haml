@@ -5,7 +5,10 @@
   .span10.offset1
     .row
       .span2
-        = image_tag("default_images/house_default_image.png")
+        - if @house.profile_photo.nil?
+          = image_tag("default_images/house_default_image.png")
+        - else
+          = image_tag(@house.profile_photo.url(:large))
       #house_detail.span7
         %ul
           %li 

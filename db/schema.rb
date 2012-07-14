@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621064508) do
+ActiveRecord::Schema.define(:version => 20120714054951) do
 
   create_table "feeds", :force => true do |t|
     t.string   "target_type"
@@ -23,11 +23,15 @@ ActiveRecord::Schema.define(:version => 20120621064508) do
   end
 
   create_table "houses", :force => true do |t|
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "name"
     t.integer  "featured_event_id"
     t.integer  "location_id"
+    t.string   "profile_photo_file_name"
+    t.string   "profile_photo_content_type"
+    t.integer  "profile_photo_file_size"
+    t.datetime "profile_photo_updated_at"
   end
 
   create_table "locations", :force => true do |t|
