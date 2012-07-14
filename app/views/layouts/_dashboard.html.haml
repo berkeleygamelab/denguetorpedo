@@ -2,38 +2,32 @@
   .offset4
     %ul
       %li
-        .nav_item.span2(style="width: 110px;" class=@highlightProfileItem)
-          = image_tag("icons/profile_icon.png")
-          - if @current_user.house && @current_user.house.id
-            = link_to 'My Profile', user_path(@current_user)
-          -else 
-            = link_to 'My Profile', edit_user_path(@current_user)
+        = image_tag("icons/profile_icon.png")
+        - if @current_user.house && @current_user.house.id
+          = link_to 'My Profile', user_path(@current_user)
+        -else 
+          = link_to 'My Profile', edit_user_path(@current_user)
       %li
-        .nav_item.span2(style="width: 110px;" class=@highlightHouseItem)
-          = image_tag("icons/house_icon.png")
-          - if @current_user.house && @current_user.house.id
-            = link_to 'My House', house_path(@current_user.house)
-          - else
-            = link_to 'My House', edit_user_path(@current_user)
+        = image_tag("icons/house_icon.png")
+        - if @current_user.house && @current_user.house.id
+          = link_to 'My House', house_path(@current_user.house)
+        - else
+          = link_to 'My House', edit_user_path(@current_user)
       %li
-        .nav_item.span3(style="width: 165px;" class=@highlightNeighborhoodItem)
-          = image_tag("icons/neighborhood_icon.png")
-          - if @current_user.neighborhood && @current_user.neighborhood.id
-            = link_to 'My Neighborhood', neighborhood_path(@current_user.neighborhood)
-          - else
-            = link_to 'My Neighborhood', edit_user_path(@current_user)
+        = image_tag("icons/neighborhood_icon.png")
+        - if @current_user.neighborhood && @current_user.neighborhood.id
+          = link_to 'My Neighborhood', neighborhood_path(@current_user.neighborhood)
+        - else
+          = link_to 'My Neighborhood', edit_user_path(@current_user)
       %li
-        .nav_item.span2(style="width: 90px;" class=@highlightReportItem)
-          = image_tag("icons/make_report_icon.png")
-          - if @current_user.house && @current_user.house.id
-            = link_to 'Reports', reports_path()
-          - else
-            = link_to 'Reports', edit_user_path(@current_user)
+        = image_tag("icons/make_report_icon.png")
+        - if @current_user.house && @current_user.house.id
+          = link_to 'Reports', reports_path()
+        - else
+          = link_to 'Reports', edit_user_path(@current_user)
       %li
-        .nav_item.span3(style="width: 160px;" class=@highlightAccountItem)
-          = image_tag("icons/account_setting_icon.png")
-          = link_to 'Account Settings', edit_user_path(@current_user)
+        = image_tag("icons/account_setting_icon.png")
+        = link_to 'Account Settings', edit_user_path(@current_user)
       %li
-        .nav_item.span3(style="width: 90px;")
-          = image_tag("icons/logout_icon.png")
-          = link_to "Logout", session_path, :method => :delete
+        = image_tag("icons/logout_icon.png")
+        = link_to "Logout", session_path, :method => :delete
