@@ -1,5 +1,4 @@
-:javascript 
-  $(".collapse").collapse()
+
 .rp_report.rp_open_report
   .row
     .span6
@@ -12,10 +11,9 @@
     .span5
       .row
         .rp_report_content.span5
-          %p
-            "
-            = open.report            
-            "
+          "
+          = open.report            
+          "
       .row.rp_report_people
         Reporter:
         =link_to open.reporter.username, user_path(open.reporter), :class => "user"

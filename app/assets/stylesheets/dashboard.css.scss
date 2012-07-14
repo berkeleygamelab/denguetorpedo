@@ -14,7 +14,7 @@
   
   ul {
     margin: -15px;
-    margin-left: -34px;
+    margin-left: -20px;
     float: left;
     
     li {
@@ -27,5 +27,15 @@
 }
 
 .nav_highlight {
-  font-weight: bold;
+
+  height: 37px;
+  padding: 0px 5px;
+  background-color: $orange;
+  border-radius: 2px;
+  
+  a:link, a:visited {
+    color: white;    
+  }
+
+
 }

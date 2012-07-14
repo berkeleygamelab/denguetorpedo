@@ -11,10 +11,9 @@
     .span5
       .row
         .rp_report_content.span5
-          %p
-            "
-            = claimed.report            
-            "
+          "
+          = claimed.report            
+          "
       .row.rp_report_people
         Reporter:
         %a.user==#{claimed.reporter.username unless claimed.reporter.nil?}

@@ -23,7 +23,7 @@
           - else
             = link_to 'My Neighborhood', edit_user_path(@current_user)
       %li
-        .nav_item.span2(style="width: 115px;" class=@highlightReportItem)
+        .nav_item.span2(style="width: 90px;" class=@highlightReportItem)
           = image_tag("icons/make_report_icon.png")
           - if @current_user.house && @current_user.house.id
             = link_to 'Reports', reports_path()
@@ -34,6 +34,6 @@
           = image_tag("icons/account_setting_icon.png")
           = link_to 'Account Settings', edit_user_path(@current_user)
       %li
-        .nav_item.span2(style="width: 110px;")
+        .nav_item.span3(style="width: 90px;")
           = image_tag("icons/logout_icon.png")
           = link_to "Logout", session_path, :method => :delete

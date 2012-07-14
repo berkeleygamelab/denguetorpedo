@@ -1,30 +1,47 @@
 .row
-  .span10.offset1
-    %h1= @house.name + ", " + @house.location.address
+  .span9.offset1    
+    %span
+      %h1
+        = @house.name + ", "
+        .house_gray
+          = @house.location.address
 .row
-  .span10.offset1
+  .span9.offset1
+    %br
     .row
-      .span2
+    
+      .span4        
         - if @house.profile_photo.nil?
-          = image_tag("default_images/house_default_image.png")
+          = image_tag "default_images/house_default_image.png", :id => 'house_photo'
         - else
-          = image_tag(@house.profile_photo.url(:large))
-      #house_detail.span7
-        %ul
-          %li 
-            %h3 Neighborhood
-          %li
-            = @house.neighborhood.name + ", " + @house.location.city + " " + @house.location.nation
-          %li 
-            %h3 Points
-          %li
-            = @house.points.to_s + " points"
-          %li
-            %h3 House Badges
-          %li You don't have any badge yet.     
+          = image_tag @house.profile_photo.url(:large), :id => 'house_photo'
+      .span5
+        %br
+        .row
+          .span2
+            #house_neighborhood.house_gray
+              .row
+                Neighborhood
+              .row
+                #house_neighborhood_bg
+                  #{@house.neighborhood.name}
+              .row
+                #{@house.location.city}, #{@house.location.nation}             
+          .span2.offset1
+            .house_gray            
+              .row
+                Points
+              .row
+                #house_points_bg
+                  = @house.points.to_s          
+          .row
+            #house_badges
+            .span5
+              %h3 This house currently has no badges yet.
+
     .row
       .span10
-        %h3 House Memebers
+        %h3 House Members
         - for member in @house.members.slice(0, 4)
           #house_members.span1
             .row
@@ -36,7 +53,7 @@
               = link_to member.username, user_path(member)
                   
     .row
-      .span10
+      .span8
         = render :partial => "/posts/new"
         
     .row
@@ -46,15 +63,18 @@
           - for post in @house.posts
             %li= render :partial => "/posts/post", :locals => {:post => post}
     
-  .span5
+  .span6
     .row
-      %h3.span5 Reports nearby this house:
-      #house_reports.span5
+      %h3.span6 Reports nearby this house:
+      #house_reports.span6
         .row
-          .span5
-            = gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
+          .span6
+            #map_container
+              #reports_map_temp
+                = image_tag 'home_images/House_map.png'
+            -#= gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
         .row
-          .span5
+          .span6
             #report_status_bar
               %ul
                 %li
@@ -84,15 +104,15 @@
           - for report in @house.reports
             .row
             - if report.status == :reported
-              = render :partial => "/reports/open_report", :object => report
+              = render :partial => "/houses/open_report", :object => report
             - if report.status == :claimed
-              = render :partial => "/reports/claimed_report", :object => report
+              = render :partial => "/houses/claimed_report", :object => report
             - if report.status == :eliminated
-              = render :partial => "/reports/resolved_report", :object => report
+              = render :partial => "/houses/resolved_report", :object => report
              
     .row
       .span5
-        %h3 Neighbors: 
+        %h3 Neighbors in #{@house.neighborhood.name}: 
         #houses_in_neighborhood
           - if @neighbors.count == 1 
             %p You don't have any neighbors that are in the game

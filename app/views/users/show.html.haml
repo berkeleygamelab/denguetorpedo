@@ -32,6 +32,7 @@
               = link_to image_tag("default_images/house_default_image.png"), house_path(@house)
             - else 
               = link_to image_tag(@user.house.profile_photo.url(:medium)), house_path(@house)
+
           .user_neighborhood_picture
             =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
 

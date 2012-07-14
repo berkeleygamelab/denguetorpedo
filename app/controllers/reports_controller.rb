@@ -49,6 +49,11 @@ class ReportsController < ApplicationController
     else #params[:view] == 'eliminate'
       @reports_resolved_button_active = "active"
     end
+    
+    @random_sponsors = []
+    9.times do
+      @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')
+    end
   end
 
   def new
