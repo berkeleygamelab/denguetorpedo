@@ -9,26 +9,12 @@
   .span9.offset1
     %br
     .row
-      .span2
-        
-      #house_detail.span7
-        %ul
-          %li 
-            %h3 Neighborhood
-          %li
-            = @house.neighborhood.name + ", " + @house.location.city + " " + @house.location.nation
-          %li 
-            %h3 Points
-          %li
-            = @house.points.to_s + " points"
-          %li
-            %h3 House Badges
-          %li You don't have any badge yet.     
+    
       .span4        
         - if @house.profile_photo.nil?
-          = image_tag("default_images/house_default_image.png"), :id => 'house_photo'
+          = image_tag "default_images/house_default_image.png", :id => 'house_photo'
         - else
-          = image_tag(@house.profile_photo.url(:large)), :id => 'house_photo'
+          = image_tag @house.profile_photo.url(:large), :id => 'house_photo'
       .span5
         %br
         .row
