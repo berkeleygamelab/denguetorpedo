@@ -32,13 +32,17 @@ class House < ActiveRecord::Base
     ActiveRecord::Associations::Preloader.new(_reports, [:location]).run
     _reports
   end
-  
+
   def self.find_or_create(name, address, profile_photo=nil)
     return nil if name.nil? || name.blank?
 
     # try to find the house, and return if it exists
     house = House.find_by_name(name)
-    return house if house
+    if house
+      house.profile_photo = profile_photo
+      house.save
+      return house
+    end
 
     return nil if address.nil? || address.blank?
 
@@ -48,7 +52,11 @@ class House < ActiveRecord::Base
       return nil
     end
     house = House.find_by_location_id(location.id)
-    return house if house
+    if house
+      house.profile_photo = profile_photo
+      house.save
+      return house
+    end
 
     # create the house
     house = House.new(name: name)
