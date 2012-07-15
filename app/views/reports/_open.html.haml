@@ -21,7 +21,7 @@
         %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}}       
           .expand_button Claim this report!
         
-        %div{id:"claim_prompt"+(open.id).to_s, class:"collapse"}
+        .collapse{id:"claim_prompt"+(open.id).to_s}
           #report_buttons.confirm_prompt
             Confirm selection:
             = link_to 'Claim!', reports_path(:view=>'recent', :claimed_report=>open), :class=>'confirm_button'

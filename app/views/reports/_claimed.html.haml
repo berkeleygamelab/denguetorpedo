@@ -27,7 +27,7 @@
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}}       
               .expand_button Eliminate this report!
           
-            %div{id:"resolve_prompt"+(claimed.id).to_s, class:"collapse"}
+            .collapse{id:"resolve_prompt"+(claimed.id).to_s}
               .eliminate_prompt
                 = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', claimed.id

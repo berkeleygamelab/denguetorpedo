@@ -45,7 +45,7 @@
           - if @isPrivatePage
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
               %h3.expand_button Write a new post
-            %div{id:"new_post", class:"collapse"}            
+            .collapse#new_post
               = render :partial => 'posts/new'
       .row
         %h3.span11
