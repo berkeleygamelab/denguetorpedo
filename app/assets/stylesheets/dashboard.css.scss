@@ -5,9 +5,9 @@
 @import "variables";
 
 #dashboard_bar {
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0px 1px 1px #BFBEBD;
-  height: 40px;
+  background-color: white;
+  /*box-shadow: 0px 1px 1px #BFBEBD;*/
+  height: 41px;
   border-width: 0px 0px 3px 0px;
   border-style: solid;
   border-color: $orange;
@@ -26,14 +26,10 @@
   }
 }
 
-.nav_highlight {
-
-  height: 37px;
-  padding: 0px 5px;
-  background-color: $orange;
-  border-radius: 2px;
-  
-  a:link, a:visited {
-    color: white;    
-  }
+.nav_item:hover{
+ /* background-color:rgba(0,0,0,0.1);
+  border-radius: 2px;*/
+	a{
+		color:gray;
+	}
 }

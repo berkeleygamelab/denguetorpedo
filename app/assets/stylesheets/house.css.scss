@@ -109,8 +109,8 @@
 
 #houses_in_neighborhood {
   overflow: auto;
-  width: 250;
-  height: 250px;
+  width: auto;
+  margin-top:5px;
   
   li {
     display: inline-block;
