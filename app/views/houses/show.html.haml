@@ -78,26 +78,25 @@
             #report_status_bar
               %ul
                 %li
-                  #house_all_report_button.span1
+                  #house_all_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.reports.count
                     .row All 
                 %li
-                  #house_open_report_button.span1
+                  #house_open_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.created_reports.count
                     .row Open
                 %li 
-                  #house_claimed_report_button.span1 
+                  #house_claimed_report_button.house_report_button.span1 
                     .row
                       %a{:href => "#"}= @house.claimed_reports.count
                     .row Claimed
                 %li
-                  #house_resolved_report_button.span1
+                  #house_resolved_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.eliminated_reports.count
                     .row Resolved
-                  
               
         .row
           #list_of_house_reports

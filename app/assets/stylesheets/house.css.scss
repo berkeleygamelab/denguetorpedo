@@ -75,11 +75,9 @@
   width: 390px;
 }
 
-#house_all_report_button {
+.house_report_button {
   color: #ffffff;
   text-shadow: 1px 1px 1px #000000;
-  background-color: $red;
-  width: 82px;
   border-radius:2px;
   text-align: center;
   
@@ -87,48 +85,26 @@
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
   }
+}
+
+#house_all_report_button {
+  background-color: $red;
+  width: 82px;
 }
 
 #house_open_report_button {
-  color: #ffffff;
-  text-shadow: 1px 1px 1px #000000;
   background-color: $orange;
   width: 82px;
-  border-radius:2px;
-  text-align: center;
-  
-  a {
-    color: #ffffff;
-    text-shadow: 1px 1px 1px #000000;
-  }
 }
 
 #house_claimed_report_button {
-  color: #ffffff;
-  text-shadow: 1px 1px 1px #000000;
   background-color: $blue;
   width: 82px;
-  border-radius:2px;
-  text-align: center;
-  
-  a {
-    color: #ffffff;
-    text-shadow: 1px 1px 1px #000000;
-  }
 }
  
 #house_resolved_report_button {
-  color: #ffffff;
-  text-shadow: 1px 1px 1px #000000;
   background-color: #B4B7A4;
   width: 82px;
-  border-radius:2px;
-  text-align: center;
-  
-  a {
-    color: #ffffff;
-    text-shadow: 1px 1px 1px #000000;
-  }
 }
 
 #houses_in_neighborhood {
