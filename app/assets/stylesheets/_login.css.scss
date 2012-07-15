@@ -28,6 +28,10 @@
     vertical-align: middle;
     padding:0px;
   }
+	
+ input[type = "submit"]:hover{
+	color:black;
+}
 
   #error {
    height: $login_error_height;

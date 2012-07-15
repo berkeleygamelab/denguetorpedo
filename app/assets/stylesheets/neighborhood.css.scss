@@ -170,13 +170,15 @@ ul#neighborhood_house_list {
   height: 20px;
   margin-left: 30px;
   border-radius: $button_border_radius;
-  background-color:#00CC33;
+  background-color:#65665C;
   text-align: center;
   font-size: 18px;
   padding-top:10px;
   padding-bottom:10px;
- 
-
+  	  
+	a{
+		color:white;
+	}
 }
   
 #visit_neighborhood_button:hover{

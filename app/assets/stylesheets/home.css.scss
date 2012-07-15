@@ -71,15 +71,13 @@ ul#neighborhood_list {
 
     .neighborhood_selection_header {
       width: auto;
-      height: 30px;
-      background: #65665c;
+      background: #BFC1B0;
       margin-bottom: 5px;
       text-align: left;
-      padding-top: 5px;
-      padding-left: 10px;
+      padding:5px 0px 5px 10px;
       
       a, h3 {
-        color: #FFFFFF;
+        color: #65665C;
         display: block;
       }
       a:hover {
@@ -87,6 +85,12 @@ ul#neighborhood_list {
       }
     }
 
+ 	.neighborhood_selection_header:hover{
+	background-color:rgba(0, 204, 51, 0.6);
+		a{
+			color:white;
+		}
+}
     .neighborhood_selection_photo {
       width: auto;
       height: auto;
