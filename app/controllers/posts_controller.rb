@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :require_login, :except => [:index]
+  before_filter :load_wall
 
   def index
     @posts = Post.all
@@ -11,11 +12,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    if request.post?
-      params[:post][:user_id] = @current_user.id
-      Post.create params[:post]
-      redirect_to :back
+    @wall.posts.create params[:post] do |post|
+      post.user_id = @current_user.id
     end
+    redirect_to :back
   end
 
   def show
@@ -39,5 +39,13 @@ class PostsController < ApplicationController
     post = Post.find params[:id]
     head :forbidden and return if post.user_id != @current_user.id
     post.destroy
+  end
+
+
+  private
+
+  def load_wall
+    resource, id = request.path.split('/')[1,2]
+    @wall = resource.singularize.classify.constantize.find(id) 
   end
 end

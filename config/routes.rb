@@ -11,18 +11,20 @@ Dengue::Application.routes.draw do
 
   resources :users do
     resources :reports, :except => [:show]
+    resources :posts
   end
   
   resources :dashboard
   resources :reports
   put 'reports' => 'reports#update'
-  resources :houses
+  resources :houses do
+    resources :posts
+  end
   resource :session, :only => [:new, :create, :destroy]
   resources :password_resets, :only => [:new, :create, :edit, :update]
   resources :verifications
   resources :forums, :only => [:index]
   resources :neighborhoods, :only => [:show]
-  resources :posts
 
   root :to => 'home#index'
 
