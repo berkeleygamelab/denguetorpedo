@@ -7,8 +7,7 @@
 .row
   #neighborhood_stats
     .span2.offset1
-      #rank_box
-        %b No. 1
+      #rank_box No. 1
     .span3
       %b 1700
       %br total reports made
@@ -72,7 +71,7 @@
               = link_to image_tag(house.profile_photo.url(:medium)), house_path(house)
             = link_to house.name, house_path(house)
         - if @houses.count < 7
-          - (9 - @houses.count).times do          
+          - (12 - @houses.count).times do          
             %li.neighborhood_house_photo_thumb.span3
               = image_tag("default_images/house_default_image.png")
               Future House

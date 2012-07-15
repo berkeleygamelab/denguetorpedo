@@ -24,7 +24,7 @@
                 Neighborhood
               .row
                 #house_neighborhood_bg
-                  #{@house.neighborhood.name}
+                  = link_to "#{@house.neighborhood.name}", neighborhood_path(@house.neighborhood)
               .row
                 #{@house.location.city}, #{@house.location.nation}             
           .span2.offset1
@@ -101,14 +101,14 @@
               
         .row
           #list_of_house_reports
-          - for report in @house.reports
-            .row
-            - if report.status == :reported
-              = render :partial => "/houses/open_report", :object => report
-            - if report.status == :claimed
-              = render :partial => "/houses/claimed_report", :object => report
-            - if report.status == :eliminated
-              = render :partial => "/houses/resolved_report", :object => report
+            - for report in @house.reports
+              .row
+                - if report.status == :reported
+                  = render :partial => "/houses/open_report", :object => report
+                - if report.status == :claimed
+                  = render :partial => "/houses/claimed_report", :object => report
+                - if report.status == :eliminated
+                  = render :partial => "/houses/resolved_report", :object => report
              
     .row
       .span5
@@ -120,6 +120,10 @@
             %ul
             - for neighbor in @neighbors
               %li
-                =link_to image_tag("http://placehold.it/57x57"), house_path(neighbor)
+                - if neighbor.profile_photo_file_name.nil?
+                  = link_to image_tag("default_images/house_default_image.png"), house_path(neighbor)
+                - else 
+                  = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
+               
               
     

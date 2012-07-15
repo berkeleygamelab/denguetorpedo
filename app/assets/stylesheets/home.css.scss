@@ -58,7 +58,8 @@ ul#neighborhood_list {
     margin-left: 10px;
     display: inline-block;
     margin-right: 10px;
-    margin-top: 20px
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .neighborhood_selection {
     width: 300px;
@@ -70,7 +71,8 @@ ul#neighborhood_list {
       background: #65665c;
       margin-bottom: 5px;
       text-align: left;
-      padding-top: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       padding-right: 10px;
       padding-left: 10px;
       
@@ -95,26 +97,32 @@ ul#neighborhood_list {
   }
 }
 
+#status_of_neighborhood {
+  margin-bottom: -10px;
+}
+
 .home {
   #houses {
-    height: 280px;
+    height: 300px;
   }
 }
 
 ul#house_list {
-    
+  margin-left: 10px;
+  margin-top: 5px;
+  
   li {
     display: inline-block;
-    min-width: 128px;
+    min-width: 120px;
     height: auto;
     margin-right: 5px;
+    margin-left: 5px;
     margin-bottom: 10px;
     text-align: center;
     
     #house_photo_thumb {
-      width: 115px;
-      height: 90px;
-      margin-left: -5px;
+      width: 120px;
+      height: 120px;
     }
     
     a {
@@ -127,7 +135,6 @@ ul#house_list {
   background: #e2e5cf;
   width: 950px;
   height: 160px;
-
   padding-top: 5px;
   
   ul {

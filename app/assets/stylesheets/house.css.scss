@@ -8,6 +8,7 @@
   margin: 8px;
   border: 2px solid gray;
 }
+
 #house_neighborhood {
   text-align: center;
   #house_neighborhood_bg {
@@ -19,6 +20,7 @@
     font-size: 16px;
   }
 }
+
 #house_points_bg {
     text-align: center;
     margin: 2px 0px 0px -45px;
@@ -29,18 +31,24 @@
     padding: 10px 5px;
     font-size: 16px;
 }
+
 #house_badges {
   margin-top: 20px;
 }
+
 .house_gray {
   text-shadow: 1px 1px 1px $light-gray;
   color: gray;
   font-weight: normal;
   display: inline;
 }
+
 #house_photo {
   width: 225px;
+}
 
+#house_members {
+  margin-right: 10px;
 }
 
 #neighbor_photo {
@@ -51,7 +59,7 @@
 #house_reports {
   background: #e2e5cf;
   min-height: 860px;
-  padding-left: 5px;
+  padding-left: 10px;
 }
 
 #reports_map {
@@ -61,16 +69,20 @@
 
 #list_of_house_reports{
   margin-top: 10px;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 630px;
+  width: 390px;
 }
 
 #house_all_report_button {
   color: #ffffff;
   text-shadow: 1px 1px 1px #000000;
-  
   background-color: $red;
-  width: 66px;
+  width: 82px;
   border-radius:2px;
   text-align: center;
+  
   a {
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
@@ -81,9 +93,10 @@
   color: #ffffff;
   text-shadow: 1px 1px 1px #000000;
   background-color: $orange;
-  width: 66px;
+  width: 82px;
   border-radius:2px;
   text-align: center;
+  
   a {
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
@@ -94,9 +107,10 @@
   color: #ffffff;
   text-shadow: 1px 1px 1px #000000;
   background-color: $blue;
-  width: 66px;
+  width: 82px;
   border-radius:2px;
   text-align: center;
+  
   a {
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
@@ -107,9 +121,10 @@
   color: #ffffff;
   text-shadow: 1px 1px 1px #000000;
   background-color: #B4B7A4;
-  width: 66px;
+  width: 82px;
   border-radius:2px;
   text-align: center;
+  
   a {
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
@@ -118,17 +133,18 @@
 
 #houses_in_neighborhood {
   overflow: auto;
-  width: auto;
-  height: 100px;
+  width: 250;
+  height: 250px;
   
   li {
-    display: inline;
+    display: inline-block;
+    margin-bottom: 5px;
   }
 }
 
 // hr = house report
 .hr_report {
-  width: auto;
+  width: 360px;
   height: auto;
   background-color: white;
   margin: 0px 10px 10px 10px;
@@ -136,6 +152,7 @@
   color: #000000;
   font-size: 12px;
   padding: 10px 5px;
+  
   .hr_address {
     width: 160px;
     background: #dfdfdf;

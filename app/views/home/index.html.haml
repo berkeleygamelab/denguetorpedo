@@ -7,11 +7,12 @@
       %button Find
 
 .row
-  %h2.offset1 Dengue Leaders
+  %h2.offset1 Top Dengue-Fighting Neighborhoods
     
 .row
   .span15.offset1
     = render "home/neighborhood_list"
+
 .row 
   %h3.offset1#status_of_neighborhood Status of #{@selected_neighborhood.name}
 
@@ -19,7 +20,7 @@
   #neighborhood_stats
     .span2.offset1
       #rank_box
-        %b No. 1
+        %b No. #{@selected_neighborhood.id}
     .span3
       %b 1700
       %br total reports made

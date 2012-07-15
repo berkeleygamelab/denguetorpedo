@@ -23,6 +23,7 @@
     text-align: center;
   }
 }
+
 #neighborhood_view {
   font-size: 18px;
   color: $dark-gray;
@@ -31,27 +32,30 @@
     color: $blue;
   }
 }
+
 ul#neighborhood_participants_list {
   list-style-type: none;
   margin-top: 10px;
   
   li.neighborhood_participant_photo_thumb {
-    margin-bottom: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
     margin-left: 0px;
-    margin-right: 10px;
-    width: 165px;
+    margin-right: 15px;
+    width: 125px;
+    height: 125px
   }
 }
+
 ul#neighborhood_house_list {
-  list-style-type: none;
   margin-top: 10px;
   
   li.neighborhood_house_photo_thumb {
-    margin-bottom: 10px;
+    display: inline-block;
+    margin-bottom: 30px;
     margin-left: 0px;
-    margin-right: 10px;   
-    width: 150px;
-    
+    margin-right: 15px;
+    width: 125px;
   }
 }
 
@@ -177,6 +181,7 @@ ul#neighborhood_house_list {
   text-align: center;
   padding: 10px 5px 10px 5px;
   width: 80px;
+  font-weight: bold;
 }
     
 .neighborhoods {
