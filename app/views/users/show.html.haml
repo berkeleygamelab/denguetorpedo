@@ -17,7 +17,7 @@
             - if @house
               = link_to @house.name, house_path(@house)
             - else 
-              = link_to "Create My House", edit_user_path(@current_user)
+              = link_to "Create My House", edit_user_path(@user)
         .span2
           %h3.user_neighborhood 
             =link_to @neighborhood.name, neighborhood_path(@neighborhood)
@@ -52,11 +52,11 @@
           #{@user.username}'s Recent Activity
       .row
         .span8          
-          =link_to 'All', user_path(@current_user, :filter => 'all'), :class => @feed_active_all
+          = link_to 'All', user_path(@user, :filter => 'all'), :class => @feed_active_all
           |
-          =link_to 'Reports', user_path(@current_user, :filter => 'reports'), :class => @feed_active_reports
+          = link_to 'Reports', user_path(@user, :filter => 'reports'), :class => @feed_active_reports
           |
-          =link_to 'Blog', user_path(@current_user, :filter => 'posts'), :class => @feed_active_posts
+          = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
       .row
         - if params[:filter] != 'posts'
           #user_reports
@@ -73,8 +73,3 @@
             = render :partial => "users/show_post", :object => p
     #user_right_panel.span4
       Coupon Panel
-                    
-      
-
-          
-        

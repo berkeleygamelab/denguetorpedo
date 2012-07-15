@@ -66,7 +66,11 @@ class Location < ActiveRecord::Base
     end
 
     # do the geocoding
-    geocode = Gmaps4rails.geocode(location.complete_address())
+    begin
+      geocode = Gmaps4rails.geocode(location.complete_address())
+    rescue
+      return nil
+    end
     if geocode.size != 1
       return nil
     end

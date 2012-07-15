@@ -4,20 +4,20 @@
     = f.error_messages
     %h2 User Setting
     = f.label :username
-    = f.text_field :username   
+    = f.text_field :username
     
     = f.label :email
     = f.text_field :email
     
     = f.label "Profile Photo"
-    = f.file_field :profile_photo  
+    = f.file_field :profile_photo
     
-    = link_to "Reset Password", edit_password_reset_path(@current_user), :id => "reset_password_link" 
+    = link_to "Reset Password", edit_password_reset_path(@current_user), :id => "reset_password_link"
         
     %h2 House Setting
     = f.fields_for :location do |location_form|
       = location_form.label "House Address"
-      = location_form.text_field :address
+      = location_form.text_field :address, value: @user.location.complete_address if @user.location
       
     = f.fields_for :house do |house_form|
       = house_form.label "House Name"

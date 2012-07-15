@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :phone_number, :numericality => true, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true
   validates :email, :format => { :with => EMAIL_REGEX }, :allow_nil => true
   validates :email, :uniqueness => true, :unless => "email.nil?"
+  validates :house_id, presence: true, on: :update
 #  validates :is_fully_registered, :presence => true
 #  validates :is_community_coordinator, :presence => true
 #  validates :is_community_coordinator, :uniquness => { :scope => ??? } TODO: only want one coordinator per community
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
   
   belongs_to :house
 
-  # helper associations
+  # associations helpers
   def location
     house && house.location
   end

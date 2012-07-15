@@ -7,26 +7,17 @@ class UsersController < ApplicationController
   end
   
   def show
-    
     @post = Post.create
 
-    @user_posts = Post.find(:all, :from => 'posts', :conditions => ['posts.user_id = ?', @current_user.id])
     @user = User.find_by_id(params[:id])
     head :not_found and return if @user.nil?
-    
-    @isPrivatePage = (@current_user != nil && @current_user == @user)
-    @highlightProfileItem = ""
-    if @isPrivatePage
-      @highlightProfileItem = "nav_highlight"
-    end
+
+    @user_posts = @user.posts
+    @house = @user.house
     @neighborhood = @user.neighborhood
     
-    @house = @user.house
-    @reports = @user.reports
-    
-    @feed_active_all = ''
-    @feed_active_reports = ''
-    @feed_active_posts = ''
+    @isPrivatePage = (@user == @current_user)
+    @highlightProfileItem = @isPrivatePage ? "nav_highlight" : ""
     
     if params[:filter] == 'reports'
       @feed_active_reports = 'active'
@@ -66,56 +57,33 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = @current_user
+    house_name = params[:user][:house_attributes][:name]
+    address = params[:user][:location][:address]
+    profile_photo = params[:user][:house_attributes][:profile_photo]
 
-    user_attributes = params[:user]
-    house_attributes = user_attributes[:house_attributes]
-    location_attributes = user_attributes[:location]
+    @current_user.username = params[:user][:username]
 
-    # delete the nested attributes
-    user_attributes.delete :house_attributes
-    house_attributes.delete :location
-    
     # only save profile photo if user uploads one
-    if (params[:user][:profile_photo])
-      @user.profile_photo = params[:user][:profile_photo] 
+    if params[:user][:profile_photo]
+      @current_user.profile_photo = params[:user][:profile_photo] 
     end
     
-    successful = @user.update_attributes(user_attributes)
-    
-    if successful
-      # if the house name is blank, remove this uers's house
-      if house_attributes[:name].blank?
-        
-        if @user.house_id != nil
-          @user.house_id = nil
-          @user.save
-        end
-
-      # user doesn't have a house or the house name is different
-      elsif @user.house.nil? || (@user.house && @user.house.name != house_attributes[:name])
-
-        # if the house doesn't already exists, create one with the location given
-        house = House.find_by_name(house_attributes[:name])
-        if house.nil?
-          house = House.new(:name => house_attributes[:name])
-          house.location = Location.find_or_create(location_attributes[:address])
-          successful &&= house.save
-        end
-        @user.house = house
-        successful &&= @user.save
-      end
-      if (house_attributes[:profile_photo])
-        @user.house.profile_photo = house_attributes[:profile_photo]
-        successful &&= @user.house.save
-      end
+    # change the email only if the user provided one
+    if not params[:user][:email].blank?
+      @current_user.email = params[:user][:email]
     end
 
-    if successful
-      redirect_to user_url(@user), notice: 'Successfully update profile'
+    @current_user.save
+
+    @current_user.house = House.find_or_create(house_name, address, profile_photo)
+ 
+    @user = @current_user
+    if @current_user.save
+      redirect_to user_url(@current_user), notice: 'Successfully update profile'
     else
+      @user.house = House.new(name: house_name)
+      @user.house.location = Location.new
       render "edit"
     end  
   end
-
 end
