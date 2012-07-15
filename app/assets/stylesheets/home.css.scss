@@ -35,7 +35,16 @@
     border: none;
   }
 }
-
+#home_houses {
+  
+  margin-top: 10px;
+  overflow: auto;
+  width: auto;
+  
+  li {
+    display: inline;
+  }
+}
 #neighborhoods {
 
   #temp {
@@ -96,7 +105,7 @@ ul#house_list {
     
   li {
     display: inline-block;
-    min-width: 115px;
+    min-width: 128px;
     height: auto;
     margin-right: 5px;
     margin-bottom: 10px;

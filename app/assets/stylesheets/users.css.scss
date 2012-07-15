@@ -4,7 +4,13 @@
 
 @import "variables";
 
-
+.user_points {
+  margin-top: 20px;
+  padding-top: 0px;
+  .user_points_bg {
+    
+  }
+}
 #user_right_panel {
   margin-top: -150px;
   margin-left: 30px;
@@ -156,7 +162,18 @@
     .user_points {
       z-index: 1;
       text-align: center;
-      padding-top: 60px;
+      padding-top: 25px;
+      margin-top: 40px;
+      margin-left: 40px;
+      .user_points_bg {
+        margin: -5px 0px 0px 0px;
+        width: 100px;
+        background: $blue;
+        color: white;
+        border-radius: 2px;
+        padding: 10px 5px;
+        font-size: 16px;
+      }
     }
   }
 }

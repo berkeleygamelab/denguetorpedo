@@ -1,0 +1,42 @@
+- if not @current_user.nil?
+  #orange_border 
+    %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}, :id => 'orange_pull_down'}
+      Pull Down
+
+  %div{:id => 'orange_toggle', :class => 'collapse'}
+    #orange_slider    
+      .row
+        #top.row
+          #orange_bg_graphic
+            #play_button.offset5
+              = image_tag 'home_images/videoplayer_button.png'
+          -# #video.span11.offset1 %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "220", :width => "300", :src => "http://www.youtube.com/embed/VR3AM4BHSnw", :title => "Dengue Fever"}
+          .span3.offset9
+            %h2
+              Use your mobile phone to eliminate mosquitoes
+              = '-'
+              play Dengue Torpedo and win prizes!                    
+          .span4
+            #register_pane
+              = render "home/register_form"
+          .row
+            #orange_pull_up.span1
+              %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}}
+                Pull Up
+- else
+  #orange_slider    
+    .row
+      #top.row
+        #orange_bg_graphic
+          #play_button.offset5
+            = image_tag 'home_images/videoplayer_button.png'
+        -# #video.span11.offset1 %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "220", :width => "300", :src => "http://www.youtube.com/embed/VR3AM4BHSnw", :title => "Dengue Fever"}
+        .span3.offset9
+          %h2
+            Use your mobile phone to eliminate mosquitoes
+            = '-'
+            play Dengue Torpedo and win prizes!                    
+        .span4
+          #register_pane
+            = render "home/register_form"
+        

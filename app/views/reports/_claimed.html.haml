@@ -27,18 +27,19 @@
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}}       
               .expand_button Eliminate this report!
           
-            %div{id:"resolve_prompt"+(claimed.id).to_s, class:"collapse confirm_prompt"}
-              = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
-                = hidden_field_tag 'report_id', claimed.id
-                Upload image of eliminated target:
-                = f.file_field :after_photo
-                .row
-                  .span2
-                    = submit_tag "Eliminate!"
-                  .span2
-                    #report_buttons.eliminate_cancel        
-                      %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}, :class=>'confirm_button'}               
-                        Cancel
+            %div{id:"resolve_prompt"+(claimed.id).to_s, class:"collapse"}
+              .eliminate_prompt
+                = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
+                  = hidden_field_tag 'report_id', claimed.id
+                  Upload image of eliminated target:
+                  = f.file_field :after_photo
+                  .row
+                    .span2
+                      = submit_tag "Eliminate!"
+                    .span2
+                      #report_buttons.eliminate_cancel        
+                        %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}, :class=>'confirm_button'}               
+                          Cancel
     .span1.rp_report_status.status
       Claimed
   .row

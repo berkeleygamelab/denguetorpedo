@@ -1,35 +1,4 @@
-:javascript 
-  $(".collapse").collapse({
-    toggle: false
-    });
-#orange_border
-  #orange_toggle.collapse.in
-    %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}, :id => 'orange_pull_down'}
-      Pull Down
-
-#orange_toggle.collapse
-  #orange_slider
-    .row
-      #top.row
-        #top_left.span7.offset4
-          %h1 Citizens Fight Dengue!
-        #top_right.span3.offset2
-          -# should be all reports totaled
-          %h2 
-            #{@total_reports_in_neighborhood} 
-            %h3 
-              total reports made
-      .row    
-        #video.span11.offset1
-          %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "220", :width => "300", :src => "http://www.youtube.com/embed/VR3AM4BHSnw", :title => "Dengue Fever"}
-          %span This video is borrowed from Youtube for dengue education. Video credit belongs to its perspective owner.      
-        #register_pane.span4
-          = render "home/register_form"
-        .row
-          #orange_pull_up.span1
-            .extra_border
-            Pull Up
-              
+= render :partial => 'orange_slider'
 
 #neighborhood_search
   .row
@@ -77,7 +46,7 @@
         #visit_neighborhood_button.span3
           = render "home/visit_neighborhood_button"
 .row
-  %h3.offset1#houses_in_neighborhood Houses in #{@selected_neighborhood.name}
+  %h3.offset1#home_houses Houses in #{@selected_neighborhood.name}
         
 .row
   #houses.span15.offset1

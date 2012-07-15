@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
   def index
-
+    @collapse = 'collapse'
+    if @current_user.nil?
+      @orange_position = ''
+    end
     if (flash[:user].nil?)
       @user = User.new
     else
@@ -21,6 +24,7 @@ class HomeController < ApplicationController
     
     @houses = @selected_neighborhood.houses.limit(10)
     @total_reports_in_neighborhood = @selected_neighborhood.reports.count
+    
     
   end
   
