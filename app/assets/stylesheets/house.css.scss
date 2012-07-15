@@ -49,11 +49,15 @@
 
 #house_members {
   margin-right: 10px;
+	img{
+		border:1px solid $gray;
+	}
 }
 
 #neighbor_photo {
   width: 59px;
   height: 59px;
+  border:1px solid gray;
 }
 
 #house_reports {
@@ -109,8 +113,8 @@
 
 #houses_in_neighborhood {
   overflow: auto;
-  width: 250;
-  height: 250px;
+  width: auto;
+  margin-top:5px;
   
   li {
     display: inline-block;
@@ -147,13 +151,11 @@
     width: 360px;
     margin-top: 10px;
     font-size: 14px;
-    font-style: italic;
-    text-shadow: 0 1px 1px #828282;
   }
   .report_content_res {
-    margin-top: 10px;
+    margin-top: 5px;
     width: 300px;
-    font-size: 14px;
+    font-size: 12px;
     font-style: italic;
     text-shadow: 0 1px 1px #828282;
   }

@@ -16,21 +16,22 @@
     width: $login-width;
     height: 15px;
     margin-bottom: 5px;
+	padding:5px 0px 5px 5px;
   }
     
   input[type = "submit"] {
-    margin-right: 1px;
-    font-size: 11px;
+    margin-right: 20px;
+    font-size: 12px;
   	float: right;
-    height: 20px;
-    border-radius: $button_border_radius;
-    color: #ffffff;
-    background: $dark-gray;
+  	color: #ffffff;
+    background: $blue;
     vertical-align: middle;
-    padding: 0px;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding:0px;
   }
+	
+ input[type = "submit"]:hover{
+	color:black;
+}
 
   #error {
    height: $login_error_height;
@@ -45,16 +46,20 @@
   
   margin-top: 5px;
   margin-right: 10px;
-  margin-left: 60px;
+  margin-left: 40px;
   text-align: left;
-  
+  h3{
+	color:white;
+}
   ul {
   }
   #dashboard_search {
     margin-left: 0px;
     margin-top: 6px;
     input {
-      width: 250px;
+	  padding:4px;
+	  margin-top:-5px;
+      width: 200px;
     }
   }
   

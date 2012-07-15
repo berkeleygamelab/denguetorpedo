@@ -22,12 +22,14 @@ html, body, button, input, select, textarea, label {
 }
 
 html {
-  background: #dddddd;
+ background:#FDFFE9;
+ background-image: url('background_ext.png');
+ background-repeat:repeat-x;
 }
 
 body {
-  background: #dfdfd;
-  box-shadow: 0px 2px 10px #333333;
+  background:#FDFFE9;
+  /*box-shadow: 0px 2px 10px #333333;*/
   margin-top: 0px;
   height: 100%;
 }
@@ -42,11 +44,11 @@ textarea, textarea:focus , input, input:focus {
   background-color: #ffffff;
   border: 0px;
   outline: none;
-  border-radius: $input_border_radius;
-  box-shadow: inset -1px 1px 1px #333333;
+  box-shadow: inset -1px 1px 5px #CCCCCC;
+  padding:10px;
   
   &[type = "submit"] {
-     box-shadow: inset 0px 0px 0px #ffffff;
+    box-shadow: inset 0px 0px 0px #ffffff
   }
 }
 
@@ -54,17 +56,15 @@ span {
   display: block;
 }
 
-caption, h1, h2, h3, h4, h5, h6, p {
-  margin: 0px;
-  text-shadow: 0px 1px 1px #828282;
-}
 
 h1 {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 h2 {
   font-size: 18px;
+  font-weight:bold;
+
 }
 
 h3 {
@@ -81,10 +81,18 @@ h5 {
 
 h6 {
   font-size: 8px;
+ 
+}
+
+caption, h1,h2, h3, h4, h5, h6, p {
+  margin: 0px;
+ /* text-shadow: 0px 1px 1px #828282;*/
+  font-weight:normal;
+ color:#65665C;
 }
 
 a img {
-  border: none;
+  border:none;
 }
 
 a:link, a:visited {
@@ -92,9 +100,6 @@ a:link, a:visited {
   text-decoration: none;
 }
 
-a:hover, a:active, a:focus {
-  text-decoration: underline;
-}
 
 // establishes page width and centers
 body, #container {
