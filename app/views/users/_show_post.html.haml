@@ -2,7 +2,10 @@
   .user_activity_item
     .row
       .user_activity_thumb.span2
-        = image_tag('http://placehold.it/80x80')
+        - if @user.profile_photo_file_name.nil?
+          = image_tag("default_images/profile_default_image.png")
+        - else 
+          = image_tag(@user.profile_photo.url(:large))
 
       .span7
         .row

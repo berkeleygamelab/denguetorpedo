@@ -1,6 +1,6 @@
 .row
   .span8.offset1
-    - if @neighborhood == @current_user.neighborhood
+    - if not @current_user.nil? || @neighborhood == @current_user.neighborhood
       %h1 My Neighborhood - #{@neighborhood.name}
     - else 
       %h1 Neighborhood of #{@neighborhood.name}
@@ -41,9 +41,9 @@
 .row
   #neighborhood_view
     .span2.offset1
-      = link_to 'Houses', neighborhood_path(@current_user.neighborhood), :class => @houses_view_active
+      = link_to 'Houses', neighborhood_path(params[:id]), :class => @houses_view_active
     .span2
-      = link_to 'Participants', neighborhood_path(@current_user.neighborhood, :view => 'participants'), :class => @participants_view_active
+      = link_to 'Participants', neighborhood_path(params[:id], :view => 'participants'), :class => @participants_view_active
 %br
 .row
   - if params[:view] == 'participants'
