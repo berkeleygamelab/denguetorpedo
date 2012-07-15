@@ -17,7 +17,7 @@
     %h2 House Setting
     = f.fields_for :location do |location_form|
       = location_form.label "House Address"
-      = location_form.text_field :address
+      = location_form.text_field :address, value: @user.location.complete_address if @user.location
       
     = f.fields_for :house do |house_form|
       = house_form.label "House Name"

@@ -13,8 +13,7 @@ class House < ActiveRecord::Base
   accepts_nested_attributes_for :location, :allow_destroy => true
   attr_accessible :location_id, :location_attributes
 
-  validates :location_id, :presence => true
-  validates :location_id, :uniqueness => true
+  validates :location_id, presence: true, uniqueness: true
 
   def neighborhood
     location.neighborhood
@@ -34,4 +33,30 @@ class House < ActiveRecord::Base
     _reports
   end
   
+  def self.find_or_create(name, address, profile_photo=nil)
+    return nil if name.nil? || name.blank?
+
+    # try to find the house, and return if it exists
+    house = House.find_by_name(name)
+    return house if house
+
+    return nil if address.nil? || address.blank?
+
+    # create the location
+    location = Location.find_or_create(address)
+    if location.nil?
+      return nil
+    end
+    house = House.find_by_location_id(location.id)
+    return house if house
+
+    # create the house
+    house = House.new(name: name)
+    house.location = location
+    house.profile_photo = profile_photo
+    house.save
+
+    # return the new house
+    return house
+  end
 end
