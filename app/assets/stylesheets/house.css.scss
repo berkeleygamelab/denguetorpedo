@@ -49,11 +49,15 @@
 
 #house_members {
   margin-right: 10px;
+	img{
+		border:1px solid $gray;
+	}
 }
 
 #neighbor_photo {
   width: 59px;
   height: 59px;
+  border:1px solid gray;
 }
 
 #house_reports {
