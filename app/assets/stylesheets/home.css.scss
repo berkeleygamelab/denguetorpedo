@@ -8,7 +8,7 @@
 
   height: 60px;   
   margin-top: 20px; 
-  
+  margin-bottom:20px;
 
   #neighborhood_search_background {
     background: #e2e5cf;
@@ -102,7 +102,8 @@ ul#neighborhood_list {
 }
 
 #status_of_neighborhood {
-  margin-bottom: -10px;
+  	margin-top:30px;
+	margin-bottom: -10px;
 }
 
 .home {
@@ -144,7 +145,7 @@ ul#house_list {
     li {
       display: inline-block;
       margin-top: 10px;
-      margin-right: 3px;
+      margin-right: 2px;
     }
   }
 }
