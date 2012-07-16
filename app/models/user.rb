@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :auth_token
   has_secure_password
-  has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }
-
+  has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'
+  
   # validates
   validates :username, :uniqueness => true
   validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }

@@ -67,7 +67,7 @@ ul#neighborhood_list {
   }
   .neighborhood_selection {
     width: 300px;
-    height: 300px;
+
 
     .neighborhood_selection_header {
       width: auto;
@@ -91,12 +91,10 @@ ul#neighborhood_list {
 			color:white;
 		}
 }
-    .neighborhood_selection_photo {
-      width: auto;
-      height: auto;
-      background: #FFFFFF;
-      
+    .neighborhood_selection_photo {  
       img {
+        width: 300px;
+        height: auto;
         margin: 0px;
       }
     }
@@ -128,7 +126,6 @@ ul#house_list {
     
     #house_photo_thumb {
       width: 115px;
-      height: 90px;
       margin-left: -5px;
 	  border: 1px solid $gray;
     }

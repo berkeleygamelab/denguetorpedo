@@ -11,13 +11,18 @@
     
   }
 }
-#user_right_panel {
-  margin-top: -150px;
+ul#user_right_panel {
+
   margin-left: 30px;
-  height: 1000px;
+  background: $light-gray;
+  padding: 15px 10px 0px 10px;
+  width: 220px;
   img{
 	border:1px solid $gray;
-}
+
+	  margin-bottom: 15px;
+	}
+
 }
 
 #user_reports {
@@ -107,6 +112,11 @@
   list-style-type: none;
   
   #user_top_pictures {
+    .user_profile_map {
+      border: 2px solid $gray;
+      height: 150px;
+      background: #dddddd;
+    }
     .user_profile_picture{
       margin-top: 10px;
       display: inline;
@@ -124,10 +134,10 @@
       
       img {
         z-index: 1;
-        margin-top: 15px;
+
         width: 96px;
         height: 96px;
-		border: 1px solid $gray;
+
       }
     }
     .user_neighborhood_picture {
@@ -226,8 +236,8 @@
       }
       .user_activity_icons {
         position: absolute;
-        bottom: 5px;
-        right: 10px;
+        bottom: 0px;
+        right: 0px;
       }
     }
   }
