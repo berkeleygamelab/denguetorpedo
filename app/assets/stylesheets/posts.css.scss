@@ -40,19 +40,23 @@
   margin-top: 15px;
   border-radius: $button_border_radius;
   box-shadow: 0px 1px 2px #333333;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
+  padding-left: 5px;
 }
 
 .post_feed_profile_photo {
-  position: relative;
-  top: -5px;
-  left: -5px;
+  margin-top: 5px;  
+  width: 80px;
 }
-
+.post_feed_content {
+  margin-left: 35px;
+}
 .post_feed_title {
+  width: 470px;
   background: #e2e5cf;
   border-top-right-radius: $button_border_radius;
   padding-left: 10px;
+  margin-left: 30px;
   margin-bottom: 5px;
   position: relative;
   top: -1px;

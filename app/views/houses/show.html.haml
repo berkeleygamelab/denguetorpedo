@@ -57,7 +57,7 @@
         = render :partial => "posts/new", locals: { wall: @house }
         
     .row
-      .span10
+      .span9
         %h3 What's happening?
         %ul
           - for post in @house.posts
@@ -110,7 +110,7 @@
                   = render :partial => "/houses/resolved_report", :object => report
              
     .row
-      .span5
+      .span6
         %h3 Neighbors in #{@house.neighborhood.name}: 
         #houses_in_neighborhood
           - if @neighbors.count == 1 

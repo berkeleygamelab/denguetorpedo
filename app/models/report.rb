@@ -1,8 +1,8 @@
 class Report < ActiveRecord::Base
   attr_accessible :report
 
-  has_attached_file :before_photo, :styles => {:medium => "300x300>", :thumb => "100x100>"}
-  has_attached_file :after_photo, :styles => {:medium => "300x300>", :thumb => "100x100>"}
+  has_attached_file :before_photo, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :default_url => 'default_images/report1.jpg'
+  has_attached_file :after_photo, :styles => {:medium => "300x300>", :thumb => "100x100>"}, :default_url => 'default_images/report1.2.jpg'
   
   belongs_to :reporter, :class_name => "User"
   belongs_to :claimer, :class_name => "User"
