@@ -58,10 +58,9 @@
         
     .row
       .span9
-        %h3 What's happening?
-        %ul
-          - for post in @house.posts
-            %li= render :partial => "/posts/post", :locals => {:post => post}
+        %h3 Activities in the house:
+        - for post in @house.posts
+          = render :partial => "/posts/post", :locals => {:post => post}
     
   .span6
     .row

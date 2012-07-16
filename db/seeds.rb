@@ -217,17 +217,17 @@ puts "all houses created and members added"
  
  
 puts "creating open reports..."
-r1 = Report.create_from_user("I saw many containers in this junk yard. They need some cleaning.", :status => :reported, :reporter => u1, :location => l14)
+r1 = Report.create_from_user("I saw many containers in this junk yard. They need some cleaning.", :status => :reported, :reporter => u1, :location => l14, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')))
 r1.save!
 
-r2 = Report.create_from_user("The garden in the school requires some help.", :status => :claimed, :reporter => u1, :location => l15, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2.1.jpg')))
+r2 = Report.create_from_user("The garden in the school requires some help.", :status => :claimed, :reporter => u1, :location => l15, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')))
 r2.claimer = u1
 r2.save!
 
-r3 = Report.create_from_user("Please take a look at the big garbage can next to the pole.", :status => :reported, :reporter => u1, :location => l16, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report3.1.jpg' )))
+r3 = Report.create_from_user("Please take a look at the big garbage can next to the pole.", :status => :reported, :reporter => u1, :location => l16, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report3_1.jpg' )))
 r3.save!
 
-r4 = Report.create_from_user("There are some pupae in the container.", :status => :eliminated, :reporter => u1, :location => l17)
+r4 = Report.create_from_user("There are some pupae in the container.", :status => :eliminated, :reporter => u1, :location => l17, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')), :after_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_2.jpg')))
 r4.claimer = u1
 r4.eliminator = u1
 r4.save!
@@ -263,18 +263,16 @@ r7 = Report.create_from_user("I have three huge water tanks that I need help wit
 r7.claimer = u7
 r7.eliminator = u7
 r7.save!
-
 puts "all reports created"
 
 
 puts "creating posts..."
-e1 = Post.create!(:user_id => u1.id, :content => "Over this weeken, I am creating a fight dengue party. I would like to invite everyone to join")
-e1.children << Post.new(:content => "I would like to know if there are new technique to eliminate dengue. Would anyone like to share?", :user_id => u1.id)
-e1.children << Post.new(:content => "Hey guys! Let's keep it up. We are winning over our neighborhoods!", :user_id => u7.id)
-e2 = Post.create(:user_id => u11.id, :content => "Here's a new method I discovered to fight dengue. Everytime you are done with a contain, you should flip it upside down.")
-e2.children << Post.new(:content => "I don't have any plan this weekend. Anyone would like to get together for a beer?", :user_id => u11.id)
-e2.children << Post.new(:content => "I am debating on what kind rewards to redeem. Anyone any suggestion?", :user_id => u6.id)
-e3 = Post.create(:user_id => u5.id, :content => "Looks like the health agent has contacted me that this season the breakout rate has slowed down!")
-
+e1 = Post.create!(:content => "Over this weeken, I am creating a fight dengue party. I would like to invite everyone to join") do |post| post.wall = u1.house; post.user = u1 end
+e2 = Post.create!(:content => "I would like to know if there are new technique to eliminate dengue. Would anyone like to share?") do |post| post.wall = u1.house; post.user = u1 end
+e3 = Post.create!(:content => "Hey guys! Let's keep it up. We are winning over our neighborhoods!") do |post|  post.wall = u1.house; post.user = u2 end
+e4 = Post.create!(:content => "Here's a new method I discovered to fight dengue. Everytime you are done with a contain, you should flip it upside down.") do |post| post.wall = u1.house; post.user = u3 end
+e5 = Post.create!(:content => "I don't have any plan this weekend. Anyone would like to get together for a beer?") do |post| post.wall = u1.house; post.user = u10 end
+e6 = Post.create!(:content => "I am debating on what kind rewards to redeem. Anyone any suggestion?") do |post| post.wall = u1.house; post.user = u5 end
+e7 = Post.create!(:content => "Looks like the health agent has contacted me that this season the breakout rate has slowed down!") do |post| post.wall = u1.house; post.user = u7 end
 puts "events and comments created"
 
