@@ -25,8 +25,12 @@ class Report < ActiveRecord::Base
       # optional parameters
       r.claimer_id = params[:claimer] && params[:claimer].id
       r.eliminator_id = params[:eliminator] && params[:eliminator].id
-      r.before_photo = params[:before_photo]
-      r.after_photo = params[:after_photo]
+      if params[:before_photo]
+        r.before_photo = params[:before_photo]
+      end
+      if params[:after_photo]
+        r.after_photo = params[:after_photo]
+      end
     end
   end
 
