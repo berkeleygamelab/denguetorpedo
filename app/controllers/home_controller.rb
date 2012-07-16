@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
   def index
     @collapse = 'collapse'
-    if @current_user.nil?
-      @orange_position = ''
-    end
+
     if (flash[:user].nil?)
       @user = User.new
     else
