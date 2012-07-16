@@ -7,25 +7,25 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "creating users..."
-u1 = User.create!(:username => "Jacob", :password => "asdf123", :email => "Jacob@gmail.com")
+u1 = User.create!(:username => "Jacob", :password => "asdf123", :email => "Jacob@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
 puts "user Jacob created"
-u2 = User.create!(:username => "Mason", :password => "asdf123", :email => "Mason@gmail.com")
+u2 = User.create!(:username => "Mason", :password => "asdf123", :email => "Mason@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
 puts "user Mason created"
-u3 = User.create!(:username => "William", :password => "asdf123", :points => 0, :email => "William@gmail.com")
+u3 = User.create!(:username => "William", :password => "asdf123", :points => 0, :email => "William@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile3.jpg')))
 puts "user William created"
-u4 = User.create!(:username => "Jayden", :password => "asdf123", :email => "Jayden@gmail.com")
+u4 = User.create!(:username => "Jayden", :password => "asdf123", :email => "Jayden@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
 puts "user Jayden created"
-u5 = User.create!(:username => "Johna", :password => "asdf123", :email => "Johna@gmail.com")
+u5 = User.create!(:username => "Johna", :password => "asdf123", :email => "Johna@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
 puts "user Johna created"
-u6 = User.create!(:username => "Michael", :password => "asdf123", :email => "Michael@gmail.com")
+u6 = User.create!(:username => "Michael", :password => "asdf123", :email => "Michael@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
 puts "user Michael created"
-u7 = User.create!(:username => "Sophia", :password => "asdf123", :email => "Sophia@gmail.com")
+u7 = User.create!(:username => "Sophia", :password => "asdf123", :email => "Sophia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
 puts "user Sophia created"
-u8 = User.create!(:username => "Isabella", :password => "asdf123", :email => "Isabella@gmail.com")
+u8 = User.create!(:username => "Isabella", :password => "asdf123", :email => "Isabella@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile6.jpg')))
 puts "user Isabella created"
-u9 = User.create!(:username => "Emily", :password => "asdf123", :email => "Emily@gmail.com")
+u9 = User.create!(:username => "Emily", :password => "asdf123", :email => "Emily@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
 puts "user Emily created"
-u10 = User.create!(:username => "Olivia", :password => "asdf123", :email => "Olivia@gmail.com")
+u10 = User.create!(:username => "Olivia", :password => "asdf123", :email => "Olivia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
 puts "user Olivia created"
 u11 = User.create!(:username => "Angela", :password => "asdf123", :email => "Angela@gmail.com")
 puts "user Angela created"
@@ -220,11 +220,11 @@ puts "creating open reports..."
 r1 = Report.create_from_user("I saw many containers in this junk yard. They need some cleaning.", :status => :reported, :reporter => u1, :location => l14)
 r1.save!
 
-r2 = Report.create_from_user("The garden in the school requires some help.", :status => :claimed, :reporter => u1, :location => l15)
+r2 = Report.create_from_user("The garden in the school requires some help.", :status => :claimed, :reporter => u1, :location => l15, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2.1.jpg')))
 r2.claimer = u1
 r2.save!
 
-r3 = Report.create_from_user("Please take a look at the big garbage can next to the pole.", :status => :reported, :reporter => u1, :location => l16)
+r3 = Report.create_from_user("Please take a look at the big garbage can next to the pole.", :status => :reported, :reporter => u1, :location => l16, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report3.1.jpg' )))
 r3.save!
 
 r4 = Report.create_from_user("There are some pupae in the container.", :status => :eliminated, :reporter => u1, :location => l17)

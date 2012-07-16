@@ -23,7 +23,7 @@
             =link_to @neighborhood.name, neighborhood_path(@neighborhood)
     .row
       #user_top_pictures
-        .span11.offset1    
+        .span10.offset1    
           .user_profile_picture
             - if @user.profile_photo_file_name.nil?
               = image_tag("default_images/profile_default_image.png")
@@ -37,6 +37,11 @@
 
           .user_neighborhood_picture
             =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
+            
+        .span5
+          .user_profile_map
+            = image_tag 'user_map.png'
+            
 
   .row
     #user_recent_activity.span11.offset1
@@ -45,8 +50,8 @@
           - if @isPrivatePage
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
               %h3.expand_button Write a new post
-            %div{id:"new_post", class:"collapse"}            
-              = render :partial => 'posts/new'
+            .collapse#new_post
+              = render :partial => 'posts/new', locals: { wall: @user }
       .row
         %h3.span11
           #{@user.username}'s Recent Activity
@@ -71,5 +76,21 @@
         - if params[:filter] != 'reports'
           - for p in @user_posts
             = render :partial => "users/show_post", :object => p
-    #user_right_panel.span4
-      Coupon Panel
+    .span4
+      .row
+        .span3.offset1
+          %br
+          %h3 Available Coupons
+      .row
+        %ul#user_right_panel.span4
+          %li
+            = image_tag 'coupons/coupon1.png'
+          %li
+            = image_tag 'coupons/coupon2.png'
+          %li
+            = image_tag 'coupons/coupon3.png'
+          %li
+            = image_tag 'coupons/coupon4.png'
+          %li
+            = image_tag 'coupons/coupon5.png'
+

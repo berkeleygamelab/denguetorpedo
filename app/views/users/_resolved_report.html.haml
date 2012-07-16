@@ -11,9 +11,9 @@
       
   .row
     .span2.user_before_photo
-      =image_tag 'http://placehold.it/100x100'
+      =image_tag resolved_report.before_photo(:medium)
     .span2.user_after_photo
-      =image_tag 'http://placehold.it/100x100'
+      =image_tag resolved_report.after_photo(:medium)
     .span6
       .row
         .user_report_content.span6

@@ -45,15 +45,22 @@
 
 #house_photo {
   width: 225px;
+  border: 1px solid $gray;
+  margin-bottom:20px;
 }
 
 #house_members {
   margin-right: 10px;
+  margin-bottom:30px;
+	img{
+		border:1px solid $gray;
+	}
 }
 
 #neighbor_photo {
   width: 59px;
   height: 59px;
+  border:1px solid gray;
 }
 
 #house_reports {
@@ -75,11 +82,9 @@
   width: 390px;
 }
 
-#house_all_report_button {
+.house_report_button {
   color: #ffffff;
   text-shadow: 1px 1px 1px #000000;
-  background-color: $red;
-  width: 82px;
   border-radius:2px;
   text-align: center;
   
@@ -87,54 +92,32 @@
     color: #ffffff;
     text-shadow: 1px 1px 1px #000000;
   }
+}
+
+#house_all_report_button {
+  background-color: $red;
+  width: 82px;
 }
 
 #house_open_report_button {
-  color: #ffffff;
-  text-shadow: 1px 1px 1px #000000;
   background-color: $orange;
   width: 82px;
-  border-radius:2px;
-  text-align: center;
-  
-  a {
-    color: #ffffff;
-    text-shadow: 1px 1px 1px #000000;
-  }
 }
 
 #house_claimed_report_button {
-  color: #ffffff;
-  text-shadow: 1px 1px 1px #000000;
   background-color: $blue;
   width: 82px;
-  border-radius:2px;
-  text-align: center;
-  
-  a {
-    color: #ffffff;
-    text-shadow: 1px 1px 1px #000000;
-  }
 }
  
 #house_resolved_report_button {
-  color: #ffffff;
-  text-shadow: 1px 1px 1px #000000;
   background-color: #B4B7A4;
   width: 82px;
-  border-radius:2px;
-  text-align: center;
-  
-  a {
-    color: #ffffff;
-    text-shadow: 1px 1px 1px #000000;
-  }
 }
 
 #houses_in_neighborhood {
   overflow: auto;
-  width: 250;
-  height: 250px;
+  width: auto;
+  margin-top:5px;
   
   li {
     display: inline-block;
@@ -171,13 +154,11 @@
     width: 360px;
     margin-top: 10px;
     font-size: 14px;
-    font-style: italic;
-    text-shadow: 0 1px 1px #828282;
   }
   .report_content_res {
-    margin-top: 10px;
+    margin-top: 5px;
     width: 300px;
-    font-size: 14px;
+    font-size: 12px;
     font-style: italic;
     text-shadow: 0 1px 1px #828282;
   }

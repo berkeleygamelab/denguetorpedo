@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :user_id, :content, :lft, :parent_id, :rgt, :title, :type_cd
+  attr_accessible :content, :title
   acts_as_nested_set
 
   # associations

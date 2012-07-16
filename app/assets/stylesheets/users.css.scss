@@ -11,11 +11,18 @@
     
   }
 }
-#user_right_panel {
-  margin-top: -150px;
+ul#user_right_panel {
+
   margin-left: 30px;
-  height: 1000px;
-  background: $light-gray;
+  background: #E2E5CF;
+  padding: 15px 10px 0px 10px;
+  width: 220px;
+  img{
+	border:1px solid $gray;
+
+	  margin-bottom: 15px;
+	}
+
 }
 
 #user_reports {
@@ -105,6 +112,11 @@
   list-style-type: none;
   
   #user_top_pictures {
+    .user_profile_map {
+      border: 2px solid $gray;
+      height: 150px;
+      background: #dddddd;
+    }
     .user_profile_picture{
       margin-top: 10px;
       display: inline;
@@ -113,17 +125,21 @@
         z-index: 1;
         width: 160px;
         height: 160px;
+		border: 1px solid $gray;
       }
     }
     .user_house_picture, .user_neighborhood_picture{
       margin-right: 11;
       display: inline;
+	 
       
       img {
         z-index: 1;
-        padding-top: 15px;
+
         width: 96px;
         height: 96px;
+	    border:1px solid $gray;
+
       }
     }
     .user_neighborhood_picture {
@@ -173,10 +189,23 @@
 .main_nav_button { 
   text-align: center;
   margin-top: 10px;
+  padding-left:5px;
+  padding-right:5px;
+  padding-bottom:3px;
+
+  h1{
+	font-weight:bold;
+   }
+	
   h3 {
     color: #ffffff;
-    margin-top: -5px;
+	font-weight:normal;
+	margin-top:-10px;
   }
+}
+
+.main_nav_button:hover{
+	background-color:rgba(0,0,0, 0.2);
 }
 
 #user_recent_activity {
@@ -194,6 +223,7 @@
       border: 2px solid #f0f0f0;
       
       .user_activity_thumb {
+		border:1px solid $gray;
         width: 80px;
       }
       .user_activity_options {
@@ -209,7 +239,9 @@
           float: left;  
       }
       .user_activity_icons {
-        margin-top: 20px;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
       }
     }
   }

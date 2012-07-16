@@ -54,10 +54,10 @@
                   
     .row
       .span8
-        = render :partial => "/posts/new"
+        = render :partial => "posts/new", locals: { wall: @house }
         
     .row
-      .span10
+      .span9
         %h3 What's happening?
         %ul
           - for post in @house.posts
@@ -78,26 +78,25 @@
             #report_status_bar
               %ul
                 %li
-                  #house_all_report_button.span1
+                  #house_all_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.reports.count
                     .row All 
                 %li
-                  #house_open_report_button.span1
+                  #house_open_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.created_reports.count
                     .row Open
                 %li 
-                  #house_claimed_report_button.span1 
+                  #house_claimed_report_button.house_report_button.span1 
                     .row
                       %a{:href => "#"}= @house.claimed_reports.count
                     .row Claimed
                 %li
-                  #house_resolved_report_button.span1
+                  #house_resolved_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.eliminated_reports.count
                     .row Resolved
-                  
               
         .row
           #list_of_house_reports
@@ -111,7 +110,7 @@
                   = render :partial => "/houses/resolved_report", :object => report
              
     .row
-      .span5
+      .span6
         %h3 Neighbors in #{@house.neighborhood.name}: 
         #houses_in_neighborhood
           - if @neighbors.count == 1 
@@ -124,6 +123,3 @@
                   = link_to image_tag("default_images/house_default_image.png"), house_path(neighbor)
                 - else 
                   = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
-               
-              
-    
