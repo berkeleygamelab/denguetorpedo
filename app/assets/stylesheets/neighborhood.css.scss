@@ -26,8 +26,8 @@
 
 #neighborhood_view {
   font-size: 18px;
+  margin-top:40px;
   color: $dark-gray;
-  padding: 10px 0px;
   .active {
     color: $blue;
   }
@@ -43,7 +43,10 @@ ul#neighborhood_participants_list {
     margin-left: 0px;
     margin-right: 15px;
     width: 125px;
-    height: 125px
+    height: 125px;
+	img{
+	border:1px solid $gray;
+	}
   }
 }
 
@@ -56,6 +59,10 @@ ul#neighborhood_house_list {
     margin-left: 0px;
     margin-right: 15px;
     width: 125px;
+	
+	img{
+	border:1px solid $gray;
+	}
   }
 }
 

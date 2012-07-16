@@ -45,10 +45,13 @@
 
 #house_photo {
   width: 225px;
+  border: 1px solid $gray;
+  margin-bottom:20px;
 }
 
 #house_members {
   margin-right: 10px;
+  margin-bottom:30px;
 	img{
 		border:1px solid $gray;
 	}

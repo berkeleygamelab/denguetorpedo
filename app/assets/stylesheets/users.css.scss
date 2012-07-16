@@ -131,12 +131,14 @@ ul#user_right_panel {
     .user_house_picture, .user_neighborhood_picture{
       margin-right: 11;
       display: inline;
+	 
       
       img {
         z-index: 1;
 
         width: 96px;
         height: 96px;
+	    border:1px solid $gray;
 
       }
     }
