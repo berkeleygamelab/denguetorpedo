@@ -8,35 +8,35 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "creating users..."
-u1 = User.create!(:username => "Jacob", :password => "asdf123", :email => "Jacob@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
+u1 = User.create!(:username => "Adelina", :password => "asdf123", :email => "Jacob@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
 puts "user Jacob created"
-u2 = User.create!(:username => "Mason", :password => "asdf123", :email => "Mason@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
+u2 = User.create!(:username => "Iracema", :password => "asdf123", :email => "Mason@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
 puts "user Mason created"
-u3 = User.create!(:username => "William", :password => "asdf123", :points => 0, :email => "William@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile3.jpg')))
+u3 = User.create!(:username => "Izabel", :password => "asdf123", :points => 0, :email => "William@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile3.jpg')))
 puts "user William created"
-u4 = User.create!(:username => "Jayden", :password => "asdf123", :email => "Jayden@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
+u4 = User.create!(:username => "Tereza", :password => "asdf123", :email => "Jayden@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
 puts "user Jayden created"
-u5 = User.create!(:username => "Johna", :password => "asdf123", :email => "Johna@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
+u5 = User.create!(:username => "Severino", :password => "asdf123", :email => "Johna@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
 puts "user Johna created"
-u6 = User.create!(:username => "Michael", :password => "asdf123", :email => "Michael@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
+u6 = User.create!(:username => "Ana", :password => "asdf123", :email => "Michael@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
 puts "user Michael created"
-u7 = User.create!(:username => "Sophia", :password => "asdf123", :email => "Sophia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
+u7 = User.create!(:username => "Carminha", :password => "asdf123", :email => "Sophia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
 puts "user Sophia created"
-u8 = User.create!(:username => "Isabella", :password => "asdf123", :email => "Isabella@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile6.jpg')))
+u8 = User.create!(:username => "Eliana", :password => "asdf123", :email => "Isabella@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile6.jpg')))
 puts "user Isabella created"
-u9 = User.create!(:username => "Emily", :password => "asdf123", :email => "Emily@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
+u9 = User.create!(:username => "Everaldo", :password => "asdf123", :email => "Emily@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
 puts "user Emily created"
-u10 = User.create!(:username => "Olivia", :password => "asdf123", :email => "Olivia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
+u10 = User.create!(:username => "Fátima", :password => "asdf123", :email => "Olivia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
 puts "user Olivia created"
-u11 = User.create!(:username => "Angela", :password => "asdf123", :email => "Angela@gmail.com")
+u11 = User.create!(:username => "Rubens", :password => "asdf123", :email => "Angela@gmail.com")
 puts "user Angela created"
-u12 = User.create!(:username => "Alexandra", :password => "asdf123", :email => "Alexandra@gmail.com")
+u12 = User.create!(:username => "Milton", :password => "asdf123", :email => "Alexandra@gmail.com")
 puts "user Alexandra created"
-u13 = User.create!(:username => "Lorrie", :password => "asdf123", :email => "Lorrie@gmail.com")
+u13 = User.create!(:username => "Marlene", :password => "asdf123", :email => "Lorrie@gmail.com")
 puts "user Lorrie created"
-u14 = User.create!(:username => "Samuel", :password => "asdf123", :email => "Samuel@gmail.com")
+u14 = User.create!(:username => "Luiza", :password => "asdf123", :email => "Samuel@gmail.com")
 puts "user Samuel created"
-u15 = User.create!(:username => "Roger", :password => "asdf123", :email => "Roger@gmail.com")
+u15 = User.create!(:username => "Jackson", :password => "asdf123", :email => "Roger@gmail.com")
 puts "user Roger created"
 u16 = User.create!(:username => "Chris", :password => "asdf123", :email => "Chris@gmail.com")
 puts "user Chris created"
@@ -71,7 +71,7 @@ puts "user Hurst created"
 puts "all users created\n\n"
 
 puts "creating locations for houses..."
-l1 = Location.find_or_create("Maré - Pina, Recife - Pernambuco, Brazil")
+l1 = Location.find_or_create("Maré, Brazil")
 puts "Maré - Pina, Recife - Pernambuco, Brazil"
 l2 = Location.find_or_create("1628 Spruce St. Berkeley, CA")
 puts "1628 Spruce St. Berkeley, CA created"
@@ -138,81 +138,86 @@ puts "all locations created"
 sleep 2
 
 puts "creating houses..."
-h1 = House.create!(:name => "Jacob's House", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_1.jpg')))
+h1 = House.create!(:name => "Casa Adelina", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Adelina.jpg')))
 h1.members << u1
 h1.members << u2
 h1.members << u3
 h1.members << u4
+h1.members << u5
+h1.members << u6
 h1.save!
 puts "Jacob's house created"
 
-h2 = House.create!(:name => "Michael's House", :location_id => l2.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_2.jpg')))
-h2.members << u5
-h2.members << u6
+h2 = House.create!(:name => "Casa Tereza", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Tereza.jpg')))
+
 h2.members << u7
 h2.save!
 puts "Michael's house created"
 
-h3 = House.create!(:name => "Sophia's", :location_id => l3.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_3.jpg')))
+h3 = House.create!(:name => "Casa Ana", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Ana.jpg')))
 h3.members << u8
 h3.members << u9
 h3.save!
 puts "Sophia's created"
 
-h4 = House.create!(:name => "Jayden's", :location_id => l5.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_4.jpg')))
+h4 = House.create!(:name => "Casa Severino", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Severino.jpg')))
 h4.members << u10
 h4.members << u11
 h4.save!
 puts "Jayden's created"
 
-h5 = House.create!(:name => "Mason's", :location_id => l4.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_5.jpg')))
+h5 = House.create!(:name => "Casa Carminha", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Carminha.jpg')))
 h5.members << u12
 h5.members << u13
 h5.save!
 
 puts "Mason's created"
-h6 = House.create!(:name => "Evan's manor", :location_id => l6.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_6.jpg')))
+h6 = House.create!(:name => "Casa Rubens", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Rubens.jpg')))
 h6.members << u14
 h6.members << u15
 h6.save!
 puts "Evan's manor created"
 
-h7 = House.create!(:name => "Regent Apartment", :location_id => l7.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_7.jpg')))
+h7 = House.create!(:name => "Casa Eliana", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Eliana.jpg')))
 h7.members << u16
 h7.members << u17
 h7.save!
 puts "Regent Apartment created"
 
-h8 = House.create!(:name => "Channing Apartment", :location_id => l8.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_8.jpg')))
+h8 = House.create!(:name => "Casa Milton", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Milton.jpg')))
 h8.members << u18
 h8.members << u19
 h8.save!
 puts "Channing Apartment created"
 
-h9 = House.create!(:name => "Euclid House", :location_id => l9.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_9.jpg')))
+h9 = House.create!(:name => "Casa Everaldo", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Everaldo.jpg')))
 h9.members << u20
 h9.members << u21
 puts "Euclid House created"
 
-h10 = House.create!(:name => "Oakland Complex", :location_id => l10.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_10.jpg')))
+h10 = House.create!(:name => "Casa Marlene", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Marlene.jpg')))
 h10.members << u22
 h10.members << u23
 puts "Oakland Complex created"
 
-h11 = House.create!(:name => "Marshal Housing", :location_id => l11.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_11.jpg')))
+h11 = House.create!(:name => "Casa Fátima", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Fátima.jpg')))
 h11.members << u24
 h11.members << u25
 puts "Marshal Housing created"
 
-h12 = House.create!(:name => "Alcatraz Apt.", :location_id => l12.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_12.jpg')))
+h12 = House.create!(:name => "Casa Luiza", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Luiza.jpg')))
 h12.members << u26
 h12.members << u27
 puts "Alcatraz Apt. created"
 
-h13 = House.create!(:name => "Stuart Apt.", :location_id => l13.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/house_stock_images/house_13.jpg')))
+h13 = House.create!(:name => "Casa Iracema", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
 h13.members << u28
 h13.members << u29
 h13.members << u30
+puts "Stuart Apt. created"
+
+h14 = House.create!(:name => "Casa José", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa José.jpg')))
+
 puts "Stuart Apt. created"
 puts "all houses created and members added"
  
@@ -268,12 +273,10 @@ puts "all reports created"
 
 
 puts "creating posts..."
-e1 = Post.create!(:content => "Over this weeken, I am creating a fight dengue party. I would like to invite everyone to join") do |post| post.wall = u1.house; post.user = u1 end
-e2 = Post.create!(:content => "I would like to know if there are new technique to eliminate dengue. Would anyone like to share?") do |post| post.wall = u1.house; post.user = u1 end
-e3 = Post.create!(:content => "Hey guys! Let's keep it up. We are winning over our neighborhoods!") do |post|  post.wall = u1.house; post.user = u2 end
-e4 = Post.create!(:content => "Here's a new method I discovered to fight dengue. Everytime you are done with a contain, you should flip it upside down.") do |post| post.wall = u1.house; post.user = u3 end
-e5 = Post.create!(:content => "I don't have any plan this weekend. Anyone would like to get together for a beer?") do |post| post.wall = u1.house; post.user = u10 end
-e6 = Post.create!(:content => "I am debating on what kind rewards to redeem. Anyone any suggestion?") do |post| post.wall = u1.house; post.user = u5 end
-e7 = Post.create!(:content => "Looks like the health agent has contacted me that this season the breakout rate has slowed down!") do |post| post.wall = u1.house; post.user = u7 end
+e1 = Post.create!(:title => 'My Party', :content => "Over this weekend, I am creating a fight dengue party. I would like to invite everyone to join") do |post| post.wall = u1.house; post.user = u1 end
+e2 = Post.create!(:title => 'Dengue Fighting', :content => "I would like to know if there are new technique to eliminate dengue. Would anyone like to share?") do |post| post.wall = u1.house; post.user = u1 end
+e3 = Post.create!(:title => 'Great Job!', :content => "Hey guys! Let's keep it up. We are winning over our neighborhoods!") do |post|  post.wall = u1.house; post.user = u2 end
+e4 = Post.create!(:title => 'New Discovery!', :content => "Here's a new method I discovered to fight dengue. Everytime you are done with a contain, you should flip it upside down.") do |post| post.wall = u1.house; post.user = u3 end
+
 puts "events and comments created"
 

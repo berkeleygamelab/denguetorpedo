@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     head :not_found and return if @user.nil?
 
     @user_posts = @user.posts
+    @combined_sorted = (@user.reports + @user.posts).sort{|a,b| b.created_at <=> a.created_at }
+
     @house = @user.house
     @neighborhood = @user.neighborhood
     

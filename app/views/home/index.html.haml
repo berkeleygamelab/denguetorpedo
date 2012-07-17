@@ -3,58 +3,59 @@
 #neighborhood_search
   .row
     #neighborhood_search_background.span12.offset2
-      %input.span10{:type => 'text', :placeholder => "Search by neighborhood, city, country"}
-      %button Find
+      %input.span10{:type => 'text', :placeholder => "Busca por bairro, cidade, país"}
+      %button Busca
 
 .row
   %h2.offset1 Top Dengue Torpedo Neighborhoods
     
 .row
   .span15.offset1
-    = render "home/neighborhood_list"
+    = render "home/neighborhood_hardcode"
 
 .row 
-  %h3.offset1#status_of_neighborhood Status of #{@selected_neighborhood.name}
+  %h3.offset1#status_of_neighborhood Os pontos da Maré
 
 .row
   #neighborhood_stats
     .span2.offset1
       #rank_box
         %b No. #{@selected_neighborhood.id}
-    .span3
+    .span3{style: 'margin-left: -10px;'}
+      .row
       %b 1700
-      %br total reports made
+      %br total de focos marcardos
     .span2
       .row
         #neighborhood_open_report_button.span1 
         .span1
           %b 493
-          %br open
+          %br em aberto
     .span2
       .row
         #neighborhood_claimed_report_button.span1 
         .span1
           %b 290
-          %br claimed
-    .span2
+          %br apropriados
+    .span2{style: 'margin-left: 30px;'}
       .row
         #neighborhood_resolved_report_button.span1 
         .span1
           %b 1003
-          %br eliminated
+          %br resolvidos
     .span5
       .row
         #visit_neighborhood_button.span3
           = render "home/visit_neighborhood_button"
 .row
-  %h3.offset1#home_houses Houses in #{@selected_neighborhood.name}
+  %h3.offset1#home_houses Houses in Maré
         
 .row
   #houses.span15.offset1
     = render "home/house_list"
     
 .row
-  %h3.offset1 Available Coupons in #{@selected_neighborhood.name}
+  %h3.offset1 Patrocinadores na Maré
   #sponsors.offset1    
     %ul
       %li

@@ -2,14 +2,14 @@
   .row
     %ul
       = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
-      %li.main_nav_button.span2.offset4
-        %h1= link_to "LEARN", root_path
-        %h3 About dengue
+      %li.main_nav_button.span3.offset4{style: 'margin-left: 220px;'}
+        %h1= link_to "SAIBA MAIS", root_path
+        %h3 Sobre a dengue
+      %li.main_nav_button.span1.offset1{style: 'margin-left: 20px;'}
+        %h1= link_to "JOGUE", root_path
+        %h3 &nbsp;&nbsp;Como?
       %li.main_nav_button.span1.offset1
-        %h1= link_to "PLAY", root_path
-        %h3 &nbsp;&nbsp;How?
-      %li.main_nav_button.span1.offset1
-        %h1= link_to "WIN", root_path
-        %h3 What?  
+        %h1= link_to "GANHE", root_path
+        %h3 O quê?
       %li.span3
         = render "layouts/login"

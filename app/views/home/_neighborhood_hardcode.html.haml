@@ -1,0 +1,17 @@
+%ul#neighborhood_list
+  .row
+    %li
+      .neighborhood_selection
+        .neighborhood_selection_header
+          %h3= link_to "No.1 Maré", root_path(:neighborhood => 1), :remote => true          
+        = link_to image_tag("neighborhoods/Maré.jpg"), root_path(:neighborhood => 1), :class => 'neighborhood_selection_photo', :remote => true
+    %li
+      .neighborhood_selection
+        .neighborhood_selection_header
+          %h3= link_to "No.2 Alemão", root_path(:neighborhood => 1), :remote => true          
+        = link_to image_tag("neighborhoods/Alemão.jpg"), root_path(:neighborhood => 1), :class => 'neighborhood_selection_photo', :remote => true
+    %li
+      .neighborhood_selection
+        .neighborhood_selection_header
+          %h3= link_to "No.3 Rocinha", root_path(:neighborhood => 1), :remote => true          
+        = link_to image_tag("neighborhoods/Rocinha.jpg"), root_path(:neighborhood => 1), :class => 'neighborhood_selection_photo', :remote => true

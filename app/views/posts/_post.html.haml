@@ -1,28 +1,14 @@
-#user_activity_list.span11
-  .user_activity_item
-    .row
-      .user_activity_thumb.span2
-        - if post.user.profile_photo_file_name.nil?
-          = image_tag("default_images/profile_default_image.png")
-        - else 
-          = image_tag(post.user.profile_photo.url(:large))
-
-      .span7
-        .row
-          .user_activity_headline.span2
-            %h4
-              = post.title
-        
-          .span5
-            .row
-              // removed
-          
-        .row
-          .user_activity_content.span7
+.post_feed
+  .row
+    .span1
+      .post_feed_profile_photo
+        = link_to image_tag(post.user.profile_photo.url(:large)), user_path(post.user)
+    .span8 
+      .row
+        .span8
+          .post_feed_title
+            %h3= post.title
+      .row
+        .span8
+          .post_feed_content
             = post.content
-      .user_activity_options.span2
-        = post.updated_at
-        .user_activity_icons
-          =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
-          -if @isPrivatePage
-            =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'

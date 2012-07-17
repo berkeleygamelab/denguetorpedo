@@ -4,7 +4,7 @@
       %h1
         = @house.name + ", "
         .house_gray
-          = @house.location.address
+          Maré
 .row
   .span9.offset1
     %br
@@ -24,9 +24,9 @@
                 Neighborhood
               .row
                 #house_neighborhood_bg
-                  = link_to "#{@house.neighborhood.name}", neighborhood_path(@house.neighborhood)
+                  = link_to 'Maré', neighborhood_path(@house.neighborhood)
               .row
-                #{@house.location.city}, #{@house.location.nation}             
+                #{@house.location.nation}             
           .span2.offset1
             .house_gray            
               .row
@@ -110,7 +110,7 @@
              
     .row
       .span6
-        %h3 Neighbors in #{@house.neighborhood.name}: 
+        %h3 Neighbors in Maré: 
         #houses_in_neighborhood
           - if @neighbors.count == 1 
             %p You don't have any neighbors that are in the game

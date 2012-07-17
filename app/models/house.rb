@@ -13,7 +13,7 @@ class House < ActiveRecord::Base
   accepts_nested_attributes_for :location, :allow_destroy => true
   attr_accessible :location_id, :location_attributes
 
-  validates :location_id, presence: true, uniqueness: true
+  validates :location_id, presence: true
 
   def neighborhood
     location.neighborhood

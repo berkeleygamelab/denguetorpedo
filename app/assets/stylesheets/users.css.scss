@@ -213,10 +213,11 @@ ul#user_right_panel {
   .active {
     font-weight: bold;
   }
-  #user_activity_list {
+
     .user_activity_item {
+      margin-left: 10px;
       width: 686px;
-      min-height: 100px;
+
       background: white;
       padding: 10px;
       margin-bottom: 10px;
@@ -224,10 +225,10 @@ ul#user_right_panel {
       
       .user_activity_thumb {
 		border:1px solid $gray;
-        width: 80px;
+        width: 100px;
       }
       .user_activity_options {
-        margin-right: 10px;
+        margin-left: 0px;
         text-align: right;
       }
       .user_activity_headline {
@@ -245,7 +246,7 @@ ul#user_right_panel {
       }
     }
   }
-}
+
 
 //OLD BELOW HERE
 

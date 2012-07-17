@@ -20,7 +20,7 @@ class HomeController < ApplicationController
       @selected_neighborhood = Neighborhood.find(params[:neighborhood])
     end
     
-    @houses = @selected_neighborhood.houses.limit(10)
+    @houses = @selected_neighborhood.houses.limit(14)
     @total_reports_in_neighborhood = @selected_neighborhood.reports.count
     
     
