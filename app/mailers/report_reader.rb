@@ -35,14 +35,15 @@ class ReportReader < ActionMailer::Base
     
     email_addrs = email.from_addrs[0]
     logger.info "the email address is: " + email_addrs 
-    login = parsed_email.number
-    logger.info "the login/phone number is: " + login
+    phone_number = parsed_email.number
+    logger.info "the login/phone number is: " + phone_number
     
     logger.info "try to find user by phone number"
-    user = User.find_by_username(login) 
+    user = User.find_by_phone_number(phone_number.to_i) 
+    
     if !user
       logger.info "did not find user, create a user account"
-      user = create_user!(login, email_addrs)
+      user = create_user!(phone_number, email_addrs)
     end
     
     logger.info "try to parse the text to extract report and address"
@@ -62,7 +63,7 @@ class ReportReader < ActionMailer::Base
       logger.info "location: #{location}"
 
       before_photo = parsed_email.default_media
-      report_obj = Report.new(:report => report, :reporter_id => user.id, :status => :reported, :location_id => location.id, :before_photo => before_photo)
+      report_obj = Report.create_from_user(report, :status => :reported, :reporter => user, :location => location, :before_photo => before_photo)
       
       if report_obj.save 
         logger.info "new report sucessfully added"
@@ -72,7 +73,10 @@ class ReportReader < ActionMailer::Base
         ReportReader.report_failed_notification(email_addrs).deliver
       end
     end    
-
+    
+    
+    # Legacy Code
+    #
     #if parser.report && parser.nation && parser.city && parser.address && parser.state
       
     #  if parser.neighborhood.nil?
@@ -99,16 +103,16 @@ class ReportReader < ActionMailer::Base
     
   private
     
-  def create_user!(login, email_addrs)
+  def create_user!(phone_number, email_addrs)
     STDOUT.sync = true unless ENV['RAILS_ENV'] == 'production'# flush all log messages to STDOUT
     logger = Logger.new(STDOUT)
     
     password = ApplicationHelper.temp_password_generator
-    new_user = User.new(:username => login, :password => password, :password_confirmation => password)
+    new_user = User.new(:username => phone_number.to_s, :password => password, :password_confirmation => password, :phone_number => phone_number)
     
     if new_user.save
       logger.info "new user created and send welcome report"
-      ReportReader.welcome_new_user_notification(login, password, email_addrs).deliver
+      ReportReader.welcome_new_user_notification(phone_number, password, email_addrs).deliver
     else
       logger.info "unable to save new user"
       ReportReader.user_failed_to_create_notification(email_addrs).deliver
