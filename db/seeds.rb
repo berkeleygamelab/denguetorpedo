@@ -210,11 +210,11 @@ h12.members << u26
 h12.members << u27
 puts "Alcatraz Apt. created"
 
-h13 = House.create!(:name => "Casa Iracema", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
-h13.members << u28
-h13.members << u29
-h13.members << u30
-puts "Stuart Apt. created"
+#h13 = House.create!(:name => "Casa Iracema", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
+#h13.members << u28
+#h13.members << u29
+#h13.members << u30
+#puts "Stuart Apt. created"
 
 h14 = House.create!(:name => "Casa José", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa José.jpg')))
 
