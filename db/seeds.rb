@@ -200,7 +200,7 @@ h10.members << u22
 h10.members << u23
 puts "Oakland Complex created"
 
-h11 = House.create!(:name => "Casa Fátima", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Fátima.jpg')))
+h11 = House.create!(:name => "Casa Fatima", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Fatima.jpg')))
 h11.members << u24
 h11.members << u25
 puts "Marshal Housing created"
@@ -216,7 +216,7 @@ h13.members << u29
 h13.members << u30
 puts "Stuart Apt. created"
 
-h14 = House.create!(:name => "Casa José", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa José.jpg')))
+h14 = House.create!(:name => "Casa Josa", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Josa.jpg')))
 
 puts "Stuart Apt. created"
 puts "all houses created and members added"
