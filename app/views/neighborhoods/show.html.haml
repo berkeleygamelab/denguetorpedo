@@ -68,10 +68,10 @@
             - if house.profile_photo_file_name.nil?
               = link_to image_tag("default_images/house_default_image.png"), house_path(house)
             - else 
-              = link_to image_tag(house.profile_photo.url(:medium)), house_path(house)
+              = link_to image_tag(house.profile_photo.url(:large)), house_path(house)
             = link_to house.name, house_path(house)
         - if @houses.count < 7
-          - (12 - @houses.count).times do          
+          - (9 - @houses.count).times do          
             %li.neighborhood_house_photo_thumb.span3
               = image_tag("default_images/house_default_image.png")
               Future House

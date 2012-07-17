@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -70,8 +71,8 @@ puts "user Hurst created"
 puts "all users created\n\n"
 
 puts "creating locations for houses..."
-l1 = Location.find_or_create("2521 Regent St. Berkeley, CA")
-puts "2521 Regent St. Berkeley, CA created"
+l1 = Location.find_or_create("Maré - Pina, Recife - Pernambuco, Brazil")
+puts "Maré - Pina, Recife - Pernambuco, Brazil"
 l2 = Location.find_or_create("1628 Spruce St. Berkeley, CA")
 puts "1628 Spruce St. Berkeley, CA created"
 l3 = Location.find_or_create("3850 Park Blvd. Oakland, CA")
