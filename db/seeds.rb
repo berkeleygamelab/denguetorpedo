@@ -81,7 +81,6 @@ l4 = Location.find_or_create("2400 Durant Ave. Berkeley, CA")
 puts "2400 Durant Ave. Berkeley, CA created"
 l5 = Location.find_or_create("2627 Hillegass Ave. Berkeley, CA")
 puts "2627 Hillegass Ave. Berkeley, CA created"
-sleep 2
 
 l6 = Location.find_or_create("2539 Durant Ave. Berkeley, CA")
 puts "2539 Durant Ave. Berkeley, CA created"
@@ -93,7 +92,6 @@ l9 = Location.find_or_create("1701 Euclid Ave, Berkeley, CA")
 puts "1701 Euclid Ave, Berkeley, CA created"
 l10 = Location.find_or_create("2022 Cedar St. Oakland, CA")
 puts "2022 Cedar St. Oakland, CA created"
-sleep 2
 
 l11 = Location.find_or_create("479 65th St. Oakland, CA")
 puts "479 65th St. Oakland, CA created"
@@ -101,41 +99,38 @@ l12 = Location.find_or_create("454 Alcatraz Ave. Oakland, CA")
 puts "454 Alcatraz Ave. Oakland, CA created"
 l13 = Location.find_or_create("2702 Stuart St. Berkeley, CA")
 puts "2702 Stuart St. Berkeley, CA created"
-
 puts "creating locations for reports"
 l14 = Location.find_or_create("110 Olive Ave. Piedmont, CA")
 puts "110 Olive Ave. Piedmont, CA created"
 l15 = Location.find_or_create("2145 Milvia St. Berkeley, CA")
 puts "2145 Milvia St. Berkeley, CA created"
+
 l16 = Location.find_or_create("2025 Addison St. Berkeley, CA")
 puts "2025 Addison St. Berkeley, CA created"
 l17 = Location.find_or_create("2021 Addison St. Berkeley, CA")
 puts "2021 Addison St. Berkeley, CA created"
 l18 = Location.find_or_create("1644 Oxford St. Berkeley, CA")
 puts "1644 Oxford St. Berkeley, CA created"
-sleep 2
-
 l19 = Location.find_or_create("2120 Milvia St. Berkeley, CA")
 puts "2120 Milvia St. Berkeley, CA created"
 l20 = Location.find_or_create("2316 Haste St. Berkeley, CA")
 puts "2316 Haste St. Berkeley, CA created"
+
 l21 = Location.find_or_create("2314 Haste St. Berkeley, CA")
 puts "2314 Haste St. Berkeley, CA created"
 l22 = Location.find_or_create("4155 Piedmont Ave. Oakland, CA")
 puts "4155 Piedmont Ave. Oakland, CA created"
 l23 = Location.find_or_create("4150 Piedmont Ave. Oakland, CA")
 puts "4155 Piedmont Ave. Oakland, CA created"
-sleep 2
-
 l24 = Location.find_or_create("400 40th St. Oakland, CA")
 puts "400 40th St. Oakland, CA created"
 l25 = Location.find_or_create("434 42th St. Oakland, CA")
 puts "434 42th St. Oakland, CA created"
+
 l26 = Location.find_or_create("300 38th St. Oakland, CA")
 puts "300 38th St. Oakland, CA created"
 
 puts "all locations created"
-sleep 2
 
 puts "creating houses..."
 h1 = House.create!(:name => "Casa Adelina", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Adelina.jpg')))
