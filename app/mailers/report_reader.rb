@@ -39,7 +39,7 @@ class ReportReader < ActionMailer::Base
     logger.info "the login/phone number is: " + phone_number
     
     logger.info "try to find user by phone number"
-    user = User.find_by_phone_number(phone_number.to_i) 
+    user = User.find_by_phone_number(phone_number) 
     
     if !user
       logger.info "did not find user, create a user account"
