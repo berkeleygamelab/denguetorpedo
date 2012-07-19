@@ -11,10 +11,10 @@
     
 .row
   .span15.offset1
-    = render "home/neighborhood_hardcode"
+    = render "home/neighborhood_list"
 
 .row 
-  %h3.offset1#status_of_neighborhood Os pontos da Maré
+  %h3.offset1#status_of_neighborhood Os pontos da #{@selected_neighborhood.name}
 
 .row
   #neighborhood_stats
@@ -48,14 +48,14 @@
         #visit_neighborhood_button.span3
           = render "home/visit_neighborhood_button"
 .row
-  %h3.offset1#home_houses Houses in Maré
+  %h3.offset1#home_houses Houses in #{@selected_neighborhood.name}
         
 .row
   #houses.span15.offset1
     = render "home/house_list"
     
 .row
-  %h3.offset1 Patrocinadores na Maré
+  %h3.offset1 Patrocinadores na #{@selected_neighborhood.name}
   #sponsors.offset1    
     %ul
       %li
@@ -64,5 +64,3 @@
         = image_tag 'coupons/coupon3.png'
       %li
         = image_tag 'coupons/coupon5.png'
-
-    

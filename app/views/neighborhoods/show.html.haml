@@ -1,9 +1,9 @@
 .row
   .span8.offset1
     - if not @current_user.nil? || @neighborhood == @current_user.neighborhood
-      %h1 My Neighborhood - Maré
+      %h1 My Neighborhood - #{@neighborhood.name}
     - else 
-      %h1 Neighborhood of Maré
+      %h1 Neighborhood of #{@neighborhood.name}
 .row
   #neighborhood_stats
     .span2.offset1

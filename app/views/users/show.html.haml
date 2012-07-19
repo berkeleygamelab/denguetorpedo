@@ -20,7 +20,7 @@
               = link_to "Create My House", edit_user_path(@user)
         .span2
           %h3.user_neighborhood 
-            =link_to 'Maré', neighborhood_path(@neighborhood)
+            =link_to @neighborhood.name, neighborhood_path(@neighborhood)
     .row
       #user_top_pictures
         .span10.offset1    
