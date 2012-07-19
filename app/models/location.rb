@@ -66,14 +66,19 @@ class Location < ActiveRecord::Base
     end
 
     # do the geocoding
-    begin
-      geocode = Gmaps4rails.geocode(location.complete_address())
-    rescue
-      return nil
+    geocoding_success = false
+    geocode = nil
+    3.times do
+      begin
+        geocode = Gmaps4rails.geocode(location.complete_address())
+      rescue
+        sleep 3
+        next
+      end
+      geocoding_success = true
+      break
     end
-    if geocode.size != 1
-      return nil
-    end
+    return nil unless geocoding_success and geocode.size > 0
     lat = geocode[0][:lat]
     lon = geocode[0][:lng]
     
@@ -83,10 +88,11 @@ class Location < ActiveRecord::Base
       # no objects match the same location, so save the location object
       location.latitude = lat
       location.longitude = lon
-      unless location.save
-        return nil
+      3.times do
+        return location if location.save
+        sleep 3
       end
-      location
+      return nil
     else
       # return the existing object that matches the same lat and lon
       existing_location
