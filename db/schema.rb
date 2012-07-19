@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20120714054951) do
     t.string   "email"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.integer  "points",                     :default => 0,     :null => false
     t.integer  "house_id"
     t.string   "profile_photo_file_name"
