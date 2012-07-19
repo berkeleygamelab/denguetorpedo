@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @user = flash[:user]
     end
     
-    @all_neighborhoods = Neighborhood.limit(3)
+    @all_neighborhoods = Neighborhood.order(:id).limit(3)
     
     if params[:neighborhood].nil?
       if @all_neighborhoods.first.nil?
