@@ -13,7 +13,7 @@ class House < ActiveRecord::Base
   accepts_nested_attributes_for :location, :allow_destroy => true
   attr_accessible :location_id, :location_attributes
 
-  validates :location_id, presence: true, uniqueness: true
+  validates :location_id, presence: true #, uniqueness: true ## seed file wouldn't pass this constraint
 
   def neighborhood
     location.neighborhood
@@ -38,8 +38,11 @@ class House < ActiveRecord::Base
 
     # try to find the house, and return if it exists
     house = House.find_by_name(name)
+    
     if house
-      house.profile_photo = profile_photo
+      if profile_photo
+        house.profile_photo = profile_photo
+      end
       house.save
       return house
     end
@@ -52,8 +55,11 @@ class House < ActiveRecord::Base
       return nil
     end
     house = House.find_by_location_id(location.id)
+    
     if house
-      house.profile_photo = profile_photo
+      if profile_photo
+        house.profile_photo = profile_photo
+      end
       house.save
       return house
     end
@@ -61,7 +67,9 @@ class House < ActiveRecord::Base
     # create the house
     house = House.new(name: name)
     house.location = location
-    house.profile_photo = profile_photo
+    if profile_photo
+      house.profile_photo = profile_photo
+    end
     house.save
 
     # return the new house

@@ -9,36 +9,36 @@
 
 puts "creating users..."
 u1 = User.create!(:username => "Adelina", :password => "asdf123", :email => "Adelina@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
-puts "user Jacob created"
+puts "user Adelina created"
 u2 = User.create!(:username => "Iracema", :password => "asdf123", :email => "Iracema@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
-puts "user Mason created"
-u3 = User.create!(:username => "Izabel", :password => "asdf123", :points => 0, :email => "William@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile3.jpg')))
-puts "user William created"
-u4 = User.create!(:username => "Tereza", :password => "asdf123", :email => "Jayden@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
-puts "user Jayden created"
-u5 = User.create!(:username => "Severino", :password => "asdf123", :email => "Johna@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
-puts "user Johna created"
-u6 = User.create!(:username => "Ana", :password => "asdf123", :email => "Michael@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
-puts "user Michael created"
-u7 = User.create!(:username => "Carminha", :password => "asdf123", :email => "Sophia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
-puts "user Sophia created"
-u8 = User.create!(:username => "Eliana", :password => "asdf123", :email => "Isabella@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile6.jpg')))
-puts "user Isabella created"
-u9 = User.create!(:username => "Everaldo", :password => "asdf123", :email => "Emily@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
-puts "user Emily created"
-u10 = User.create!(:username => "Fátima", :password => "asdf123", :email => "Olivia@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
-puts "user Olivia created"
-u11 = User.create!(:username => "Rubens", :password => "asdf123", :email => "Angela@gmail.com")
-puts "user Angela created"
-u12 = User.create!(:username => "Milton", :password => "asdf123", :email => "Alexandra@gmail.com")
-puts "user Alexandra created"
-u13 = User.create!(:username => "Marlene", :password => "asdf123", :email => "Lorrie@gmail.com")
-puts "user Lorrie created"
-u14 = User.create!(:username => "Luiza", :password => "asdf123", :email => "Samuel@gmail.com")
-puts "user Samuel created"
-u15 = User.create!(:username => "Jackson", :password => "asdf123", :email => "Roger@gmail.com")
-puts "user Roger created"
-u16 = User.create!(:username => "Chris", :password => "asdf123", :email => "Chris@gmail.com")
+puts "user Iracema created"
+u3 = User.create!(:username => "Izabel", :password => "asdf123", :points => 0, :email => "Izabel@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile3.jpg')))
+puts "user Izabel created"
+u4 = User.create!(:username => "Tereza", :password => "asdf123", :email => "Tereza@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
+puts "user Tereza created"
+u5 = User.create!(:username => "Severino", :password => "asdf123", :email => "Severino@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
+puts "user Severino created"
+u6 = User.create!(:username => "Carolina", :password => "asdf123", :email => "Ana@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
+puts "user Carolina created"
+u7 = User.create!(:username => "Carminha", :password => "asdf123", :email => "Carminha@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
+puts "user Carminha created"
+u8 = User.create!(:username => "Eliana", :password => "asdf123", :email => "Eliana@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile6.jpg')))
+puts "user Eliana created"
+u9 = User.create!(:username => "Everaldo", :password => "asdf123", :email => "Everaldo@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
+puts "user Everaldo created"
+u10 = User.create!(:username => "Fatima", :password => "asdf123", :email => "Fatima@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
+puts "user Fátima created"
+u11 = User.create!(:username => "Rubens", :password => "asdf123", :email => "Rubens@gmail.com")
+puts "user Rubens created"
+u12 = User.create!(:username => "Milton", :password => "asdf123", :email => "Milton@gmail.com")
+puts "user Milton created"
+u13 = User.create!(:username => "Marlene", :password => "asdf123", :email => "Marlene@gmail.com")
+puts "user Marlene created"
+u14 = User.create!(:username => "Luiza", :password => "asdf123", :email => "Luiza@gmail.com")
+puts "user Luiza created"
+u15 = User.create!(:username => "Jackson", :password => "asdf123", :email => "Jackson@gmail.com")
+puts "user Jackson created"
+u16 = User.create!(:username => "flavio", :password => "asdf123", :email => "flavio@gmail.com")
 puts "user Chris created"
 u17 = User.create!(:username => "Melody", :password => "asdf123", :email => "Melody@gmail.com")
 puts "user Melody created"
@@ -73,147 +73,175 @@ puts "all users created\n\n"
 puts "creating locations for houses..."
 l1 = Location.find_or_create("Maré, Brazil")
 puts "Maré - Pina, Recife - Pernambuco, Brazil"
-l2 = Location.find_or_create("1628 Spruce St. Berkeley, CA")
-puts "1628 Spruce St. Berkeley, CA created"
-l3 = Location.find_or_create("3850 Park Blvd. Oakland, CA")
-puts "3850 Park Blvd. Oakland, CA created"
-l4 = Location.find_or_create("2400 Durant Ave. Berkeley, CA")
-puts "2400 Durant Ave. Berkeley, CA created"
-l5 = Location.find_or_create("2627 Hillegass Ave. Berkeley, CA")
-puts "2627 Hillegass Ave. Berkeley, CA created"
 
-l6 = Location.find_or_create("2539 Durant Ave. Berkeley, CA")
-puts "2539 Durant Ave. Berkeley, CA created"
-l7 = Location.find_or_create("2525 Regent St. Berkeley, CA")
-puts "2525 Regent St. Berkeley, CA created"
-l8 = Location.find_or_create("2424 Channing Way. Berkeley, CA")
-puts "2424 Channing Way. Berkeley, CA created"
-l9 = Location.find_or_create("1701 Euclid Ave, Berkeley, CA")
-puts "1701 Euclid Ave, Berkeley, CA created"
-l10 = Location.find_or_create("2022 Cedar St. Oakland, CA")
-puts "2022 Cedar St. Oakland, CA created"
+l2 = Location.find_or_create("Rua Adonis de Souza 500, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 500, Recife - Pernambuco, Brazil"
 
-l11 = Location.find_or_create("479 65th St. Oakland, CA")
-puts "479 65th St. Oakland, CA created"
-l12 = Location.find_or_create("454 Alcatraz Ave. Oakland, CA")
-puts "454 Alcatraz Ave. Oakland, CA created"
-l13 = Location.find_or_create("2702 Stuart St. Berkeley, CA")
-puts "2702 Stuart St. Berkeley, CA created"
+l3 = Location.find_or_create("Rua Adonis de Souza 110, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 110, Recife - Pernambuco, Brazil"
+
+l4 = Location.find_or_create("Rua Adonis de Souza 600, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 600, Recife - Pernambuco, Brazil"
+
+l5 = Location.find_or_create("Avenida Jamil Asfora, 600, Recife - Pernambuco, Brazil")
+puts "Avenida Jamil Asfora, 600, Recife - Pernambuco, Brazil"
+
+l6 = Location.find_or_create("Avenida Jamil Asfora, 700, Recife - Pernambuco, Brazil")
+puts "Avenida Jamil Asfora, 600, Recife - Pernambuco, Brazil"
+
+l7 = Location.find_or_create("Rua Adonis de Souza 122, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 122, Recife - Pernambuco, Brazil"
+
+l8 = Location.find_or_create("Rua Adonis de Souza 124, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 124, Recife - Pernambuco, Brazil"
+
+l9 = Location.find_or_create("Rua Adonis de Souza 126, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 126, Recife - Pernambuco, Brazil"
+
+l10 = Location.find_or_create("Rua Adonis de Souza 128, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 128, Recife - Pernambuco, Brazil"
+
+l11 = Location.find_or_create("Rua Adonis de Souza 130, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 130, Recife - Pernambuco, Brazil"
+
+l12 = Location.find_or_create("Rua Adonis de Souza 133, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 133, Recife - Pernambuco, Brazil"
+
+l13 = Location.find_or_create("Rua Adonis de Souza 136, Recife - Pernambuco, Brazil")
+puts "Rua Adonis de Souza 136, Recife - Pernambuco, Brazil"
+
+l14 = Location.find_or_create("Rocinha, Sao Paulo, Brasil")
+puts "Rocinha, Sao Paulo, Brasil"
+
+l15 = Location.find_or_create("Alemao 120, brazil")
+puts "Alemao 120, brazil"
+
+l16 = Location.find_or_create("Alemão - Rio Grande do Norte, Brazil")
+puts "Alemao 100, brazil"
+
 puts "creating locations for reports"
-l14 = Location.find_or_create("110 Olive Ave. Piedmont, CA")
-puts "110 Olive Ave. Piedmont, CA created"
-l15 = Location.find_or_create("2145 Milvia St. Berkeley, CA")
-puts "2145 Milvia St. Berkeley, CA created"
 
-l16 = Location.find_or_create("2025 Addison St. Berkeley, CA")
-puts "2025 Addison St. Berkeley, CA created"
-l17 = Location.find_or_create("2021 Addison St. Berkeley, CA")
-puts "2021 Addison St. Berkeley, CA created"
-l18 = Location.find_or_create("1644 Oxford St. Berkeley, CA")
-puts "1644 Oxford St. Berkeley, CA created"
-l19 = Location.find_or_create("2120 Milvia St. Berkeley, CA")
-puts "2120 Milvia St. Berkeley, CA created"
-l20 = Location.find_or_create("2316 Haste St. Berkeley, CA")
-puts "2316 Haste St. Berkeley, CA created"
+l17 = Location.find_or_create("Rua Sgt. Silva Nunes, 1012 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 1012 Ramos, Rio de Janeiro"
 
-l21 = Location.find_or_create("2314 Haste St. Berkeley, CA")
-puts "2314 Haste St. Berkeley, CA created"
-l22 = Location.find_or_create("4155 Piedmont Ave. Oakland, CA")
-puts "4155 Piedmont Ave. Oakland, CA created"
-l23 = Location.find_or_create("4150 Piedmont Ave. Oakland, CA")
-puts "4155 Piedmont Ave. Oakland, CA created"
-l24 = Location.find_or_create("400 40th St. Oakland, CA")
-puts "400 40th St. Oakland, CA created"
-l25 = Location.find_or_create("434 42th St. Oakland, CA")
-puts "434 42th St. Oakland, CA created"
+l18 = Location.find_or_create("Rua Sgt. Silva Nunes, 140 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 140 Ramos, Rio de Janeiro"
 
-l26 = Location.find_or_create("300 38th St. Oakland, CA")
-puts "300 38th St. Oakland, CA created"
+l19 = Location.find_or_create("Rua Sgt. Silva Nunes, 130 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 130 Ramos, Rio de Janeiro"
+
+l20 = Location.find_or_create("Rua Sgt. Silva Nunes, 100 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 100 Ramos, Rio de Janeiro"
+
+l21 = Location.find_or_create("Rua Sgt. Silva Nunes, 120 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 120 Ramos, Rio de Janeiro"
+
+l22 = Location.find_or_create("Rua Sgt. Silva Nunes, 150 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 150 Ramos, Rio de Janeiro"
+
+l23 = Location.find_or_create("Rua Sgt. Silva Nunes, 160 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 160 Ramos, Rio de Janeiro"
+
+l24 = Location.find_or_create("Rua Sgt. Silva Nunes, 170 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 170 Ramos, Rio de Janeiro"
+
+l25 = Location.find_or_create("Rua Sgt. Silva Nunes, 180 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 180 Ramos, Rio de Janeiro"
+
+l26 = Location.find_or_create("Rua Sgt. Silva Nunes, 190 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 190 Ramos, Rio de Janeiro"
+
+l27 = Location.find_or_create("Rua Sgt. Silva Nunes, 200 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 200 Ramos, Rio de Janeiro"
+
+l28 = Location.find_or_create("Rua Sgt. Silva Nunes, 220 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 220 Ramos, Rio de Janeiro"
+
+l29 = Location.find_or_create("Rua Sgt. Silva Nunes, 230 Ramos, Rio de Janeiro")
+puts "Rua Sgt. Silva Nunes, 230 Ramos, Rio de Janeiro"
 
 puts "all locations created"
+
+
 
 puts "creating houses..."
 h1 = House.create!(:name => "Casa Adelina", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Adelina.jpg')))
 h1.members << u1
-h1.members << u2
-h1.members << u3
-h1.members << u4
-h1.members << u5
-h1.members << u6
 h1.save!
-puts "Jacob's house created"
+puts "Casa Adelina created"
 
-h2 = House.create!(:name => "Casa Tereza", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Tereza.jpg')))
-
-h2.members << u7
+h2 = House.create!(:name => "Casa Tereza", :location_id => l2.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Tereza.jpg')))
+h2.members << u4
 h2.save!
-puts "Michael's house created"
+puts "Casa Tereza created"
 
-h3 = House.create!(:name => "Casa Ana", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Ana.jpg')))
-h3.members << u8
-h3.members << u9
+h3 = House.create!(:name => "Casa Carolina", :location_id => l3.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Ana.jpg')))
+h3.members << u6
 h3.save!
-puts "Sophia's created"
+puts "Casa Carolina created"
 
-h4 = House.create!(:name => "Casa Severino", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Severino.jpg')))
-h4.members << u10
-h4.members << u11
+h4 = House.create!(:name => "Casa Severino", :location_id => l4.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Severino.jpg')))
+h4.members << u5
 h4.save!
-puts "Jayden's created"
+puts "Casa Severino created"
 
-h5 = House.create!(:name => "Casa Carminha", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Carminha.jpg')))
-h5.members << u12
-h5.members << u13
+h5 = House.create!(:name => "Casa Carminha", :location_id => l5.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Carminha.jpg')))
+h5.members << u7
 h5.save!
+puts "Casa Carminha created"
 
-puts "Mason's created"
-h6 = House.create!(:name => "Casa Rubens", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Rubens.jpg')))
-h6.members << u14
-h6.members << u15
+h6 = House.create!(:name => "Casa Rubens", :location_id => l6.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Rubens.jpg')))
+h6.members << u11
 h6.save!
-puts "Evan's manor created"
+puts "Casa Rubens created"
 
-h7 = House.create!(:name => "Casa Eliana", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Eliana.jpg')))
-h7.members << u16
-h7.members << u17
+h7 = House.create!(:name => "Casa Eliana", :location_id => l7.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Eliana.jpg')))
+h7.members << u8
 h7.save!
-puts "Regent Apartment created"
+puts "Casa Eliana created"
 
-h8 = House.create!(:name => "Casa Milton", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Milton.jpg')))
-h8.members << u18
-h8.members << u19
+h8 = House.create!(:name => "Casa Milton", :location_id => l8.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Milton.jpg')))
+h8.members << u12
 h8.save!
-puts "Channing Apartment created"
+puts "Casa Milton created"
 
-h9 = House.create!(:name => "Casa Everaldo", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Everaldo.jpg')))
-h9.members << u20
-h9.members << u21
-puts "Euclid House created"
+h9 = House.create!(:name => "Casa Everaldo", :location_id => l9.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Everaldo.jpg')))
+h9.members << u9
+h9.save!
+puts "Casa Everaldo created"
 
-h10 = House.create!(:name => "Casa Marlene", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Marlene.jpg')))
-h10.members << u22
-h10.members << u23
-puts "Oakland Complex created"
+h10 = House.create!(:name => "Casa Marlene", :location_id => l10.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Marlene.jpg')))
+h10.members << u13
+h10.save!
+puts "Casa Marlene created"
 
-h11 = House.create!(:name => "Casa Fatima", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Fatima.jpg')))
-h11.members << u24
-h11.members << u25
-puts "Marshal Housing created"
+h11 = House.create!(:name => "Casa Fatima", :location_id => l11.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Fatima.jpg')))
+h11.members << u10
+h11.save!
+puts "Casa Fatima created"
 
-h12 = House.create!(:name => "Casa Luiza", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Luiza.jpg')))
-h12.members << u26
-h12.members << u27
-puts "Alcatraz Apt. created"
+h12 = House.create!(:name => "Casa Luiza", :location_id => l12.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Luiza.jpg')))
+h12.members << u14
+h12.save!
+puts "Casa Luiza created"
 
-#h13 = House.create!(:name => "Casa Iracema", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
-#h13.members << u28
-#h13.members << u29
-#h13.members << u30
-#puts "Stuart Apt. created"
+h13 = House.create!(:name => "Casa Josa", :location_id => l13.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Josa.jpg')))
+h13.members << u13
+puts "Casa Josa created"
 
-h14 = House.create!(:name => "Casa Josa", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Josa.jpg')))
+h14 = House.create!(:name => "Casa Ana", :location_id => l14.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
+h14.members << u14
+h14.save!
+puts "Casa Ana"
 
-puts "Stuart Apt. created"
+#h15 = House.create!(:name => "Casa Lucas", :location_id => l15.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
+#h15.members << u29
+#puts "Casa Ana"
+
+h16 = House.create!(:name => "Casa flavio", :location_id => l16.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
+h16.members << u16
+puts "Casa flavio"
+
 puts "all houses created and members added"
  
  
@@ -274,4 +302,21 @@ e3 = Post.create!(:title => 'Great Job!', :content => "Hey guys! Let's keep it u
 e4 = Post.create!(:title => 'New Discovery!', :content => "Here's a new method I discovered to fight dengue. Everytime you are done with a contain, you should flip it upside down.") do |post| post.wall = u1.house; post.user = u3 end
 
 puts "events and comments created"
+
+
+puts "resetting the neighborhood name just for the demo"
+n1 = Neighborhood.find(1)
+n1.name = "Maré"
+n1.save!
+puts "setting first neighborhood to be Mare"
+n2 = Neighborhood.find(2)
+n2.name = "Alemao"
+n2.save!
+puts "setting second neighborhood to be Alemao"
+n3 = Neighborhood.find(3)
+n3.name = "Rocinha"
+n3.save!
+puts "setting third neighborhood to be Rocinha"
+
+
 
