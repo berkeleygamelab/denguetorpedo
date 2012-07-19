@@ -8,9 +8,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "creating users..."
-u1 = User.create!(:username => "Adelina", :password => "asdf123", :email => "Jacob@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
+u1 = User.create!(:username => "Adelina", :password => "asdf123", :email => "Adelina@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
 puts "user Jacob created"
-u2 = User.create!(:username => "Iracema", :password => "asdf123", :email => "Mason@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
+u2 = User.create!(:username => "Iracema", :password => "asdf123", :email => "Iracema@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
 puts "user Mason created"
 u3 = User.create!(:username => "Izabel", :password => "asdf123", :points => 0, :email => "William@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile3.jpg')))
 puts "user William created"
