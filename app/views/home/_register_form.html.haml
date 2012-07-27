@@ -1,11 +1,11 @@
 #register
-  %h3 Register
+  %h3 Inscreva-se 
   = form_for(@user) do |f|
     = f.error_messages
-    = f.text_field :phone_number, :placeholder => "Phone Number"
-    = f.text_field :email, :placeholder => "Email Address"
-    = f.text_field :username, :placeholder => "Username"
-    = f.password_field :password, :placeholder => "Password"
-    = f.password_field :password_confirmation, :placeholder => "Confirm Password"
+    = f.text_field :phone_number, :placeholder => "Celular (21 xxxx-xxxx)"
+    = f.text_field :email, :placeholder => "E-mail"
+    = f.text_field :username, :placeholder => "Nome de usuário"
+    = f.password_field :password, :placeholder => "Senha"
+    = f.password_field :password_confirmation, :placeholder => "Confirmar senha"
     %br
-    = f.submit "Finish"
+    = f.submit "Fazer inscrição!"

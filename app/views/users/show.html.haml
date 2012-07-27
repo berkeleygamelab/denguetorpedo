@@ -8,7 +8,7 @@
             = @user.username            
         .span2.user_points
           .row
-            %h2 Points
+            %h2 Pontos
           .user_points_bg
             231
       .row
@@ -40,7 +40,7 @@
             
         .span5
           .user_profile_map
-            = image_tag 'user_map.png'
+            = image_tag 'translated/usermap.png'
             
 
   .row
@@ -49,17 +49,17 @@
         .span10
           - if @isPrivatePage
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
-              %h3.expand_button Write a new post
+              %h3.expand_button Escrever uma nova mensagem
             .collapse#new_post
               = render :partial => 'posts/new', locals: { wall: @user }
       .row
         %h3.span11
-          #{@user.username}'s Recent Activity
+          Atividade recente
       .row
         .span8          
-          = link_to 'All', user_path(@user, :filter => 'all'), :class => @feed_active_all
+          = link_to 'Todos', user_path(@user, :filter => 'all'), :class => @feed_active_all
           |
-          = link_to 'Reports', user_path(@user, :filter => 'reports'), :class => @feed_active_reports
+          = link_to 'Focos', user_path(@user, :filter => 'reports'), :class => @feed_active_reports
           |
           = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
       .row
@@ -79,17 +79,16 @@
       .row
         .span3.offset1
           %br
-          %h3 Available Coupons
+          %h2 Cupons disponiveis
       .row
         %ul#user_right_panel.span4
-          %li
-            = image_tag 'coupons/coupon1.png'
-          %li
-            = image_tag 'coupons/coupon2.png'
-          %li
-            = image_tag 'coupons/coupon3.png'
-          %li
-            = image_tag 'coupons/coupon4.png'
-          %li
-            = image_tag 'coupons/coupon5.png'
-
+          - 2.times do
+            %li
+              = image_tag 'translated/coupon1.png'
+            %li
+              = image_tag 'translated/coupon2.png'
+            %li
+              = image_tag 'translated/coupon3.png'
+            %li
+            = image_tag 'translated/coupon4.png'
+          

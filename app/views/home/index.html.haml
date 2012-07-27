@@ -1,66 +1,70 @@
 = render :partial => 'orange_slider'
-
+%br
 #neighborhood_search
   .row
     #neighborhood_search_background.span12.offset2
-      %input.span10{:type => 'text', :placeholder => "Busca por bairro, cidade, país"}
+      %input.span10{:type => 'text', :placeholder => "Busca por bairro, comunidade, cidade, país"}
       %button Busca
 
 .row
-  %h2.offset1 Top Dengue Torpedo Neighborhoods
+  %h2.offset1 Comunidades em destaque no Dengue Torpedo
     
 .row
   .span15.offset1
     = render "home/neighborhood_list"
 
-.row 
-  %h3.offset1#status_of_neighborhood Os pontos da #{@selected_neighborhood.name}
-
 .row
-  #neighborhood_stats
-    .span2.offset1
-      #rank_box
-        %b No. #{@selected_neighborhood.id}
-    .span3{style: 'margin-left: -10px;'}
-      .row
-      %b 1700
-      %br total de focos marcardos
-    .span2
-      .row
-        #neighborhood_open_report_button.span1 
-        .span1
-          %b 493
-          %br em aberto
-    .span2
-      .row
-        #neighborhood_claimed_report_button.span1 
-        .span1
-          %b 290
-          %br apropriados
-    .span2{style: 'margin-left: 30px;'}
-      .row
-        #neighborhood_resolved_report_button.span1 
-        .span1
-          %b 1003
-          %br resolvidos
-    .span5
-      .row
-        #visit_neighborhood_button.span3
-          = render "home/visit_neighborhood_button"
-.row
-  %h3.offset1#houses_in_neighborhood Houses in #{@selected_neighborhood.name}
+  %h3.offset1#home_houses{style: 'font-size: 18px;'}  #{@selected_neighborhood.name} - Casas
         
 .row
-  #houses.span15.offset1
+  #houses.span10.offset1
     = render "home/house_list"
+  .span5
+    #neighborhood_stats
+      .row
+        #home_visit_neighborhood_button.span5
+          = render "home/visit_neighborhood_button"
+      .row 
+        .home_report_count.span4{style: 'margin: 15px 0px 0px 30px;'}
+          .row
+            %b 1700
+            %br total de focos marcardos
+      %br
+      %br
+
+      .row
+        .span2{style: 'width: 80px; margin-left: 35px;'}
+          #neighborhood_open_report_button
+          %br
+          %b &nbsp;&nbsp;493
+          %br em aberto
+        .span2{style: 'width: 80px;'}
+          #neighborhood_claimed_report_button
+          %br
+          %b &nbsp;&nbsp;290
+          %br assumidos
+        .span2{style: 'width: 80px; margin-left: 15px;'}
+          #neighborhood_resolved_report_button 
+          %br
+          %b &nbsp;1003
+          %br resolvidos
     
+%br    
 .row
-  %h3.offset1 Patrocinadores na #{@selected_neighborhood.name}
+  %h3.offset1{style: 'font-size: 18px;'} #{@selected_neighborhood.name} - Patrocinadores
   #sponsors.offset1    
+    
     %ul
       %li
-        = image_tag 'coupons/coupon2.png'
+        = image_tag 'translated/coupon1.png'
       %li
-        = image_tag 'coupons/coupon3.png'
+        = image_tag 'translated/coupon2.png'
       %li
-        = image_tag 'coupons/coupon5.png'
+        = image_tag 'translated/coupon3.png'
+      %li
+        = image_tag 'translated/coupon4.png'
+    .home_dots
+      = image_tag 'translated/dots.png'
+
+    
+

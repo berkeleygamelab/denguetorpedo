@@ -3,25 +3,23 @@
 .row
   .span8.offset1
     = flash[:notice]
-    %h1 Dengue Reports
+    %h1 Focos marcados
 .row
   #report_stats
     .span2.offset1
       #rank_box
-        %b No. 1
+        %b Nº 1
     .span2
       #point_box
         %b 2390
-        %br Points earned
-    .span3
-      %b 1700
-      %br report contributions
-    .span9
+        %br Pontos obtidos
+
+    .span9.offset3
       .row#report_buttons
-        = link_to 'Recent Reports', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
-        = link_to 'Open a Report', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
-        = link_to 'Claim a Report', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
-        = link_to 'Resolve a Report', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
+        = link_to 'Focos recentes', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
+        = link_to 'Marcar um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
+        = link_to 'Assumir um foco', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
+        = link_to 'Eliminar um foco', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
 
   .row
     .span9.offset1
@@ -35,8 +33,13 @@
         = render :partial => 'reports/eliminate_list'
     .span6
       .row
+        .span6
+          .report_map_search
+            %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
+            %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 325px;'}
+      .row
         #report_map
-          = image_tag 'report_map.png'
+          = image_tag 'translated/reportsmap.png'
       .row
         - if params[:view] != 'open'
           #report_sponsors

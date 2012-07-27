@@ -5,14 +5,14 @@
         = image_tag resolved_report.before_photo
     .span2
       .hr_status
-      %b Report # #{resolved_report.id}
+      %b Foco Nº #{resolved_report.id}
       .row
         .span2
-          %a Reporter:
+          %a Marcado:
           %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}
       .row
         .span2
-          %a Eliminator: 
+          %a Eliminado: 
           %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
 
     .span3.hr_address

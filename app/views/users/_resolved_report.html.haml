@@ -5,7 +5,7 @@
 .user_report.user_resolved_report
   .row
     .span8
-      %h4== Report #{resolved_report.id}: #{resolved_report.complete_address}
+      %h4== Foco Nº #{resolved_report.id}: #{resolved_report.complete_address}
     .span2.user_report_time
       = resolved_report.strftime_updated_at
       
@@ -21,13 +21,13 @@
           = resolved_report.report            
           "
       .row.user_report_people
-        Reporter:
+        Marcado por:
         %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}
         %br
-        Eliminated by:
+        Eliminado por:
         %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
     .span1.user_resolved_report.status
-      Resolved
+      Eliminado
   .row
     .user_report_options
       =link_to (image_tag 'icons/reports icon/star.png', :id=>'user_report_favorite'), '#'
@@ -37,4 +37,4 @@
 
 
 
-	
+  

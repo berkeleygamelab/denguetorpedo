@@ -5,14 +5,14 @@
         = image_tag claimed_report.before_photo
     .span2
       .hr_status
-      %b Report # #{claimed_report.id}
+      %b Foco Nº #{claimed_report.id}
       .row
         .span2
-          %a Reporter:
+          %a Marcado:
           %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
       .row
         .span2
-          %a Claimed:
+          %a Eliminado:
           %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
 
     .span3.hr_address

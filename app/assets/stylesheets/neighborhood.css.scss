@@ -18,9 +18,11 @@
   }
   .house_count {
     text-align: center;
+    margin-left: -20px;
   }
   .participant_count {
     text-align: center;
+    margin-left: -40px;
   }
 }
 
@@ -36,6 +38,7 @@
 ul#neighborhood_participants_list {
   list-style-type: none;
   margin-top: 10px;
+  font-size: 16px;
   
   li.neighborhood_participant_photo_thumb {
     display: inline-block;
@@ -52,7 +55,7 @@ ul#neighborhood_participants_list {
 
 ul#neighborhood_house_list {
   margin-top: 10px;
-  
+  font-size: 16px;
   li.neighborhood_house_photo_thumb {
     display: inline-block;
     margin-bottom: 10px;
@@ -165,6 +168,7 @@ ul#neighborhood_house_list {
 #neighborhood_claimed_report_button {
   @include neighborhood_status_button;
   background-color: $blue;
+  margin-left: -20px;
 }
   
 #neighborhood_resolved_report_button {

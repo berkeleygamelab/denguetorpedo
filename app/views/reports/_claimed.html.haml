@@ -1,7 +1,7 @@
 .rp_report.rp_claimed_report
   .row
     .span6
-      %h4== Report #{claimed.id}: #{claimed.complete_address}
+      %h4== Report Nº #{claimed.id}: #{claimed.complete_address}
     .span2.rp_report_time
       = claimed.strftime_updated_at
       
@@ -15,33 +15,33 @@
           = claimed.report            
           "
       .row.rp_report_people
-        Reporter:
+        Marcado por:
         %a.user==#{claimed.reporter.username unless claimed.reporter.nil?}
         %br
-        Claimed by:
+        Assumido por:
         %a.user==#{claimed.claimer.username unless claimed.reporter.nil?}
       
       - if claimed.claimer_id == @current_user.id
         .row
           .span5
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}}       
-              .expand_button Eliminate this report!
+              .expand_button Já eliminei esse foco!
           
             .collapse{id:"resolve_prompt"+(claimed.id).to_s}
               .eliminate_prompt
                 = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', claimed.id
-                  Upload image of eliminated target:
+                  Carregue imagem do foco eliminado:
                   = f.file_field :after_photo
                   .row
                     .span2
-                      = submit_tag "Eliminate!"
+                      = submit_tag "Eliminado!"
                     .span2
                       #report_buttons.eliminate_cancel        
                         %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}, :class=>'confirm_button'}               
-                          Cancel
+                          Cancelar
     .span1.rp_report_status.status
-      Claimed
+      Assumido
   .row
     .rp_report_options
       =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'

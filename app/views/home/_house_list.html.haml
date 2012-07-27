@@ -8,8 +8,8 @@
           = link_to image_tag(house.profile_photo.url(:medium)), house_path(house)
       = link_to house.name, house_path(house)
   
-  - if @houses.count < 14
-    - (14 - @houses.count).times do
+  - if @houses.count < 10
+    - (10 - @houses.count).times do
       %li
         #house_photo_thumb
           = image_tag("default_images/house_default_image.png")

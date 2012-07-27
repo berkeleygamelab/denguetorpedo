@@ -21,7 +21,7 @@
     border: none;
     font-size: 14px;
     margin-top: -4px;
-	padding:3px 3px 3px 5px;
+  padding:3px 3px 3px 5px;
   }
   
   button {
@@ -36,7 +36,7 @@
     border: none;
   }
  button:hover {
-	background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.4);
 }
 }
 #home_houses {
@@ -57,6 +57,20 @@
   }
 }
 
+#home_visit_neighborhood_button {
+    width: 250px;
+  height: 20px;
+  margin-left: 30px;
+  border-radius: $button_border_radius;
+  background-color: rgba(0, 204, 51, 0.6);
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 5px 10px 5px;
+}
+.home_report_count {
+  font-size: 18px;
+  text-align: center;
+}
 ul#neighborhood_list {
   li {
     margin-left: 10px;
@@ -77,6 +91,7 @@ ul#neighborhood_list {
       padding:5px 0px 5px 10px;
       
       a, h3 {
+        font-size: 17px;
         color: #65665C;
         display: block;
       }
@@ -85,11 +100,11 @@ ul#neighborhood_list {
       }
     }
 
- 	.neighborhood_selection_header:hover{
-	background-color:rgba(0, 204, 51, 0.6);
-		a{
-			color:white;
-		}
+  .neighborhood_selection_header:hover{
+  background-color:rgba(0, 204, 51, 0.6);
+    a{
+      color:white;
+    }
 }
     .neighborhood_selection_photo {  
       img {
@@ -102,8 +117,8 @@ ul#neighborhood_list {
 }
 
 #status_of_neighborhood {
-  	margin-top:30px;
-	margin-bottom: -10px;
+    margin-top:20px;
+  margin-bottom: -10px;
 }
 
 .home {
@@ -113,39 +128,52 @@ ul#neighborhood_list {
 }
 
 ul#house_list {
-  margin-left: 10px;
+  margin-left: 0px;
   margin-top: 5px;
   
   li {
     display: inline-block;
     min-width: 120px;
     height: auto;
-    margin-right: 5px;
-    margin-left: 5px;
+
     margin-bottom: 10px;
     text-align: center;
-    
+
     #house_photo_thumb {
       width: 115px;
-      margin-left: -5px;
-	  border: 1px solid $gray;
+      
+    border: 1px solid $gray;
     }
     
     a {
-      font-size: 12px;
+      font-size: 15px;
     }
   }
 }
-
+.home_dots {
+  margin-top: 5px;
+  margin-right: 5px;
+  img {
+    float: right;
+    width: 35px;
+  }
+}
 #sponsors {
   width: 950px;
-  padding-top:5px;
-
+  margin-top: 5px;
+  margin-bottom: 20px;
   ul {
+    padding: 9px;
+    background: $light-gray;
     li {
       display: inline-block;
-      margin-top: 10px;
-      margin-right: 2px;
+      
+      margin-right: 0px;
+      border: 1px solid $gray;
+      
+    }
+    img {
+      height: 117px;
     }
   }
 }
