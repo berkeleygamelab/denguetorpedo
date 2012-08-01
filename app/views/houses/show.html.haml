@@ -1,9 +1,8 @@
 .row
-  .span9.offset1    
-    %span
-      %h1
-        #{@house.name}
-      %h2.house_gray= @house.location.complete_address
+  .span15.offset1    
+    %h1
+      #{@house.name}
+    %h2.house_gray= @house.location.complete_address
 .row
   .span9.offset1
     %br
@@ -63,13 +62,13 @@
     
   .span6
     .row
-      %h3.span6 Focos marcados perto da casa
+      %h2.span6 Focos marcados perto da casa
       #house_reports.span6
         .row
           .span6
             #map_container
               #reports_map_temp
-                = image_tag 'home_images/House_map.png'
+                = image_tag 'translated/housemap.png'
             -#= gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
         .row
           .span6
