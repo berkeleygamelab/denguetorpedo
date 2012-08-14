@@ -1,0 +1,16 @@
+---
+ignore:
+  image/jpeg:
+  - !ruby/regexp /^.*html_DEFAULT_SLIDE_header.JPG$/i
+  image/gif:
+  - !ruby/regexp /^.*footer.gif$/i
+  - !ruby/regexp /^.*reply.gif$/i
+  text/html:
+  - !ruby/regexp /.*/
+
+transform:
+
+number:
+  - from
+  - !ruby/regexp /^([^\/@]+).*/
+  - "\\1"

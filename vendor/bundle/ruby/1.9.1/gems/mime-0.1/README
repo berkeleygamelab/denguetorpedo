@@ -1,0 +1,256 @@
+== Multipurpose Internet Mail Extensions (MIME)
+
+A library for building RFC compliant Multipurpose Internet Mail Extensions
+(MIME) messages. It can be used to construct standardized MIME messages for use
+in client/server communications, such as Internet mail or HTTP
+multipart/form-data transactions.
+
+
+== See
+
+* MIME for RFCs used to implement the library (other RFCs scattered throughout)
+* MIME::CompositeMediaType for a description of composite media types
+* MIME::DiscreteMediaType for a description of discrete media types
+* MIME::DiscreteMediaFactory for easy programming of discrete media types
+
+
+== Media Type Inheritance Heirarchy
+
+     MediaType*
+         ^
+         |
+         |--DiscreteMediaType*
+         |      ^
+         |      |
+         |      |--ApplicationMedia
+         |      |--AudioMedia
+         |      |--ImageMedia
+         |      |--TextMedia
+         |      +--VideoMedia
+         |
+         +--CompositeMediaType*
+                ^
+                |
+                |--MessageMedia**
+                |      ^
+                |      |
+                |      |--ExternalBody**
+                |      |--Partial**
+                |      +--RFC822**
+                |
+                +--MultipartMedia*
+                       ^
+                       |
+                       |--Alternative
+                       |--Digest**
+                       |--Encrypted**
+                       |--FormData
+                       |--Mixed
+                       |--Parallel**
+                       |--Related
+                       |--Report**
+                       +--Signed**
+    
+     *  Abstract Class
+     ** Not implemented
+
+
+== MIME Message Structure
+
+
+                      ---------------------+
+    +----------------+                     |
+    |  RFC822 & MIME |                     |
+    | Message Headers|                     |
+    +----------------+                     |
+                       ---+                |
+    +----------------+    |                |
+    |  MIME Headers  |    |                |
+    +----------------+    |---MIME Entity  |
+    +----------------+    |      (N)       |
+    |      Body      |    |                |---RFC822 Message
+    +----------------+    |                |
+                       ---+                |
+                       ---+                |
+    +----------------+    |                |
+    |  MIME Headers  |    |                |
+    +----------------+    |---MIME Entity  |
+    +----------------+    |     (N+1)      |
+    |      Body      |    |                |
+    +----------------+    |                |
+                       ---+                |
+                      ---------------------+
+
+Each <em>MIME Entity</em> must be a discrete (MIME::DiscreteMediaType) or
+composite (MIME::CompositeMediaType) media type. Because MIME is recursive,
+composite entity bodies may contain other composite or discrete entites and so
+on. However, discrete entities are non-recursive and contain only non-MIME
+bodies.
+
+ 
+== Examples
+
+<em>The following examples imply that the MIME module is included.</em>
+
+
+=== Two ways to instantiate a DiscreteMediaType object using a file path
+
+  fpath = '/tmp/data.xml'
+  text_media = open(fpath) {|f| TextMedia.new(f.read, 'text/xml')}
+  text_media = DiscreteMediaFactory.create(fpath)
+
+
+=== Simple text/plain RFC822 email
+
+  msg = Message.new                     # creates a blank message with date and message ID headers
+  msg.date = (Time.now - 3600).rfc2822  # specify a different date
+  msg.subject = 'This is important'
+  msg.headers.add('X-Priority', 'high')  # custom header
+
+  msg.body = TextMedia.new('hello, it is me!')
+  #
+  # The following snippets are equivalent to the previous line.
+  #
+  #   msg.body = "\r\nhello, it is me!"
+  #   msg.header.add('Content-Type', 'text/plain; charset=us-ascii')
+  #
+  #   --OR--
+  #
+  #   msg.body = "Content-Type: text/plain; charset=us-ascii\r\n\r\nhello, it is me!"
+
+  msg.to = {
+    's13xj@x.com' => nil,               # no name display
+    'james@x.com' => 'James',
+    'clint@x.com' => 'Clint',
+  }
+  msg.from = {
+    'theboss@x.com' => 'Boss Man'
+  }
+
+  msg.to_s  # ready to be sent via SMTP
+
+
+=== Plain text multipart/mixed message with a file attachment
+
+The multipart/mixed content type can be used to aggregate multiple unrelated
+entities.
+
+  text = DiscreteMediaFactory.create('/tmp/data.txt')
+  image = DiscreteMediaFactory.create('/tmp/ruby.png')
+
+  mixed_msg = MultipartMedia::Mixed.new
+  mixed_msg.attach_entity(image)
+  mixed_msg.add_entity(text)
+  mixed_msg.to_s
+
+
+=== Plain text and HTML multipart/alternative MIME message
+
+The multipart/alternative content type allows for multiple alternatively
+formatted versions of the same content. Clients are then responsible for
+choosing the most suitable version for display.
+
+  text_msg = TextMedia.new(<<-text_data, 'text/plain')
+    *Headline*
+    Ruby is cool!
+  text_data
+
+  html_msg = TextMedia.new(<<-html_data, 'text/html')
+    <html>
+    <body>
+      <h1>Headline</h1>
+      <p>Ruby is cool!</p>
+    </body>
+    </html>
+  html_data
+
+  msg = MultipartMedia::Alternative.new
+  msg.add_entity(html_msg)  # most complex representation must be added first
+  msg.add_entity(text_msg)
+  msg.to_s
+
+
+=== HTML multipart/related MIME email with embedded image
+
+Sometimes it is desirable to send a document that is made up of many separate
+parts. For example, an HTML page with embedded images. The multipart/related
+content type aggregates all the parts and creates the means for the root entity
+to reference the other entities.
+
+  image = DiscreteMediaFactory.create('/tmp/ruby.png')
+  image.content_transfer_encoding = 'binary'
+
+  html_msg = TextMedia.new(<<-html_data, 'text/html; charset=iso-8859-1')
+    <html>
+    <body>
+      <h1>Ruby Image</h1>
+      <p>Check out this cool pic.</p>
+      <img alt="cool ruby" src="cid:#{image.content_id}"/>
+      <p>Wasn't it cool?</p>
+    </body>
+    </html>
+  html_data
+  html_msg.content_transfer_encoding = '7bit'
+
+  related_msg = MultipartMedia::Related.new
+  related_msg.inline_entity(image)
+  related_msg.add_entity(html_msg)
+
+  email_msg = Message.new(related_msg)
+  email_msg.to = {'joe@domain.com' => 'Joe Schmo'}
+  email_msg.from = {'john@domain.com' => 'John Doe'}
+  email_msg.subject = 'Ruby is cool'
+  email_msg.to_s
+
+
+=== HTML form with file upload using multipart/form-data encoding
+
+This example builds a representation of an HTML form that can be POSTed to an
+HTTP server. It contains a single text input and a file input.
+
+  name_field = TextMedia.new('Joe Blow')
+
+  portrait_filename = '/tmp/joe_portrait.jpg'
+  portrait_field = open(portrait_filename) do |f|
+    ImageMedia.new(f.read, 'image/jpeg')                                # explicit content type
+  end
+  portrait_field.content_transfer_encoding = 'binary'
+  
+  form_data = MultipartMedia::FormData.new
+  form_data.add_entity(name_field, 'name')
+  form_data.add_entity(portrait_field, 'portrait', portrait_filename)   # explicity filename
+  form_data.to_s
+
+
+=== HTML form with file upload using multipart/form-data encoding (DiscreteMediaFactory)
+
+The outcome of this example is identical to the previous example. The only
+semantic difference is that the MIME::DiscreteMediaFactory class is used to
+automatically instantiate the MIME::MediaType object.
+
+  name_field = TextMedia.new('Joe Blow')
+
+  portrait_field = DiscreteMediaFactory.create('/tmp/joe_portrait.jpg') # no explicit content type
+  portrait_field.content_transfer_encoding = 'binary'
+  
+  form_data = MultipartMedia::FormData.new
+  form_data.add_entity(name_field, 'name')
+  form_data.add_entity(portrait_field, 'portrait')                      # no explicit filename
+  form_data.to_s
+
+
+== More Examples
+
+For many more examples, check the test class MIMETest.
+
+
+== Contact
+
+Please email inquiries to pachl at ecentryx dot com.
+
+[Home Page] http://mime.rubyforge.org/
+[RubyForge] http://rubyforge.org/projects/mime/
+
+== License
+
+The entire MIME library is free to use under the terms of the Ruby license.

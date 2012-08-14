@@ -1,0 +1,18 @@
+---
+ignore:
+  image/gif:
+  - !ruby/regexp /^.*$/i
+  text/plain:
+  - !ruby/regexp /^Uve received a video or picture msg from .*/im
+  text/html:
+  - !ruby/regexp /Picture from your Rogers Wireless friend/im
+
+transform:
+  text/plain:
+  - - !ruby/regexp /^You have received a Picture Message from your Rogers Wireless.*/i
+    - ""
+
+number:
+  - from
+  - !ruby/regexp /^([^\/@]+).*/
+  - "\\1"

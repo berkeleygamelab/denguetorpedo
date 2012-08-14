@@ -26,7 +26,7 @@ gem 'daemons'
 gem 'mms2r'
 gem 'mime'
 gem 'bcrypt-ruby'
-gem 'paperclip', "~> 3.0"
+gem 'paperclip', "~> 3.1.4"
 gem 'ruby-gmail'
 gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 gem 'simple_enum'

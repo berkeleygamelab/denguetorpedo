@@ -1,0 +1,28 @@
+---
+ignore:
+  image/jpeg:
+  - !ruby/regexp /^masthead.jpg$/i
+  - !ruby/regexp /^logo.jpg$/i
+  image/gif:
+  - !ruby/regexp /^dottedline350.gif$/i
+  - !ruby/regexp /^dottedline600.gif$/i
+  - !ruby/regexp /^dottedLine_350.gif$/i
+  - !ruby/regexp /^dottedLine_600.gif$/i
+  - !ruby/regexp /^spacer.gif$/i
+  - !ruby/regexp /^video.gif$/i
+  - !ruby/regexp /^audio.gif$/i
+  - !ruby/regexp /^tmobilelogo.gif$/i
+  - !ruby/regexp /^tmobilespace.gif$/i
+  text/html:
+   - !ruby/regexp /<html>\s+<head>\s+<title>T-Mobile<\/title>/m
+   - !ruby/regexp /<title>MMS E-Mail<\/title>/m
+
+number:
+  - from
+  - !ruby/regexp /^"?([^\/@]+).*/
+  - "\\1"
+
+transform:
+  text/plain:
+  - - !ruby/regexp /.*\s+Text:\s+(.*?)\s+-+\s.*/im
+    - "\\1"

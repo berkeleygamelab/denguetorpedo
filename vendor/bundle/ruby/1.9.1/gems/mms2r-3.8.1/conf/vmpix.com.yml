@@ -1,0 +1,11 @@
+---
+ignore:
+  text/html:
+  - !ruby/regexp /This message is from\s+a Virgin Mobile user. Enjoy./mi
+  text/plain:
+  - !ruby/regexp /^This is an MMS message\.$/i
+
+transform:
+  text/plain:
+  - - !ruby/regexp /(.*?)-+\s+Sent by Text Messaging from a mobile device.*/im
+    - "\\1"

@@ -1,0 +1,34 @@
+require 'rake/rdoctask'
+require 'rake/testtask'
+require 'rake/gempackagetask'
+
+gem_spec = Gem::Specification.new do |s|
+  s.name = 'mime'
+  s.version = '0.1'
+  s.summary = 'Multipurpose Internet Mail Extensions (MIME) Library'
+  s.test_files = FileList['test/*.rb']
+  s.files = FileList['README', 'Rakefile', 'lib/**/*.rb', 'test/**/*']
+  s.author = 'Clint Pachl'
+  s.email = 'pachl@ecentryx.com'
+  s.homepage = 'mime.rubyforge.org'
+  s.rubyforge_project = 'mime'
+  s.has_rdoc = true
+end
+
+
+Rake::GemPackageTask.new(gem_spec) do |pkg|
+  pkg.need_tar_gz = true
+end
+
+Rake::RDocTask.new do |rd|
+    rd.rdoc_files.include('README', 'lib/')
+    rd.rdoc_dir = 'doc'
+    rd.main = 'README'
+    rd.options << '--all' << '--inline-source'
+end
+
+Rake::TestTask.new do |t|
+  t.libs << 'lib'
+  t.pattern = 'test/*_test.rb'
+  t.warning = true
+end

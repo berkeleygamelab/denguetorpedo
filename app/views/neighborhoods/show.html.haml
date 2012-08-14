@@ -52,11 +52,22 @@
             - else
               = link_to image_tag(participant.profile_photo.url(:large)), user_path(participant)
             = link_to participant.username, user_path(participant)
-        - if @participants.count < 9
-          - (12 - @participants.count).times do          
+        - if @participants.count < 13
+          - (16 - @participants.count).times do          
             %li.neighborhood_participant_photo_thumb.span3
               = image_tag("default_images/profile_default_image.png")
               Future Participant
+      .row
+        .span8
+          %br
+          %h3{style: 'text-decoration: underline;'}
+            = link_to '>> Conheça nosso sistema de confirmação dos focos', '#'
+            %br
+            %br
+            = link_to '>> Respeito entre vizinhos no Dengue Torpedo', '#'
+            %br
+            %br
+            %br
   - else 
     .span11.offset1
       %ul#neighborhood_house_list
@@ -72,11 +83,21 @@
             %li.neighborhood_house_photo_thumb.span3
               = image_tag("default_images/house_default_image.png")
               Future House
+      .row
+        .span8
+          %br
+          %h3{style: 'text-decoration: underline;'}
+            = link_to '>> Conheça nosso sistema de confirmação dos focos', '#'
+            %br
+            = link_to '>> Respeito entre vizinhos no Dengue Torpedo', '#'
 
   #neighborhood_right_panel.span4
     .row
+      .span4
+        %h2{style: 'text-decoration: underline;'} Destaques da comunidade
+    .row
       #neighborhood_coordinator.span4
-        %h2 Coordenador comunitário
+        %h3 Coordenador comunitário
         .neighborhood_profile_box
           .span1.neighborhood_pf_picture
             = image_tag 'translated/tais.png'                      
@@ -88,7 +109,7 @@
               
     .row
       #neighborhood_health_agent.span4
-        %h2 Destaque da comunidade
+        %h3 Agente de saúde 
         .neighborhood_profile_box
           .span1.neighborhood_pf_picture
             = image_tag 'oswaldo_cruz.jpg'
@@ -97,11 +118,34 @@
               Oswaldo Cruz              
             “O Dengue Torpedo me inspirou!” 
     .row
+      .span4
+        %h3 Morador premiado
+        .neighborhood_profile_box
+          .span1.neighborhood_pf_picture
+            = image_tag 'translated/pf5.jpg'
+          .span3.neighborhood_quote
+            .neighborhood_person_name
+              Izabel dos Santos       
+            “conseguiu um banco para a quadra da Nova Holanda.”
+    .row
+      .span4
+        %h3 Morador premiado
+        .neighborhood_profile_box
+          .span1.neighborhood_pf_picture
+            = image_tag 'translated/pf7.jpg'
+          .span3.neighborhood_quote
+            .neighborhood_person_name
+              Rubens Pinheiro
+            “conseguiu uma jarra de árvore para a rua do Miolo.”  
+            
+    .row
       #neighborhood_sponsors.span4
         %h2 Patrocinadores Locais
         
         .neighborhood_sponsor_box
           %ul
+            %li.span1.sponsor_thumb
+              = image_tag 'translated/merchant_logo.png'
             - @random_sponsors.each do |sponsor|
               %li.span1.sponsor_thumb
                 = image_tag sponsor

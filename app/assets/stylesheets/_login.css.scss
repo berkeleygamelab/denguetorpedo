@@ -1,14 +1,15 @@
 @import "variables";
 
 #login {
-  margin-left: 60px;
-  width: 322px;
+  margin-left: 50px;
+  width: 330px;
   height: 90px;
   text-align: left;
   
   ul {
     li {
       display: inline;
+      margin-right: 5px;
       input {
         margin-bottom: 2px;
       }
@@ -25,7 +26,7 @@
   }
     
   input[type = "submit"] {
-    margin-right: 0px;
+    margin-right: 5px;
     font-size: 12px;
   	float: right;
   	color: #ffffff;

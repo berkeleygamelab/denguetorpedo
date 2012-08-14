@@ -1,0 +1,13 @@
+---
+ignore:
+  image/gif:
+  - !ruby/regexp /^Vodafone Logo/i
+  text/html:
+   - !ruby/regexp /You have received a picture message from phone number/im
+  text/plain:
+   - !ruby/regexp /You have received a picture message from mobile phone number/im
+number:
+  - from
+  - !ruby/regexp /^([^\s]+)\s.*/
+  - "\\1"
+

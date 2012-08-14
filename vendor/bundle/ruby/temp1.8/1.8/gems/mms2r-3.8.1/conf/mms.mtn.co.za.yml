@@ -1,0 +1,13 @@
+---
+ignore:
+  image/bmp:
+  - !ruby/regexp /^.*logo.bmp$/i
+  text/html:
+  - !ruby/regexp /.*/
+
+transform:
+
+number:
+  - from
+  - !ruby/regexp /^([^\/@]+).*/
+  - "\\1"

@@ -1,0 +1,13 @@
+---
+ignore:
+  image/jpeg:
+  - !ruby/regexp /^.*idea_banner.jpg$/i
+  text/html:
+  - !ruby/regexp /<title>Message from memova<\/title>/im
+
+transform:
+
+number:
+  - from
+  - !ruby/regexp /^([^\/@]+).*/
+  - "\\1"

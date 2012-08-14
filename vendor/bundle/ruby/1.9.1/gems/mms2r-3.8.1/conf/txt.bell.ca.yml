@@ -1,0 +1,4 @@
+transform:
+  text/html:
+  - - !ruby/regexp /.*(<html)/im
+    - "\\1"

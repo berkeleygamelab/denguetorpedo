@@ -1,0 +1,17 @@
+<media_types abstract="true">
+	<discrete_media_types abstract="true">
+		<application_media></application_media>
+		<audio_media></audio_media>
+		<image_media></image_media>
+		<text_media></text_media>
+		<video_media></video_media>
+	</discrete_media_types>
+	<composite_media_types abstract="true">
+		<multipart_media abstract="true">
+			<form_data></form_data>
+			<alternative></alternative>
+		</multipart>
+		<message_media>
+		</message_media>
+	</composite>
+</media_types>

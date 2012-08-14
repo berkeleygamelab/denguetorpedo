@@ -108,15 +108,32 @@
              
     .row
       .span6
-        %h3 Vizinhos na #{@house.neighborhood.name}
-        #houses_in_neighborhood
-          - if @neighbors.count == 1 
-            %p You don't have any neighbors that are in the game
-          - else
-            %ul
-            - for neighbor in @neighbors
-              %li
-                - if neighbor.profile_photo_file_name.nil?
-                  = link_to image_tag("default_images/house_default_image.png"), house_path(neighbor)
-                - else 
-                  = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
+        %h3 Premios na #{@house.neighborhood.name}
+        -#
+          #houses_in_neighborhood
+            - if @neighbors.count == 1 
+              %p You don't have any neighbors that are in the game
+            - else
+              %ul
+              - for neighbor in @neighbors
+                %li
+                  - if neighbor.profile_photo_file_name.nil?
+                    = link_to image_tag("default_images/house_default_image.png"), house_path(neighbor)
+                  - else 
+                    = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
+        #house_rewards
+          %ul
+            %li
+              = image_tag 'translated/badges/guerreiro_dt.fw.png'
+              %br
+              .house_reward_type 
+                Guerreiro DT
+              .house_reward_winner 
+                Winner: Adelina
+            %li
+              = image_tag 'translated/badges/com_sara.fw.png'
+              %br
+              .house_reward_type 
+                Comunidad...
+              .house_reward_winner 
+                Winner: Rubens
