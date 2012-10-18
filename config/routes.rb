@@ -1,5 +1,13 @@
 Dengue::Application.routes.draw do
   
+  resources :buy_ins
+
+  resources :group_buy_ins
+
+  resources :prizes
+
+  resources :prize_codes
+
   get "dashboard/index"
   match "/home/:id" => "home#index", :as => "Home"
   match "/faq" => 'home#faq'

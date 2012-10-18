@@ -26,11 +26,12 @@ gem 'daemons'
 gem 'mms2r'
 gem 'mime'
 gem 'bcrypt-ruby'
-gem 'paperclip', "~> 3.0"
+gem 'paperclip', "~> 3.2.0"
 gem 'ruby-gmail'
 gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 gem 'simple_enum'
 gem 'awesome_nested_set'
+gem 'uuid'
 
 # Gems used only for assets and not required
 # in production environments by default.

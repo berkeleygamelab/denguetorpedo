@@ -1,0 +1,25 @@
+<%= form_for(@buy_in) do |f| %>
+  <% if @buy_in.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@buy_in.errors.count, "error") %> prohibited this buy_in from being saved:</h2>
+
+      <ul>
+      <% @buy_in.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :group_buy_in_id %><br />
+    <%= f.number_field :group_buy_in_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714054951) do
+ActiveRecord::Schema.define(:version => 20121005094118) do
+
+  create_table "buy_ins", :force => true do |t|
+    t.integer  "group_buy_in_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "feeds", :force => true do |t|
     t.string   "target_type"
@@ -20,6 +27,14 @@ ActiveRecord::Schema.define(:version => 20120714054951) do
     t.datetime "updated_at",   :null => false
     t.integer  "user_id"
     t.integer  "feed_type_cd"
+  end
+
+  create_table "group_buy_ins", :force => true do |t|
+    t.integer  "prize_id"
+    t.integer  "user_id"
+    t.integer  "group_size"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "houses", :force => true do |t|
@@ -70,6 +85,27 @@ ActiveRecord::Schema.define(:version => 20120714054951) do
   end
 
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "prize_codes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "prize_id"
+    t.datetime "expire_by"
+    t.string   "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "prizes", :force => true do |t|
+    t.string   "prize_name"
+    t.integer  "cost"
+    t.integer  "stock"
+    t.integer  "user_id"
+    t.text     "description"
+    t.text     "redemption_directions"
+    t.datetime "expire_on"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
 
   create_table "reports", :force => true do |t|
     t.text     "report"

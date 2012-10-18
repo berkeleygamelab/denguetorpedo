@@ -1,0 +1,27 @@
+<h1>Listing group_buy_ins</h1>
+
+<table>
+  <tr>
+    <th>Prize</th>
+    <th>User</th>
+    <th>Group size</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @group_buy_ins.each do |group_buy_in| %>
+  <tr>
+    <td><%= group_buy_in.prize_id %></td>
+    <td><%= group_buy_in.user_id %></td>
+    <td><%= group_buy_in.group_size %></td>
+    <td><%= link_to 'Show', group_buy_in %></td>
+    <td><%= link_to 'Edit', edit_group_buy_in_path(group_buy_in) %></td>
+    <td><%= link_to 'Destroy', group_buy_in, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Group buy in', new_group_buy_in_path %>

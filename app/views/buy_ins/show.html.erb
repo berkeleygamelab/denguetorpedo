@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Group buy in:</b>
+  <%= @buy_in.group_buy_in_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @buy_in.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_buy_in_path(@buy_in) %> |
+<%= link_to 'Back', buy_ins_path %>

@@ -1,0 +1,2 @@
+module PrizeCodesHelper
+end

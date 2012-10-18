@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id"
   has_many :feeds
   has_many :posts
+  has_many :prize_codes
+  has_many :prizes
+  has_many :created_group_buy_ins, :class_name => "GroupBuyIn"
+  has_many :participated_group_buy_ins, :through => :buy_ins, :class_name => "GroupBuyIn"
   
   belongs_to :house
 
@@ -78,6 +82,13 @@ class User < ActiveRecord::Base
   
   def reports
     Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", id, id, id).reorder(:updated_at).reverse_order.uniq
+  end
+
+  def buys(prize_id)
+    @prize = Prize.find(prize_id)
+    return false if self.points < @prize.cost
+    self.points -= @prize.cost
+    PrizeCode.create({:user_id => self.id, :prize_id => @prize.id})
   end
  
 end

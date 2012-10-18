@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @prize_code.user_id %>
+</p>
+
+<p>
+  <b>Prize:</b>
+  <%= @prize_code.prize_id %>
+</p>
+
+<p>
+  <b>Obtained on:</b>
+  <%= @prize_code.obtained_on %>
+</p>
+
+<p>
+  <b>Expire by:</b>
+  <%= @prize_code.expire_by %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%= @prize_code.code %>
+</p>
+
+
+<%= link_to 'Edit', edit_prize_code_path(@prize_code) %> |
+<%= link_to 'Back', prize_codes_path %>
