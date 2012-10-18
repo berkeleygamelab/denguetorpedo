@@ -84,11 +84,18 @@ class User < ActiveRecord::Base
     Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", id, id, id).reorder(:updated_at).reverse_order.uniq
   end
 
-  def buys(prize_id)
+  def buysPrize(prize_id)
     @prize = Prize.find(prize_id)
     return false if self.points < @prize.cost
     self.points -= @prize.cost
-    PrizeCode.create({:user_id => self.id, :prize_id => @prize.id})
+    PrizeCode.create({:user_id => self.id, :prize_id => prize_id})
   end
- 
+
+  def joinsGroupBuyIn(group_buy_in_id)
+    @group = GroupBuyIn.find(group_buy_in_id)
+    return false if self.points < @group.points_per_person
+    self.points -= @group.points_per_person
+    BuyIn.create({:user_id => self.id, :group_buy_in_id => group_buy_in_id})
+  end
+
 end
