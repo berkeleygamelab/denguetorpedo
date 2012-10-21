@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: feeds
+#
+#  id           :integer          not null, primary key
+#  target_type  :string(255)
+#  target_id    :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :integer
+#  feed_type_cd :integer
+#
+
 require 'spec_helper'
 
 describe Feed do

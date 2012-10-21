@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                         :integer          not null, primary key
+#  username                   :string(255)
+#  password_digest            :string(255)
+#  auth_token                 :string(255)
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  email                      :string(255)
+#  password_reset_token       :string(255)
+#  password_reset_sent_at     :datetime
+#  phone_number               :string(255)
+#  points                     :integer          default(0), not null
+#  house_id                   :integer
+#  profile_photo_file_name    :string(255)
+#  profile_photo_content_type :string(255)
+#  profile_photo_file_size    :integer
+#  profile_photo_updated_at   :datetime
+#  is_verifier                :boolean          default(FALSE)
+#  is_fully_registered        :boolean          default(FALSE)
+#  is_health_agent            :boolean          default(FALSE)
+#
+
 class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :auth_token, :phone_number
   has_secure_password

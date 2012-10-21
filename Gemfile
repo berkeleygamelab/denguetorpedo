@@ -25,8 +25,9 @@ gem 'foreman'
 gem 'daemons'
 gem 'mms2r'
 gem 'mime'
+gem 'rmagick'
 gem 'bcrypt-ruby'
-gem 'paperclip', "~> 3.2.0"
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip'
 gem 'ruby-gmail'
 gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 gem 'simple_enum'

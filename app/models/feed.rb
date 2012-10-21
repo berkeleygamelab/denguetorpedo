@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: feeds
+#
+#  id           :integer          not null, primary key
+#  target_type  :string(255)
+#  target_id    :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :integer
+#  feed_type_cd :integer
+#
+
 class Feed < ActiveRecord::Base
   attr_accessible :feed_type, :target_id, :target_type, :user_id
   belongs_to :target, :polymorphic => true

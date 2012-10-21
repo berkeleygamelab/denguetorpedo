@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: houses
+#
+#  id                         :integer          not null, primary key
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  name                       :string(255)
+#  featured_event_id          :integer
+#  location_id                :integer
+#  profile_photo_file_name    :string(255)
+#  profile_photo_content_type :string(255)
+#  profile_photo_file_size    :integer
+#  profile_photo_updated_at   :datetime
+#
+
 class House < ActiveRecord::Base
   attr_accessible :name, :profile_photo
   

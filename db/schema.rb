@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005094118) do
+ActiveRecord::Schema.define(:version => 20121021213525) do
 
   create_table "buy_ins", :force => true do |t|
     t.integer  "group_buy_in_id"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(:version => 20121005094118) do
   create_table "group_buy_ins", :force => true do |t|
     t.integer  "prize_id"
     t.integer  "user_id"
-    t.integer  "group_size"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -105,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20121005094118) do
     t.datetime "expire_on"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.integer  "max_group_size"
   end
 
   create_table "reports", :force => true do |t|
