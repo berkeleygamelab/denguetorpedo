@@ -80,4 +80,17 @@ class BuyInsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def accept
+    @buyIn = BuyIn.find(params[:id])
+    @buyIn.send_accept_email
+    @buyIn.destroy
+  end
+
+  def decline
+    @buyIn = BuyIn.find(params[:id])
+    @buyIn.send_decline_email
+    @buyIn.destroy
+  end
+
 end
