@@ -68,6 +68,8 @@ u29 = User.create!(:username => "Debora", :password => "asdf123", :email => "Deb
 puts "user Debora created"
 u30 = User.create!(:username => "Hurst", :password => "asdf123", :email => "Hurst@gmail.com")
 puts "user Hurst created"
+u31 = User.create!(:username => "Benjamin", :password => "asdf123", :email => "dragonben@hotmail.com")
+puts "user Ben created"
 puts "all users created\n\n"
 
 puts "creating locations for houses..."

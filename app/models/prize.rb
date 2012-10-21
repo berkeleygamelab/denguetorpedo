@@ -3,4 +3,7 @@ class Prize < ActiveRecord::Base
   belongs_to :user
   has_many :group_buy_ins
   has_many :prize_codes
+
+
+
 end
