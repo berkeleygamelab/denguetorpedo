@@ -2,6 +2,9 @@ class PrizesController < ApplicationController
   # GET /prizes
   # GET /prizes.json
   def index
+
+    @user = current_user
+
     @prizes = Prize.all
 
     respond_to do |format|

@@ -1,3 +1,58 @@
 // Place all the styles related to the prizes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+#user_info {
+  background: white;
+  span {
+
+  }
+}
+
+#user_profile_picture {
+  display:inline-block;
+}
+
+#user_welcome {
+  display:inline-block;
+  position: relative;
+  top: 20px;
+}
+
+#user_point_box {
+  padding: 25px 90px 25px 90px;
+  background: $layout-gray;
+  text-align: center;
+  span {
+    font-size: 50px;
+    color: $blue;
+  }
+}
+
+#user_prizes {
+  background: white;
+  width: inherit;
+  max-height: 161px;
+  min-height: 161px;
+  span {
+    position: relative;
+    top: 20px;
+    left: 20px;
+  }
+}
+
+#prize_search {
+  margin-top: 40px;
+  padding: 5px 5px 5px 5px;
+  background: $layout_gray;
+  h1 {
+    display: inline-block;
+  }
+  input {
+    display: inline-block;
+    float: right;
+    margin-top: 4px;
+  }
+}

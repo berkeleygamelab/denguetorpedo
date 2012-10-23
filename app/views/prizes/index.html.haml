@@ -1,0 +1,60 @@
+- unless @user.nil?
+  .row
+    .span6.offset2
+      #user_info
+        #user_profile_picture
+          - if @user.profile_photo_file_name.nil?
+            = image_tag("default_images/profile_default_image.png")
+          - else
+            = image_tag(@user.profile_photo.url(:large))
+        #user_welcome
+          %span
+            Bem-vinda,
+            %strong
+              = @user.username
+          %span
+            %strong Meus Pontos:
+          #user_point_box
+            %span
+              = @user.points
+    .span6.offset1
+      #user_prizes
+        %h3
+          Your trophy box:
+        - @user.prizes.each do |prize|
+          = image_tag(prize.prize_photo.url(:small))
+
+  .row
+    .span15.offset1
+      #prize_search
+        %h1 Premios para a comunidade
+        %input{:type => 'text', :placeholder => "Busca...."}
+
+%h1 Listing prizes
+%table
+  %tr
+    %th Prize name
+    %th Cost
+    %th Stock
+    %th User
+    %th Description
+    %th Redemption directions
+    %th Expire on
+    %th
+    %th
+    %th
+  - @prizes.each do |prize|
+    %tr
+      %td= prize.prize_name
+      %td= prize.cost
+      %td= prize.stock
+      %td= prize.user_id
+      %td= prize.description
+      %td= prize.redemption_directions
+      %td= prize.expire_on
+      %td= link_to 'Show', prize
+      %td= link_to 'Edit', edit_prize_path(prize)
+      %td= link_to 'Destroy', prize, method: :delete, data: { confirm: 'Are you sure?' }
+  a
+%br/
+= link_to 'New Prize', new_prize_path

@@ -15,8 +15,10 @@ class GroupBuyIn < ActiveRecord::Base
   belongs_to :user
   validates :user, :presence => true
   validates :prize, :presence => true
+
+  validates :group_size, :numericality => { :greater_than => 1, :less_than => 6}
   
-  has_many :invitations
+  has_many :buy_ins
 
   def points_per_person
     @prize = Prize.find(self.prize_id)
@@ -29,10 +31,14 @@ class GroupBuyIn < ActiveRecord::Base
   end
 
   def hasEnoughBuyers
-
+    number_accepted = 0
+    self.buy_ins.each do |buy_in|
+      number_accepted = number_accepted + 1 if buy_in.accepted
+    end
+    number_accepted == self.group_size
   end
 
   def buyItem
-
+    self.prize.generate_prize_code(self.user_id)
   end
 end
