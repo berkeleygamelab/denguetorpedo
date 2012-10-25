@@ -21,40 +21,18 @@
       #user_prizes
         %h3
           Your trophy box:
-        - @user.prizes.each do |prize|
-          = image_tag(prize.prize_photo.url(:small))
+        - @user.prize_codes.each do |prize_code|
+          prize = prize_code.prize
+          = image_tag(prize.prize_photo.url(:small), {:size => "60x60", :class => "trophy_photo"})
 
-  .row
-    .span15.offset1
-      #prize_search
-        %h1 Premios para a comunidade
-        %input{:type => 'text', :placeholder => "Busca...."}
+.row
+  .span15.offset1
+    #prize_search
+      %h1 Premios para a comunidade
+      %input{:type => 'text', :placeholder => "Busca....", :class => "prize_search", :id => "community_prize"}
 
-%h1 Listing prizes
-%table
-  %tr
-    %th Prize name
-    %th Cost
-    %th Stock
-    %th User
-    %th Description
-    %th Redemption directions
-    %th Expire on
-    %th
-    %th
-    %th
-  - @prizes.each do |prize|
-    %tr
-      %td= prize.prize_name
-      %td= prize.cost
-      %td= prize.stock
-      %td= prize.user_id
-      %td= prize.description
-      %td= prize.redemption_directions
-      %td= prize.expire_on
-      %td= link_to 'Show', prize
-      %td= link_to 'Edit', edit_prize_path(prize)
-      %td= link_to 'Destroy', prize, method: :delete, data: { confirm: 'Are you sure?' }
-  a
-%br/
-= link_to 'New Prize', new_prize_path
+.row
+  .span15.offset1
+    #prize_search
+      %h1 Premios para voce
+      %input{:type => 'text', :placeholder => "Busca....", :class => "prize_search", :id => "self_prize"}

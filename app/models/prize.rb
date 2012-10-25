@@ -20,11 +20,11 @@
 #
 
 class Prize < ActiveRecord::Base
-  attr_accessible :cost, :description, :expire_on, :prize_name, :redemption_directions, :stock, :user_id
+  attr_accessible :cost, :description, :expire_on, :prize_name, :redemption_directions, :stock, :user_id, :prize_photo
   belongs_to :user
   has_many :group_buy_ins
   has_many :prize_codes
-  has_attached_file :prize_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/prize_default_image.png', :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
+  has_attached_file :prize_photo, :default_url => 'default_images/prize_default_image.jpg', :styles => { :small => "60x60>", :large => "150x150>" }, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
 
   def generate_prize_code(user_id)
     @user = User.find(user_id)

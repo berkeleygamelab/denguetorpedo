@@ -320,5 +320,11 @@ n3.name = "Rocinha"
 n3.save!
 puts "setting third neighborhood to be Rocinha"
 
+puts "Creating Prizes"
+p1 = Prize.create!(:prize_name => "Campeano Construcao", :cost => 1000, :stock => 100, :user_id => 1, :description => "This is a bench. This is for your community. You will have your name on it", :redemption_directions => "Buy. Get Code. Send. We Build it", :prize_photo => File.open(File.join(Rails.root,'/app/assets/images/prizes/prize1.jpg')), :community_prize => true)
+p2 = Prize.create!(:prize_name => "Livraria da Esquina", :cost => 500, :stock => 100, :user_id => 1, :description => "Books for your local library!", :redemption_directions => "Buy. Get Code. Send. We Write Books", :prize_photo => File.open(File.join(Rails.root,'/app/assets/images/prizes/prize2.jpg')), :community_prize => true)
+p2 = Prize.create!(:prize_name => "Livraria da Esquina", :cost => 300, :stock => 100, :user_id => 1, :description => "Books for your local library!", :redemption_directions => "Buy. Get Code. Send. We Write Books", :prize_photo => File.open(File.join(Rails.root,'/app/assets/images/prizes/prize2.jpg')), :community_prize => true)
+p2 = Prize.create!(:prize_name => "Livraria da Esquina", :cost => 200, :stock => 100, :user_id => 1, :description => "Books for your local library!", :redemption_directions => "Buy. Get Code. Send. We Write Books", :prize_photo => File.open(File.join(Rails.root,'/app/assets/images/prizes/prize2.jpg')), :self_prize => true)
+p2 = Prize.create!(:prize_name => "Livraria da Esquina", :cost => 50, :stock => 100, :user_id => 1, :description => "Books for your local library!", :redemption_directions => "Buy. Get Code. Send. We Write Books", :prize_photo => File.open(File.join(Rails.root,'/app/assets/images/prizes/prize2.jpg')), :self_prize => true)
 
 

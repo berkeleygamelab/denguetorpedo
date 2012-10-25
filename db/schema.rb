@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121023083037) do
+ActiveRecord::Schema.define(:version => 20121024205822) do
 
   create_table "buy_ins", :force => true do |t|
     t.integer  "group_buy_in_id"
@@ -110,13 +110,15 @@ ActiveRecord::Schema.define(:version => 20121023083037) do
     t.text     "description"
     t.text     "redemption_directions"
     t.datetime "expire_on"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.integer  "max_group_size"
     t.string   "prize_photo_file_name"
     t.string   "prize_photo_content_type"
     t.integer  "prize_photo_file_size"
     t.datetime "prize_photo_updated_at"
+    t.boolean  "community_prize",          :default => false, :null => false
+    t.boolean  "self_prize",               :default => false, :null => false
   end
 
   create_table "reports", :force => true do |t|
