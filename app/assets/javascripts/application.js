@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.bing.js
 //= require gmaps4rails/gmaps4rails.googlemaps.js
 //= require gmaps4rails/gmaps4rails.mapquest.js
