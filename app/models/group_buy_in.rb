@@ -16,7 +16,7 @@ class GroupBuyIn < ActiveRecord::Base
   validates :user, :presence => true
   validates :prize, :presence => true
 
-  validates :group_size, :numericality => { :greater_than => 1, :less_than => 6}
+  validates :group_size, :numericality => { :greater_than => 1, :less_than => 6 }
   
   has_many :buy_ins
 

@@ -50,8 +50,21 @@ class ReportReader < ActionMailer::Base
     parsed_result = text_body.scan(/^(.+)@(.+)$/)
         
     if parsed_result.count == 0
-      logger.info "incorrect report format"
-      ReportReader.incomplete_information_notification(email_addrs).deliver
+
+      # For verifying prize codes
+      second_parsed_result = text_body.scan(/verify@(.+)$/)
+      if second_parsed_result.count == 0
+        logger.info "incorrect report format"
+        ReportReader.incomplete_information_notification(email_addrs).deliver
+      else
+        logger.info "extracted verification code"
+        prizecode = second_parsed_result[0][0]
+
+        logger.info "prizecode: #{prizecode}"
+        @prize = PrizeCode.find_by_code("?", prizecode)
+        @prize.nil? ? @prize.send_no(phone_number) : @prize.first.send_yes(phone_number)
+      end
+
     else
       logger.info "successfully extracted report and address"
       report = parsed_result[0][0]
