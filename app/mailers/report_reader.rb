@@ -61,8 +61,8 @@ class ReportReader < ActionMailer::Base
         prizecode = second_parsed_result[0][0]
 
         logger.info "prizecode: #{prizecode}"
-        @prize = PrizeCode.find_by_code("?", prizecode)
-        @prize.nil? ? @prize.send_no(phone_number) : @prize.first.send_yes(phone_number)
+        @prize = PrizeCode.find_by_code("?", prizecode).first
+        @prize.nil? ? PrizeCode.send_no(phone_number) : @prize.send_yes(phone_number)
       end
 
     else
