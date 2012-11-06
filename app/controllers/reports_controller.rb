@@ -3,7 +3,8 @@ class ReportsController < ApplicationController
   before_filter :require_login, :except => [:sms, :verification]
 
   def index
-    #@json = User.all.to_gmaps4rails
+
+    
     if (params[:claimed_report] != nil)
       puts 'afjdklsafjdklsa' 
       report = Report.find(params[:claimed_report])
@@ -34,6 +35,14 @@ class ReportsController < ApplicationController
     @eliminate_feed = Report.find(:all, :from => 'reports', 
     :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], 
     :order => 'updated_at desc')
+    
+    @locations_to_map = []
+    for a in @claim_feed
+      puts('item')
+      @locations_to_map.append(a.location)
+    end
+    @json = @locations_to_map.to_gmaps4rails
+    puts @json
     
     if params[:view].nil? 
       params[:view] = 'recent'
