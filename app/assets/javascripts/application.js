@@ -6,11 +6,42 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.bing.js
 //= require gmaps4rails/gmaps4rails.googlemaps.js
 //= require gmaps4rails/gmaps4rails.mapquest.js
 //= require gmaps4rails/gmaps4rails.openlayers.js
 //= require_tree .
+
+
+
+//gmaps
+function gmaps4rails_callback() {
+    google.maps.event.addListener(Gmaps4Rails.map, 'idle', function () {
+        var bounds = Gmaps4Rails.map.getBounds();
+        drawItems(bounds);
+    });
+  }
+function drawItems(theBounds) {
+    var url = '/venues.json/?sw_y=' + theBounds.getSouthWest().lng() + 
+                           '&sw_x=' + theBounds.getSouthWest().lat() + 
+                           '&ne_y=' + theBounds.getNorthEast().lng() +
+                           '&ne_x=' + theBounds.getNorthEast().lat();
+    $.get(url, function(newItemData) {
+        Gmaps4Rails.replace_markers(newItemData);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 // TRANSITION
 !function( $ ) {

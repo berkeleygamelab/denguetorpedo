@@ -4,7 +4,9 @@
     color: white;
     margin: 0px 0px 0px 20px;
     
-  
+  h3 {
+    font-size: 18px;
+  } 
   input{
 
     height: 30px;
@@ -31,13 +33,13 @@
     }
   }
   
-  input[type = "submit"] {      
+   input[type = "submit"] {      
     /*position: absolute;*/
-	float:right;
-    margin-left: -85px;
+
+    margin-left: 95px;
     border-radius: $button_border_radius;
     text-align: center;
-    width: 85px;
+    width: 120px;
     height: 36px;
     color: #FFFFFF;
     font-size: 14px;

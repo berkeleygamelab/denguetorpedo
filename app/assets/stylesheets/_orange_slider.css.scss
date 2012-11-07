@@ -12,15 +12,14 @@
   height: 400px;
   margin-top: 0px;
   padding-top: 30px;
-  background-image: url(home_images/orange_section_bg.png);
+  background-image: url(translated/banner_awesome.png);
   background-position: top;
   background-size: cover;
 
   z-index: 0;
   
   #orange_bg_graphic {
-    background-image: url(home_images/banner_graphic.png);
-    background-position: top;
+
     z-index: 0;
     width: 541px;
     height: 373px;
@@ -29,7 +28,13 @@
     margin-top: -20px;
   }
   #play_button {
-    margin-top: 160px;
+    margin-top: 180px;
+    padding-left: 20px;
+    width: 100px;
+  }
+  #news_pane {
+    margin-top: 30px;
+    margin-left: 20px;
   }
   #register_pane {
     margin-top: 30px;
@@ -48,9 +53,9 @@
       color: black;
       line-height: 30px;
       margin-left: 10px;
-      margin-top: 100px;
+      margin-top: 130px;
       z-index: 1;
-      font-size: 16px;
+      font-size: 22px;
       
     }
     h3 {
@@ -78,7 +83,7 @@
     color: $gray;
     width: 70px;
     float: right;
-    margin: 60px 20px 0px 0px;
+    margin: 50px 20px 0px 0px;
 
     line-height: 18px;
     .extra_border {

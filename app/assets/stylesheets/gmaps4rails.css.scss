@@ -1,0 +1,18 @@
+@import "variables"; 
+
+.map_container {
+
+  margin-top: 5px;
+  margin-bottom: 0px;
+  background: $light-gray;
+  height: 395px;
+  margin-left: 20px;
+  border: 2px solid gray;
+  border-radius: 2px;
+}
+
+.gmaps4rails_map {
+
+  height: 395px;
+
+}

@@ -18,10 +18,10 @@ ul#user_right_panel {
   padding: 15px 10px 0px 10px;
   width: 220px;
   img{
-	border:1px solid $gray;
+  border:1px solid $gray;
 
-	  margin-bottom: 15px;
-	}
+    margin-bottom: 15px;
+  }
 
 }
 
@@ -125,20 +125,20 @@ ul#user_right_panel {
         z-index: 1;
         width: 160px;
         height: 160px;
-		border: 1px solid $gray;
+    border: 1px solid $gray;
       }
     }
     .user_house_picture, .user_neighborhood_picture{
       margin-right: 11;
       display: inline;
-	 
+   
       
       img {
         z-index: 1;
 
         width: 96px;
         height: 96px;
-	    border:1px solid $gray;
+      border:1px solid $gray;
 
       }
     }
@@ -194,18 +194,18 @@ ul#user_right_panel {
   padding-bottom:3px;
 
   h1{
-	font-weight:bold;
+  font-weight:bold;
    }
-	
+  
   h3 {
     color: #ffffff;
-	font-weight:normal;
-	margin-top:-10px;
+  font-weight:normal;
+  margin-top:-10px;
   }
 }
 
 .main_nav_button:hover{
-	background-color:rgba(0,0,0, 0.2);
+  background-color:rgba(0,0,0, 0.2);
 }
 
 #user_recent_activity {
@@ -224,7 +224,7 @@ ul#user_right_panel {
       border: 2px solid #f0f0f0;
       
       .user_activity_thumb {
-		border:1px solid $gray;
+    border:1px solid $gray;
         width: 100px;
       }
       .user_activity_options {

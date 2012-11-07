@@ -1,7 +1,7 @@
 .user_report.user_claimed_report
   .row
     .span8
-      %h4== Report #{claimed_report.id}: #{claimed_report.complete_address}
+      %h4== Foco Nº #{claimed_report.id}: #{claimed_report.complete_address}
     .span2.user_report_time
       = claimed_report.strftime_updated_at
       
@@ -15,13 +15,13 @@
           = claimed_report.report            
           "
       .row.user_report_people
-        Reporter:
+        Marcado por:
         %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
         %br
-        Claimed by:
+        Assumido por:
         %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
     .span1.user_report_status.status
-      Claimed
+      Assumido
   .row
     .user_report_options
       =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'

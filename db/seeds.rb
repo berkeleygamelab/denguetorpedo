@@ -8,27 +8,27 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "creating users..."
-u1 = User.create!(:username => "Adelina", :password => "asdf123", :email => "Adelina@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
+u1 = User.create!(:username => "Adelina", :password => "asdf123", :email => "Adelina@gmail.com", :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/translated/pf3.jpg')))
 puts "user Adelina created"
-u2 = User.create!(:username => "Iracema", :password => "asdf123", :email => "Iracema@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
+u2 = User.create!(:username => "Iracema", :password => "asdf123", :email => "Iracema@gmail.com", :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/translated/pf4.jpg')))
 puts "user Iracema created"
-u3 = User.create!(:username => "Izabel", :password => "asdf123", :points => 0, :email => "Izabel@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile3.jpg')))
+u3 = User.create!(:username => "Izabel", :password => "asdf123", :points => 0, :email => "Izabel@gmail.com", :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/translated/pf5.jpg')))
 puts "user Izabel created"
-u4 = User.create!(:username => "Tereza", :password => "asdf123", :email => "Tereza@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile1.jpg')))
+u4 = User.create!(:username => "Rubens", :password => "asdf123", :email => "Tereza@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/translated/pf7.jpg')))
 puts "user Tereza created"
-u5 = User.create!(:username => "Severino", :password => "asdf123", :email => "Severino@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
+u5 = User.create!(:username => "Severino", :password => "asdf123", :email => "Severino@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/translated/pf10.jpg')))
 puts "user Severino created"
-u6 = User.create!(:username => "Carolina", :password => "asdf123", :email => "Ana@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile2.jpg')))
+u6 = User.create!(:username => "Carolina", :password => "asdf123", :email => "Ana@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/translated/pf8.jpg')))
 puts "user Carolina created"
-u7 = User.create!(:username => "Carminha", :password => "asdf123", :email => "Carminha@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
+u7 = User.create!(:username => "Carminha", :password => "asdf123", :email => "Carminha@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/translated/pf11.jpg')))
 puts "user Carminha created"
-u8 = User.create!(:username => "Eliana", :password => "asdf123", :email => "Eliana@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile6.jpg')))
+u8 = User.create!(:username => "Eliana", :password => "asdf123", :email => "Eliana@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/translated/pf9.jpg')))
 puts "user Eliana created"
-u9 = User.create!(:username => "Everaldo", :password => "asdf123", :email => "Everaldo@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile4.jpg')))
+u9 = User.create!(:username => "Everaldo", :password => "asdf123", :email => "Everaldo@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/translated/pf6.jpg')))
 puts "user Everaldo created"
-u10 = User.create!(:username => "Fatima", :password => "asdf123", :email => "Fatima@gmail.com", :profile_photo => File.open(File.join(Rails.root,'/app/assets/images/profile_photos/profile5.jpg')))
+u10 = User.create!(:username => "Fatima", :password => "asdf123", :email => "Fatima@gmail.com", )
 puts "user Fátima created"
-u11 = User.create!(:username => "Rubens", :password => "asdf123", :email => "Rubens@gmail.com")
+u11 = User.create!(:username => "Tereza", :password => "asdf123", :email => "Rubens@gmail.com")
 puts "user Rubens created"
 u12 = User.create!(:username => "Milton", :password => "asdf123", :email => "Milton@gmail.com")
 puts "user Milton created"
@@ -169,11 +169,14 @@ puts "all locations created"
 puts "creating houses..."
 h1 = House.create!(:name => "Casa Adelina", :location_id => l1.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Adelina.jpg')))
 h1.members << u1
+h1.members << u2
+h1.members << u3
+h1.members << u4
 h1.save!
 puts "Casa Adelina created"
 
 h2 = House.create!(:name => "Casa Tereza", :location_id => l2.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Tereza.jpg')))
-h2.members << u4
+h2.members << u5
 h2.save!
 puts "Casa Tereza created"
 
@@ -183,32 +186,32 @@ h3.save!
 puts "Casa Carolina created"
 
 h4 = House.create!(:name => "Casa Severino", :location_id => l4.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Severino.jpg')))
-h4.members << u5
+h4.members << u7
 h4.save!
 puts "Casa Severino created"
 
 h5 = House.create!(:name => "Casa Carminha", :location_id => l5.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Carminha.jpg')))
-h5.members << u7
+h5.members << u8
 h5.save!
 puts "Casa Carminha created"
 
 h6 = House.create!(:name => "Casa Rubens", :location_id => l6.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Rubens.jpg')))
-h6.members << u11
+h6.members << u9
 h6.save!
 puts "Casa Rubens created"
 
 h7 = House.create!(:name => "Casa Eliana", :location_id => l7.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Eliana.jpg')))
-h7.members << u8
+h7.members << u10
 h7.save!
 puts "Casa Eliana created"
 
 h8 = House.create!(:name => "Casa Milton", :location_id => l8.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Milton.jpg')))
-h8.members << u12
+h8.members << u11
 h8.save!
 puts "Casa Milton created"
 
 h9 = House.create!(:name => "Casa Everaldo", :location_id => l9.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Everaldo.jpg')))
-h9.members << u9
+h9.members << u12
 h9.save!
 puts "Casa Everaldo created"
 
@@ -218,21 +221,21 @@ h10.save!
 puts "Casa Marlene created"
 
 h11 = House.create!(:name => "Casa Fatima", :location_id => l11.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Fatima.jpg')))
-h11.members << u10
+h11.members << u14
 h11.save!
 puts "Casa Fatima created"
 
 h12 = House.create!(:name => "Casa Luiza", :location_id => l12.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Luiza.jpg')))
-h12.members << u14
+h12.members << u15
 h12.save!
 puts "Casa Luiza created"
 
 h13 = House.create!(:name => "Casa Josa", :location_id => l13.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Josa.jpg')))
-h13.members << u13
+h13.members << u16
 puts "Casa Josa created"
 
 h14 = House.create!(:name => "Casa Ana", :location_id => l14.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
-h14.members << u14
+h14.members << u17
 h14.save!
 puts "Casa Ana"
 
@@ -241,56 +244,56 @@ puts "Casa Ana"
 #puts "Casa Ana"
 
 h16 = House.create!(:name => "Casa flavio", :location_id => l16.id, :profile_photo => File.open(File.join(Rails.root, '/app/assets/images/houses/Casa Iracema.jpg')))
-h16.members << u16
+h16.members << u18
 puts "Casa flavio"
 
 puts "all houses created and members added"
  
  
 puts "creating open reports..."
-r1 = Report.create_from_user("I saw many containers in this junk yard. They need some cleaning.", :status => :reported, :reporter => u1, :location => l14, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')))
+r1 = Report.create_from_user("Lixeira cheia de água.", :status => :reported, :reporter => u1, :location => l14, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')))
 r1.save!
 
-r2 = Report.create_from_user("The garden in the school requires some help.", :status => :claimed, :reporter => u1, :location => l15, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')))
+r2 = Report.create_from_user("Pneu na calçada.", :status => :claimed, :reporter => u1, :location => l15, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')))
 r2.claimer = u1
 r2.save!
 
-r3 = Report.create_from_user("Please take a look at the big garbage can next to the pole.", :status => :reported, :reporter => u1, :location => l16, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report3_1.jpg' )))
+r3 = Report.create_from_user("Caçamba juntando água.", :status => :reported, :reporter => u1, :location => l16, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report3_1.jpg' )))
 r3.save!
 
-r4 = Report.create_from_user("There are some pupae in the container.", :status => :eliminated, :reporter => u1, :location => l17, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')), :after_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_2.jpg')))
+r4 = Report.create_from_user("Potes no quintal.", :status => :eliminated, :reporter => u1, :location => l17, :before_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_1.jpg')), :after_photo => File.open(File.join(Rails.root,'/app/assets/images/report_photos/report2_2.jpg')))
 r4.claimer = u1
 r4.eliminator = u1
 r4.save!
 
-r5 = Report.create_from_user("The sewer contains water after rainning season", :status => :claimed, :reporter => u1, :location => l18)
+r5 = Report.create_from_user("Muitas pupas num latão!", :status => :claimed, :reporter => u1, :location => l18)
 r5.claimer = u1
 r5.save!
 
-r6 = Report.create_from_user("There are some pupae in the container.", :status => :claimed, :reporter => u1, :location => l19)
+r6 = Report.create_from_user("Um montão de pupas numa lata de tinta abandonada", :status => :claimed, :reporter => u1, :location => l19)
 r6.claimer = u1
 r6.save!
 
-r2 = Report.create_from_user("In the pot next to the vending machine, there are some pupae.", :status => :reported, :reporter => u1, :location => l20)
+r2 = Report.create_from_user("Um montão de pupas numa lata de tinta abandonada", :status => :reported, :reporter => u1, :location => l20)
 r2.save!
 
-r3 = Report.create_from_user("Next to the sever-eleven, there is a garbage can that has water in it.", :status => :reported, :reporter => u2, :location => l21)
+r3 = Report.create_from_user("Muitas pupas num latão!", :status => :reported, :reporter => u2, :location => l21)
 r3.save!
 
-r4 = Report.create_from_user("In my backyard, I kept several water containers that I need to clean myself.", :status => :eliminated, :reporter => u11, :location => l22)
+r4 = Report.create_from_user("Potes no quintal.", :status => :eliminated, :reporter => u11, :location => l22)
 r4.claimer = u1
 r4.eliminator = u1
 r4.save!
 
-r5 = Report.create_from_user("I saw some water dents after raining, and pupae are growing.", :status => :eliminated, :reporter => u1, :location => l23)
+r5 = Report.create_from_user("Caçamba juntando água.", :status => :eliminated, :reporter => u1, :location => l23)
 r5.claimer = u2
 r5.eliminator = u2
 r5.save!
 
-r6 = Report.create_from_user("Right next to the school bus stop, there are some garbage cans need to take care of.", :status => :reported, :reporter => u2, :location => l24)
+r6 = Report.create_from_user("Lixeira cheia de água.", :status => :reported, :reporter => u2, :location => l24)
 r6.save!
 
-r7 = Report.create_from_user("I have three huge water tanks that I need help with", :status => :eliminated, :reporter => u2, :location => l25)
+r7 = Report.create_from_user("Pneu na calçada.", :status => :eliminated, :reporter => u2, :location => l25)
 r7.claimer = u7
 r7.eliminator = u7
 r7.save!
@@ -298,10 +301,10 @@ puts "all reports created"
 
 
 puts "creating posts..."
-e1 = Post.create!(:title => 'My Party', :content => "Over this weekend, I am creating a fight dengue party. I would like to invite everyone to join") do |post| post.wall = u1.house; post.user = u1 end
-e2 = Post.create!(:title => 'Dengue Fighting', :content => "I would like to know if there are new technique to eliminate dengue. Would anyone like to share?") do |post| post.wall = u1.house; post.user = u1 end
-e3 = Post.create!(:title => 'Great Job!', :content => "Hey guys! Let's keep it up. We are winning over our neighborhoods!") do |post|  post.wall = u1.house; post.user = u2 end
-e4 = Post.create!(:title => 'New Discovery!', :content => "Here's a new method I discovered to fight dengue. Everytime you are done with a contain, you should flip it upside down.") do |post| post.wall = u1.house; post.user = u3 end
+e1 = Post.create!(:title => 'Mutirão aqui em casa', :content => "Decidimos dar uma geral aqui no quintal e gostaríamos de convidar os amigos para colaborarem. Oferecemos churrasquinho pra todo mundo. Apareçam!") do |post| post.wall = u1.house; post.user = u1 end
+e2 = Post.create!(:title => 'Como eliminar focos em vasos?', :content => "Estou com dificuldade aqui em casa porque tem muitos vasos de plantas. Alguém tem alguma dica de um jeito prático pra não acumular água?") do |post| post.wall = u1.house; post.user = u1 end
+e3 = Post.create!(:title => 'Ganhamos o baldinho!', :content => "Juntamos uns pontos DT e ganhamos um baldinho bacana, com esfregão, da Campeão Construção! Agora a meta é conseguir um microondas!") do |post|  post.wall = u1.house; post.user = u2 end
+e4 = Post.create!(:title => 'Jeitinho com os potes', :content => "Aqui em casa estamos deixando virando todos os potes, vasos e pneus de cabeça pra baixo, assim não junta água. Não é tão difícil como parece, e a gente vai ganhando uns pontinhos!") do |post| post.wall = u1.house; post.user = u3 end
 
 puts "events and comments created"
 

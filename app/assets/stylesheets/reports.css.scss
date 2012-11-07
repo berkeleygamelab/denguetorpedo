@@ -46,6 +46,9 @@
   border-radius: 3px;
   padding: 10px;
   margin: 0px 0px 10px 10px;
+  h4 {
+    font-size: 14px;
+  }
 }
 .rp_before_photo, .rp_after_photo {
   margin: 10px 0px 0px 10px;
@@ -126,9 +129,18 @@
 
 
 // MAIN REPORTS CSS
-#report_map, #report_sponsors {
+.report_map_search {
+  background: $light-gray;
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-left: 10px;
+  width: 375px;
+  h2 {
+    font-size: 20px;
+  }
+}
+#report_map, #report_sponsors {
+  margin-top: 5px;
+  margin-bottom: 0px;
   background: $light-gray;
   height: 395px;
   margin-left: 20px;
@@ -182,11 +194,11 @@
 }
 
 #report_buttons {
-
+  margin-left: 20px;
   font-size: 13px;
   .active {
     text-decoration: underline;
-    font-size: 17px;
+    font-size: 21px;
   }
     
   .reports_feed_button {

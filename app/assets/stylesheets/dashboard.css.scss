@@ -20,8 +20,11 @@
     li {
       height: 40px;
       display: inline;
-      margin-right: 10px;
+      margin-right: 5px;
       padding-right: 2px;
+      a {
+        font-size: 14px;
+      }
     }
   }
 }
@@ -37,7 +40,7 @@
 .nav_item:hover{
  /* background-color:rgba(0,0,0,0.1);
   border-radius: 2px;*/
-	a{
-		color:gray;
-	}
+  a{
+    color:gray;
+  }
 }

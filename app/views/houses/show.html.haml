@@ -1,9 +1,8 @@
 .row
-  .span9.offset1    
-    %span
-      %h1
-        #{@house.name},
-        .house_gray= @house.location.complete_address
+  .span15.offset1    
+    %h1
+      #{@house.name}
+    %h2.house_gray= @house.location.complete_address
 .row
   .span9.offset1
     %br
@@ -20,7 +19,7 @@
           .span2
             #house_neighborhood.house_gray
               .row
-                Neighborhood
+                Comunidade
               .row
                 #house_neighborhood_bg
                   = link_to @house.neighborhood.name, neighborhood_path(@house.neighborhood)
@@ -29,18 +28,18 @@
           .span2.offset1
             .house_gray            
               .row
-                Points
+                Pontos
               .row
                 #house_points_bg
-                  = @house.points.to_s          
+                  14#{ @house.points.to_s}          
           .row
             #house_badges
             .span5
-              %h3 This house currently has no badges yet.
+
 
     .row
       .span10
-        %h3 House Members
+        %h2 Moradores
         - for member in @house.members.slice(0, 4)
           #house_members.span1
             .row
@@ -57,19 +56,19 @@
         
     .row
       .span9
-        %h3 Activities in the house:
+        %h3 Mensagens da casa:
         - for post in @house.posts
           = render :partial => "/posts/post", :locals => {:post => post}
     
   .span6
     .row
-      %h3.span6 Reports nearby this house:
+      %h2.span6 Focos marcados perto da casa
       #house_reports.span6
         .row
           .span6
             #map_container
               #reports_map_temp
-                = image_tag 'home_images/House_map.png'
+                = image_tag 'translated/housemap.png'
             -#= gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
         .row
           .span6
@@ -79,22 +78,22 @@
                   #house_all_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.reports.count
-                    .row All 
+                    .row Todos
                 %li
                   #house_open_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.created_reports.count
-                    .row Open
+                    .row Em aberto
                 %li 
                   #house_claimed_report_button.house_report_button.span1 
                     .row
                       %a{:href => "#"}= @house.claimed_reports.count
-                    .row Claimed
+                    .row Assumidos
                 %li
                   #house_resolved_report_button.house_report_button.span1
                     .row
                       %a{:href => "#"}= @house.eliminated_reports.count
-                    .row Resolved
+                    .row Eliminados
               
         .row
           #list_of_house_reports
@@ -109,7 +108,7 @@
              
     .row
       .span6
-        %h3 Neighbors in #{@house.neighborhood.name}
+        %h3 Vizinhos na #{@house.neighborhood.name}
         #houses_in_neighborhood
           - if @neighbors.count == 1 
             %p You don't have any neighbors that are in the game

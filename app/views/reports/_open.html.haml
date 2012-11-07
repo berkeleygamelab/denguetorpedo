@@ -2,7 +2,7 @@
 .rp_report.rp_open_report
   .row
     .span6
-      %h4== Report #{open.id}: #{open.complete_address}
+      %h4== Report Nº #{open.id}: #{open.complete_address}
     .span2.rp_report_time
       = open.strftime_updated_at 
   .row
@@ -15,22 +15,22 @@
           = open.report            
           "
       .row.rp_report_people
-        Reporter:
+        Marcado por:
         =link_to open.reporter.username, user_path(open.reporter), :class => "user"
         %br
         %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}}       
-          .expand_button Claim this report!
+          .expand_button Assumir esse foco
         
         .collapse{id:"claim_prompt"+(open.id).to_s}
-          #report_buttons.confirm_prompt
-            Confirm selection:
-            = link_to 'Claim!', reports_path(:view=>'recent', :claimed_report=>open), :class=>'confirm_button'
+          #report_buttons.confirm_prompt{style: 'margin-left: 0px;'}
+            Confirmar
+            = link_to 'Eu assumo!', reports_path(:view=>'recent', :claimed_report=>open), :class=>'confirm_button'
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
-              Cancel
+              Cancelar
           
    
     .span1.rp_report_status.status
-      Open
+      Em aberto
   .row
     .rp_report_options
       =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
