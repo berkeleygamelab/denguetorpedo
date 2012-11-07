@@ -1,4 +1,3 @@
-= gmaps4rails(@json)
 
 .row
   .span8.offset1
@@ -14,7 +13,7 @@
         %b 2390
         %br Pontos obtidos
 
-    .span9.offset3
+    .span10.offset2
       .row#report_buttons
         = link_to 'Focos recentes', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
         = link_to 'Marcar um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
@@ -38,8 +37,8 @@
             %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
             %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 325px;'}
       .row
-        #report_map
-          = image_tag 'translated/reportsmap.png'
+        = gmaps4rails(@json)
+
       .row
         - if params[:view] != 'open'
           #report_sponsors
@@ -47,3 +46,5 @@
               - @random_sponsors.each do |sponsor|
                 %li.span1.sponsor
                   = image_tag sponsor
+  
+

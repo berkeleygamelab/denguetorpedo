@@ -3,8 +3,12 @@ class ReportsController < ApplicationController
   before_filter :require_login, :except => [:sms, :verification]
 
   def index
+        
 
     
+    
+    
+         
     if (params[:claimed_report] != nil)
       puts 'afjdklsafjdklsa' 
       report = Report.find(params[:claimed_report])
@@ -41,8 +45,7 @@ class ReportsController < ApplicationController
       puts('item')
       @locations_to_map.append(a.location)
     end
-    @json = @locations_to_map.to_gmaps4rails
-    puts @json
+    @json = @locations_to_map.to_gmaps4rails    
     
     if params[:view].nil? 
       params[:view] = 'recent'
@@ -63,6 +66,35 @@ class ReportsController < ApplicationController
     9.times do
       @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')
     end
+    
+    
+    
+=begin    
+    if (params[:sw_y] && params[:sw_x] && params[:ne_y] && params[:ne_x])
+      bounds = [ [params[:sw_x].to_f, params[:sw_y].to_f], 
+               [params[:ne_x].to_f, params[:ne_y].to_f] ]
+      @locations_within_bounds = Location.within_bounds(bounds)
+    else
+        @locations_within_bounds = Location.all
+    end
+
+    @locations_within_bounds = Location.all
+    respond_to do |format|
+      format.html
+      format.json {
+        @data = @locations_within_bounds.collect |v| {
+          :longitude => v.longitude, 
+          :latitude => v.latitude, 
+          :picture => v.marker_picture, 
+          :title => v.marker_title 
+        }
+        @json = @data.to_gmaps4rails    
+        
+      }
+    end
+=end
+    
+    
   end
 
   def new
