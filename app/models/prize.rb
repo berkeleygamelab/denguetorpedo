@@ -17,6 +17,8 @@
 #  prize_photo_content_type :string(255)
 #  prize_photo_file_size    :integer
 #  prize_photo_updated_at   :datetime
+#  community_prize          :boolean          default(FALSE), not null
+#  self_prize               :boolean          default(FALSE), not null
 #
 
 class Prize < ActiveRecord::Base
@@ -25,6 +27,11 @@ class Prize < ActiveRecord::Base
   has_many :group_buy_ins
   has_many :prize_codes
   has_attached_file :prize_photo, :default_url => 'default_images/prize_default_image.jpg', :styles => { :small => "60x60>", :large => "150x150>" }, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
+
+  def give_badge(user_id)
+    @user = User.find(user_id)
+    PrizeCode.create({:user_id => user_id, :prize_id => self.id, :code => nil})
+  end
 
   def generate_prize_code(user_id)
     @user = User.find(user_id)

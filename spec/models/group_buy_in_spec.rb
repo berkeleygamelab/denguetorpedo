@@ -7,6 +7,8 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  group_size :integer
+#  expired    :boolean          default(FALSE), not null
 #
 
 require 'spec_helper'

@@ -7,10 +7,12 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  group_size :integer
+#  expired    :boolean          default(FALSE), not null
 #
 
 class GroupBuyIn < ActiveRecord::Base
-  attr_accessible :prize_id, :user_id
+  attr_accessible :prize_id, :user_id, :group_size
   belongs_to :prize
   belongs_to :user
   validates :user, :presence => true
@@ -26,8 +28,12 @@ class GroupBuyIn < ActiveRecord::Base
   end
 
   def addBuyIn(user_id)
-    @buyIn = BuyIn.create({:user_id => user_id, :group_buy_in_id => self.id})
-    @buyIn.send_email_invitation unless @buyIn.nil?
+    unless self.too_many_buy_ins
+      @buyIn = BuyIn.create({:user_id => user_id, :group_buy_in_id => self.id})
+      @buyIn.send_email_invitation unless @buyIn.nil?
+      return true
+    end
+    return false
   end
 
   def hasEnoughBuyers
@@ -40,5 +46,13 @@ class GroupBuyIn < ActiveRecord::Base
 
   def buyItem
     self.prize.generate_prize_code(self.user_id)
+  end
+
+  def too_many_buy_ins
+    active_buy_ins = 0
+    self.buy_ins.each do |buy_in|
+      active_buy_ins = active_buy_ins + 1 if (buy_in.accepted or not buy_in.expired)
+    end
+    active_buy_ins >= self.group_size
   end
 end

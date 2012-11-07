@@ -113,14 +113,18 @@ class User < ActiveRecord::Base
     @prize = Prize.find(prize_id)
     return false if self.points < @prize.cost
     self.points -= @prize.cost
-    @prize.generate_prize_code(self.id)
+    if @prize.is_badge?
+      @prize.give_badge(self.id)
+    else
+      @prize.generate_prize_code(self.id)
+    end
   end
 
   def joinsGroupBuyIn(group_buy_in_id)
     @group = GroupBuyIn.find(group_buy_in_id)
     return false if self.points < @group.points_per_person
     self.points -= @group.points_per_person
-    @group.addBuyIn(self.id)
+    return true
   end
 
 end

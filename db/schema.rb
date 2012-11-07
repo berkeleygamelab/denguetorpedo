@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121024205822) do
+ActiveRecord::Schema.define(:version => 20121107102104) do
 
   create_table "buy_ins", :force => true do |t|
     t.integer  "group_buy_in_id"
     t.integer  "user_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.boolean  "accepted"
+    t.boolean  "expired",         :default => false, :null => false
   end
 
   create_table "feeds", :force => true do |t|
@@ -33,8 +34,10 @@ ActiveRecord::Schema.define(:version => 20121024205822) do
   create_table "group_buy_ins", :force => true do |t|
     t.integer  "prize_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "group_size"
+    t.boolean  "expired",    :default => false, :null => false
   end
 
   create_table "houses", :force => true do |t|
@@ -119,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20121024205822) do
     t.datetime "prize_photo_updated_at"
     t.boolean  "community_prize",          :default => false, :null => false
     t.boolean  "self_prize",               :default => false, :null => false
+    t.boolean  "is_badge",                 :default => false, :null => false
   end
 
   create_table "reports", :force => true do |t|

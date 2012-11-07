@@ -11,19 +11,28 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Password Reset"
   end
 
-  def group_buy_in_invitation(user)
+  def group_buy_in_invitation(user, group)
     @user = user
+    @group = group
     mail to: user.email, subject: "Group Buy In Invitation!!!"
   end
 
-  def decline_invitation(user)
+  def decline_invitation(user, buyIn)
     @user = user
+    @buyIn = buyIn
     mail to: user.email, subject: "Friend has declined your Group By In Invitation"
   end
 
-  def accept_invitation(user)
+  def accept_invitation(user, buyIn)
     @user = user
+    @buyIn = buyIn
     mail to: user.email, subject: "Friend has accepted your Group By In Invitation"
+  end
+
+  def item_bought(user, group)
+    @user = user
+    @group = group
+    mail to: user.email, subject: "Group Buy In Completed!!!"
   end
 
 end

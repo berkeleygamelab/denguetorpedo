@@ -17,6 +17,8 @@
 #  prize_photo_content_type :string(255)
 #  prize_photo_file_size    :integer
 #  prize_photo_updated_at   :datetime
+#  community_prize          :boolean          default(FALSE), not null
+#  self_prize               :boolean          default(FALSE), not null
 #
 
 require 'spec_helper'
