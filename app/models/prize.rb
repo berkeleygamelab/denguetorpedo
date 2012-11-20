@@ -47,7 +47,7 @@ class Prize < ActiveRecord::Base
     @account = @client.account
     @user = User.find(user_id)
     body = "Your redemption code for " + self.prize_name + " is " + code
-    @account.sms.messages.create(:from => '+15109854798', :to => @user.phone_number , :body  => body)
+    @account.sms.messages.create(:from => '+15109854798', :to => @user.phone_number , :body  => body)      
   end
 
   def generate_activation_code(size = 12)

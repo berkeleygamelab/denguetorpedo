@@ -15,6 +15,7 @@ Dengue::Application.routes.draw do
   match 'about' => 'home#about'
   get "password_resets/new"
   post "reports/sms"
+  post 'prizes/:id' => "prizes#new_prize_code"
 
 
   resources :users do

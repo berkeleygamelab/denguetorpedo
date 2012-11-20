@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107102104) do
+ActiveRecord::Schema.define(:version => 20121118012957) do
 
   create_table "buy_ins", :force => true do |t|
     t.integer  "group_buy_in_id"
@@ -34,10 +34,9 @@ ActiveRecord::Schema.define(:version => 20121107102104) do
   create_table "group_buy_ins", :force => true do |t|
     t.integer  "prize_id"
     t.integer  "user_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "group_size"
-    t.boolean  "expired",    :default => false, :null => false
   end
 
   create_table "houses", :force => true do |t|
@@ -50,13 +49,6 @@ ActiveRecord::Schema.define(:version => 20121107102104) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
-  end
-
-  create_table "invitations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_buy_in_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "locations", :force => true do |t|
@@ -123,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20121107102104) do
     t.boolean  "community_prize",          :default => false, :null => false
     t.boolean  "self_prize",               :default => false, :null => false
     t.boolean  "is_badge",                 :default => false, :null => false
+    t.string   "redemption"
   end
 
   create_table "reports", :force => true do |t|

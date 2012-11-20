@@ -65,3 +65,103 @@
 img.trophy_photo {
   padding: 5px 5px 5px 5px;
 }
+
+#prize_name_and_photo {
+  background-color: #fff;
+  margin-bottom: 30px;
+  //padding: 30px;
+}
+
+#prize_name_and_photo .row .span6 div, #prize_name_and_photo .row .span9 div {
+  padding: 30px;
+}
+
+#prize_info h3 {
+  font-family: 'Myriad Pro', Verdana, Helvetica;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#prize_info p {
+  line-height: 2.5em;
+}
+
+#prize_instructions_and_cost {
+  margin-bottom: 30px;
+}
+
+#prize_instructions_and_cost .span9 div {
+  padding: 30px;
+}
+
+#prize_instructions_and_cost .span9 {
+
+  background-color: #fff;
+}
+
+#prize_cost #cost_specifically {
+  padding: 30px;
+  background-color: #F1F1F2;
+}
+
+#prize_cost #use_points {
+  background-color: #38BFC3;
+}
+
+#prize_cost #cant_use_points_sucka {
+  background-color: #F1F1F2;
+}
+
+#flash_dat_notice {
+  margin-bottom: 30px;
+}
+
+#flashNotice {
+  background-color: #E85646;
+}
+
+#flashNotice p {
+  color: #fff;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 20px;
+}
+
+#prize_cost h6 {
+  font-size: 20px;
+  text-align: center;
+}
+
+#prize_cost #use_points {
+  text-align: center;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+#prize_cost #use_points a {
+  font-family: 'Myriad Pro', Verdana, Helvetica;
+  font-weight: bold;
+  color: #fff;
+}
+
+#prize_cost #use_points h6 {
+  background-color: #fff;
+}
+
+#prize_cost #cant_use_points_sucka h6 {
+  color: #D1D2D4;
+}
+
+#prize_cost h5 {
+  color: #F26721;
+  font-size: 87px;
+  line-height: 35px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#prize_instructions h3 {
+  font-family: 'Myriad Pro', Verdana, Helvetica;
+  font-size: 24px;
+  font-weight: bold;
+}

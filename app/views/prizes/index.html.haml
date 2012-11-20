@@ -22,7 +22,7 @@
         %h3
           Your trophy box:
         - @user.prize_codes.each do |prize_code|
-          prize = prize_code.prize
+          = prize = prize_code.prize
           = image_tag(prize.prize_photo.url(:small), {:size => "60x60", :class => "trophy_photo"})
 
 .row

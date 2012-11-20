@@ -35,6 +35,26 @@ class PrizesController < ApplicationController
     end
   end
 
+  # POST /prizes/1
+  def new_prize_code
+    unless @current_user.nil?
+      @prize = Prize.find(params[:id])
+
+      respond_to do |format|
+        if @current_user.points >= @prize.cost
+          if !@current_user.phone_number.nil?
+            @prize.generate_prize_code(@current_user.id)
+            format.html { redirect_to(@prize, :notice => 'Prize redeemed!') }
+          else
+            format.html { redirect_to(@prize, :notice => 'Need a valid phone number to redeem prize.') }
+          end
+        else
+          format.html { redirect_to(@prize, :notice => 'Voce precisa de mais pontos.') }
+        end
+      end
+    end
+  end
+
   # GET /prizes/1/edit
   def edit
     @prize = Prize.find(params[:id])
