@@ -44,12 +44,12 @@ class PrizesController < ApplicationController
         if @current_user.points >= @prize.cost
           if !@current_user.phone_number.nil?
             @prize.generate_prize_code(@current_user.id)
-            format.html { redirect_to(@prize, :notice => 'Prize redeemed!') }
+            format.html { redirect_to(@prize, :notice => "Premio resgatado! Voce tem #{@current_user.points} pontos") }
           else
-            format.html { redirect_to(@prize, :notice => 'Need a valid phone number to redeem prize.') }
+            format.html { redirect_to(@prize, :alert => 'Need a valid phone number to redeem prize.') }
           end
         else
-          format.html { redirect_to(@prize, :notice => 'Voce precisa de mais pontos.') }
+          format.html { redirect_to(@prize, :alert => "Voce precisa de mais pontos. Voce tem #{@current_user.points} pontos") }
         end
       end
     end

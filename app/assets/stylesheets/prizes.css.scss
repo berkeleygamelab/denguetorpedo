@@ -117,10 +117,25 @@ img.trophy_photo {
 }
 
 #flashNotice {
-  background-color: #E85646;
+  background-color: #7AD848;
 }
 
 #flashNotice p {
+  color: #000;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 20px;
+}
+
+#flash_dat_alert {
+  margin-bottom: 30px;
+}
+
+#flashAlert {
+  background-color: #E85646;
+}
+
+#flashAlert p {
   color: #fff;
   font-weight: bold;
   line-height: 20px;

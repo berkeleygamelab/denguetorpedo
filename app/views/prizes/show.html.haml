@@ -6,6 +6,12 @@
           #flashNotice 
             %p
               = flash[:notice]
+
+      - if flash[:alert] 
+        .row#flash_dat_alert
+          #flashAlert 
+            %p
+              = flash[:alert]
       .row#prize_name_and_photo
         .row#prize_info
           .span6

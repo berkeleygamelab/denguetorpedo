@@ -38,6 +38,8 @@ class Prize < ActiveRecord::Base
     code = self.generate_activation_code
     PrizeCode.create({:user_id => user_id, :prize_id => self.id, :code => code})
     self.sms_prize_code(code, user_id)
+    @user.points = @user.points - cost
+    @user.save
   end
 
   def sms_prize_code(code, user_id)
