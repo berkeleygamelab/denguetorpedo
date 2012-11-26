@@ -27,7 +27,7 @@ class GroupBuyIn < ActiveRecord::Base
     @prize.cost / self.group_size
   end
 
-  def addBuyIn(user_id)
+  def add_buy_in(user_id)
     unless self.too_many_buy_ins
       @buyIn = BuyIn.create({:user_id => user_id, :group_buy_in_id => self.id})
       @buyIn.send_email_invitation unless @buyIn.nil?
@@ -36,7 +36,7 @@ class GroupBuyIn < ActiveRecord::Base
     return false
   end
 
-  def hasEnoughBuyers
+  def has_enough_buyers
     number_accepted = 0
     self.buy_ins.each do |buy_in|
       number_accepted = number_accepted + 1 if buy_in.accepted
@@ -44,8 +44,8 @@ class GroupBuyIn < ActiveRecord::Base
     number_accepted == self.group_size
   end
 
-  def buyItem
-    self.prize.generate_prize_code(self.user_id)
+  def buy_item
+    self.user.buy_prize(self.prize_id)
   end
 
   def too_many_buy_ins

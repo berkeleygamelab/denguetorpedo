@@ -109,9 +109,10 @@ class User < ActiveRecord::Base
     Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", id, id, id).reorder(:updated_at).reverse_order.uniq
   end
 
-  def buysPrize(prize_id)
+  def buy_prize(prize_id)
     @prize = Prize.find(prize_id)
-    return false if self.points < @prize.cost
+    return false if self.points < @prize.cost or not @prize.in_stock
+    @prize.decrease_stock(1)
     self.points -= @prize.cost
     if @prize.is_badge?
       @prize.give_badge(self.id)
@@ -120,7 +121,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def joinsGroupBuyIn(group_buy_in_id)
+  def join_group_buy_in(group_buy_in_id)
     @group = GroupBuyIn.find(group_buy_in_id)
     return false if self.points < @group.points_per_person
     self.points -= @group.points_per_person

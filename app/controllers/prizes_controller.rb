@@ -36,6 +36,7 @@ class PrizesController < ApplicationController
   # GET /prizes/new.json
   def new
     @prize = Prize.new
+    @user = current_user
 
     respond_to do |format|
       format.html # new.html.erb
@@ -78,6 +79,7 @@ class PrizesController < ApplicationController
   # POST /prizes.json
   def create
     @prize = Prize.new(params[:prize])
+    @user = current_user
 
     respond_to do |format|
       if @prize.save

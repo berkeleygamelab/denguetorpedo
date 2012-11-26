@@ -27,10 +27,10 @@ class BuyIn < ActiveRecord::Base
 
   #Called when user clicks on "accept" link
   def send_accept_email
-    if self.user.joinGroupBuyIn(self.group_buy_in_id)
+    if self.user.join_group_buy_in(self.group_buy_in_id)
       self.accepted = true
-      if self.group_buy_in.hasEnoughBuyers
-        self.group_buy_in.buyItem
+      if self.group_buy_in.has_enough_buyers
+        self.group_buy_in.buy_item
         UserMailer.item_bought(self.group_buy_in.user, self.group_buy_in).deliver
       else
         UserMailer.accept_invitation(self.group_buy_in.user, self).deliver

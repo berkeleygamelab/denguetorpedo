@@ -1,0 +1,12 @@
+.row
+  .span15.offset1
+    %h1 Prize Code Control
+    %p Click on any of the prize links below to view the prize codes that have been issued for each prize.
+    %br
+    %br
+
+.row
+  .span6.offset2
+    %ul
+    - @prizes.sort.each do |prize|
+      %li= link_to prize.prize_name, :controller => "prize_codes", :action => "show", :id => params[:id], :prize_id => prize.id

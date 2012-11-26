@@ -9,14 +9,19 @@
 #  code       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  redeemed   :boolean          default(FALSE), not null
+#  expired    :boolean          default(FALSE), not null
 #
 
 # TODO: Portuguese, testing
 
 class PrizeCode < ActiveRecord::Base
-  attr_accessible :code, :expire_by, :prize_id, :user_id
+  attr_accessible :code, :expire_by, :prize_id, :user_id, :redeemed, :expired
   belongs_to :user
   belongs_to :prize
+  validates :code, :presence => true, :uniqueness => { :scope => :prize_id, :message => "We need a unique prize code for each user for a given prize"}
+  validates :user, :presence => true
+  validates :prize, :presence => true
 
   def self.send_no(phone_number)
   	@account_sid = 'AC696e86d23ebba91cbf65f1383cf63e7d'

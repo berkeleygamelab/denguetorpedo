@@ -1,21 +1,21 @@
 class PrizeCodesController < ApplicationController
   # GET /user/:id/prize_codes
   def index
-    @prize_codes = PrizeCode.all
+    @user = User.find(params[:id])
+    @prizes = @user.prizes
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @prize_codes }
+      format.html
     end
   end
 
   # GET /user/:id/prize_codes/:prize_id
   def show
-    @prize_code = PrizeCode.find(params[:id])
+    @prize = Prize.find(params[:prize_id])
+    @prize_codes = @prize.prize_codes
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @prize_code }
     end
   end
 
@@ -56,6 +56,16 @@ class PrizeCodesController < ApplicationController
       format.html { redirect_to prize_codes_url }
       format.json { head :no_content }
     end
+  end
+  # GET /user/:id/prize_codes/:prize_id/redeem/:prize_code_id
+  def redeem
+    @prize_code = PrizeCode.find(params[:prize_code_id])
+    @prize_code.redeemed = true
+    @prize_code.save
+
+    @prize = Prize.find(params[:prize_id])
+    @prize_codes = @prize.prize_codes
+    redirect_to :action => "show"
   end
 
 
