@@ -39,11 +39,40 @@
               #cost_specifically
                 %h5
                   = @prize.cost
+                -if !@current_user.nil?
+                  = @current_user.points 
+                  \/
               - unless @current_user.nil?
-                #use_points
-                  = link_to "Usar menus pontos!", prize_path, :method => :post
+                - if @enoughPoints
+                  #use_points
+                    = link_to "Usar menus pontos!", prize_path, :method => :post
+                - if !@enoughPoints
+                  #cant_use_points_sucka
+                    %h6
+                      Você precisa de mais pontos para redimir
+
               - if @current_user.nil?
                 #cant_use_points_sucka
                   %h6
-                    You must log in to use points
+                    Você deve entrar para redimir
+      .row#sponsor_area_title_thing
+        .row#seriously_bootstrap
+          .span15
+            %div
+              %h3
+                Patrocinador Locia
+      .row#sponsor_spot
+        .row#more_bootstrap_sucks
+          .span3
+            %div#sponsor_image 
+              sponsor image goes here
+          .span7
+            %div#sponsor_info
+              %h4
+                Food Lion
+              %p
+                Lorem ipsum. fahtfth ayuot afyuh faiet nzfuhc fuin aft ayft yuwfpj qpo z[ou fotd aluft ] futha uhftia tfyh alutd  bm m
+          .span5
+            %div#sponsor_map
+              map goes here
   .row

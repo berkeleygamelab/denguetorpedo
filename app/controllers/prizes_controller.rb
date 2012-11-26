@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class PrizesController < ApplicationController
   # GET /prizes
   # GET /prizes.json
@@ -18,6 +20,12 @@ class PrizesController < ApplicationController
   def show
     @prize = Prize.find(params[:id])
 
+    if @current_user.nil?
+      enoughPoints = false
+    else 
+      @enoughPoints = @current_user.points >= @prize.cost ? true : false
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @prize }
@@ -37,20 +45,26 @@ class PrizesController < ApplicationController
 
   # POST /prizes/1
   def new_prize_code
-    unless @current_user.nil?
-      @prize = Prize.find(params[:id])
+    begin
+      unless @current_user.nil?
+        @prize = Prize.find(params[:id])
 
-      respond_to do |format|
-        if @current_user.points >= @prize.cost
-          if !@current_user.phone_number.nil?
-            @prize.generate_prize_code(@current_user.id)
-            format.html { redirect_to(@prize, :notice => "Premio resgatado! Voce tem #{@current_user.points} pontos") }
+        respond_to do |format|
+          if @current_user.points >= @prize.cost
+            if !@current_user.phone_number.nil?
+              @prize.generate_prize_code(@current_user.id)
+              format.html { redirect_to(@prize, :notice => "Premio resgatado! Vôce tem #{@current_user.points - @prize.cost} pontos".encode("UTF-8")) }
+            else
+              format.html { redirect_to(@prize, :alert => 'Need a valid phone number to redeem prize.') }
+            end
           else
-            format.html { redirect_to(@prize, :alert => 'Need a valid phone number to redeem prize.') }
+            format.html { redirect_to(@prize, :alert => "Vôce precisa de mais pontos. Vôce tem #{@current_user.points} pontos") }
           end
-        else
-          format.html { redirect_to(@prize, :alert => "Voce precisa de mais pontos. Voce tem #{@current_user.points} pontos") }
         end
+      end
+    rescue
+      respond_to do |format|
+        format.html { redirect_to(@prize, :alert => "Something went wrong. Please try again later.") }
       end
     end
   end

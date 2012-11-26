@@ -1,0 +1,98 @@
+CH.1 - The Ruby Programming Language
+======================================
+
+Blocks and Interators
+    3.times { print "Ruby! " }
+    1.upto(9) { |x| print x }
+        - times, upto implemented by integer objects
+
+    array.each do |elt|
+        print elt+1
+    end
+    array.map { |x| x*x }
+    array.select { |x| x%2==0 }
+    array.inject(initial) do |memo,obj|
+        block # memo + obj
+    end
+
+    hashes used like arrays, expect key objects in []
+        h = {
+            :one => 1,
+            :two =>2    # colons are symbol literals
+        }
+        h[:one]         # access value by key
+        h.each do |key,value| #iterate thru key vals
+            print "#{value}:#{key}; "
+        end
+
+        Symbol objects most commonly used as key.
+        Symbols are _immutable_, _interned_ strings
+            Can be compared by identity rather than textual content (two distinct symbol objects never have the same content)
+
+        Blocks don't have to be invoked more than once
+        File.open("data.txt") do |f|
+            line = f.readline
+        end
+
+    Double-quoted string can have arbitrary ruby expressions delimited by #{}.
+        - Called string interpolation
+
+Expressions and Operators
+    All "statements" in Ruby are expressions, though they do not necessarily return meaningful values.
+
+    minimum = if x < y then x else y end
+    2 ** 1024 # 2^1024
+    "ruby!" * 3 # "ruby! ruby! ruby!"
+    "%d %s" % [3, "rubies"] # "3 rubies"
+
+    << is a bit-left shift and an append to other class
+    [] is a great operator to override
+        array[index,length] # makes a sub-array
+        can also define []= operator for assignment
+
+Methods
+    Return value of a method is the value of the last expression evaluated in its body.
+
+    If defined outside of class or module, becomes a global function (private method of Object)
+    Defined on objects for class methods:
+        def Math.square(x)
+            x*x
+        end
+    Method parameters can have default values specified
+
+Assignment
+    Parallel assignment:
+        x, y = 1, 2 # x = 1, y = 2, this is confusing
+        a,b = b,a # makes more sense, useful
+    Can return more than one value, parallel assignment is useful in such a case:
+        x,y = polar(x,y)
+        def polar(x,y)
+            ...
+            [r, theta]
+        end
+    Methods that end with = are special, can be invoked using assignment syntax. o has method x=:
+        o.x=(1) #normal method invocation
+        o.x = 1 #special!
+
+Punctuation Suffixes and Prefixes
+    method? - return boolean
+    method! - caution. Usually mutates and object,      whereas non-exclamation returns copy
+
+    $variable # global
+    @variable # instance
+    @@variable # class
+
+Regexp and Range
+    /[Rr]uby/ # Matches "Ruby" or "ruby"
+    1..3, 1...3 # 1 <= x <(=) 3
+    Regex and Range objects define normal == for equality, and === for membership / matching.
+
+    generation = case birthyear
+                 when 1946..1963: "Baby Boomer"
+
+Classes and Modules
+    alias method1 method2 # same method different names
+
+Misc
+    .freeze makes a class immutable
+    Identifiers beginning with caps are constant

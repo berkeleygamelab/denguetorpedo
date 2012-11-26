@@ -5,10 +5,14 @@
 @import "variables";
 
 #user_info {
-  background: white;
+  background: #fff;
   span {
 
   }
+}
+
+#user_info #user_info2 {
+  padding: 10px;
 }
 
 #user_profile_picture {
@@ -18,11 +22,12 @@
 #user_welcome {
   display:inline-block;
   position: relative;
-  top: 20px;
+  top: 5px;
 }
 
 #user_point_box {
-  padding: 25px 90px 25px 90px;
+  padding: 25px 30px 25px 30px;
+  //margin: 0 auto;
   background: $layout-gray;
   text-align: center;
   border-radius: 10px;
@@ -36,22 +41,31 @@
 
 #user_prizes {
   background: white;
+  padding: 18px;
   width: inherit;
-  max-height: 161px;
-  min-height: 161px;
   span {
     position: relative;
     top: 20px;
     left: 20px;
   }
+  h3 {
+    font-weight: bold;
+  }
 }
 
 #prize_search {
-  margin-top: 40px;
-  padding: 5px 5px 5px 5px;
+  font-family: 'Myriad Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 20px;
+  padding: 10px 5px 5px 5px;
   background: $layout_gray;
   h1 {
+
+    font-weight: 600;
+    font-size: 24px;
+    color: black;
+    line-height: 40px;
     display: inline-block;
+    padding-left: 10px;
   }
   input {
     display: inline-block;
@@ -62,9 +76,111 @@
   }
 }
 
+#user_prizes a {
+  block: inline;
+  background-color: #fff;
+}
+
 img.trophy_photo {
   padding: 5px 5px 5px 5px;
 }
+
+#prize_search {
+  margin-bottom: 10px;
+}
+
+.prizes_section {
+  padding: 20px;
+  background-color: $layout_gray;
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+.widther {
+  margin: 0 auto;
+  overflow: auto;
+  width: 800px;
+}
+
+.widther_2 {
+  margin: 0 auto;
+  overflow: auto;
+  width: 870px;
+}
+
+.badges_section {
+  padding: 20px;
+  background-color: #fff;
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+.community_prize_section div.sec {
+  background-color: #fff;
+  padding: 30px;
+
+  h4 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  div.cost {
+    background-color: #eee;
+    width: 150px;
+    margin: 0 auto;
+
+    p {
+      text-align: center;
+    }
+
+    a { 
+      display: block;
+      color: #F26721;
+      font-size: 38px;
+      line-height: 50px;
+      font-weight: bold;
+    }
+  }
+}
+
+.badges_section div.sec {
+  margin-top: 15px;
+
+  h4 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  div.cost {
+    background-color: #eee;
+    width: 120px;
+    margin: 0 auto;
+    p {
+      text-align: center;
+    }
+
+    a { 
+      display: block;
+      color: #F26721;
+      font-size: 38px;
+      line-height: 50px;
+      font-weight: bold;
+    }
+  }
+}
+
+img.prize_photo {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+
+// PRIZES/:ID
 
 #prize_name_and_photo {
   background-color: #fff;
@@ -106,10 +222,12 @@ img.trophy_photo {
 
 #prize_cost #use_points {
   background-color: #38BFC3;
+  line-height: 30px;
 }
 
 #prize_cost #cant_use_points_sucka {
-  background-color: #F1F1F2;
+  line-height: 30px;
+  background-color: #DDD;
 }
 
 #flash_dat_notice {
@@ -161,10 +279,12 @@ img.trophy_photo {
 
 #prize_cost #use_points h6 {
   background-color: #fff;
+  line-height: 30px;
 }
 
 #prize_cost #cant_use_points_sucka h6 {
-  color: #D1D2D4;
+  line-height: 30px;
+  color: #888;
 }
 
 #prize_cost h5 {
@@ -179,4 +299,47 @@ img.trophy_photo {
   font-family: 'Myriad Pro', Verdana, Helvetica;
   font-size: 24px;
   font-weight: bold;
+}
+
+#sponsor_area_title_thing {
+  background-color: #cacaca;
+  margin-bottom: 10px;
+}
+
+#sponsor_area_title_thing .span15 div {  
+  padding: 10px 0px 10px 30px;
+}
+
+#sponsor_area_title_thing .span15 div h3 {
+  color: #fff;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+#sponsor_spot {
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+#sponsor_spot .span3 div {
+  padding: 10px 10px 10px 30px;
+}
+
+#sponsor_spot .span7 div {
+  padding: 10px 10px 10px 0px;
+}
+
+#sponsor_spot .span7 div h4 {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+#sponsor_spot .span7 div p {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+#sponsor_spot .span5 div {
+  padding: 10px 30px 10px 0px;
 }
