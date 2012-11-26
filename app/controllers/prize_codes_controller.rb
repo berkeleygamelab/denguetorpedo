@@ -1,6 +1,5 @@
 class PrizeCodesController < ApplicationController
-  # GET /prize_codes
-  # GET /prize_codes.json
+  # GET /user/:id/prize_codes
   def index
     @prize_codes = PrizeCode.all
 
@@ -10,8 +9,7 @@ class PrizeCodesController < ApplicationController
     end
   end
 
-  # GET /prize_codes/1
-  # GET /prize_codes/1.json
+  # GET /user/:id/prize_codes/:prize_id
   def show
     @prize_code = PrizeCode.find(params[:id])
 
@@ -32,11 +30,6 @@ class PrizeCodesController < ApplicationController
     end
   end
 
-  # GET /prize_codes/1/edit
-  def edit
-    @prize_code = PrizeCode.find(params[:id])
-  end
-
   # POST /prize_codes
   # POST /prize_codes.json
   def create
@@ -53,22 +46,6 @@ class PrizeCodesController < ApplicationController
     end
   end
 
-  # PUT /prize_codes/1
-  # PUT /prize_codes/1.json
-  def update
-    @prize_code = PrizeCode.find(params[:id])
-
-    respond_to do |format|
-      if @prize_code.update_attributes(params[:prize_code])
-        format.html { redirect_to @prize_code, notice: 'Prize code was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @prize_code.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /prize_codes/1
   # DELETE /prize_codes/1.json
   def destroy
@@ -80,4 +57,6 @@ class PrizeCodesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end
