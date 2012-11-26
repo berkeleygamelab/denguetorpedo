@@ -4,7 +4,6 @@
   <tr>
     <th>User</th>
     <th>Prize</th>
-    <th>Obtained on</th>
     <th>Expire by</th>
     <th>Code</th>
     <th></th>
@@ -16,11 +15,9 @@
   <tr>
     <td><%= prize_code.user_id %></td>
     <td><%= prize_code.prize_id %></td>
-    <td><%= prize_code.obtained_on %></td>
     <td><%= prize_code.expire_by %></td>
     <td><%= prize_code.code %></td>
     <td><%= link_to 'Show', prize_code %></td>
-    <td><%= link_to 'Edit', edit_prize_code_path(prize_code) %></td>
     <td><%= link_to 'Destroy', prize_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
