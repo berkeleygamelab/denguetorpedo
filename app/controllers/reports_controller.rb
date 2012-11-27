@@ -42,11 +42,26 @@ class ReportsController < ApplicationController
     
     @locations_to_map = []
     for a in @claim_feed
-      puts('item')
+      #puts('item')
       @locations_to_map.append(a.location)
     end
     @json = @locations_to_map.to_gmaps4rails    
-    
+    map_markers = [@current_user.house.location].to_gmaps4rails do |location, marker|
+      marker.json({ :id => location.id})      
+    end
+    puts '-------------------'
+    puts map_markers
+    @maps_json = {
+     "map_options" => {"center_latitude" => @current_user.house.location.latitude, 
+                       "center_longitude" => @current_user.house.location.longitude,
+                       "detect_location" => false,
+                       "center_on_user" => false,
+                       "auto_adjust" => false,
+                       "auto_zoom" => true,
+                       "zoom" => 15 },
+     "markers" => {'data' => map_markers}
+                 }
+    puts @maps_json
     if params[:view].nil? 
       params[:view] = 'recent'
     end
