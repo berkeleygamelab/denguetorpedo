@@ -88,4 +88,10 @@ class UsersController < ApplicationController
       render "edit"
     end  
   end
+
+  #Get /user/:id/buy_prize/prize_id
+  def buy_prize
+    @user = User.find(params[:id])
+    @user.buy_prize(params[:prize_id])
+  end
 end

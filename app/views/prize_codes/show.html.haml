@@ -9,18 +9,19 @@
 
 .row
   .span14.offset2
-    %table
-      %th Code
-      %th User Name
-      %th Set Code as Redeemed
-      - @prize_codes.each do |prize_code|
-        - unless prize_code.expired or prize_code.redeemed
-          %tr
-            %td
-              = prize_code.code
-            %td
-              = link_to prize_code.user.username, user_path(prize_code.user_id)
-            %td
-              = link_to "Set as Redeemed", :controller => "prize_codes", :action => "redeem", :id => params[:id], :prize_id => params[:prize_id], :prize_code_id => prize_code.id
+    %div#prize_codes
+      %table
+        %th Code
+        %th User Name
+        %th Set Code as Redeemed
+        - @prize_codes.each do |prize_code|
+          - unless prize_code.expired or prize_code.redeemed
+            %tr
+              %td
+                = prize_code.code
+              %td
+                = link_to prize_code.user.username, user_path(prize_code.user_id)
+              %td
+                = link_to "Set as Redeemed", :controller => "prize_codes", :action => "redeem", :id => params[:id], :prize_id => params[:prize_id], :prize_code_id => prize_code.id
 
 

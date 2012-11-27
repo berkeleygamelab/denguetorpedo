@@ -19,6 +19,7 @@ class PrizesController < ApplicationController
   # GET /prizes/1.json
   def show
     @prize = Prize.find(params[:id])
+    @user = current_user
 
     if @current_user.nil?
       enoughPoints = false
@@ -27,7 +28,7 @@ class PrizesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :partial => 'prizeview', :locals => {:user_id => 1}}
       format.json { render json: @prize }
     end
   end
