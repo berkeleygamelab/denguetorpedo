@@ -115,6 +115,7 @@ class User < ActiveRecord::Base
     return false if self.points < @prize.cost or not @prize.in_stock
     @prize.decrease_stock(1)
     self.points -= @prize.cost
+    self.save
     if @prize.is_badge?
       @prize.give_badge(self.id)
     else
