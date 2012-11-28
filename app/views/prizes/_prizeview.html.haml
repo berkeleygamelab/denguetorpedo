@@ -2,27 +2,28 @@
 = stylesheet_link_tag("prizes")
 :css
   body {width: 1000px; background-color: #FDFFE9; height: 600px; padding-top: 30px}
-- if @user.nil?
 
-- else
-  %div#prize_description
-    %div#prize_description_picture
-      = image_tag(@prize.prize_photo.url(:large), {:height => "250px", :class => "prize_photo_large"})
-    %div#prize_description_text
-      %h1
-        = @prize.prize_name
+%div#prize_description
+  %div#prize_description_picture
+    = image_tag(@prize.prize_photo.url(:large), {:height => "250px", :class => "prize_photo_large"})
+  %div#prize_description_text
+    %h1
+      = @prize.prize_name
+    %p
+      = @prize.description
+%div#prize_redemption
+  %div#prize_redemption_directions
+    %h1 Redeption directions:
+    %p
+      = @prize.redemption_directions
+  %div#prize_redeem_points
+    %div.prize_cost
       %p
-        = @prize.description
-  %div#prize_redemption
-    %div#prize_redemption_directions
-      %h1 Redeption directions:
+        %span
+          = @prize.cost
+    %div.use_points
       %p
-        = @prize.redemption_directions
-    %div#prize_redeem_points
-      %div.prize_cost
-        %p
-          %span
-            = @prize.cost
-      %div.use_points
-        %p
+        - if @user.nil?
+          %a Please Log In To Redeem Prize
+        - else
           = link_to "Usar menus pontos!", :controller => "users", :action => "buy_prize", :id => @user.id, :prize_id => @prize.id, :confirm => "Are you sure you want to redeem this prize?"
