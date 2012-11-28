@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   has_many :feeds
   has_many :posts
   has_many :prize_codes
+  has_many :badges
   has_many :prizes
   has_many :created_group_buy_ins, :class_name => "GroupBuyIn"
   has_many :participated_group_buy_ins, :through => :buy_ins, :class_name => "GroupBuyIn"

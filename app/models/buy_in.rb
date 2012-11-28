@@ -12,9 +12,11 @@
 #
 
 class BuyIn < ActiveRecord::Base
-  attr_accessible :group_buy_in_id, :user_id, :accepted
+  attr_accessible :group_buy_in_id, :user_id, :accepted, :expired
   belongs_to :user
   belongs_to :group_buy_in
+  validates :user, :presence => true
+  validates :group_buy_in, :presence => true
 
   def send_email_invitation
     UserMailer.group_buy_in_inviation(self.user, self.group_buy_in).deliver

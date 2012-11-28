@@ -1,5 +1,8 @@
 Dengue::Application.routes.draw do
 
+  resources :badges
+
+
   match "/user/:id/prize_codes" => 'prize_codes#index'
   match "/user/:id/prize_codes/:prize_id" => 'prize_codes#show'
   match "/user/:id/prize_codes/:prize_id/redeem/:prize_code_id" => 'prize_codes#redeem'

@@ -17,6 +17,7 @@ class GroupBuyIn < ActiveRecord::Base
   belongs_to :user
   validates :user, :presence => true
   validates :prize, :presence => true
+  validates :group_size, :presence => true
 
   validates :group_size, :numericality => { :greater_than => 1, :less_than => 6 }
   

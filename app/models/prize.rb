@@ -23,10 +23,11 @@
 #
 
 class Prize < ActiveRecord::Base
-  attr_accessible :cost, :description, :expire_on, :prize_name, :redemption_directions, :stock, :user_id, :prize_photo
+  attr_accessible :cost, :description, :expire_on, :prize_name, :redemption_directions, :stock, :user_id, :prize_photo, :community_prize, :self_prize, :is_badge
   belongs_to :user
   has_many :group_buy_ins
   has_many :prize_codes
+  has_many :badges
   has_attached_file :prize_photo, :default_url => 'default_images/prize_default_image.jpg', :styles => { :small => "60x60>", :large => "150x150>" }, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   validates :cost, :presence => true
   validates :description, :presence => true
@@ -37,7 +38,7 @@ class Prize < ActiveRecord::Base
 
   def give_badge(user_id)
     @user = User.find(user_id)
-    PrizeCode.create({:user_id => user_id, :prize_id => self.id, :code => nil})
+    Badge.create({:user_id => user_id, :prize_id => self.id})
   end
 
   def generate_prize_code(user_id)
