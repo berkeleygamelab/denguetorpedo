@@ -4,13 +4,8 @@ class ReportsController < ApplicationController
 
   def index
         
-
-    
-    
-    
-         
-    if (params[:claimed_report] != nil)
-      puts 'afjdklsafjdklsa' 
+   
+    if (params[:claimed_report] != nil)      
       report = Report.find(params[:claimed_report])
       if report.status_cd == 0
         report.update_attribute(:status_cd, 1)
@@ -29,28 +24,9 @@ class ReportsController < ApplicationController
     @reports_feed_button_active = ""
     @reports_open_button_active = ""
     @reports_claimed_button_active = ""
-    @reports_resolved_button_active = ""
-    
-    @reports = Report.find(:all, :from => 'reports',
-    :conditions => ['reports.claimer_id = ? or reports.reporter_id = ? or reports.eliminator_id = ?', @current_user.id, @current_user.id, @current_user.id],
-    :order => 'updated_at desc')
-    @claim_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ?', 0],
-    :order => 'updated_at desc')
-    @eliminate_feed = Report.find(:all, :from => 'reports', 
-    :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], 
-    :order => 'updated_at desc')
-    
-    @locations_to_map = []
-    for a in @claim_feed
-      #puts('item')
-      @locations_to_map.append(a.location)
-    end
-    @json = @locations_to_map.to_gmaps4rails    
-    map_markers = [@current_user.house.location].to_gmaps4rails do |location, marker|
-      marker.json({ :id => location.id})      
-    end
-    puts '-------------------'
-    puts map_markers
+    @reports_resolved_button_active = ""           
+   
+
     @maps_json = {
      "map_options" => {"center_latitude" => @current_user.house.location.latitude, 
                        "center_longitude" => @current_user.house.location.longitude,
@@ -59,13 +35,10 @@ class ReportsController < ApplicationController
                        "auto_adjust" => false,
                        "auto_zoom" => true,
                        "zoom" => 15 },
-     "markers" => {'data' => map_markers}
                  }
-    puts @maps_json
     if params[:view].nil? 
       params[:view] = 'recent'
-    end
-    
+    end    
     if params[:view] == 'recent'
       @reports_feed_button_active = "active"
     elsif params[:view] == 'open'
@@ -80,36 +53,72 @@ class ReportsController < ApplicationController
     @random_sponsors = []
     9.times do
       @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')
-    end
-    
-    
-    
-=begin    
+    end    
     if (params[:sw_y] && params[:sw_x] && params[:ne_y] && params[:ne_x])
-      bounds = [ [params[:sw_x].to_f, params[:sw_y].to_f], 
-               [params[:ne_x].to_f, params[:ne_y].to_f] ]
-      @locations_within_bounds = Location.within_bounds(bounds)
+        bounds = [ params[:sw_x].to_f, params[:sw_y].to_f, params[:ne_x].to_f, params[:ne_y].to_f ]
+        @reports_within_bounds = Report.within_bounds(bounds)
     else
-        @locations_within_bounds = Location.all
+        @reports_within_bounds = Report.all
     end
-
-    @locations_within_bounds = Location.all
-    respond_to do |format|
-      format.html
-      format.json {
-        @data = @locations_within_bounds.collect |v| {
-          :longitude => v.longitude, 
-          :latitude => v.latitude, 
-          :picture => v.marker_picture, 
-          :title => v.marker_title 
-        }
-        @json = @data.to_gmaps4rails    
+    
+    puts('bound check')
+    puts @reports_within_bounds
+    locations_within_bounds = []
+    for report in @reports_within_bounds
+      locations_within_bounds.append(report.location)
+    end
+    #Query--------------------------------------------------------------------------
+    @reports = []
+    for report in @reports_within_bounds
+        if report.claimer_id == @current_user.id or report.reporter_id == @current_user.id or report.eliminator_id == @current_user.id
+          @reports.append(report)
+        end
+      end 
+    @claim_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ?', 0],
+    :order => 'updated_at desc')
+    @eliminate_feed = Report.find(:all, :from => 'reports', 
+    :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], 
+    :order => 'updated_at desc')
+    #--------------------------------------------------------------------------------
+    newListHtml = ""
+    if params[:view].nil? || params[:view] == 'recent'
+      if params[:generateReports] == 'True' and not params[:locations].nil?
         
-      }
+        locations = params[:locations].split(":")    
+        puts locations   
+        newReports = []
+        puts 'BEFORE'
+        puts @reports
+        for report in @reports
+          if locations.include? report.location.id.to_s
+            newReports.push(report)        
+          end    
+        end
+      end
+      puts 'AFTER'
+      puts newReports
+      @reports = newReports
+      newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, 
+                 :locals => {})
     end
-=end
-    
-    
+    respond_to do |format|
+      format.html{
+            
+      }
+      map_markers = locations_within_bounds.to_gmaps4rails do |location, marker|
+        marker.json({ :id => location.id})      
+      end           
+      format.json {
+        if params[:generateReports] == 'True'
+          render :json => newListHtml
+        else    
+          data = map_markers
+          render :json => data
+        end 
+        } 
+        #"html" => }}      
+      puts map_markers      
+    end    
   end
 
   def new

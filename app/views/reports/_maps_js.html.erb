@@ -1,4 +1,40 @@
 <script type="text/javascript">
-	
+function replaceMarkers(bounds) {
+	 var mapreq = '/reports.json/?sw_y=' + bounds.getSouthWest().lng() + 
+                           '&sw_x=' + bounds.getSouthWest().lat() + 
+                           '&ne_y=' + bounds.getNorthEast().lng() +
+                           '&ne_x=' + bounds.getNorthEast().lat();
+    $.get(mapreq, function(newItemData) {
+    	var a= "";
+    	if(newItemData.length > 0)
+    	{
+			Gmaps.map.replaceMarkers(newItemData);
+			var htmlreq = '/reports.json/?generateReports=True&locations=';
+			for(marker in newItemData)
+			{
+				//console.log(newItemData[marker]['id']);
+				htmlreq += newItemData[marker]['id'] + ":";
+			}
+			$.get(htmlreq, function(html) {
+				alert("asdf");					
+				$('#user_reports')[0].innerHTML = "gfds";
+			});
+		}
 
+    });
+    
+    // for marker in Gmaps.map.markers {
+    	// marker.push(Gmaps.map.markers[marker]['id']);
+    // }
+    console.log   
+        //drawItems(bounds);
+};
+Gmaps.map.callback = function() {
+	google.maps.event.addListener(Gmaps.map.serviceObject, 'idle', function(){
+     //Map fully loaded here
+     var map_bounds = Gmaps.map.serviceObject.getBounds();
+     replaceMarkers(map_bounds);
+     
+ });
+}
 </script>
