@@ -1,7 +1,7 @@
 @import "variables"; 
 
 .map_container {
-
+  img { max-width: none; }
   margin-top: 5px;
   margin-bottom: 0px;
   background: $light-gray;
