@@ -57,4 +57,28 @@ class Report < ActiveRecord::Base
     self.location.complete_address
   end
   
+  def self.within_bounds(bounds)
+    
+    reports_in_bounds = []
+    for report in Report.all
+      #puts loclat.to_s + "," + loclng.to_s
+      #puts swlat.to_s + "," + nelat.to_s + "," + swlng.to_s + "," + nelng.to_s
+      if self.inBounds(report.location, bounds)
+        reports_in_bounds.append(report)
+        puts 'added'
+      end  
+    end
+    return reports_in_bounds
+  end
+  def self.inBounds(location, bounds)
+    swlng = bounds[1]
+    swlat = bounds[0]
+    nelng = bounds[3]
+    nelat = bounds[2]
+    sw = Geokit::LatLng.new(swlat, swlng)
+    ne = Geokit::LatLng.new(nelat, nelng)
+    calculated_bounds = Geokit::Bounds.new(sw,ne)
+    point = Geokit::LatLng.new(location.latitude, location.longitude)
+    return calculated_bounds.contains?(point)
+  end
 end

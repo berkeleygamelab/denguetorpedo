@@ -133,6 +133,7 @@
   background: $light-gray;
   margin-top: 10px;
   margin-left: 10px;
+  width: 375px;
   h2 {
     font-size: 20px;
   }
@@ -193,7 +194,7 @@
 }
 
 #report_buttons {
-  margin-left: -30px;
+  margin-left: 20px;
   font-size: 13px;
   .active {
     text-decoration: underline;
@@ -228,7 +229,7 @@
     
   .bttn  {      
     color: white;
-    border: 2px solid $gray;
+    border: 1px solid $gray;
     border-radius: 8px;
     text-align: center;
 

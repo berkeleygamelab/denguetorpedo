@@ -36,6 +36,14 @@ class Location < ActiveRecord::Base
     self.formatted_address = data["formatted_address"]
   end
 
+
+  def self.within_bounds(bounds)
+      self.where(:location.within => {"$box" => bounds })
+  end
+
+
+
+
   def points
     house.nil? ? 0 : house.points
   end
