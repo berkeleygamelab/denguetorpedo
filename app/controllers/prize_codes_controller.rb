@@ -1,23 +1,21 @@
 class PrizeCodesController < ApplicationController
-  # GET /prize_codes
-  # GET /prize_codes.json
+  # GET /user/:id/prize_codes
   def index
-    @prize_codes = PrizeCode.all
+    @user = User.find(params[:id])
+    @prizes = @user.prizes
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @prize_codes }
+      format.html
     end
   end
 
-  # GET /prize_codes/1
-  # GET /prize_codes/1.json
+  # GET /user/:id/prize_codes/:prize_id
   def show
-    @prize_code = PrizeCode.find(params[:id])
+    @prize = Prize.find(params[:prize_id])
+    @prize_codes = @prize.prize_codes
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @prize_code }
     end
   end
 
@@ -30,11 +28,6 @@ class PrizeCodesController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @prize_code }
     end
-  end
-
-  # GET /prize_codes/1/edit
-  def edit
-    @prize_code = PrizeCode.find(params[:id])
   end
 
   # POST /prize_codes
@@ -53,22 +46,6 @@ class PrizeCodesController < ApplicationController
     end
   end
 
-  # PUT /prize_codes/1
-  # PUT /prize_codes/1.json
-  def update
-    @prize_code = PrizeCode.find(params[:id])
-
-    respond_to do |format|
-      if @prize_code.update_attributes(params[:prize_code])
-        format.html { redirect_to @prize_code, notice: 'Prize code was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @prize_code.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /prize_codes/1
   # DELETE /prize_codes/1.json
   def destroy
@@ -80,4 +57,16 @@ class PrizeCodesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  # GET /user/:id/prize_codes/:prize_id/redeem/:prize_code_id
+  def redeem
+    @prize_code = PrizeCode.find(params[:prize_code_id])
+    @prize_code.redeemed = true
+    @prize_code.save
+
+    @prize = Prize.find(params[:prize_id])
+    @prize_codes = @prize.prize_codes
+    redirect_to :action => "show"
+  end
+
+
 end

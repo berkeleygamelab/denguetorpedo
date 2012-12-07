@@ -19,27 +19,32 @@
 #  prize_photo_updated_at   :datetime
 #  community_prize          :boolean          default(FALSE), not null
 #  self_prize               :boolean          default(FALSE), not null
+#  is_badge                 :boolean          default(FALSE), not null
 #
 
 class Prize < ActiveRecord::Base
-  attr_accessible :cost, :description, :expire_on, :prize_name, :redemption_directions, :stock, :user_id, :prize_photo
+  attr_accessible :cost, :description, :expire_on, :prize_name, :redemption_directions, :stock, :user_id, :prize_photo, :community_prize, :self_prize, :is_badge
   belongs_to :user
   has_many :group_buy_ins
   has_many :prize_codes
+  has_many :badges
   has_attached_file :prize_photo, :default_url => 'default_images/prize_default_image.jpg', :styles => { :small => "60x60>", :large => "150x150>" }, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
+  validates :cost, :presence => true
+  validates :description, :presence => true
+  validates :prize_name, :presence => true
+  validates :redemption_directions, :presence => true
+  validates :stock, :presence => true
+  validates :user, :presence => true
 
   def give_badge(user_id)
     @user = User.find(user_id)
-    PrizeCode.create({:user_id => user_id, :prize_id => self.id, :code => nil})
+    Badge.create({:user_id => user_id, :prize_id => self.id})
   end
 
   def generate_prize_code(user_id)
-    @user = User.find(user_id)
     code = self.generate_activation_code
     PrizeCode.create({:user_id => user_id, :prize_id => self.id, :code => code})
     self.sms_prize_code(code, user_id)
-    @user.points = @user.points - cost
-    @user.save
   end
 
   def sms_prize_code(code, user_id)
@@ -56,4 +61,22 @@ class Prize < ActiveRecord::Base
     charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
     (0...size).map{ charset.to_a[rand(charset.size)] }.join
   end
+
+  def in_stock
+    return true if self.stock < 0 or self.stock > 0
+    return false
+  end
+
+  def decrease_stock(n = 1)
+    if stock > 0
+      temp = self.stock
+      self.stock = stock - n
+      if self.stock < 0
+        self.stock = temp
+        return false
+      end
+    end
+    return true
+  end
+
 end

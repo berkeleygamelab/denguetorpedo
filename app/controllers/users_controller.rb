@@ -88,4 +88,14 @@ class UsersController < ApplicationController
       render "edit"
     end  
   end
+
+  #Get /user/:id/buy_prize/prize_id
+  def buy_prize
+    @user = User.find(params[:id])
+    bought = @user.buy_prize(params[:prize_id])
+    if bought
+      @prize_code = PrizeCode.where(:prize_id => params[:prize_id], :user_id => params[:id]).limit(1)[0]
+    end
+    render :partial => "prizes/prizeconfirmation", :locals => {:bought => bought}
+  end
 end

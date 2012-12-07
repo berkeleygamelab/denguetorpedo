@@ -1,3 +1,4 @@
+
 - unless @user.nil?
   .row
     .span6.offset1#user_info
@@ -36,15 +37,15 @@
   .span15.offset1
     %div.prizes_section
       %div.widther
-        - Prize.last(3).each do |prize|
+        - Prize.order("cost").where(:community_prize => true).limit(3).each do |prize|
           .span4.community_prize_section
             %div.sec
-              = link_to image_tag(prize.prize_photo.url(:large), {:size => "150x150", :class => "prize_photo"}), prize_path(prize.id)
+              = link_to image_tag(prize.prize_photo.url(:large), {:size => "150x150", :class => "prize_photo"}), prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
               %h4
-                = link_to prize.prize_name, prize_path(prize.id)
+                = link_to prize.prize_name, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
               %div.cost
                 %p
-                  = link_to prize.cost, prize_path(prize.id)
+                  = link_to prize.cost, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
 
 
 .row
@@ -54,12 +55,12 @@
 .row
   .span15.offset1
     %div.widther_2
-      - Prize.last(5).each do |prize|
+      - Prize.order("cost").where(:is_badge => true).limit(5).each do |prize|
         .span2.badges_section
           %div.sec
-            = link_to image_tag(prize.prize_photo.url(:small), {:size => "60x60", :class => "prize_photo"}), prize_path(prize.id)
+            = link_to image_tag(prize.prize_photo.url(:small), {:size => "60x60", :class => "prize_photo"}), prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
             %h4
-              = link_to prize.prize_name, prize_path(prize.id)
+              = link_to prize.prize_name, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
             %div.cost
               %p
-                = link_to prize.cost, prize_path(prize.id)
+                = link_to prize.cost, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name

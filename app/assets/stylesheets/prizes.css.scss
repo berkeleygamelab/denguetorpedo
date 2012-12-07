@@ -124,6 +124,7 @@ img.trophy_photo {
     text-align: center;
     font-size: 16px;
     margin-bottom: 10px;
+    min-height: 40px;
   }
 
   div.cost {
@@ -153,6 +154,7 @@ img.trophy_photo {
     text-align: center;
     font-size: 16px;
     margin-bottom: 10px;
+    min-height: 40px;
   }
 
   div.cost {
@@ -342,4 +344,128 @@ img.prize_photo {
 
 #sponsor_spot .span5 div {
   padding: 10px 30px 10px 0px;
+}
+
+#input, textarea {
+  width: 800px
+}
+
+#tu_center_wrapper {
+  border-collapse: collapse;
+}
+
+.te_frame {
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 2px;
+  border-color: gray;
+  border: none;
+}
+
+div#prize_description {
+  background-color: white;
+  width: 900px;
+  height: 310px;
+  margin-left: 50px;
+}
+
+div#prize_redemption {
+  width: 900px;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+img.prize_photo_large {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: top;
+}
+
+div#prize_description_picture {
+  padding-top: 30px;
+  float: left;
+  width: 50%;
+}
+
+div#prize_description_text {
+  padding-top: 30px;
+  float: right;
+  width: 50%;
+
+  p {
+    padding-top: 15px;
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+}
+
+div#prize_redemption_directions {
+  background-color: white;
+  height: 195px;
+  padding-top: 30px;
+  float: left;
+  width: 50%;
+
+  p {
+    padding-top: 15px;
+    padding-left: 30px;
+    font-size: 14px;
+  }
+
+  h1 {
+    padding-left: 30px;
+    font-weight: bold;
+    font-size: 30px;
+  }
+}
+
+div#prize_redeem_points {
+  float: right;
+  width: 50%;
+}
+
+div.prize_cost {
+  background-color: #eee;
+  width: 400px;
+  margin: 0 auto;
+  height: 175px;
+  border-radius: 10px;
+
+  p {
+    padding-top: 55px;
+    text-align: center;
+  }
+
+  span {
+    display: block;
+    color: #F26721;
+    font-size: 100px;
+    line-height: 50px;
+    font-weight: bold;
+  }
+}
+
+div.use_points {
+  background-color: #00CCCC;
+  width: 400px;
+  margin: 0 auto;
+  height: 40px;
+  margin-top: 10px;
+
+  p {
+    text-align: center;
+  }
+
+  a {
+    display: block;
+    color: white;
+    font-size: 24px;
+    line-height: 40px;
+    font-weight: bold;
+  }
 }

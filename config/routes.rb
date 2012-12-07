@@ -1,12 +1,12 @@
 Dengue::Application.routes.draw do
-  
-  resources :buy_ins
 
-  resources :group_buy_ins
+  resources :badges
 
-  resources :prizes
 
-  resources :prize_codes
+  match "/user/:id/prize_codes" => 'prize_codes#index'
+  match "/user/:id/prize_codes/:prize_id" => 'prize_codes#show'
+  match "/user/:id/prize_codes/:prize_id/redeem/:prize_code_id" => 'prize_codes#redeem'
+  match "/user/:id/buy_prize/:prize_id" => 'users#buy_prize'
 
   get "dashboard/index"
   match "/home/:id" => "home#index", :as => "Home"
@@ -34,6 +34,11 @@ Dengue::Application.routes.draw do
   resources :verifications
   resources :forums, :only => [:index]
   resources :neighborhoods, :only => [:show]
+  resources :buy_ins, :only => [:new, :create, :destroy]
+  resources :group_buy_ins, :only => [:new, :create, :destroy]
+  resources :prizes
+  resources :prize_codes, :only => [:new, :create, :destroy, :show, :index]
+
 
   root :to => 'home#index'
 

@@ -9,6 +9,8 @@
 #  code       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  redeemed   :boolean          default(FALSE), not null
+#  expired    :boolean          default(FALSE), not null
 #
 
 require 'spec_helper'

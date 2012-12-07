@@ -12,9 +12,11 @@
 #
 
 class BuyIn < ActiveRecord::Base
-  attr_accessible :group_buy_in_id, :user_id, :accepted
+  attr_accessible :group_buy_in_id, :user_id, :accepted, :expired
   belongs_to :user
   belongs_to :group_buy_in
+  validates :user, :presence => true
+  validates :group_buy_in, :presence => true
 
   def send_email_invitation
     UserMailer.group_buy_in_inviation(self.user, self.group_buy_in).deliver
@@ -27,10 +29,10 @@ class BuyIn < ActiveRecord::Base
 
   #Called when user clicks on "accept" link
   def send_accept_email
-    if self.user.joinGroupBuyIn(self.group_buy_in_id)
+    if self.user.join_group_buy_in(self.group_buy_in_id)
       self.accepted = true
-      if self.group_buy_in.hasEnoughBuyers
-        self.group_buy_in.buyItem
+      if self.group_buy_in.has_enough_buyers
+        self.group_buy_in.buy_item
         UserMailer.item_bought(self.group_buy_in.user, self.group_buy_in).deliver
       else
         UserMailer.accept_invitation(self.group_buy_in.user, self).deliver
