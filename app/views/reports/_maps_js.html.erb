@@ -1,4 +1,5 @@
 <script type="text/javascript">
+
 function replaceMarkers(bounds) {
 	 var mapreq = '/reports.json/?sw_y=' + bounds.getSouthWest().lng() + 
                            '&sw_x=' + bounds.getSouthWest().lat() + 
@@ -6,6 +7,7 @@ function replaceMarkers(bounds) {
                            '&ne_x=' + bounds.getNorthEast().lat();
     $.get(mapreq, function(newItemData) {
     	var a= "";
+    	var data = null;
     	if(newItemData.length > 0)
     	{
 			Gmaps.map.replaceMarkers(newItemData);
@@ -15,20 +17,27 @@ function replaceMarkers(bounds) {
 				//console.log(newItemData[marker]['id']);
 				htmlreq += newItemData[marker]['id'] + ":";
 			}
-			$.get(htmlreq, function(html) {
-				alert("asdf");					
-				$('#user_reports')[0].innerHTML = "gfds";
+			$.ajaxSetup({ cache: false })
+			$.ajax ({
+				url: htmlreq,
+				data: data,
+        		dataType: 'json',
+        		error: function(data) {
+        			console.log("failure");
+        			console.log(data.responseText)
+        			$("#user_reports").replaceWith(data.responseText)
+        		},
+        		success: function(data) {
+        			console.log("test");
+        			$("#user_reports").innerHTML() = data.responseText;
+        		}
+	            
 			});
+			
 		}
-
     });
-    
-    // for marker in Gmaps.map.markers {
-    	// marker.push(Gmaps.map.markers[marker]['id']);
-    // }
-    console.log   
-        //drawItems(bounds);
 };
+
 Gmaps.map.callback = function() {
 	google.maps.event.addListener(Gmaps.map.serviceObject, 'idle', function(){
      //Map fully loaded here
