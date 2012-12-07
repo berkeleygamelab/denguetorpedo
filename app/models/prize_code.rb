@@ -18,6 +18,8 @@ class PrizeCode < ActiveRecord::Base
   belongs_to :user
   belongs_to :prize
 
+  # TODO: more stuff
+
   def self.send_no(phone_number)
   	@account_sid = 'AC696e86d23ebba91cbf65f1383cf63e7d'
     @auth_token = 'a49ee186176ead11c760fd77aeaeb26c'
