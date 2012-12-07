@@ -95,7 +95,6 @@ class ReportsController < ApplicationController
           end    
         end
       end
-      puts 'AFTER'
       puts newReports
       @reports = newReports
       newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, 
