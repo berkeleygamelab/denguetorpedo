@@ -1,0 +1,54 @@
+
+.row
+  .span8.offset1
+    = flash[:notice]
+    %h1 Focos marcados
+.row
+  #report_stats
+    .span2.offset1
+      #rank_box
+        %b Nº 1
+    .span2
+      #point_box
+        %b 2390
+        %br Pontos obtidos
+
+    .span10.offset2
+      .row#report_buttons
+        = link_to 'Focos recentes', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
+        = link_to 'Marcar um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
+        = link_to 'Assumir um foco', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
+        = link_to 'Eliminar um foco', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
+
+  .row
+    .span9.offset1
+      - if params[:view] == 'recent'
+        = render :partial => 'reports/recent', :action=>'index'
+      - elsif params[:view] == 'open'
+        = render :partial => 'reports/new'
+      - elsif params[:view] == 'claim'
+        = render :partial => 'reports/claim_list'
+      - else params[:view] == 'eliminate'
+        = render :partial => 'reports/eliminate_list'
+    .span6
+      .row
+        .span6
+          .report_map_search
+            %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
+            %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 325px;'}
+      .row
+        = gmaps(@maps_json)
+
+<<<<<<< HEAD
+
+=======
+      .row
+        - if params[:view] != 'open'
+          #report_sponsors
+            %ul
+              - @random_sponsors.each do |sponsor|
+                %li.span1.sponsor
+                  = image_tag sponsor
+  
+= render :partial => 'reports/maps_js'
+>>>>>>> progress on maps
