@@ -17,19 +17,19 @@ function replaceMarkers(bounds) {
 				//console.log(newItemData[marker]['id']);
 				htmlreq += newItemData[marker]['id'] + ":";
 			}
-			$.ajaxSetup({ cache: false })
+			//$.ajaxSetup({ cache: false })
 			$.ajax ({
 				url: htmlreq,
 				data: data,
         		dataType: 'json',
         		error: function(data) {
         			console.log("failure");
-        			console.log(data.responseText)
+        			//console.log(data.responseText)
         			$("#user_reports").replaceWith(data.responseText)
         		},
         		success: function(data) {
         			console.log("test");
-        			$("#user_reports").innerHTML() = data.responseText;
+        			$("#user_reports").replaceWith(data.responseText)
         		}
 	            
 			});
