@@ -1,0 +1,179 @@
+
+.row
+  .span15.offset1
+    #rewards_community
+      .rewards_banner
+        %h2.span6 Prêmios para a comunidade
+        %input.span4{:type => 'text', :placeholder => "Busca"}
+      %ul.rewards_coupons_list 
+        .arrow_left
+          = image_tag 'translated/LeftScrollArrow.png'
+
+        %li
+          = image_tag 'translated/coupon_bench.fw.png'
+          %br
+          %button  Usar meus pontos
+        %li
+          = image_tag 'translated/coupon_books.fw.png'
+          %br
+          %button  Usar meus pontos        
+        .arrow_right
+          = image_tag 'translated/RightScrollArrow.png'
+      .rewards_dots 
+        = image_tag 'translated/dots.png'
+      %br
+      %br
+      %br
+      .rewards_banner
+        %h2.span4  Medalhas
+      %ul.rewards_badges_list 
+        %li
+          .span2
+            = image_tag 'translated/badges/orange_star.fw.png'
+          .rewards_badge_title
+            De olho no mosquito
+          .rewards_badge_description
+            Carimbo digital
+            %br
+            50 pontos
+          %button Usar meus pontos
+        %li
+          .span2
+            = image_tag 'translated/badges/blue_black_star.fw.png'
+          .rewards_badge_title
+            Exterminador de mosquitos
+          .rewards_badge_description
+            Adesivo pequeno + Carimbo digital
+            %br
+            100 pontos
+          %button Usar meus pontos
+        %li
+          .span2
+            = image_tag 'translated/badges/orange_black_star.fw.png'
+          .rewards_badge_title
+            Guerreiro DT
+          .rewards_badge_description
+            Adesivo grande + Carimbo digital
+            %br
+            200 pontos
+          %button Usar meus pontos
+        %li
+          .span2
+            = image_tag 'translated/badges/blue_star.fw.png'
+          .rewards_badge_title
+            Comunidade Saudavel
+          .rewards_badge_description
+            Adesivo + Camiseta + Carimbo digital
+            %br
+            500 pontos
+          %button Usar meus pontos
+        %li
+          .span2
+            = image_tag 'translated/badges/golden_star.fw.png'
+          .rewards_badge_title
+            Eu cuido da Comunidade!
+          .rewards_badge_description
+            Honrarias + Camiseta + Adesivo + Carimbo digital
+            %br
+            1000 pontos
+          %button{style: 'margin-left: 130px;'} Usar meus pontos
+      %br
+      %br
+      %br
+      .span10
+        .rewards_banner
+          %h2.span4  Prêmios para você
+        %ul.rewards_your_prizes
+          .arrow_left
+            = image_tag 'translated/LeftScrollArrow.png'
+          %li
+            = image_tag 'translated/coupon1.png'
+          %li
+            = image_tag 'translated/coupon_guerreiro_dt.fw.png'
+          .arrow_right
+            = image_tag 'translated/RightScrollArrow.png'
+      #neighborhood_sponsors.span4
+        %h2 Patrocinadores Locais
+        
+        .neighborhood_sponsor_box
+          %ul
+            %li.span1.sponsor_thumb
+              = image_tag 'translated/merchant_logo.png'
+            - @random_sponsors.each do |sponsor|
+              %li.span1.sponsor_thumb
+                = image_tag sponsor
+
+
+      .span10
+        %br
+        %br
+        %br
+        .rewards_banner
+          %h2.span6  Destaques da comunidade
+        %ul.rewards_highlights
+          %li{style: 'margin-right: 8px;'}
+            .row
+              .span2
+                = image_tag 'translated/pf4.jpg'
+
+
+              .span3
+                .rewards_highlights_description
+                  Izabel contribui com 
+                  %br
+                  500 pontos para um banco na Praça da Paz! 
+             
+                .gray_text
+                  Patrocinador:
+                Campeão Construção       
+             
+            .row
+              .span3                                 
+                = link_to 'Veja a página da Izabel', '#'
+              .span2
+                .gray_text.date
+                  31/7/2012                         
+          %li
+            .row
+              .span2
+                = image_tag 'translated/pf5.jpg'
+
+              .span3
+                .rewards_highlights_description
+                  Carminha conseguiu 
+                  %br
+                  uma medalha, um adesivo e uma camiseta Comunidade Saudavel!
+          
+                .gray_text
+                  Patrocinador:
+                Associação dos Moradores 
+                %br 
+                e Loja da Ju                
+            .row
+              .span3                                 
+                = link_to 'Veja a página da Carminha', '#'
+              .span2
+                .gray_text.date
+                  31/7/2012               
+
+
+      .span4{style: 'margin: 45px 0px 0px 50px;'}
+        %h2 Avatares
+        #rewards_avatars
+          .row
+            .span2
+              = image_tag 'translated/woot_avatar.png'
+            .span2{style: 'margin-left: -10px;'}
+              %h2 Livre acesso!
+              Você pode, em vez de pôr sua foto, fazer um Avatar para o seu perfil. 
+          .row
+            .span4
+              %button Fazer meu Avatar!
+
+
+
+            
+          
+
+      
+

@@ -1,0 +1,183 @@
+// Place all the styles related to the rewards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+#rewards_community {
+  .rewards_banner {
+    width: 100%;
+    height: 40px;
+    background-color: $gray;
+
+      h2 {
+        margin-left: 20px;
+      }
+      input {
+        margin-top: 6px;
+        float: right;
+        margin-right: 20px;
+      }
+    
+    }
+  
+  ul.rewards_coupons_list {
+      background-color: $gray;
+      margin-top: 15px;
+      padding: 10px 0px 10px 5px;
+      width: 960px;
+      height: 155px;
+      .arrow_left {
+        float: left;
+        padding: 48px;
+        margin-right: 60px;
+      }
+      .arrow_right {
+        float: right;
+        padding: 48px;
+        margin-left: 50px;
+      }
+      li {
+        float: left;
+        margin-right: 30px;
+        display: inline-block;
+        img {
+          height: 124px;
+          border: 2px solid gray;
+        }
+        button {
+          width: 100%;
+          margin-top: 5px;
+        }
+      }
+    }
+  .rewards_dots {
+    img {
+      float: right;
+      height: 12px;
+      margin: 5px 5px 0px 0px;
+    }
+    
+  }
+  ul.rewards_badges_list {
+    
+    li {
+      margin-top: 20px;
+      width: 450px;
+      display: inline-block;
+      img {
+        margin-left: 10px;
+      }
+      .rewards_badge_title {
+        line-height: 27px;
+        color: $orange;
+        font-size: 20px;
+      }
+      .rewards_badge_description {
+        line-height: 22px;
+        color: $dark-gray;
+        font-size: 15px;
+      }
+      button {
+        margin-top: 5px;
+      }
+    }
+  }
+  ul.rewards_your_prizes {
+    margin-top: 15px;
+    background-color: $gray;
+    padding: 10px 5px;
+    .arrow_left {
+      width: 40px;
+      float: left;
+      padding: 35px 8px;
+    }
+    .arrow_right {
+      width: 40px;
+      float: right;
+      padding: 35px 8px;
+    }
+    li {
+      display: inline-block;
+      margin-right: 11px;
+      margin-left: 11px;
+      img {
+        height: 120px;
+        border: 2px solid gray;
+      }
+    }
+  }
+  #neighborhood_sponsors {
+    margin-top: -20px;
+    margin-left: 50px;
+  }    
+  .neighborhood_sponsor_box {
+    background: $light-gray;
+    //height: 220px;
+    height: 150px;
+    padding: 15px 2px 15px 12px;
+    ul {
+      list-style-type: none;
+      
+    }
+    .sponsor_thumb {
+      margin: 0px 10px 10px 0px;
+      background: white;
+      width: 65px;
+      height: 65px;
+      border: 1px solid gray;
+    }
+  }  
+}
+.rewards_highlights {
+  
+  li {
+    
+    padding: 5px 0px;
+   
+    margin-top: 10px;
+    background: white;
+    display: inline-block;
+    border: 2px solid gray;
+    img {
+      margin: 5px 0px 5px 5px;
+      border: 1px solid gray;
+    }
+  }
+  .date {
+    text-align: right;
+    margin-right: 10px;
+  }
+  
+  a {
+    margin-left: 5px;
+    color: $blue;
+    font-size: 12px;
+  }
+  .gray_text {
+    margin-top: 3px;
+    font-size: 13px;
+    line-height: 15px;
+    color: gray;
+  }
+  .rewards_highlights_description {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+}
+#rewards_avatars {
+  padding: 10px 5px;
+  background-color: white;
+  border: 2px solid gray;
+  width: 240px;
+  img {
+    width: 105px;
+  }
+  h2 {
+    color: $blue;
+  }
+  button {
+    margin-top: 10px;
+    width: 95%;
+  
+  }
+}

@@ -1,0 +1,14 @@
+---
+transform:
+  text/plain:
+  - - !ruby/regexp /^You have received a Multimedia Message$/i
+    - ""
+number:
+  - return-path
+  - !ruby/regexp /^([^@]+)@.*/
+  - "\\1"
+ignore:
+  text/html:
+  - !ruby/regexp /.*/m
+  text/plain:
+  - !ruby/regexp /\AA New Photo\/Video Message.\s+Click Go\/View to see now http/im
