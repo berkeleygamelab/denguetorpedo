@@ -6,33 +6,33 @@
     .span2.offset1
       #rank_box Nº 1
     .span3
-      %b 1700
+      %b= @total_reports_in_neighborhood
       %br Total de focos marcados
     .span3
       .row
         #neighborhood_open_report_button.span1 
         .span2
-          %b 493
+          %b= @opened_reports_in_neighborhood
           %br em aberto
     .span2
       .row
-        #neighborhood_claimed_report_button.span1
+        #neighborhood_claimed_report_button.span1{style: 'margin-left: -20px;'}
         .span1
-          %b 290
+          %b= @claimed_reports_in_neighborhood
           %br assumidos
     .span2
       .row
         #neighborhood_resolved_report_button.span1 
         .span1
-          %b 1003
+          %b= @eliminated_reports_in_neighborhood
           %br eliminados
     .span2
       .house_count
-        %b 14
+        %b= @number_of_houses
         %br casas
     .span1
       .participant_count
-        %b 53
+        %b= @number_of_participants
         %br participantes
 .row
   #neighborhood_view

@@ -6,4 +6,7 @@ module ApplicationHelper
     (1..8).collect{|a| char_bank[rand(char_bank.size)] }.join
   end
     
+  def highlight_active_link(path)
+    "current_link" if current_page?(path)
+  end    
 end

@@ -39,12 +39,4 @@
       .row
         = gmaps4rails(@json)
 
-      .row
-        - if params[:view] != 'open'
-          #report_sponsors
-            %ul
-              - @random_sponsors.each do |sponsor|
-                %li.span1.sponsor
-                  = image_tag sponsor
-  
 

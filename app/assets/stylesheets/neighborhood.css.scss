@@ -168,7 +168,6 @@ ul#neighborhood_house_list {
 #neighborhood_claimed_report_button {
   @include neighborhood_status_button;
   background-color: $blue;
-  margin-left: -20px;
 }
   
 #neighborhood_resolved_report_button {

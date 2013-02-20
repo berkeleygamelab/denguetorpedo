@@ -238,6 +238,7 @@ DEPENDENCIES
   daemons
   database_cleaner
   dynamic_form
+  eventmachine (~> 1.0.0.beta.4.1)
   foreman
   geokit
   gmaps4rails

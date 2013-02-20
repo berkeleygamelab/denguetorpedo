@@ -6,6 +6,11 @@ class NeighborhoodsController < ApplicationController
     
     @houses = @neighborhood.houses.limit(9)
     @total_reports_in_neighborhood = @neighborhood.reports.count
+    @opened_reports_in_neighborhood = @neighborhood.reports.where("status_cd = 0").count
+    @claimed_reports_in_neighborhood = @neighborhood.reports.where("status_cd = 1").count
+    @eliminated_reports_in_neighborhood = @neighborhood.reports.where("status_cd = 2").count
+    @number_of_houses = @neighborhood.houses.count
+    @number_of_participants = @neighborhood.members.count
     
     @highlightNeighborhoodItem = ""
     if (@current_user != nil && (@neighborhood.members.member? @current_user)) 

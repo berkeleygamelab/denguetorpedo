@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121126065316) do
+ActiveRecord::Schema.define(:version => 20121128032254) do
+
+  create_table "badges", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "prize_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "buy_ins", :force => true do |t|
     t.integer  "group_buy_in_id"
@@ -34,10 +41,9 @@ ActiveRecord::Schema.define(:version => 20121126065316) do
   create_table "group_buy_ins", :force => true do |t|
     t.integer  "prize_id"
     t.integer  "user_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "group_size"
-    t.boolean  "expired",    :default => false, :null => false
   end
 
   create_table "houses", :force => true do |t|
@@ -50,13 +56,6 @@ ActiveRecord::Schema.define(:version => 20121126065316) do
     t.string   "profile_photo_content_type"
     t.integer  "profile_photo_file_size"
     t.datetime "profile_photo_updated_at"
-  end
-
-  create_table "invitations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_buy_in_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
   end
 
   create_table "locations", :force => true do |t|

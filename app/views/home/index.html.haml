@@ -27,7 +27,7 @@
       .row 
         .home_report_count.span4{style: 'margin: 15px 0px 0px 30px;'}
           .row
-            %b 1700
+            %b= @total_reports_in_neighborhood
             %br total de focos marcardos
       %br
       %br
@@ -36,17 +36,19 @@
         .span2{style: 'width: 80px; margin-left: 35px;'}
           #neighborhood_open_report_button
           %br
-          %b &nbsp;&nbsp;493
+          %b= @opened_reports_in_neighborhood
           %br em aberto
+          
         .span2{style: 'width: 80px;'}
           #neighborhood_claimed_report_button
           %br
-          %b &nbsp;&nbsp;290
+          %b= @claimed_reports_in_neighborhood
           %br assumidos
+          
         .span2{style: 'width: 80px; margin-left: 15px;'}
           #neighborhood_resolved_report_button 
           %br
-          %b &nbsp;1003
+          %b= @eliminated_reports_in_neighborhood
           %br resolvidos
     
 %br    
@@ -56,15 +58,13 @@
     
     %ul
       %li
-        = image_tag 'translated/coupon1.png'
+        =link_to image_tag('translated/coupon1.png'), prizes_path
       %li
-        = image_tag 'translated/coupon2.png'
+        =link_to image_tag('translated/coupon2.png'), prizes_path
       %li
-        = image_tag 'translated/coupon3.png'
+        =link_to image_tag('translated/coupon3.png'), prizes_path
       %li
-        = image_tag 'translated/coupon4.png'
-    .home_dots
-      = image_tag 'translated/dots.png'
+        =link_to image_tag('translated/coupon4.png'), prizes_path
 
     
 

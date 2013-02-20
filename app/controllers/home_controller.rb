@@ -22,12 +22,10 @@ class HomeController < ApplicationController
     
     @houses = @selected_neighborhood.houses.limit(10)
     @total_reports_in_neighborhood = @selected_neighborhood.reports.count
-    
-    
-  end
-  
-  
-  
+    @opened_reports_in_neighborhood = @selected_neighborhood.reports.where("status_cd = 0").count
+    @claimed_reports_in_neighborhood = @selected_neighborhood.reports.where("status_cd = 1").count
+    @eliminated_reports_in_neighborhood = @selected_neighborhood.reports.where("status_cd = 2").count
 
+  end
 end
 

@@ -23,7 +23,6 @@ html, body, button, input, select, textarea, label {
 
 html {
  background:#dddddd;
-
 }
 
 body {
@@ -57,13 +56,13 @@ span {
 
 
 h1 {
-  font-size: 20px;
+  font-size: 22px;
+  font-weight:bold;
 }
 
 h2 {
   font-size: 18px;
   font-weight:bold;
-
 }
 
 h3 {
@@ -80,21 +79,20 @@ h5 {
 
 h6 {
   font-size: 8px;
- 
 }
 
 caption, h1,h2, h3, h4, h5, h6, p {
   margin: 0px;
  /* text-shadow: 0px 1px 1px #828282;*/
   font-weight:normal;
- color:#65665C;
+  color:#65665C;
 }
 
 a img {
   border:none;
 }
 
-a:link, a:visited {
+a:link, a:visited, a:hover {
   color: #333333;
   text-decoration: none;
 }

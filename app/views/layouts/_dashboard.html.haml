@@ -4,30 +4,30 @@
       %li
         = image_tag("icons/profile_icon.png")
         - if @current_user.house && @current_user.house.id
-          = link_to 'Meu Perfil', user_path(@current_user)
+          = link_to 'Meu Perfil', user_path(@current_user), :class => highlight_active_link(user_path(@current_user))
         -else 
-          = link_to 'Meu Perfil', edit_user_path(@current_user)
+          = link_to 'Meu Perfil', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
       %li
         = image_tag("icons/house_icon.png")
         - if @current_user.house && @current_user.house.id
-          = link_to 'Minha Casa', house_path(@current_user.house)
+          = link_to 'Minha Casa', house_path(@current_user.house), :class => highlight_active_link(house_path(@current_user.house))
         - else
-          = link_to 'Minha Casa', edit_user_path(@current_user)
+          = link_to 'Minha Casa', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
       %li
         = image_tag("icons/neighborhood_icon.png")
         - if @current_user.neighborhood && @current_user.neighborhood.id
-          = link_to 'Minha Comunidade', neighborhood_path(@current_user.neighborhood)
+          = link_to 'Minha Comunidade', neighborhood_path(@current_user.neighborhood), :class => highlight_active_link(neighborhood_path(@current_user.neighborhood))
         - else
-          = link_to 'Minha Comunidade', edit_user_path(@current_user)
+          = link_to 'Minha Comunidade', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
       %li
         = image_tag("icons/make_report_icon.png")
         - if @current_user.house && @current_user.house.id
-          = link_to 'Focos Marcados', reports_path()
+          = link_to 'Focos Marcados', reports_path(), :class => highlight_active_link(reports_path)
         - else
-          = link_to 'Focos Marcados', edit_user_path(@current_user)
+          = link_to 'Focos Marcados', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
       %li
         = image_tag("icons/account_setting_icon.png")
-        = link_to 'Configurações da Conta', edit_user_path(@current_user)
+        = link_to 'Configurações da Conta', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
       %li
         = image_tag("icons/logout4.png")
         = link_to "Sair", session_path, :method => :delete
