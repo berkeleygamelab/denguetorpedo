@@ -70,17 +70,53 @@ class ReportReader < ActionMailer::Base
     else
       logger.info "Report Submission"
       
+      text_body = parsed_email.body
+      logger.info "text body is: " + text_body
       phone_number = subject.delete("+")
+      logger.info "the login/phone number is: " + phone_number
       
+      logger.info "identifying the user"
+      user = User.find_by_phone_number(phone_number)
+      
+      if user
+        parsed_result = text_body.scan(/^(.+)@(.+)$/)
+        if parsed_result.count == 0
+          logger.info "incorrect report format"
+          ReportReader.incomplete_information_notification(email_addrs).delivers
+          ReportReader.send_notification(phone_number, "I am sorry, but the format must be: report@address")
+        else
+          logger.info "successfully extracted report and address"
+          report = parsed_result[0][0]
+          address = parsed_result[0][1]
+
+          logger.info "report: #{report}, address: #{address}"
+          logger.info "try to see if an address already exist, if not create it"
+          location = Location.find_or_create(address)
+          logger.info "location: #{location}"
+
+          before_photo = parsed_email.default_media
+          report_obj = Report.create_from_user(report, :status => :reported, :reporter => user, :location => location, :before_photo => before_photo)
+
+          if report_obj.save 
+            logger.info "new report sucessfully added"
+            ReportReader.report_added_notification(email_addrs).deliver
+            ReportReader.send_notification(phone_number, "Congratulation! your report has been processed and added to our database")
+          else
+            logger.info "new report failed to add"
+            ReportReader.report_failed_notification(email_addrs).deliver
+            ReportReader.send_notification(phone_number, "Something went wrong in our system. We were unable to add your report")
+          end
+        end
+    
+      else
+        logger.info "this user does not have an account, need to register"
+        ReportReader.send_notification(phone_number, "I am sorry, but you do not have an account. Please register")
+      end  
       
     end
-  
-    #logger.info "try to parse the text to extract report and address"
-    #parsed_result = text_body.scan(/^(.+)@(.+)$/)
-        
-    #if parsed_result.count == 0
 
-      # For verifying prize codes
+    #if parsed_result.count == 0
+    #  For verifying prize codes
     #  second_parsed_result = text_body.scan(/verify@(.+)$/)
     #  if second_parsed_result.count == 0
     #    logger.info "incorrect report format"
@@ -93,29 +129,6 @@ class ReportReader < ActionMailer::Base
     #    @prize = PrizeCode.find_by_code("?", prizecode).first
     #    @prize.nil? ? PrizeCode.send_no(phone_number) : @prize.send_yes(phone_number)
     #  end
-
-    #else
-    #  logger.info "successfully extracted report and address"
-    #  report = parsed_result[0][0]
-    #  address = parsed_result[0][1]
-      
-    #  logger.info "report: #{report}, address: #{address}"
-    #  logger.info "try to see if an address already exist, if not create it"
-    #  location = Location.find_or_create(address)
-    #  logger.info "location: #{location}"
-
-    #  before_photo = parsed_email.default_media
-    #  report_obj = Report.create_from_user(report, :status => :reported, :reporter => user, :location => location, :before_photo => before_photo)
-      
-    #  if report_obj.save 
-    #    logger.info "new report sucessfully added"
-    #    ReportReader.report_added_notification(email_addrs).deliver
-    #  else
-    #    logger.info "new report failed to add"
-    #    ReportReader.report_failed_notification(email_addrs).deliver
-    #  end
-    #end    
-
   end 
     
   private
