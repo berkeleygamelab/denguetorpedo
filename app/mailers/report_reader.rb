@@ -135,7 +135,7 @@ class ReportReader < ActionMailer::Base
     else
       logger.info "unable to save new user"
       ReportReader.user_failed_to_create_notification(email).deliver
-      ReportReader.send_notification()
+      ReportReader.send_notification(phone_number, "")
     end
     new_user
   end 
