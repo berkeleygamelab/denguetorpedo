@@ -67,14 +67,13 @@ class ReportReader < ActionMailer::Base
         logger.info "did not find user, create a user account"
         user = create_user!(phone_number, email)
       end
-      
     else
       logger.info "Report Submission"
-    
+      
+      phone_number = subject.delete("+")
+      
+      
     end
-    
-    
-    
   
     #logger.info "try to parse the text to extract report and address"
     #parsed_result = text_body.scan(/^(.+)@(.+)$/)
@@ -135,7 +134,7 @@ class ReportReader < ActionMailer::Base
     else
       logger.info "unable to save new user"
       ReportReader.user_failed_to_create_notification(email).deliver
-      ReportReader.send_notification(phone_number, "")
+      ReportReader.send_notification(phone_number, "Something went wrong in our system. We were unable to create an account for you.")
     end
     new_user
   end 
