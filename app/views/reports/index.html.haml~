@@ -39,7 +39,9 @@
       .row
         = gmaps(@maps_json)
 
+<<<<<<< HEAD
 
+=======
       .row
         - if params[:view] != 'open'
           #report_sponsors
@@ -47,6 +49,6 @@
               - @random_sponsors.each do |sponsor|
                 %li.span1.sponsor
                   = image_tag sponsor
-%a{:href=>'javascript:;', :onclick => 'test()'}   asdf 
+  
 = render :partial => 'reports/maps_js'
-
+>>>>>>> progress on maps
