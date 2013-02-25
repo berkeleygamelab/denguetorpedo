@@ -35,6 +35,7 @@ gem 'awesome_nested_set'
 gem 'uuid'
 gem 'whenever', :require => false
 gem 'eventmachine', '~> 1.0.0.beta.4.1'
+gem 'nexmo'
 
 # Gems used only for assets and not required
 # in production environments by default.
