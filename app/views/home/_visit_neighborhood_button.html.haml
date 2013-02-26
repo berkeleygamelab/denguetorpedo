@@ -1,1 +1,4 @@
-=link_to "Va para a #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood)
+- if @selected_neighborhood.id.nil?
+  =link_to "Va para a participante futuro", root_path, {style: 'font-size: 16px;'}
+- else
+  =link_to "Va para a #{@selected_neighborhood.name}", neighborhood_path(@selected_neighborhood) 
