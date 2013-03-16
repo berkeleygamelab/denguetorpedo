@@ -243,11 +243,7 @@ DEPENDENCIES
   daemons
   database_cleaner
   dynamic_form
-<<<<<<< HEAD
-  eventmachine
-=======
   eventmachine (~> 1.0.0.beta.4.1)
->>>>>>> 2e7000f52f5633df5721c140ae309822084f9fbb
   foreman
   geokit
   gmaps4rails
@@ -256,10 +252,7 @@ DEPENDENCIES
   launchy
   mime
   mms2r
-<<<<<<< HEAD
-=======
   nexmo
->>>>>>> 2e7000f52f5633df5721c140ae309822084f9fbb
   paperclip!
   pg
   rails (~> 3.2.1)
