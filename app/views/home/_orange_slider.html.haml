@@ -37,5 +37,6 @@
           #register_pane
             = render "home/register_form"
       .row
-        #orange_pull_up
-          = link_to image_tag("home_images/splash_pulldown_active.png", :href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"})   
+        #orange_pull_up.span1
+          %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}}
+            = image_tag("home_images/splash_pulldown_active.png")   
