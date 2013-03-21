@@ -1,4 +1,5 @@
 class SmsGatewayController < ApplicationController 
+  
   def inject    
     STDOUT.sync = true unless ENV['RAILS_ENV'] == 'production' # flush all log messages to STDOUT
     logger = Logger.new(STDOUT)
@@ -44,6 +45,7 @@ class SmsGatewayController < ApplicationController
           ReportReader.report_failed_notification(user.email).deliver
           Notification.new(:phone => phone_number.to_s, :text => "Something went wrong in our system. We were unable to add your report", :board => board.to_s).save
         end
+      end
     else
       logger.info "this user does not have an account, need to register"
       Notification.new(:phone => phone_number.to_s, :text => "I am sorry, but you do not have an account. Please register", :board => board.to_s).save
