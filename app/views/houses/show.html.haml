@@ -62,14 +62,11 @@
     
   .span6
     .row
-      %h2.span6 Focos marcados perto da casa
+      %h2.span6 Focos marcados perto da casa!
       #house_reports.span6
         .row
           .span6
-            #map_container
-              #reports_map_temp
-                = image_tag 'translated/housemap.png'
-            -#= gmaps(markers: { data: @house_reports_gmap_json }, map_options: { maxZoom: 12 }, map_options: { id: "reports_map" })
+            = gmaps(markers: { data: @house_reports_gmap_json },  map_options: @map_options)
         .row
           .span6
             #report_status_bar
@@ -120,3 +117,8 @@
                   = link_to image_tag("default_images/house_default_image.png"), house_path(neighbor)
                 - else 
                   = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
+
+:javascript
+  $(document).ready( function() {
+  $(".map_container").css("height", "180px")
+  })

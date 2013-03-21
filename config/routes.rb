@@ -34,6 +34,7 @@ Dengue::Application.routes.draw do
   
   resources :badges
   resource :session, :only => [:new, :create, :destroy]
+  match 'exit' => 'sessions#destroy', :as => :logout
   resources :password_resets, :only => [:new, :create, :edit, :update]
   resources :verifications
   resources :forums, :only => [:index]

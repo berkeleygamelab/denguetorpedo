@@ -30,4 +30,4 @@
         = link_to 'Configurações da Conta', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
       %li
         = image_tag("icons/logout4.png")
-        = link_to "Sair", session_path(), :method => :delete
+        = link_to "Sair", logout_path
