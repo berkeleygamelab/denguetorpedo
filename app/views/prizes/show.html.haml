@@ -1,0 +1,78 @@
+- unless @prize.nil?
+  .row
+    .span15.offset1
+      - if flash[:notice] 
+        .row#flash_dat_notice
+          #flashNotice 
+            %p
+              = flash[:notice]
+
+      - if flash[:alert] 
+        .row#flash_dat_alert
+          #flashAlert 
+            %p
+              = flash[:alert]
+      .row#prize_name_and_photo
+        .row#prize_info
+          .span6
+            %div
+              - if @prize.prize_photo_file_name.nil?
+                = image_tag("default_images/prize_default_image.png")
+              - else
+                = image_tag(@prize.prize_photo.url(:large))
+          .span9
+            %div
+              %h3
+                = @prize.prize_name
+              %p
+                = @prize.description
+      .row#prize_instructions_and_cost
+        .row#bootstrap_sucks
+          .span9
+            %div#prize_instructions
+              %h3
+                Redeption directions:
+              %p
+                = @prize.redemption_directions
+          .span6
+            %div#prize_cost
+              #cost_specifically
+                %h5
+                  = @prize.cost
+                -if !@current_user.nil?
+                  = @current_user.points 
+                  \/
+              - unless @current_user.nil?
+                - if @enoughPoints
+                  #use_points
+                    = link_to "Usar menus pontos!", prize_path, :method => :post
+                - if !@enoughPoints
+                  #cant_use_points_sucka
+                    %h6
+                      Você precisa de mais pontos para redimir
+
+              - if @current_user.nil?
+                #cant_use_points_sucka
+                  %h6
+                    Você deve entrar para redimir
+      .row#sponsor_area_title_thing
+        .row#seriously_bootstrap
+          .span15
+            %div
+              %h3
+                Patrocinador Locia
+      .row#sponsor_spot
+        .row#more_bootstrap_sucks
+          .span3
+            %div#sponsor_image 
+              sponsor image goes here
+          .span7
+            %div#sponsor_info
+              %h4
+                Food Lion
+              %p
+                Lorem ipsum. fahtfth ayuot afyuh faiet nzfuhc fuin aft ayft yuwfpj qpo z[ou fotd aluft ] futha uhftia tfyh alutd  bm m
+          .span5
+            %div#sponsor_map
+              map goes here
+  .row
