@@ -1,32 +1,63 @@
-.user_report.user_claimed_report
-  .row
-    .span8
-      %h4== Foco Nº #{claimed_report.id}: #{claimed_report.complete_address}
-    .span2.user_report_time
-      = claimed_report.strftime_updated_at
-      
-  .row
-    .span2.user_before_photo
-      =image_tag claimed_report.before_photo(:medium)
-    .span7
-      .row
-        .user_report_content.span7
-          "
-          = claimed_report.report            
-          "
-      .row.user_report_people
-        Marcado por:
-        %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
-        %br
-        Assumido por:
-        %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
-    .span1.user_report_status.status
-      Assumido
-  .row
-    .user_report_options
-      =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
-      -if @isPrivatePage
-        =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
-
+- if full
+  .user_report.user_claimed_report{:style => "width:100%;"}
+    .row
+      .span8
+        %h4== Foco Nº #{claimed_report.id}: #{claimed_report.complete_address}
+      .span2.user_report_time
+        = claimed_report.strftime_updated_at
+        
+    .row
+      .span2.user_before_photo
+        =image_tag claimed_report.before_photo(:medium)
+      .span7
+        .row
+          .user_report_content.span7
+            "
+            = claimed_report.report            
+            "
+        .row.user_report_people
+          Marcado por:
+          %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
+          %br
+          Assumido por:
+          %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
+      .span1.user_report_status.status
+        Assumido
+    .row
+      .user_report_options
+        =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+        -if @isPrivatePage
+          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+- else 
+  .user_report.user_claimed_report
+    .row
+      .span8
+        %h4== Foco Nº #{claimed_report.id}: #{claimed_report.complete_address}
+      .span2.user_report_time
+        = claimed_report.strftime_updated_at
+        
+    .row
+      .span2.user_before_photo
+        =image_tag claimed_report.before_photo(:medium)
+      .span7
+        .row
+          .user_report_content.span7
+            "
+            = claimed_report.report            
+            "
+        .row.user_report_people
+          Marcado por:
+          %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
+          %br
+          Assumido por:
+          %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
+      .span1.user_report_status.status
+        Assumido
+    .row
+      .user_report_options
+        =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+        -if @isPrivatePage
+          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
   
-  
+    
+    

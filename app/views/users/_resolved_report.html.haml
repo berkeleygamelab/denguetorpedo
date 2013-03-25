@@ -1,38 +1,67 @@
-
-    
-    
-    
-.user_report.user_resolved_report
-  .row
-    .span8
-      %h4== Foco Nº #{resolved_report.id}: #{resolved_report.complete_address}
-    .span2.user_report_time
-      = resolved_report.strftime_updated_at
-      
-  .row
-    .span2.user_before_photo
-      =image_tag resolved_report.before_photo(:medium)
-    .span2.user_after_photo
-      =image_tag resolved_report.after_photo(:medium)
-    .span6
-      .row
-        .user_report_content.span6
-          "
-          = resolved_report.report            
-          "
-      .row.user_report_people
-        Marcado por:
-        %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}
-        %br
-        Eliminado por:
-        %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
-    .span1.user_resolved_report.status
-      Eliminado
-  .row
-    .user_report_options
-      =link_to (image_tag 'icons/reports icon/star.png', :id=>'user_report_favorite'), '#'
-      -if @isPrivatePage
-        =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+- if full
+  .user_report.user_resolved_report{:style => "width:100%"}
+    .row
+      .span8
+        %h4== Foco Nº #{resolved_report.id}: #{resolved_report.complete_address}
+      .span2.user_report_time
+        = resolved_report.strftime_updated_at
+        
+    .row
+      .span2.user_before_photo
+        =image_tag resolved_report.before_photo(:medium)
+      .span2.user_after_photo
+        =image_tag resolved_report.after_photo(:medium)
+      .span6
+        .row
+          .user_report_content.span6
+            "
+            = resolved_report.report            
+            "
+        .row.user_report_people
+          Marcado por:
+          %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}
+          %br
+          Eliminado por:
+          %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
+      .span1.user_resolved_report.status
+        Eliminado
+    .row
+      .user_report_options
+        =link_to (image_tag 'icons/reports icon/star.png', :id=>'user_report_favorite'), '#'
+        -if @isPrivatePage
+          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+- else
+  .user_report.user_resolved_report
+    .row
+      .span8
+        %h4== Foco Nº #{resolved_report.id}: #{resolved_report.complete_address}
+      .span2.user_report_time
+        = resolved_report.strftime_updated_at
+        
+    .row
+      .span2.user_before_photo
+        =image_tag resolved_report.before_photo(:medium)
+      .span2.user_after_photo
+        =image_tag resolved_report.after_photo(:medium)
+      .span6
+        .row
+          .user_report_content.span6
+            "
+            = resolved_report.report            
+            "
+        .row.user_report_people
+          Marcado por:
+          %a.user==#{resolved_report.reporter.username unless resolved_report.reporter.nil?}
+          %br
+          Eliminado por:
+          %a.user==#{resolved_report.eliminator.username unless resolved_report.eliminator.nil?}
+      .span1.user_resolved_report.status
+        Eliminado
+    .row
+      .user_report_options
+        =link_to (image_tag 'icons/reports icon/star.png', :id=>'user_report_favorite'), '#'
+        -if @isPrivatePage
+          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
 
 
 
