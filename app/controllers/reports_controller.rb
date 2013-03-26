@@ -3,8 +3,6 @@ class ReportsController < ApplicationController
   before_filter :require_login, :except => [:sms, :verification]
 
   def index
-        
-   
     if (params[:claimed_report] != nil)      
       report = Report.find(params[:claimed_report])
       if report.status_cd == 0
@@ -16,29 +14,32 @@ class ReportsController < ApplicationController
       end
     end
     @current_report = params[:report]
+    
     @highlightReportItem = ""
     if (@current_user != nil) 
       @highlightReportItem = "nav_highlight"
     end
     
+             
+    @maps_json = {"map_options" => {"center_latitude" => @current_user.house.location.latitude, 
+      "center_longitude" => @current_user.house.location.longitude,
+      "detect_location" => false,
+      "center_on_user" => false,
+      "auto_adjust" => false,
+      "auto_zoom" => true,
+      "zoom" => 15 }
+      }
+    
     @reports_feed_button_active = ""
     @reports_open_button_active = ""
     @reports_claimed_button_active = ""
-    @reports_resolved_button_active = ""           
-   
-
-    @maps_json = {
-     "map_options" => {"center_latitude" => @current_user.house.location.latitude, 
-                       "center_longitude" => @current_user.house.location.longitude,
-                       "detect_location" => false,
-                       "center_on_user" => false,
-                       "auto_adjust" => false,
-                       "auto_zoom" => true,
-                       "zoom" => 15 },
-                 }
+    @reports_resolved_button_active = ""             
+    
     if params[:view].nil? 
       params[:view] = 'recent'
-    end    
+    end
+    
+        
     if params[:view] == 'recent'
       @reports_feed_button_active = "active"
     elsif params[:view] == 'open'
@@ -119,6 +120,8 @@ class ReportsController < ApplicationController
       puts map_markers      
     end    
   end
+
+
 
   def new
     @report = Report.new
@@ -220,9 +223,11 @@ class ReportsController < ApplicationController
       @account.sms.messages.create(:from => '+15109854798', :to => params[:From], :body  => 'We could not understand your report because some hashtags were missing...')
     end
   end
+  
   def eliminate
     
   end
+  
   def update
     if request.put?
       @report = Report.find(params[:report_id])
@@ -255,6 +260,6 @@ class ReportsController < ApplicationController
   
   def destroy
     @current_user.created_reports.find(params[:id]).destroy
-    redirect_to user_reports_url
+    redirect_to(:back)
   end
 end

@@ -1,4 +1,3 @@
-
 .row
   .span8.offset1
     = flash[:notice]
@@ -13,12 +12,12 @@
         %b 2390
         %br Pontos obtidos
 
-    .span10.offset2
-      .row#report_buttons
-        = link_to 'Focos recentes', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
-        = link_to 'Marcar um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
-        = link_to 'Assumir um foco', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
-        = link_to 'Eliminar um foco', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
+  .row.span10.offset1
+    #report_buttons
+      = link_to 'Focos recentes', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
+      = link_to 'Marcar um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
+      = link_to 'Assumir um foco', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
+      = link_to 'Eliminar um foco', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
 
   .row
     .span9.offset1
@@ -30,6 +29,7 @@
         = render :partial => 'reports/claim_list'
       - else params[:view] == 'eliminate'
         = render :partial => 'reports/eliminate_list'
+    
     .span6
       .row
         .span6
@@ -47,6 +47,7 @@
               - @random_sponsors.each do |sponsor|
                 %li.span1.sponsor
                   = image_tag sponsor
+
 %a{:href=>'javascript:;', :onclick => 'test()'}    
 = render :partial => 'reports/maps_js'
 

@@ -4,18 +4,17 @@
 
 @import "variables";
 
-
-
 // OPEN/RESOLVED/CLAIMED PARTIALS
 .rp_report_time {
   text-align: right;
   float: right;
 }
+
 .expand_button {
   line-height: 30px;
-  font-size: 15px;
-  
+  font-size: 14px;
 }
+
 .confirm_prompt {
   margin-top: 5px;
   color: $red;
@@ -39,17 +38,19 @@
     margin-left: -30px;
     margin-top: 2px;
   }
+  
 .rp_report {
   background-color: white;
   border-style: solid;
   border-width: 2px;
   border-radius: 3px;
   padding: 10px;
-  margin: 0px 0px 10px 10px;
+  margin: 10px;
   h4 {
     font-size: 14px;
   }
 }
+
 .rp_before_photo, .rp_after_photo {
   margin: 10px 0px 0px 10px;
   width: 100px;
@@ -59,24 +60,24 @@
 .rp_report_content {
   margin-top: 10px;
   font-size: 14px;
-  font-style: italic;
   text-shadow: 0 1px 1px #828282;
 }
 
 .rp_report_status {
-  float: right;
-  margin-top: 10px;
-  padding-top: 5px;
-  width: 70px;
-  height: 25px;
+  margin-top: -10px;
+  margin-right: -5px;
+  padding-top: 2px;
+  padding-left: 5px;
+  height: 24px;
   color: #FFFFFF;
-  text-align: center;
-  border-radius: 3px;
+  text-align: left;
+  font-size: 14px;
 }
 
 .rp_report_people {
   margin-left: 0px;
   margin-top: 10px;
+  font-size: 12px;
   .user {
     color: #00CCCC;
   }
@@ -91,7 +92,6 @@
 }
 
 .rp_report_options {
-  margin-top: -30px;
   float: right;
 }
 
@@ -115,14 +115,6 @@
   border-color: $light-gray;
   
   .status {
-    margin-top: 10px;
-     padding-top: 5px;
-     margin-left: 5px;
-     width: 70px;
-     height: 25px;
-     color: #FFFFFF;
-     text-align: center;
-     border-radius: 3px;
     background: $light-gray;
   }
 }
@@ -194,7 +186,8 @@
 }
 
 #report_buttons {
-  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   font-size: 13px;
   .active {
     text-decoration: underline;
@@ -217,7 +210,6 @@
   }
      
   input{
-
     height: 30px;
     border: 0px;
     color: gray;
@@ -229,8 +221,7 @@
     
   .bttn  {      
     color: white;
-    border: 1px solid $gray;
-    border-radius: 8px;
+    border-radius: 5px;
     text-align: center;
 
     padding: 8px 5px;

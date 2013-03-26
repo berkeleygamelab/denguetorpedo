@@ -11,20 +11,21 @@ class SmsGatewayController < ApplicationController
     board = params[:board]
     text = params[:text]
     phone_number = params[:origin]
-    logger.info "board = " + params[:board]
-    logger.info "phone_number = " + params[:origin]
-    logger.info "text = " + params[:text]
+    logger.info "board = " + board
+    logger.info "phone_number = " + phone_number
+    logger.info "text = " + text
   
     logger.info "identifying the user"
-    user = User.find_by_phone_number(phone_number)
+    user = User.find_by_phone_number(phone_number.to_s.strip)
+    logger.info "user info = " + user.inspect
 
     if user
       parsed_result = text.scan(/^(.+)@(.+)$/)
       
       if parsed_result.count == 0
         logger.info "incorrect report format"
-        ReportReader.incomplete_information_notification(user.email).delivers
-        Notification.new(:phone => phone_number.to_s, :text => "I am sorry, but the format must be: report@address", :board => board.to_s).save      
+        ReportReader.incomplete_information_notification(user.email).deliver
+        Notification.new(:phone => phone_number.to_s, :text => "I am sorry but the format must be: report@address", :board => board.to_s).save      
       else
         logger.info "successfully extracted report and address"
         report = parsed_result[0][0]
@@ -42,13 +43,16 @@ class SmsGatewayController < ApplicationController
           Notification.new(:phone => phone_number.to_s, :text => "Congratulation! your report has been processed and added to our database", :board => board.to_s).save
         else
           logger.info "new report failed to add"
+          # Send both user and developer an email notifcation that something broke in the system.
           ReportReader.report_failed_notification(user.email).deliver
+          ReportReader.report_failed_notification("jayst088@gmail.com").deliver
+          ReportReader.report_failed_notification("jholston@berkeley.edu").deliver
           Notification.new(:phone => phone_number.to_s, :text => "Something went wrong in our system. We were unable to add your report", :board => board.to_s).save
         end
       end
     else
       logger.info "this user does not have an account, need to register"
-      Notification.new(:phone => phone_number.to_s, :text => "I am sorry, but you do not have an account. Please register", :board => board.to_s).save
+      Notification.new(:phone => phone_number.to_s, :text => "I am sorry but you do not have an account. Please register", :board => board.to_s).save
     end
 
     render :text => "OK"

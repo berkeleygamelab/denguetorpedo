@@ -37,10 +37,7 @@
 
           .user_neighborhood_picture
             =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
-            
-        .span5
-          .user_profile_map
-            = image_tag 'translated/usermap.png'
+
             
 
   .row
@@ -69,12 +66,13 @@
             - if item.is_a? Post
               = render :partial => 'users/show_post', :object => item
             - elsif item.status == :reported
-              = render :partial => "users/open_report", :object => item
+              = render :partial => "reports/open.html.haml", :object => item
             - elsif item.status == :claimed
-              = render :partial => "users/claimed_report", :object => item
+              = render :partial => "reports/claimed.html.haml", :object => item
             - elsif item.status == :eliminated
-              = render :partial => "users/resolved_report", :object => item
+              = render :partial => "reports/resolved.html.haml", :object => item
 
+              
     .span4
       .row
         .span3.offset1

@@ -67,9 +67,13 @@ class Report < ActiveRecord::Base
   def neighborhood
     location.neighborhood
   end
+  
+  def strftime_created_at
+    self.created_at.strftime("%y/%m/%d")
+  end
 
   def strftime_updated_at
-    self.updated_at.strftime("%m/%d/%Y")
+    self.updated_at.strftime("%y/%m/%d")
   end
     
   def self.unverified_reports

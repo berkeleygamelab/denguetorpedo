@@ -1,51 +1,46 @@
 .rp_report.rp_claimed_report
   .row
-    .span6
-      %h4== Report Nº #{claimed.id}: #{claimed.complete_address}
-    .span2.rp_report_time
-      = claimed.strftime_updated_at
-      
+    .rp_report_status.status
+      Assumido
+      .rp_report_options
+        - if @current_user != nil && claimed.reporter.id == @current_user.id
+          =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_report_delete'), claimed, :confirm => "Are you sure?", :method => :delete
+  .row
+    .span8
+      %h4== #{claimed.complete_address}
   .row
     .span2.rp_before_photo
       =image_tag claimed.before_photo(:medium)
     .span5
       .row
         .rp_report_content.span5
-          "
-          = claimed.report            
-          "
+          = '"' + claimed.report + '"'  
+
       .row.rp_report_people
         Marcado por:
-        %a.user==#{claimed.reporter.username unless claimed.reporter.nil?}
+        %a.user==#{claimed.reporter.username + " - " + claimed.strftime_created_at unless claimed.reporter.nil?}
         %br
         Assumido por:
-        %a.user==#{claimed.claimer.username unless claimed.reporter.nil?}
+        %a.user==#{claimed.claimer.username + " - " + claimed.strftime_updated_at unless claimed.reporter.nil?}
       
-      - if claimed.claimer_id == @current_user.id
+      - if @current_user != nil && claimed.claimer_id == @current_user.id
         .row
           .span5
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}}       
-              .expand_button Já eliminei esse foco!
+              .expand_button Carregue um foto de foco eliminado
           
             .collapse{id:"resolve_prompt"+(claimed.id).to_s}
               .eliminate_prompt
                 = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', claimed.id
-                  Carregue imagem do foco eliminado:
                   = f.file_field :after_photo
                   .row
                     .span2
-                      = submit_tag "Eliminado!"
+                      = submit_tag "Eliminar!", :class=>'confirm_button'
                     .span2
-                      #report_buttons.eliminate_cancel        
+                      .eliminate_cancel        
                         %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(claimed.id).to_s}, :class=>'confirm_button'}               
                           Cancelar
-    .span1.rp_report_status.status
-      Assumido
-  .row
-    .rp_report_options
-      =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
-      =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
 
   
   

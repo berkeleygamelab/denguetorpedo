@@ -1,23 +1,26 @@
-
 .rp_report.rp_open_report
   .row
-    .span6
-      %h4== Report Nº #{open.id}: #{open.complete_address}
-    .span2.rp_report_time
-      = open.strftime_updated_at 
+    .rp_report_status.status
+      Em aberto
+      .rp_report_options
+        - if open.reporter.id == @current_user.id
+          =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_report_delete'), open, :confirm => "Are you sure?", :method => :delete 
+  .row
+    .span8
+      %h4== #{open.id}: #{open.complete_address}
   .row
     .span2.rp_before_photo 
       =image_tag open.before_photo(:medium)
     .span5
       .row
         .rp_report_content.span5
-          "
-          = open.report            
-          "
+          = '"' + open.report + '"'          
+        
       .row.rp_report_people
         Marcado por:
-        =link_to open.reporter.username, user_path(open.reporter), :class => "user"
+        =link_to open.reporter.username + " - " + open.strftime_created_at, user_path(open.reporter), :class => "user"
         %br
+      
         %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}}       
           .expand_button Assumir esse foco
         
@@ -27,14 +30,7 @@
             = link_to 'Eu assumo!', reports_path(:view=>'recent', :claimed_report=>open), :class=>'confirm_button'
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
               Cancelar
-          
-   
-    .span1.rp_report_status.status
-      Em aberto
-  .row
-    .rp_report_options
-      =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
-      =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+    
 
 
 

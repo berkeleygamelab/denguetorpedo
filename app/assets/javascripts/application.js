@@ -4,19 +4,22 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
+
 //= require top_up-min
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.bing.js
 //= require gmaps4rails/gmaps4rails.googlemaps.js
 //= require gmaps4rails/gmaps4rails.mapquest.js
 //= require gmaps4rails/gmaps4rails.openlayers.js
+//= require jquery
+//= require jquery_ujs
+//= require_self
 //= require_tree .
 
 //TopUp
 TopUp.host = "http://localhost:3000/";
 TopUp.images_path = "assets/top_up/";
 TopUp.players_path = "assets/players/";
-
 
 //gmaps
 function gmaps4rails_callback() {
