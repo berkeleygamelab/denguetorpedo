@@ -18,10 +18,10 @@
 
       .row.rp_report_people
         Marcado por:
-        %a.user==#{claimed.reporter.username + " - " + claimed.strftime_created_at unless claimed.reporter.nil?}
+        =link_to claimed.reporter.username + " - " + claimed.strftime_created_at, user_path(claimed.reporter), :class => "user"
         %br
         Assumido por:
-        %a.user==#{claimed.claimer.username + " - " + claimed.strftime_updated_at unless claimed.reporter.nil?}
+        =link_to claimed.claimer.username + " - " + claimed.strftime_updated_at, user_path(claimed.claimer), :class => "user"      
       
       - if @current_user != nil && claimed.claimer_id == @current_user.id
         .row

@@ -69,11 +69,11 @@ class Report < ActiveRecord::Base
   end
   
   def strftime_created_at
-    self.created_at.strftime("%y/%m/%d")
+    self.created_at.strftime("%Y/%m/%d")
   end
 
   def strftime_updated_at
-    self.updated_at.strftime("%y/%m/%d")
+    self.updated_at.strftime("%Y/%m/%d")
   end
     
   def self.unverified_reports
@@ -87,12 +87,10 @@ class Report < ActiveRecord::Base
   def self.within_bounds(bounds)
     
     reports_in_bounds = []
-    for report in Report.all
-      #puts loclat.to_s + "," + loclng.to_s
-      #puts swlat.to_s + "," + nelat.to_s + "," + swlng.to_s + "," + nelng.to_s
+    for report in Report.all(:order => "created_at asc")
       if self.inBounds(report.location, bounds)
         reports_in_bounds.append(report)
-        puts 'added'
+        puts report.inspect + ' added'
       end  
     end
     return reports_in_bounds

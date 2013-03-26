@@ -4,7 +4,6 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-
 //= require top_up-min
 //= require gmaps4rails/gmaps4rails.base
 //= require gmaps4rails/gmaps4rails.bing.js
@@ -13,13 +12,14 @@
 //= require gmaps4rails/gmaps4rails.openlayers.js
 //= require jquery
 //= require jquery_ujs
-//= require_self
 //= require_tree .
+
 
 //TopUp
 TopUp.host = "http://localhost:3000/";
 TopUp.images_path = "assets/top_up/";
 TopUp.players_path = "assets/players/";
+
 
 //gmaps
 function gmaps4rails_callback() {
@@ -37,17 +37,6 @@ function drawItems(theBounds) {
         Gmaps4Rails.replace_markers(newItemData);
     });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // TRANSITION
 !function( $ ) {
@@ -187,7 +176,6 @@ function drawItems(theBounds) {
 
   }
 
-
  /* COLLAPSIBLE PLUGIN DEFINITION
   * ============================== */
 
@@ -207,36 +195,10 @@ function drawItems(theBounds) {
 
   $.fn.collapse.Constructor = Collapse
   
-  // remove this function if you can make collapsible data api work again
-  $(document).ready(function() {
-  	$("#orange_pull_down").click(function( ){
-  		if($(".collapse").height() == 0)
-  		{
-  			$(".collapse").height("100%")
-  		}
-  		else
-  		{
-  			$(".collapse").height(0)
-  		}
-  	})
-  	$("#orange_pull_down").hover(function() {
-  		$("#orange_toggle_pic").hide()
-  		$("#orange_toggle_pic_active").show()
-  	})
-  	$("#orange_pull_down").mouseleave(function() {
-  		$("#orange_toggle_pic_active").hide()
-  		$("#orange_toggle_pic").show()
-  	})
-  	$("#orange_toggle").click(function () {
-  		$(".collapse").height(0)
-  	})
-  })
-
 
  /* COLLAPSIBLE DATA-API
   * ==================== */
 
-/*
   $(function () {
     $('body').on('click.collapse.data-api', '[data-toggle=collapse]', function ( e ) {
       var $this = $(this), href
@@ -247,5 +209,5 @@ function drawItems(theBounds) {
       $(target).collapse(option)
     })
   })
-*/
+
 }(window.jQuery);

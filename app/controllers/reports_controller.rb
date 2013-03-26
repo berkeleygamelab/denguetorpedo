@@ -13,6 +13,7 @@ class ReportsController < ApplicationController
         flash[:notice] = 'You cannot claim this report.'
       end
     end
+    
     @current_report = params[:report]
     
     @highlightReportItem = ""
@@ -38,7 +39,6 @@ class ReportsController < ApplicationController
     if params[:view].nil? 
       params[:view] = 'recent'
     end
-    
         
     if params[:view] == 'recent'
       @reports_feed_button_active = "active"
@@ -47,14 +47,10 @@ class ReportsController < ApplicationController
       @report = Report.new
     elsif params[:view] == 'claim'
       @reports_claimed_button_active = "active"
-    else #params[:view] == 'eliminate'
+    elsif params[:view] == 'eliminate'
       @reports_resolved_button_active = "active"
     end
-    
-    @random_sponsors = []
-    9.times do
-      @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')
-    end    
+       
     if (params[:sw_y] && params[:sw_x] && params[:ne_y] && params[:ne_x])
         bounds = [ params[:sw_x].to_f, params[:sw_y].to_f, params[:ne_x].to_f, params[:ne_y].to_f ]
         @reports_within_bounds = Report.within_bounds(bounds)
@@ -68,6 +64,7 @@ class ReportsController < ApplicationController
     for report in @reports_within_bounds
       locations_within_bounds.append(report.location)
     end
+    
     #Query--------------------------------------------------------------------------
     @reports = []
     for report in @reports_within_bounds
@@ -75,12 +72,10 @@ class ReportsController < ApplicationController
           @reports.append(report)
         end
       end 
-    @claim_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ?', 0],
-    :order => 'updated_at desc')
-    @eliminate_feed = Report.find(:all, :from => 'reports', 
-    :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], 
-    :order => 'updated_at desc')
+    @claim_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ?', 0], :order => 'updated_at asc')
+    @eliminate_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], :order => 'updated_at asc')
     #--------------------------------------------------------------------------------
+    
     newListHtml = ""
     if params[:view].nil? || params[:view] == 'recent'
       if params[:generateReports] == 'True' and not params[:locations].nil?
@@ -101,6 +96,10 @@ class ReportsController < ApplicationController
       newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, 
                  :locals => {})
     end
+    
+    
+    
+
     respond_to do |format|
       format.html{
             

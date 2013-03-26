@@ -21,10 +21,10 @@
           
       .row.rp_report_people.span5
         Marcado por:
-        %a.user==#{resolved.reporter.username + " - " + resolved.strftime_created_at unless resolved.reporter.nil?}
+        =link_to resolved.reporter.username + " - " + resolved.strftime_created_at, user_path(resolved.reporter), :class => "user"
         %br
         Eliminado por:
-        %a.user==#{resolved.eliminator.username + " - " + resolved.strftime_updated_at unless resolved.eliminator.nil?}
+        =link_to resolved.eliminator.username + " - " + resolved.strftime_created_at, user_path(resolved.eliminator), :class => "user"
     
 
 
