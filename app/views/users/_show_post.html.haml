@@ -1,28 +1,56 @@
-
-.user_activity_item
-  .row
-    .user_activity_thumb.span2
-      - if @user.profile_photo_file_name.nil?
-        = image_tag("default_images/profile_default_image.png")
-      - else 
-        = image_tag(@user.profile_photo.url(:large))
-
-    .span7
-      .row
-        .user_activity_headline.span5
-          %h2
-            = show_post.title
-      
-        .span3
-          .row
-            // removed
+- if full
+  .user_activity_item{:style => "width:100%;"}
+    .row
+      .user_activity_thumb.span2
+        - if @user.profile_photo_file_name.nil?
+          = image_tag("default_images/profile_default_image.png")
+        - else 
+          = image_tag(@user.profile_photo.url(:large))
+  
+      .span7
+        .row
+          .user_activity_headline.span5
+            %h2
+              = show_post.title
         
-      .row
-        .user_activity_content.span7
-          = show_post.content
-    .user_activity_options.span2
-      = show_post.updated_at
-      .user_activity_icons
-        =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
-        -if @isPrivatePage
-          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'
+          .span3
+            .row
+              // removed
+          
+        .row
+          .user_activity_content.span7
+            = show_post.content
+      .user_activity_options_full.span2
+        = show_post.updated_at
+        .user_activity_icons
+          =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+          -if @isPrivatePage
+            =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#' 
+- else
+  .user_activity_item
+    .row
+      .user_activity_thumb.span2
+        - if @user.profile_photo_file_name.nil?
+          = image_tag("default_images/profile_default_image.png")
+        - else 
+          = image_tag(@user.profile_photo.url(:large))
+  
+      .span7
+        .row
+          .user_activity_headline.span5
+            %h2
+              = show_post.title
+        
+          .span3
+            .row
+              // removed
+          
+        .row
+          .user_activity_content.span7
+            = show_post.content
+      .user_activity_options.span2
+        = show_post.updated_at
+        .user_activity_icons
+          =link_to (image_tag 'icons/reports icon/emptystar.png', :id=>'user_report_favorite'), '#'
+          -if @isPrivatePage
+            =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), '#'

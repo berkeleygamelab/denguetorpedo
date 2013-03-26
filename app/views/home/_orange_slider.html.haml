@@ -1,7 +1,8 @@
 - if not @current_user.nil?
   #orange_border 
     %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}, :id => 'orange_pull_down'}
-      &nbsp;&nbsp;&nbsp;+
+      = image_tag("pulldown/splash_pulldown_inactive.png", :id => "orange_toggle_pic")
+      = image_tag("pulldown/splash_pulldown_rollover.png", :style => "display:none;", :id => "orange_toggle_pic_active")
   #orange_toggle.collapse
     #orange_slider    
       .row
@@ -19,7 +20,7 @@
               
           .row
             #orange_pull_up.span1
-              %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}}
+              %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle", :id => "orange_untoggle"}}
                 Ocultar
 - else
   #orange_slider    

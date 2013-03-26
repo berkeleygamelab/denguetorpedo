@@ -17,6 +17,9 @@ class UsersController < ApplicationController
 
     @house = @user.house
     @neighborhood = @user.neighborhood
+    @prizes = @user.prizes
+    @prize_ids = @prizes.collect{|prize| prize.id}
+    @badges = @user.badges
     
     @isPrivatePage = (@user == @current_user)
     @highlightProfileItem = @isPrivatePage ? "nav_highlight" : ""

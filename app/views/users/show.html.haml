@@ -37,23 +37,39 @@
 
           .user_neighborhood_picture
             =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
-
             
+        .span5
+          .arrow_image
+            = image_tag 'users/reward_arrowleft.png'
+          .arrow_image_right
+            = image_tag 'users/reward_arrowright.png'
+          .user_profile_rewards
+            - @prizes.each do |prize|
+              .user_reward{:id => "prize#{prize.id}"}
+                - if prize.prize_photo_file_name.nil?
+                  = image_tag("default_images/prize_default_image.png")
+                - else
+                  = image_tag(prize.prize_photo.url(:large))
+                .user_reward_title
+                  = prize.prize_name
+
+            - @badges.each do |badge|
+              .user_reward
 
   .row
-    #user_recent_activity.span11.offset1
+    #user_recent_activity.span15.offset1
       .row
-        .span10
+        .span14
           - if @isPrivatePage
             %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
               %h3.expand_button Escrever uma nova mensagem
             .collapse#new_post
               = render :partial => 'posts/new', locals: { wall: @user }
       .row
-        %h3.span11
+        %h3.span15
           Atividade recente
       .row
-        .span8          
+        .span12          
           = link_to 'Todos', user_path(@user, :filter => 'all'), :class => @feed_active_all
           |
           = link_to 'Focos', user_path(@user, :filter => 'reports'), :class => @feed_active_reports
@@ -64,7 +80,7 @@
         #user_reports
           - for item in @combined_sorted
             - if item.is_a? Post
-              = render :partial => 'users/show_post', :object => item
+              = render :partial => 'users/show_post', :object => item, :locals => {:full => true}
             - elsif item.status == :reported
               = render :partial => "reports/open.html.haml", :object => item
             - elsif item.status == :claimed
@@ -88,5 +104,29 @@
             %li
               = image_tag 'translated/coupon3.png'
             %li
-            = image_tag 'translated/coupon4.png'
-          
+              = image_tag 'translated/coupon4.png'
+  
+:javascript
+  $(document).ready(function() {
+  $(".user_reward").hide();
+  rotations = #{@prize_ids.to_json};
+  position = 0;
+  $("#prize" + #{@prizes.first.id}).show();
+  $(".arrow_image").click(function(){
+  position -= 1;
+  if(position < 0)
+  position = rotations.length - 1;
+  $(".user_reward").hide();
+  $("#prize" + rotations[position]).show();
+  });
+  
+  $(".arrow_image_right").click(function(){
+    position += 1;
+    if(position >= rotations.length)
+    position = 0;
+    $(".user_reward").hide();
+    $("#prize" + rotations[position]).show();
+  });
+})          
+
+

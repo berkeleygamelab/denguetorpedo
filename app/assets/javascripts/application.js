@@ -206,11 +206,37 @@ function drawItems(theBounds) {
   }
 
   $.fn.collapse.Constructor = Collapse
+  
+  // remove this function if you can make collapsible data api work again
+  $(document).ready(function() {
+  	$("#orange_pull_down").click(function( ){
+  		if($(".collapse").height() == 0)
+  		{
+  			$(".collapse").height("100%")
+  		}
+  		else
+  		{
+  			$(".collapse").height(0)
+  		}
+  	})
+  	$("#orange_pull_down").hover(function() {
+  		$("#orange_toggle_pic").hide()
+  		$("#orange_toggle_pic_active").show()
+  	})
+  	$("#orange_pull_down").mouseleave(function() {
+  		$("#orange_toggle_pic_active").hide()
+  		$("#orange_toggle_pic").show()
+  	})
+  	$("#orange_toggle").click(function () {
+  		$(".collapse").height(0)
+  	})
+  })
 
 
  /* COLLAPSIBLE DATA-API
   * ==================== */
 
+/*
   $(function () {
     $('body').on('click.collapse.data-api', '[data-toggle=collapse]', function ( e ) {
       var $this = $(this), href
@@ -221,5 +247,5 @@ function drawItems(theBounds) {
       $(target).collapse(option)
     })
   })
-
+*/
 }(window.jQuery);

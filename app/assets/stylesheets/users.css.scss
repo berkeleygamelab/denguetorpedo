@@ -112,6 +112,29 @@ ul#user_right_panel {
   list-style-type: none;
   
   #user_top_pictures {
+    .arrow_image{
+      margin-top:75px;
+      float:left;
+    }
+    .user_reward_title {
+      font-size:18px;
+      text-align:center;
+    }
+    .arrow_image_right {
+      float:right;
+      margin-top:75px;
+    }
+    .user_profile_rewards
+     {
+      border: 2px solid $gray;
+      height:200px;
+      overflow-x:hidden;
+      overflow-y:hidden;
+    }
+    .user_reward {
+      height:200px;
+      float:left;
+    }
     .user_profile_map {
       border: 2px solid $gray;
       height: 150px;
@@ -230,6 +253,10 @@ ul#user_right_panel {
       .user_activity_options {
         margin-left: 0px;
         text-align: right;
+      }
+      .user_activity_options_full {
+        margin-left:300px;
+        text-align:right;
       }
       .user_activity_headline {
       }
