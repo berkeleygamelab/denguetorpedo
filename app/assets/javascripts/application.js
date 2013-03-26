@@ -206,7 +206,7 @@ function drawItems(theBounds) {
   
   // remove this function if you can make collapsible data api work again
   $(document).ready(function() {
-  	$("#orange_slider").click(function( ){
+  	$("#orange_pull_down").click(function( ){
   		if($(".collapse").height() == 0)
   		{
   			$(".collapse").height("100%")
@@ -216,8 +216,16 @@ function drawItems(theBounds) {
   			$(".collapse").height(0)
   		}
   	})
-  	$("#orange_slider").hover(function() {
-  		$(".container")
+  	$("#orange_pull_down").hover(function() {
+  		$("#orange_toggle_pic").hide()
+  		$("#orange_toggle_pic_active").show()
+  	})
+  	$("#orange_pull_down").mouseleave(function() {
+  		$("#orange_toggle_pic_active").hide()
+  		$("#orange_toggle_pic").show()
+  	})
+  	$("#orange_toggle").click(function () {
+  		$(".collapse").height(0)
   	})
   })
 
