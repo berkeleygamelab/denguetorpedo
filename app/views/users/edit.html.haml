@@ -1,32 +1,32 @@
 .user_form
-  %h1 Account Settings
+  %h1 Configurações da conta
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
     #user_setting_section{style: "margin-bottom: 25px"}
-      %h2 User Setting
-      = f.label :username
+      %h2 Configurações de usuário
+      = f.label "Nome de usuário"
       = f.text_field :username
       
-      = f.label :email
+      = f.label "Email"
       = f.text_field :email
     
-      = f.label "Profile Photo"
+      = f.label "Foto de perfil"
       = f.file_field :profile_photo
     
     #reset_password_section{style: "margin-bottom: 25px"}
-      %h2 Reset Password
-      = link_to "Click to Reset Password", edit_password_reset_path(@current_user), :id => "reset_password_link"
+      %h2 Esqueci minha senha
+      = link_to "Clique para recuperar senha", edit_password_reset_path(@current_user), :id => "reset_password_link"
     
     #house_setting_section{style: "margin-bottom: 25px"}    
-      %h2 House Setting
+      %h2 Configurações da casa
       = f.fields_for :location do |location_form|
-        = location_form.label "House Address"
+        = location_form.label "Endereço da casa"
         = location_form.text_field :address, value: @user.location.complete_address if @user.location
       
       = f.fields_for :house do |house_form|
-        = house_form.label "House Name"
+        = house_form.label "Nome da casa"
         = house_form.text_field :name
-        = house_form.label "House Photo"
+        = house_form.label "Foto da casa"
         = house_form.file_field :profile_photo
   
       = f.submit "Update"

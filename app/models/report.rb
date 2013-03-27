@@ -68,13 +68,19 @@ class Report < ActiveRecord::Base
     location.neighborhood
   end
   
-  def strftime_created_at
-    self.created_at.strftime("%Y/%m/%d")
-  end
-
-  def strftime_updated_at
-    self.updated_at.strftime("%Y/%m/%d")
-  end
+  def strftime_with(type)
+    if type == :created_at
+      self.created_at.strftime("%Y/%m/%d")
+    elsif type == :updated_at
+      self.updated_at.strftime("%Y/%m/%d")
+    elsif type == :claimed_at
+      self.claimed_at != nil ? self.claimed_at.strftime("%Y/%m/%d") : "" 
+    elsif type == :eliminated_at
+      self.eliminated_at != nil ? self.eliminated_at.strftime("%Y/%m/%d") : ""
+    else 
+      ""
+    end
+  end  
     
   def self.unverified_reports
     Report.where(:status_cd => Report.reported)
@@ -87,11 +93,11 @@ class Report < ActiveRecord::Base
   def self.within_bounds(bounds)
     
     reports_in_bounds = []
-    for report in Report.all(:order => "created_at asc")
+    for report in Report.all(:order => "created_at desc")
       if self.inBounds(report.location, bounds)
         reports_in_bounds.append(report)
         puts report.inspect + ' added'
-      end  
+      end 
     end
     return reports_in_bounds
   end

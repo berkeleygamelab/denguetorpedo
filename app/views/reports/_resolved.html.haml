@@ -17,14 +17,19 @@
     .span4
       .row
         .rp_report_content.span4
-          = '"' + resolved.report + '"'           
+          = resolved.report           
           
       .row.rp_report_people.span5
         Marcado por:
-        =link_to resolved.reporter.username + " - " + resolved.strftime_created_at, user_path(resolved.reporter), :class => "user"
+        =link_to resolved.reporter.username + " - " + resolved.strftime_with(:created_at), user_path(resolved.reporter), :class => "user"
+        %br
+        Assumido por:
+        =link_to resolved.claimer.username + " - " + resolved.strftime_with(:claimed_at), user_path(resolved.claimer), :class => "user"
         %br
         Eliminado por:
-        =link_to resolved.eliminator.username + " - " + resolved.strftime_created_at, user_path(resolved.eliminator), :class => "user"
+        =link_to resolved.eliminator.username + " - " + resolved.strftime_with(:eliminated_at), user_path(resolved.eliminator), :class => "user"
+        
+  .row{ :style => "height: 30px;"}
     
 
 

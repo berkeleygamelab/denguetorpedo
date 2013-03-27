@@ -2,126 +2,116 @@ class ReportsController < ApplicationController
 
   before_filter :require_login, :except => [:sms, :verification]
 
-  def index
-    if (params[:claimed_report] != nil)      
-      report = Report.find(params[:claimed_report])
-      if report.status_cd == 0
-        report.update_attribute(:status_cd, 1)
-        report.update_attribute(:claimer_id, @current_user.id)
-        flash[:notice] = 'You successfully claimed this report!'
-      else
-        flash[:notice] = 'You cannot claim this report.'
-      end
-    end
-    
-    @current_report = params[:report]
-    
-    @highlightReportItem = ""
-    if (@current_user != nil) 
-      @highlightReportItem = "nav_highlight"
-    end
-    
-             
+  def index    
+    @current_report = params[:report]    
+    @current_user != nil ? @highlightReportItem = "nav_highlight" : @highlightReportItem = ""
+    params[:view] = 'recent' if params[:view].nil?
+    params[:view] == 'recent' ? @reports_feed_button_active = "active" : @reports_feed_button_active = ""
+    params[:view] == 'open' ? @reports_open_button_active = "active" : @reports_open_button_active = ""
+    params[:view] == 'claim' ?  @reports_claimed_button_active = "active" : @reports_claimed_button_active = ""
+    params[:view] == 'eliminate' ? @reports_resolved_button_active = "active" : @reports_resolved_button_active = ""
+     
     @maps_json = {"map_options" => {"center_latitude" => @current_user.house.location.latitude, 
       "center_longitude" => @current_user.house.location.longitude,
       "detect_location" => false,
       "center_on_user" => false,
       "auto_adjust" => false,
       "auto_zoom" => true,
-      "zoom" => 15 }
+      "zoom" => 10 }
       }
     
-    @reports_feed_button_active = ""
-    @reports_open_button_active = ""
-    @reports_claimed_button_active = ""
-    @reports_resolved_button_active = ""             
-    
-    if params[:view].nil? 
-      params[:view] = 'recent'
-    end
-        
-    if params[:view] == 'recent'
-      @reports_feed_button_active = "active"
-    elsif params[:view] == 'open'
-      @reports_open_button_active = "active"
-      @report = Report.new
-    elsif params[:view] == 'claim'
-      @reports_claimed_button_active = "active"
-    elsif params[:view] == 'eliminate'
-      @reports_resolved_button_active = "active"
-    end
-       
+
     if (params[:sw_y] && params[:sw_x] && params[:ne_y] && params[:ne_x])
-        bounds = [ params[:sw_x].to_f, params[:sw_y].to_f, params[:ne_x].to_f, params[:ne_y].to_f ]
+        bounds = [ params[:sw_x].to_f, params[:sw_y].to_f, params[:ne_x].to_f, params[:ne_y].to_f]
         @reports_within_bounds = Report.within_bounds(bounds)
     else
-        @reports_within_bounds = Report.all
+        @reports_within_bounds = Report.order("created_at DESC")
     end
     
-    puts('bound check')
-    puts @reports_within_bounds
     locations_within_bounds = []
     for report in @reports_within_bounds
-      locations_within_bounds.append(report.location)
+      if params[:view] == 'recent'
+        locations_within_bounds.append(report.location)
+      elsif params[:view] == 'open' && report.status == :reported
+        locations_within_bounds.append(report.location)
+      elsif params[:view] == 'claim' && report.status == :claimed
+        locations_within_bounds.append(report.location)
+      elsif params[:view] == 'eliminate' && report.status == :eliminated
+        locations_within_bounds.append(report.location)
+      end
     end
-    
+        
     #Query--------------------------------------------------------------------------
     @reports = []
+    @open_feed = []
+    @claim_feed = []
+    @eliminate_feed = []
+    
+    
     for report in @reports_within_bounds
         if report.claimer_id == @current_user.id or report.reporter_id == @current_user.id or report.eliminator_id == @current_user.id
-          @reports.append(report)
+          if params[:view] == 'recent'
+            @reports.append(report)
+          elsif params[:view] == 'open' && report.status == :reported
+            @reports.append(report)
+            @open_feed.append(report)
+          elsif params[:view] == 'claim' && report.status == :claimed
+            @reports.append(report)
+            @claim_feed.append(report)
+          elsif params[:view] == 'eliminate' && report.status == :eliminated
+            @reports.append(report)
+            @eliminate_feed.append(report)
+          end
         end
       end 
-    @claim_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ?', 0], :order => 'updated_at asc')
-    @eliminate_feed = Report.find(:all, :from => 'reports', :conditions => ['reports.status_cd = ? and reports.claimer_id = ?', 1, @current_user.id], :order => 'updated_at asc')
+    
     #--------------------------------------------------------------------------------
     
     newListHtml = ""
-    if params[:view].nil? || params[:view] == 'recent'
-      if params[:generateReports] == 'True' and not params[:locations].nil?
+    
+    # Doesn't work with filter...still working on it 
+    
+    #if params[:view].nil? || params[:view] == 'recent'
+    #  if params[:generateReports] == 'True' and not params[:locations].nil?
         
-        locations = params[:locations].split(":")    
-        puts locations   
-        newReports = []
-        puts 'BEFORE'
-        puts @reports
-        for report in @reports
-          if locations.include? report.location.id.to_s
-            newReports.push(report)        
-          end    
-        end
-      end
-      puts newReports
-      @reports = newReports
-      newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, 
-                 :locals => {})
-    end
+    #    locations = params[:locations].split(":")    
+    #    puts locations   
+    #    newReports = []
+    #    puts 'BEFORE'
+    #    puts @reports
     
+    #    for report in @reports
+    #      if locations.include? report.location.id.to_s
+    #        newReports.push(report)        
+    #      end    
+    #    end
+    #  end
+    #  puts newReports
+    #  @reports = newReports
     
+    #  newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, :locals => {})
+    #end
     
 
-    respond_to do |format|
-      format.html{
-            
-      }
-      map_markers = locations_within_bounds.to_gmaps4rails do |location, marker|
-        marker.json({ :id => location.id})      
-      end           
+    respond_to do |format|  
+      format.html {}
+      
       format.json {
         if params[:generateReports] == 'True'
           render :json => newListHtml
-        else    
+        else 
+          map_markers = locations_within_bounds.to_gmaps4rails {|location, marker| marker.json({ :id => location.id})}    
           data = map_markers
           render :json => data
         end 
-        } 
-        #"html" => }}      
-      puts map_markers      
+      }            
     end    
   end
-
-
-
+  
+  
+  
+  
+  
   def new
     @report = Report.new
   end
@@ -152,6 +142,9 @@ class ReportsController < ApplicationController
     
       
       if @report.save
+        if @current_user != nil
+          @current_user.update_attribute(:points, @current_user.points + 100)
+        end
         flash[:notice] = 'Report posted succesfully.'
         redirect_to :action=>'index', view: 'recent'
       else
@@ -222,38 +215,64 @@ class ReportsController < ApplicationController
       @account.sms.messages.create(:from => '+15109854798', :to => params[:From], :body  => 'We could not understand your report because some hashtags were missing...')
     end
   end
-  
-  def eliminate
-    
-  end
-  
+
   def update
     if request.put?
       @report = Report.find(params[:report_id])
-      if params[:eliminate][:after_photo] != nil
+      
+      
+      if params[:claim] != nil
+        if @report.status == :reported
+          @report.update_attribute(:status_cd, 1)
+          @report.update_attribute(:claimer_id, @current_user.id)
+          @report.touch(:claimed_at)
+          
+          if @current_user != nil
+            @current_user.update_attribute(:points, @current_user.points + 50)
+          end
+          
+          flash[:notice] = 'You successfully claimed this report!'
+          redirect_to(:back)
+        else
+          flash[:notice] = 'You cannot claim this report.'
+          redirect_to(:back)
+        end        
+      elsif params[:eliminate][:after_photo] != nil
         begin
           @report.after_photo = params[:eliminate][:after_photo]
           @report.update_attribute(:status_cd, 2)
           @report.update_attribute(:eliminator_id, @current_user.id)
+          @report.touch(:eliminated_at)
         rescue
           flash[:notice] = 'An error has occurred!'
-          redirect_to :action=>'index', view: 'eliminate'
+          redirect_to(:back)
           return
         end
       
-        
         if @report.save
+          if @current_user != nil
+            @current_user.update_attribute(:points, @current_user.points + 250)
+          end
           flash[:notice] = 'You eliminated this report!'
-          redirect_to :action=>'index', view: 'recent'
+          redirect_to(:back)
         else
           #for some reason save causes error here, but in view it looks OK
           flash[:notice] = 'An error has occurred'
-          redirect_to :action=>"index", view: 'eliminate'
+          redirect_to(:back)
+        end
+      
+      elsif params[:eliminate][:before_photo] != nil && @current_user.id == @report.reporter.id
+        @report.before_photo = params[:eliminate][:before_photo]
+        if @report.save
+          flash[:notice] = "You updated before photo"
+          redirect_to(:back)
+        else
+          flash[:notice] = "An error has occured"
+          redirect_to(:back)
         end
       else
-        redirect_to :action=>"index", view: 'eliminate'
-      end
-          
+        redirect_to(:back)
+      end 
     end
   end
   

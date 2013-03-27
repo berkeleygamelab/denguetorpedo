@@ -1,11 +1,6 @@
 #user_reports
   - for report in @eliminate_feed
-    - if report.status == :reported
-      = render :partial => 'reports/open', :object => report
-    - if report.status == :claimed
-      = render :partial => 'reports/claimed', :object => report
-    - if report.status == :eliminated
-      = render :partial => 'reports/resolved', :object => report
+    = render :partial => 'reports/resolved', :object => report
   - if @eliminate_feed == []
     .row
       .span8
@@ -13,4 +8,4 @@
         %h2 
           You have not claimed a report yet! Claim one
           %u 
-            = link_to 'here', reports_path(:view => 'claim')
+            = link_to 'here', new_report_path

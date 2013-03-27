@@ -26,8 +26,13 @@ Dengue::Application.routes.draw do
   end
   
   resources :dashboard
-  resources :reports
-  put 'reports' => 'reports#update'
+  resources :reports do
+    collection do
+      put 'update'
+    end
+  #put 'reports' => 'reports#update'
+  end
+  
   resources :houses do
     resources :posts
   end

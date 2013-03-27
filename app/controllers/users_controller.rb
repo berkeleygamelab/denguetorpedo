@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     head :not_found and return if @user.nil?
 
     @user_posts = @user.posts
-    @combined_sorted = (@user.reports + @user.posts).sort{|a,b| b.created_at <=> a.created_at }
+    
 
     @house = @user.house
     @neighborhood = @user.neighborhood
@@ -26,10 +26,13 @@ class UsersController < ApplicationController
     
     if params[:filter] == 'reports'
       @feed_active_reports = 'active'
+      @combined_sorted = @user.reports
     elsif params[:filter] == 'posts'
+      @combined_sorted = @user.posts
       @feed_active_posts = 'active'
     else
       @feed_active_all = 'active'
+      @combined_sorted = (@user.reports + @user.posts).sort{|a,b| b.created_at <=> a.created_at }
     end
 
     @stats_hash = {}

@@ -39,6 +39,7 @@ class PostsController < ApplicationController
     post = Post.find params[:id]
     head :forbidden and return if post.user_id != @current_user.id
     post.destroy
+    redirect_to(:back)
   end
 
 

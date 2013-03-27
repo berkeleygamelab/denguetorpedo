@@ -31,7 +31,7 @@
                 Pontos
               .row
                 #house_points_bg
-                  14#{ @house.points.to_s}          
+                  #{ @house.points.to_s}          
           .row
             #house_badges
             .span5
@@ -65,7 +65,7 @@
       %h2.span6 Focos marcados perto da casa!
       #house_reports.span6
         .row
-          .span6
+          .span6{:style => "margin-left:-5px;"}
             = gmaps(markers: { data: @house_reports_gmap_json },  map_options: @map_options)
         .row
           .span6
@@ -108,7 +108,7 @@
         %h3 Vizinhos na #{@house.neighborhood.name}
         #houses_in_neighborhood
           - if @neighbors.count == 1 
-            %p You don't have any neighbors that are in the game
+            %p Não tem nenhum vizinho usando Dengue Torpedo. Recrute alguem!
           - else
             %ul
             - for neighbor in @neighbors

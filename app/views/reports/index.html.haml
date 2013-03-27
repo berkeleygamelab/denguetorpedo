@@ -9,28 +9,37 @@
         %b Nº 1
     .span2
       #point_box
-        %b 2390
+        %b= @current_user.points
         %br Pontos obtidos
-
+    .span2{:style => "width:130px;height:20px;padding:10px;border: 2px solid gray;border-radius:8px;padding-left:15px;weight:bold;font-size:16px;"}
+      =link_to "Marcar um foco", new_report_path
+            
   .row.span10.offset1
     #report_buttons
-      = link_to 'Focos recentes', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
-      = link_to 'Marcar um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
-      = link_to 'Assumir um foco', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
-      = link_to 'Eliminar um foco', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
+      = link_to 'Todos os focos', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
+      = link_to 'Assumir um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
+      = link_to 'Eliminar um foco', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
+      = link_to 'Focos eliminados', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
 
   .row
     .span9.offset1
       - if params[:view] == 'recent'
         = render :partial => 'reports/recent', :action=>'index'
       - elsif params[:view] == 'open'
-        = render :partial => 'reports/new'
+        = render :partial => 'reports/open_list'
       - elsif params[:view] == 'claim'
         = render :partial => 'reports/claim_list'
       - else params[:view] == 'eliminate'
         = render :partial => 'reports/eliminate_list'
     
+    
+    
+    
+    
     .span6
+      .row
+        .span6
+          %h2{style: 'margin-left: 10px;'} Arranje o mapa para ajustar a lista
       .row
         .span6
           .report_map_search

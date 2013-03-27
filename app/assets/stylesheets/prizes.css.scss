@@ -4,6 +4,14 @@
 
 @import "variables";
 
+.price_placeholder {
+  width: 250px;
+  height: 150px;
+  background: $layout-gray;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
 #user_info {
   background: #fff;
   span {

@@ -3,7 +3,7 @@
     .rp_report_status.status
       Em aberto
       .rp_report_options
-        - if open.reporter.id == @current_user.id
+        - if @current_user != nil && open.reporter.id == @current_user.id
           =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_report_delete'), open, :confirm => "Are you sure?", :method => :delete 
   .row
     .span8
@@ -14,22 +14,49 @@
     .span5
       .row
         .rp_report_content.span5
-          = '"' + open.report + '"'          
+          = open.report         
         
       .row.rp_report_people
         Marcado por:
-        =link_to open.reporter.username + " - " + open.strftime_created_at, user_path(open.reporter), :class => "user"
+        =link_to open.reporter.username + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
         %br
-      
+        - if @current_user != nil && open.reporter.id == @current_user.id
+          .row
+            .span5
+              %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(open.id).to_s}}       
+                .confirm_button Carregue um foto de foco marcado
+          
+              .collapse{id:"resolve_prompt"+(open.id).to_s}
+                .eliminate_prompt
+                  = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
+                    = hidden_field_tag 'report_id', open.id
+                    = f.file_field :before_photo
+                    .row
+                      .span2
+                        = submit_tag "Carregue!", :class=>'confirm_button'
+                      .span2
+                        .eliminate_cancel        
+                          %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
+                            Cancelar
+        
+        %br
         %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}}       
-          .expand_button Assumir esse foco
+          .confirm_button Assumir esse foco
         
         .collapse{id:"claim_prompt"+(open.id).to_s}
-          #report_buttons.confirm_prompt{style: 'margin-left: 0px;'}
-            Confirmar
-            = link_to 'Eu assumo!', reports_path(:view=>'recent', :claimed_report=>open), :class=>'confirm_button'
-            %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
-              Cancelar
+          .eliminate_prompt
+            = form_for(:claim, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
+              = hidden_field_tag 'report_id', open.id
+              = hidden_field_tag 'claim', 1
+              .row
+                .span2
+                  = submit_tag "Eu assumo!", :class => 'confirm_button'
+                .span2
+                  .eliminate_cancel
+                    %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
+                      Cancelar
+  .row{ :style => "height: 30px;"}
+
     
 
 

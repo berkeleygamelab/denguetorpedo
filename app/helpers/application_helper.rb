@@ -8,5 +8,6 @@ module ApplicationHelper
     
   def highlight_active_link(path)
     "current_link" if current_page?(path)
-  end    
+  end 
+ 
 end

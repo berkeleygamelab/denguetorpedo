@@ -1,6 +1,5 @@
 #content  
   #user_top_bar 
-
     #user_top_text
       .row
         .span3.offset4
@@ -10,7 +9,7 @@
           .row
             %h2 Pontos
           .user_points_bg
-            231
+            = @user.points
       .row
         .user_force_position.span2.offset4
           %h3.user_house
@@ -38,95 +37,96 @@
           .user_neighborhood_picture
             =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
             
-        .span5
-          .arrow_image
-            = image_tag 'users/reward_arrowleft.png'
-          .arrow_image_right
-            = image_tag 'users/reward_arrowright.png'
-          .user_profile_rewards
-            - @prizes.each do |prize|
-              .user_reward{:id => "prize#{prize.id}"}
-                - if prize.prize_photo_file_name.nil?
-                  = image_tag("default_images/prize_default_image.png")
-                - else
-                  = image_tag(prize.prize_photo.url(:large))
-                .user_reward_title
-                  = prize.prize_name
+        
 
-            - @badges.each do |badge|
-              .user_reward
+    .row
+      #user_recent_activity.span15.offset1
+        .row
+          .span14
+            - if @isPrivatePage
+              %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
+                %h3.expand_button Escrever uma nova mensagem
+              .collapse#new_post
+                = render :partial => 'posts/new', locals: { wall: @user }
+        .row
+          %h3.span15
+            Atividade recente
+        .row
+          .span12          
+            = link_to 'Todos', user_path(@user, :filter => 'all'), :class => @feed_active_all
+            |
+            = link_to 'Focos', user_path(@user, :filter => 'reports'), :class => @feed_active_reports
+            |
+            = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
+        .row
 
-  .row
-    #user_recent_activity.span15.offset1
-      .row
-        .span14
-          - if @isPrivatePage
-            %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#new_post"}}     
-              %h3.expand_button Escrever uma nova mensagem
-            .collapse#new_post
-              = render :partial => 'posts/new', locals: { wall: @user }
-      .row
-        %h3.span15
-          Atividade recente
-      .row
-        .span12          
-          = link_to 'Todos', user_path(@user, :filter => 'all'), :class => @feed_active_all
-          |
-          = link_to 'Focos', user_path(@user, :filter => 'reports'), :class => @feed_active_reports
-          |
-          = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
-      .row
+          #user_reports.span11
+            - for item in @combined_sorted
+              - if item.is_a? Post
+                = render :partial => 'users/show_post', :object => item, :locals => {:full => true}
+              - elsif item.status == :reported
+                = render :partial => "reports/open.html.haml", :object => item
+              - elsif item.status == :claimed
+                = render :partial => "reports/claimed.html.haml", :object => item
+              - elsif item.status == :eliminated
+                = render :partial => "reports/resolved.html.haml", :object => item
 
-        #user_reports
-          - for item in @combined_sorted
-            - if item.is_a? Post
-              = render :partial => 'users/show_post', :object => item, :locals => {:full => true}
-            - elsif item.status == :reported
-              = render :partial => "reports/open.html.haml", :object => item
-            - elsif item.status == :claimed
-              = render :partial => "reports/claimed.html.haml", :object => item
-            - elsif item.status == :eliminated
-              = render :partial => "reports/resolved.html.haml", :object => item
-
-              
-    .span4
-      .row
-        .span3.offset1
-          %br
-          %h2 Cupons disponiveis
-      .row
-        %ul#user_right_panel.span4
-          - 2.times do
-            %li
-              = image_tag 'translated/coupon1.png'
-            %li
-              = image_tag 'translated/coupon2.png'
-            %li
-              = image_tag 'translated/coupon3.png'
-            %li
-              = image_tag 'translated/coupon4.png'
-  
-:javascript
-  $(document).ready(function() {
-  $(".user_reward").hide();
-  rotations = #{@prize_ids.to_json};
-  position = 0;
-  $("#prize" + #{@prizes.first.id}).show();
-  $(".arrow_image").click(function(){
-  position -= 1;
-  if(position < 0)
-  position = rotations.length - 1;
-  $(".user_reward").hide();
-  $("#prize" + rotations[position]).show();
-  });
-  
-  $(".arrow_image_right").click(function(){
-    position += 1;
-    if(position >= rotations.length)
-    position = 0;
-    $(".user_reward").hide();
-    $("#prize" + rotations[position]).show();
-  });
-})          
+          .span4
+            .row{:style => "margin-top:-40px;"}
+              .span3
+                %br
+                %h1{:style => "font-size:26px;margin-left:48px;"} Premios
+            .row
+              .span3.offset1
+              %ul
+              - if @user.points >= 100
+                %li
+                  .badge_box
+                    .span2{:style => "margin-top:10px;margin-left:75px"}
+                      = image_tag("badges/orange_star.fw.png")
+                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                      De olho no mosquito
+                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                      Carimbo digital 100 pontos
+              - if @user.points >= 800
+                %li
+                  .badge_box
+                    .span2{:style => "margin-top:10px;margin-left:75px"}
+                      = image_tag("badges/blue_black_star.fw.png")
+                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                      Exterminador de mosquitos
+                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                      Adesivo pequeno + Carimbo digital 800 pontos
+              - if @user.points >= 1600
+                %li
+                  .badge_box
+                    .span2{:style => "margin-top:10px;margin-left:75px"}
+                      = image_tag("badges/guerreiro_dt.fw.png")
+                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                      Guerreiro DT
+                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                      Adesivo grande + Carimbo digital 1600 pontos
+              - if @user.points >= 3600
+                %li
+                  .badge_box
+                    .span2{:style => "margin-top:10px;margin-left:75px"}
+                      = image_tag("badges/blue_star.fw.png")
+                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                      Comunidade Saudavel
+                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                      Adesivo + Camiseta + Carimbo digital 3600 pontos
+              - if @user.points >= 7200
+                %li
+                  .badge_box
+                    .span2{:style => "margin-top:10px;margin-left:75px"}
+                      = image_tag("badges/golden_star.fw.png")
+                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                      Eu cuido da Comunidade!
+                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                      Honrarias + Camiseta + Adesivo + Carimbo digital 7200 pontos 
+              - 5.times do |number|
+                %li
+                  .price_placeholder
+                    %h2 Cupon #{number}
 
 

@@ -1,0 +1,12 @@
+#user_reports
+  - for report in @open_feed
+    = render :partial => 'reports/open', :object => report, :action=>'claim_report'
+ 
+  - if @open_feed == []
+    .row
+      .span8
+        %br
+        %h2 
+          There are no open reports available. You can open one
+          %u 
+            = link_to 'here', new_report_path
