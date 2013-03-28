@@ -25,7 +25,7 @@ class SmsGatewayController < ApplicationController
       if parsed_result.count == 0
         logger.info "incorrect report format"
         ReportReader.incomplete_information_notification(user.email).deliver
-        Notification.new(:phone => phone_number.to_s, :text => "I am sorry but the format must be: report@address", :board => board.to_s).save      
+        Notification.new(:phone => phone_number.to_s, :text => "O formato correto é:  descrição do foco@localização do foco.  Por favor, corrija a mensagem e mande o torpedo de novo.", :board => board.to_s).save      
       else
         logger.info "successfully extracted report and address"
         report = parsed_result[0][0]
@@ -41,19 +41,19 @@ class SmsGatewayController < ApplicationController
           user.update_attribute(:points, user.points + 100) 
           logger.info "new report sucessfully added"
           ReportReader.report_added_notification(user.email).deliver
-          Notification.new(:phone => phone_number.to_s, :text => "Congratulation! your report has been processed and added to our database", :board => board.to_s).save
+          Notification.new(:phone => phone_number.to_s, :text => "Parabéns! O seu relato foi recebido e adicionado ao Dengue Torpedo.", :board => board.to_s).save
         else
           logger.info "new report failed to add"
           # Send both user and developer an email notifcation that something broke in the system.
           ReportReader.report_failed_notification(user.email).deliver
           ReportReader.report_failed_notification("jayst088@gmail.com").deliver
           ReportReader.report_failed_notification("jholston@berkeley.edu").deliver
-          Notification.new(:phone => phone_number.to_s, :text => "Something went wrong in our system. We were unable to add your report", :board => board.to_s).save
+          Notification.new(:phone => phone_number.to_s, :text => "Nós não pudemos adicionar o seu relato porque houve um erro no nosso sistema. Já estamos trabalhando numa solução.", :board => board.to_s).save
         end
       end
     else
       logger.info "this user does not have an account, need to register"
-      Notification.new(:phone => phone_number.to_s, :text => "I am sorry but you do not have an account. Please register", :board => board.to_s).save
+      Notification.new(:phone => phone_number.to_s, :text => "Nós não pudemos adicionar o seu relato ao Dengue Torpedo porque você ainda não tem uma conta. Registre-se no site www.denguetorpedo.com.", :board => board.to_s).save
     end
 
     render :text => "OK"
