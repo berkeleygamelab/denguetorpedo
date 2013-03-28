@@ -28,29 +28,29 @@ class ReportsController < ApplicationController
     end
        
     reports_within_bounds_with_status_filered = []
-    
+        
     @reports_within_bounds.each do |report|
-      if params[:view] == 'recent'
+      
+      if params[:view] == 'recent' || params[:view].nil?
         reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'open' && report.status == :reported
         reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'claim' && report.status == :claimed
+        puts "what about here"
         reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'eliminate' && report.status == :eliminated
-        reports_within_bounds_with_status_filered.append(report)
-      else
         reports_within_bounds_with_status_filered.append(report)
       end
     end
     
     @reports_within_bounds = reports_within_bounds_with_status_filered
-    locations_within_bounds = @reports_within_bounds.collect {|report| report.location}
+    locations_within_bounds = @reports_within_bounds.collect {|report| report.location} 
         
     # Probably need to be refactored, for now it works without breaking previous implementation
     @reports = @reports_within_bounds
     @open_feed = @reports
-    @claim_feed = @reports_within_bounds
-    @eliminate_feed = @reports_within_bounds
+    @claim_feed = @reports
+    @eliminate_feed = @reports
   
     newListHtml = ""
     
@@ -74,10 +74,9 @@ class ReportsController < ApplicationController
             newReports.push(report)        
           end    
         end
-      
-      puts newReports
+    
       @reports = newReports
-
+      
       newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, :locals => {})
     end
     

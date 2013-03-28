@@ -1,11 +1,3 @@
 #user_reports
   - for report in @claim_feed
-    = render :partial => 'reports/claimed', :object => report
-  - if @claim_feed == []
-    .row
-      .span8
-        %br
-        %h2 
-          There are no open reports available. You can open one
-          %u 
-            = link_to 'here', reports_path(:view => 'open')
+    = render :partial => '/reports/claimed', :object => report

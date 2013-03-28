@@ -28,7 +28,7 @@ class Prize < ActiveRecord::Base
   has_many :group_buy_ins
   has_many :prize_codes
   has_many :badges
-  has_attached_file :prize_photo, :default_url => 'default_images/prize_default_image.jpg', :styles => { :small => "60x60>", :large => "150x150>" }, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
+  has_attached_file :prize_photo, :default_url => 'default_images/prize_default_image.jpg', :styles => { :small => "60x60>", :large => "150x150>" }#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   validates :cost, :presence => true
   validates :description, :presence => true
   validates :prize_name, :presence => true
