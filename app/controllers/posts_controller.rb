@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   def create
     @wall.posts.create params[:post] do |post|
       post.user_id = @current_user.id
+      @current_user.update_attribute(:points, @current_user.points + 25)
     end
     redirect_to :back
   end

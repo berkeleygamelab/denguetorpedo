@@ -18,4 +18,4 @@
       .row{:style => "float:right;margin-right:-48px"}
         = 'Ultima actualização: ' + show_post.strf_updated_at
         -if @isPrivatePage
-          =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_post_delete'), user_post_path(show_post.id), :confirm => "Are you sure?", :method => :delete
+          =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_post_delete'), user_post_path(@current_user.id, show_post.id), :confirm => "Are you sure?", :method => :delete
