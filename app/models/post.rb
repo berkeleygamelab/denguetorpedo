@@ -32,4 +32,12 @@ class Post < ActiveRecord::Base
   after_create do |post|
     Feed.create_from_object(post, post.user_id, :post)
   end
+  
+  def strf_updated_at
+    self.updated_at.strftime("%d/%m/%Y")
+  end
+  
+  def strf_created_at
+    self.created_at.strftime("%d/%m/%Y")
+  end
 end

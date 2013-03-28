@@ -24,4 +24,45 @@ class Neighborhood < ActiveRecord::Base
   def rank
     0
   end
+  
+  def total_reports
+    total_reports = []
+    self.members.each do |member|
+      member.reports.each do |report|
+        total_report = total_reports.append(report)
+      end
+    end
+    total_reports
+  end
+  
+  def open_reports
+    open_reports = []
+    self.members.each do |member|
+      member.reports.each do |report|
+        open_report = open_reports.append(report) if report.status == :reported
+      end
+    end
+    open_reports
+  end
+  
+  def claimed_reports
+    claimed_reports = []
+    self.members.each do |member|
+      member.reports.each do |report|
+        claimed_report = claimed_reports.append(report) if report.status == :claimed
+      end
+    end
+    claimed_reports
+  end
+  
+  def eliminated_reports
+    eliminated_reports = []
+    self.members.each do |member|
+      member.reports.each do |report|
+        eliminated_report = eliminated_reports.append(report) if report.status == :eliminated
+      end
+    end
+    eliminated_reports
+  end
+  
 end

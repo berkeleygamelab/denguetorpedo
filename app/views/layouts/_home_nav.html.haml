@@ -3,13 +3,13 @@
     %ul
       = link_to image_tag("home_images/logo.png", :id => "logo"), root_path
       %li.main_nav_button.span3.offset4{style: 'margin-left: 240px;'}
-        %h1= link_to "SAIBA MAIS", root_path
+        %h1= link_to "SAIBA MAIS", education_path
         %h3 Sobre a dengue
       %li.main_nav_button.span2.offset1{style: 'margin-left: -10px;'}
         %h1= link_to "JOGUE", root_path
         %h3 &nbsp;&nbsp;Como?
       %li.main_nav_button.span2.offset1{style: 'margin-left: -10px;'}
-        %h1= link_to "GANHE", root_path
+        %h1= link_to "GANHE", prizes_path
         %h3 O quê?
       %li.span3
         = render "layouts/login"

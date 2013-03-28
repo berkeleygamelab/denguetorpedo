@@ -3,22 +3,13 @@
     .span1
       .hr_before_photo
         = image_tag open_report.before_photo
-    .span2
-      .hr_status
-      %b Foco Nº #{open_report.id}
-      .row
-        .span2
-          %a Marcado:
-          %a.user==#{open_report.reporter.username unless open_report.reporter.nil?}
-      .row
-        .span2
-          %a Eliminado:Pendente
     .span3.hr_address
       #{open_report.complete_address}
-  .row
-    .span6
+    .span4
       .report_content
-        "
         = open_report.report
-        "
+      %a Marcado:
+      %a.user
+        = link_to open_report.reporter.username + " - " + open_report.strftime_with(:created_at), user_path(open_report.reporter)
+  
           

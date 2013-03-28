@@ -21,11 +21,13 @@ class HomeController < ApplicationController
     end
     
     @houses = @selected_neighborhood.houses.limit(10)
-    @total_reports_in_neighborhood = @selected_neighborhood.reports.count
-    @opened_reports_in_neighborhood = @selected_neighborhood.reports.where("status_cd = 0").count
-    @claimed_reports_in_neighborhood = @selected_neighborhood.reports.where("status_cd = 1").count
-    @eliminated_reports_in_neighborhood = @selected_neighborhood.reports.where("status_cd = 2").count
-
+    
+    @total_reports_in_neighborhood = @selected_neighborhood.total_reports.count
+    @opened_reports_in_neighborhood = @selected_neighborhood.open_reports.count
+    @claimed_reports_in_neighborhood = @selected_neighborhood.claimed_reports.count
+    @eliminated_reports_in_neighborhood = @selected_neighborhood.eliminated_reports.count
+    
+    
   end
 end
 

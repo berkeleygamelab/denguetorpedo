@@ -1,6 +1,9 @@
 // This file is used for AJAX and dynamically update the house list when a neighborhood is selected
 $('#houses').html('<%= escape_javascript(render("house_list")) %>');
-$('#visit_neighborhood_button').html('<%= escape_javascript(render "visit_neighborhood_button") %>');
+$('#home_houses').html('<%= escape_javascript("#{@selected_neighborhood.name} Casas") %>');
+$('#home_visit_neighborhood_button').html('<%= escape_javascript(render "visit_neighborhood_button") %>');
+$('#neighborhood_stats').html('<%= escape_javascript(render("neighborhood_stats")) %>')
+
 $('#status_of_neighborhood').html('<%= escape_javascript("Status of #{@selected_neighborhood.name}") %>');
 $('#houses_in_neighborhood').html('<%= escape_javascript("Houses in #{@selected_neighborhood.name}") %>');
 $('#rank_box').html('<%= escape_javascript("No. #{@selected_neighborhood.id}") %>');

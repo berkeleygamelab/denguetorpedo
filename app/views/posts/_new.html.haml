@@ -7,14 +7,12 @@
           = f.error_messages
       .row
         .span8
-          = f.text_field :title, :placeholder => "Escolha um titulo", :class => 'span8'
+          = f.text_field :title, :placeholder => "Escolha um titulo", :class => "house_post_title"
       .row
         .span8
-          = f.text_area :content, :placeholder => "Qual é a sua ideia?", :class => 'span8'
+          = f.text_area :content, :placeholder => "Qual é a sua ideia?", :class => "house_post_text_field"
       .row
         .row
-          .span2.offset6
+          .span2.offset7
             = f.submit "Publicar", :id => 'post_submit'
-        .row
-          .span8
-            %hr#post_spacer  
+

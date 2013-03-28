@@ -162,6 +162,7 @@ ul#house_list {
   width: 950px;
   margin-top: 5px;
   margin-bottom: 20px;
+  
   ul {
     padding: 9px;
     background: $light-gray;
@@ -176,6 +177,18 @@ ul#house_list {
       height: 117px;
     }
   }
+}
+
+#partners {
+  width: 890px;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:20px;
+  margin-top:10px;
+  height:50px;
+  background:$light-gray;
+  padding: 10px;
+  padding-left: 50px;
 }
 
 

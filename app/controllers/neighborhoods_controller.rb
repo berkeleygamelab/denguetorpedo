@@ -5,10 +5,10 @@ class NeighborhoodsController < ApplicationController
     
     
     @houses = @neighborhood.houses.limit(9)
-    @total_reports_in_neighborhood = @neighborhood.reports.count
-    @opened_reports_in_neighborhood = @neighborhood.reports.where("status_cd = 0").count
-    @claimed_reports_in_neighborhood = @neighborhood.reports.where("status_cd = 1").count
-    @eliminated_reports_in_neighborhood = @neighborhood.reports.where("status_cd = 2").count
+    @total_reports_in_neighborhood = @neighborhood.total_reports.count
+    @opened_reports_in_neighborhood = @neighborhood.open_reports.count
+    @claimed_reports_in_neighborhood = @neighborhood.claimed_reports.count
+    @eliminated_reports_in_neighborhood = @neighborhood.eliminated_reports.count
     @number_of_houses = @neighborhood.houses.count
     @number_of_participants = @neighborhood.members.count
     

@@ -4,6 +4,7 @@ Dengue::Application.routes.draw do
   match "/faq" => 'home#faq'
   match '/contact' => 'home#contact'
   match 'about' => 'home#about'
+  match '/education' => 'home#education'
 
   match "/user/:id/prize_codes" => 'prize_codes#index'
   match "/user/:id/prize_codes/:prize_id" => 'prize_codes#show'

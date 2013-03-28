@@ -19,78 +19,67 @@ class ReportsController < ApplicationController
       "auto_zoom" => true,
       "zoom" => 10 }
       }
-    
-
+  
     if (params[:sw_y] && params[:sw_x] && params[:ne_y] && params[:ne_x])
         bounds = [ params[:sw_x].to_f, params[:sw_y].to_f, params[:ne_x].to_f, params[:ne_y].to_f]
         @reports_within_bounds = Report.within_bounds(bounds)
-    else
+    else    
         @reports_within_bounds = Report.order("created_at DESC")
     end
+       
+    reports_within_bounds_with_status_filered = []
     
-    locations_within_bounds = []
-    for report in @reports_within_bounds
+    @reports_within_bounds.each do |report|
       if params[:view] == 'recent'
-        locations_within_bounds.append(report.location)
+        reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'open' && report.status == :reported
-        locations_within_bounds.append(report.location)
+        reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'claim' && report.status == :claimed
-        locations_within_bounds.append(report.location)
+        reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'eliminate' && report.status == :eliminated
-        locations_within_bounds.append(report.location)
+        reports_within_bounds_with_status_filered.append(report)
+      else
+        reports_within_bounds_with_status_filered.append(report)
       end
     end
+    
+    @reports_within_bounds = reports_within_bounds_with_status_filered
+    locations_within_bounds = @reports_within_bounds.collect {|report| report.location}
         
-    #Query--------------------------------------------------------------------------
-    @reports = []
-    @open_feed = []
-    @claim_feed = []
-    @eliminate_feed = []
-    
-    
-    for report in @reports_within_bounds
-        if report.claimer_id == @current_user.id or report.reporter_id == @current_user.id or report.eliminator_id == @current_user.id
-          if params[:view] == 'recent'
-            @reports.append(report)
-          elsif params[:view] == 'open' && report.status == :reported
-            @reports.append(report)
-            @open_feed.append(report)
-          elsif params[:view] == 'claim' && report.status == :claimed
-            @reports.append(report)
-            @claim_feed.append(report)
-          elsif params[:view] == 'eliminate' && report.status == :eliminated
-            @reports.append(report)
-            @eliminate_feed.append(report)
-          end
-        end
-      end 
-    
-    #--------------------------------------------------------------------------------
-    
+    # Probably need to be refactored, for now it works without breaking previous implementation
+    @reports = @reports_within_bounds
+    @open_feed = @reports
+    @claim_feed = @reports_within_bounds
+    @eliminate_feed = @reports_within_bounds
+  
     newListHtml = ""
     
-    # Doesn't work with filter...still working on it 
+    if params[:generateReports] == 'True' and not params[:locations].nil?
+        locations = params[:locations].split(":")    
+        puts locations   
+        newReports = []
+        puts 'BEFORE'
+        puts @reports
     
-    #if params[:view].nil? || params[:view] == 'recent'
-    #  if params[:generateReports] == 'True' and not params[:locations].nil?
-        
-    #    locations = params[:locations].split(":")    
-    #    puts locations   
-    #    newReports = []
-    #    puts 'BEFORE'
-    #    puts @reports
-    
-    #    for report in @reports
-    #      if locations.include? report.location.id.to_s
-    #        newReports.push(report)        
-    #      end    
-    #    end
-    #  end
-    #  puts newReports
-    #  @reports = newReports
-    
-    #  newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, :locals => {})
-    #end
+        if params[:view] == 'open'
+          @reports = @open_feed
+        elsif params[:view] == 'claim'
+          @reports = @claim_feed
+        elsif params[:view] == 'eliminate'
+          @reports = @eliminate_feed
+        end
+          
+        for report in @reports
+          if locations.include? report.location.id.to_s
+            newReports.push(report)        
+          end    
+        end
+      
+      puts newReports
+      @reports = newReports
+
+      newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, :locals => {})
+    end
     
 
     respond_to do |format|  

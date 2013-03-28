@@ -70,13 +70,13 @@ class Report < ActiveRecord::Base
   
   def strftime_with(type)
     if type == :created_at
-      self.created_at.strftime("%Y/%m/%d")
+      self.created_at.strftime("%d/%m/%Y")
     elsif type == :updated_at
-      self.updated_at.strftime("%Y/%m/%d")
+      self.updated_at.strftime("%d/%m/%Y")
     elsif type == :claimed_at
-      self.claimed_at != nil ? self.claimed_at.strftime("%Y/%m/%d") : "" 
+      self.claimed_at != nil ? self.claimed_at.strftime("%d/%m/%Y") : "" 
     elsif type == :eliminated_at
-      self.eliminated_at != nil ? self.eliminated_at.strftime("%Y/%m/%d") : ""
+      self.eliminated_at != nil ? self.eliminated_at.strftime("%d/%m/%Y") : ""
     else 
       ""
     end

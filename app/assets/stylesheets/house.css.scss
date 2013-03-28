@@ -67,7 +67,7 @@
 #house_reports {
   background: #e2e5cf;
   min-height: 860px;
-  padding-left: 10px;
+  padding: 10px;
 }
 
 #reports_map {
@@ -81,6 +81,7 @@
   overflow-x: hidden;
   height: 630px;
   width: 390px;
+  padding-left: 10px;
 }
 
 .house_report_button {
@@ -135,12 +136,13 @@
 
   color: #000000;
   font-size: 12px;
-  padding: 10px 5px;
+  padding: 5px;
   
   .hr_address {
-    width: 160px;
+    width: 280px;
     background: #dfdfdf;
     padding: 5px 3px;
+    font-size: 12px;
   }
   .hr_before_photo {
     width: 60px;
@@ -152,17 +154,13 @@
   }
 
   .report_content {
-    width: 360px;
-    margin-top: 10px;
-    font-size: 14px;
-  }
-  .report_content_res {
+    width: auto;
     margin-top: 5px;
-    width: 300px;
+    padding-right: 5px;
     font-size: 12px;
-    font-style: italic;
-    text-shadow: 0 1px 1px #828282;
+    font-weight: bold;
   }
+
   .bottom_section {
     padding: 5px;
     clear: both;
@@ -182,15 +180,15 @@
 }
 
 .hr_open {
-  border: 2px solid $orange;
+  border: 3px solid $orange;
   border-radius: 2px;
 }
 .hr_claimed {
-  border: 2px solid $blue;
+  border: 3px solid $blue;
   border-radius: 2px;
 }
 .hr_resolved {
-  border: 2px solid $light-gray;
+  border: 3px solid $light-gray;
   border-radius: 2px;
 }
 

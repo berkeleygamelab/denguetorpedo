@@ -1,41 +1,45 @@
 <script type="text/javascript">
 
 function replaceMarkers(bounds) {
-	 var mapreq = '/reports.json/?sw_y=' + bounds.getSouthWest().lng() + 
+  var currentURL = window.location.href
+  var searchString = window.location.search.substring(1);
+  var params = searchString.split('&');
+  
+  var viewParam = params[0].split("=")
+  
+  console.log(params)
+  var mapreq = '/reports.json/?view=' + viewParam[1] + '&sw_y=' + bounds.getSouthWest().lng() + 
                            '&sw_x=' + bounds.getSouthWest().lat() + 
                            '&ne_y=' + bounds.getNorthEast().lng() +
                            '&ne_x=' + bounds.getNorthEast().lat();
-    $.get(mapreq, function(newItemData) {
-    	var a= "";
-    	var data = null;
-    	if(newItemData.length > 0)
-    	{
+  
+  $.get(mapreq, function(newItemData) {
+    var a= "";
+    var data = null;
+  
 			Gmaps.map.replaceMarkers(newItemData);
-			var htmlreq = '/reports.json/?generateReports=True&locations=';
-			for(marker in newItemData)
-			{
+			var htmlreq = '/reports.json/?view=' + viewParam[1] + '&generateReports=True&locations=';
+			
+			for(marker in newItemData) {
 				//console.log(newItemData[marker]['id']);
 				htmlreq += newItemData[marker]['id'] + ":";
 			}
-			//$.ajaxSetup({ cache: false })
+
 			$.ajax ({
-				url: htmlreq,
+			  url: htmlreq,
 				data: data,
-        		dataType: 'json',
-        		error: function(data) {
-        			console.log("failure");
-        			//console.log(data.responseText)
-        			$("#user_reports").replaceWith(data.responseText)
-        		},
-        		success: function(data) {
-        			console.log("test");
-        			$("#user_reports").replaceWith(data.responseText)
-        		}
-	            
-			});
-			
-		}
-    });
+        dataType: 'json',
+        error: function(data) { 
+          console.log("failure");
+          $("#user_reports").replaceWith(data.responseText)
+        },
+        success: function(data) {
+          console.log("test");
+          $("#user_reports").replaceWith(data.responseText)
+        }
+      });
+
+  });
 };
 
 Gmaps.map.callback = function() {

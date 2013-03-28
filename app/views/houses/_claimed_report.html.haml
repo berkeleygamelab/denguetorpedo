@@ -1,25 +1,17 @@
-.hr_report.hr_claimed.hr_open
+.hr_report.hr_claimed
   .row
     .span1
       .hr_before_photo
         = image_tag claimed_report.before_photo
-    .span2
-      .hr_status
-      %b Foco Nº #{claimed_report.id}
-      .row
-        .span2
-          %a Marcado:
-          %a.user==#{claimed_report.reporter.username unless claimed_report.reporter.nil?}
-      .row
-        .span2
-          %a Eliminado:
-          %a.user==#{claimed_report.claimer.username unless claimed_report.reporter.nil?}
-
     .span3.hr_address
       #{claimed_report.complete_address}
-  .row
-    .span6
+    .span4
       .report_content
-        "
         = claimed_report.report
-        "
+      %a Marcado:
+      %a.user 
+        = link_to claimed_report.reporter.username + " - " + claimed_report.strftime_with(:created_at), user_path(claimed_report.reporter)
+      %br
+      %a Assumido:
+      %a.user
+        = link_to claimed_report.claimer.username + " - " + claimed_report.strftime_with(:claimed_at), user_path(claimed_report.claimer)
