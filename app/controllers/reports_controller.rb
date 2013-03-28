@@ -2,10 +2,10 @@ class ReportsController < ApplicationController
 
   before_filter :require_login, :except => [:sms, :verification]
 
-  def index    
+  def index 
     @current_report = params[:report]    
     @current_user != nil ? @highlightReportItem = "nav_highlight" : @highlightReportItem = ""
-    params[:view] = 'recent' if params[:view].nil?
+    params[:view] = 'recent' if params[:view].nil? || params[:view] == "undefined"
     params[:view] == 'recent' ? @reports_feed_button_active = "active" : @reports_feed_button_active = ""
     params[:view] == 'open' ? @reports_open_button_active = "active" : @reports_open_button_active = ""
     params[:view] == 'claim' ?  @reports_claimed_button_active = "active" : @reports_claimed_button_active = ""
@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
         
     @reports_within_bounds.each do |report|
       
-      if params[:view] == 'recent' || params[:view].nil?
+      if params[:view] == 'recent'
         reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'open' && report.status == :reported
         reports_within_bounds_with_status_filered.append(report)
