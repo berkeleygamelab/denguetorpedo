@@ -49,7 +49,7 @@ class House < ActiveRecord::Base
     _reports
   end
 
-  def self.find_or_create(name, address, profile_photo=nil)
+  def self.find_or_create(name, address, neighborhood, profile_photo=nil)
     return nil if name.nil? || name.blank?
 
     # try to find the house, and return if it exists
@@ -58,7 +58,7 @@ class House < ActiveRecord::Base
     if house
       if profile_photo
         house.profile_photo = profile_photo
-      end
+      end      
       house.save
       return house
     end
@@ -66,12 +66,12 @@ class House < ActiveRecord::Base
     return nil if address.nil? || address.blank?
 
     # create the location
-    location = Location.find_or_create(address)
+    location = Location.find_or_create(address, neighborhood)
     if location.nil?
       return nil
     end
-    house = House.find_by_location_id(location.id)
     
+    house = House.find_by_location_id(location.id)
     if house
       if profile_photo
         house.profile_photo = profile_photo

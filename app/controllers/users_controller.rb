@@ -67,6 +67,7 @@ class UsersController < ApplicationController
   def update
     house_name = params[:user][:house_attributes][:name]
     address = params[:user][:location][:address]
+    neighborhood = params[:user][:location][:neighborhood]
     profile_photo = params[:user][:house_attributes][:profile_photo]
 
     @current_user.username = params[:user][:username]
@@ -83,7 +84,7 @@ class UsersController < ApplicationController
 
     @current_user.save
 
-    @current_user.house = House.find_or_create(house_name, address, profile_photo)
+    @current_user.house = House.find_or_create(house_name, address, neighborhood, profile_photo)
  
     @user = @current_user
     if @current_user.save

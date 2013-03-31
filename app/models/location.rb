@@ -49,18 +49,14 @@ class Location < ActiveRecord::Base
     self.nation = components["country"]
     self.state = components["administrative_area_level_1"]
     self.city = components["locality"] || components["administrative_level_3"] || components["administrative_level_2"]
-    self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
+    #self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
     self.address = "#{components['street_number']} #{components['route']}"
     self.formatted_address = data["formatted_address"]
   end
 
-
   def self.within_bounds(bounds)
       self.where(:location.within => {"$box" => bounds })
   end
-
-
-
 
   def points
     house.nil? ? 0 : house.points
@@ -74,7 +70,7 @@ class Location < ActiveRecord::Base
     self.formatted_address || self.address
   end
 
-  def self.find_or_create(address)
+  def self.find_or_create(address, neighborhood)
     # construct the Location object using the argument
     if address.class == String
       location = Location.new
@@ -105,6 +101,7 @@ class Location < ActiveRecord::Base
       break
     end
     return nil unless geocoding_success and geocode.size > 0
+    
     lat = geocode[0][:lat]
     lon = geocode[0][:lng]
     
@@ -114,6 +111,8 @@ class Location < ActiveRecord::Base
       # no objects match the same location, so save the location object
       location.latitude = lat
       location.longitude = lon
+      location.neighborhood = Neighborhood.find_or_create_by_name(neighborhood)
+      
       3.times do
         return location if location.save
         sleep 3
