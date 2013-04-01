@@ -70,7 +70,7 @@ class Location < ActiveRecord::Base
     self.formatted_address || self.address
   end
 
-  def self.find_or_create(address, neighborhood)
+  def self.find_or_create(address, neighborhood=nil)
     # construct the Location object using the argument
     if address.class == String
       location = Location.new
@@ -111,7 +111,7 @@ class Location < ActiveRecord::Base
       # no objects match the same location, so save the location object
       location.latitude = lat
       location.longitude = lon
-      location.neighborhood = Neighborhood.find_or_create_by_name(neighborhood)
+      location.neighborhood = Neighborhood.find_or_create_by_name(neighborhood || self.neighborhood_name || self.city)
       
       3.times do
         return location if location.save
