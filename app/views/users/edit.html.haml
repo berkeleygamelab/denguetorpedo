@@ -23,13 +23,13 @@
     #house_setting_section{style: "margin-bottom: 25px"}    
       %h2 Configurações da casa
       = f.fields_for :location do |location_form|
-        = location_form.label "Endereço da casa"
+        = location_form.label "* Endereço da casa"
         = location_form.text_field :address, value: @user.location.complete_address if @user.location
-        = location_form.label "Bairro"
+        = location_form.label "* Bairro"
         = location_form.text_field :neighborhood, value: @user.location.neighborhood_name if @user.location
       
       = f.fields_for :house do |house_form|
-        = house_form.label "Nome da casa"
+        = house_form.label "* Nome da casa"
         = house_form.text_field :name
         = house_form.label "Foto da casa"
         = house_form.file_field :profile_photo
