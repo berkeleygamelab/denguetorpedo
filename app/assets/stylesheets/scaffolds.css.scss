@@ -30,11 +30,10 @@ div {
   color: green; }
 
 .field_with_errors {
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 2px;
+  padding-right: 7px;
   background-color: red;
-  border-radius: 10px;
+  border-radius: 5px;
   display: table; }
 
 #error_explanation {

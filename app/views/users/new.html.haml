@@ -1,11 +1,15 @@
 .user_form
-  %h1 Registration
+  %h1 Inscreva-se
   = form_for(@user) do |f|
     = f.error_messages
-
-    = f.text_field :phone_number, :placeholder => "Phone Number"
-    = f.text_field :email, :placeholder => "Email Address"
-    = f.text_field :username, :placeholder => "Username"
-    = f.password_field :password, :placeholder => "Password"
-    = f.password_field :password_confirmation, :placeholder => "Confirm Password"
-    = f.submit "Finish"
+    = f.label "Celular"
+    = f.text_field :phone_number, :placeholder => "* Celular 5521xxxxxxxx"
+    = f.label "E-mail"
+    = f.text_field :email, :placeholder => "* E-mail"
+    = f.label "Nome de usuário"
+    = f.text_field :username, :placeholder => "* Nome de usuário"
+    = f.label "Senha"
+    = f.password_field :password, :placeholder => "* Senha"
+    = f.label "Confirmar senha"
+    = f.password_field :password_confirmation, :placeholder => "* Confirmar senha"
+    = f.submit "Fazer inscrição"

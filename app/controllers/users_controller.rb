@@ -52,7 +52,6 @@ class UsersController < ApplicationController
       cookies[:auth_token] = @user.auth_token
       redirect_to edit_user_path(@user)
     else
-      flash[:user] = @user
       render new_user_path(@user)
     end
   end
