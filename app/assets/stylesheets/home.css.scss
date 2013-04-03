@@ -117,13 +117,14 @@ ul#neighborhood_list {
 }
 
 #status_of_neighborhood {
-    margin-top:20px;
+  margin-top:20px;
   margin-bottom: -10px;
 }
 
 .home {
   #houses {
-    height: 300px;
+    height: 300px;  
+    overflow:scroll;
   }
 }
 

@@ -49,7 +49,6 @@ class Location < ActiveRecord::Base
     self.nation = components["country"]
     self.state = components["administrative_area_level_1"]
     self.city = components["locality"] || components["administrative_level_3"] || components["administrative_level_2"]
-    self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
     self.address = "#{components['street_number']} #{components['route']}"
     self.formatted_address = data["formatted_address"]
   end
@@ -100,25 +99,43 @@ class Location < ActiveRecord::Base
       geocoding_success = true
       break
     end
+    
     return nil unless geocoding_success and geocode.size > 0
+    
+    puts geocode
     
     lat = geocode[0][:lat]
     lon = geocode[0][:lng]
     
     # find if any existing objects match the lat and lon
     existing_location = Location.find_by_latitude_and_longitude(lat, lon)
+    
     if existing_location.nil?
       # no objects match the same location, so save the location object
       location.latitude = lat
       location.longitude = lon
-      if neighborhood
-        location.neighborhood = Neighborhood.find_or_create_by_name(neighborhood)
-      end
-      
+            
       3.times do
+        if neighborhood
+          puts "user input: " + neighborhood
+          location.neighborhood = Neighborhood.find_or_create_by_name(neighborhood)
+        else
+          components = {}
+          
+          for c in geocode["address_components"]
+            for t in c["types"]
+              components[t] = c["long_name"]
+            end
+          end
+          
+          self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
+          puts "call back assignes neigborhood to be: " + self.neighborhood_name
+        end
+        
         return location if location.save
         sleep 3
       end
+      
       return nil
     else
       # return the existing object that matches the same lat and lon
