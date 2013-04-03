@@ -116,20 +116,17 @@ class Location < ActiveRecord::Base
       location.longitude = lon
             
       3.times do
-        if neighborhood
-          puts "user input: " + neighborhood
+        if !neighborhood.nil?
           location.neighborhood = Neighborhood.find_or_create_by_name(neighborhood)
         else
           components = {}
-          
-          for c in geocode["address_components"]
+          for c in geocode[0][:full_data]["address_components"]
             for t in c["types"]
               components[t] = c["long_name"]
             end
           end
           
-          self.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
-          puts "call back assignes neigborhood to be: " + self.neighborhood_name
+          location.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
         end
         
         return location if location.save
