@@ -4,7 +4,7 @@ class NeighborhoodsController < ApplicationController
     head :not_found and return if @neighborhood.nil?
     
     
-    @houses = @neighborhood.houses.limit(9)
+    @houses = @neighborhood.houses
     @total_reports_in_neighborhood = @neighborhood.total_reports.count
     @opened_reports_in_neighborhood = @neighborhood.open_reports.count
     @claimed_reports_in_neighborhood = @neighborhood.claimed_reports.count
@@ -18,7 +18,7 @@ class NeighborhoodsController < ApplicationController
     end
     
     
-    @participants = @neighborhood.members.limit(12)
+    @participants = @neighborhood.members
     @participants_view_active = ''
     @houses_view_active = ''
     if params[:view] == 'participants'
