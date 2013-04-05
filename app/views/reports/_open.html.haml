@@ -20,7 +20,7 @@
         Marcado por:
         =link_to open.reporter.username + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
         %br
-        - if @current_user != nil && open.reporter.id == @current_user.id
+        - if @current_user != nil
           .row
             .span5
               %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(open.id).to_s}}       

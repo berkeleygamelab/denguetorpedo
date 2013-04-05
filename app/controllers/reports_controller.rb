@@ -211,20 +211,25 @@ class ReportsController < ApplicationController
       
       if params[:claim] != nil
         if @report.status == :reported
-          @report.update_attribute(:status_cd, 1)
-          @report.update_attribute(:claimer_id, @current_user.id)
-          @report.touch(:claimed_at)
+          if @report.before_photo.exists?
+            @report.update_attribute(:status_cd, 1)
+            @report.update_attribute(:claimer_id, @current_user.id)
+            @report.touch(:claimed_at)
           
-          if @current_user != nil
-            @current_user.update_attribute(:points, @current_user.points + 50)
+            if @current_user != nil
+              @current_user.update_attribute(:points, @current_user.points + 50)
+            end
+          
+            flash[:notice] = 'You successfully claimed this report!'
+            redirect_to(:back)
+          else
+            flash[:notice] = 'You cannot claim this report without uploading a photo.'
+            redirect_to(:back)
           end
-          
-          flash[:notice] = 'You successfully claimed this report!'
-          redirect_to(:back)
         else
           flash[:notice] = 'You cannot claim this report.'
           redirect_to(:back)
-        end        
+        end              
       elsif params[:eliminate][:after_photo] != nil
         begin
           @report.after_photo = params[:eliminate][:after_photo]
@@ -249,7 +254,7 @@ class ReportsController < ApplicationController
           redirect_to(:back)
         end
       
-      elsif params[:eliminate][:before_photo] != nil && @current_user.id == @report.reporter.id
+      elsif params[:eliminate][:before_photo] != nil
         @report.before_photo = params[:eliminate][:before_photo]
         if @report.save
           flash[:notice] = "You updated before photo"
