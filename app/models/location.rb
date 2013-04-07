@@ -126,7 +126,8 @@ class Location < ActiveRecord::Base
             end
           end
           
-          location.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || self.neighborhood_name || self.city)
+          location.neighborhood = Neighborhood.find_or_create_by_name(components["neighborhood"] || location.neighborhood_name || location.city)
+          
         end
         
         return location if location.save
