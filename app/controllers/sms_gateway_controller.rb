@@ -43,7 +43,7 @@ class SmsGatewayController < ApplicationController
 
         report_obj = Report.create_from_user(report, :status => :reported, :reporter => user, :location => location, :before_photo => nil)
         if report_obj.save
-          user.update_attribute(:points, user.points + 100) 
+          user.update_attribute(:points, user.points + 50) 
           logger.info "new report sucessfully added"
           ReportReader.report_added_notification(user.email).deliver
           Notification.new(:phone => phone_number.to_s, :text => "Parabéns! O seu relato foi recebido e adicionado ao Dengue Torpedo.", :board => board.to_s).save

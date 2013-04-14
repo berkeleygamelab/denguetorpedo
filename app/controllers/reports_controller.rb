@@ -244,7 +244,7 @@ class ReportsController < ApplicationController
       
         if @report.save
           if @current_user != nil
-            @current_user.update_attribute(:points, @current_user.points + 250)
+            @current_user.update_attribute(:points, @current_user.points + 400)
           end
           flash[:notice] = 'You eliminated this report!'
           redirect_to(:back)
