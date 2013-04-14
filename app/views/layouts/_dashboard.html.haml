@@ -1,6 +1,6 @@
 #dashboard_bar
   .offset4
-    %ul{style: 'margin-left: -50px;'}
+    %ul
       %li
         = image_tag("icons/profile_icon.png")
         - if @current_user.house && @current_user.house.id
@@ -28,6 +28,3 @@
       %li
         = image_tag("icons/account_setting_icon.png")
         = link_to 'Configurações da Conta', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
-      %li
-        = image_tag("icons/logout4.png")
-        = link_to "Sair", logout_path

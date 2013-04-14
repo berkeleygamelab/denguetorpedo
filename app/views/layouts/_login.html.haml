@@ -13,9 +13,10 @@
 - else
   #logged_in
     .row
-      %h3.span4
-        Bem-vinda, #{@current_user.username}!
+      %h3.span6
+        Olá #{@current_user.username}!
     .row
       #dashboard_search
-        .span2
-          %input{:type => 'text', :placeholder => "Busca"}
+        %input{:type => 'text', :placeholder => "Busca"}
+      = image_tag("icons/logout4.png")
+      = link_to "Sair", logout_path  

@@ -25,10 +25,12 @@ class SmsGatewayController < ApplicationController
     if user
       parsed_result = text.scan(/^(.+)AT(.+)$/)
       
+      logger.info "parsed result is = " + parsed_result.to_s
+      
       if parsed_result.count == 0
         logger.info "incorrect report format"
         ReportReader.incomplete_information_notification(user.email).deliver
-        Notification.new(:phone => phone_number.to_s, :text => "O formato correto é:  descrição do foco@localização do foco.  Por favor, corrija a mensagem e mande o torpedo de novo.", :board => board.to_s).save      
+        Notification.new(:phone => phone_number.to_s, :text => "Erro na mensagem. O formato correto é: descrição do foco AT localização do foco. Por favor, reenvie sua mensagem.", :board => board.to_s).save      
       else
         logger.info "successfully extracted report and address"
         report = parsed_result[0][0]
@@ -86,10 +88,13 @@ class SmsGatewayController < ApplicationController
     logger.info "ids = " + params[:id]
     
     list_of_ids = params[:id].split(",")
+    
+    logger.info "list of ids = " + list_of_ids.to_s
   
     list_of_ids.each do |id|
       notification = Notification.find(id)
       if notification.board == params[:board]
+        logger.info notification.inspect
         notification.delete
       end
     end
