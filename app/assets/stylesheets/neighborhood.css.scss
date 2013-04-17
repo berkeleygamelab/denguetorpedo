@@ -12,6 +12,8 @@
 
 #neighborhood_stats {
   margin-top: 10px;
+  margin-bottom: 10px;
+  
   font-size: 14px;
   b {
     font-size: 15px;
@@ -46,10 +48,10 @@ ul#neighborhood_participants_list {
     margin-bottom: 20px;
     margin-left: 0px;
     margin-right: 10px;
-    width: 165px;
+    width: 150px;
   }
   img {
-    width: 165px;
+    width: 150px;
     border: 1px solid $gray;
   }
 }
@@ -64,10 +66,10 @@ ul#neighborhood_house_list {
     margin-bottom: 10px;
     margin-left: 0px;
     margin-right: 10px;
-    width: 225px;
+    width: 150px;
   }
   img {
-    width: 250px;
+    width: 150px;
     border: 1px solid $gray;
   }
 }

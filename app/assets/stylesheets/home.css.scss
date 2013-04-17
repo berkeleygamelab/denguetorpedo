@@ -58,19 +58,20 @@
 }
 
 #home_visit_neighborhood_button {
-    width: 250px;
+  width: 250px;
   height: 20px;
-  margin-left: 30px;
   border-radius: $button_border_radius;
   background-color: rgba(0, 204, 51, 0.6);
   text-align: center;
   font-size: 18px;
   padding: 10px 5px 10px 5px;
 }
+
 .home_report_count {
   font-size: 18px;
   text-align: center;
 }
+
 ul#neighborhood_list {
   li {
     margin-left: 10px;
@@ -123,7 +124,8 @@ ul#neighborhood_list {
 
 .home {
   #houses {
-    height: 300px;  
+    height: 400px;
+    margin-top: 20px;  
     overflow:scroll;
   }
 }
@@ -142,8 +144,6 @@ ul#house_list {
 
     #house_photo_thumb {
       width: 115px;
-      
-    border: 1px solid $gray;
     }
     
     a {

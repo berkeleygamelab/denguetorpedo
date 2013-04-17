@@ -20,6 +20,7 @@
         .span2
           %h3.user_neighborhood 
             =link_to @neighborhood.name, neighborhood_path(@neighborhood)
+    
     .row
       #user_top_pictures
         .span10.offset1    
@@ -38,7 +39,6 @@
             =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
             
         
-
     .row
       #user_recent_activity.span15.offset1
         .row
@@ -88,6 +88,7 @@
                       De olho no mosquito
                     .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
                       Carimbo digital 100 pontos
+              
               - if @user.points >= 800
                 %li
                   .badge_box

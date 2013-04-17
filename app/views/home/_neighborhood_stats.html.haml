@@ -1,29 +1,23 @@
-.row
-  #home_visit_neighborhood_button.span5
-    = render "home/visit_neighborhood_button"
-.row 
-  .home_report_count.span4{style: 'margin: 15px 0px 0px 30px;'}
-    .row
-      %b= @total_reports_in_neighborhood
-      %br total de focos marcardos
-%br
-%br
-
-.row
-  .span2{style: 'width: 80px; margin-left: 35px;'}
-    #neighborhood_open_report_button
-    %br
-    %b= @opened_reports_in_neighborhood
-    %br em aberto
-    
-  .span2{style: 'width: 80px;'}
-    #neighborhood_claimed_report_button
-    %br
-    %b= @claimed_reports_in_neighborhood
-    %br assumidos
-    
-  .span2{style: 'width: 80px; margin-left: 15px;'}
-    #neighborhood_resolved_report_button 
-    %br
-    %b= @eliminated_reports_in_neighborhood
-    %br resolvidos
+#home_visit_neighborhood_button.span5
+  = render "home/visit_neighborhood_button"
+.span3
+  %b= @total_reports_in_neighborhood
+  %br Total de focos marcados
+.span3
+  .row
+    #neighborhood_open_report_button.span1 
+    .span2
+      %b= @opened_reports_in_neighborhood
+      %br em aberto
+.span2
+  .row
+    #neighborhood_claimed_report_button.span1{style: 'margin-left: -20px;'}
+    .span1
+      %b= @claimed_reports_in_neighborhood
+      %br assumidos
+.span2
+  .row
+    #neighborhood_resolved_report_button.span1 
+    .span1
+      %b= @eliminated_reports_in_neighborhood
+      %br eliminados

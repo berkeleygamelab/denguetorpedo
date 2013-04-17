@@ -48,6 +48,21 @@
                 = link_to image_tag(member.profile_photo.url(:small)), user_path(member)
             .row
               = link_to member.username, user_path(member)
+
+    .row
+      .span10
+        %h2 Vizinhos na #{@house.neighborhood.name}
+        #houses_in_neighborhood
+          - if @neighbors.count == 1 
+            %p Não tem nenhum vizinho usando Dengue Torpedo. Recrute alguem!
+          - else
+            %ul
+            - for neighbor in @neighbors
+              %li
+                - if neighbor.profile_photo_file_name.nil?
+                  = link_to image_tag("default_images/house_small_default_image.png"), house_path(neighbor)
+                - else 
+                  = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
                   
     .row
       .span8
@@ -102,20 +117,6 @@
                 - if report.status == :eliminated
                   = render :partial => "/houses/resolved_report", :object => report
              
-    .row
-      .span6
-        %h3 Vizinhos na #{@house.neighborhood.name}
-        #houses_in_neighborhood
-          - if @neighbors.count == 1 
-            %p Não tem nenhum vizinho usando Dengue Torpedo. Recrute alguem!
-          - else
-            %ul
-            - for neighbor in @neighbors
-              %li
-                - if neighbor.profile_photo_file_name.nil?
-                  = link_to image_tag("default_images/house_default_image.png"), house_path(neighbor)
-                - else 
-                  = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
 
 :javascript
   $(document).ready( function() {

@@ -15,14 +15,36 @@
 
 .row
   %h3.offset1#home_houses{style: 'font-size: 18px;'}  #{@selected_neighborhood.name} Casas
+  
+.row
+  #neighborhood_stats.offset1
+    #home_visit_neighborhood_button.span5
+      = render "home/visit_neighborhood_button"
+    .span3
+      %b= @total_reports_in_neighborhood
+      %br Total de focos marcados
+    .span3
+      .row
+        #neighborhood_open_report_button.span1 
+        .span2
+          %b= @opened_reports_in_neighborhood
+          %br em aberto
+    .span2
+      .row
+        #neighborhood_claimed_report_button.span1{style: 'margin-left: -20px;'}
+        .span1
+          %b= @claimed_reports_in_neighborhood
+          %br assumidos
+    .span2
+      .row
+        #neighborhood_resolved_report_button.span1 
+        .span1
+          %b= @eliminated_reports_in_neighborhood
+          %br eliminados
         
 .row
-  #houses.span10.offset1
-    = render "home/house_list"
-  .span5
-    #neighborhood_stats
-      = render "home/neighborhood_stats"
-          
+  #houses.span15.offset1
+    = render "home/house_list"          
     
 %br    
 .row
