@@ -1,8 +1,8 @@
 @import "variables";
 
 #login {
-  margin-left: 60px;
-  width: 322px;
+  margin-left: 50px;
+  width: 400px;
   height: 90px;
   text-align: left;
   
@@ -18,25 +18,27 @@
     margin: -10px 0px 0px 1px;
     font-size: 12px;
   }
+  
   input[type = "text"], input[type = "password"] {
     width: $login-width;
     height: 15px;
-	padding:5px 0px 5px 5px;
+	  padding:5px 0px 5px 5px;
   }
     
   input[type = "submit"] {
     margin-right: 0px;
     font-size: 12px;
-  	float: right;
   	color: #ffffff;
-    background: $blue;
     vertical-align: middle;
-    padding:0px;
+    padding:5px;
+    border-style: none;
+    border-radius: 2px;
+    background-color: $dark-gray;
   }
 	
- input[type = "submit"]:hover{
-	color:black;
-}
+	input[type = "submit"]:hover{
+	  color:black;
+  }
 
   #error {
    height: $login_error_height;

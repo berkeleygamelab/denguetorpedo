@@ -6,9 +6,10 @@
     = form_tag session_path do
       %ul
         %li= text_field_tag :username, nil, :placeholder => "Nome de usuário"
-        %li= password_field_tag :password, nil, :placeholder => "Senha"       
+        %li= password_field_tag :password, nil, :placeholder => "Senha" 
+        %li= submit_tag "Entrar"      
       = link_to "Esqueceu sua senha?", new_password_reset_path, :id => "forgot_password"  
-      = submit_tag "Entrar"
+      
      
 - else
   #logged_in
