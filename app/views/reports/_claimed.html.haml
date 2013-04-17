@@ -31,7 +31,7 @@
           
             .collapse{id:"resolve_prompt"+(claimed.id).to_s}
               .eliminate_prompt
-                = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
+                = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', claimed.id
                   = f.file_field :after_photo
                   .row

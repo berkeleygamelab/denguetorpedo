@@ -136,6 +136,10 @@ class Location < ActiveRecord::Base
       
       return nil
     else
+      
+      # let's say using lat and lon, we found a location. We need to check if the address actually matches with the provided address closely.
+      # If the two locations are completely different, we should still generate a new address.
+      
       # return the existing object that matches the same lat and lon
       existing_location
     end

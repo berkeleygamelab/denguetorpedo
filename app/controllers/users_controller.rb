@@ -61,39 +61,51 @@ class UsersController < ApplicationController
     @user.house ||= House.new
     @user.house.location ||= Location.new
     @highlightAccountItem = "nav_highlight"
+    @confirm = 0
+    flash[:notice] = nil
   end
   
   def update
+    puts params
     house_name = params[:user][:house_attributes][:name]
-    address = params[:user][:location][:address]
-    neighborhood = params[:user][:location][:neighborhood]
-    profile_photo = params[:user][:house_attributes][:profile_photo]
-
-    @current_user.username = params[:user][:username]
-
-    # only save profile photo if user uploads one
-    if params[:user][:profile_photo]
-      @current_user.profile_photo = params[:user][:profile_photo] 
+    house_address = params[:user][:location][:address]
+    house_neighborhood = params[:user][:location][:neighborhood]
+    house_profile_photo = params[:user][:house_attributes][:profile_photo]
+    
+    user_profile_photo = params[:user][:profile_photo]
+    user_email = params[:user][:email]
+  
+    if user_profile_photo
+      @current_user.profile_photo = user_profile_photo
     end
     
-    # change the email only if the user provided one
-    if not params[:user][:email].blank?
-      @current_user.email = params[:user][:email]
+    if not user_email.blank?
+      @current_user.email = user_email
     end
-
-    @current_user.save
-
-    @current_user.house = House.find_or_create(house_name, address, neighborhood, profile_photo)
- 
-    @user = @current_user
-    if @current_user.save
-      redirect_to user_url(@current_user), notice: 'Successfully update profile'
-    else
-      @user.house = House.new(name: house_name)
-      @user.house.location = Location.new
+    
+    puts params[:user][:confirm]
+    
+    # if a house exists with the same house name or house address, inform the user for confirmation
+    if params[:user][:confirm] == "0" && !house_name.blank? && House.find_by_name(house_name)
+      @user = @current_user
+      @user.house.name = house_name
+      @confirm = 1
+      flash[:notice] = "A house with this house already exist. Are you sure you want to join?"
       render "edit"
-    end  
+    else
+      @current_user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
+      @user = @current_user
+    
+      if @current_user.save
+        redirect_to edit_user_path(@current_user), notice: 'Successfully update profile'
+      else
+        @user.house = House.new(name: house_name)
+        @user.house.location = Location.new
+        render "edit"
+      end 
+    end 
   end
+  
 
   #Get /user/:id/buy_prize/prize_id
   def buy_prize

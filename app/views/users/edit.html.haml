@@ -1,11 +1,15 @@
 .user_form
   %h1 Configurações da conta
+  - if flash[:notice] 
+    %h2.notice{style: "margin: 10px; width: 700px;"}  
+      = flash[:notice]
+        
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
     #user_setting_section{style: "margin-bottom: 25px"}
       %h2 Configurações de usuário
       = f.label "Nome de usuário"
-      = f.text_field :username
+      = f.label @current_user.username, {style: "margin: 10px; font-weight: bold;"}
       
       = f.label "Celular"
       = f.text_field :phone_number
@@ -34,4 +38,10 @@
         = house_form.label "Foto da casa"
         = house_form.file_field :profile_photo
   
-      = f.submit "Atualizar"
+      = f.hidden_field :confirm, :value => @confirm
+      - if @confirm == 0
+        = f.submit "Atualizar"
+      - else
+        = f.submit "Confirm", {:style => "margin-bottom: 20px;"}
+        = link_to "Cancel", edit_user_path(@current_user), {:style => "width:60px;height:20px;padding:5px;border: 2px solid gray;border-radius:8px;weight:bold;font-size:16px; margin-left: 10px;"}
+        

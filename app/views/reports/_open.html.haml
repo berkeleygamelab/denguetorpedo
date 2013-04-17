@@ -19,6 +19,7 @@
       .row.rp_report_people
         Marcado por:
         =link_to open.reporter.username + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
+        
         %br
         - if @current_user != nil
           .row
@@ -28,7 +29,7 @@
           
               .collapse{id:"resolve_prompt"+(open.id).to_s}
                 .eliminate_prompt
-                  = form_for(:eliminate, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
+                  = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                     = hidden_field_tag 'report_id', open.id
                     = f.file_field :before_photo
                     .row
@@ -45,7 +46,7 @@
         
         .collapse{id:"claim_prompt"+(open.id).to_s}
           .eliminate_prompt
-            = form_for(:claim, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
+            = form_for(:claim, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
               = hidden_field_tag 'report_id', open.id
               = hidden_field_tag 'claim', 1
               .row
