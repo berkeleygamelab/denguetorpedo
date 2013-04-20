@@ -72,9 +72,14 @@ class UsersController < ApplicationController
     house_neighborhood = params[:user][:location][:neighborhood]
     house_profile_photo = params[:user][:house_attributes][:profile_photo]
     
+    user_profile_phone_number = params[:user][:phone_number]
     user_profile_photo = params[:user][:profile_photo]
     user_email = params[:user][:email]
   
+    if user_profile_phone_number
+      @current_user.phone_number = user_profile_phone_number
+    end
+    
     if user_profile_photo
       @current_user.profile_photo = user_profile_photo
     end
@@ -93,9 +98,10 @@ class UsersController < ApplicationController
       flash[:notice] = "A house with this house already exist. Are you sure you want to join?"
       render "edit"
     else
+    
       @current_user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
       @user = @current_user
-    
+  
       if @current_user.save
         redirect_to edit_user_path(@current_user), notice: 'Successfully update profile'
       else
