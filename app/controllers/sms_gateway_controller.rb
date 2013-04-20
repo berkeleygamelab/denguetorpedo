@@ -1,5 +1,3 @@
-#!/bin/env ruby
-# encoding: utf-8
 
 class SmsGatewayController < ApplicationController 
   
@@ -23,7 +21,7 @@ class SmsGatewayController < ApplicationController
     logger.info "user info = " + user.inspect
 
     if user
-      parsed_result = text.scan(/^(.+)\u0040(.+)$/)
+      parsed_result = text.scan(/^(.+)@(.+)$/)
       
       logger.info "parsed result is = " + parsed_result.to_s
       
