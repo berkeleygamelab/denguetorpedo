@@ -23,7 +23,7 @@ class SmsGatewayController < ApplicationController
     logger.info "user info = " + user.inspect
 
     if user
-      parsed_result = text.scan(/^(.+)AT(.+)$/)
+      parsed_result = text.scan(/^(.+)@(.+)$/)
       
       logger.info "parsed result is = " + parsed_result.to_s
       
