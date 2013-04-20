@@ -95,7 +95,7 @@ class UsersController < ApplicationController
       @user = @current_user
       @user.house.name = house_name
       @confirm = 1
-      flash[:notice] = "A house with this house already exist. Are you sure you want to join?"
+      flash[:notice] = "Uma casa com esse nome já existe. Você quer se juntar a essa casa? Se sim, clique confirmar. Se não, clique cancelar e escolha outro nome de casa."
       render "edit"
     else
     
