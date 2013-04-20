@@ -3,8 +3,8 @@
   = form_for(@user) do |f|
     = f.error_messages
     = f.text_field :phone_number, :placeholder => "* Celular 021xxxxxxxx"
-    = f.text_field :email, :placeholder => "* E-mail"
     = f.text_field :username, :placeholder => "* Nome de usuário"
+    = f.text_field :email, :placeholder => "* E-mail"
     = f.password_field :password, :placeholder => "* Senha"
     = f.password_field :password_confirmation, :placeholder => "* Confirmar senha"
     %br
