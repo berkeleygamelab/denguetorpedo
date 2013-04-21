@@ -33,8 +33,8 @@
         = location_form.text_field :neighborhood, value: @user.location.neighborhood_name if @user.location
       
       = f.fields_for :house do |house_form|
-        = house_form.label "* Nome da casa"
-        = house_form.text_field :name
+        = house_form.label "* Nome da casa (máximo 16 carácters)"
+        = house_form.text_field :name, :maxlength => "16"
         = house_form.label "Foto da casa"
         = house_form.file_field :profile_photo
   
