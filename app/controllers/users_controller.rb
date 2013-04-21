@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class UsersController < ApplicationController
 
   before_filter :require_login, :only => [:edit, :update]
