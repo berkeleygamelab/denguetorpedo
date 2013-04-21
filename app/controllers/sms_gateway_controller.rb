@@ -1,6 +1,3 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 class SmsGatewayController < ApplicationController 
   
   def inject    
