@@ -76,11 +76,20 @@ class UsersController < ApplicationController
     house_profile_photo = params[:user][:house_attributes][:profile_photo]
     
     user_profile_phone_number = params[:user][:phone_number]
+    user_profile_phone_number_confirmation = params[:phone_number_confirmation]
     user_profile_photo = params[:user][:profile_photo]
     user_email = params[:user][:email]
   
-    if user_profile_phone_number
-      @current_user.phone_number = user_profile_phone_number
+    if user_profile_phone_number != @current_user.phone_number
+      if user_profile_phone_number == user_profile_phone_number_confirmation
+        @current_user.phone_number = user_profile_phone_number
+      else
+        @user = @current_user
+        @confirm = 0
+        flash[:notice] = "phone number confirmation does not match with the provided phone number"
+        render "edit"
+        return
+      end
     end
     
     if user_profile_photo
@@ -90,11 +99,9 @@ class UsersController < ApplicationController
     if not user_email.blank?
       @current_user.email = user_email
     end
-    
-    puts params[:user][:confirm]
-    
+
     # if a house exists with the same house name or house address, inform the user for confirmation
-    if params[:user][:confirm] == "0" && !house_name.blank? && House.find_by_name(house_name)
+    if params[:user][:confirm] == "0" && !house_name.blank? && House.find_by_name(house_name) && (house_name != @current_user.house.name)
       @user = @current_user
       @user.house.name = house_name
       @confirm = 1
