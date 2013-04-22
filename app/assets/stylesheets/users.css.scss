@@ -278,6 +278,7 @@ ul#user_right_panel {
 
 //OLD BELOW HERE
 
+
 .user_form {
   width: $max-width;
   padding-left: 50px;
@@ -289,38 +290,6 @@ ul#user_right_panel {
     margin-left: 10px;
   }
   
-  input {
-    display: block;
-    border-radius: $input_border_radius;
-    border: 0px;
-    width: $field_width;
-    height: 27px;
-    font-size: 16px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 10px;
-    
-    &[type = "file"] {
-      background-color: white;
-    }
-    
-    &[type = "Submit"] {
-      border-radius: $button_border_radius;
-      width: auto;
-      height: auto;
-      margin-top: 20px;
-      padding: 5px;
-      opacity: .8;
-      background: $dark-gray;
-      color: #FFFFFF;
-      text-decoration: none;
-
-       &:hover {
-         opacity: 1;
-         cursor: pointer;
-       }
-    }
-  }
 }
 
 .main_column_personal{

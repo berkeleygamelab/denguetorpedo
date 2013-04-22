@@ -1,24 +1,27 @@
 .user_form
   %h1 Configurações da conta
+ 
   - if flash[:notice] 
     %h2.notice{style: "margin: 10px; width: 700px;"}  
       = flash[:notice]
         
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
+    
     #user_setting_section{style: "margin-bottom: 25px"}
       %h2 Configurações de usuário
-      = f.label "Nome de usuário"
-      = f.label @current_user.username, {style: "margin: 10px; font-weight: bold;"}
+      %ul
+        %li= f.label "Nome de usuário"
+        %li= f.label @current_user.username, {style: "margin: 10px; font-weight: bold;"}
       
-      = f.label "Celular"
-      = f.text_field :phone_number
+        %li= f.label "Celular"
+        %li= f.text_field :phone_number
       
-      = f.label "Email"
-      = f.text_field :email
+        %li= f.label "Email"
+        %li= f.text_field :email
     
-      = f.label "Foto de perfil"
-      = f.file_field :profile_photo
+        %li= f.label "Foto de perfil"
+        %li= f.file_field :profile_photo
     
     #reset_password_section{style: "margin-bottom: 25px"}
       %h2 Esqueci minha senha
@@ -26,22 +29,24 @@
     
     #house_setting_section{style: "margin-bottom: 25px"}    
       %h2 Configurações da casa
-      = f.fields_for :location do |location_form|
-        = location_form.label "* Endereço da casa"
-        = location_form.text_field :address, value: @user.location.complete_address if @user.location
-        = location_form.label "* Bairro"
-        = location_form.text_field :neighborhood, value: @user.location.neighborhood_name if @user.location
+      %ul
+        = f.fields_for :location do |location_form|
+          %li= location_form.label "* Endereço da casa"
+          %li= location_form.text_field :address, value: @user.location.complete_address if @user.location
+          %li= location_form.label "* Bairro"
+          %li= location_form.text_field :neighborhood, value: @user.location.neighborhood_name if @user.location
       
-      = f.fields_for :house do |house_form|
-        = house_form.label "* Nome da casa (máximo 16 carácters)"
-        = house_form.text_field :name, :maxlength => "16"
-        = house_form.label "Foto da casa"
-        = house_form.file_field :profile_photo
+        = f.fields_for :house do |house_form|
+          %li= house_form.label "* Nome da casa (máximo 16 carácters)"
+          %li= house_form.text_field :name, :maxlength => "16"
+          %li= house_form.label "Foto da casa"
+          %li= house_form.file_field :profile_photo
   
-      = f.hidden_field :confirm, :value => @confirm
-      - if @confirm == 0
-        = f.submit "Atualizar"
-      - else
-        = f.submit "Confirmar", {:style => "margin-bottom: 20px;"}
-        = link_to "Cancelar", edit_user_path(@current_user), {:style => "width:60px;height:20px;padding:5px;border: 2px solid gray;border-radius:8px;weight:bold;font-size:16px; margin-left: 10px;"}
+        = f.hidden_field :confirm, :value => @confirm
+      
+        - if @confirm == 0
+          %li= f.submit "Atualizar"
+        - else
+          %li= f.submit "Confirmar", {:style => "margin-bottom: 20px;"}
+          %li= link_to "Cancelar", edit_user_path(@current_user), {:style => "width:60px;height:20px;padding:5px;border: 2px solid gray;border-radius:8px;weight:bold;font-size:16px; margin-left: 10px;"}
         

@@ -6,39 +6,23 @@
 
 #neighborhood_search {
 
-  height: 60px;   
   margin-top: 20px; 
   margin-bottom:20px;
-
-  #neighborhood_search_background {
-    background: #e2e5cf;
-    padding: 10px;
-    height: 30px;
-  }
-
-  input, input:focus {
-    height: 30px;
-    border: none;
-    font-size: 14px;
-    margin-top: -4px;
-  padding:3px 3px 3px 5px;
-  }
+  display: inline-block;
   
   button {
-    width: 110px;
-    margin-left: 10px;
-    margin-top: -12px;
-    height: 35px;
-    background: #bfc1b0;
-    border-radius: $button_border_radius;
-    color: white;
-    font-size: 15px;
-    border: none;
+    margin-top: -10px
   }
- button:hover {
-  background-color: rgba(0,0,0,0.4);
+  
+  #neighborhood_search_background {
+    background: #e2e5cf;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }  
 }
-}
+
 #home_houses {
   
   margin-top: 10px;
@@ -49,6 +33,7 @@
     display: inline;
   }
 }
+
 #neighborhoods {
 
   #temp {
@@ -151,6 +136,7 @@ ul#house_list {
     }
   }
 }
+
 .home_dots {
   margin-top: 5px;
   margin-right: 5px;
@@ -159,6 +145,7 @@ ul#house_list {
     width: 35px;
   }
 }
+
 #sponsors {
   width: 950px;
   margin-top: 5px;

@@ -1,57 +1,10 @@
 @import "variables";
 
 #register {
-    color: white;
-    margin: 0px 0px 0px 20px;
-    
   h3 {
     font-size: 18px;
-  } 
-  input{
-
-    height: 30px;
-    border: 0px;
-    color: gray;
-    background-color: #FFFFFF;
-    opacity: 0.7;
-    font-size: 14px;
-    margin-top: 2px;
-	padding:3px;
-    &#password{
-      
-    }
-    
-    &:focus {
-      opacity: 1;
-    }
-    
-    &[type = "checkbox"] {
-      padding: 5px;
-      height:10px;
-      width:15px;
-      margin-top:6px;
-    }
   }
-  
-   input[type = "submit"] {      
-    /*position: absolute;*/
-
-    margin-left: 95px;
-    border-radius: $button_border_radius;
-    text-align: center;
-    width: 120px;
-    height: 36px;
-    color: #FFFFFF;
-    font-size: 14px;
-    padding: 5px;
-    background: $dark-gray;
-      
-    &:hover {
-      opacity: 1;
-      cursor: pointer;
-    }
-  }
-
+    
   #error {
    height: $login_error_height;
    margin-left: 5px;
