@@ -9,7 +9,6 @@
 #  updated_at                :datetime         not null
 #  status_cd                 :integer
 #  eliminator_id             :integer
-#  claimer_id                :integer
 #  location_id               :integer
 #  before_photo_file_name    :string(255)
 #  before_photo_content_type :string(255)
@@ -19,7 +18,7 @@
 #  after_photo_content_type  :string(255)
 #  after_photo_file_size     :integer
 #  after_photo_updated_at    :datetime
-#
+
 
 class Report < ActiveRecord::Base
   attr_accessible :report
@@ -28,7 +27,6 @@ class Report < ActiveRecord::Base
   has_attached_file :after_photo, :styles => {:medium => "150x150>", :thumb => "100x100>"}, :default_url => 'default_images/report_after_photo.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
     
   belongs_to :reporter, :class_name => "User"
-  belongs_to :claimer, :class_name => "User"
   belongs_to :eliminator, :class_name => "User"
   belongs_to :location
   has_many :feeds, :as => :target
@@ -36,21 +34,23 @@ class Report < ActiveRecord::Base
   validates :reporter_id, :presence => true
   validates :location_id, :presence => true
   validates :status, :presence => true
+  validates :report, :presence => true
 
-  as_enum :status, [:reported, :claimed, :eliminated]
+  as_enum :status, [:reported, :eliminated]
 
   def self.create_from_user(report_content, params)
     create(:report => report_content) do |r|
-      r.reporter_id = params[:reporter].id
-      r.location_id = params[:location].id
+      r.reporter_id = params[:reporter] && params[:reporter].id
+      r.location_id = params[:location] && params[:location].id
       r.status = params[:status]
 
       # optional parameters
-      r.claimer_id = params[:claimer] && params[:claimer].id
       r.eliminator_id = params[:eliminator] && params[:eliminator].id
+      
       if params[:before_photo]
         r.before_photo = params[:before_photo]
       end
+      
       if params[:after_photo]
         r.after_photo = params[:after_photo]
       end
@@ -60,7 +60,6 @@ class Report < ActiveRecord::Base
   # callback to create the feeds
   after_save do |report|
     Feed.create_from_object(report, report.reporter_id, :reported) if report.reporter_id_changed?
-    Feed.create_from_object(report, report.claimer_id, :claimed) if report.claimer_id_changed?
     Feed.create_from_object(report, report.eliminator_id, :eliminated) if report.eliminator_id_changed?
   end
   
@@ -73,8 +72,6 @@ class Report < ActiveRecord::Base
       self.created_at.strftime("%d/%m/%Y")
     elsif type == :updated_at
       self.updated_at.strftime("%d/%m/%Y")
-    elsif type == :claimed_at
-      self.claimed_at != nil ? self.claimed_at.strftime("%d/%m/%Y") : "" 
     elsif type == :eliminated_at
       self.eliminated_at != nil ? self.eliminated_at.strftime("%d/%m/%Y") : ""
     else 
@@ -91,7 +88,6 @@ class Report < ActiveRecord::Base
   end
   
   def self.within_bounds(bounds)
-    
     reports_in_bounds = []
     for report in Report.all(:order => "created_at desc")
       if self.inBounds(report.location, bounds)
@@ -101,6 +97,7 @@ class Report < ActiveRecord::Base
     end
     return reports_in_bounds
   end
+  
   def self.inBounds(location, bounds)
     swlng = bounds[1]
     swlat = bounds[0]

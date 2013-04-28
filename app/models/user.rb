@@ -48,7 +48,6 @@ class User < ActiveRecord::Base
 
   # associations
   has_many :created_reports, :class_name => "Report", :foreign_key => "reporter_id"
-  has_many :claimed_reports, :class_name => "Report", :foreign_key => "claimer_id"
   has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id"
   has_many :feeds
   has_many :posts
@@ -108,7 +107,7 @@ class User < ActiveRecord::Base
   end
   
   def reports
-    Report.includes(:reporter, :claimer, :eliminator, :location).where("reporter_id = ? OR claimer_id = ? OR eliminator_id = ?", id, id, id).reorder(:updated_at).reverse_order.uniq
+    Report.includes(:reporter, :eliminator, :location).where("reporter_id = ? OR eliminator_id = ?", id, id).reorder(:updated_at).reverse_order.uniq
   end
 
   def buy_prize(prize_id)

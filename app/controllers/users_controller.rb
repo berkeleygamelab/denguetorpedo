@@ -40,7 +40,6 @@ class UsersController < ApplicationController
 
     @stats_hash = {}
     @stats_hash['opened'] = @user.created_reports.count
-    @stats_hash['claimed'] = @user.claimed_reports.count
     @stats_hash['eliminated'] = @user.eliminated_reports.count
   end
 

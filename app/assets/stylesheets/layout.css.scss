@@ -84,6 +84,13 @@ button {
   &:hover {
    color: #000000;
   }
+  
+  a:link, a:visited {
+    color: #ffffff;
+  }
+  a:hover {
+    color: #000000;
+  }
 }
 
 ul, ol, dl {

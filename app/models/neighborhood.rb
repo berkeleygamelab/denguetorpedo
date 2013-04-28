@@ -44,17 +44,7 @@ class Neighborhood < ActiveRecord::Base
     end
     open_reports
   end
-  
-  def claimed_reports
-    claimed_reports = []
-    self.members.each do |member|
-      member.reports.each do |report|
-        claimed_report = claimed_reports.append(report) if report.status == :claimed
-      end
-    end
-    claimed_reports
-  end
-  
+    
   def eliminated_reports
     eliminated_reports = []
     self.members.each do |member|

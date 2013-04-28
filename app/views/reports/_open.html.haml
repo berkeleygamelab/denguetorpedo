@@ -24,39 +24,24 @@
         - if @current_user != nil
           .row
             .span5
-              %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(open.id).to_s}}       
-                .confirm_button Carregue uma foto de foco marcado
-          
-              .collapse{id:"resolve_prompt"+(open.id).to_s}
+              - if open.before_photo.url.include?("default_images/report_before_photo.png" )
+                %h3 Please upload a before photo
                 .eliminate_prompt
                   = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                     = hidden_field_tag 'report_id', open.id
                     = f.file_field :before_photo
-                    .row
-                      .span2
-                        = submit_tag "Carregue!", :class=>'confirm_button'
-                      .span2
-                        .eliminate_cancel        
-                          %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#resolve_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
-                            Cancelar
-        
-        %br
-        %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}}       
-          .confirm_button Assumir esse foco
-        
-        .collapse{id:"claim_prompt"+(open.id).to_s}
-          .eliminate_prompt
-            = form_for(:claim, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
-              = hidden_field_tag 'report_id', open.id
-              = hidden_field_tag 'claim', 1
-              .row
-                .span2
-                  = submit_tag "Eu assumo!", :class => 'confirm_button'
-                .span2
-                  .eliminate_cancel
-                    %a{:href=>'javascript:;', :data=>{:toggle=>"collapse", :target=>"#claim_prompt"+(open.id).to_s}, :class=>'confirm_button'}               
-                      Cancelar
-  .row{ :style => "height: 30px;"}
+                    %br
+                    = submit_tag "Carregue!"
+                    
+              - else
+                %h3 Upload an after photo to eliminate
+                .eliminate_prompt
+                  = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
+                    = hidden_field_tag 'report_id', open.id
+                    = f.file_field :after_photo
+                    %br
+                    = submit_tag "Eliminar!"
+  
 
     
 

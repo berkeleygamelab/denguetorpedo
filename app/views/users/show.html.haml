@@ -66,8 +66,6 @@
                 = render :partial => 'users/show_post', :object => item, :locals => {:full => true}
               - elsif item.status == :reported
                 = render :partial => "reports/open.html.haml", :object => item
-              - elsif item.status == :claimed
-                = render :partial => "reports/claimed.html.haml", :object => item
               - elsif item.status == :eliminated
                 = render :partial => "reports/resolved.html.haml", :object => item
 

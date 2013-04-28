@@ -22,8 +22,7 @@ class House < ActiveRecord::Base
   has_many :members, :class_name => "User"
   has_many :posts, :as => :wall
   has_many :created_reports, :through => :members, :conditions => {:status_cd => 0}
-  has_many :claimed_reports, :through => :members, :conditions => {:status_cd => 1}
-  has_many :eliminated_reports, :through => :members, :conditions => {:status_cd => 2}
+  has_many :eliminated_reports, :through => :members, :conditions => {:status_cd => 1}
   belongs_to :location
 
   accepts_nested_attributes_for :location, :allow_destroy => true
@@ -45,7 +44,7 @@ class House < ActiveRecord::Base
   end
   
   def reports
-    _reports = Report.find_by_sql(%Q(SELECT DISTINCT "reports".* FROM "reports", "users" WHERE (("reports".reporter_id = "users".id OR "reports".claimer_id = "users".id OR "reports".eliminator_Id = "users".id) AND "users".house_id = #{id}) ORDER BY "reports".updated_at DESC))
+    _reports = Report.find_by_sql(%Q(SELECT DISTINCT "reports".* FROM "reports", "users" WHERE (("reports".reporter_id = "users".id OR "reports".eliminator_Id = "users".id) AND "users".house_id = #{id}) ORDER BY "reports".updated_at DESC))
     ActiveRecord::Associations::Preloader.new(_reports, [:location]).run
     _reports
   end

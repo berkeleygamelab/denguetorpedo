@@ -95,11 +95,6 @@
                     .row
                       %a{:href => "#"}= @house.created_reports.count
                     .row Em aberto
-                %li 
-                  #house_claimed_report_button.house_report_button.span1 
-                    .row
-                      %a{:href => "#"}= @house.claimed_reports.count
-                    .row Assumidos
                 %li
                   #house_resolved_report_button.house_report_button.span1
                     .row
@@ -112,8 +107,6 @@
               .row
                 - if report.status == :reported
                   = render :partial => "/houses/open_report", :object => report
-                - if report.status == :claimed
-                  = render :partial => "/houses/claimed_report", :object => report
                 - if report.status == :eliminated
                   = render :partial => "/houses/resolved_report", :object => report
              

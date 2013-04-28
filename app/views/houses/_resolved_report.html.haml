@@ -15,10 +15,6 @@
       %a.user
         = link_to resolved_report.reporter.username + " - " + resolved_report.strftime_with(:created_at), user_path(resolved_report.reporter)
       %br
-      %a Assumido: 
-      %a.user
-        = link_to resolved_report.claimer.username + " - " + resolved_report.strftime_with(:claimed_at), user_path(resolved_report.claimer)
-      %br
       %a Eliminado: 
       %a.user
         = link_to resolved_report.eliminator.username + " - " + resolved_report.strftime_with(:eliminated_at), user_path(resolved_report.eliminator)

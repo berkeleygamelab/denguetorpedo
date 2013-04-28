@@ -160,11 +160,11 @@
 }
 
 #reports_open {
-  height: 374px;
   margin-top: 10px;
   background: white;
-  border: 4px solid $light-gray; 
+  border: 1px solid $light-gray; 
   padding: 10px 20px;
+  margin-left: 20px;
   
   input[type = "text"] {
     width: 520px;
@@ -179,24 +179,20 @@
 #report_buttons {
   margin-top: 20px;
   margin-bottom: 10px;
-  font-size: 13px;
-  
-  .active {
-    text-decoration: underline;
-    font-size: 21px;
-  }
-    
+  font-size: 12px;
+      
   .reports_feed_button {
-      background: $red;
+    background: $red;
   }
   
   .reports_open_button {
     background-color: $orange;
   }
   
-  .reports_claimed_button {
-    background-color: $blue;
+  .make_report_button {
+    background-color: $dark-gray;
   }
+  
   .reports_resolved_button {
     background-color: $light-gray;
   }
@@ -212,14 +208,15 @@
   }
     
   .bttn  {      
-    color: white;
-    border-radius: 5px;
+    color: #ffffff;
+    border-radius: 2px;
     text-align: center;
 
     padding: 8px 5px;
+    
     &:hover {
       cursor: pointer;
-      text-decoration: underline;
+      color: #000000;
     }
     
     &:mousedown {
@@ -227,6 +224,10 @@
     }
   }
   
+  .active {
+    color: #000000;
+    font-weight: bold;
+  }
 }
 
 #report_stats {

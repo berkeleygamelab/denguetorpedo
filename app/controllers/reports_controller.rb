@@ -8,8 +8,12 @@ class ReportsController < ApplicationController
     params[:view] = 'recent' if params[:view].nil? || params[:view] == "undefined"
     params[:view] == 'recent' ? @reports_feed_button_active = "active" : @reports_feed_button_active = ""
     params[:view] == 'open' ? @reports_open_button_active = "active" : @reports_open_button_active = ""
-    params[:view] == 'claim' ?  @reports_claimed_button_active = "active" : @reports_claimed_button_active = ""
     params[:view] == 'eliminate' ? @reports_resolved_button_active = "active" : @reports_resolved_button_active = ""
+    params[:view] == 'make_report' ?  @make_report_button_active = "active" : @make_report_button_active = ""
+    
+    if params[:view] == "make_report"
+      @report = Report.new
+    end
      
     @maps_json = {"map_options" => {"center_latitude" => @current_user.house.location.latitude, 
       "center_longitude" => @current_user.house.location.longitude,
@@ -35,9 +39,6 @@ class ReportsController < ApplicationController
         reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'open' && report.status == :reported
         reports_within_bounds_with_status_filered.append(report)
-      elsif params[:view] == 'claim' && report.status == :claimed
-        puts "what about here"
-        reports_within_bounds_with_status_filered.append(report)
       elsif params[:view] == 'eliminate' && report.status == :eliminated
         reports_within_bounds_with_status_filered.append(report)
       end
@@ -49,7 +50,6 @@ class ReportsController < ApplicationController
     # Probably need to be refactored, for now it works without breaking previous implementation
     @reports = @reports_within_bounds
     @open_feed = @reports
-    @claim_feed = @reports
     @eliminate_feed = @reports
   
     newListHtml = ""
@@ -63,8 +63,6 @@ class ReportsController < ApplicationController
     
         if params[:view] == 'open'
           @reports = @open_feed
-        elsif params[:view] == 'claim'
-          @reports = @claim_feed
         elsif params[:view] == 'eliminate'
           @reports = @eliminate_feed
         end
@@ -96,10 +94,6 @@ class ReportsController < ApplicationController
     end    
   end
   
-  
-  
-  
-  
   def new
     @report = Report.new
   end
@@ -107,40 +101,21 @@ class ReportsController < ApplicationController
   def create    
 
     if request.post?
-      if params[:report].nil? || params[:report] == ''
-        flash[:notice] = 'You must enter a report description.'
-        redirect_to :action=>'index', view: 'open'
-        return
-      elsif params[:location].nil? || params[:location] == ''
-        flash[:notice] = 'You must enter an address.'
-        redirect_to :action=>'index', view: 'open'
-        return
-      end
-    
       location = Location.find_or_create(params[:location])
-      
-      begin
-        @report = Report.create_from_user(params[:report][:report], :status => :reported, :reporter => @current_user, :location => location)
-        @report.before_photo = params[:report][:before_photo]
-      rescue
-        flash[:notice] = 'Address is invalid or does not exist.'
-        redirect_to :action=>'index', view: 'open'
-        return
-      end
+      @report = Report.create_from_user(params[:report][:report], :status => :reported, :reporter => @current_user, :location => location)
+      @report.before_photo = params[:report][:before_photo]
     
-      
       if @report.save
         if @current_user != nil
           @current_user.update_attribute(:points, @current_user.points + 100)
         end
+        
         flash[:notice] = 'Report posted succesfully.'
         redirect_to :action=>'index', view: 'recent'
       else
-        flash[:notice] = 'Report failed to post.'
-        redirect_to :action=>"index", view: 'open'
+        render "new"
       end
     end
-  
   end
   
   def edit
@@ -207,33 +182,11 @@ class ReportsController < ApplicationController
   def update
     if request.put?
       @report = Report.find(params[:report_id])
-      
-      
-      if params[:claim] != nil
-        if @report.status == :reported
-          if @report.before_photo.exists?
-            @report.update_attribute(:status_cd, 1)
-            @report.update_attribute(:claimer_id, @current_user.id)
-            @report.touch(:claimed_at)
-          
-            if @current_user != nil
-              @current_user.update_attribute(:points, @current_user.points + 50)
-            end
-          
-            flash[:notice] = 'You successfully claimed this report!'
-            redirect_to(:back)
-          else
-            flash[:notice] = 'You cannot claim this report without uploading a photo.'
-            redirect_to(:back)
-          end
-        else
-          flash[:notice] = 'You cannot claim this report.'
-          redirect_to(:back)
-        end              
-      elsif params[:eliminate][:after_photo] != nil
+                         
+      if params[:eliminate][:after_photo] != nil
         begin
           @report.after_photo = params[:eliminate][:after_photo]
-          @report.update_attribute(:status_cd, 2)
+          @report.update_attribute(:status_cd, 1)
           @report.update_attribute(:eliminator_id, @current_user.id)
           @report.touch(:eliminated_at)
         rescue

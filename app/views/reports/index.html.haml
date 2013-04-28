@@ -11,14 +11,12 @@
       #point_box
         %b= @current_user.points
         %br Pontos obtidos
-    .span2{:style => "width:130px;height:20px;padding:10px;border: 2px solid gray;border-radius:8px;padding-left:15px;weight:bold;font-size:16px;"}
-      =link_to "Marcar um foco", new_report_path
-            
+          
   .row.span10.offset1
     #report_buttons
-      = link_to 'Todos os focos', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active  
+      = link_to 'Todos os focos', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active
+      = link_to "Marcar um foco", reports_path(:view => 'make_report'), :class => 'bttn make_report_button ' + @make_report_button_active  
       = link_to 'Assumir um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
-      = link_to 'Eliminar um foco', reports_path(:view => 'claim'), :class=>'bttn reports_claimed_button ' + @reports_claimed_button_active
       = link_to 'Focos eliminados', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
 
   .row
@@ -27,14 +25,10 @@
         = render :partial => 'reports/recent', :action=>'index'
       - elsif params[:view] == 'open'
         = render :partial => 'reports/open_list'
-      - elsif params[:view] == 'claim'
-        = render :partial => 'reports/claim_list'
-      - else params[:view] == 'eliminate'
+      - elsif params[:view] == 'eliminate'
         = render :partial => 'reports/eliminate_list'
-    
-    
-    
-    
+      - else params[:view] == 'make_report'
+        = render :partial => "reports/make_report_form"
     
     .span6
       .row
@@ -49,12 +43,12 @@
         = gmaps(@maps_json)
 
       .row
-        - if params[:view] != 'open'
-          #report_sponsors
-            %ul
-              - random_sponsors.each do |sponsor|
-                %li.span1.sponsor
-                  = image_tag sponsor
+        #report_sponsors
+          %ul
+            - random_sponsors.each do |sponsor|
+              %li.span1.sponsor
+                = image_tag sponsor
+
 
 %a{:href=>'javascript:;', :onclick => 'test()'}    
 = render :partial => 'reports/maps_js'

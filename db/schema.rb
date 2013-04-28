@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326203444) do
+ActiveRecord::Schema.define(:version => 20130428092131) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(:version => 20130326203444) do
     t.datetime "updated_at",                :null => false
     t.integer  "status_cd"
     t.integer  "eliminator_id"
-    t.integer  "claimer_id"
     t.integer  "location_id"
     t.string   "before_photo_file_name"
     t.string   "before_photo_content_type"
@@ -151,7 +150,6 @@ ActiveRecord::Schema.define(:version => 20130326203444) do
     t.string   "after_photo_content_type"
     t.integer  "after_photo_file_size"
     t.datetime "after_photo_updated_at"
-    t.datetime "claimed_at"
     t.datetime "eliminated_at"
   end
 

@@ -1,20 +1,16 @@
 .row
-  .span8.offset1
+  .span10.offset1
     = flash[:notice]
     %h1 Marcar um foco
   .span10.offset1
     #reports_open
       = form_for(@report, :url => {:action => "create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
-        .row
-          .span7
-            %h3 Descreva o foco em uma frase.
-            = f.text_area :report, :placeholder => 'Descrição', :id => 'report_content'
-            %h3 Endereço do foco localizado:
-            = text_field_tag :location, nil, :placeholder => 'Localização', :id => 'report_address'
-            %h3 Carregue a imagem do foco encontrado:
-            = f.file_field :before_photo
-      
-        = submit_tag "enviar"
-    
-
-  
+        = f.error_messages
+        = f.label "Descreva o foco em uma frase:"
+        = f.text_area :report, :placeholder => 'Descrição', :id => 'report_content'
+        = f.label "Endereço do foco localizado:"
+        = text_field_tag :location, nil, :placeholder => 'Localização', :id => 'report_address'
+        = f.label "Carregue a imagem do foco encontrado:"
+        = f.file_field :before_photo
+        %br
+        = f.submit "enviar"
