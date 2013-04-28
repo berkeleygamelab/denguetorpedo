@@ -181,6 +181,12 @@ class ReportsController < ApplicationController
 
   def update
     if request.put?
+      if !params[:eliminate]
+        flash[:notice] = 'You must upload a photo'
+        redirect_to(:back)
+        return
+      end
+      
       @report = Report.find(params[:report_id])
                          
       if params[:eliminate][:after_photo] != nil
