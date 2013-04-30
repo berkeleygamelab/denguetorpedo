@@ -14,9 +14,9 @@
           
   .row.span10.offset1
     #report_buttons
-      = link_to 'Todos os focos', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active
       = link_to "Marcar um foco", reports_path(:view => 'make_report'), :class => 'bttn make_report_button ' + @make_report_button_active  
-      = link_to 'Assumir um foco', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
+      = link_to 'Todos os focos', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active
+      = link_to 'Focos em aberto', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
       = link_to 'Focos eliminados', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
 
   .row
