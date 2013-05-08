@@ -110,20 +110,19 @@ ul#neighborhood_list {
 .home {
   #houses {
     height: 400px;
-    margin-top: 20px;  
+    margin-top: 20px;
     overflow:scroll;
   }
 }
 
 ul#house_list {
-  margin-left: 0px;
   margin-top: 5px;
+  margin-left: 50px;
   
   li {
     display: inline-block;
     min-width: 120px;
     height: auto;
-
     margin-bottom: 10px;
     text-align: center;
 
