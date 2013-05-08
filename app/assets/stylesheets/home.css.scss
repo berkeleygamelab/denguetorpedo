@@ -128,11 +128,16 @@ ul#house_list {
     text-align: center;
 
     #house_photo_thumb {
-      width: 115px;
+      width: 110px;
     }
-    
     a {
       font-size: 15px;
+    }
+    img {
+      width: 110px;
+      height: 110px;
+      border: 1px solid $gray;
+      background: #ffffff;
     }
   }
 }

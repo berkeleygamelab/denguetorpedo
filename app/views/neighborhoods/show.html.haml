@@ -43,6 +43,7 @@
               = link_to image_tag("default_images/profile_default_image.png"), user_path(participant)
             - else
               = link_to image_tag(participant.profile_photo.url(:large)), user_path(participant)
+            
             = link_to participant.username, user_path(participant)
         - if @participants.count < 9
           - (12 - @participants.count).times do          
