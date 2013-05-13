@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>app/views/home/_visit_neighborhood_button.html.haml</string>
+	<string>app/views/home/_house_list.html.haml</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -21,6 +21,64 @@
 	<integer>261</integer>
 	<key>metaData</key>
 	<dict>
+		<key>app/assets/stylesheets/home.css.scss</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>19</integer>
+				<key>line</key>
+				<integer>119</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>107</integer>
+		</dict>
+		<key>app/assets/stylesheets/house.css.scss</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>21</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>102</integer>
+		</dict>
+		<key>app/assets/stylesheets/neighborhood.css.scss</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>56</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>35</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>28</integer>
+				<key>line</key>
+				<integer>56</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>4</integer>
+				<key>line</key>
+				<integer>56</integer>
+			</dict>
+		</dict>
 		<key>app/assets/stylesheets/prizes.css.scss</key>
 		<dict>
 			<key>caret</key>
@@ -77,14 +135,14 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/home/_visit_neighborhood_button.html.haml</key>
+		<key>app/views/home/_house_list.html.haml</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>29</integer>
+				<integer>9</integer>
 				<key>line</key>
-				<integer>1</integer>
+				<integer>11</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -104,6 +162,36 @@
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+		</dict>
+		<key>app/views/home/index.html.haml</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>39</integer>
+			</dict>
+			<key>columnSelection</key>
+			<false/>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>21</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>9</integer>
+				<key>line</key>
+				<integer>39</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>2</integer>
+				<key>line</key>
+				<integer>39</integer>
+			</dict>
 		</dict>
 		<key>app/views/prizes/index.html.haml</key>
 		<dict>
@@ -133,30 +221,18 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>app/views/users/show.html.haml</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>85</integer>
-				<key>line</key>
-				<integer>96</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>73</integer>
-		</dict>
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>app/views/prizes/index.html.haml</string>
-		<string>app/views/home/_visit_neighborhood_button.html.haml</string>
-		<string>app/views/users/show.html.haml</string>
+		<string>app/views/home/index.html.haml</string>
+		<string>app/views/home/_house_list.html.haml</string>
+		<string>app/assets/stylesheets/home.css.scss</string>
+		<string>app/assets/stylesheets/house.css.scss</string>
+		<string>app/assets/stylesheets/neighborhood.css.scss</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{335, 0}, {1184, 878}}</string>
+	<string>{{274, 62}, {1149, 816}}</string>
 </dict>
 </plist>

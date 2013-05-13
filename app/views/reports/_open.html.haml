@@ -40,6 +40,9 @@
                     = hidden_field_tag 'report_id', open.id
                     = f.file_field :after_photo
                     = submit_tag "Carregue!"
+          .row
+            .span7
+              = select_tag "Escolha o tipo de foco e o método de eliminação", "<option>dump water</option>".html_safe , :prompt => "Escolha o tipo de foco e o método de eliminação", :style => "width: 370px;"
   
 
     
