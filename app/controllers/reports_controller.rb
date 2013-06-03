@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 class ReportsController < ApplicationController
 
   before_filter :require_login, :except => [:sms, :verification]
@@ -14,84 +17,29 @@ class ReportsController < ApplicationController
     if params[:view] == "make_report"
       @report = Report.new
     end
-     
-    @maps_json = {"map_options" => {"center_latitude" => @current_user.house.location.latitude, 
-      "center_longitude" => @current_user.house.location.longitude,
-      "detect_location" => false,
-      "center_on_user" => false,
-      "auto_adjust" => false,
-      "auto_zoom" => true,
-      "zoom" => 10 }
-      }
-  
-    if (params[:sw_y] && params[:sw_x] && params[:ne_y] && params[:ne_x])
-        bounds = [ params[:sw_x].to_f, params[:sw_y].to_f, params[:ne_x].to_f, params[:ne_y].to_f]
-        @reports_within_bounds = Report.within_bounds(bounds)
-    else    
-        @reports_within_bounds = Report.order("created_at DESC")
-    end
+    
+    @elimination_method_select = EliminationMethods.field_select
        
-    reports_within_bounds_with_status_filered = []
-        
-    @reports_within_bounds.each do |report|
-      
-      if params[:view] == 'recent'
-        reports_within_bounds_with_status_filered.append(report)
+    reports_with_status_filtered = []
+    locations = []
+    
+    Report.order("created_at DESC").each do |report|
+      if params[:view] == 'recent' || params[:view] == 'make_report'
+        reports_with_status_filtered << report
+        locations << report.location
       elsif params[:view] == 'open' && report.status == :reported
-        reports_within_bounds_with_status_filered.append(report)
+        reports_with_status_filtered << report
+        locations << report.location
       elsif params[:view] == 'eliminate' && report.status == :eliminated
-        reports_within_bounds_with_status_filered.append(report)
+        reports_with_status_filtered << report
+        locations << report.location
       end
     end
     
-    @reports_within_bounds = reports_within_bounds_with_status_filered
-    locations_within_bounds = @reports_within_bounds.collect {|report| report.location} 
-        
-    # Probably need to be refactored, for now it works without breaking previous implementation
-    @reports = @reports_within_bounds
+    @map_json = locations.to_gmaps4rails
+    @reports = reports_with_status_filtered
     @open_feed = @reports
     @eliminate_feed = @reports
-  
-    newListHtml = ""
-    
-    if params[:generateReports] == 'True' and not params[:locations].nil?
-        locations = params[:locations].split(":")    
-        puts locations   
-        newReports = []
-        puts 'BEFORE'
-        puts @reports
-    
-        if params[:view] == 'open'
-          @reports = @open_feed
-        elsif params[:view] == 'eliminate'
-          @reports = @eliminate_feed
-        end
-          
-        for report in @reports
-          if locations.include? report.location.id.to_s
-            newReports.push(report)        
-          end    
-        end
-    
-      @reports = newReports
-      
-      newListHtml = render_to_string(:partial => 'reports/recent.html.haml', :layout => false, :locals => {})
-    end
-    
-
-    respond_to do |format|  
-      format.html {}
-      
-      format.json {
-        if params[:generateReports] == 'True'
-          render :json => newListHtml
-        else 
-          map_markers = locations_within_bounds.to_gmaps4rails {|location, marker| marker.json({ :id => location.id})}    
-          data = map_markers
-          render :json => data
-        end 
-      }            
-    end    
   end
   
   def new
@@ -181,6 +129,7 @@ class ReportsController < ApplicationController
 
   def update
     if request.put?
+    
       if !params[:eliminate]
         flash[:notice] = 'You must upload a photo'
         redirect_to(:back)
@@ -190,6 +139,7 @@ class ReportsController < ApplicationController
       @report = Report.find(params[:report_id])
                          
       if params[:eliminate][:after_photo] != nil
+        # user uploaded an after photo
         begin
           @report.after_photo = params[:eliminate][:after_photo]
           @report.update_attribute(:status_cd, 1)
@@ -200,7 +150,10 @@ class ReportsController < ApplicationController
           redirect_to(:back)
           return
         end
-      
+        
+        @report.elimination_type = EliminationMethods.getEliminationTypeFromMethodSelect(params["method_of_elimination"])
+        @report.elimination_method = params["method_of_elimination"]
+        
         if @report.save
           if @current_user != nil
             @current_user.update_attribute(:points, @current_user.points + 400)
@@ -214,6 +167,7 @@ class ReportsController < ApplicationController
         end
       
       elsif params[:eliminate][:before_photo] != nil
+        # user uploaded a before photo
         @report.before_photo = params[:eliminate][:before_photo]
         if @report.save
           flash[:notice] = "You updated before photo"

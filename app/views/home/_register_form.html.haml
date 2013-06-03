@@ -3,9 +3,14 @@
   %ul
     = form_for(@user) do |f|
       %li= f.error_messages
-      %li= f.text_field :phone_number, :placeholder => "* Celular 021xxxxxxxx"
-      %li= f.text_field :username, :placeholder => "* Nome de usuário"
-      %li= f.text_field :email, :placeholder => "* E-mail"
-      %li= f.password_field :password, :placeholder => "* Senha"
-      %li= f.password_field :password_confirmation, :placeholder => "* Confirmar senha"
+      %li= f.label "* Celular"
+      %li= f.text_field :phone_number, :placeholder => "021xxxxxxxx"
+      %li= f.label "* Nome de usuário"
+      %li= f.text_field :username, :placeholder => "min 5 carácters"
+      %li= f.label "*E-mail"
+      %li= f.text_field :email
+      %li= f.label "* Senha"
+      %li= f.password_field :password
+      %li= f.label "* Confirmar senha"
+      %li= f.password_field :password_confirmation
       %li= f.submit "Fazer inscrição!"

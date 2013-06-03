@@ -17,8 +17,14 @@
       .row
         .rp_report_content.span4
           = resolved.report           
-          
+    
       .row.rp_report_people.span5
+        %h3 Elimination Type:
+        = resolved.elimination_type
+        %h3 Elimination Method:
+        = resolved.elimination_method
+        %br
+        %br
         Marcado por:
         =link_to resolved.reporter.username + " - " + resolved.strftime_with(:created_at), user_path(resolved.reporter), :class => "user"
         %br

@@ -33,14 +33,11 @@
     .span6
       .row
         .span6
-          %h2{style: 'margin-left: 10px;'} Arranje o mapa para ajustar a lista
-      .row
-        .span6
           .report_map_search
             %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
-            %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 325px;'}
+            %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 330px;'}
       .row
-        = gmaps(@maps_json)
+        = gmaps4rails(@map_json)
 
       .row
         #report_sponsors
@@ -48,8 +45,4 @@
             - random_sponsors.each do |sponsor|
               %li.span1.sponsor
                 = image_tag sponsor
-
-
-%a{:href=>'javascript:;', :onclick => 'test()'}    
-= render :partial => 'reports/maps_js'
 

@@ -18,10 +18,12 @@
 #  after_photo_content_type  :string(255)
 #  after_photo_file_size     :integer
 #  after_photo_updated_at    :datetime
+#  elimination_type          :string
+#  elimination_method        :string
 
 
 class Report < ActiveRecord::Base
-  attr_accessible :report
+  attr_accessible :report, :elimination_type, :elimination_method
 
   has_attached_file :before_photo, :styles => {:medium => "150x150>", :thumb => "100x100>"}, :default_url => 'default_images/report_before_photo.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   has_attached_file :after_photo, :styles => {:medium => "150x150>", :thumb => "100x100>"}, :default_url => 'default_images/report_after_photo.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
