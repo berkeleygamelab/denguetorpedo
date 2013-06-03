@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     head :not_found and return if @user.nil?
 
     @user_posts = @user.posts
-    
+    @elimination_method_select = EliminationMethods.field_select
 
     @house = @user.house
     @neighborhood = @user.neighborhood
