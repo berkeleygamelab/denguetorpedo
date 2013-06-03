@@ -28,18 +28,13 @@ gem 'mime'
 gem 'rmagick'
 gem 'bcrypt-ruby'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip'
-gem 'ruby-gmail'
 gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 gem 'simple_enum'
 gem 'awesome_nested_set'
 gem 'uuid'
 gem 'whenever', :require => false
-<<<<<<< HEAD
-gem 'eventmachine'
-=======
 gem 'eventmachine', '~> 1.0.0.beta.4.1'
 gem 'nexmo'
->>>>>>> 2e7000f52f5633df5721c140ae309822084f9fbb
 
 # Gems used only for assets and not required
 # in production environments by default.

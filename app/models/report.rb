@@ -111,4 +111,12 @@ class Report < ActiveRecord::Base
     point = Geokit::LatLng.new(location.latitude, location.longitude)
     return calculated_bounds.contains?(point)
   end
+  
+  def self.invalidateExpired
+    Report.where("created_at < ?", (Time.now - 3.days)).where(:status_cd => 0).each do |report|
+      report.status_cd =1
+      report.report = "This report has expired, it was not resolved within three days"
+      report.save!
+    end
+  end
 end

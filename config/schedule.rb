@@ -22,3 +22,7 @@
 every 5.minutes do
   runner "BuyIn.set_invites_expired"
 end
+
+every 1.hours do 
+  runner "Report.invalidateExpired"
+end
