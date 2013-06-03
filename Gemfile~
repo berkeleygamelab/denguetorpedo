@@ -28,7 +28,7 @@ gem 'mime'
 gem 'rmagick'
 gem 'bcrypt-ruby'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip'
-gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
+#gem 'therubyracer' # this is required for the coffeescript compiler to work on linux
 gem 'simple_enum'
 gem 'awesome_nested_set'
 gem 'uuid'
