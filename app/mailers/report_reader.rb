@@ -15,7 +15,7 @@ class ReportReader < ActionMailer::Base
   end
 
   def report_added_notification(email_addrs)
-    mail(:to => email_addrs, :subject => "Report Dengue has successfully added your report")
+    mail(:to => email_addrs, :subject => "O Relato Dengue foi adicionado com sucesso.")
   end
 
   def report_failed_notification(email_addrs)
@@ -100,7 +100,7 @@ class ReportReader < ActionMailer::Base
           if report_obj.save 
             logger.info "new report sucessfully added"
             ReportReader.report_added_notification(email_addrs).deliver
-            ReportReader.send_notification(phone_number, "Congratulation! your report has been processed and added to our database")
+            ReportReader.send_notification(phone_number, "Parabéns! O seu relato foi recebido e adicionado ao Dengue Torpedo.")
           else
             logger.info "new report failed to add"
             ReportReader.report_failed_notification(email_addrs).deliver
