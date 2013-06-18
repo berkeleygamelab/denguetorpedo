@@ -14,6 +14,7 @@ group :production do
   gem 'pg'
 end
 
+gem 'magic_encoding'
 gem 'thin'
 gem 'haml'
 gem 'geokit'
