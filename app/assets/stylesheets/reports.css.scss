@@ -180,21 +180,26 @@
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 12px;
-      
+}
+
   .reports_feed_button {
-    background: $red;
+    color: $light-gray;
+    background-color: $white;
   }
   
   .reports_open_button {
-    background-color: $orange;
+    color: $orange;
+    background-color: $white;
   }
   
   .make_report_button {
-    background-color: $dark-gray;
+    color: $light-gray;
+    background-color: $white;
   }
   
   .reports_resolved_button {
-    background-color: $light-gray;
+    color: $dark-gray;
+    background-color: $white;
   }
      
   input{
@@ -225,9 +230,24 @@
   }
   
   .active {
-    color: #000000;
+    color: #FFFFFF;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 20px;
+  }
+  .reports_feed_button.active {
+    background-color: $light-ray;
+  }
+  
+  .reports_open_button.active {
+    background-color: $orange;
+  }
+  
+  .make_report_button.active {
+    background-color: $light-gray;
+  }
+  
+  .reports_resolved_button.active {
+    background-color: $dark-gray;
   }
 }
 
