@@ -185,6 +185,23 @@
     color: $light-gray;
     background-color: #ffffff;
   }
+
+  .bttn  {      
+    color: #ffffff;
+    border-radius: 2px;
+    text-align: center;
+
+    padding: 8px 5px;
+    
+    &:hover {
+      cursor: pointer;
+      color: #000000;
+    }
+    
+    &:mousedown {
+      border-bottom: thick dotted #ff0000;
+    }
+  }
   
   .reports_open_button {
     color: $orange;
@@ -211,22 +228,7 @@
     margin-top: 2px;   
   }
     
-  .bttn  {      
-    color: #ffffff;
-    border-radius: 2px;
-    text-align: center;
-
-    padding: 8px 5px;
-    
-    &:hover {
-      cursor: pointer;
-      color: #000000;
-    }
-    
-    &:mousedown {
-      border-bottom: thick dotted #ff0000;
-    }
-  }
+  
   
   .active {
     color: #FFFFFF;
