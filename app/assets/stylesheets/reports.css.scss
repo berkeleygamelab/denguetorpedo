@@ -120,10 +120,10 @@
 }
 
 .rp_resolved_report {
-  border-color: $light-gray;
+  border-color: $dark-gray;
   
   .status {
-    background: $light-gray;
+    background: $dark-gray;
   }
 }
 
@@ -180,7 +180,6 @@
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 12px;
-}
 
   .reports_feed_button {
     color: $light-gray;
