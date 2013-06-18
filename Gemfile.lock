@@ -114,6 +114,7 @@ GEM
     libv8 (3.11.8.17)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
+    magic_encoding (0.0.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -240,6 +241,7 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
+  magic_encoding
   mime
   mms2r
   nexmo
