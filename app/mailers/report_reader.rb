@@ -6,7 +6,7 @@ class ReportReader < ActionMailer::Base
   def welcome_new_user_notification(login, password, email_addrs)
     @login = login
     @password = password
-    @url = "http://reportdengue.herokuapp.com/"
+    @url = "http://denguetorpedo.herokuapp.com/"
     mail(:to => email_addrs, :subject => "Welcome to Report Dengue")
   end
   
