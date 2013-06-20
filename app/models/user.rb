@@ -25,8 +25,6 @@
 
 class User < ActiveRecord::Base
 
-  ROLES = %w[webmaster coordenador verificador morador lojista visitante]
-
   attr_accessible :username, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo
   has_secure_password
   has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
@@ -36,11 +34,10 @@ class User < ActiveRecord::Base
   # validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
 
   # validation needs to be done.
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :middle_name
-  validates :nickname, presence: true
-  
+  validates :first_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
+  validates :last_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
+  validates :middle_name, :length => { :minimum => 2, :maximum => 16 }
+  validates :nickname, :length => { :minimum => 2, :maximum => 16 }
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
   validates :points, :numericality => { :only_integer => true }
   validates :phone_number, :numericality => true, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true
