@@ -36,10 +36,10 @@ class User < ActiveRecord::Base
   # validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
 
   # validation needs to be done.
-  validates :first_name
-  validates :last_name
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :middle_name
-  validates :nickname
+  validates :nickname, presence: true
   
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
   validates :points, :numericality => { :only_integer => true }
