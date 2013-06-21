@@ -9,8 +9,8 @@
     = f.error_messages
     %h2 Configurações de usuário
     
-    = f.label "Nome de usuário"
-    = f.label @current_user.username, {style: "font-weight: bold;"}
+    /= f.label "Nome de usuário"
+    / = f.label @current_user.username, {style: "font-weight: bold;"}
   
     = f.label "Celular"
     = f.text_field :phone_number

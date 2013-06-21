@@ -25,18 +25,16 @@
 
 class User < ActiveRecord::Base
 
-  attr_accessible :username, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo
+  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo
   has_secure_password
   has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   
   # validates
-  validates :username, :uniqueness => true
   # validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
 
   # validation needs to be done.
   validates :first_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
   validates :last_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
-  validates :middle_name, :length => { :minimum => 2, :maximum => 16 }
   validates :nickname, :length => { :minimum => 2, :maximum => 16 }
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
   validates :points, :numericality => { :only_integer => true }
@@ -136,5 +134,18 @@ class User < ActiveRecord::Base
     self.points -= @group.points_per_person
     return true
   end
+
+  def display_name
+    string = self.first_name
+    if self.middle_name
+      string += " " + self.middle_name
+    end
+    string += " " + self.last_name
+
+    if nickname
+      string += " (" + self.nickname + ")"
+    end
+    return string 
+   end
 
 end

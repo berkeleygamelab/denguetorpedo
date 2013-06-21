@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130602221729) do
+ActiveRecord::Schema.define(:version => 20130618084325) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -174,6 +174,10 @@ ActiveRecord::Schema.define(:version => 20130602221729) do
     t.boolean  "is_verifier",                :default => false
     t.boolean  "is_fully_registered",        :default => false
     t.boolean  "is_health_agent",            :default => false
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "last_name"
+    t.string   "nickname"
   end
 
 end
