@@ -25,7 +25,7 @@
 
 class User < ActiveRecord::Base
 
-  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo
+  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo, :display
   has_secure_password
   has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   
@@ -136,16 +136,26 @@ class User < ActiveRecord::Base
   end
 
   def display_name
-    string = self.first_name
+    if self.display == "firstmiddlelast"
+      display_name = self.first_name + " " + self.middle_name + " " + self.last_name
+    elsif self.display == "firstlast"
+      display_name = self.first_name + " " + self.last_name
+    elsif self.display == "first"
+      display_name = self.first_name
+    elsif self.display == "nicname"
+      display_name = self.nickname
+    else
+      display_name = self.first_name + " " + self.last_name + " (" + self.nickname + ")"
+    end
+    return display_name
+  end
+
+  def full_name
+    name = self.first_name
     if self.middle_name
-      string += " " + self.middle_name
+      name = name + " " + self.middle_name
     end
-    string += " " + self.last_name
-
-    if nickname
-      string += " (" + self.nickname + ")"
-    end
-    return string 
-   end
-
+    name = name + " " + self.last_name
+    return name
+  end
 end

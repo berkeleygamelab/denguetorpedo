@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618084325) do
+ActiveRecord::Schema.define(:version => 20130622223705) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -159,13 +159,13 @@ ActiveRecord::Schema.define(:version => 20130618084325) do
     t.string   "username"
     t.string   "password_digest"
     t.string   "auth_token"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
     t.string   "email"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "phone_number"
-    t.integer  "points",                     :default => 0,     :null => false
+    t.integer  "points",                     :default => 0,                 :null => false
     t.integer  "house_id"
     t.string   "profile_photo_file_name"
     t.string   "profile_photo_content_type"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20130618084325) do
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "nickname"
+    t.string   "display",                    :default => "firstmiddlelast"
   end
 
 end

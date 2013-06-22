@@ -12,21 +12,45 @@
     /= f.label "Nome de usuário"
     / = f.label @current_user.username, {style: "font-weight: bold;"}
   
-    = f.label "Celular"
+
+    = f.label :first_name, "* Nome"
+    = f.text_field :first_name
+
+    = f.label :middle_name,  "* Nome do meio"
+    = f.text_field :middle_name
+
+    = f.label :last_name, "* Sobrenome"
+    = f.text_field :last_name
+
+    <br>
+    %h3 Nome completo (igual ao do RG ou CPF)
+    = f.label "Display as"
+
+    %select{:name => "display"}
+      %option{value: "firstmiddlelast", selected: @user.display == "firstmiddlelast" } #{@user.full_name}
+      %option{value: "firstlast", selected: @user.display == "firstlast"} #{@user.first_name + " " + @user.last_name}
+      %option{value: "first", selected: @user.display == "first"} #{@user.first_name}
+      %option{value: "nickname", selected: @user.display == "nickname"} #{@user.nickname}
+      %option{value: "firstlastnickname", selected: @user.display == "firstlastnickname"} #{@user.first_name + " " + @user.last_name + " (" + @user.nickname + ")"}
+
+    <br>
+    = f.label "* Celular"
     = f.text_field :phone_number
     
-    = f.label "Confirmar celular"
+    = f.label "* Confirmar celular"
     = text_field_tag("phone_number_confirmation")
-  
-    = f.label "Email"
+
+    = f.label "* Email"
     = f.text_field :email
 
     = f.label "Foto do perfil"
     = f.file_field :profile_photo
     
-    %h2 Esqueci minha senha
-    = link_to "Clique para recuperar senha", edit_password_reset_path(@current_user), :id => "reset_password_link"
+    /%h2 Esqueci minha senha
+    /= link_to "Clique para recuperar senha", edit_password_reset_path(@current_user), :id => "reset_password_link"
       
+    <br>
+    <br>
     %h2 Configurações da casa
 
     = f.fields_for :location do |location_form|
@@ -37,7 +61,7 @@
   
     = f.fields_for :house do |house_form|
       = house_form.label "* Nome da casa (máximo 16 carácters)"
-      = house_form.text_field :name, :maxlength => "16"
+      = house_form.text_field :name, :maxlength => "16", :placeholder => "ex. Maria Santos ou Maria e Paulo"
       = house_form.label "Foto da casa"
       = house_form.file_field :profile_photo
 

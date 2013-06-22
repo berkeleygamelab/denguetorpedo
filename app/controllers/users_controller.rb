@@ -49,7 +49,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    
     if @user.save
       cookies[:auth_token] = @user.auth_token
       redirect_to edit_user_path(@user)
@@ -78,7 +77,10 @@ class UsersController < ApplicationController
     user_profile_phone_number_confirmation = params[:phone_number_confirmation]
     user_profile_photo = params[:user][:profile_photo]
     user_email = params[:user][:email]
-  
+    display = params[:display]
+    user_first_name = params[:user][:first_name]
+    user_last_name = params[:user][:last_name]
+    user_middle_name = params[:user][:middle_name]
     if user_profile_phone_number != @current_user.phone_number
       if user_profile_phone_number == user_profile_phone_number_confirmation
         @current_user.phone_number = user_profile_phone_number
@@ -109,8 +111,14 @@ class UsersController < ApplicationController
     else
     
       @current_user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
+      
+      @current_user.display = display
+      @current_user.first_name = user_first_name
+      @current_user.middle_name = user_middle_name
+      @current_user.last_name = user_last_name
       @user = @current_user
-  
+
+
       if @current_user.save
         redirect_to edit_user_path(@current_user), notice: 'Successfully update profile'
       else
