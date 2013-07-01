@@ -1,0 +1,26 @@
+#register.offset1
+  %h3 Register a new sponsor 
+  %ul
+    = form_for(@user) do |f|
+      %li= f.error_messages
+     
+      %li= f.label "* Nome"
+      %li= f.text_field :first_name
+      %li= f.label "nome do meio"
+      %li= f.text_field :middle_name
+      %li= f.label "* Sobrenome"
+      %li= f.text_field :last_name
+      %li= f.label "Apelido"
+      %li= f.text_field :nickname
+      %li= f.label :email, "* E-mail", :placeholder => "E-mail"
+      %li= f.text_field :email
+      %li= f.label :phone_nuber, "* Celular"
+      %li= f.text_field :phone_number, :placeholder => "021xxxxxxxx"
+      %li= f.label :password, "* Senha"
+      %li= f.password_field :password
+      %li= f.label :password_confirmation, "* Confirmar senha"
+      %li= f.password_field :password_confirmation
+      %li= f.label :role
+      %li= f.text_field :role
+      <br>
+      %li= f.submit "Fazer a inscrição!"

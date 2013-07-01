@@ -47,7 +47,7 @@
               - else
                 = link_to image_tag(member.profile_photo.url(:small)), user_path(member)
             .row
-              = link_to member.username, user_path(member)
+              = link_to member.first_name, user_path(member)
 
     .row
       .span10

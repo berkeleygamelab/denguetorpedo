@@ -1,27 +1,48 @@
-.row
-  .span15.offset1
-    %h1
-      Prize codes for
-      = @prize.prize_name
-    %p Listed below are the prize codes that have not expired/been redeemed yet. If you wish to set a prize code as redeemed, please click on the link next to each prize code to render the code as inactive.
-    %br
-    %br
+/ .row
+/   .span15.offset1
+/     %h1
+/       Prize codes for
+/       = @prize.prize_name
+/     %p Listed below are the prize codes that have not expired/been redeemed yet. If you wish to set a prize code as redeemed, please click on the link next to each prize code to render the code as inactive.
+/     %br
+/     %br
+
+/ .row
+/   .span14.offset2
+/     %div#prize_codes
+/       %table
+/         %th Code
+/         %th User Name
+/         %th Set Code as Redeemed
+/         - @prize_codes.each do |prize_code|
+/           - unless prize_code.expired or prize_code.redeemed
+/             %tr
+/               %td
+/                 = prize_code.code
+/               %td
+/                 = link_to prize_code.user.username, user_path(prize_code.user_id)
+/               %td
+/                 = link_to "Set as Redeemed", :controller => "prize_codes", :action => "redeem", :id => params[:id], :prize_id => params[:prize_id], :prize_code_id => prize_code.id
 
 .row
-  .span14.offset2
-    %div#prize_codes
-      %table
-        %th Code
-        %th User Name
-        %th Set Code as Redeemed
-        - @prize_codes.each do |prize_code|
-          - unless prize_code.expired or prize_code.redeemed
-            %tr
-              %td
-                = prize_code.code
-              %td
-                = link_to prize_code.user.username, user_path(prize_code.user_id)
-              %td
-                = link_to "Set as Redeemed", :controller => "prize_codes", :action => "redeem", :id => params[:id], :prize_id => params[:prize_id], :prize_code_id => prize_code.id
+  .span15.offset1
+    .coupons
+      .status
+        .name
+          = link_to @prize.user.full_name
+        .pontos
+          #{@prize.cost} pontos
+      .content
+        %h1 #{@prize.prize_name}
+        - if @prize.prize_photo_file_name.nil?
+          = image_tag("default_images/prize_default_image.jpg", :class => "coupons")
+        - else
+          = image_tag(@prize.prize_photo.url(:large), :class => "coupons")
+        .description
+          #{@prize.description}
+        .users
+          Rferecido por: #{@prize.user.full_name}
+          %br
+          Resgatado por: #{@prize_code.user.full_name}
 
 

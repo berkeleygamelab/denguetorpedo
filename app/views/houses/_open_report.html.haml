@@ -10,6 +10,6 @@
         = open_report.report
       %a Marcado:
       %a.user
-        = link_to open_report.reporter.username + " - " + open_report.strftime_with(:created_at), user_path(open_report.reporter)
+        = link_to open_report.reporter.display_name + " - " + open_report.strftime_with(:created_at), user_path(open_report.reporter)
   
           

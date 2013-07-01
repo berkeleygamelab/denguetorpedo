@@ -1,0 +1,16 @@
+%li.span3.prizes.possible
+	.status.possible
+		.name
+			= link_to medal.user.full_name, "sponsors/#{medal.user.id}"
+		.points
+			#{medal.cost} pontos
+	.prize_content
+		- if medal.prize_photo_file_name.nil?
+			= link_to image_tag("default_images/prize_default_image.jpg", :class => "prizes"), prize_path(medal)
+		- else
+			= link_to image_tag(medal.prize_photo.url(:large), :class => "prizes"), prize_path(medal)
+		.description
+			= link_to medal.prize_name, prize_path(medal)
+		.stock
+			#{medal.cost} pontos
+

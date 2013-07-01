@@ -31,7 +31,8 @@ html {
 }
 
 body {
-  background:#FDFFE9;
+  /*background:#FDFFE9;
+  background: #eeeeee;*/
   margin-top: 0px;
   height: 100%;
   
@@ -40,7 +41,8 @@ body {
     outline: none;
     
     &[type = "text"], &[type = "password"] {
-      height: 15px;
+      height: 17px;
+      border-radius: 5px;
     }
 
     &[type = "submit"] { 
@@ -140,8 +142,12 @@ a img {
   border:none;
 }
 
-a:link, a:visited, a:hover {
-  color: #333333;
+a {
+  color: black;
+}
+
+a:hover {
+  color: #0088cc;
   text-decoration: none;
 }
 
@@ -162,4 +168,15 @@ body > #container {
   margin: 0px;
   background-color: gray;
   display: inline-block;
+}
+.center {
+  text-align: center;
+}
+
+.margin_bottom30 {
+  margin-bottom: 30px;
+}
+
+.margin_bottom20 {
+  margin-bottom: 20px;
 }

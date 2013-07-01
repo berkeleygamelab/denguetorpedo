@@ -1,0 +1,21 @@
+%li.span3.prizes.possible
+	.status.possible
+		.name
+			= link_to prize.user.full_name, "sponsors/#{prize.user.id}"
+		.points
+			#{prize.cost} pontos
+	.prize_content
+		- if prize.prize_photo_file_name.nil?
+			= link_to image_tag("default_images/prize_default_image.jpg", :class => "prizes"), prize_path(prize)
+		- else
+			= link_to image_tag(prize.prize_photo.url(:large), :class => "prizes"), prize_path(prize)
+		.description
+			= link_to prize.prize_name, prize_path(prize)		
+		.stock
+			Estoque: #{prize.stock}
+		.redeem_by
+			- if prize.expire_on
+				Prazo: #{prize.expire_on.to_date}
+		
+			/	.redeem_button
+			/= button_to "Resgatar", prize_path(prize, :prize_id => prize.id), :method => :post

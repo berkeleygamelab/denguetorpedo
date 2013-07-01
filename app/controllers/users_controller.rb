@@ -4,9 +4,10 @@
 class UsersController < ApplicationController
 
   before_filter :require_login, :only => [:edit, :update]
-  
+
   def index
-    @users = User.all
+    @users = User.ordinary_users
+    authorize! :assign_roles, User
   end
   
   def show
@@ -58,12 +59,16 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = @current_user
+
+    @user = User.find(params[:id])
     @user.house ||= House.new
     @user.house.location ||= Location.new
     @highlightAccountItem = "nav_highlight"
-    @confirm = 0
-    flash[:notice] = nil
+    if @user != @current_user
+      authorize! :edit, User
+    end
+    # @confirm = 0
+    # flash[:notice] = nil
   end
   
   def update
@@ -84,10 +89,11 @@ class UsersController < ApplicationController
     if user_profile_phone_number != @current_user.phone_number
       if user_profile_phone_number == user_profile_phone_number_confirmation
         @current_user.phone_number = user_profile_phone_number
+        @current_user.is_fully_registered = true
       else
         @user = @current_user
         @confirm = 0
-        flash[:notice] = "phone number confirmation does not match with the provided phone number"
+        flash[:notice] = "Phone number confirmation does not match with the provided phone number"
         render "edit"
         return
       end
@@ -105,6 +111,7 @@ class UsersController < ApplicationController
     if params[:user][:confirm] == "0" && !house_name.blank? && House.find_by_name(house_name) && (house_name != @current_user.house.name)
       @user = @current_user
       @user.house.name = house_name
+
       @confirm = 1
       flash[:notice] = "Uma casa com esse nome já existe. Você quer se juntar a essa casa? Se sim, clique confirmar. Se não, clique cancelar e escolha outro nome de casa."
       render "edit"
@@ -112,15 +119,17 @@ class UsersController < ApplicationController
     
       @current_user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
       
+      location = @current_user.house.location
+      location.address = house_address
+      location.save!
       @current_user.display = display
       @current_user.first_name = user_first_name
       @current_user.middle_name = user_middle_name
       @current_user.last_name = user_last_name
       @user = @current_user
 
-
       if @current_user.save
-        redirect_to edit_user_path(@current_user), notice: 'Successfully update profile'
+        redirect_to edit_user_path(@current_user), :flash => { :notice => 'Successfully updated profile' }
       else
         @user.house = House.new(name: house_name)
         @user.house.location = Location.new

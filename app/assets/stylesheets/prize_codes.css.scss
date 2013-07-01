@@ -9,3 +9,33 @@
   padding: 10px;
   border: 1px solid black;
 }
+
+.coupons {
+	width: 600px;
+	height: 400px;	
+	border-color: #48abac;
+	margin-bottom: 20px;
+	background-color: white;
+	.status {
+		color: white;
+		height: 24px;
+		background-color: #48abac;
+		padding-left: 5px;
+		padding-right: 5px;
+		.name {
+			float: left;
+			a {
+				color: white;
+			}
+		}
+		.pontos {
+			float: right;
+		}
+	}
+}
+
+img.coupons {
+	width: 120px;
+	height: 120px;
+	float: left;
+}

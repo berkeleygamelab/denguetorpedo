@@ -1,0 +1,7 @@
+%ul.prizes_list
+	- if @filtered_prizes
+		- @filtered_prizes.each do |prize|
+			- if prize.stock == 0
+				= render :partial => "prizes/redeemed", :object => prize
+			- else
+				= render :partial => "prizes/prize", :object => prize

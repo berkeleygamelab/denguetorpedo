@@ -12,11 +12,12 @@
 //= require gmaps4rails/gmaps4rails.openlayers.js
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require_tree .
 
 
 //TopUp
-TopUp.host = "http://localhost:3000/";
+TopUp.host = "http://localhost:5000/";
 TopUp.images_path = "assets/top_up/";
 TopUp.players_path = "assets/players/";
 

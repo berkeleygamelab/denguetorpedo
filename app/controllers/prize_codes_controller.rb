@@ -11,8 +11,8 @@ class PrizeCodesController < ApplicationController
 
   # GET /user/:id/prize_codes/:prize_id
   def show
-    @prize = Prize.find(params[:prize_id])
-    @prize_codes = @prize.prize_codes
+    @prize_code = PrizeCode.find(params[:id])
+    @prize = @prize_code.prize
 
     respond_to do |format|
       format.html # show.html.erb
@@ -66,6 +66,9 @@ class PrizeCodesController < ApplicationController
     @prize = Prize.find(params[:prize_id])
     @prize_codes = @prize.prize_codes
     redirect_to :action => "show"
+  end
+
+  def list
   end
 
 

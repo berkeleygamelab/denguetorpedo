@@ -1,0 +1,23 @@
+#individual_prizes.prizes
+  %h2 Prêmios para a você
+  %ul.prizes_list
+    - @individual.each do |individual|
+      - if individual.stock == 0
+        = render :partial =>  'prizes/redeemed', :object => individual 
+      - else
+        = render :partial => 'prizes/prize', :object => individual
+%br
+#community_prizes.prizes
+  %h2 Prêmios para a communidade
+  %ul.prizes_list
+    - @community.each do |community|
+      - if community.stock == 0
+        = render :partial => "prizes/redeemed", :object => community
+      - else
+        = render :partial => "prizes/prize", :object => community
+%br
+#badges.prizes
+  %h2 Medalhas
+  %ul.prizes_list
+    - @medals.each do |medal|
+      = render :partial => "prizes/medal", :object => medal

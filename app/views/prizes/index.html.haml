@@ -1,109 +1,218 @@
 .row
-  .span6.offset1#user_info
-    - unless @user.nil?
+  .span8.offset1
+    %h1 Prêmios
+  .button_to#how_to{:title => "1. marcar um foco: 50 pontos <br> 2. eliminar um foco: 450 pontos <br> 3. postar no mini blog: 5 pontos (max 100 por mes)"}
+    Como ganhar pontos?
+%br
+.row
+  #neighborhood_stats.offset1
+    .span3
+      %b= @prizes.count
+      %br Total de Prêmios
+    .span4
       .row
-        %div#user_info2
-          .span2
-            #user_profile_picture
-              - if @user.profile_photo_file_name.nil?
-                = image_tag("default_images/profile_default_image.png")
-              - else
-                = image_tag(@user.profile_photo.url(:large))
-          .span
-            #user_welcome
-              %span
-                %strong{:style => "font-size:16px;"} Meus pontos:
-              #user_point_box
-                %span
-                  = @user.points
-    .row
-      .span6{:style => "margin:30px;font-weight:bold;font-size:16px;"}
-        Ações:
-        %br
-        1. marcar um foco: 50 pontos
-        %br
-        2. eliminar um foco: 450 pontos
-        %br
-        3. postar no mini blog: 5 pontos (max 100 por mes)
-
-  - unless @user.nil?  
-    .span6.offset2
-      #user_prizes
-        %h3{:style => "font-size:16px;"}
-          Meus prêmios:
-          - @user.prize_codes.sort.reverse.last(5).each do |prize_code|
-            - unless prize_code.nil?
-              = link_to image_tag(prize_code.prize.prize_photo.url(:small), {:size => "60x60", :class => "trophy_photo"}), prize_path(prize_code.prize.id)
+        #available_prizes_button.span1 
+        .span3
+          %b= @available.count
+          %br Prêmios Disponiveis
+    .span4
+      .row
+        #neighborhood_resolved_report_button.span1 
+        .span3
+          %b= @redeemed.count
+          %br Prêmios Resgatados
+    .span2
+      .house_count
+        %b= "0"
+        %br Patrocinadores
 
 .row
-  .span15.offset1
-    #prize_search
-      %h1 Prêmios para a comunidade
-    .row{:style => "margin-left: 1px;"}
-      = image_tag("prizes/community_prizes_section.png")
+  .span8.offset1
+    %h2 Filtros
+.row
+  .span12.offset1
+    #filters.offset1
+    - if params[:filter] == nil
+      .filters.active.small
+        = link_to "Todos", "/premios"
+    - else
+      .filters.small
+        = link_to "Todos", "/premios"
+    - if params[:filter] == "badges"
+      .filters.active.large
+        = link_to "Medalhas", "/premios?filter=badges"
+    - else
+      .filters.large
+        = link_to "Medalhas", "/premios?filter=badges"
+    - if params[:filter] == "individual"
+      .filters.active.large
+        = link_to "Individual", "/premios?filter=individual"
+    - else
+      .filters.large
+        = link_to "Individual", "/premios?filter=individual"
 
+    - if params[:filter] == "community"
+      .filters.active.large
+        = link_to "Comunidade", "/premios?filter=community"
+    - else
+      .filters.large
+        = link_to "Comunidade", "/premios?filter=community"
+    .filters.space
+    - if params[:filter] == "pontos" and params[:max] == "500"
+      .filters.active.small
+        = link_to "0-499", "/premios?filter=pontos&max=500"
+    - else
+      .filters.small
+        = link_to "0-499", "/premios?filter=pontos&max=500"
 
+    - if params[:filter] == "pontos" and params[:max] == "1000"
+      .filters.active.large
+        = link_to "500-999", "/premios?filter=pontos&max=1000"
+    -else
+      .filters.large
+        = link_to "500-999", "/premios?filter=pontos&max=1000"
 
+    - if params[:filter] == "pontos" and params[:max] == "5000"
+      .filters.active.large
+        = link_to "1000-4999", "/premios?filter=pontos&max=5000"
+    - else
+      .filters.large
+        = link_to "1000-4999", "/premios?filter=pontos&max=5000"
 
--#.row
--#  .span15.offset1
--#    %div.prizes_section
--#      %div.widther
--#        - Prize.order("cost").where(:community_prize => true).limit(3).each do |prize|
--#          .span4.community_prize_section
--#            %div.sec
--#              = link_to image_tag(prize.prize_photo.url(:large), {:size => "150x150", :class => "prize_photo"}), prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
--#              %h4
--#                = link_to prize.prize_name, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
--#              %div.cost
--#                %p
--#                  = link_to prize.cost, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
+    - if params[:filter] == "pontos"
+      .filters.active.small
+        = link_to ">5000", "/premios?filter=pontos"
+    - else
+      .filters.small
+        = link_to ">5000", "/premios?filter=pontos"
+
+    %br
+    %br
+    .filters
+      %select
+        %option Patrocinadores
+        - @sponsors.each do |sponsor|
+          %option #{sponsor.full_name}
 
 
 .row
-  .span15.offset1
-    #prize_search
-      %h1 Medalhas
-    .row
-      .span7{:style => "margin-left: 65px;"}
-        %ul
-          %li
-            = image_tag('badges/olho_100.tif')
-          %li
-            = image_tag('badges/guerreiro_2000.tif')
-          %li
-            = image_tag('badges/exterminador_4000.tif')
-      .span7
-        %ul
-          %li
-            = image_tag('badges/saudavel_8000.tif')
-          %li
-            = image_tag('badges/cuido_16000.tif')
+  .span12.offset1.prizes_list
+    - if params[:filter] == nil
+      = render :partial => "prizes/default_list"
+    - else
+      - if params[:filter] == "individual"
+        %h2 Prêmios para você
+      - elsif params[:filter] == "community"
+        %h2 Prêmios para a comunidade
+      - elsif params[:filter] == "badges"
+        %h2 Medalhas
+      = render :partial => "prizes/filtered_list"
+/ .row
+/   .span6.offset1#user_info
+/     - unless @user.nil?
+/       .row
+/         %div#user_info2
+/           .span2
+/             #user_profile_picture
+/               - if @user.profile_photo_file_name.nil?
+/                 = image_tag("default_images/profile_default_image.png")
+/               - else
+/                 = image_tag(@user.profile_photo.url(:large))
+/           .span
+/             #user_welcome
+/               %span
+/                 %strong{:style => "font-size:16px;"} Meus pontos:
+/               #user_point_box
+/                 %span
+/                   = @user.points
+/     .row
+/       .span6{:style => "margin:30px;font-weight:bold;font-size:16px;"}
+/         Ações:
+/         %br
+/         1. marcar um foco: 50 pontos
+/         %br
+/         2. eliminar um foco: 450 pontos
+/         %br
+/         3. postar no mini blog: 5 pontos (max 100 por mes)
+
+/   - unless @user.nil?  
+/     .span6.offset2
+/       #user_prizes
+/         %h3{:style => "font-size:16px;"}
+/           Meus prêmios:
+/           - @user.prize_codes.sort.reverse.last(5).each do |prize_code|
+/             - unless prize_code.nil?
+/               = link_to image_tag(prize_code.prize.prize_photo.url(:small), {:size => "60x60", :class => "trophy_photo"}), prize_path(prize_code.prize.id)
+
+/ .row
+/   .span15.offset1
+/     #prize_search
+/       %h1 Prêmios para a comunidade
+/     .row{:style => "margin-left: 1px;"}
+/       = image_tag("prizes/community_prizes_section.png")
+
+
+
+
+/ -#.row
+/ -#  .span15.offset1
+/ -#    %div.prizes_section
+/ -#      %div.widther
+/ -#        - Prize.order("cost").where(:community_prize => true).limit(3).each do |prize|
+/ -#          .span4.community_prize_section
+/ -#            %div.sec
+/ -#              = link_to image_tag(prize.prize_photo.url(:large), {:size => "150x150", :class => "prize_photo"}), prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
+/ -#              %h4
+/ -#                = link_to prize.prize_name, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
+/ -#              %div.cost
+/ -#                %p
+/ -#                  = link_to prize.cost, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
+
+
+/ .row
+/   .span15.offset1
+/     #prize_search
+/       %h1 Medalhas
+/     .row
+/       .span7{:style => "margin-left: 65px;"}
+/         %ul
+/           %li
+/             = image_tag('badges/olho_100.tif')
+/           %li
+/             = image_tag('badges/guerreiro_2000.tif')
+/           %li
+/             = image_tag('badges/exterminador_4000.tif')
+/       .span7
+/         %ul
+/           %li
+/             = image_tag('badges/saudavel_8000.tif')
+/           %li
+/             = image_tag('badges/cuido_16000.tif')
       
 
--#.row
--#  .span15.offset1
--#    %div.widther_2
--#      - Prize.order("cost").where(:is_badge => true).limit(5).each do |prize|
--#        .span2.badges_section
--#          %div.sec
--#            = link_to image_tag(prize.prize_photo.url(:small), {:size => "60x60", :class => "prize_photo"}), prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
--#            %h4
--#              = link_to prize.prize_name, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
--#            %div.cost
--#              %p
--#                = link_to prize.cost, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
+/ -#.row
+/ -#  .span15.offset1
+/ -#    %div.widther_2
+/ -#      - Prize.order("cost").where(:is_badge => true).limit(5).each do |prize|
+/ -#        .span2.badges_section
+/ -#          %div.sec
+/ -#            = link_to image_tag(prize.prize_photo.url(:small), {:size => "60x60", :class => "prize_photo"}), prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
+/ -#            %h4
+/ -#              = link_to prize.prize_name, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
+/ -#            %div.cost
+/ -#              %p
+/ -#                = link_to prize.cost, prize_path(prize.id), :class => "top_up", :toptions => "type = iframe, shaded = 1, overlayClose = 1, effect = fade, width = 1000, height = 630, resizable = 0, x = 50, y = 100, title =" + prize.prize_name
 
-.row 
-  .span15.offset1
-    #prize_search
-      %h1 Prêmios para você
-    .row{:style => "margin-left:1px;"}
-      = image_tag("prizes/cell_phone_recharge_section.png")
+/ .row 
+/   .span15.offset1
+/     #prize_search
+/       %h1 Prêmios para você
+/     .row{:style => "margin-left:1px;"}
+/       = image_tag("prizes/cell_phone_recharge_section.png")
 
-.row
-  .span15.offset1
-    #prize_search
-      %h1 Destaques da comunidade
-    .row{:style => "margin-left:1px;"}
-      = image_tag('prizes/community_expert_section.png')
+/ .row
+/   .span15.offset1
+/     #prize_search
+/       %h1 Destaques da comunidade
+/     .row{:style => "margin-left:1px;"}
+/       = image_tag('prizes/community_expert_section.png')

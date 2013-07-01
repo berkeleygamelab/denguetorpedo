@@ -3,12 +3,38 @@
 class PrizesController < ApplicationController
   # GET /prizes
   # GET /prizes.json
+  before_filter :require_login
   def index
 
     @user = current_user
 
     @prizes = Prize.all
-
+    @available = Prize.where('stock > 0').where(:is_badge => false)
+    @redeemed = Prize.where('stock = 0').where(:is_badge => false)
+    @medals = Prize.where(:is_badge => true)
+    @filter = params[:filter]
+    @max = params[:max]
+    @sponsors = User.where(:role => 'lojista')
+    if @filter == "pontos"
+      if @max == "500"
+        @filtered_prizes = Prize.where('cost <= 500 AND is_badge = "false"')
+      elsif @max == "1000"
+        @filtered_prizes = Prize.where('cost > 500 AND cost <= 1000 AND is_badge = "false"')
+      elsif @max == "5000"
+        @filtered_prizes = Prize.where('cost > 1000 AND cost <= 5000 AND is_badge = "false"')
+      else
+        @filtered_prizes = Prize.where('cost > 5000 AND is_badge = "false"')
+      end
+    elsif @filter == "badges"
+      @filtered_prizes = Prize.where(:is_badge => true)
+    elsif @filter == "individual"
+      @filtered_prizes = Prize.where(:community_prize => false)
+    elsif @filter == "community"
+      @filtered_prizes = Prize.where(:community_prize => true)
+    else
+      @individual = Prize.where(:community_prize => false, :is_badge => false)
+      @community = Prize.where(:community_prize => true, :is_badge => false)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @prizes }
@@ -28,7 +54,7 @@ class PrizesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :partial => 'prizeview', :locals => {:user_id => 1}}
+      format.html #{ render :partial => 'prizeview', :locals => {:user_id => 1}}
       format.json { render json: @prize }
     end
   end
@@ -74,6 +100,7 @@ class PrizesController < ApplicationController
   # GET /prizes/1/edit
   def edit
     @prize = Prize.find(params[:id])
+    @user = @current_user
   end
 
   # POST /prizes

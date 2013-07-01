@@ -10,7 +10,7 @@ Dengue::Application.routes.draw do
   match "/user/:id/prize_codes" => 'prize_codes#index'
   match "/user/:id/prize_codes/:prize_id" => 'prize_codes#show'
   match "/user/:id/prize_codes/:prize_id/redeem/:prize_code_id" => 'prize_codes#redeem'
-  post 'prizes/:id' => "prizes#new_prize_code"
+  post 'premios/:id' => "prizes#new_prize_code"
   match "/user/:id/buy_prize/:prize_id" => 'users#buy_prize'
   get "dashboard/index"
   get "password_resets/new"
@@ -26,6 +26,8 @@ Dengue::Application.routes.draw do
     resources :reports, :except => [:show]
     resources :posts
   end
+  
+  resources :sponsors
   
   resources :dashboard
   resources :reports do
@@ -48,8 +50,8 @@ Dengue::Application.routes.draw do
   resources :neighborhoods, :only => [:show]
   resources :buy_ins, :only => [:new, :create, :destroy]
   resources :group_buy_ins, :only => [:new, :create, :destroy]
-  resources :prizes
-  resources :prize_codes, :only => [:new, :create, :destroy, :show, :index]
+  resources :prizes, :path => "premios"
+  resources :prize_codes, :only => [:new, :create, :destroy, :show, :index], :path => "coupons"
 
 
   root :to => 'home#index'

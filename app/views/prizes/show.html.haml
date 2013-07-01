@@ -17,7 +17,7 @@
           .span6
             %div
               - if @prize.prize_photo_file_name.nil?
-                = image_tag("default_images/prize_default_image.png")
+                = image_tag("default_images/prize_default_image.jpg")
               - else
                 = image_tag(@prize.prize_photo.url(:large))
           .span9
@@ -30,18 +30,25 @@
         .row#bootstrap_sucks
           .span9
             %div#prize_instructions
+              - if @prize.is_badge == false
+                %p
+                  Stock: #{@prize.stock}
+                %p
+                  Prazo: #{@prize.expire_on.to_date }
               %h3
-                Redeption directions:
+                Redemption Instructions:
               %p
                 = @prize.redemption_directions
           .span6
             %div#prize_cost
+              .center
+                / You have #{@prize.user.points} pontos!
               #cost_specifically
                 %h5
                   = @prize.cost
-                -if !@current_user.nil?
-                  = @current_user.points 
-                  \/
+                / -if !@current_user.nil?
+                /   = @current_user.points 
+                /   \/
               - unless @current_user.nil?
                 - if @enoughPoints
                   #use_points
@@ -60,7 +67,7 @@
           .span15
             %div
               %h3
-                Patrocinador Locia
+                Patrocinador
       .row#sponsor_spot
         .row#more_bootstrap_sucks
           .span3
@@ -69,9 +76,9 @@
           .span7
             %div#sponsor_info
               %h4
-                Food Lion
+                #{@prize.user.full_name}
               %p
-                Lorem ipsum. fahtfth ayuot afyuh faiet nzfuhc fuin aft ayft yuwfpj qpo z[ou fotd aluft ] futha uhftia tfyh alutd  bm m
+                
           .span5
             %div#sponsor_map
               map goes here

@@ -480,3 +480,131 @@ div.use_points {
     font-weight: bold;
   }
 }
+
+div.prizes_list {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+div.prizes {
+  display: inline-block;
+}
+
+li.prizes {
+  display: inline-block;
+  background-color: white;
+  border: 1px solid;
+  width: 250px;
+  height: 120px;
+  margin: 5px;
+  .status {
+    height: 24px;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    a {
+      color: white;
+    }
+    .name {
+      float: left;
+    }
+    .points {
+      float: right;
+    }
+  }
+  .possible {
+    background-color: #00bbbb;
+  }
+  .redeemed {
+    background-color: #888888;
+  }
+  .prize_content {
+    img.prizes {
+      width: 60px;
+      height: 60px;
+      float: left;
+      padding: 5px;
+    }
+    .description {
+      height: 40px;
+      overflow: auto;
+      margin-top: 5px;
+      font-weight: bold;
+    }
+  }
+}
+
+li.prizes.possible {
+  border-color: #00bbbb;
+}
+
+li.prizes.redeemed {
+  border-color: #888888;
+}
+
+img.prizes {
+  width: 200px;
+  height: 100px;
+}
+
+div.filters {
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  a:hover {
+    color: #00bbbbb;
+  }
+}
+
+div.filters.small {
+  /*width: 65px;*/
+}
+
+div.filters.large {
+  /*width: 90px;*/
+}
+
+div.filters.space {
+  width: 5px;
+  height: 10px;
+}
+
+div.active {
+  font-weight: bolder;
+}
+
+#available_prizes_button {
+  background-color: #00bbbb;
+  border-radius: 2px;
+  height: 40px;
+  width: 50px;
+}
+
+div.redeem_button {
+  position: absolute;
+  margin: 100px 10px 10px 5px;
+  a {
+    img {
+      width: 50px;
+    }
+  }
+}
+
+div.stock {
+  margin-top: 10px;
+}
+div.stock, div.redeem_by {
+  
+  margin-left: 75px;
+}
+
+#how_to {
+  float: left;
+  position: absolute;
+  top: 10px;
+  left: 200px;
+
+}
+
+.center {
+  text-align: center;
+}

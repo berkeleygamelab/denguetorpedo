@@ -28,5 +28,8 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
+    can :assign_roles, User if user.role == "admin" || user.role == "coordenador"
+    can :edit, User if user.role == "admin" || user.role == "coordenador"
+
   end
 end

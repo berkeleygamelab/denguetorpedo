@@ -9,16 +9,24 @@
         - @prize.errors.full_messages.each do |msg|
           %li= msg
   .field
+    = f.label :prize_name, "Prize name"
     = f.text_field :prize_name, :placeholder => "Prize Name"
   .field
+    = f.label :prize_photo, "Prize Photo"
+    = f.file_field :prize_photo
+  .field
+    = f.label :cost, "Prize cost"
     = f.number_field :cost, :placeholder => "Cost"
   .field
+    = f.label :stock, "Stock"
     = f.number_field :stock, :placeholder => "Stock"
   .field
     = f.hidden_field :user_id, :value => user_id
   .field
+    = f.label :description, "Description"
     = f.text_area :description, :cols => 20, :rows => 10, :placeholder => "Description"
   .field
+    = f.label :redemption_directions, "Redemption Directions"
     = f.text_area :redemption_directions, :cols => 20, :rows => 10, :placeholder => "Redemption Directions"
   .field
     = f.label :expire_on

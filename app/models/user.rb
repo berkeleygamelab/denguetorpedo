@@ -25,7 +25,8 @@
 
 class User < ActiveRecord::Base
 
-  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo, :display
+  ROLES = ["morador", "logista", "visitante"]
+  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo, :display, :is_verifier, :is_fully_registered, :is_health_agent, :role
   has_secure_password
   has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   
@@ -34,8 +35,8 @@ class User < ActiveRecord::Base
 
   # validation needs to be done.
   validates :first_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
+  validates :middle_name, presence: true, :length => { :minimum => 2, :maximum => 16}
   validates :last_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
-  validates :nickname, :length => { :minimum => 2, :maximum => 16 }
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
   validates :points, :numericality => { :only_integer => true }
   validates :phone_number, :numericality => true, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true
@@ -157,5 +158,17 @@ class User < ActiveRecord::Base
     end
     name = name + " " + self.last_name
     return name
+  end
+
+  def self.ordinary_users
+    return User.where("role != 'admin' AND role !='coordenador'")
+  end
+
+  def get_nickname
+    if self.nickname
+      return nickname
+    else
+      return ""
+    end
   end
 end

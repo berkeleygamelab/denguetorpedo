@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :current_user
+
+  rescue_from CanCan::AccessDenied do |exception|
+    render :file => "public/401.html", :status => :unauthorized
+  end
   
   private
   
@@ -14,4 +18,6 @@ class ApplicationController < ActionController::Base
   def require_login
     head :forbidden and return if @current_user.nil?
   end
+
+
 end
