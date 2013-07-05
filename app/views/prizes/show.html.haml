@@ -28,18 +28,25 @@
                 = @prize.description
       .row#prize_instructions_and_cost
         .row#bootstrap_sucks
-          .span9
-            %div#prize_instructions
-              - if @prize.is_badge == false
-                %p
-                  Stock: #{@prize.stock}
-                %p
-                  Prazo: #{@prize.expire_on.to_date }
-              %h3
-                Redemption Instructions:
-              %p
-                = @prize.redemption_directions
           .span6
+            %div#prize_cost
+              #current_user
+                %h5
+                  350
+              #cant_use_points_sucka
+                %h6
+                  Seus pontos
+            / %div#prize_instructions
+            /   - if @prize.is_badge == false
+            /     %p
+            /       Estoque: #{@prize.stock}
+            /     %p
+            /       Prazo: #{@prize.expire_on.to_date }
+            /   %h3
+            /     Redemption Instructions:
+            /   %p
+            /     = @prize.redemption_directions
+          .span6.offset3
             %div#prize_cost
               .center
                 / You have #{@prize.user.points} pontos!
@@ -52,16 +59,21 @@
               - unless @current_user.nil?
                 - if @enoughPoints
                   #use_points
-                    = link_to "Usar menus pontos!", prize_path, :method => :post
+                    = link_to "Usar os meus pontos agora!", prize_path, :method => :post
                 - if !@enoughPoints
                   #cant_use_points_sucka
                     %h6
-                      Você precisa de mais pontos para redimir
+                      Usar os meus pontos agora!
+                /   #cant_use_points_sucka
+                /     %h6
+                /       Você precisa de mais pontos para redimir
 
               - if @current_user.nil?
                 #cant_use_points_sucka
                   %h6
                     Você deve entrar para redimir
+      .row
+        #prize_
       .row#sponsor_area_title_thing
         .row#seriously_bootstrap
           .span15

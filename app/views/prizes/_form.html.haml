@@ -9,28 +9,28 @@
         - @prize.errors.full_messages.each do |msg|
           %li= msg
   .field
-    = f.label :prize_name, "Prize name"
-    = f.text_field :prize_name, :placeholder => "Prize Name"
+    = f.label :prize_name, "Nome do prêmio"
+    = f.text_field :prize_name, :placeholder => "Nome do prêmio"
   .field
-    = f.label :prize_photo, "Prize Photo"
+    = f.label :prize_photo, "Foto do prêmio"
     = f.file_field :prize_photo
   .field
-    = f.label :cost, "Prize cost"
-    = f.number_field :cost, :placeholder => "Cost"
+    = f.label :cost, "Pontos para resgatar"
+    = f.number_field :cost, :placeholder => "pontos"
   .field
-    = f.label :stock, "Stock"
-    = f.number_field :stock, :placeholder => "Stock"
+    = f.label :stock, "Estoque"
+    = f.number_field :stock, :placeholder => "Estoque"
   .field
     = f.hidden_field :user_id, :value => user_id
   .field
-    = f.label :description, "Description"
-    = f.text_area :description, :cols => 20, :rows => 10, :placeholder => "Description"
+    = f.label :description, " Descrição"
+    = f.text_area :description, :cols => 20, :rows => 10, :placeholder => "Descrição"
   .field
-    = f.label :redemption_directions, "Redemption Directions"
-    = f.text_area :redemption_directions, :cols => 20, :rows => 10, :placeholder => "Redemption Directions"
+    = f.label :redemption_directions, "Instruções para resgatar"
+    = f.text_area :redemption_directions, :cols => 20, :rows => 10, :placeholder => "Instruções para resgatar"
   .field
-    = f.label :expire_on
-    %br
+    = f.label :expire_on, "Prazo"
     = f.datetime_select :expire_on, :ampm => true, :default => { :hour => 23, :minute => 59 }, :discard_minute => true, :discard_hour => true
+  %br
   .actions
-    = f.submit
+    = f.submit "Cadastrar prêmio"

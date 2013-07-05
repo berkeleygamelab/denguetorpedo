@@ -58,6 +58,7 @@
       .filters.large
         = link_to "Comunidade", "/premios?filter=community"
     .filters.space
+      Por pontos:
     - if params[:filter] == "pontos" and params[:max] == "500"
       .filters.active.small
         = link_to "0-499", "/premios?filter=pontos&max=500"

@@ -54,6 +54,8 @@ class Prize < ActiveRecord::Base
     @account = @client.account
     @user = User.find(user_id)
     body = "Your redemption code for " + self.prize_name + " is " + code
+
+    body = "Parabéns! Você resgatou " + self.prize_name + ". O seu código de resgate do prêmio é " + code + ". Imprima o cupom no site Dengue Torpedo e apresente com um documento válido com foto (ex. RG) no estabelecimento do patrocinador para resgatar o seu prêmio."
     @account.sms.messages.create(:from => '+15109854798', :to => @user.phone_number , :body  => body)      
   end
 

@@ -56,7 +56,7 @@
       %br
       /= f.label :email,  "* Email"
       
-      = f.label :profile_photo,  "Foto do perfil"
+      = f.label :profile_photo,  "Foto do perfil (opcional)"
       = f.file_field :profile_photo
     
     /%h2 Esqueci minha senha
@@ -68,12 +68,12 @@
     .indent
       = f.fields_for :location do |location_form|
         /= location_form.label "* Endereço da casa"
-        = location_form.text_field :address, value: @user.location.address, placeholder: "* Endereço da casa"if @user.location
-        %h3#complete_name{:title => "Na fase atual, somente os moradores do Bairro Maré poderão participar."}* Bairro <b style="color:blue;">?</b>
+        = location_form.text_field :address, value: @user.location.address, placeholder: "Endereço da casa" if @user.location
+        %h3#complete_name{:title => "Na fase atual, somente os moradores do Bairro Maré poderão participar."}Bairro <b style="color:blue;">?</b>
         = location_form.text_field:neighborhood, value: "Maré", :disabled => "disabled" if @user.location
     
       = f.fields_for :house do |house_form|
-        = house_form.label "* Nome da casa (máximo 16 carácters)"
+        = house_form.label "Nome da casa (máximo 16 caracteres)"
         = house_form.text_field :name, :maxlength => "16", :placeholder => "ex. Maria Santos ou Maria e Paulo"
         = house_form.label "Foto da casa (opcional)"
         = house_form.file_field :profile_photo
@@ -82,7 +82,7 @@
     - if @current_user.is_fully_registered == false
       %h1 Alguém o convidou a se inscrever no DT?
       %select
-        %option NENHUM
+        %option NINGUÉM
         %option AVS/ACS
         %option MORADOR/ VIZINHO
     
