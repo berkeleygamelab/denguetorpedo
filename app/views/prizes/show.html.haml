@@ -21,41 +21,38 @@
               - else
                 = image_tag(@prize.prize_photo.url(:large))
           .span9
-            %div
-              %h3
-                = @prize.prize_name
-              %p
-                = @prize.description
+            #prize_cost
+              .row#prize_cost{:style => "padding:10px;"}
+                %h2
+                  = @prize.prize_name
+                %br
+                %h5
+                  #{@prize.cost} pontos
+                %br
+                %p{ :style => "font-size:15px;"}
+                  = @prize.description
+              .row
+                - if @prize.is_badge == false
+                  - if @prize.stock != 0
+                    %p
+                      Estoque: #{@prize.stock}
+                  - if @prize.expire_on
+                    %p
+                      Prazo: #{@prize.expire_on.to_date }
       .row#prize_instructions_and_cost
         .row#bootstrap_sucks
           .span6
             %div#prize_cost
               #current_user
-                %h5
-                  350
+                %h5{:style => "color:#333333;font-size:60px; text-align:center;"}
+                  = number_with_delimiter(@user.points, :delimiter => ".")
               #cant_use_points_sucka
                 %h6
                   Seus pontos
-            / %div#prize_instructions
-            /   - if @prize.is_badge == false
-            /     %p
-            /       Estoque: #{@prize.stock}
-            /     %p
-            /       Prazo: #{@prize.expire_on.to_date }
-            /   %h3
-            /     Redemption Instructions:
-            /   %p
-            /     = @prize.redemption_directions
-          .span6.offset3
+          .span6.offset3{:style => "float:right;margin-right:5px;"}
             %div#prize_cost
-              .center
-                / You have #{@prize.user.points} pontos!
-              #cost_specifically
-                %h5
-                  = @prize.cost
-                / -if !@current_user.nil?
-                /   = @current_user.points 
-                /   \/
+              / .center
+              / You have #{@prize.user.points} pontos!
               - unless @current_user.nil?
                 - if @enoughPoints
                   #use_points
@@ -72,6 +69,15 @@
                 #cant_use_points_sucka
                   %h6
                     Você deve entrar para redimir
+      %div#prize_instructions.row{:style => "background-color:white;padding: 10px;margin-top: 50px;"}
+        %h3
+          Para retirar o prêmio:
+        %br
+
+        %p
+          Compareça ao estabelecimento de porte do cupom impresso e de um documento válido com foto (ex. RG).
+        %p
+          = @prize.redemption_directions
       .row
         #prize_
       .row#sponsor_area_title_thing
@@ -84,14 +90,15 @@
         .row#more_bootstrap_sucks
           .span3
             %div#sponsor_image 
-              sponsor image goes here
+              = link_to image_tag(@prize.user.profile_photo.url(:small), :width => 100)
           .span7
             %div#sponsor_info
               %h4
                 #{@prize.user.full_name}
               %p
+                = @prize.user.house.location.address
                 
           .span5
             %div#sponsor_map
-              map goes here
+              mapa
   .row

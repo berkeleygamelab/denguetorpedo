@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130624083317) do
+ActiveRecord::Schema.define(:version => 20130705201353) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -66,10 +66,13 @@ ActiveRecord::Schema.define(:version => 20130624083317) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "formatted_address"
     t.integer  "neighborhood_id"
+    t.string   "street_type",       :default => ""
+    t.string   "street_name",       :default => ""
+    t.string   "street_number",     :default => ""
   end
 
   create_table "neighborhoods", :force => true do |t|

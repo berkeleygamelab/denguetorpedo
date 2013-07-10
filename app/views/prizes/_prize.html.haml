@@ -16,6 +16,3 @@
 		.redeem_by
 			- if prize.expire_on
 				Prazo: #{prize.expire_on.to_date}
-		
-			/	.redeem_button
-			/= button_to "Resgatar", prize_path(prize, :prize_id => prize.id), :method => :post

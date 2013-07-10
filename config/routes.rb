@@ -25,6 +25,9 @@ Dengue::Application.routes.draw do
   resources :users do
     resources :reports, :except => [:show]
     resources :posts
+    collection do
+      get 'special_new'
+    end
   end
   
   resources :sponsors

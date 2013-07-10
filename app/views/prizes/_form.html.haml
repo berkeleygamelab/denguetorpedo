@@ -9,19 +9,30 @@
         - @prize.errors.full_messages.each do |msg|
           %li= msg
   .field
+    = f.label :user_id, "Patrocinador"
+    = f.select(:user_id, @users)
+  .field{ :style => "margin-bottom: 18px;"}
     = f.label :prize_name, "Nome do prêmio"
     = f.text_field :prize_name, :placeholder => "Nome do prêmio"
+  .field{ :style => "margin-bottom: 22px;font-size:16px;margin-top: 10px;"}
+    %input{:type => "radio", :value => false, :name => 'community_prize', :style => "font-size:14px;"}
+    Prêmio individual
+    %input{:type => "radio", :value => true, :name => "community_prize", :style => "margin-left:20px;font-size:14px;"}
+    Prêmio communidade
   .field
     = f.label :prize_photo, "Foto do prêmio"
     = f.file_field :prize_photo
+
+  
+
   .field
     = f.label :cost, "Pontos para resgatar"
     = f.number_field :cost, :placeholder => "pontos"
   .field
     = f.label :stock, "Estoque"
     = f.number_field :stock, :placeholder => "Estoque"
-  .field
-    = f.hidden_field :user_id, :value => user_id
+  / .field
+  /   = f.hidden_field :user_id, :value => user_id
   .field
     = f.label :description, " Descrição"
     = f.text_area :description, :cols => 20, :rows => 10, :placeholder => "Descrição"
@@ -29,8 +40,10 @@
     = f.label :redemption_directions, "Instruções para resgatar"
     = f.text_area :redemption_directions, :cols => 20, :rows => 10, :placeholder => "Instruções para resgatar"
   .field
-    = f.label :expire_on, "Prazo"
-    = f.datetime_select :expire_on, :ampm => true, :default => { :hour => 23, :minute => 59 }, :discard_minute => true, :discard_hour => true
+    %input{:type => "checkbox", :class => "prazo", :checked => true}
+    Prazo
+    %br
+    = f.datetime_select :expire_on, :ampm => true, :default => { :hour => 23, :minute => 59 }, :discard_minute => true, :discard_hour => true, :order => [:day, :month, :year], :use_month_names => ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"]
   %br
   .actions
     = f.submit "Cadastrar prêmio"

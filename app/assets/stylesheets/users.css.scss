@@ -194,7 +194,7 @@ ul#user_right_panel {
       z-index: 1;
       text-align: center;
       padding-top: 25px;
-      margin-top: 40px;
+      margin-top: 50px;
       margin-left: 40px;
       .user_points_bg {
         margin: -5px 0px 0px 0px;
@@ -522,6 +522,7 @@ ul#user_right_panel {
 }
 #role_specific {
   position: absolute;
+  margin-left: 650px;
 }
 
 ol.users_list {
@@ -530,4 +531,33 @@ ol.users_list {
 
 .indent {
   margin-left: 30px;
+}
+
+.short_field {
+  width: 100px;
+}
+
+.middle_field {
+  width: 100px;
+}
+
+p.link {
+  font-size: 14px;
+  margin: 5px;
+}
+
+.header_link {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+ul#badges_list {
+  max-height: 500px;
+  overflow-y:auto;
+  width: 275px;
+}
+ul#coupons_list {
+  max-height: 500px;
+  overflow: auto;
+  margin-top: 20px;
 }

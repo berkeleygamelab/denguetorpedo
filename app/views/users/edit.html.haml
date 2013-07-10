@@ -1,11 +1,13 @@
 - content_for :scripts do
   :javascript
     $("#complete_name").tooltip();
-
 - if @current_user.role == "admin" or @current_user.role == "coordenador"
   #role_specific.offset9
     %h2 Configurações de administrador
-    = link_to "Edit User Roles", "/users"
+    %p.link
+      = link_to "Registrar patrocinador, verificador e visitante", "/users/special_new"
+    %p.link
+      = link_to "Registrar novos prêmios ", "/premios/new"
 .user_form.offset1
   /%h1 Configurações da conta
  
@@ -15,10 +17,7 @@
         
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
-    %h1 Configurações de usuário
-
-    
-
+    %h1 Configurações de usuário    
     
     /= f.label "Nome de usuário"
     / = f.label @current_user.username, {style: "font-weight: bold;"}
@@ -46,6 +45,7 @@
           %option{value: "nickname", selected: @user.display == "nickname", id: "nickname"} #{@user.nickname}
           %option{value: "firstlastnickname", selected: @user.display == "firstlastnickname", id: "firstlastnickname"} #{@user.first_name + " " + @user.last_name + " (" + @user.get_nickname + ")"}
 
+      %br
       /= f.label :phone_number, "* Celular"
       = f.text_field :email, :placeholder => "* Email"
       %br
@@ -68,9 +68,12 @@
     .indent
       = f.fields_for :location do |location_form|
         /= location_form.label "* Endereço da casa"
-        = location_form.text_field :address, value: @user.location.address, placeholder: "Endereço da casa" if @user.location
+        / # = location_form.text_field :address, value: @user.location.address, placeholder: "Endereço da casa", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze." if @user.location
+        = location_form.text_field :street_type, value: @user.location.street_type, placeholder: "Rua, Beco etc.", class: "short_field"
+        = location_form.text_field :street_name, value: @user.location.street_name, placeholder: "Nome", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze."
+        = location_form.text_field :street_number, value: @user.location.street_number, placeholder: "Número", class: "middle_field"
         %h3#complete_name{:title => "Na fase atual, somente os moradores do Bairro Maré poderão participar."}Bairro <b style="color:blue;">?</b>
-        = location_form.text_field:neighborhood, value: "Maré", :disabled => "disabled" if @user.location
+        = location_form.text_field:neighborhood, value: "Maré" if @user.location
     
       = f.fields_for :house do |house_form|
         = house_form.label "Nome da casa (máximo 16 caracteres)"
@@ -81,7 +84,7 @@
     %br
     - if @current_user.is_fully_registered == false
       %h1 Alguém o convidou a se inscrever no DT?
-      %select
+      %select#recruitment
         %option NINGUÉM
         %option AVS/ACS
         %option MORADOR/ VIZINHO

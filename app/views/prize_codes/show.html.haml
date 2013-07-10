@@ -24,25 +24,40 @@
 /               %td
 /                 = link_to "Set as Redeemed", :controller => "prize_codes", :action => "redeem", :id => params[:id], :prize_id => params[:prize_id], :prize_code_id => prize_code.id
 
-.row
-  .span15.offset1
-    .coupons
-      .status
-        .name
-          = link_to @prize.user.full_name
-        .pontos
-          #{@prize.cost} pontos
-      .content
-        %h1 #{@prize.prize_name}
-        - if @prize.prize_photo_file_name.nil?
-          = image_tag("default_images/prize_default_image.jpg", :class => "coupons")
-        - else
-          = image_tag(@prize.prize_photo.url(:large), :class => "coupons")
-        .description
-          #{@prize.description}
-        .users
-          Rferecido por: #{@prize.user.full_name}
-          %br
-          Resgatado por: #{@prize_code.user.full_name}
+.row.offset1
+  %h1
+    Cupom
+%br
+.row.offset1
+  .coupons
+    .status
+      .name
+        = link_to @prize.user.full_name
+      .pontos
+        #{@prize.cost} pontos
+    .content{:style => "padding-top:10px; padding-left:20px;", :class => "coupons"}
+      - if @prize.prize_photo_file_name.nil?
+        = image_tag("default_images/prize_default_image.jpg", :class => "coupons")
+      - else
+        = image_tag(@prize.prize_photo.url(:large))
+      %h1 #{@prize.prize_name}
+      
+      .description
+        #{@prize.description}
+      .users
+        Oferecido por: #{@prize.user.full_name}
+        %br
+        Resgatado por: #{@prize_code.user.full_name}
+
+      .coupon_code
+        Cupom: #{@prize_code.code}
+      .statement{:style => "float:left;"}
+        • Eu, #{@prize_code.user.display_name}, portador do celular número #{@prize_code.user.phone_number}, participante do site Dengue Torpedo, com perfil na página <a>http://denguetorpedo.com/users/#{@prize_code.user.id}</a>, solicito o resgate do prêmio acima.
+      %br
+      .statement{:style => "float:left;"}
+        • Para retirar o seu prêmio compareça ao estabelecimento de porte desse cupom e de um documento válido com foto (ex. RG). Você pode tirar fotos do momento do resgate do prêmio e publicar no seu blog no site Dengue Torpedo.  Assim, você acumula mais 5 pontos. Em caso de dúvida escreva para contato@denguetorpedo.com
+      .statement{:style => "float:left;"}
+        • Prazo: O cupom é válido em até 7 dias após a impressão. 
+
 
 

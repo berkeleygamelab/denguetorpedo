@@ -20,12 +20,23 @@ $(document).ready(function() {
 		reflectChangeInName();
 	});
 	$("#user_middle_name").keyup(function() {
+
 		reflectChangeInName();
+		if ($("#user_middle_name").val() == "") {
+			$("#firstmiddlelast").hide();
+		}
 	});
 	$("#user_last_name").keyup(function() {
 		reflectChangeInName();
 	});
 	$("#user_nickname").keyup(function() {
 		reflectChangeInName();
+
+		if ($("#user_nickname").val() == "") {
+			$("#nickname").hide();
+			$("#firstlastnickname").hide();
+		}
 	});
+
+	// $("#recruitment").change
 });

@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     
     @isPrivatePage = (@user == @current_user)
     @highlightProfileItem = @isPrivatePage ? "nav_highlight" : ""
-    
+    @coupons = @user.prize_codes
     if params[:filter] == 'reports'
       @feed_active_reports = 'active'
       @combined_sorted = @user.reports
@@ -45,6 +45,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
+  end
+
+  def special_new
     @user = User.new
   end
   
@@ -116,11 +120,15 @@ class UsersController < ApplicationController
       flash[:notice] = "Uma casa com esse nome já existe. Você quer se juntar a essa casa? Se sim, clique confirmar. Se não, clique cancelar e escolha outro nome de casa."
       render "edit"
     else
-    
+      house_address = params[:user][:location][:street_type] + " " + params[:user][:location][:street_name] + " " + params[:user] [:location][:street_number]
       @current_user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
       
       location = @current_user.house.location
-      location.address = house_address
+      # location.address = house_address
+      location.street_type = params[:user][:location][:street_type]
+      location.street_name = params[:user][:location][:street_name]
+      location.street_number = params[:user] [:location][:street_number]
+      location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
       location.save!
       @current_user.display = display
       @current_user.first_name = user_first_name
@@ -128,7 +136,7 @@ class UsersController < ApplicationController
       @current_user.last_name = user_last_name
       @user = @current_user
 
-      if @current_user.save
+      if @current_user.save!
         redirect_to edit_user_path(@current_user), :flash => { :notice => 'Successfully updated profile' }
       else
         @user.house = House.new(name: house_name)

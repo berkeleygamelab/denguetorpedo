@@ -248,7 +248,8 @@ img.prize_photo {
 }
 
 #prize_cost #use_points {
-  background-color: #38BFC3;
+  /*background-color: #38BFC3;*/
+  background-color: #60BB50;
   line-height: 30px;
 }
 
@@ -294,8 +295,10 @@ img.prize_photo {
 
 #prize_cost #use_points {
   text-align: center;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 24px;
+  height: 75px;
+  padding-top: 50px;
 }
 
 #prize_cost #use_points a {
@@ -314,12 +317,19 @@ img.prize_photo {
   color: #888;
 }
 
+#prize_cost h2 {
+  font-size: 30px;
+}
+
 #prize_cost h5 {
-  color: #F26721;
-  font-size: 87px;
+  color: #60BB50;
+  font-size: 30px;
   line-height: 35px;
   font-weight: bold;
-  text-align: center;
+}
+
+#prize_instructions {
+  margin-bottom: 20px;
 }
 
 #prize_instructions h3 {
@@ -398,6 +408,10 @@ div#prize_redemption {
   width: 900px;
   margin-left: 50px;
   margin-top: 30px;
+}
+
+div#prize_instructions {
+  margin-top: 20px;
 }
 
 img.prize_photo_large {
@@ -506,7 +520,7 @@ div.prizes {
 li.prizes {
   display: inline-block;
   background-color: white;
-  border: 1px solid;
+  border: 1px solid #60BB50;
   width: 250px;
   height: 120px;
   margin: 5px;
@@ -526,7 +540,7 @@ li.prizes {
     }
   }
   .possible {
-    background-color: #00bbbb;
+    background-color: #60BB50;
   }
   .redeemed {
     background-color: #888888;
@@ -548,7 +562,7 @@ li.prizes {
 }
 
 li.prizes.possible {
-  border-color: #00bbbb;
+  border-color: #60BB50;
 }
 
 li.prizes.redeemed {
@@ -578,7 +592,7 @@ div.filters.large {
 }
 
 div.filters.space {
-  width: 76px;
+  width: 80px;
   height: 10px;
   margin-left: 40px;
   margin-right: 0;
@@ -623,4 +637,19 @@ div.stock, div.redeem_by {
 
 .center {
   text-align: center;
+}
+
+.disabled {
+  img {
+    position: relative;
+    top: -84px;
+    left: 0px;
+    height: 116px;
+    width: 258px;  
+  }
+  
+}
+
+div.sponsors {
+  float: left;
 }

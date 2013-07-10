@@ -1,8 +1,11 @@
-.user_form
-  %h1 Inscreva-se
+.user_form.offset1
+  %h1 Registrar patrocinador, verificador e visitante
   = form_for(@user) do |f|
     = f.error_messages
-    = f.collection_select
+    %select{:name => "role"}
+      %option Patrocinador
+      %option Verificador
+      %option Visitante
     = f.label "Celular"
     = f.text_field :phone_number, :placeholder => "* Celular 5521xxxxxxxx"
     = f.label "E-mail"

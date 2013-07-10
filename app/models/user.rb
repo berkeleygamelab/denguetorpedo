@@ -35,7 +35,6 @@ class User < ActiveRecord::Base
 
   # validation needs to be done.
   validates :first_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
-  validates :middle_name, presence: true, :length => { :minimum => 2, :maximum => 16}
   validates :last_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
   validates :points, :numericality => { :only_integer => true }
@@ -53,15 +52,15 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
 
   # associations
-  has_many :created_reports, :class_name => "Report", :foreign_key => "reporter_id"
-  has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id"
-  has_many :feeds
-  has_many :posts
-  has_many :prize_codes
-  has_many :badges
-  has_many :prizes
-  has_many :created_group_buy_ins, :class_name => "GroupBuyIn"
-  has_many :participated_group_buy_ins, :through => :buy_ins, :class_name => "GroupBuyIn"
+  has_many :created_reports, :class_name => "Report", :foreign_key => "reporter_id", :dependent => :destroy
+  has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id", :dependent => :destroy
+  has_many :feeds, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
+  has_many :prize_codes, :dependent => :destroy
+  has_many :badges, :dependent => :destroy
+  has_many :prizes, :dependent => :destroy
+  # has_many :created_group_buy_ins, :class_name => "GroupBuyIn", :dependent => :destroy
+  # has_many :participated_group_buy_ins, :through => :buy_ins, :class_name => "GroupBuyIn", :dependent => :destroy
   
   belongs_to :house
 

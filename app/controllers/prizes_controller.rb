@@ -17,20 +17,20 @@ class PrizesController < ApplicationController
     @sponsors = User.where(:role => 'lojista')
     if @filter == "pontos"
       if @max == "500"
-        @filtered_prizes = Prize.where('cost <= 500 AND is_badge = "false"')
+        @filtered_prizes = Prize.where('cost <= 500').where(:is_badge => false)
       elsif @max == "1000"
-        @filtered_prizes = Prize.where('cost > 500 AND cost <= 1000 AND is_badge = "false"')
+        @filtered_prizes = Prize.where('cost > 500 AND cost < 1000').where(:is_badge => false)
       elsif @max == "5000"
-        @filtered_prizes = Prize.where('cost > 1000 AND cost <= 5000 AND is_badge = "false"')
+        @filtered_prizes = Prize.where('cost > 1000 AND cost <5000').where(:is_badge => false)
       else
-        @filtered_prizes = Prize.where('cost > 5000 AND is_badge = "false"')
+        @filtered_prizes = Prize.where('cost >= 5000').where(:is_badge => false)
       end
     elsif @filter == "badges"
       @filtered_prizes = Prize.where(:is_badge => true)
     elsif @filter == "individual"
-      @filtered_prizes = Prize.where(:community_prize => false)
+      @filtered_prizes = Prize.where(:community_prize => false).where(:is_badge => false)
     elsif @filter == "community"
-      @filtered_prizes = Prize.where(:community_prize => true)
+      @filtered_prizes = Prize.where(:community_prize => true).where(:is_badge => false)
     else
       @individual = Prize.where(:community_prize => false, :is_badge => false)
       @community = Prize.where(:community_prize => true, :is_badge => false)
@@ -63,8 +63,9 @@ class PrizesController < ApplicationController
   # GET /prizes/new.json
   def new
     @prize = Prize.new
-    @user = current_user
-
+    # @user = current_user
+    # @users = User.where(:role => "lojista").map { |user| user.display_name }
+    @users = User.where(:role => "lojista").collect{ |user| [user.display_name, user.id]}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @prize }
@@ -80,13 +81,13 @@ class PrizesController < ApplicationController
         respond_to do |format|
           if @current_user.points >= @prize.cost
             if !@current_user.phone_number.nil?
-              @prize.generate_prize_code(@current_user.id)
-              format.html { redirect_to(@prize, :notice => "Premio resgatado! Vôce tem #{@current_user.points - @prize.cost} pontos".encode("UTF-8")) }
+              @prize_code = @prize.generate_prize_code(@current_user.id)
+              format.html { redirect_to(@prize_code, :notice => "Prêmio resgatado! Vôce tem #{@current_user.points - @prize.cost} pontos".encode("UTF-8")) }
             else
-              format.html { redirect_to(@prize, :alert => 'Need a valid phone number to redeem prize.') }
+              format.html { redirect_to(@prize_code, :alert => 'Need a valid phone number to redeem prize.') }
             end
           else
-            format.html { redirect_to(@prize, :alert => "Vôce precisa de mais pontos. Vôce tem #{@current_user.points} pontos") }
+            format.html { redirect_to(@prize_code, :alert => "Vôce precisa de mais pontos. Vôce tem #{@current_user.points} pontos") }
           end
         end
       end
@@ -108,7 +109,6 @@ class PrizesController < ApplicationController
   def create
     @prize = Prize.new(params[:prize])
     @user = current_user
-
     respond_to do |format|
       if @prize.save
         format.html { redirect_to @prize, notice: 'Prize was successfully created.' }
@@ -124,7 +124,6 @@ class PrizesController < ApplicationController
   # PUT /prizes/1.json
   def update
     @prize = Prize.find(params[:id])
-
     respond_to do |format|
       if @prize.update_attributes(params[:prize])
         format.html { redirect_to @prize, notice: 'Prize was successfully updated.' }

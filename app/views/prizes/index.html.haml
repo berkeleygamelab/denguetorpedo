@@ -23,10 +23,10 @@
           %br Prêmios Resgatados
     .span2
       .house_count
-        %b= "0"
+        %b= @sponsors.count
         %br Patrocinadores
 
-.row
+.row{:style => "margin-top:10px;"}
   .span8.offset1
     %h2 Filtros
 .row
@@ -80,7 +80,7 @@
       .filters.large
         = link_to "1000-4999", "/premios?filter=pontos&max=5000"
 
-    - if params[:filter] == "pontos"
+    - if params[:filter] == "pontos" and params[:max] == nil
       .filters.active.small
         = link_to ">5000", "/premios?filter=pontos"
     - else
@@ -89,11 +89,11 @@
 
     %br
     %br
-    .filters
-      %select
-        %option Patrocinadores
-        - @sponsors.each do |sponsor|
-          %option #{sponsor.full_name}
+    / .filters
+    /   %select
+    /     %option Patrocinadores
+    /     - @sponsors.each do |sponsor|
+    /       %option #{sponsor.full_name}
 
 
 .row
@@ -108,6 +108,8 @@
       - elsif params[:filter] == "badges"
         %h2 Medalhas
       = render :partial => "prizes/filtered_list"
+  = render :partial => "prizes/sponsors"
+
 / .row
 /   .span6.offset1#user_info
 /     - unless @user.nil?

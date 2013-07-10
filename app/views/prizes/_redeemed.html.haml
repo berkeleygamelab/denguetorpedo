@@ -1,11 +1,15 @@
 %li.span3.prizes.redeemed
 	.status.redeemed
-		= link_to redeemed.user.full_name
+		.name
+			#{redeemed.user.full_name}
+		.points
+			#{redeemed.cost} pontos
 	.prize_content
 		- if redeemed.prize_photo_file_name.nil?
-			= link_to image_tag("default_images/prize_default_image.jpg", :class => "prizes"), prize_path(redeemed)
+			= image_tag("default_images/prize_default_image.jpg", :class => "prizes, expired")
 		- else
-			= link_to image_tag(redeemed.prize_photo.url(:large), :class => "prizes"), prize_path(redeemed)
+			= image_tag(redeemed.prize_photo.url(:large), :class => "prizes grey")
 		.description
-			= link_to redeemed.description, prize_path(redeemed)
-		.disabled
+			#{redeemed.description}
+		.stock
+			Estoque: #{redeemed.stock}

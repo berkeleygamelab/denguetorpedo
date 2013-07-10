@@ -2,8 +2,8 @@
   #user_top_bar 
     #user_top_text
       .row
-        .span3.offset4
-          %h1.user_name 
+        .span3.offset4{ :style => "margin-top: -10px;"}
+          %h1.user_name
             = @user.display_name           
         .span2.user_points
           .row
@@ -11,31 +11,31 @@
           .user_points_bg
             = @user.points
       .row
-        .user_force_position.span2.offset4
+        .user_force_position.span2.offset4{:style => "margin-left:244px;"}
           %h3.user_house
             - if @house
-              = link_to @house.name, house_path(@house)
+              = link_to "Casa " + @house.name, house_path(@house)
             - else 
               = link_to "Create My House", edit_user_path(@user)
-        .span2
+        .span2{:style => "margin-left:14px;"}
           %h3.user_neighborhood 
             =link_to @neighborhood.name, neighborhood_path(@neighborhood)
     
     .row
       #user_top_pictures
         .span10.offset1    
-          .user_profile_picture
+          .user_profile_picture{:style => "float:left;margin-top:0px;"}
             - if @user.profile_photo_file_name.nil?
               = image_tag("default_images/profile_default_image.png")
             - else 
               = image_tag(@user.profile_photo.url(:large))
-          .user_house_picture
+          .user_house_picture{:style => "float:left;margin-top:47px;margin-left:5px;"}
             - if @house.profile_photo_file_name.nil?
               = link_to image_tag("default_images/house_default_image.png"), house_path(@house)
             - else 
               = link_to image_tag(@user.house.profile_photo.url(:medium)), house_path(@house)
 
-          .user_neighborhood_picture
+          .user_neighborhood_picture{:style => "float:left;margin-top:47px;margin-left:5px;"}
             =link_to image_tag("default_images/neighborhood_default_image.png"), neighborhood_path(@neighborhood)
             
         
@@ -58,7 +58,7 @@
             = link_to 'Focos', user_path(@user, :filter => 'reports'), :class => @feed_active_reports
             |
             = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
-        .row
+        .row{ :style => "width: 1150px;"}
 
           #user_reports.span11
             - for item in @combined_sorted
@@ -69,63 +69,65 @@
               - elsif item.status == :eliminated
                 = render :partial => "reports/resolved.html.haml", :object => item
 
-          .span4
-            .row{:style => "margin-top:-40px;"}
-              .span3
+          .span4{ :style => "margin-left:45px;"}
+            .row{:style => "margin-top:-274px;"}
+              .span3{:style => "text-align:center;width:80%;margin-bottom:25px;"}
                 %br
-                %h1{:style => "font-size:26px;margin-left:48px;"} Prêmios
+
+                = link_to "Prêmios", "/premios", :class => "header_link"
             .row
               .span3.offset1
-              %ul
-              - if @user.points >= 100
-                %li
-                  .badge_box
-                    .span2{:style => "margin-top:10px;margin-left:75px"}
-                      = image_tag("badges/orange_star.fw.png")
-                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
-                      De olho no mosquito
-                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
-                      Carimbo digital 100 pontos
-              
-              - if @user.points >= 800
-                %li
-                  .badge_box
-                    .span2{:style => "margin-top:10px;margin-left:75px"}
-                      = image_tag("badges/blue_black_star.fw.png")
-                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
-                      Exterminador de mosquitos
-                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
-                      Adesivo pequeno + Carimbo digital 800 pontos
-              - if @user.points >= 1600
-                %li
-                  .badge_box
-                    .span2{:style => "margin-top:10px;margin-left:75px"}
-                      = image_tag("badges/guerreiro_dt.fw.png")
-                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
-                      Guerreiro DT
-                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
-                      Adesivo grande + Carimbo digital 1600 pontos
-              - if @user.points >= 3600
-                %li
-                  .badge_box
-                    .span2{:style => "margin-top:10px;margin-left:75px"}
-                      = image_tag("badges/blue_star.fw.png")
-                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
-                      Comunidade Saudavel
-                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
-                      Adesivo + Camiseta + Carimbo digital 3600 pontos
-              - if @user.points >= 7200
-                %li
-                  .badge_box
-                    .span2{:style => "margin-top:10px;margin-left:75px"}
-                      = image_tag("badges/golden_star.fw.png")
-                    .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
-                      Eu cuido da Comunidade!
-                    .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
-                      Honrarias + Camiseta + Adesivo + Carimbo digital 7200 pontos 
-              - 5.times do |number|
-                %li
-                  .price_placeholder
-                    %h2 Cupom #{number}
+              %ul#badges_list
+                - if @user.points >= 100
+                  %li
+                    .badge_box
+                      .span2{:style => "margin-top:10px;margin-left:75px"}
+                        = image_tag("badges/orange_star.fw.png")
+                      .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                        De olho no mosquito
+                      .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                        Carimbo digital 100 pontos
+                
+                - if @user.points >= 800
+                  %li
+                    .badge_box
+                      .span2{:style => "margin-top:10px;margin-left:75px"}
+                        = image_tag("badges/blue_black_star.fw.png")
+                      .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                        Exterminador de mosquitos
+                      .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                        Adesivo pequeno + Carimbo digital 800 pontos
+                - if @user.points >= 1600
+                  %li
+                    .badge_box
+                      .span2{:style => "margin-top:10px;margin-left:75px"}
+                        = image_tag("badges/guerreiro_dt.fw.png")
+                      .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                        Guerreiro DT
+                      .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                        Adesivo grande + Carimbo digital 1600 pontos
+                - if @user.points >= 3600
+                  %li
+                    .badge_box
+                      .span2{:style => "margin-top:10px;margin-left:75px"}
+                        = image_tag("badges/blue_star.fw.png")
+                      .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                        Comunidade Saudavel
+                      .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                        Adesivo + Camiseta + Carimbo digital 3600 pontos
+                - if @user.points >= 7200
+                  %li
+                    .badge_box
+                      .span2{:style => "margin-top:10px;margin-left:75px; margin-bottom:9px;"}
+                        = image_tag("badges/golden_star.fw.png")
+                      .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
+                        Eu cuido da Comunidade!
+                      .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
+                        Honrarias + Camiseta + Adesivo + Carimbo digital 7200 pontos 
+              %ul#coupons_list
+                - @coupons.each do |coupon|
+                  %li
+                    .price_placeholder
+                      = link_to coupon.prize.prize_name, prize_code_path(coupon)
 
 
