@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   ROLES = ["morador", "logista", "visitante"]
   attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo, :display, :is_verifier, :is_fully_registered, :is_health_agent, :role
   has_secure_password
-  has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
+  has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png', :url => ":s3_us_url"#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   
   # validates
   # validates :username, :format => { :with => USERNAME_REGEX, :message => "should only contain letters, numbers, or .-+_@, and have between 5-15 characters" }
