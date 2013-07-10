@@ -3,5 +3,7 @@
 		- @filtered_prizes.each do |prize|
 			- if prize.stock == 0
 				= render :partial => "prizes/redeemed", :object => prize
+			- elsif prize.stock == -1
+				= render :partial => "prizes/medal", :object => prize
 			- else
 				= render :partial => "prizes/prize", :object => prize
