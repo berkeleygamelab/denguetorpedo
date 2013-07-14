@@ -1,7 +1,9 @@
-.span4{ :style => "margin-top:-50px;height:400px;"}
-  %h2
-    Patrocinadores
-  .sponsors_box{ :style => "background-color:white;height:400px;width:255px;"}
-    - @sponsors.each do |sponsor|
-      .sponsors
-        = link_to image_tag(sponsor.profile_photo.url(:small), :width => 80, :height => 80), "sponsors/#{sponsor.id}"
+.span4{ :style => "margin-top:-42px;height:400px;"}
+	%select
+		%option Patrocinador
+		- @sponsors.each do |sponsor|
+			%option #{sponsor.full_name}
+	.sponsors_box{ :style => "background-color:white;height:400px;width:255px;"}
+		- @sponsors.each do |sponsor|
+			.sponsors
+				= link_to image_tag(sponsor.profile_photo.url(:small), :width => 80, :height => 80), "sponsors/#{sponsor.id}"

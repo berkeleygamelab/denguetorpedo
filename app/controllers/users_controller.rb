@@ -139,7 +139,7 @@ class UsersController < ApplicationController
       @user = @current_user
 
       if @current_user.save!
-        redirect_to edit_user_path(@current_user), :flash => { :notice => 'Successfully updated profile' }
+        redirect_to edit_user_path(@current_user), :flash => { :notice => 'Perfil atualizado com sucesso!' }
       else
         @user.house = House.new(name: house_name)
         @user.house.location = Location.new
@@ -180,7 +180,7 @@ class UsersController < ApplicationController
     location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
     location.save!
     if @user.save!
-      redirect_to edit_user_path(@current_user), :flash => { :notice => "Successfully created a new user."}
+      redirect_to edit_user_path(@current_user), :flash => { :notice => "Novo usuário criado com sucesso!."}
     else
       redirect_to :back, :flash => { :notice => "There was an error creating a new user."}
     end

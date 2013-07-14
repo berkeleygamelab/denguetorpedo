@@ -44,7 +44,7 @@
             - else
               = link_to image_tag(participant.profile_photo.url(:large)), user_path(participant)
             
-            = link_to participant.username, user_path(participant)
+            = link_to participant.full_name, user_path(participant)
         - if @participants.count < 9
           - (12 - @participants.count).times do          
             %li.neighborhood_participant_photo_thumb.span3
@@ -66,10 +66,11 @@
               = image_tag("default_images/house_default_image.png")
               Futura casa
 
-  #neighborhood_right_panel.span4
+  #neighborhood_right_panel.span5
+    %h2 Destaques da comunidade
     .row
-      #neighborhood_coordinator.span4
-        %h2 Coordenador comunitário
+      #neighborhood_coordinator.span5
+        %h3 Coordenador comunitário
         .neighborhood_profile_box
           .span1.neighborhood_pf_picture
             = image_tag 'translated/Indio.jpg'                      
@@ -80,8 +81,8 @@
             
               
     .row
-      #neighborhood_health_agent.span4
-        %h2 Destaque da comunidade
+      #neighborhood_health_agent.span5
+        %h3 Verificadores
         .neighborhood_profile_box
           .span1.neighborhood_pf_picture
             = image_tag 'oswaldo_cruz.jpg'
@@ -91,7 +92,7 @@
             “O Dengue Torpedo me inspirou!” 
     .row
       #neighborhood_sponsors.span4
-        %h2 Patrocinadores Locais
+        %h3 Patrocinadores
         
         .neighborhood_sponsor_box
           %ul

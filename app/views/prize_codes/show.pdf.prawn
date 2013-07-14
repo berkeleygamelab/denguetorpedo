@@ -1,6 +1,6 @@
 pdf.text "CUPOM DE RESGATE DE PRÊMIO", :size => 30, :style => :bold
 
-pdf.text "Nome de prêmio: #{@prize_code.prize.prize_name}"
+pdf.text "Nome de prêmio: #{@prize_code.prize.prize_name}", :style => :bold
 
 pdf.text "Oferecido por: #{@prize.user.full_name}"
 pdf.text "Resgatado por: #{@prize_code.user.full_name}"

@@ -41,7 +41,7 @@ ul#neighborhood_participants_list {
   list-style-type: none;
   margin-top: 10px;
   font-size: 16px;
-  overflow:scroll;
+  overflow:auto;
   
   li.neighborhood_participant_photo_thumb {
     display: inline-block;
@@ -62,7 +62,7 @@ ul#neighborhood_participants_list {
 ul#neighborhood_house_list {
   margin-top: 10px;
   font-size: 16px;
-  overflow:scroll;
+  overflow:auto;  
   
   li.neighborhood_house_photo_thumb {
     display: inline-block;
