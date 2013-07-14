@@ -37,6 +37,9 @@ gem 'whenever', :require => false
 gem 'eventmachine', '~> 1.0.0.beta.4.1'
 gem 'nexmo'
 gem 'cancan'
+gem 'prawn'
+gem 'prawn-layout'
+gem "prawnto_2", :require => "prawnto"
 
 # Gems used only for assets and not required
 # in production environments by default.

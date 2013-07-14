@@ -8,6 +8,11 @@
       = link_to "Registrar patrocinador, verificador e visitante", "/users/special_new"
     %p.link
       = link_to "Registrar novos prêmios ", "/premios/new"
+- elsif @current_user.role == "lojista"
+  #role_specific.offset9
+    %h2 Configurações de patrocinador
+    %p.link
+      = link_to "See Cupom", "/coupons"
 .user_form.offset1
   /%h1 Configurações da conta
  

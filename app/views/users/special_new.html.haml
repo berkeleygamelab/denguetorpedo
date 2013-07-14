@@ -1,28 +1,88 @@
 .user_form.offset1
   %h1 Registrar patrocinador, verificador e visitante
-  = form_for(@user) do |f|
+  %br
+  = form_for(@user, :url => {:action => "special_create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
-    %select{:name => "role"}
-      %option Patrocinador
-      %option Verificador
-      %option Visitante
-    = f.label "Celular"
-    = f.text_field :phone_number, :placeholder => "* Celular 5521xxxxxxxx"
-    = f.label "E-mail"
-    = f.text_field :email, :placeholder => "* E-mail"
-    //= f.label "Nome de usuário"
-    //= f.text_field :username, :placeholder => "* Nome de usuário"
-    = f.label "Nome"
-    = f.text_field :first_name, :placeholder => "* Nome"
-    = f.label "Nome do meio"
-    = f.text_field :middle_name, :placeholder => "* Nome do meio"
-    = f.label "Sobrenome"
-    = f.text_field :last_name, :placeholder => "* Sobrenome"
-    = f.label "Nome alternativo (para apelidos)"
-    = f.text_field :nickname, :placeholder => "* Nome alternativo"
-    = f.label "Senha"
-    = f.password_field :password, :placeholder => "* Senha"
-    = f.label "Confirmar senha"
-    = f.password_field :password_confirmation, :placeholder => "* Confirmar senha"
+    / %li= f.text_field :phone_number, :placeholder => "Celular: 021xxxxxxxx"
+    / %li= f.text_field :email, :placeholder => "E-mail"
+    / //= f.label "Nome de usuário"
+    / //= f.text_field :username, :placeholder => "* Nome de usuário"
+    / / # = f.label "Nome"
+    / %li= f.text_field :first_name, :placeholder => "Nome"
+    / /= f.label "Nome do meio"
+    / %li= f.text_field :middle_name, :placeholder => "Nome do meio"
+    / /= f.label "Sobrenome"
+    / %li= f.text_field :last_name, :placeholder => "Sobrenome"
+    / /= f.label "Nome alternativo (para apelidos)"
+    / %li= f.text_field :nickname, :placeholder => "Nome alternativo"
+    / /= f.label "Senha"
+    / %li= f.password_field :password, :placeholder => "Senha"
+    / /= f.label "Confirmar senha"
+    / %li= f.password_field :password_confirmation, :placeholder => "Confirmar senha"
+    / %br
+    %h1 Configurações de usuário    
+    
+    /= f.label "Nome de usuário"
+    / = f.label @current_user.username, {style: "font-weight: bold;"}
+  
+
+    .indent
+      %select{:name => "user[role]"}
+        %option{:value => "lojista"} Patrocinador
+        %option{:value => "verificador"} Verificador
+        %option{:value => "visitante"} Visitante
+      %h2#complete_name{:title => "O Nome Completo é utilizado para realizar o resgate do prêmio nos estabelecimentos patrocinadores. É importante informar o nome correto para evitar problemas no momento do resgate dos prêmios. Em caso de dúvida leia nossa Política de Privacidade e a página de Perguntas Frequentes. ", :style => "font-weight:bold;"} Nome completo (igual ao do RG ou CPF) <b style="color:blue;">?</b>    
+      .indent
+        /= f.label :first_name, "* Nome"
+        = f.text_field :first_name, :placeholder => "* Nome"
+        %br
+        /= f.label :middle_name,  "* Nome do meio", 
+        = f.text_field :middle_name, :placeholder => "Nome do meio (opcional)"
+        %br
+        = f.text_field :last_name, :placeholder => "* Sobrenome"
+        %br
+        / = f.label :nickname, "Apelido"
+        = f.text_field :nickname, :placeholder => "Apelido (opcional)"
+
+      %br
+      /= f.label :phone_number, "* Celular"
+      = f.text_field :email, :placeholder => "* Email"
+      %br
+      = f.password_field :password, :placeholder => "Senha"
+      %br
+      = f.password_field :password_confirmation, :placeholder => "Confirmar senha"
+      %br
+      = f.text_field :phone_number, :placeholder => "* Celular"
+      %br
+      /= f.label :phone_number,  "* Confirmar celular"
+      = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular")
+      %br
+      /= f.label :email,  "* Email"
+      
+      = f.label :profile_photo,  "Foto do perfil (opcional)"
+      = f.file_field :profile_photo
+    
+    /%h2 Esqueci minha senha
+    /= link_to "Clique para recuperar senha", edit_password_reset_path(@current_user), :id => "reset_password_link"
+      
+    <br>
+    %h1 Configurações da casa
+
+    .indent
+      = f.fields_for :location do |location_form|
+        /= location_form.label "* Endereço da casa"
+        / # = location_form.text_field :address, value: @user.location.address, placeholder: "Endereço da casa", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze." if @user.location
+        = location_form.text_field :street_type, placeholder: "Rua, Beco etc.", class: "short_field"
+        = location_form.text_field :street_name, placeholder: "Nome", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze."
+        = location_form.text_field :street_number, placeholder: "Número", class: "middle_field"
+        %h3#complete_name{:title => "Na fase atual, somente os moradores do Bairro Maré poderão participar."}Bairro <b style="color:blue;">?</b>
+        = location_form.text_field :neighborhood, value: "Maré"
+    
+      = f.fields_for :house do |house_form|
+        = house_form.label "Nome da casa (máximo 16 caracteres)"
+        = house_form.text_field :name, :maxlength => "16", :placeholder => "ex. Maria Santos ou Maria e Paulo"
+        = house_form.label "Foto da casa (opcional)"
+        = house_form.file_field :profile_photo
+
     %br
     = f.submit "Fazer inscrição"

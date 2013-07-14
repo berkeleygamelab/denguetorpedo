@@ -27,6 +27,8 @@
 .row.offset1
   %h1
     Cupom
+  %button{:style => "position:absolute;top:7px;left:629px;"}
+    = link_to "Imprimir", prize_code_path(@prize_code) + ".pdf"
 %br
 .row.offset1
   .coupons
@@ -35,7 +37,7 @@
         = link_to @prize.user.full_name
       .pontos
         #{@prize.cost} pontos
-    .content{:style => "padding-top:10px; padding-left:20px;", :class => "coupons"}
+    .content{:style => "padding:10px;"}
       - if @prize.prize_photo_file_name.nil?
         = image_tag("default_images/prize_default_image.jpg", :class => "coupons")
       - else
@@ -51,13 +53,18 @@
 
       .coupon_code
         Cupom: #{@prize_code.code}
-      .statement{:style => "float:left;"}
-        • Eu, #{@prize_code.user.display_name}, portador do celular número #{@prize_code.user.phone_number}, participante do site Dengue Torpedo, com perfil na página <a>http://denguetorpedo.com/users/#{@prize_code.user.id}</a>, solicito o resgate do prêmio acima.
+      .statement{:style => "float:left;margin-bottom:10px;"}
+        • Eu, #{@prize_code.user.display_name}, portador do celular número #{@prize_code.user.phone_number}, participante do site Dengue Torpedo, com perfil na página <a style="text-decoration:underline;">http://denguetorpedo.com/users/#{@prize_code.user.id}</a>, solicito o resgate do prêmio acima.
       %br
-      .statement{:style => "float:left;"}
+      .statement{:style => "margin-bottom:10px;"}
         • Para retirar o seu prêmio compareça ao estabelecimento de porte desse cupom e de um documento válido com foto (ex. RG). Você pode tirar fotos do momento do resgate do prêmio e publicar no seu blog no site Dengue Torpedo.  Assim, você acumula mais 5 pontos. Em caso de dúvida escreva para contato@denguetorpedo.com
-      .statement{:style => "float:left;"}
+      .statement{:style => "margin-bottom: 20px;"}
         • Prazo: O cupom é válido em até 7 dias após a impressão. 
+
+      .statement
+        • Endereço: #{@prize.user.house.location.address}
+
+      .map{:style => "width:200px; height:200px; border:1px solid #aaaaaa;"}
 
 
 

@@ -2,14 +2,21 @@
   #user_top_bar 
     #user_top_text
       .row
-        .span4.offset4{ :style => "margin-top: -10px;"}
+        .span3.offset4{ :style => "margin-top: -10px;"}
           %h1.user_name
-            = @user.display_name           
+            = @user.display_name 
+        .span2.user_points{:style => "margin-top:79px;margin-right:-10px;"}
+          %h2 pontos         
         .span2.user_points
-          .row
-            %h2 Pontos
+          .row 
+            %h2 disponível
           .user_points_bg
             = @user.points
+        .span2.user_points
+          .row
+            %h2 total
+          .user_points_bg
+            = @user.total_points
       .row
         .user_force_position.span2.offset4{:style => "margin-left:244px;"}
           %h3.user_house
@@ -127,7 +134,7 @@
               %ul#coupons_list
                 - @coupons.each do |coupon|
                   %li
-                    .price_placeholder
-                      = link_to coupon.prize.prize_name, prize_code_path(coupon)
+                    = render :partial => "prizes/prize", :object => coupon.prize
+
 
 

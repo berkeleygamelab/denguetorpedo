@@ -2,7 +2,6 @@
   %h1 Inscreva-se
   = form_for(@user) do |f|
     = f.error_messages
-    = f.collection_select
     = f.label "Celular"
     
     %li= f.text_field :email, :placeholder => "E-mail"

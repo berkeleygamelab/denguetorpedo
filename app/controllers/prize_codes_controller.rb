@@ -1,8 +1,7 @@
 class PrizeCodesController < ApplicationController
   # GET /user/:id/prize_codes
   def index
-    @user = User.find(params[:id])
-    @prizes = @user.prizes
+    @prizes = @current_user.prizes
 
     respond_to do |format|
       format.html
@@ -16,6 +15,7 @@ class PrizeCodesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.pdf
     end
   end
 

@@ -50,6 +50,8 @@ class UsersController < ApplicationController
 
   def special_new
     @user = User.new
+    @user.house ||= House.new
+    @user.house.location ||= Location.new
   end
   
   def create
@@ -155,5 +157,32 @@ class UsersController < ApplicationController
       @prize_code = PrizeCode.where(:prize_id => params[:prize_id], :user_id => params[:id]).limit(1)[0]
     end
     render :partial => "prizes/prizeconfirmation", :locals => {:bought => bought}
+  end
+
+  def special_create
+
+    @user = User.new(params[:user])
+
+    house_name = params[:user][:house_attributes][:name]
+    street_type = params[:user][:location][:street_type]
+    street_name = params[:user][:location][:street_name]
+    street_number = params[:user] [:location][:street_number]
+    house_address = street_type + " " + street_name + " " + street_number
+    house_neighborhood = params[:user][:location][:neighborhood]
+    house_profile_photo = params[:user][:house_attributes][:profile_photo]
+    
+    @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
+    location = @user.house.location
+
+    location.street_type = params[:user][:location][:street_type]
+    location.street_name = params[:user][:location][:street_name]
+    location.street_number = params[:user] [:location][:street_number]
+    location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
+    location.save!
+    if @user.save!
+      redirect_to edit_user_path(@current_user), :flash => { :notice => "Successfully created a new user."}
+    else
+      redirect_to :back, :flash => { :notice => "There was an error creating a new user."}
+    end
   end
 end

@@ -27,6 +27,7 @@ Dengue::Application.routes.draw do
     resources :posts
     collection do
       get 'special_new'
+      post 'special_create'
     end
   end
   

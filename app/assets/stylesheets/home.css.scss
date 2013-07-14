@@ -15,7 +15,7 @@
   }
   
   #neighborhood_search_background {
-    background: #e2e5cf;
+    background: #dddddd;
     padding-top: 10px;
     padding-bottom: 5px;
     padding-right: 20px;
@@ -71,7 +71,7 @@ ul#neighborhood_list {
 
     .neighborhood_selection_header {
       width: auto;
-      background: #BFC1B0;
+      background: #dddddd;
       margin-bottom: 5px;
       text-align: left;
       padding:5px 0px 5px 10px;
@@ -157,7 +157,7 @@ ul#house_list {
   
   ul {
     padding: 9px;
-    background: $light-gray;
+    background: #dddddd;
     li {
       display: inline-block;
       
@@ -178,7 +178,7 @@ ul#house_list {
   margin-bottom:20px;
   margin-top:10px;
   height:50px;
-  background:$light-gray;
+  background:#dddddd;
   padding: 10px;
   padding-left: 50px;
 }

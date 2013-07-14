@@ -12,6 +12,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    Ascii85 (1.0.2)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
       mail (~> 2.5.3)
@@ -40,6 +41,7 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.4)
+    afm (0.2.0)
     arel (3.0.2)
     awesome_nested_set (2.1.6)
       activerecord (>= 3.0.0)
@@ -101,6 +103,7 @@ GEM
     gmaps4rails (1.5.6)
     haml (4.0.3)
       tilt
+    hashery (2.1.0)
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -135,8 +138,21 @@ GEM
     nexmo (1.1.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    pdf-reader (1.3.3)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.0)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
     pg (0.15.1)
     polyglot (0.3.3)
+    prawn (0.12.0)
+      pdf-reader (>= 0.9.0)
+      ttfunk (~> 1.0.2)
+    prawn-layout (0.8.4)
+    prawnto_2 (0.2.6)
+      prawn (>= 0.6.0)
+      rails (>= 3.1)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -179,6 +195,7 @@ GEM
       mail (>= 2.2.1)
       mime (>= 0.1)
       shared-mime-info
+    ruby-rc4 (0.1.5)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -206,6 +223,7 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
+    ttfunk (1.0.3)
     twilio-ruby (3.9.0)
       builder (>= 2.1.2)
       jwt (>= 0.1.2)
@@ -253,6 +271,9 @@ DEPENDENCIES
   nexmo
   paperclip!
   pg
+  prawn
+  prawn-layout
+  prawnto_2
   rails (~> 3.2.1)
   rmagick
   rspec-rails
