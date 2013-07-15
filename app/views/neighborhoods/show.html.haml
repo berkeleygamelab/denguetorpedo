@@ -77,7 +77,7 @@
               = image_tag(coordinator.profile_photo.url(:small))                     
             .span3.neighborhood_quote
               .neighborhood_person_name
-                coordinator.display_name
+                = coordinator.display_name
               / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
             
               
@@ -90,7 +90,7 @@
               = image_tag(verifier.profile_photo.url(:small))
             .span3.neighborhood_quote
               .neighborhood_person_name
-                verifier.display_name            
+                = verifier.display_name            
               / “O Dengue Torpedo me inspirou!” 
     .row
       #neighborhood_sponsors.span4
