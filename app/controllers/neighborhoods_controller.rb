@@ -6,7 +6,7 @@ class NeighborhoodsController < ApplicationController
     @participants = @neighborhood.members.where('role != "lojista" AND role != "patrocinador"')
     @participants_view_active = ''
 
-    @houses = @participants.map { |participant| participant.house }
+    @houses = @participants.map { |participant| participant.house }.uniq
     @total_reports_in_neighborhood = @neighborhood.total_reports.count
     @opened_reports_in_neighborhood = @neighborhood.open_reports.count
     @eliminated_reports_in_neighborhood = @neighborhood.eliminated_reports.count
