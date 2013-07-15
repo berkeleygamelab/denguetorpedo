@@ -71,25 +71,27 @@
     .row
       #neighborhood_coordinator.span5
         %h3 Coordenador comunitário
-        .neighborhood_profile_box
-          .span1.neighborhood_pf_picture
-            = image_tag 'translated/Indio.jpg'                      
-          .span3.neighborhood_quote
-            .neighborhood_person_name
-              Índio da Maré
-            “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
+        - @coordinators.each do |coordinator|
+          .neighborhood_profile_box
+            .span1.neighborhood_pf_picture
+              = image_tag(coordinator.profile_photo.url(:small))                     
+            .span3.neighborhood_quote
+              .neighborhood_person_name
+                coordinator.display_name
+              / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
             
               
     .row
       #neighborhood_health_agent.span5
         %h3 Verificadores
-        .neighborhood_profile_box
-          .span1.neighborhood_pf_picture
-            = image_tag 'oswaldo_cruz.jpg'
-          .span3.neighborhood_quote
-            .neighborhood_person_name
-              Oswaldo Cruz              
-            “O Dengue Torpedo me inspirou!” 
+        - @verifiers.each do |verifier|
+          .neighborhood_profile_box
+            .span1.neighborhood_pf_picture
+              = image_tag(verifier.profile_photo.url(:small))
+            .span3.neighborhood_quote
+              .neighborhood_person_name
+                verifier.display_name            
+              / “O Dengue Torpedo me inspirou!” 
     .row
       #neighborhood_sponsors.span4
         %h3 Patrocinadores

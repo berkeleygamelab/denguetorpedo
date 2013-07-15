@@ -22,6 +22,7 @@ class HomeController < ApplicationController
     
     @houses = @selected_neighborhood.houses
     
+    @prizes = Prize.where('stock > 0')
     @total_reports_in_neighborhood = @selected_neighborhood.total_reports.count
     @opened_reports_in_neighborhood = @selected_neighborhood.open_reports.count
     @eliminated_reports_in_neighborhood = @selected_neighborhood.eliminated_reports.count

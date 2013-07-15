@@ -3,23 +3,7 @@
   %br
   = form_for(@user, :url => {:action => "special_create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
-    / %li= f.text_field :phone_number, :placeholder => "Celular: 021xxxxxxxx"
-    / %li= f.text_field :email, :placeholder => "E-mail"
-    / //= f.label "Nome de usuário"
-    / //= f.text_field :username, :placeholder => "* Nome de usuário"
-    / / # = f.label "Nome"
-    / %li= f.text_field :first_name, :placeholder => "Nome"
-    / /= f.label "Nome do meio"
-    / %li= f.text_field :middle_name, :placeholder => "Nome do meio"
-    / /= f.label "Sobrenome"
-    / %li= f.text_field :last_name, :placeholder => "Sobrenome"
-    / /= f.label "Nome alternativo (para apelidos)"
-    / %li= f.text_field :nickname, :placeholder => "Nome alternativo"
-    / /= f.label "Senha"
-    / %li= f.password_field :password, :placeholder => "Senha"
-    / /= f.label "Confirmar senha"
-    / %li= f.password_field :password_confirmation, :placeholder => "Confirmar senha"
-    / %br
+    
     %h1 Configurações de usuário    
     
     /= f.label "Nome de usuário"

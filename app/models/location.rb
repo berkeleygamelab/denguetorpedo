@@ -22,7 +22,7 @@ class Location < ActiveRecord::Base
   attr_accessible
   # acts_as_gmappable :callback => :geocode_results, :validation => true
   # validates :latitude, :uniqueness => { :scope => :longitude }
-  validates :neighborhood_id, :presence => true
+  # validates :neighborhood_id, :presence => true
 
   has_one :house
   belongs_to :neighborhood

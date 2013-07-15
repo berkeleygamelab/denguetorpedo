@@ -157,16 +157,14 @@ ul#house_list {
   
   ul {
     padding: 9px;
-    background: #dddddd;
     li {
       display: inline-block;
-      
+      overflow: auto;
       margin-right: 0px;
       border: 1px solid $gray;
       
     }
     img {
-      height: 117px;
     }
   }
 }

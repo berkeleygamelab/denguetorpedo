@@ -29,7 +29,7 @@ class House < ActiveRecord::Base
   attr_accessible :location_id, :location_attributes
 
   validates :name, :length => { :maximum => 16 }
-  validates :location_id, presence: true #, uniqueness: true ## seed file wouldn't pass this constraint
+  # validates :location_id, presence: true #, uniqueness: true ## seed file wouldn't pass this constraint
 
   def neighborhood
     location.neighborhood

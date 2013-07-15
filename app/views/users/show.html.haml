@@ -2,17 +2,24 @@
   #user_top_bar 
     #user_top_text
       .row
-        .span3.offset4{ :style => "margin-top: -10px;"}
-          %h1.user_name
-            = @user.display_name 
-        .span2.user_points{:style => "margin-top:79px;margin-right:-10px;"}
+        .span7.offset4{ :style => "margin-top: -10px;"}
+          %h1.user_name.span7
+            - if @user.role == "lojista"
+              #{@user.display_name} (patrocinador)
+            - elsif @user.role == "verificador"
+              #{@user.display_name} (verificador)
+            -elsif @user.role => "coordenador"
+              #{@user.display_name} (coordenador)
+            - else
+              = @user.display_name
+        .span2.user_points{:style => "margin-top:79px;margin-right:-10px;margin-left:-250px;"}
           %h2 pontos         
-        .span2.user_points
+        .span2.user_points{:style => "margin-left:-140px;"}
           .row 
             %h2 disponível
           .user_points_bg
             = @user.points
-        .span2.user_points
+        .span2.user_points{:style => "margin-left: -20px;"}
           .row
             %h2 total
           .user_points_bg

@@ -42,18 +42,12 @@
     
 %br    
 .row
-  %h3.offset1{style: 'font-size: 18px;'} Patrocinadores
+  %h3.offset1{style: 'font-size: 18px;'} Prêmios
   #sponsors.offset1    
     
     %ul
-      %li
-        =link_to image_tag('translated/groupcoupon1.png'), prizes_path
-      %li
-        =link_to image_tag('translated/groupcoupon2.png'), prizes_path
-      %li
-        =link_to image_tag('translated/groupcoupon3.png'), prizes_path
-      %li
-        =link_to image_tag('translated/rechargecoupon.png'), prizes_path
+      - @prizes.shuffle.each do |prize|
+        = render :partial => "prizes/prize", :object => prize
 
 .row
   %h3.offset1{style: 'font-size: 18px;'} Parceiros

@@ -3,12 +3,15 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
     head :not_found and return if @neighborhood.nil?
     
-    @houses = @neighborhood.houses
+    @participants = @neighborhood.members.where('role != "lojista" AND role != "patrocinador"')
+    @participants_view_active = ''
+
+    @houses = @participants.map { |participant| participant.house }
     @total_reports_in_neighborhood = @neighborhood.total_reports.count
     @opened_reports_in_neighborhood = @neighborhood.open_reports.count
     @eliminated_reports_in_neighborhood = @neighborhood.eliminated_reports.count
     @number_of_houses = @neighborhood.houses.count
-    @number_of_participants = @neighborhood.members.count
+    @number_of_participants = @participants.count
     
     @highlightNeighborhoodItem = ""
     
@@ -16,8 +19,7 @@ class NeighborhoodsController < ApplicationController
       @highlightNeighborhoodItem = "nav_highlight"
     end
     
-    @participants = @neighborhood.members
-    @participants_view_active = ''
+    
     @houses_view_active = ''
     
     if params[:view] == 'participants'
@@ -26,6 +28,8 @@ class NeighborhoodsController < ApplicationController
       @houses_view_active = 'active '
     end
     
+    @coordinators = User.where(:role => "coordenador")
+    @verifiers = User.where(:role => "verficidator")
     @random_sponsors = []
     9.times do
       @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')
