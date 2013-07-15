@@ -3,7 +3,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = Neighborhood.find(params[:id])
     head :not_found and return if @neighborhood.nil?
     
-    @participants = @neighborhood.members.where('role != "lojista" AND role != "patrocinador"')
+    @participants = @neighborhood.members.where('role != ?', "lojista").where('role != ?', "verificador")
     @participants_view_active = ''
 
     @houses = @participants.map { |participant| participant.house }.uniq
