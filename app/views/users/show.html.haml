@@ -8,7 +8,7 @@
               #{@user.display_name} (patrocinador)
             - elsif @user.role == "verificador"
               #{@user.display_name} (verificador)
-            -elsif @user.role => "coordenador"
+            -elsif @user.role == "coordenador"
               #{@user.display_name} (coordenador)
             - else
               = @user.display_name
