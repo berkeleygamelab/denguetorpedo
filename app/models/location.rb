@@ -63,8 +63,12 @@ class Location < ActiveRecord::Base
 
   def complete_address
     # self.gmaps4rails_address
-
-    return self.street_type + " " + self.street_name + " " + self.street_number + " " + self.neighborhood.name
+    # currently hardcoded....
+    if self.street_type
+      return self.street_type + " " + self.street_name + " " + self.street_number + " " + "Maré"
+    else
+      return self.address
+    end
   end
 
   def gmaps4rails_address
