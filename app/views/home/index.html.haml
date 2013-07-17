@@ -14,7 +14,7 @@
     = render "home/neighborhood_list"
 
 .row
-  %h3.offset1#home_houses{style: 'font-size: 18px;'}  Casas #{@selected_neighborhood.name}
+  %h2.offset1#home_houses{style: 'font-size: 18px;'}  Casas #{@selected_neighborhood.name}
   
 .row
   #neighborhood_stats.offset1
@@ -42,16 +42,17 @@
     
 %br    
 .row
-  %h3.offset1{style: 'font-size: 18px;'} Prêmios
+  %h2.offset1{style: 'font-size: 18px;'} Prêmios
   #sponsors.offset1    
     
     %ul
       - @prizes.shuffle.each do |prize|
         = render :partial => "prizes/prize", :object => prize
 
+%br
 .row
-  %h3.offset1{style: 'font-size: 18px;'} Parceiros
-  #partners.offset1
+  %h2.offset1{style: 'font-size: 18px;'} Parceiros
+  #partners.offset1{:style => "font-weight:normal;line-height:25px;"}
     CITRIS / IBM Research Brazil / Instituto Pereira Passos / Redes da Maré / Secretaria Municipal de Saúde / UBS Optimus Foundation / UC Berkeley / UFRJ
   
 

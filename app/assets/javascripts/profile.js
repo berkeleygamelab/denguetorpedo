@@ -39,4 +39,17 @@ $(document).ready(function() {
 	});
 
 	// $("#recruitment").change
+	$("select#role").change(function() {
+		if($("select#role").val() == "lojista") {
+			$("h1#configuration").html("Configurações do estabelecimento");
+			$("label#house_name").html("Nome do estabelecimento");
+			$("label#house_picture").html("Logo digital");
+			$("input#house_name").attr("placeholder", "");
+		} else {
+			$("h1#configuration").html("Configurações da casa");
+			$("label#house_name").html("Nome da casa");
+			$("label#house_picture").html("Foto de casa");
+			$("input#house_name").attr("placeholder", "ex. Maria Santos ou Maria e Paulo");
+		}
+	});
 });

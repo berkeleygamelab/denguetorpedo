@@ -28,7 +28,6 @@ class House < ActiveRecord::Base
   accepts_nested_attributes_for :location, :allow_destroy => true
   attr_accessible :location_id, :location_attributes
 
-  validates :name, :length => { :maximum => 16 }
   # validates :location_id, presence: true #, uniqueness: true ## seed file wouldn't pass this constraint
 
   def neighborhood

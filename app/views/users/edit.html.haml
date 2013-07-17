@@ -1,24 +1,25 @@
 - content_for :scripts do
   :javascript
     $("#complete_name").tooltip();
-- if @current_user.role == "admin" or @current_user.role == "coordenador"
-  #role_specific.offset9
-    %h2 Configurações de administrador
-    %p.link
-      = link_to "Registrar patrocinador, verificador e visitante", "/users/special_new"
-    %p.link
-      = link_to "Registrar novos prêmios ", "/premios/new"
-- elsif @current_user.role == "lojista"
-  #role_specific.offset9
-    %h2 Configurações de patrocinador
-    %p.link
-      = link_to "See Cupom", "/coupons"
+
 .user_form.offset1
   /%h1 Configurações da conta
  
   - if flash[:notice] 
     %h2.notice{style: "margin: 10px; width: 700px;"}  
       = flash[:notice]
+  - if @current_user.role == "admin" or @current_user.role == "coordenador"
+    #role_specific.offset9
+      %h2 Configurações de administrador
+      %p.link
+        = link_to "Registrar patrocinador, verificador e visitante", "/users/special_new"
+      %p.link
+        = link_to "Registrar novos prêmios ", "/premios/new"
+  - elsif @current_user.role == "lojista"
+    #role_specific.offset9
+      %h2 Configurações de patrocinador
+      %p.link
+        = link_to "See Cupom", "/coupons"
         
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
@@ -41,6 +42,13 @@
         %br
         / = f.label :nickname, "Apelido"
         = f.text_field :nickname, :placeholder => "Apelido (opcional)"
+        %br
+
+        %input{:type => "radio", :value => 1, :name => 'user[gender]', :style => "font-size:14px;", :checked => @user.gender == true}
+        masculino
+        %input{:type => "radio", :value => 0, :name => "user[gender]", :style => "margin-left:20px;font-size:14px;", :checked => @user.gender == false}
+        feminino
+        %br
         = f.label "Mostrar nome como"
 
         %select{:name => "display", id: "display_select"}
@@ -84,10 +92,10 @@
         = location_form.text_field:neighborhood, value: "Maré" if @user.location
     
       = f.fields_for :house do |house_form|
-        - if @current_user.role = "lojista"
-          = house_form.label "Nome da estabelecimento (máximo 16 caracteres)"
+        - if @current_user.role == "lojista"
+          = house_form.label "Nome do estabelecimento (máximo 16 caracteres)"
         - else
-          = houes_form.label "Nome da casa (máximo 16 caracteres)"
+          = house_form.label "Nome da casa (máximo 16 caracteres)"
         = house_form.text_field :name, :maxlength => "16", :placeholder => "ex. Maria Santos ou Maria e Paulo"
         - if @current_user.role == "lojista"
           = house_form.label "Logo digital (opcional)"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130712085419) do
+ActiveRecord::Schema.define(:version => 20130716110323) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20130712085419) do
     t.string   "display",                    :default => "firstmiddlelast"
     t.string   "role",                       :default => "morador"
     t.integer  "total_points",               :default => 0
+    t.boolean  "gender",                     :default => true
   end
 
 end

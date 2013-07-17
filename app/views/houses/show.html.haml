@@ -1,7 +1,18 @@
 .row
   .span15.offset1    
     %h1
-      Casa #{@house.name}
+      - if @user.role == "verificador"
+        - if @user.gender == true
+          Casa #{@house.name} (verificador)
+        - else
+          Casa #{@house.name} (verificadora)
+      - elsif @user.role == "coordenador"
+        - if @user.gender == true
+          Casa #{@house.name} (coordenador)
+        - else
+          Casa #{@house.name} (coordenadora)
+      - else
+        Casa #{@house.name}
 .row
   .span9.offset1
     %br
@@ -45,7 +56,7 @@
               - if (member.profile_photo_file_name.nil?)
                 = link_to image_tag("default_images/profile_default_image.png"), user_path(member)
               - else
-                = link_to image_tag(member.profile_photo.url(:small)), user_path(member)
+                = link_to image_tag(member.profile_photo.url(:small), :width => 70, :height => 70), user_path(member)
             .row
               = link_to member.first_name, user_path(member)
 
@@ -62,20 +73,31 @@
                 - if neighbor.profile_photo_file_name.nil?
                   = link_to image_tag("default_images/house_small_default_image.png"), house_path(neighbor)
                 - else 
-                  = link_to image_tag(neighbor.profile_photo.url(:small)), house_path(neighbor)
+                  = link_to image_tag(neighbor.profile_photo.url(:small), :width => 70, :height => 70), house_path(neighbor)
                   
+    /.row
+    /  .span8
+    /    = render :partial => "posts/new", locals: { wall: @house }
+    %br
     .row
-      .span8
-        = render :partial => "posts/new", locals: { wall: @house }
-        
+      %h3.span15
+        Atividade recente
+    .row
+      .span12          
+        = link_to 'Todos', house_path(@user, :filter => 'all'), :class => @feed_active_all
+        |
+        = link_to 'Focos', house_path(@user, :filter => 'reports'), :class => @feed_active_reports
+        |
+        = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
+    %br
     .row
       .span9
         %h3 Mensagens da casa:
-        - for post in @house.posts
+        - for post in @house.posts.sort{|a, b| b.created_at <=> a.created_at}
           = render :partial => "/posts/post", :locals => {:post => post}
     
   .span6
-    .row
+    .row{:style => "margin-top:-37px;"}
       %h2.span6 Focos marcados perto da casa!
       #house_reports.span6
         .row

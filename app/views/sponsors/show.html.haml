@@ -1,7 +1,11 @@
 .row
 	.span12.offset1
 		.image_and_name
-			= image_tag(@sponsor.profile_photo.url(:small), :width => 150, :height => 150, :class => "sponsor_logo")
+			- if @sponsor.house.profile_photo.file?
+				= image_tag(@sponsor.house.profile_photo.url(:small), :width => 150, :height => 150, :class => "sponsor_logo")
+			- else
+				.logo_box
+					= @sponsor.house.name
 			%h1{:style => "margin-top:40px;"} #{@sponsor.full_name}
 		%h2 Endereço: #{@sponsor.house.location.complete_address}
 		%h2 Telefone: #{@sponsor.phone_number}

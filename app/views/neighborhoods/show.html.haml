@@ -70,15 +70,16 @@
     %h2 Destaques da comunidade
     .row
       #neighborhood_coordinator.span5
-        %h3 Coordenador comunitário
+        %h3 Coordenadores comunitários
         - @coordinators.each do |coordinator|
-          .neighborhood_profile_box
-            .span1.neighborhood_pf_picture
-              = image_tag(coordinator.profile_photo.url(:small))                     
-            .span3.neighborhood_quote
-              .neighborhood_person_name
-                = coordinator.display_name
-              / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
+          - if @coordinators.posts.count > 0
+            .neighborhood_profile_box
+              .span1.neighborhood_pf_picture
+                = image_tag(coordinator.profile_photo.url(:small))                     
+              .span3.neighborhood_quote
+                .neighborhood_person_name
+                  = coordinator.display_name
+                / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
             
               
     .row

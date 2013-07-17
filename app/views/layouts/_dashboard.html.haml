@@ -4,7 +4,10 @@
       %li
         = image_tag("icons/profile_icon.png")
         - if @current_user.house && @current_user.house.id
-          = link_to 'Meu Perfil', user_path(@current_user), :class => highlight_active_link(user_path(@current_user))
+          - if @current_user.role == "lojista"
+            = link_to 'Meu Perfil', sponsor_path(@current_user), :class => highlight_active_link(sponsor_path(@current_user))
+          - else
+            = link_to 'Meu Perfil', user_path(@current_user), :class => highlight_active_link(user_path(@current_user))
         -else 
           = link_to 'Meu Perfil', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))
       %li

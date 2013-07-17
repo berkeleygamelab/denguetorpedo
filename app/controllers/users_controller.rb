@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     @post = Post.new
 
     @user = User.find_by_id(params[:id])
+
+    head :not_found and return if @user != @current_user and @user.role == "lojista"
     head :not_found and return if @user.nil?
 
     @user_posts = @user.posts
@@ -113,6 +115,11 @@ class UsersController < ApplicationController
       @current_user.email = user_email
     end
 
+    if params[:user][:gender] == 1
+      @current_user.gender = true
+    else
+      @current_user.gender = false
+    end
     # if a house exists with the same house name or house address, inform the user for confirmation
     if params[:user][:confirm] == "0" && !house_name.blank? && House.find_by_name(house_name) && (house_name != @current_user.house.name)
       @user = @current_user
