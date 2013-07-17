@@ -93,11 +93,13 @@
     
       = f.fields_for :house do |house_form|
         - if @current_user.role == "lojista"
-          = house_form.label "Nome do estabelecimento (máximo 16 caracteres)"
+          = house_form.label "Nome do estabelecimento"
         - else
           = house_form.label "Nome da casa (máximo 16 caracteres)"
-        = house_form.text_field :name, :maxlength => "16", :placeholder => "ex. Maria Santos ou Maria e Paulo"
+        = house_form.text_field :name, :placeholder => "ex. Maria Santos ou Maria e Paulo"
         - if @current_user.role == "lojista"
+          = house_form.label "Telefone comercial"
+          = house_form.text_field :phone_number
           = house_form.label "Logo digital (opcional)"
         - else
           = house_form.label "Foto da casa (opcional)"

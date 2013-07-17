@@ -42,10 +42,11 @@
       %br
       = f.password_field :password_confirmation, :placeholder => "Confirmar senha"
       %br
-      = f.text_field :phone_number, :placeholder => "* Telefone"
+
+      = f.text_field :phone_number, :placeholder => "* Celular", :disabled => true, :id => "phone_number"
       %br
       /= f.label :phone_number,  "* Confirmar celular"
-      = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular")
+      = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular", :disabled => true, :id => "confirmation")
       %br
       /= f.label :email,  "* Email"
       
@@ -71,6 +72,8 @@
       = f.fields_for :house do |house_form|
         = house_form.label "Nome do estabelecimento (máximo 16 caracteres)", :id => "house_name"
         = house_form.text_field :name, :placeholder => "", :id => "house_name"
+        = house_form.label "Telefone comercial", :class => "commercial"
+        = house_form.text_field :phone_number, :class => "commercial"
         = house_form.label "Logo digital", :id => "house_picture"
         = house_form.file_field :profile_photo
 
