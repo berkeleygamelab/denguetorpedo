@@ -26,10 +26,10 @@
         %br
         %br
         Marcado por:
-        =link_to resolved.reporter.username + " - " + resolved.strftime_with(:created_at), user_path(resolved.reporter), :class => "user"
+        =link_to resolved.reporter.display_name + " - " + resolved.strftime_with(:created_at), user_path(resolved.reporter), :class => "user"
         %br
         Eliminado por:
-        =link_to resolved.eliminator.username + " - " + resolved.strftime_with(:eliminated_at), user_path(resolved.eliminator), :class => "user"
+        =link_to resolved.eliminator.display_name + " - " + resolved.strftime_with(:eliminated_at), user_path(resolved.eliminator), :class => "user"
         
   .row{ :style => "height: 30px;"}
     
