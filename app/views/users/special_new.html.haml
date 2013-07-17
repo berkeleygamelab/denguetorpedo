@@ -70,7 +70,7 @@
         = location_form.text_field :neighborhood, value: "Maré"
     
       = f.fields_for :house do |house_form|
-        = house_form.label "Nome do estabelecimento (máximo 16 caracteres)", :id => "house_name"
+        = house_form.label "Nome do estabelecimento", :id => "house_name"
         = house_form.text_field :name, :placeholder => "", :id => "house_name"
         = house_form.label "Telefone comercial", :class => "commercial"
         = house_form.text_field :phone_number, :class => "commercial"

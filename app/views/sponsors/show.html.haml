@@ -1,4 +1,4 @@
-.row
+.row{:style => "margin-bottom:20px;"}
 	.span12.offset1
 		.image_and_name
 			- if @sponsor.house.profile_photo.file?
@@ -9,15 +9,17 @@
 			%h1{:style => "margin-top:40px;"} #{@sponsor.full_name}
 		%h2 Endereço: #{@sponsor.house.location.complete_address}
 		%h2 Telefone: #{@sponsor.phone_number}
-	.row.offset1
-		%h2 Mapa
-		.map{:style => "width:200px; height:200px; border:1px solid #aaaaaa;"}
 
-		%h2 Prêmios
-		%ul.prizes_list{:style => "margin-bottom:20px;overflow:auto;"}
-			- if @prizes
-				- @prizes.each do |prize|
-					- if prize.stock == 0
-						= render :partial => "prizes/redeemed", :object => prize
-					- else
-						= render :partial => "prizes/prize", :object => prize
+.row.offset1
+	%h2 Mapa
+	.map{:style => "width:200px; height:200px; border:1px solid #aaaaaa;"}
+
+	%br
+	%h2 Prêmios
+	%ul.prizes_list{:style => "margin-bottom:20px;overflow:auto;"}
+		- if @prizes
+			- @prizes.each do |prize|
+				- if prize.stock == 0
+					= render :partial => "prizes/redeemed", :object => prize
+				- else
+					= render :partial => "prizes/prize", :object => prize

@@ -53,8 +53,8 @@ $(document).ready(function() {
 
 		} else {
 			$("h1#configuration").html("Configurações da casa");
-			$("label#house_name").html("Nome da casa");
-			$("label#house_picture").html("Foto de casa");
+			$("label#house_name").html("Nome da casa (máximo 16 caracteres)");
+			$("label#house_picture").html("Foto da casa");
 			$("input#house_name").attr("placeholder", "ex. Maria Santos ou Maria e Paulo");
 			$("input#phone_number").attr("disabled", false);
 			$("input#confirmation").attr("disabled", false);

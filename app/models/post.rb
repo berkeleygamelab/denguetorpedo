@@ -27,7 +27,7 @@ class Post < ActiveRecord::Base
 
   # validations
   validates :user_id, :presence => true
-  validates :content, :presence => true
+  validates :content, :presence => true, :length => {:minimum => 1, :maximum => 350}
 
   after_create do |post|
     Feed.create_from_object(post, post.user_id, :post)

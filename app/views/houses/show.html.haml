@@ -79,20 +79,18 @@
     /  .span8
     /    = render :partial => "posts/new", locals: { wall: @house }
     %br
-    .row
-      %h3.span15
-        Atividade recente
-    .row
-      .span12          
-        = link_to 'Todos', house_path(@user, :filter => 'all'), :class => @feed_active_all
-        |
-        = link_to 'Focos', house_path(@user, :filter => 'reports'), :class => @feed_active_reports
-        |
-        = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
-    %br
+    .row{:style => "margin-top:13px;"}
+      %h2.span15
+        Blogs e focos marcados
+    /.row
+    /  .span12          
+    /    = link_to 'Todos', house_path(@user, :filter => 'all'), :class => @feed_active_all
+    /    |
+    /    = link_to 'Focos', house_path(@user, :filter => 'reports'), :class => @feed_active_reports
+    /    |
+    /    = link_to 'Blog', user_path(@user, :filter => 'posts'), :class => @feed_active_posts
     .row
       .span9
-        %h3 Mensagens da casa:
         - for post in @house.posts.sort{|a, b| b.created_at <=> a.created_at}
           = render :partial => "/posts/post", :locals => {:post => post}
     

@@ -10,7 +10,7 @@ class NeighborhoodsController < ApplicationController
     @total_reports_in_neighborhood = @neighborhood.total_reports.count
     @opened_reports_in_neighborhood = @neighborhood.open_reports.count
     @eliminated_reports_in_neighborhood = @neighborhood.eliminated_reports.count
-    @number_of_houses = @neighborhood.houses.count
+    @number_of_houses = @houses.count
     @number_of_participants = @participants.count
     
     @highlightNeighborhoodItem = ""

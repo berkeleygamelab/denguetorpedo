@@ -12,26 +12,28 @@
         .span2
           %b= @opened_reports_in_neighborhood
           %br em aberto
-    .span2
+    .span2{:style => "margin-left:-35px;"}
       .row
         #neighborhood_resolved_report_button.span1 
         .span1
           %b= @eliminated_reports_in_neighborhood
           %br eliminados
-    .span2
-      .house_count
-        %b= @number_of_houses
-        %br casas
-    .span1
-      .participant_count
-        %b= @number_of_participants
-        %br participantes
+    /.span2
+    /  .house_count
+    /    %b= @number_of_houses
+    /    %br casas
+    /.span1
+    /  .participant_count
+    /    %b= @number_of_participants
+    /    %br participantes
+%br
+%br
 .row
-  #neighborhood_view
+  #neighborhood_view{:style => "font-weight:bold;"}
     .span2.offset1
-      = link_to 'Casas', neighborhood_path(params[:id]), :class => @houses_view_active
-    .span2
-      = link_to 'Participantes', neighborhood_path(params[:id], :view => 'participants'), :class => @participants_view_active
+      = link_to 'Casas (' + @number_of_houses.to_s + ')', neighborhood_path(params[:id]), :class => @houses_view_active
+    .span3
+      = link_to 'Participantes (' + @number_of_participants.to_s + ')', neighborhood_path(params[:id], :view => 'participants'), :class => @participants_view_active
 %br
 .row
   - if params[:view] == 'participants'
@@ -66,7 +68,7 @@
               = image_tag("default_images/house_default_image.png")
               Futura casa
 
-  #neighborhood_right_panel.span5
+  #neighborhood_right_panel.span5{:style => "margin-top:-135px;"}
     %h2 Destaques da comunidade
     .row
       #neighborhood_coordinator.span5

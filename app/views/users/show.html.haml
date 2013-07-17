@@ -18,7 +18,7 @@
                 #{@user.display_name} (coordinadora)
             - else
               = @user.display_name
-        .span7.offset7
+        .span7.offset7{:style => "margin-top:-40px;"}
           .span2.user_points
             %h2 pontos         
           .span2.user_points{:style => "margin-top:22px;margin-left:-15px;"}
@@ -31,7 +31,11 @@
               %h2 total
             .user_points_bg
               = @user.total_points
-      .row
+      .row{:style => "margin-top:15px;"}
+        .span4.offset8{:style => "position:absolute;"}
+          %h3{:style => "font-size:14px;"} Recrutado por Rui Harayama
+          %h3{:style => "font-size:14px;"} Recrutei Soyon Kwon
+      .row{:style => "margin-top:25px;"}
         .user_force_position.span2.offset4{:style => "margin-left:244px;"}
           %h3.user_house
             - if @house
@@ -62,7 +66,7 @@
         
     .row
       #user_recent_activity.span15.offset1
-        .row
+        .row{:style => "margin-top:10px;"}
           .span11
             - if @isPrivatePage
               = render :partial => 'posts/new', locals: { wall: @house }

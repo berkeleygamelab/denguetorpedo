@@ -8,24 +8,25 @@
   #neighborhood_stats.offset1
     .span3
       %b= @prizes.count
-      %br Total de Prêmios
+      %br Total
     .span4
       .row
         #available_prizes_button.span1 
         .span3
           %b= @available.count
-          %br Prêmios Disponiveis
+          %br Disponiveis
     .span4
       .row
         #neighborhood_resolved_report_button.span1 
         .span3
           %b= @redeemed.count
-          %br Prêmios Resgatados
-    .span2
-      .house_count
-        %b= @sponsors.count
-        %br Patrocinadores
+          %br Resgatados
+    / .span2
+    /   .house_count
+    /     %b= @sponsors.count
+    /     %br Patrocinadores
 
+%br
 .row{:style => "margin-top:10px;"}
   .span8.offset1
     %h2 Categorias
@@ -102,9 +103,9 @@
       = render :partial => "prizes/default_list"
     - else
       - if params[:filter] == "individual"
-        %h2 Prêmios para você
+        %h2 Para você
       - elsif params[:filter] == "community"
-        %h2 Prêmios para a comunidade
+        %h2 Para a comunidade
       - elsif params[:filter] == "badges"
         %h2 Medalhas
       = render :partial => "prizes/filtered_list"

@@ -1,6 +1,6 @@
 .span4{ :style => "margin-top:-42px;height:400px;"}
 	%select{:id => "sponsors_select", :onchange => "location = this.options[this.selectedIndex].value;"}
-		%option Patrocinador
+		%option Patrocinador (#{@sponsors.count})
 		- @sponsors.each do |sponsor|
 			%option{:value => user_path(sponsor)} #{sponsor.full_name}
 	.sponsors_box{ :style => "background-color:white;height:400px;width:255px;padding:5px;"}
