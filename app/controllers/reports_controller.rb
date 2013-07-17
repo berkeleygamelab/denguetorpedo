@@ -36,7 +36,8 @@ class ReportsController < ApplicationController
       end
     end
     
-    @map_json = locations.to_gmaps4rails
+    # @map_json = locations.to_gmaps4rails
+    @map_json = nil
     @reports = reports_with_status_filtered
     @open_feed = @reports
     @eliminate_feed = @reports
