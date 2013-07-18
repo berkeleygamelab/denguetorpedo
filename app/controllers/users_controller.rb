@@ -138,13 +138,23 @@ class UsersController < ApplicationController
       location.street_name = params[:user][:location][:street_name]
       location.street_number = params[:user] [:location][:street_number]
       location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
-      location.save!
+
+      if !location.save
+        flash[:notice] = "There was an error with your address. Please enter a valid address."
+        render "edit"
+      end
+
       @current_user.display = display
       @current_user.first_name = user_first_name
       @current_user.middle_name = user_middle_name
       @current_user.last_name = user_last_name
+
       @user = @current_user
 
+      if !@current_user.house.save
+        flash[:notice] = "There was an error with your house info. Please enter casa information again."
+        render "edit"
+      end
       if params[:user][:house_attributes][:phone_number]
         @current_user.house.phone_number = params[:user][:house_attributes][:phone_number]
         @current_user.house.save
@@ -183,10 +193,11 @@ class UsersController < ApplicationController
     house_profile_photo = params[:user][:house_attributes][:profile_photo]
     house_phone_number = params[:user][:house_attributes][:phone_number]
     @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
+    @user.house.house_type = params[:user][:role]
     location = @user.house.location
-
     @user.house.phone_number = house_phone_number
     @user.house.save
+    @user.house.user_id = @user.id
     location.street_type = params[:user][:location][:street_type]
     location.street_name = params[:user][:location][:street_name]
     location.street_number = params[:user] [:location][:street_number]
@@ -195,6 +206,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to edit_user_path(@current_user), :flash => { :notice => "Novo usuário criado com sucesso!."}
     else
+      @user.house.destroy
       redirect_to :back, :flash => { :notice => "There was an error creating a new user."}
     end
   end

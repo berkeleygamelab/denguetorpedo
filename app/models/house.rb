@@ -15,7 +15,7 @@
 #
 
 class House < ActiveRecord::Base
-  attr_accessible :name, :profile_photo, :address
+  attr_accessible :name, :profile_photo, :address, :user, :user_id
   
   has_attached_file :profile_photo, :styles => {:small => "60x60>", :medium => "150x150>" , :large => "225x225>"}, :default_url => 'default_images/house_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
 
@@ -24,7 +24,7 @@ class House < ActiveRecord::Base
   has_many :created_reports, :through => :members, :conditions => {:status_cd => 0}
   has_many :eliminated_reports, :through => :members, :conditions => {:status_cd => 1}
   belongs_to :location
-
+  has_one :user
   accepts_nested_attributes_for :location, :allow_destroy => true
   attr_accessible :location_id, :location_attributes
 
