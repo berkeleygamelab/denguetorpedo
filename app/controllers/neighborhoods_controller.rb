@@ -28,8 +28,8 @@ class NeighborhoodsController < ApplicationController
       @houses_view_active = 'active '
     end
     
-    @coordinators = User.where(:role => "coordenador")
-    @verifiers = User.where(:role => "verificador")
+    @coordinators = @participants.where(:role => "coordenador")
+    @verifiers = @participants.where(:role => "verificador")
     @random_sponsors = []
     9.times do
       @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')
