@@ -100,7 +100,7 @@
       #house_reports.span6
         .row
           .span6{:style => "margin-left:-5px;"}
-            = gmaps(markers: { data: @house_reports_gmap_json },  map_options: @map_options)
+            = gmaps(markers: { data: nil },  map_options: nil)
         .row
           .span6
             #report_status_bar
