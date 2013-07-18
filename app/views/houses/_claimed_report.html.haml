@@ -10,8 +10,8 @@
         = claimed_report.report
       %a Marcado:
       %a.user 
-        = link_to claimed_report.reporter.username + " - " + claimed_report.strftime_with(:created_at), user_path(claimed_report.reporter)
+        = link_to claimed_report.reporter.display_name + " - " + claimed_report.strftime_with(:created_at), user_path(claimed_report.reporter)
       %br
       %a Assumido:
       %a.user
-        = link_to claimed_report.claimer.username + " - " + claimed_report.strftime_with(:claimed_at), user_path(claimed_report.claimer)
+        = link_to claimed_report.claimer.display_name + " - " + claimed_report.strftime_with(:claimed_at), user_path(claimed_report.claimer)

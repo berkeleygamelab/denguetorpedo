@@ -13,8 +13,8 @@
         = resolved_report.report
       %a Marcado:
       %a.user
-        = link_to resolved_report.reporter.username + " - " + resolved_report.strftime_with(:created_at), user_path(resolved_report.reporter)
+        = link_to resolved_report.reporter.display_name + " - " + resolved_report.strftime_with(:created_at), user_path(resolved_report.reporter)
       %br
       %a Eliminado: 
       %a.user
-        = link_to resolved_report.eliminator.username + " - " + resolved_report.strftime_with(:eliminated_at), user_path(resolved_report.eliminator)
+        = link_to resolved_report.eliminator.display_name + " - " + resolved_report.strftime_with(:eliminated_at), user_path(resolved_report.eliminator)
