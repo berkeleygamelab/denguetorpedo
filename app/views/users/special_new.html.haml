@@ -43,10 +43,10 @@
       = f.password_field :password_confirmation, :placeholder => "Confirmar senha"
       %br
 
-      = f.text_field :phone_number, :placeholder => "* Celular", :disabled => true, :id => "phone_number"
+      = f.text_field :phone_number, :placeholder => "* Celular", :id => "phone_number"
       %br
       /= f.label :phone_number,  "* Confirmar celular"
-      = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular", :disabled => true, :id => "confirmation")
+      = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular", :id => "confirmation")
       %br
       /= f.label :email,  "* Email"
       
