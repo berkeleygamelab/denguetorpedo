@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     else
       @selected_neighborhood = Neighborhood.find(params[:neighborhood])
     end
-
+    ##3hihi
     @participants = @selected_neighborhood.members.where('role != ?', "lojista")
 
     @houses = @participants.map { |participant| participant.house }.uniq

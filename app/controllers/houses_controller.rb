@@ -3,6 +3,7 @@ class HousesController < ApplicationController
   def show
     @house = House.includes(:members, :posts, :location => :neighborhood).find(params[:id])
     head :not_found and return if @house.nil?
+    head :not_found and return if @house.user.role == "lojista"
     
     # @house_reports_gmap_json = @house.reports.map {|report| report.location}.to_gmaps4rails
     
