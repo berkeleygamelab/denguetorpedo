@@ -15,7 +15,7 @@
 #
 
 class House < ActiveRecord::Base
-  attr_accessible :name, :profile_photo, :address, :user, :user_id
+  attr_accessible :name, :profile_photo, :address, :user, :user_id, :house_type
   
   has_attached_file :profile_photo, :styles => {:small => "60x60>", :medium => "150x150>" , :large => "225x225>"}, :default_url => 'default_images/house_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
 
