@@ -19,8 +19,10 @@ class HomeController < ApplicationController
     else
       @selected_neighborhood = Neighborhood.find(params[:neighborhood])
     end
-    
-    @houses = @selected_neighborhood.houses
+
+    @participants = @selected_neighborhood.members.where('role != ?', "lojista")
+
+    @houses = @participants.map { |participant| participant.house }.uniq
     
     @prizes = Prize.where('stock > 0')
     @total_reports_in_neighborhood = @selected_neighborhood.total_reports.count
