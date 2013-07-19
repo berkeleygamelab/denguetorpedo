@@ -193,6 +193,11 @@ class UsersController < ApplicationController
     house_profile_photo = params[:user][:house_attributes][:profile_photo]
     house_phone_number = params[:user][:house_attributes][:phone_number]
     @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
+
+    if @user.house == nil
+      flash[:notice] = "There was an error creating the house."
+      render "edit"
+    end
     @user.house.house_type = params[:user][:role]
     location = @user.house.location
     @user.house.phone_number = house_phone_number
@@ -201,7 +206,12 @@ class UsersController < ApplicationController
     location.street_name = params[:user][:location][:street_name]
     location.street_number = params[:user] [:location][:street_number]
     location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
-    location.save
+
+    if !location.save
+      flash[:notice] = "There was an error with location"
+      render "edit"
+    end
+    end
     if @user.save
       redirect_to edit_user_path(@current_user), :flash => { :notice => "Novo usuário criado com sucesso!."}
     else
