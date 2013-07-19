@@ -197,7 +197,6 @@ class UsersController < ApplicationController
     location = @user.house.location
     @user.house.phone_number = house_phone_number
     @user.house.save
-    @user.house.user_id = @user.id
     location.street_type = params[:user][:location][:street_type]
     location.street_name = params[:user][:location][:street_name]
     location.street_number = params[:user] [:location][:street_number]
