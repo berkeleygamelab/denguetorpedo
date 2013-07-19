@@ -45,8 +45,8 @@ $(document).ready(function() {
 			$("label#house_name").html("Nome do estabelecimento");
 			$("label#house_picture").html("Logo digital");
 			$("input#house_name").attr("placeholder", "");
-			$("input#phone_number").attr("disabled", true);
-			$("input#confirmation").attr("disabled", true);
+			// $("input#phone_number").attr("disabled", true);
+			// $("input#confirmation").attr("disabled", true);
 
 			$("label.commercial").show();
 			$("input.commercial").show();
@@ -56,8 +56,8 @@ $(document).ready(function() {
 			$("label#house_name").html("Nome da casa (máximo 16 caracteres)");
 			$("label#house_picture").html("Foto da casa");
 			$("input#house_name").attr("placeholder", "ex. Maria Santos ou Maria e Paulo");
-			$("input#phone_number").attr("disabled", false);
-			$("input#confirmation").attr("disabled", false);
+			// $("input#phone_number").attr("disabled", false);
+			// $("input#confirmation").attr("disabled", false);
 
 			$("label.commercial").hide();
 			$("input.commercial").hide();
