@@ -115,11 +115,8 @@ class UsersController < ApplicationController
       @current_user.email = user_email
     end
 
-    if params[:user][:gender] == 1
-      @current_user.gender = true
-    else
-      @current_user.gender = false
-    end
+    @current_user.gender = params[:user][:gender]
+
     # if a house exists with the same house name or house address, inform the user for confirmation
     if params[:user][:confirm] == "0" && !house_name.blank? && House.find_by_name(house_name) && (house_name != @current_user.house.name)
       @user = @current_user
@@ -209,7 +206,7 @@ class UsersController < ApplicationController
     if !location.save
       redirect_to :back, :flash => { :notice => "There was an error with your address."}
     end
-    
+
     if @user.save
       redirect_to edit_user_path(@current_user), :flash => { :notice => "Novo usuário criado com sucesso!."}
     else

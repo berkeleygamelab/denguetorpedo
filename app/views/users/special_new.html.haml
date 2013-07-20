@@ -28,9 +28,12 @@
         / = f.label :nickname, "Apelido"
         = f.text_field :nickname, :placeholder => "Apelido (opcional)"
         %br
-        %input{:type => "radio", :value => 1, :name => 'user[gender]', :style => "font-size:14px;", :checked => @user.gender == true}
+        / %input{:type => "radio", :value => 1, :name => 'user[gender]', :style => "font-size:14px;", :checked => @user.gender == true}
+        / masculino
+        / %input{:type => "radio", :value => 0, :name => "user[gender]", :style => "margin-left:20px;font-size:14px;", :checked => @user.gender == false}
+        = f.radio_button :gender, :value => "true", :style => "font-size:14px;"
         masculino
-        %input{:type => "radio", :value => 0, :name => "user[gender]", :style => "margin-left:20px;font-size:14px;", :checked => @user.gender == false}
+        = f.radio_button :gender, :value => "false", :style => "margin-left:20px font-size:14px;"
         feminino
         %br
         %br
