@@ -178,9 +178,10 @@ class UsersController < ApplicationController
   end
 
   def special_create
-
+    head :not_found and return if @house.user.role != "admin" and @house.user.role != "coordenador"
     if User.find_by_email(params[:user][:email])
       redirect_to :back, :flash => { :notice => "User with the given email already exists."}
+      return
     end
     
     @user = User.new(params[:user])
@@ -196,6 +197,7 @@ class UsersController < ApplicationController
 
     if @user.house == nil
       redirect_to :back, :flash => { :notice => "There was an error creating the house."}
+      return
     end
     @user.house.house_type = params[:user][:role]
     location = @user.house.location
@@ -208,6 +210,7 @@ class UsersController < ApplicationController
 
     if !location.save
       redirect_to :back, :flash => { :notice => "There was an error with your address."}
+      return
     end
 
     if @user.save
