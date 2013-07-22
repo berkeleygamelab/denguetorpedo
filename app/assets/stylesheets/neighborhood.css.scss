@@ -87,6 +87,8 @@ ul#neighborhood_house_list {
   }
   #neighborhood_coordinator, #neighborhood_health_agent {
     margin-bottom: 10px;
+    max-height: 400px;
+    overflow: auto;
   }
   .neighborhood_profile_box {
     background: white;
@@ -142,7 +144,7 @@ ul#neighborhood_house_list {
       width: 290px;
       margin-left: 0px;
       margin-right: 10px;
-      height: 220px;
+      height: 20px;
     }
   }
   .neighborhood_news_title {
@@ -152,7 +154,12 @@ ul#neighborhood_house_list {
     text-shadow: none;
     color: #909090;
     font-style: normal;
-    text-decoration: underline;
+    text-decoration: none;
+    background: #dddddd;
+  }
+  .neighborhood_news_title:hover {
+    background-color: rgba(0, 204, 51, 0.6);
+    color: white;
   }
   .neighborhood_news_thumb {
     border: 1px solid $dark-gray;

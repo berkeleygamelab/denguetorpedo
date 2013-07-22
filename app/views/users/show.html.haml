@@ -3,7 +3,7 @@
     #user_top_text
       .row
         .span9.offset4{ :style => "margin-top: -10px;"}
-          %h1.user_name.span7
+          %h1.user_name.span9
             - if @user.role == "lojista"
               #{@user.display_name} (patrocinador)
             - elsif @user.role == "verificador"
@@ -39,7 +39,10 @@
         .user_force_position.span2.offset4{:style => "margin-left:244px;"}
           %h3.user_house
             - if @house
-              = link_to "Casa " + @house.name, house_path(@house)
+              - if @user.role == "lojista" or @user.role == "verificador"
+                = link_to @house.name, house_path(@house)
+              - else
+                = link_to "Casa " + @house.name, house_path(@house)
             - else 
               = link_to "Create My House", edit_user_path(@user)
         .span2{:style => "margin-left:14px;"}

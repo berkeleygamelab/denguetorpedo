@@ -1,7 +1,7 @@
 %li.span3.prizes.possible
 	.status.possible
 		.name
-			= link_to prize.user.full_name, "sponsors/#{prize.user.id}"
+			= link_to prize.user.house.name, "sponsors/#{prize.user.id}"
 		.points
 			#{prize.cost} pontos
 	.prize_content

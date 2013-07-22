@@ -180,7 +180,7 @@ class UsersController < ApplicationController
   def special_create
     head :not_found and return if @current_user.role != "admin" and @current_user.role != "coordenador"
     if User.find_by_email(params[:user][:email])
-      redirect_to :back, :flash => { :notice => "User with the given email already exists."}
+      redirect_to :back, :flash => { :notice => "Este e-mail já foi registrado por outro usuário."}
       return
     end
     
@@ -214,7 +214,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save
-      redirect_to edit_user_path(@current_user), :flash => { :notice => "Novo usuário criado com sucesso!."}
+      redirect_to edit_user_path(@current_user), :flash => { :notice => "Novo usuário criado com sucesso!"}
     else
       @user.house.destroy
       redirect_to :back, :flash => { :notice => "There was an error creating a new user."}

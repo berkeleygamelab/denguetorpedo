@@ -2,8 +2,8 @@
 	%select{:id => "sponsors_select", :onchange => "location = this.options[this.selectedIndex].value;"}
 		%option Patrocinador (#{@sponsors.count})
 		- @sponsors.each do |sponsor|
-			%option{:value => user_path(sponsor)} #{sponsor.full_name}
+			%option{:value => sponsor_path(sponsor)} #{sponsor.house.name}
 	.sponsors_box{ :style => "background-color:white;height:400px;width:255px;padding:5px;"}
-		- @sponsors.each do |sponsor|
+		- @sponsors.shuffle.each do |sponsor|
 			.sponsors
 				= link_to image_tag(sponsor.house.profile_photo.url(:small), :width => 80, :height => 80), "sponsors/#{sponsor.id}"

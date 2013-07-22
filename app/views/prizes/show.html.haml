@@ -17,7 +17,7 @@
           .span6
             %div
               - if @prize.prize_photo_file_name.nil?
-                = image_tag("default_images/prize_default_image.jpg")
+                = image_tag("default_images/prize_default_image.jpg", :width => 150, :height => 150)
               - else
                 = image_tag(@prize.prize_photo.url(:large))
           .span9
@@ -29,7 +29,14 @@
                 %h5
                   #{@prize.cost} pontos
                 %br
-                %p{ :style => "font-size:15px;"}
+                
+                - if @prize.is_badge
+                  %p{ :style => "font-size:18px;margin-top:30px;"}
+                    Medalha digital premiada automaticamente. 
+                  %p{:style => "font-size:18px;"}
+                    Você não precisa utilizar seus pontos!
+                - else
+                  %p{ :style => "font-size:15px;"}
                   = @prize.description
               .row
                 - if @prize.is_badge == false
@@ -39,45 +46,46 @@
                   - if @prize.expire_on
                     %p
                       Prazo: #{@prize.expire_on.to_date }
-      .row#prize_instructions_and_cost
-        .row#bootstrap_sucks
-          .span6
-            %div#prize_cost
-              #current_user
-                %h5{:style => "color:#333333;font-size:60px; text-align:center;"}
-                  = number_with_delimiter(@user.points, :delimiter => ".")
-              #cant_use_points_sucka
-                %h6
-                  Seus pontos
-          .span6.offset3{:style => "float:right;margin-right:5px;"}
-            %div#prize_cost
-              / .center
-              / You have #{@prize.user.points} pontos!
-              - unless @current_user.nil?
-                - if @enoughPoints
-                  #use_points
-                    = link_to "Usar os meus pontos agora!", prize_path, :method => :post
-                - if !@enoughPoints
-                  #cant_use_points_sucka
-                    %h6
-                      Usar os meus pontos agora!
-                /   #cant_use_points_sucka
-                /     %h6
-                /       Você precisa de mais pontos para redimir
-
-              - if @current_user.nil?
+      - if @prize.is_badge == false
+        .row#prize_instructions_and_cost
+          .row#bootstrap_sucks
+            .span6
+              %div#prize_cost
+                #current_user
+                  %h5{:style => "color:#333333;font-size:60px; text-align:center;"}
+                    = number_with_delimiter(@user.points, :delimiter => ".")
                 #cant_use_points_sucka
                   %h6
-                    Você deve entrar para redimir
-      %div#prize_instructions.row{:style => "background-color:white;padding: 10px;margin-top: 50px;"}
-        %h3
-          Para retirar o prêmio:
-        %br
+                    Seus pontos
+            .span6.offset3{:style => "float:right;margin-right:5px;"}
+              %div#prize_cost
+                / .center
+                / You have #{@prize.user.points} pontos!
+                - unless @current_user.nil?
+                  - if @enoughPoints
+                    #use_points
+                      = link_to "Usar os meus pontos agora!", prize_path, :method => :post
+                  - if !@enoughPoints
+                    #cant_use_points_sucka
+                      %h6
+                        Usar os meus pontos agora!
+                  /   #cant_use_points_sucka
+                  /     %h6
+                  /       Você precisa de mais pontos para redimir
 
-        %p
-          Compareça ao estabelecimento de porte do cupom impresso e de um documento válido com foto (ex. RG).
-        %p
-          = @prize.redemption_directions
+                - if @current_user.nil?
+                  #cant_use_points_sucka
+                    %h6
+                      Você deve entrar para redimir
+        %div#prize_instructions.row{:style => "background-color:white;padding: 10px;margin-top: 50px;"}
+          %h3
+            Para retirar o prêmio:
+          %br
+
+          %p
+            Compareça ao estabelecimento de porte do cupom impresso e de um documento válido com foto (ex. RG).
+          %p
+            = @prize.redemption_directions
       .row
         #prize_
       .row#sponsor_area_title_thing

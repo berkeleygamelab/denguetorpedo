@@ -102,6 +102,8 @@ ul#neighborhood_list {
   }
 }
 
+
+
 #status_of_neighborhood {
   margin-top:20px;
   margin-bottom: -10px;
@@ -127,14 +129,14 @@ ul#house_list {
     text-align: center;
 
     #house_photo_thumb {
-      width: 110px;
+      width: 140px;
     }
     a {
-      font-size: 15px;
+      font-size: 13px;
     }
     img {
-      width: 110px;
-      height: 110px;
+      width: 130px;
+      height: 130px;
       border: 1px solid $gray;
       background: #ffffff;
     }

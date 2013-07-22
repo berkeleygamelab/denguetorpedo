@@ -15,6 +15,8 @@
         = link_to "Registrar patrocinador, verificador e visitante", "/users/special_new"
       %p.link
         = link_to "Registrar novos prêmios ", "/premios/new"
+      %p.link
+        = link_to "Registrar notícias da comunidade"
   - elsif @current_user.role == "lojista"
     #role_specific.offset9
       %h2 Configurações de patrocinador
@@ -105,7 +107,7 @@
           = house_form.text_field :name
         - else
           = house_form.label "Nome da casa (máximo 13 caracteres)"
-          = house_form.text_field :name, :placeholder => "ex. Maria Santos ou Maria e Paulo", :maxlength => 13
+          = house_form.text_field :name, :placeholder => "ex. Maria Santos ou Maria e Paulo", :maxlength => 16
 
         
         - if @current_user.role == "lojista"

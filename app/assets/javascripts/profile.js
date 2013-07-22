@@ -45,6 +45,7 @@ $(document).ready(function() {
 			$("label#house_name").html("Nome do estabelecimento");
 			$("label#house_picture").html("Logo digital");
 			$("input#house_name").attr("placeholder", "");
+			$("input#house_name").attr("maxlength", "");
 			// $("input#phone_number").attr("disabled", true);
 			// $("input#confirmation").attr("disabled", true);
 
@@ -53,17 +54,18 @@ $(document).ready(function() {
 
 		} else if ($("select#role").val() == "verificador") {
 			$("h1#configuration").html("Configurações da organização");
-			$("label#house_name").html("Nome da organização (máximo 13 caracteres)");
+			$("label#house_name").html("Nome da organização (máximo 16 caracteres)");
 			$("label#house_picture").html("Foto da organização");
-			$("input#house_name").attr("placeholder", "ex. Maria Santos ou Maria e Paulo");
-
+			$("input#house_name").attr("placeholder", "");
+			$("input#house_name").attr("maxlength", 16);
 			$("label.commercial").hide();
 			$("input.commercial").hide();
 		} else {
 			$("h1#configuration").html("Configurações da casa");
-			$("label#house_name").html("Nome da casa (máximo 13 caracteres)");
+			$("label#house_name").html("Nome da casa (máximo 16 caracteres)");
 			$("label#house_picture").html("Foto da casa");
 			$("input#house_name").attr("placeholder", "ex. Maria Santos ou Maria e Paulo");
+			$("input#house_name").attr("maxlength", 16);
 			// $("input#phone_number").attr("disabled", false);
 			// $("input#confirmation").attr("disabled", false);
 

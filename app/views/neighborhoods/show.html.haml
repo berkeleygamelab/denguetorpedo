@@ -71,33 +71,34 @@
   #neighborhood_right_panel.span5{:style => "margin-top:-135px;"}
     %h2 Destaques da comunidade
     .row
+      %h3{:style => "margin-left:10px;"} Coordenadores comunitários
       #neighborhood_coordinator.span5
-        %h3 Coordenadores comunitários
         - @coordinators.each do |coordinator|
-          .neighborhood_profile_box
-            .span1.neighborhood_pf_picture
-              = image_tag(coordinator.profile_photo.url(:small))                     
-            .span3.neighborhood_quote
-              .neighborhood_person_name
-                = coordinator.display_name
-              / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
+          - if coordinator.posts.count > 0
+            .neighborhood_profile_box
+              .span1.neighborhood_pf_picture
+                = image_tag(coordinator.profile_photo.url(:small))                     
+              .span3.neighborhood_quote
+                .neighborhood_person_name
+                  = coordinator.display_name
+                / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
             
               
     .row
+      %h3{:style => "margin-left:10px;"} Verificadores
       #neighborhood_health_agent.span5
-        %h3 Verificadores
         - @verifiers.each do |verifier|
-          .neighborhood_profile_box
-            .span1.neighborhood_pf_picture
-              = image_tag(verifier.profile_photo.url(:small))
-            .span3.neighborhood_quote
-              .neighborhood_person_name
-                = verifier.display_name            
-              / “O Dengue Torpedo me inspirou!” 
+          - if verifier.posts.count > 0
+            .neighborhood_profile_box
+              .span1.neighborhood_pf_picture
+                = image_tag(verifier.profile_photo.url(:small))
+              .span3.neighborhood_quote
+                .neighborhood_person_name
+                  = verifier.display_name            
+                / “O Dengue Torpedo me inspirou!” 
     .row
+      %h3{:style => "margin-left:10px;"} Patrocinadores
       #neighborhood_sponsors.span4
-        %h3 Patrocinadores
-        
         .neighborhood_sponsor_box
           %ul
             - @random_sponsors.each do |sponsor|
