@@ -178,7 +178,7 @@ class UsersController < ApplicationController
   end
 
   def special_create
-    head :not_found and return if @house.user.role != "admin" and @house.user.role != "coordenador"
+    head :not_found and return if @current_user.role != "admin" and @current_user.role != "coordenador"
     if User.find_by_email(params[:user][:email])
       redirect_to :back, :flash => { :notice => "User with the given email already exists."}
       return
