@@ -3,9 +3,9 @@
     %h1
       - if @house.user.role == "verificador"
         - if @house.user.gender == true
-          Casa #{@house.name} (verificador)
+          #{@house.name} (verificador)
         - else
-          Casa #{@house.name} (verificadora)
+          #{@house.name} (verificadora)
       - elsif @house.user.role == "coordenador"
         - if @house.user.gender == true
           Casa #{@house.name} (coordenador)

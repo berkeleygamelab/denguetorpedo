@@ -6,7 +6,7 @@
 			- else
 				.logo_box
 					= @sponsor.house.name
-			%h1{:style => "margin-top:40px;"} #{@sponsor.full_name}
+			%h1{:style => "margin-top:40px;"} #{@sponsor.house.name}
 		%h2 Endereço: #{@sponsor.house.location.complete_address}
 		%h2 Telefone: #{@sponsor.phone_number}
 

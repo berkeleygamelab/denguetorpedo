@@ -51,6 +51,11 @@ $(document).ready(function() {
 			$("label.commercial").show();
 			$("input.commercial").show();
 
+		} else if ($("select#role").val() == "verificador") {
+			$("h1#configuration").html("Configurações da organização");
+			$("label#house_name").html("Nome da organização (máximo 13 caracteres)");
+			$("label#house_picture").html("Foto da organização");
+			$("input#house_name").attr("placeholder", "ex. Maria Santos ou Maria e Paulo");
 		} else {
 			$("h1#configuration").html("Configurações da casa");
 			$("label#house_name").html("Nome da casa (máximo 16 caracteres)");

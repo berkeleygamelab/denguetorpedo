@@ -1,4 +1,7 @@
 .user_form.offset1
+  - if flash[:notice] 
+    %h2.notice{style: "margin: 10px; width: 700px;"}  
+      = flash[:notice]
   %h1 Registrar patrocinador, verificador e visitante
   %br
   = form_for(@user, :url => {:action => "special_create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
@@ -31,9 +34,9 @@
         / %input{:type => "radio", :value => 1, :name => 'user[gender]', :style => "font-size:14px;", :checked => @user.gender == true}
         / masculino
         / %input{:type => "radio", :value => 0, :name => "user[gender]", :style => "margin-left:20px;font-size:14px;", :checked => @user.gender == false}
-        = f.radio_button :gender, :value => "true", :style => "font-size:14px;"
+        = f.radio_button :gender, "true", :checked => true
         masculino
-        = f.radio_button :gender, :value => "false", :style => "margin-left:20px font-size:14px;"
+        = f.radio_button :gender, "false"
         feminino
         %br
         %br

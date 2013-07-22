@@ -179,8 +179,11 @@ class UsersController < ApplicationController
 
   def special_create
 
+    if User.find_by_email(params[:user][:email])
+      redirect_to :back, :flash => { :notice => "User with the given email already exists."}
+    end
+    
     @user = User.new(params[:user])
-    # @user.phone_number = params[:user][:phone_number]
     house_name = params[:user][:house_attributes][:name]
     street_type = params[:user][:location][:street_type]
     street_name = params[:user][:location][:street_name]
