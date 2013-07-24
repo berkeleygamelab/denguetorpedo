@@ -48,14 +48,19 @@ ul#neighborhood_participants_list {
     margin-bottom: 10px;
     margin-left: 0px;
     margin-right: 10px;
-    width: 150px;
+    width: 120px;
+    text-align: center;
+    font-size: 13px;
   }
   
   img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border: 1px solid $gray;
     overflow: hidden;
+  }
+  a {
+    font-size: 13px;
   }
 }
 
@@ -69,14 +74,18 @@ ul#neighborhood_house_list {
     margin-bottom: 10px;
     margin-left: 0px;
     margin-right: 10px;
-    width: 150px;
+    width: 120px;
+    text-align: center;
   }
   
   img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border: 1px solid $gray;
     overflow: hidden;
+  }
+  a {
+    font-size: 13px;
   }
 }
 

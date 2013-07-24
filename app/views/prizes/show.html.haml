@@ -64,7 +64,7 @@
                 - unless @current_user.nil?
                   - if @enoughPoints
                     #use_points
-                      = link_to "Usar os meus pontos agora!", prize_path, :method => :post
+                      = link_to "Usar os meus pontos agora!", prize_path, :method => :post, :confirm => "Você tem certeza que quer utilizar seus pontos? Essa ação não poderá ser cancelada."
                   - if !@enoughPoints
                     #cant_use_points_sucka
                       %h6

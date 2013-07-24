@@ -16,7 +16,9 @@
       %p.link
         = link_to "Registrar novos prêmios ", "/premios/new"
       %p.link
-        = link_to "Registrar notícias da comunidade"
+        = link_to "Registrar notícias da comunidade", new_notice_path
+      %p.link
+        = link_to "Administrando usuários e prêmios"
   - elsif @current_user.role == "lojista"
     #role_specific.offset9
       %h2 Configurações de patrocinador

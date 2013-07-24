@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @notice.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @notice.description %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @notice.location %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @notice.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_notice_path(@notice) %> |
+<%= link_to 'Back', notices_path %>

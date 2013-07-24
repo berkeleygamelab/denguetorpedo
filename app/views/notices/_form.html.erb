@@ -1,0 +1,45 @@
+<%= form_for(@notice) do |f| %>
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+
+      <ul>
+      <% @notice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :neighborhood_id, "Comunidade" %>
+    <%= f.select :neighborhood_id, @neighborhoods %>
+  </div>
+  <div class="field">
+    <%= f.label :title, "Título da atividade (máx 60 caracteres)" %>
+    <%= f.text_field :title, :style => "width:400px;", :maxlength => 60 %>
+  </div>
+  <div class="field">
+    <%= f.label :summary, "Descrição resumida (máx 150 caracteres)" %>
+    <%= f.text_area :summary, :maxlength => 150, :rows => 3 %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Descrição da atividade (máx 900 caracteres)" %>
+    <%= f.text_area :description, :maxlength => 900 %>
+  </div>
+  <div class="field">
+    <%= f.label :location, "Local da atividade" %>
+    <%= f.text_field :location, :style => "width:600px;" %>
+  </div>
+  <div class="field">
+    <%= f.label :date, "Data da atividade" %>
+    <%= f.datetime_select :date, :discard_minute => true, :discard_hour => true, :ampm => true, :default => { :hour => 23, :minute => 59 }, :order => [:day, :month, :year], :use_month_names => ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :photo, "Foto" %>
+    <%= f.file_field :photo %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Cadastrar notícia" %>
+  </div>
+<% end %>

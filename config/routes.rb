@@ -1,5 +1,8 @@
 Dengue::Application.routes.draw do
   
+  resources :notices
+
+
   match "/home/:id" => "home#index", :as => "Home"
   match "/faq" => 'home#faq'
   match '/contact' => 'home#contact'

@@ -65,7 +65,7 @@ class PrizesController < ApplicationController
     @prize = Prize.new
     # @user = current_user
     # @users = User.where(:role => "lojista").map { |user| user.display_name }
-    @users = User.where(:role => "lojista").collect{ |user| [user.display_name, user.id]}
+    @users = User.where(:role => "lojista").collect{ |user| [user.house.name, user.id]}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @prize }

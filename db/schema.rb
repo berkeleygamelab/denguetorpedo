@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718104111) do
+ActiveRecord::Schema.define(:version => 20130724175743) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -83,6 +83,22 @@ ActiveRecord::Schema.define(:version => 20130718104111) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "coordinator_id"
+  end
+
+  create_table "notices", :force => true do |t|
+    t.string   "title",              :default => ""
+    t.text     "description",        :default => ""
+    t.string   "location",           :default => ""
+    t.datetime "date"
+    t.integer  "neighborhood_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.text     "summary",            :default => ""
   end
 
   create_table "notifications", :force => true do |t|

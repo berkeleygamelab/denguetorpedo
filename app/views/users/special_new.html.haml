@@ -65,7 +65,7 @@
     <br>
     %h1#configuration Configurações do estabelecimento
 
-    .indent
+    .indent#house_inputs
       = f.fields_for :location do |location_form|
         /= location_form.label "* Endereço da casa"
         / # = location_form.text_field :address, value: @user.location.address, placeholder: "Endereço da casa", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze." if @user.location

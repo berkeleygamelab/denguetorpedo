@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   #
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "Password Reset"
+    mail to: user.email, subject: "Resetar a senha"
   end
 
   def group_buy_in_invitation(user, group)

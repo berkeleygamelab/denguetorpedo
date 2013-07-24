@@ -48,7 +48,7 @@ $(document).ready(function() {
 			$("input#house_name").attr("maxlength", "");
 			// $("input#phone_number").attr("disabled", true);
 			// $("input#confirmation").attr("disabled", true);
-
+			$("#house_inputs input").prop("disabled", false);
 			$("label.commercial").show();
 			$("input.commercial").show();
 
@@ -58,6 +58,7 @@ $(document).ready(function() {
 			$("label#house_picture").html("Foto da organização");
 			$("input#house_name").attr("placeholder", "");
 			$("input#house_name").attr("maxlength", 16);
+			$("#house_inputs input").prop("disabled", false);
 			$("label.commercial").hide();
 			$("input.commercial").hide();
 		} else {
@@ -68,7 +69,7 @@ $(document).ready(function() {
 			$("input#house_name").attr("maxlength", 16);
 			// $("input#phone_number").attr("disabled", false);
 			// $("input#confirmation").attr("disabled", false);
-
+			$("#house_inputs input").prop("disabled", true);
 			$("label.commercial").hide();
 			$("input.commercial").hide();
 		}

@@ -30,9 +30,9 @@
 %br
 .row
   #neighborhood_view{:style => "font-weight:bold;"}
-    .span2.offset1
+    .span.offset1
       = link_to 'Casas (' + @number_of_houses.to_s + ')', neighborhood_path(params[:id]), :class => @houses_view_active
-    .span3
+    .span
       = link_to 'Participantes (' + @number_of_participants.to_s + ')', neighborhood_path(params[:id], :view => 'participants'), :class => @participants_view_active
 %br
 .row
@@ -46,7 +46,7 @@
             - else
               = link_to image_tag(participant.profile_photo.url(:large)), user_path(participant)
             
-            = link_to participant.full_name, user_path(participant)
+            = link_to participant.display_name, user_path(participant)
         - if @participants.count < 9
           - (12 - @participants.count).times do          
             %li.neighborhood_participant_photo_thumb.span3
@@ -111,41 +111,38 @@
     #neighborhood_news
       %h2 Notícias da comunidade
       %ul
-        %li.span4
+        %li.span4.neighborhood_news_title
           .row
             .span4
-              .neighborhood_news_title
-                Oficina: criando logos digitais
-          %br
-          .row
-            .span1.neighborhood_news_thumb
-              = image_tag 'rails.png'            
-            .span3.neighborhood_news_content{style: 'width: 170px;'}
-              Faremos no fim de semana do dia 28 uma oficina na Redes da Maré onde você poderá aprender a criar logotipos no computador usando programas gráficos, como o Photoshop. Inscreva-se!
+              Oficina: criando logos digitais
+          / %br
+          / .row
+          /   .span1.neighborhood_news_thumb
+          /     = image_tag 'rails.png'            
+          /   .span3.neighborhood_news_content{style: 'width: 170px;'}
+          /     Faremos no fim de semana do dia 28 uma oficina na Redes da Maré onde você poderá aprender a criar logotipos no computador usando programas gráficos, como o Photoshop. Inscreva-se!
           
-        %li.span4
+        %li.span4.neighborhood_news_title
           .row
             .span4
-              .neighborhood_news_title
-                Exposição de Fotografias
-          %br
-          .row
-            .span1.neighborhood_news_thumb
-              = image_tag 'camera.png'            
-            .span3.neighborhood_news_content
-              As imagens feitas pelos participantes da oficina de fotografia realizada no mês passado estão em exposição na Redes da Maré. Confira!
+              Exposição de Fotografias
+          / %br
+          / .row
+          /   .span1.neighborhood_news_thumb
+          /     = image_tag 'camera.png'            
+          /   .span3.neighborhood_news_content
+          /     As imagens feitas pelos participantes da oficina de fotografia realizada no mês passado estão em exposição na Redes da Maré. Confira!
           
-        %li.span4
+        %li.span4.neighborhood_news_title
           .row
             .span4
-              .neighborhood_news_title
-                Palestra sobre Dengue e Saúde
-          %br
-          .row
-            .span1.neighborhood_news_thumb
-              = image_tag 'dengue.jpg'            
-            .span3.neighborhood_news_content
-              Na próxima semana, o professor Carlos Chagas vem à nossa comunidade para nos explicar mais e tirar dúvidas sobre dengue, tratamento e prevenção.
+              Palestra sobre Dengue e Saúde
+          / %br
+          / .row
+          /   .span1.neighborhood_news_thumb
+          /     = image_tag 'dengue.jpg'            
+          /   .span3.neighborhood_news_content
+          /     Na próxima semana, o professor Carlos Chagas vem à nossa comunidade para nos explicar mais e tirar dúvidas sobre dengue, tratamento e prevenção.
                    
       
       

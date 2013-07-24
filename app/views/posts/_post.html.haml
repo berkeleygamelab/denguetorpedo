@@ -5,11 +5,11 @@
         = link_to image_tag(post.user.profile_photo.url(:large)), user_path(post.user)
     .span6
       .row
-        .span8
+        .span7
           .post_feed_title
             %h3= post.title
       .row
-        .span8
+        .span7
           .post_feed_content
             = post.content
   .row

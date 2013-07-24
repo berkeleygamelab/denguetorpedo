@@ -49,6 +49,8 @@ class Prize < ActiveRecord::Base
     if user
       user.points = user.points - self.cost
       user.save
+      self.decrease_stock(1)
+      self.save
     end
     return prize_code
     # self.sms_prize_code(code, user_id)
