@@ -1,24 +1,27 @@
 - if flash[:notice] 
 	%h2.notice.offset1{style: "width: 700px;"}  
 		= flash[:notice]
+%h1.offset1 Administrando usuários e prêmios
 .row.offset1
-	%h2 Edit Users
+	%h2 Administrando usuários
 	%ol.users_list.offset1
-		%table
+		%table{:cellpadding => 20}
 			- @users.each do |user|
 				%tr
-					%td= link_to user.full_name, edit_user_path(user)
+					
 					- if user.is_blocked == false
-						%td= link_to 'Block', block_users_path(:id => user.id), method: :put, data: { confirm: "Você tem certeza?"}
+						%td= link_to user.full_name, edit_user_path(user)
+						%td{:style => "margin-left:10px;"}= link_to 'Bloquear', block_users_path(:id => user.id), method: :put, data: { confirm: "Você tem certeza?"}
 					- else
-						%td= link_to 'Unblock', block_users_path(:id => user.id), method: :put, data: { confirm: "Você tem certeza?"}
-					%td= link_to 'Delete', user, method: :delete, data: { confirm: "Você tem certeza?"}
+						%td{:style => "color:red"}= link_to user.full_name, edit_user_path(user), :style => "color:red;"
+						%td= link_to 'Desbloquear', block_users_path(:id => user.id), method: :put, data: { confirm: "Você tem certeza?"}
+					%td= link_to 'Deletar', user, method: :delete, data: { confirm: "Você tem certeza?"}
 
-	%h2 Edit Prizes
+	%h2 Administrando prêmios
 	%ol.users_list.offset1
-		%table
+		%table{:cellpadding => 20}
 			- @prizes.each do |prize|
 				%tr
 					%td= link_to prize.prize_name, edit_prize_path(prize)
-					%td= link_to 'Delete', prize, method: :delete, data: { confirm: "Você tem certeza?"}
+					%td= link_to 'Deletar', prize, method: :delete, data: { confirm: "Você tem certeza?"}
 

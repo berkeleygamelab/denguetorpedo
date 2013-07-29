@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :require_login, :only => [:edit, :update]
 
   def index
-    @users = User.ordinary_users
+    @users = User.ordinary_users.order(:first_name)
     @prizes = Prize.where(:is_badge => false)
     authorize! :assign_roles, User
   end
@@ -175,7 +175,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to users_url, :notice => "Usuário deletado com sucesso." }
       format.json { head :no_content }
     end
   end
@@ -242,9 +242,9 @@ class UsersController < ApplicationController
     @user.is_blocked = !@user.is_blocked
     if @user.save
       if @user.is_blocked
-        redirect_to users_path, notice: "Successfully blocked the user"
+        redirect_to users_path, notice: "Usuário bloqueado com sucesso."
       else
-        redirect_to users_path, notice: "Successfully unblocked the user"
+        redirect_to users_path, notice: "Usuário desbloqueado com sucesso."
       end
       
     else

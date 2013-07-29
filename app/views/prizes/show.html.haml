@@ -17,7 +17,7 @@
           .span6
             %div
               - if @prize.prize_photo_file_name.nil?
-                = image_tag("default_images/prize_default_image.jpg", :width => 150, :height => 150)
+                = image_tag("default_images/prize_default_image.jpg", :width => 300, :height => 300)
               - else
                 = image_tag(@prize.prize_photo.url(:large))
           .span9

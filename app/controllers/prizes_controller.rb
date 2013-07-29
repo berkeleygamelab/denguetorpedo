@@ -8,7 +8,7 @@ class PrizesController < ApplicationController
 
     @user = current_user
 
-    @prizes = Prize.all
+    @prizes = Prize.where(:is_badge => false)
     @available = Prize.where('stock > 0').where(:is_badge => false)
     @redeemed = Prize.where('stock = 0').where(:is_badge => false)
     @medals = Prize.where(:is_badge => true)

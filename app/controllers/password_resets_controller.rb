@@ -14,11 +14,12 @@ class PasswordResetsController < ApplicationController
 
   def update
     @user = @current_user
-    
-    if @user.update_attributes(params[:user]);
-      redirect_to edit_user_path(@user)
-    else
-      render :edit
+    if @user.authenticate(params[:user][:current_password])
+      if @user.update_attributes(params[:user]);
+        redirect_to edit_user_path(@user)
+      else
+        render :edit
+      end
     end
     
     #@user = User.find_by_password_reset_token!(params[:id])

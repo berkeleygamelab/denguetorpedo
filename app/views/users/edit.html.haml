@@ -81,10 +81,11 @@
       = f.label :profile_photo,  "Foto do perfil (opcional)"
       = f.file_field :profile_photo
     
-    /%h2 Esqueci minha senha
-    /= link_to "Clique para recuperar senha", edit_password_reset_path(@current_user), :id => "reset_password_link"
-      
-    <br>
+      %h2 Esqueci minha senha
+      = link_to "Clique para recuperar senha", edit_password_reset_path(@current_user), :id => "reset_password_link"
+     
+
+    %br
     - if @current_user.role == "lojista"
       %h1 Configurações da estabelecimento
     - else
