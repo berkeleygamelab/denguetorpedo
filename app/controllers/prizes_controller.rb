@@ -109,9 +109,10 @@ class PrizesController < ApplicationController
   def create
     @prize = Prize.new(params[:prize])
     @user = current_user
+    @users = User.where(:role => "lojista").collect{ |user| [user.house.name, user.id]}
     respond_to do |format|
       if @prize.save
-        format.html { redirect_to @prize, notice: 'Prize was successfully created.' }
+        format.html { redirect_to @prize, notice: 'Prêmio criado com sucesso!' }
         format.json { render json: @prize, status: :created, location: @prize }
       else
         format.html { render action: "new" }

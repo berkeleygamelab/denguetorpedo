@@ -33,7 +33,6 @@ class Prize < ActiveRecord::Base
   validates :cost, :presence => true
   validates :description, :presence => true
   validates :prize_name, :presence => true
-  validates :redemption_directions, :presence => true
   validates :stock, :presence => true
   validates :user, :presence => true
 

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.ordinary_users
+    @prizes = Prize.where(:is_badge => false)
     authorize! :assign_roles, User
   end
   
@@ -72,6 +73,8 @@ class UsersController < ApplicationController
     @user.house ||= House.new
     @user.house.location ||= Location.new
     @highlightAccountItem = "nav_highlight"
+    @verifiers = User.where(:role => "verifiers")
+    @residents = User.where(:role => "residents")
     if @user != @current_user
       authorize! :edit, User
     end
@@ -94,6 +97,7 @@ class UsersController < ApplicationController
     user_first_name = params[:user][:first_name]
     user_last_name = params[:user][:last_name]
     user_middle_name = params[:user][:middle_name]
+    user_nickname = params[:user][:nickname]
     if user_profile_phone_number != @current_user.phone_number
       if user_profile_phone_number == user_profile_phone_number_confirmation
         @current_user.phone_number = user_profile_phone_number
@@ -145,7 +149,7 @@ class UsersController < ApplicationController
       @current_user.first_name = user_first_name
       @current_user.middle_name = user_middle_name
       @current_user.last_name = user_last_name
-
+      @current_user.nickname = user_nickname
       @user = @current_user
 
       if !@current_user.house.save
@@ -166,6 +170,15 @@ class UsersController < ApplicationController
     end 
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to users_url }
+      format.json { head :no_content }
+    end
+  end
 
   #Get /user/:id/buy_prize/prize_id
   def buy_prize
@@ -221,6 +234,21 @@ class UsersController < ApplicationController
     else
       @user.house.destroy
       redirect_to :back, :flash => { :notice => "There was an error creating a new user."}
+    end
+  end
+
+  def block
+    @user = User.find(params[:id])
+    @user.is_blocked = !@user.is_blocked
+    if @user.save
+      if @user.is_blocked
+        redirect_to users_path, notice: "Successfully blocked the user"
+      else
+        redirect_to users_path, notice: "Successfully unblocked the user"
+      end
+      
+    else
+      redirect_to users_path, notice: "There was an error blocking the user"
     end
   end
 end

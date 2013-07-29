@@ -2,9 +2,10 @@
   .span4.offset1
     = flash[:notice]
     %h1 Focos marcados
+  %br
   .span#report_buttons{:style => "font-size:20px;"}
     / %h1 Marcar um foco
-    = link_to "Marcar um foco", reports_path(:view => 'make_report'), :class => 'bttn make_report_button ' + @make_report_button_active, :style => "position:absolute;top:0;left:380px;"
+    = link_to "Marcar um foco", reports_path(:view => 'make_report'), :class => 'bttn make_report_button ' + @make_report_button_active, :style => "position:absolute;top:57px;left:400px;padding-top:13px;background-color:#60BB50;color:white;font-weight:bold;height:21px;"
 .row          
   .row.span10.offset1
     #report_buttons

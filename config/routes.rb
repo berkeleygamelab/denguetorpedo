@@ -31,6 +31,7 @@ Dengue::Application.routes.draw do
     collection do
       get 'special_new'
       post 'special_create'
+      put 'block'
     end
   end
   

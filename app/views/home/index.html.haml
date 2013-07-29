@@ -91,6 +91,10 @@
   %h2.offset1{style: 'font-size: 18px;'} Parceiros
   #partners.offset1{:style => "font-weight:normal;line-height:25px;"}
     CITRIS / IBM Research Brazil / Instituto Pereira Passos / Redes da Maré / Secretaria Municipal de Saúde / UBS Optimus Foundation / UC Berkeley / UFRJ
+
+- if flash[:alert]
+  %script
+    alert("#{flash[:alert]}");
   
 
     

@@ -18,12 +18,12 @@
       %p.link
         = link_to "Registrar notícias da comunidade", new_notice_path
       %p.link
-        = link_to "Administrando usuários e prêmios"
+        = link_to "Administrando usuários e prêmios", "/users"
   - elsif @current_user.role == "lojista"
     #role_specific.offset9
       %h2 Configurações de patrocinador
       %p.link
-        = link_to "See Cupom", "/coupons"
+        = link_to "Ver cupons", "/coupons"
         
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
@@ -129,6 +129,8 @@
         %option NINGUÉM
         %option AVS/ACS
         %option MORADOR/ VIZINHO
+
+      %input{:id => "recruitment"}
     
     %br
     = f.hidden_field :confirm, :value => @confirm

@@ -26,7 +26,7 @@
 class User < ActiveRecord::Base
 
   ROLES = ["morador", "logista", "visitante"]
-  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo, :display, :is_verifier, :is_fully_registered, :is_health_agent, :role, :gender
+  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo, :display, :is_verifier, :is_fully_registered, :is_health_agent, :role, :gender, :is_blocked
   has_secure_password
   has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   
@@ -62,6 +62,11 @@ class User < ActiveRecord::Base
   # has_many :created_group_buy_ins, :class_name => "GroupBuyIn", :dependent => :destroy
   # has_many :participated_group_buy_ins, :through => :buy_ins, :class_name => "GroupBuyIn", :dependent => :destroy
   
+
+  has_one :recruiter_relationships, :class_name => "Recruitment", :foreign_key => "recruiter_id"
+  has_one :recruiter, :through => :recruiter_relationships, :source => :recruiter
+  has_many :recruitee_relationships, :class_name => "Recruitment", :foreign_key => "recruiter_id"
+  has_many :recruitees, :through => :recruitee_relationships, :source => :recruitee
   belongs_to :house
 
   # associations helpers

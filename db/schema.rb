@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130724175743) do
+ActiveRecord::Schema.define(:version => 20130729062201) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -157,8 +157,10 @@ ActiveRecord::Schema.define(:version => 20130724175743) do
   end
 
   create_table "recruitments", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "recruiter_id"
+    t.integer  "recruitee_id"
   end
 
   create_table "reports", :force => true do |t|
@@ -209,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20130724175743) do
     t.string   "role",                       :default => "morador"
     t.integer  "total_points",               :default => 0
     t.boolean  "gender",                     :default => true
+    t.boolean  "is_blocked",                 :default => false
   end
 
 end

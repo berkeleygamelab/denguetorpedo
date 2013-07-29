@@ -15,7 +15,7 @@
     = f.label :prize_name, "Nome do prêmio"
     = f.text_field :prize_name, :placeholder => "Nome do prêmio"
   .field{ :style => "margin-bottom: 22px;font-size:16px;margin-top: 10px;"}
-    %input{:type => "radio", :value => 0, :name => 'prize[community_prize]', :style => "font-size:14px;"}
+    %input{:type => "radio", :value => 0, :name => 'prize[community_prize]', :style => "font-size:14px;", :checked => true}
     Prêmio individual
     %input{:type => "radio", :value => 1, :name => "prize[community_prize]", :style => "margin-left:20px;font-size:14px;"}
     Prêmio comunidade
@@ -38,7 +38,7 @@
     = f.text_area :description, :cols => 20, :rows => 10, :placeholder => "Descrição"
   .field
     = f.label :redemption_directions, "Instruções para resgatar"
-    = f.text_area :redemption_directions, :cols => 20, :rows => 10, :placeholder => "Instruções para resgatar"
+    = f.text_area :redemption_directions, :cols => 20, :rows => 10, :value => "Compareça ao estabelecimento de porte do cupom impresso e de um documento válido com foto (ex. RG)."
   .field
     %input{:type => "checkbox", :class => "prazo", :checked => true}
     Prazo
