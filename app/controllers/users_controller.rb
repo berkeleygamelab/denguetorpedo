@@ -73,8 +73,8 @@ class UsersController < ApplicationController
     @user.house ||= House.new
     @user.house.location ||= Location.new
     @highlightAccountItem = "nav_highlight"
-    @verifiers = User.where(:role => "verifiers")
-    @residents = User.where(:role => "residents")
+    @verifiers = User.where(:role => "verificador").map { |verifier| {:value => verifier.id, :label => verifier.full_name}}.to_json
+    @residents = User.where('role != "verificador"').map { |resident| {:value => resident.id, :label => resident.full_name}}.to_json
     if @user != @current_user
       authorize! :edit, User
     end
@@ -159,6 +159,12 @@ class UsersController < ApplicationController
       if params[:user][:house_attributes][:phone_number]
         @current_user.house.phone_number = params[:user][:house_attributes][:phone_number]
         @current_user.house.save
+      end
+
+
+      recruiter = User.find_by_id(params[:recruitment_id])
+      if recruiter
+        @current_user.recruiter = recruiter
       end
       if @current_user.save
         redirect_to edit_user_path(@current_user), :flash => { :notice => 'Perfil atualizado com sucesso!' }

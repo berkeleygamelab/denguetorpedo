@@ -6,7 +6,7 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield :head
-    = yield :scripts
+    
 
   %body{:class => [params[:controller].parameterize, params[:action].parameterize]}
     #container
@@ -31,4 +31,5 @@
       2012 © Regents of the University of California  
       | 
       =link_to "Criado pelo Social Apps Lab, UC Berkeley", credit_path
+  = yield :scripts
 

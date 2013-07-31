@@ -1,13 +1,13 @@
 .reset_password_form.offset1
-  %h1 Reset Password
+  %h1 Alterar minha senha
   = form_for @user, :url => password_reset_path(params[:id]) do |f|
     = f.error_messages
-    = f.label :current_password, "Senha antigua"
+    = f.label :current_password, "Senha antiga"
     = f.password_field :current_password
 
     = f.label :password, "Nova senha"
     = f.password_field :password
-    = f.label :password_confirmation, "Confirmar Nova senha"
+    = f.label :password_confirmation, "Confirmar nova senha"
     = f.password_field :password_confirmation
     %br
     = f.submit "Confirmar nova senha"

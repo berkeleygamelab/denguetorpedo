@@ -38,7 +38,8 @@ $(document).ready(function() {
 		}
 	});
 
-	// $("#recruitment").change
+	
+
 	$("select#role").change(function() {
 		if($("select#role").val() == "lojista") {
 			$("h1#configuration").html("Configurações do estabelecimento");
@@ -74,4 +75,5 @@ $(document).ready(function() {
 			$("input.commercial").hide();
 		}
 	});
+
 });

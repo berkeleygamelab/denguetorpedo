@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   # has_many :participated_group_buy_ins, :through => :buy_ins, :class_name => "GroupBuyIn", :dependent => :destroy
   
 
-  has_one :recruiter_relationships, :class_name => "Recruitment", :foreign_key => "recruiter_id"
+  has_one :recruiter_relationships, :class_name => "Recruitment", :foreign_key => "recruitee_id"
   has_one :recruiter, :through => :recruiter_relationships, :source => :recruiter
   has_many :recruitee_relationships, :class_name => "Recruitment", :foreign_key => "recruiter_id"
   has_many :recruitees, :through => :recruitee_relationships, :source => :recruitee

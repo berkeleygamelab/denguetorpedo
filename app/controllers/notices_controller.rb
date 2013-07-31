@@ -1,3 +1,4 @@
+# encoding: utf-8
 class NoticesController < ApplicationController
   # GET /notices
   # GET /notices.json
@@ -41,10 +42,10 @@ class NoticesController < ApplicationController
   # POST /notices.json
   def create
     @notice = Notice.new(params[:notice])
-
+    @notice.neighborhood_id = params[:notice][:neighborhood_id]
     respond_to do |format|
       if @notice.save
-        format.html { redirect_to @notice, notice: 'Notice was successfully created.' }
+        format.html { redirect_to @notice, notice: 'Notícia criada com sucesso.' }
         format.json { render json: @notice, status: :created, location: @notice }
       else
         format.html { render action: "new" }
