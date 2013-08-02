@@ -1,3 +1,4 @@
+# encoding: utf-8
 class JavascriptsController < ApplicationController
 	def dynamic_elimination_methods
 		@elimination_field_select = [
@@ -40,6 +41,6 @@ class JavascriptsController < ApplicationController
     ["Plantas ornamentais que acumulam água (ex: bromélias)", 
       ["Regar semanalmente com água sanitária na proporção de uma colher de sopa para um litro de água",
         "Retire a  água acumulada nas folhas"]]
-  ]
+  	]
 	end
 end

@@ -105,7 +105,7 @@ class UsersController < ApplicationController
       else
         @user = @current_user
         @confirm = 0
-        flash[:notice] = "Phone number confirmation does not match with the provided phone number"
+        flash[:notice] = "Números do celular não coincidem"
         render "edit"
         return
       end
@@ -166,7 +166,17 @@ class UsersController < ApplicationController
       if recruiter
         @current_user.recruiter = recruiter
         recruiter.points += 100
+        @current_user.is_fully_registered = true
       end
+
+      if params[:carrier] == params[:carrier_confirmation]
+        @current_user.carrier = parmas[:carrier]
+      else
+        flash[:notice] = "operadoras não coincidem."
+        render "edit"
+      end
+
+
       if @current_user.save
         redirect_to edit_user_path(@current_user), :flash => { :notice => 'Perfil atualizado com sucesso!' }
       else

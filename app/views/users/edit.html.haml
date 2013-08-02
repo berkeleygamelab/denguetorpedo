@@ -46,7 +46,9 @@
       %p.link
         = link_to "Registrar notícias da comunidade", new_notice_path
       %p.link
-        = link_to "Administrando usuários e prêmios", "/users"
+        = link_to "Administrar usuários e prêmios", "/users"
+      %p.link
+        = link_to "Administrar celulares"
   - elsif @current_user.role == "lojista"
     #role_specific.offset9
       %h2 Configurações de patrocinador
@@ -99,10 +101,14 @@
       /= f.label :phone_number, "* Celular"
       = f.text_field :email, :placeholder => "* Email"
       %br
+
+
       = f.text_field :phone_number, :placeholder => "* Celular"
+      = f.text_field :carrier, :placeholder => "Operadora", :style => "width:150px;"
       %br
       /= f.label :phone_number,  "* Confirmar celular"
       = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular")
+      = text_field_tag("carrier_confirmation", nil, :placeholder => "Confirmar operadora", :style => "width:150px;")
       %br
       /= f.label :email,  "* Email"
       
@@ -160,8 +166,8 @@
         %option AVS/ACS
         %option MORADOR/VIZINHO
       %br
-      %input{:id => "recruitment", :name => "recruitment", :style => "display:none;"}
-      %input{:type => "hidden", :name => "recruitment_id", :id => "recruitment_id"}
+        %input{:id => "recruitment", :name => "recruitment", :style => "display:none;"}
+        %input{:type => "hidden", :name => "recruitment_id", :id => "recruitment_id"}
     %br
     = f.hidden_field :confirm, :value => @confirm
     
@@ -171,5 +177,5 @@
     - else
       %br
       = f.submit "Confirmar", {:style => "margin-bottom: 20px;"}
-      %button{ :class => "cancel_button"}
+      %button{ :class => "cancel_button", :style => "height:26px;"}
         = link_to "Cancelar", edit_user_path(@user)
