@@ -19,10 +19,23 @@ class ReportsController < ApplicationController
     end
     
     @elimination_method_select = EliminationMethods.field_select
-       
+    @elimination_types = EliminationMethods.types
     reports_with_status_filtered = []
     locations = []
     
+    @prantinho = EliminationMethods.prantinho
+    @pneu = EliminationMethods.pneu
+    @lixo = EliminationMethods.lixo
+    @pequenos = EliminationMethods.pequenos
+    @grandes = EliminationMethods.grandes
+    @calha = EliminationMethods.calha
+    @registros = EliminationMethods.registros
+    @laje = EliminationMethods.laje
+    @piscinas = EliminationMethods.piscinas
+    @pocas = EliminationMethods.pocas
+    @ralos = EliminationMethods.ralos
+    @plantas = EliminationMethods.plantas
+
     Report.order("created_at DESC").each do |report|
       if params[:view] == 'recent' || params[:view] == 'make_report'
         reports_with_status_filtered << report

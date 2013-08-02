@@ -172,9 +172,12 @@ ul#neighborhood_house_list {
   }
   .neighborhood_news_thumb {
     border: 1px solid $dark-gray;
-    width: 100px;
-    height: 100px;
     background: gray;
+    width: 80px;
+  }
+  .neighborhood_news_thumb img {
+    width: 80px;
+    height: 80px;
   }
   .neighborhood_news_content {
     width: 160px;

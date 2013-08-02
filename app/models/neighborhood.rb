@@ -16,6 +16,8 @@ class Neighborhood < ActiveRecord::Base
   has_many :houses, :through => :locations
   has_many :members, :through => :houses
   has_many :reports, :through => :locations
+
+  has_many :notices
   belongs_to :coordinator, :class_name => "User"
   has_many :health_agents, :through => :houses, :source => "members", :conditions => "is_health_agent = 1"
 

@@ -1,0 +1,12 @@
+.row.offset1
+	%h1 #{@notice.title}
+.row.offset1
+	.span1.neighborhood_news_thumb{:style => "width:250px;height:250px;"}
+		= image_tag(@notice.photo.url(:large))
+	.span3.neighborhood_news_content{style: 'width: 170px;'}
+		.row
+			%h2 Summary
+			= @notice.summary
+		.row
+			%h2 Description
+			= @notice.description

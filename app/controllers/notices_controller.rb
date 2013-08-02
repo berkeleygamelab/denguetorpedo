@@ -35,6 +35,7 @@ class NoticesController < ApplicationController
 
   # GET /notices/1/edit
   def edit
+    @neighborhoods = Neighborhood.all.collect{ |neighborhood| [neighborhood.name, neighborhood.id]}
     @notice = Notice.find(params[:id])
   end
 

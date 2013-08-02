@@ -13,6 +13,7 @@ class NeighborhoodsController < ApplicationController
     @number_of_houses = @houses.count
     @number_of_participants = @participants.count
     
+    @notices = @neighborhood.notices
     @highlightNeighborhoodItem = ""
     
     if (@current_user != nil && (@neighborhood.members.member? @current_user)) 

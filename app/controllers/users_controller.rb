@@ -165,6 +165,7 @@ class UsersController < ApplicationController
       recruiter = User.find_by_id(params[:recruitment_id])
       if recruiter
         @current_user.recruiter = recruiter
+        recruiter.points += 100
       end
       if @current_user.save
         redirect_to edit_user_path(@current_user), :flash => { :notice => 'Perfil atualizado com sucesso!' }

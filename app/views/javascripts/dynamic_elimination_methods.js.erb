@@ -1,0 +1,8 @@
+$(document).ready(function() {
+	<% for type in @elimination_field_select %>
+		alert('<%= type %>');
+	<% end %>
+	$("#elimination_type").change(function() {
+		alert("hihi");
+	});
+});

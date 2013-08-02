@@ -41,7 +41,22 @@
                     = hidden_field_tag 'report_id', open.id
                     = f.file_field :after_photo
                     %h3{:style => "font-size: 14px; width: 370px;"} Escolha o tipo de foco e o método de eliminação
-                    = select_tag "method_of_elimination", grouped_options_for_select(@elimination_method_select), :style => "width: 355px;"
+                    = select_tag "elimination_type", options_for_select(@elimination_types, :blank => true)
+                    = select_tag "prantinho", options_for_select(@prantinho), :class => "elimination_methods"
+                    = select_tag "pneu", options_for_select(@pneu), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "lixo", options_for_select(@lixo), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "pequenos", options_for_select(@pequenos), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "grandes", options_for_select(@grandes), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "calha", options_for_select(@calha), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "registros", options_for_select(@registros), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "laje", options_for_select(@laje), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "piscinas", options_for_select(@piscinas), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "pocas", options_for_select(@pocas), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "ralos", options_for_select(@ralos), :style => "display:none;", :class => "elimination_methods"
+                    = select_tag "plantas", options_for_select(@plantas), :style => "display:none;", :class => "elimination_methods"
+                    = hidden_field_tag "selected_elimination_method"
+                    / # = select_tag "method_of_elimination", options_from_collection_for_select(@elimination_type), :style => "width: 355px;"
+                    %br
                     = submit_tag "Submeta!"
   
 
