@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     @user.house.location ||= Location.new
     @highlightAccountItem = "nav_highlight"
     @verifiers = User.where(:role => "verificador").map { |verifier| {:value => verifier.id, :label => verifier.full_name}}.to_json
-    @residents = User.where('role != "verificador"').map { |resident| {:value => resident.id, :label => resident.full_name}}.to_json
+    @residents = User.where('role != ?', 'verificador').map { |resident| {:value => resident.id, :label => resident.full_name}}.to_json
     if @user != @current_user
       authorize! :edit, User
     end
