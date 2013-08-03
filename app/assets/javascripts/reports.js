@@ -30,6 +30,7 @@ $(document).ready(function() {
 		}
 	});
 	$("select.elimination_methods").change(function() {
-
+		alert("hihi");
+		$("input#selected_elimination_method").val($(this).val());
 	});
 });

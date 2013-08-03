@@ -46,6 +46,8 @@ Dengue::Application.routes.draw do
   resources :reports do
     collection do
       put 'update'
+      post 'verify'
+      post 'problem'
     end
   #put 'reports' => 'reports#update'
   end

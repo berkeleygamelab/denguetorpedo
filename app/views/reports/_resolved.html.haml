@@ -2,10 +2,17 @@
   .row
     .rp_report_status.status
       Eliminado
-      .rp_report_options
-        
+      .rp_report_options{:style => "margin-top:-3px;"}
+        - if resolved.isVerified == "t"
+          = image_tag 'icons/reports icon/check.png', :width => 25, :height => 25, :style => "float:right;"
+        - elsif resolved.isVerified == "f"
+          = image_tag 'icons/report icon/x.png', :width => 25, :height => 25, :style => "float:right;"
+        - else
+          - if @current_user.role == "verificador" or @current_user.role == "admin"
+            = link_to (image_tag 'icons/reports icon/x.png', :width => 25, :height => 25), problem_reports_path(:id => resolved.id), method: :post, :style => "float:right;"
+            = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => resolved.id), method: :post, :style => "float:right;"     
   .row
-    .span8
+    .span8{:style => "margin-top:10px;"}
       %h4== #{resolved.complete_address}
       
   .row
@@ -14,10 +21,6 @@
     .span2.rp_after_photo
       =image_tag resolved.after_photo(:medium)
     .span4
-      .row
-        .rp_report_content.span4
-          = resolved.report           
-    
       .row.rp_report_people.span5
         %h3 Elimination Type:
         = resolved.elimination_type
@@ -26,12 +29,22 @@
         %br
         %br
         Marcado por:
-        =link_to resolved.reporter.display_name + " - " + resolved.strftime_with(:created_at), user_path(resolved.reporter), :class => "user"
+        =link_to resolved.reporter.display_name + " " + resolved.strftime_with(:created_at), user_path(resolved.reporter), :class => "user"
         %br
         Eliminado por:
-        =link_to resolved.eliminator.display_name + " - " + resolved.strftime_with(:eliminated_at), user_path(resolved.eliminator), :class => "user"
+        =link_to resolved.eliminator.display_name + " " + resolved.strftime_with(:eliminated_at), user_path(resolved.eliminator), :class => "user"
+        %br
+        - if resolved.isVerified == "t"
+          Verificado por:
+          = link_to resolved.verifier.display_name + " " + resolved.strftime_with(:created_at), user_path(resolved.verifier), :class => "user"
+        - elsif resolved.isVerified == "f"
+          %p{:style => "color:red;"}
+            Problema no foco marcado. Entre em contato conosco.
         
-  .row{ :style => "height: 30px;"}
+  .row
+    .rp_report_options
+      - if @current_user != nil && resolved.reporter.id == @current_user.id
+        =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), resolved, :confirm => "Are you sure?", :method => :delete, :style => "margin-right:5px;"
     
 
 

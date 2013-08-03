@@ -165,8 +165,10 @@ class ReportsController < ApplicationController
           return
         end
         
-        @report.elimination_type = EliminationMethods.getEliminationTypeFromMethodSelect(params["method_of_elimination"])
-        @report.elimination_method = params["method_of_elimination"]
+        # @report.elimination_type = EliminationMethods.getEliminationTypeFromMethodSelect(params["method_of_elimination"])
+        # @report.elimination_method = params["method_of_elimination"]
+        @report.elimination_type = params[:elimination_type]
+        @report.elimination_method = params[:selected_elimination_method]
         
         if @report.save
           if @current_user != nil
@@ -199,5 +201,31 @@ class ReportsController < ApplicationController
   def destroy
     @current_user.created_reports.find(params[:id]).destroy
     redirect_to(:back)
+  end
+
+  def verify
+    @report = Report.find(params[:id])
+    @report.isVerified = true
+    @report.verifier_id = @current_user.id
+    @report.verified_at = DateTime.now
+
+    if @report.save
+      redirect_to reports_path
+    else
+      redirect_to :back
+    end
+  end
+
+  def problem
+    @report = Report.find(params[:id])
+
+    @report.isVerified = false
+    @report.verifier_id = @current_user.id
+    @report.verified_at = DateTime.now
+    if @report.save
+      redirect_to reports_path
+    else
+      redirect_to :back
+    end
   end
 end

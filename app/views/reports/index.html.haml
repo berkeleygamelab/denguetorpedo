@@ -5,7 +5,7 @@
   %br
   .span#report_buttons{:style => "font-size:20px;"}
     / %h1 Marcar um foco
-    = link_to "Marcar um foco", reports_path(:view => 'make_report'), :class => 'bttn make_report_button ' + @make_report_button_active, :style => "position:absolute;top:57px;left:400px;padding-top:13px;background-color:#60BB50;color:white;font-weight:bold;height:21px;"
+    
 .row          
   .row.span10.offset1
     #report_buttons
@@ -13,6 +13,7 @@
       = link_to 'Todos', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active
       = link_to 'Em aberto', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
       = link_to 'Eliminados', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
+      = link_to "Marcar um foco", reports_path(:view => 'make_report'), :class => 'bttn make_report_button ' + @make_report_button_active, :style => "margin-left:90px;padding-top:13px;background-color:#60BB50;color:white;font-weight:bold;height:21px;font-size:25px;"
 
   .row
     .span9.offset1

@@ -1,10 +1,43 @@
+
+
 .rp_report.rp_open_report
   .row
     .rp_report_status.status
       Em aberto
-    .rp_report_options
-      / - if @current_user.role == "verificador"
-      /   = link_to 
+      .rp_report_options{:style => "margin-top:-3px;"}
+        - if open.isVerified == "t"
+          = image_tag 'icons/reports icon/check.png', :width => 25, :height => 25, :style => "float:right;"
+        - elsif open.isVerified == "f"
+          = image_tag 'icons/report icon/x.png', :width => 25, :height => 25, :style => "float:right;"
+        - else
+          - if @current_user.role == "verificador" or @current_user.role == "admin"
+            = link_to (image_tag 'icons/reports icon/x.png', :width => 25, :height => 25), problem_reports_path(:id => open.id), method: :post, :style => "float:right;"
+            = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"  
+        .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:#ff6600; border: none;float:right;margin-top:3px;"}
+          %span.countHours
+            %span.position
+              %span.digit.static
+            %span.position
+              %span.digit.static
+          %span.countDiv.countDiv1
+          %span.countMinutes
+            %span.position
+              %span.digit.static
+            %span.position
+              %span.digit.static
+          %span.countDiv.countDiv2
+          %span.countSeconds
+            %span.position
+              %span.digit.static
+            %span.position
+              %span.digit.static
+          %span.countDiv.countDiv3
+
+        :javascript
+          var newYear = new Date('#{open.created_at + 3600 * 24 * 3}'); 
+          
+          $(".countdown").countdown({until: newYear});
+        
   .row
     .span8{:style => "margin-top:10px;"}
       %h4= open.complete_address
@@ -56,10 +89,16 @@
                   .row.rp_report_people
                     Marcado por:
                     =link_to open.reporter.display_name + " " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
+
+                    - if open.isVerified == "t"
+                      Verificado por: #{open.verifier.display_name}
+                    - elsif open.isVerified == "f"
+                      %p{:style => "color:red;"}
+                        Problema no foco marcado. Entre em contato conosco.
     .row
       .rp_report_options
         - if @current_user != nil && open.reporter.id == @current_user.id
-          =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_report_delete'), open, :confirm => "Are you sure?", :method => :delete, :style => "margin-right:5px;"
+          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), open, :confirm => "Are you sure?", :method => :delete, :style => "margin-right:5px;"
                   
   
 

@@ -29,10 +29,9 @@
         $("input#recruitment").hide();
       }
     });
-
 .user_form.offset1
   /%h1 Configurações da conta
- 
+  #countdown{:style => "height:200px; width:600px;"}
   - if flash[:notice] 
     %h2.notice{style: "margin: 10px; width: 700px;"}  
       = flash[:notice]
