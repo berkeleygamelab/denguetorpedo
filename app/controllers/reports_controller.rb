@@ -68,7 +68,7 @@ class ReportsController < ApplicationController
       @report.before_photo = params[:report][:before_photo]
     
       if @report.save
-        if @current_user != nil
+        if @current_user != nil and params[:report][:before_photo]
           @current_user.update_attribute(:points, @current_user.points + 100)
         end
         

@@ -2,62 +2,65 @@
   .row
     .rp_report_status.status
       Em aberto
-      .rp_report_options
-        - if @current_user != nil && open.reporter.id == @current_user.id
-          =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_report_delete'), open, :confirm => "Are you sure?", :method => :delete 
+    .rp_report_options
+      / - if @current_user.role == "verificador"
+      /   = link_to 
   .row
-    .span8
-      %h4== #{open.complete_address}
+    .span8{:style => "margin-top:10px;"}
+      %h4= open.complete_address
   .row
     .span2.rp_before_photo 
       =image_tag open.before_photo(:medium)
     .span5
-      .row
-        .rp_report_content.span5
-          = open.report         
+            
         
-      .row.rp_report_people
-        Marcado por:
-        =link_to open.reporter.display_name + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
-        
-        %br
-        %br
-        - if @current_user != nil
-          .row
-            .span5
-              - if open.before_photo.url.include?("default_images/report_before_photo.png" )
-                %h3{:style => "font-size: 14px;"} Carrege uma foto do foco identificado
-                .eliminate_prompt
-                  = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
-                    = hidden_field_tag 'report_id', open.id
-                    = f.file_field :before_photo
-                    %br
-                    = submit_tag "Carregue!"
-                    
-              - else
-                %h3{:style => "font-size: 14px;"} Carrege uma foto do foco eliminado
-                .eliminate_prompt
-                  = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
-                    = hidden_field_tag 'report_id', open.id
-                    = f.file_field :after_photo
-                    %h3{:style => "font-size: 14px; width: 370px;"} Escolha o tipo de foco e o método de eliminação
-                    = select_tag "elimination_type", options_for_select(@elimination_types, :blank => true)
-                    = select_tag "prantinho", options_for_select(@prantinho), :class => "elimination_methods"
-                    = select_tag "pneu", options_for_select(@pneu), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "lixo", options_for_select(@lixo), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "pequenos", options_for_select(@pequenos), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "grandes", options_for_select(@grandes), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "calha", options_for_select(@calha), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "registros", options_for_select(@registros), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "laje", options_for_select(@laje), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "piscinas", options_for_select(@piscinas), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "pocas", options_for_select(@pocas), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "ralos", options_for_select(@ralos), :style => "display:none;", :class => "elimination_methods"
-                    = select_tag "plantas", options_for_select(@plantas), :style => "display:none;", :class => "elimination_methods"
-                    = hidden_field_tag "selected_elimination_method"
-                    / # = select_tag "method_of_elimination", options_from_collection_for_select(@elimination_type), :style => "width: 355px;"
-                    %br
-                    = submit_tag "Submeta!"
+      / .row.rp_report_people
+      /   Marcado por:
+      /   =link_to open.reporter.display_name + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
+      - if @current_user != nil
+        .row
+          .span5
+            - if open.before_photo.url.include?("default_images/report_before_photo.png" )
+              %h3{:style => "font-size: 14px;"} Carrege uma foto do foco identificado
+              .eliminate_prompt
+                = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
+                  = hidden_field_tag 'report_id', open.id
+                  = f.file_field :before_photo
+                  = submit_tag "Carregue!"
+                  
+            - else
+              .eliminate_prompt{:style => "margin-top:5px;"}
+                = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
+                  = hidden_field_tag 'report_id', open.id
+                  
+                  = select_tag "elimination_type", options_for_select(@elimination_types), :prompt => "Tipo do foco", :style => "width:430px;"
+                  = select_tag "prantinho", options_for_select(@prantinho), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;"
+                  = select_tag "pneu", options_for_select(@pneu), :style => "display:none;width:430px;", :class => "elimination_methods", :prompt => "Método de eliminação"
+                  = select_tag "lixo", options_for_select(@lixo), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "pequenos", options_for_select(@pequenos), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "grandes", options_for_select(@grandes), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "calha", options_for_select(@calha), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "registros", options_for_select(@registros), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "laje", options_for_select(@laje), :style => "display:none;", :class => "elimination_methods"
+                  = select_tag "piscinas", options_for_select(@piscinas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "pocas", options_for_select(@pocas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "ralos", options_for_select(@ralos), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "plantas", options_for_select(@plantas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = hidden_field_tag "selected_elimination_method"
+                  / # = select_tag "method_of_elimination", options_from_collection_for_select(@elimination_type), :style => "width: 355px;" 
+                  
+                  %h3{:style => "font-size: 14px;"} Carrege uma foto do foco eliminado
+                  = f.file_field :after_photo
+                  = submit_tag "Submeta!", :style => "margin-left:5px;"
+
+                  .row.rp_report_people
+                    Marcado por:
+                    =link_to open.reporter.display_name + " " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
+    .row
+      .rp_report_options
+        - if @current_user != nil && open.reporter.id == @current_user.id
+          =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_report_delete'), open, :confirm => "Are you sure?", :method => :delete, :style => "margin-right:5px;"
+                  
   
 
     
