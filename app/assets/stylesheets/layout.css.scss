@@ -41,7 +41,7 @@ body {
     outline: none;
     
     &[type = "text"], &[type = "password"] {
-      height: 17px;
+      height: 28px;
       border-radius: 5px;
     }
 
@@ -62,7 +62,7 @@ body {
     }
     
     &[type = "file"] {
-      height: 100%;
+      height: 28px;
       border-style:solid;
       border-radius: 2px;
       border-width:1px;

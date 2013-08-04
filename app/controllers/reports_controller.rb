@@ -159,6 +159,9 @@ class ReportsController < ApplicationController
           @report.update_attribute(:status_cd, 1)
           @report.update_attribute(:eliminator_id, @current_user.id)
           @report.touch(:eliminated_at)
+          @current_user.points += 400
+          @current_user.total_points += 400
+          @current_user.save
         rescue
           flash[:notice] = 'An error has occurred!'
           redirect_to(:back)
@@ -185,6 +188,9 @@ class ReportsController < ApplicationController
       elsif params[:eliminate][:before_photo] != nil
         # user uploaded a before photo
         @report.before_photo = params[:eliminate][:before_photo]
+        @current_user.points += 100
+        @current_user.total_points += 100
+        @current_user.save
         if @report.save
           flash[:notice] = "You updated before photo"
           redirect_to(:back)
