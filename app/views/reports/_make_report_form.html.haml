@@ -1,13 +1,19 @@
 .row
-  = flash[:notice]
+  - if flash[:notice] 
+    %h2.notice{style: "margin: 10px; width: 700px;"}  
+      = flash[:notice]
   #reports_open
     = form_for(@report, :url => {:action => "create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
       = f.error_messages
-      = f.label "Escolha o tipo e o método de eliminação do foco"
-      = f.text_area :report, :placeholder => 'Descrição', :id => 'report_content'
+      / = f.label "Escolha o tipo e o método de eliminação do foco"
+      / = f.text_area :report, :placeholder => 'Descrição', :id => 'report_content'
       = f.label "Endereço do foco localizado:"
-      = text_field_tag :location, nil, :placeholder => 'Localização', :id => 'report_address'
+      = text_field_tag :location, nil, :placeholder => 'Localização', :id => 'report_address', :value => flash[:address]
+
+      %br
+      %br
       = f.label "Carregue a imagem do foco encontrado:"
       = f.file_field :before_photo
       %br
-      = f.submit "enviar"
+      %br
+      = f.submit "Submeta!"

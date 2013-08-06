@@ -1,6 +1,11 @@
 .row
   .span4.offset1
-    = flash[:notice]
+    - if flash[:notice] 
+      %h2.notice{style: "margin: 10px; width: 700px;"}  
+        = flash[:notice]
+    - if flash[:error]
+      %h2.alert{style: "margin: 10px; width: 700px;background-color:transparent;"} 
+        = flash[:error]
     %h1 Focos marcados
   %br
   .span#report_buttons{:style => "font-size:20px;"}

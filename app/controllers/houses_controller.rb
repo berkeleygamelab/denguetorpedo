@@ -19,8 +19,9 @@ class HousesController < ApplicationController
                  
     @post = Post.new
 
-    @neighbors = House.joins(:location).where(:locations => {:neighborhood_id => @house.neighborhood.id}).limit(5)
+    # @neighbors = House.joins(:location).joins(:user).where(:locations => {:neighborhood_id => @house.neighborhood.id}, :users => {:role}).limit(5)
     
+    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => 2}).where('users.role NOT IN ("lojista", "verificador")')[0..7]
     @highlightHouseItem = ""
     
     if (@current_user != nil && @current_user.house_id == @house.id)

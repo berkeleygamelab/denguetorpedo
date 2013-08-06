@@ -63,16 +63,29 @@ class ReportsController < ApplicationController
   def create    
 
     if request.post?
+
+
       location = Location.find_or_create(params[:location])
-      @report = Report.create_from_user(params[:report][:report], :status => :reported, :reporter => @current_user, :location => location)
+      if !params[:before_photo] and !params[:report]
+        flash[:error] = "Você tem que carregar uma foto do foco encontrado."
+        flash[:address] = params[:location]
+        @report = Report.new(:location => location)
+        redirect_to :back
+        return
+      end
+
+      @report = Report.create_from_user("", :status => :reported, :reporter => @current_user, :location => location)
+
+      
+
       @report.before_photo = params[:report][:before_photo]
     
       if @report.save
-        if @current_user != nil and params[:report][:before_photo]
+        if @current_user != nil and params[:before_photo]
           @current_user.update_attribute(:points, @current_user.points + 100)
         end
         
-        flash[:notice] = 'Report posted succesfully.'
+        flash[:notice] = 'Foco marcado postado com sucesso!'
         redirect_to :action=>'index', view: 'recent'
       else
         render "new"
@@ -143,13 +156,50 @@ class ReportsController < ApplicationController
 
   def update
     if request.put?
-    
-      if !params[:eliminate]
-        flash[:notice] = 'You must upload a photo'
+      @report = Report.find(params[:report_id])
+      if !params[:eliminate] and @report.after_photo.nil?
+        flash[:error] = 'Você tem que carregar uma foto do foco eliminado.'
         redirect_to(:back)
         return
       end
+
       
+      if params[:eliminate] and params[:eliminate][:after_photo] != nil
+        # user uploaded an after photo
+        @report.after_photo = params[:eliminate][:after_photo]
+        @current_user.points += 400
+        @current_user.total_points += 400
+        @current_user.save
+        @report.save
+      end
+
+
+      if params[:elimination_type] == ""
+        flash[:error] = "Você tem que escolher um tipo de foco e um método de eliminação."
+        redirect_to :back
+        return
+      end
+ 
+      if params[:selected_elimination_method] == ""
+        flash[:error] = "Você tem que escolher um tipo de foco e um método de eliminação."
+        redirect_to :back
+        return
+      end
+      
+
+      if !params[:eliminate]
+
+        @report.update_attribute(:status_cd, 1)
+        @report.update_attribute(:eliminator_id, @current_user.id)
+        @report.elimination_type = params[:elimination_type]
+        @report.elimination_method = params[:selected_elimination_method]
+        @report.touch(:eliminated_at)
+        @report.save
+        flash[:notice] = "Você eliminou o foco!"
+        redirect_to reports_path
+        return
+      end
+
       @report = Report.find(params[:report_id])
                          
       if params[:eliminate][:after_photo] != nil
@@ -177,7 +227,7 @@ class ReportsController < ApplicationController
           if @current_user != nil
             @current_user.update_attribute(:points, @current_user.points + 400)
           end
-          flash[:notice] = 'You eliminated this report!'
+          flash[:notice] = 'Você eliminou o foco!'
           redirect_to(:back)
         else
           #for some reason save causes error here, but in view it looks OK

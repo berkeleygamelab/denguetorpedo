@@ -1,6 +1,6 @@
 - if not @current_user.nil?
   #orange_border 
-    %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}, :id => 'orange_pull_down'}
+    %a{:href => 'javascript:$("#orange_toggle").collapse("show");', :data=>{ :toggle=>"collapse", :target=>"#orange_toggle"}, :id => 'orange_pull_down'}
       = image_tag("pulldown/splash_pulldown_inactive.png", :id => "orange_toggle_pic")
       = image_tag("pulldown/splash_pulldown_rollover.png", :style => "display:none;", :id => "orange_toggle_pic_active")
   #orange_toggle.collapse
@@ -10,18 +10,18 @@
           #orange_bg_graphic
             .offset5
               = link_to image_tag('translated/videoplayer_button.png', :id => 'play_button'), "http://www.riocontradengue.com.br/Site/Conteudo/Focos.aspx", :target => "_blank"
-          -# #video.span11.offset1 %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "220", :width => "300", :src => "http://www.youtube.com/embed/VR3AM4BHSnw", :title => "Dengue Fever"}
+            .video.span11.offset1 
+              %iframe{:allowscriptaccess => "always", :allowFullScreen => "true", :frameborder => "0", :height => "400", :width => "600", :src => "http://www.youtube.com/embed/VR3AM4BHSnw", :title => "Dengue Fever"}
           .span4.offset8
             %h2            
               Use o seu celular para eliminar mosquitos – participe do Dengue Torpedo e ganhe prêmios!
           .span4            
             #news_pane
-              -#Notícias
               
           .row
-            #orange_pull_up.span1
-              %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle", :id => "orange_untoggle"}}
-                Ocultar
+            #orange_pull_up.span1{:style => "margin-top:70px;"}
+              %a{:href => 'javascript:$("#orange_toggle").collapse("hide");', :data=>{:toggle=>"collapse", :target=>"#orange_toggle"}}
+                = image_tag("home_images/splash_pulldown_active.png")  
 - else
   #orange_slider    
     .row
@@ -37,7 +37,3 @@
         .span5
           #register_pane
             = render "home/register_form"
-      .row
-        #orange_pull_up.span1
-          %a{:href=>'javascript:;', :data=>{:parent=>'#orange_toggle', :toggle=>"collapse", :target=>"#orange_toggle"}}
-            = image_tag("home_images/splash_pulldown_active.png")   

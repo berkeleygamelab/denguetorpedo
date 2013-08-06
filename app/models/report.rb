@@ -38,7 +38,8 @@ class Report < ActiveRecord::Base
   validates :reporter_id, :presence => true
   validates :location_id, :presence => true
   validates :status, :presence => true
-  validates :report, :presence => true
+
+  validates :before_photo, :presence => true
 
   as_enum :status, [:reported, :eliminated]
 

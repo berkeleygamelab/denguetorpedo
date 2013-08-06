@@ -8,30 +8,32 @@
         - if open.isVerified == "t"
           = image_tag 'icons/reports icon/check.png', :width => 25, :height => 25, :style => "float:right;"
         - elsif open.isVerified == "f"
-          = image_tag 'icons/report icon/x.png', :width => 25, :height => 25, :style => "float:right;"
+          = image_tag 'icons/reports icon/x.png', :width => 25, :height => 25, :style => "float:right;"
         - else
           - if @current_user.role == "verificador" or @current_user.role == "admin"
             = link_to (image_tag 'icons/reports icon/x.png', :width => 25, :height => 25), problem_reports_path(:id => open.id), method: :post, :style => "float:right;"
             = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"  
-        .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:#ff6600; border: none;float:right;margin-top:3px;"}
-          %span.countHours
-            %span.position
-              %span.digit.static
-            %span.position
-              %span.digit.static
-          %span.countDiv.countDiv1
-          %span.countMinutes
-            %span.position
-              %span.digit.static
-            %span.position
-              %span.digit.static
-          %span.countDiv.countDiv2
-          %span.countSeconds
-            %span.position
-              %span.digit.static
-            %span.position
-              %span.digit.static
-          %span.countDiv.countDiv3
+        .countdown.countdownHolder{:style => "width:130px;height: 20px;background-color:#ff6600; border: none;float:right;margin-top:3px;"}
+        %p{:style => "float:right; color:white;margin-top:3px;"}
+          Tempo restante
+          / %span.countHours
+          /   %span.position
+          /     %span.digit.static
+          /   %span.position
+          /     %span.digit.static
+          / %span.countDiv.countDiv1
+          / %span.countMinutes
+          /   %span.position
+          /     %span.digit.static
+          /   %span.position
+          /     %span.digit.static
+          / %span.countDiv.countDiv2
+          / %span.countSeconds
+          /   %span.position
+          /     %span.digit.static
+          /   %span.position
+          /     %span.digit.static
+          / %span.countDiv.countDiv3
 
         :javascript
           var newYear = new Date('#{open.created_at + 3600 * 24 * 2}'); 
@@ -66,7 +68,7 @@
                 = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', open.id
                   
-                  = select_tag "elimination_type", options_for_select(@elimination_types), :prompt => "Tipo do foco", :style => "width:430px;"
+                  = select_tag "elimination_type", options_for_select(@elimination_types), :prompt => "Tipo de foco", :style => "width:430px;"
                   = select_tag "prantinho", options_for_select(@prantinho), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;"
                   = select_tag "pneu", options_for_select(@pneu), :style => "display:none;width:430px;", :class => "elimination_methods", :prompt => "Método de eliminação"
                   = select_tag "lixo", options_for_select(@lixo), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
@@ -82,7 +84,14 @@
                   = hidden_field_tag "selected_elimination_method"
                   / # = select_tag "method_of_elimination", options_from_collection_for_select(@elimination_type), :style => "width: 355px;" 
                   
+
+                  - if open.after_photo
+                    .rp_report_people
+                      = link_to "#{open.after_photo_file_name}", open.after_photo.url, :class => "user"
+
                   %h3{:style => "font-size: 14px;"} Carrege uma foto do foco eliminado
+
+                  
                   = f.file_field :after_photo
                   = submit_tag "Submeta!", :style => "margin-left:5px;"
 
@@ -91,14 +100,15 @@
                     =link_to open.reporter.display_name + " " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
 
                     - if open.isVerified == "t"
-                      Verificado por: #{open.verifier.display_name}
+                      Verificado por:
+                      = link_to open.verifier.display_name + " " + open.strftime_with(:created_at), user_path(open.verifier), :class => "user"
                     - elsif open.isVerified == "f"
                       %p{:style => "color:red;"}
                         Problema no foco marcado. Entre em contato conosco.
     .row
       .rp_report_options
         - if @current_user != nil && open.reporter.id == @current_user.id
-          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), open, :confirm => "Are you sure?", :method => :delete, :style => "margin-right:5px;"
+          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), open, :confirm => "Você tem certeza?", :method => :delete, :style => "margin-right:5px;"
                   
   
 
