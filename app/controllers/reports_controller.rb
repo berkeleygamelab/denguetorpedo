@@ -85,7 +85,7 @@ class ReportsController < ApplicationController
           @current_user.update_attribute(:points, @current_user.points + 100)
         end
         
-        flash[:notice] = 'Foco marcado postado com sucesso!'
+        flash[:notice] = 'Foco marcado com sucesso!'
         redirect_to :action=>'index', view: 'recent'
       else
         render "new"

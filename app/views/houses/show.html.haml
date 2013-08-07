@@ -106,20 +106,23 @@
             #report_status_bar
               %ul
                 %li
-                  #house_all_report_button.house_report_button.span1
-                    .row
-                      %a{:href => "#", :style => "color:black;"}= @house.reports.count
-                    .row Todos
+                  %a{:href => "#", :style => "color:black;", :id => "house_todos_report_button"}
+                    #house_all_report_button.house_report_button.span1.active
+                      .row
+                        = @house.reports.count
+                      .row Todos
                 %li
-                  #house_open_report_button.house_report_button.span1
-                    .row
-                      %a{:href => "#"}= @house.created_reports.count
-                    .row Em aberto
+                  %a{:href => "#", :id => "house_open_report_button"}
+                    #house_open_report_button.house_report_button.span1
+                      .row
+                        = @house.created_reports.count
+                      .row Em aberto
                 %li
-                  #house_resolved_report_button.house_report_button.span1
-                    .row
-                      %a{:href => "#"}= @house.eliminated_reports.count
-                    .row Eliminados
+                  %a{:href => "#", :id => "house_resolved_report_button"}
+                    #house_resolved_report_button.house_report_button.span1
+                      .row
+                        = @house.eliminated_reports.count
+                      .row Eliminados
               
         .row
           #list_of_house_reports

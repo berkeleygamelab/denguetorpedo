@@ -1,4 +1,10 @@
 .reset_password_form.offset1
+  - if flash[:notice] 
+    %h2.notice{style: "margin: 10px; width: 700px;"}  
+      = flash[:notice]
+  - if flash[:alert]
+    %h2.alert{style: "margin: 10px; width:700px;background-color:transparent;"}
+      = flash[:alert]
   %h1 Alterar minha senha
   = form_for @user, :url => password_reset_path(params[:id]) do |f|
     = f.error_messages

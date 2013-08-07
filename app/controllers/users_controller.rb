@@ -45,6 +45,24 @@ class UsersController < ApplicationController
     @stats_hash = {}
     @stats_hash['opened'] = @user.created_reports.count
     @stats_hash['eliminated'] = @user.eliminated_reports.count
+
+    @elimination_method_select = EliminationMethods.field_select
+    @elimination_types = EliminationMethods.types
+    reports_with_status_filtered = []
+    locations = []
+    
+    @prantinho = EliminationMethods.prantinho
+    @pneu = EliminationMethods.pneu
+    @lixo = EliminationMethods.lixo
+    @pequenos = EliminationMethods.pequenos
+    @grandes = EliminationMethods.grandes
+    @calha = EliminationMethods.calha
+    @registros = EliminationMethods.registros
+    @laje = EliminationMethods.laje
+    @piscinas = EliminationMethods.piscinas
+    @pocas = EliminationMethods.pocas
+    @ralos = EliminationMethods.ralos
+    @plantas = EliminationMethods.plantas
   end
 
   def new
@@ -105,7 +123,7 @@ class UsersController < ApplicationController
       else
         @user = @current_user
         @confirm = 0
-        flash[:notice] = "Números do celular não coincidem"
+        flash[:alert] = "Números do celular não coincidem"
         render "edit"
         return
       end
@@ -143,6 +161,7 @@ class UsersController < ApplicationController
       if !location.save
         flash[:notice] = "There was an error with your address. Please enter a valid address."
         render "edit"
+        return
       end
 
       @current_user.display = display
@@ -155,6 +174,7 @@ class UsersController < ApplicationController
       if !@current_user.house.save
         flash[:notice] = "There was an error with your house info. Please enter casa information again."
         render "edit"
+        return
       end
       if params[:user][:house_attributes][:phone_number]
         @current_user.house.phone_number = params[:user][:house_attributes][:phone_number]
@@ -169,11 +189,14 @@ class UsersController < ApplicationController
         @current_user.is_fully_registered = true
       end
 
-      if params[:carrier] == params[:carrier_confirmation]
-        @current_user.carrier = parmas[:carrier]
-      else
-        flash[:notice] = "operadoras não coincidem."
-        render "edit"
+      if @current_user.carrier != params[:user][:carrier]
+        if params[:user][:carrier] == params[:carrier_confirmation]
+          @current_user.carrier = params[:user][:carrier]
+        else
+          flash[:alert] = "operadoras não coincidem."
+          render "edit"
+          return
+        end
       end
 
 
@@ -183,6 +206,7 @@ class UsersController < ApplicationController
         @user.house = House.new(name: house_name)
         @user.house.location = Location.new
         render "edit"
+        return
       end 
     end 
   end

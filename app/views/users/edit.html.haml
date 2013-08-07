@@ -34,6 +34,9 @@
   - if flash[:notice] 
     %h2.notice{style: "margin: 10px; width: 700px;"}  
       = flash[:notice]
+  - if flash[:alert]
+    %h2.alert{style: "margin: 10px; width:700px;background-color:transparent;"}
+      = flash[:alert]
   - if @current_user.role == "admin" or @current_user.role == "coordenador"
     #role_specific.offset9
       %h2 Configurações de administrador
