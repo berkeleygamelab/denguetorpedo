@@ -36,6 +36,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :hour, "Hora da atividade" %>
+    <%= f.datetime_select :hour, :discard_month => true, :discard_day => true, :discard_year => true %>
+  </div>
+
+  <div class="field">
     <%= f.label :photo, "Foto" %>
     <%= f.file_field :photo %>
   </div>

@@ -40,7 +40,7 @@ body {
     background-color: #ffffff;
     outline: none;
     
-    &[type = "text"], &[type = "password"] {
+    &[type = "text"], &[type = "password"], &[type = "number"] {
       height: 28px;
       border-radius: 5px;
     }

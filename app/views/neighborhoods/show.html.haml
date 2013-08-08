@@ -68,7 +68,7 @@
               = image_tag("default_images/house_default_image.png")
               Futura casa
 
-  #neighborhood_right_panel.span5{:style => "margin-top:-135px;"}
+  #neighborhood_right_panel.span5{:style => "margin-top:-135px;margin-left:-50px;"}
     %h2 Destaques da comunidade
     .row
       %h3{:style => "margin-left:10px;"} Coordenadores comunitários
@@ -78,9 +78,11 @@
             .neighborhood_profile_box
               .span1.neighborhood_pf_picture
                 = image_tag(coordinator.profile_photo.url(:small))                     
-              .span3.neighborhood_quote
+              .neighborhood_quote{:style => "margin-top:-8px;padding-left:10px;"}
                 .neighborhood_person_name
                   = coordinator.display_name
+                .neighborhodd_post
+                  = coordinator.posts.last.content
                 / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
             
               
@@ -96,18 +98,18 @@
                 .neighborhood_person_name
                   = verifier.display_name            
                 / “O Dengue Torpedo me inspirou!” 
-    .row
-      %h3{:style => "margin-left:10px;"} Patrocinadores
-      #neighborhood_sponsors.span4
-        .neighborhood_sponsor_box
-          %ul
-            - @random_sponsors.each do |sponsor|
-              %li.span1.sponsor_thumb
-                = image_tag sponsor
+    / .row
+    /   %h3{:style => "margin-left:10px;"} Patrocinadores
+    /   #neighborhood_sponsors.span4
+    /     .neighborhood_sponsor_box
+    /       %ul
+    /         - @random_sponsors.each do |sponsor|
+    /           %li.span1.sponsor_thumb
+    /             = image_tag sponsor
  
         
 .row
-  .offset1
+  .span12.offset1
     #neighborhood_news
       %h2 Notícias da comunidade
       %ul
@@ -127,6 +129,15 @@
                 = notice.location
               .row{style: 'margin-left:10px;'}
                 = notice.date
+
+.row
+  .offset1.span12
+    #neighborhood_sponsors{:style => "margin-top:20px;"}
+      %h2 Patrocinadores
+      %ul
+        - @sponsors.each do |sponsor|
+          %li{:style => "width:100px; height:100px;display:inline;"}
+            = link_to image_tag sponsor.house.profile_photo.url(:medium), :width => 100, :height => 100
 
         / %li.span4.neighborhood_news_title{:style => "height:250px;"}
         /   .row

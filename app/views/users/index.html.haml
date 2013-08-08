@@ -1,7 +1,7 @@
 - if flash[:notice] 
 	%h2.notice.offset1{style: "width: 700px;"}  
 		= flash[:notice]
-%h1.offset1 Administrar usuários e prêmios
+%h1.offset1 Administrar usuários, patrocinadores e prêmios
 .row.offset1
 	%h2 Administrar usuários
 	%ol.users_list.offset1
@@ -17,11 +17,14 @@
 						%td= link_to 'Desbloquear', block_users_path(:id => user.id), method: :put, data: { confirm: "Você tem certeza?"}
 					%td= link_to 'Deletar', user, method: :delete, data: { confirm: "Você tem certeza?"}
 
+	%h2 Administrar Patrocinadores
+
 	%h2 Administrar prêmios
 	%ol.users_list.offset1
 		%table{:cellpadding => 20}
 			- @prizes.each do |prize|
 				%tr
-					%td= link_to prize.prize_name, edit_prize_path(prize)
+					%td= link_to prize.prize_name, prize_path(prize)
+					%td= link_to "Editar", edit_prize_path(prize)
 					%td= link_to 'Deletar', prize, method: :delete, data: { confirm: "Você tem certeza?"}
 

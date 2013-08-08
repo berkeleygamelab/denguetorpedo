@@ -98,7 +98,7 @@
         .row#more_bootstrap_sucks
           .span3
             %div#sponsor_image 
-              = link_to image_tag(@prize.user.profile_photo.url(:small), :width => 100)
+              = link_to image_tag(@prize.user.house.profile_photo.url(:small), :width => 100)
           .span7
             %div#sponsor_info
               %h4

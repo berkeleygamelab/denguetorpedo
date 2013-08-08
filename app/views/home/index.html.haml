@@ -58,13 +58,16 @@
           %a{:href => notice_path(notice)}
             %li.span4.neighborhood_news_title
               .row
-                .span4
-                  = notice.title
+                .span5
+                  - if notice.title.size > 35
+                    = notice.title[0..35] + "..."
+                  - else
+                    = notice.title
 %br          
 .row
   %h2.offset1{style: 'font-size: 18px;'} Parceiros
   #partners.offset1{:style => "font-weight:normal;line-height:25px;"}
-    CITRIS / IBM Research Brazil / Instituto Pereira Passos / Redes da Maré / Secretaria Municipal de Saúde do Rio de janeiro / UBS Optimus Foundation / UC Berkeley / UFRJ
+    CITRIS / IBM Research Brazil / Instituto Pereira Passos / Redes da Maré / Secretaria Municipal de Saúde do Rio de Janeiro / UBS Optimus Foundation / UC Berkeley / UFRJ
 
 - if flash[:alert]
   %script

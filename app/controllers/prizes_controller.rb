@@ -102,6 +102,7 @@ class PrizesController < ApplicationController
   def edit
     @prize = Prize.find(params[:id])
     @user = @current_user
+    @users = User.where(:role => "lojista").collect{ |user| [user.house.name, user.id]}
   end
 
   # POST /prizes

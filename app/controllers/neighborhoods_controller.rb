@@ -32,6 +32,8 @@ class NeighborhoodsController < ApplicationController
     @coordinators = @participants.where(:role => "coordenador")
     @verifiers = @participants.where(:role => "verificador")
     # @notices = Notice.where(:)
+
+    @sponsors = @neighborhood.members.where(:role => "lojista")
     @random_sponsors = []
     9.times do
       @random_sponsors.push('home_images/sponsor'+(rand(5)+1).to_s+'.png')

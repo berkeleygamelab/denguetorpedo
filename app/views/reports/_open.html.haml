@@ -56,7 +56,7 @@
         .row
           .span5
             - if open.before_photo.url.include?("default_images/report_before_photo.png" )
-              %h3{:style => "font-size: 14px;"} Carrege uma foto do foco identificado
+              %h3{:style => "font-size: 14px;"} Carregue uma foto do foco identificado
               .eliminate_prompt
                 = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', open.id
