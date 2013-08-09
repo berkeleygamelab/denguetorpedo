@@ -175,4 +175,16 @@ class User < ActiveRecord::Base
       return ""
     end
   end
+
+  def admin?
+    self.role == "admin" or self.role == "coordenador"
+  end
+
+  def verifier?
+    self.role == "admin" or self.role == "coordenador" or self.role = "verificador"
+  end
+
+  def sponsor?
+    self.role == "lojista"
+  end
 end

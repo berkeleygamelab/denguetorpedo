@@ -96,13 +96,14 @@ ul#neighborhood_house_list {
   }
   #neighborhood_coordinator, #neighborhood_health_agent {
     margin-bottom: 10px;
-    max-height: 400px;
+    max-height: 410px;
     overflow: auto;
   }
   .neighborhood_profile_box {
     background: white;
     border: 2px solid $gray;
     padding: 10px 0px;
+    height: 180px;
     .neighborhood_pf_picture {
     }
     .neighborhood_person_name {
@@ -162,6 +163,7 @@ ul#neighborhood_house_list {
     font-style: normal;
     text-decoration: none;
     background: #dddddd;
+    margin-bottom: 10px;
   }
   .neighborhood_news_title:hover {
     background-color: rgba(0, 204, 51, 0.6);

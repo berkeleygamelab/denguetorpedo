@@ -51,6 +51,8 @@
           = link_to "Administrar usuários, patrocinadores e prêmios", "/users"
         %p.link
           = link_to "Administrar celulares"
+        %p.link
+          = link_to "Administrar contatos", feedbacks_path
     - elsif @current_user.role == "lojista"
       #role_specific.offset9
         %h2 Configurações de patrocinador

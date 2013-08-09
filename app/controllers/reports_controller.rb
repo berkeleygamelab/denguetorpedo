@@ -64,11 +64,11 @@ class ReportsController < ApplicationController
 
     if request.post?
 
-
-      location = Location.find_or_create(params[:location])
+      address = params[:street_type] + " " + params[:street_name] + " " + params[:street_number]
+      location = Location.find_or_create(address)
       if !params[:before_photo] and !params[:report]
         flash[:error] = "Você tem que carregar uma foto do foco encontrado."
-        flash[:address] = params[:location]
+        flash[:address] = address
         @report = Report.new(:location => location)
         redirect_to :back
         return

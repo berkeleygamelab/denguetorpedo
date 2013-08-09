@@ -15,7 +15,7 @@
 			= @notice.location
 		.row
 			%h2 Data da atividade
-			= @notice.date.strftime("%d/%m/%Y %H:%m")
+			= @notice.date.strftime("%d/%m/%Y %H:%M")
 .row.offset1
 	- if @current_user.role == "admin" or @current_user.role == "coordenador"
 		= link_to "Editar", edit_notice_path(@notice), :style => "font-size:15px;"

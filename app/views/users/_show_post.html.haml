@@ -14,7 +14,7 @@
       
       .row{:style => "min-height: 80px;"}
         .user_activity_content.span7
-          = show_post.content
+          = auto_link(show_post.content)
       .row{:style => "float:right;margin-right:-48px"}
         = 'Postado: ' + show_post.strf_updated_at
         -if @isPrivatePage

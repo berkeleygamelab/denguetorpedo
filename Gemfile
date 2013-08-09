@@ -40,7 +40,7 @@ gem 'cancan'
 gem 'prawn'
 gem 'prawn-layout'
 gem "prawnto_2", :require => "prawnto"
-
+gem 'rails_autolink'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

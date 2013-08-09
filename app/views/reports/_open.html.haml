@@ -107,7 +107,7 @@
                         Problema no foco marcado. Entre em contato conosco.
     .row
       .rp_report_options
-        - if @current_user != nil && open.reporter.id == @current_user.id
+        - if @current_user != nil && open.reporter.id == @current_user.id || @current_user.admin?
           =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), open, :confirm => "Você tem certeza?", :method => :delete, :style => "margin-right:5px;"
                   
   

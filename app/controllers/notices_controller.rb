@@ -26,6 +26,7 @@ class NoticesController < ApplicationController
   # GET /notices/new.json
   def new
     @notice = Notice.new
+    @notice.date = Time.new
     @neighborhoods = Neighborhood.all.collect{ |neighborhood| [neighborhood.name, neighborhood.id]}
     respond_to do |format|
       format.html # new.html.erb
@@ -44,6 +45,7 @@ class NoticesController < ApplicationController
   def create
     @notice = Notice.new(params[:notice])
     @notice.neighborhood_id = params[:notice][:neighborhood_id]
+
     # @notice.
     respond_to do |format|
       if @notice.save
@@ -60,9 +62,12 @@ class NoticesController < ApplicationController
   # PUT /notices/1.json
   def update
     @notice = Notice.find(params[:id])
-
+    
     respond_to do |format|
       if @notice.update_attributes(params[:notice])
+        date = Time.new(params[:notice]["date(1i)"], params[:notice]["date(2i)"], params[:notice]["date(3i)"], params[:notice]["hour(4i)"], params[:notice]["hour(5i)"], 0)
+        @notice.date = date
+        @notice.save
         format.html { redirect_to @notice, notice: 'Notice was successfully updated.' }
         format.json { head :no_content }
       else

@@ -17,11 +17,19 @@
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <% if @current_user %>
+      <%= f.text_field :email, :value => @current_user.email %>
+    <% else %>
+      <%= f.text_field :email %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :name, "Nome" %><br />
-    <%= f.text_field :name %>
+    <% if @current_user %>
+      <%= f.text_field :name, :value => @current_user.display_name %>
+    <% else %>
+      <%= f.text_field :name %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :message, "Mensagem" %><br />

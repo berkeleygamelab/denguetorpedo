@@ -11,9 +11,11 @@
       .row
         .span7
           .post_feed_content
-            = post.content
+            = auto_link(post.content)
+
   .row
     .post_time_stamp
       = 'Postado: ' + post.strf_updated_at
       -if @current_user != nil && post.user.id == @current_user.id
         =link_to (image_tag 'icons/reports icon/delete1.png', :id=>'user_post_delete'), user_post_path(@current_user.id, post.id), :confirm => "Are you sure?", :method => :delete
+
