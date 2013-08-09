@@ -8,7 +8,6 @@
 		%table{:cellpadding => 20}
 			- @users.each do |user|
 				%tr
-					
 					- if user.is_blocked == false
 						%td= link_to user.full_name, edit_user_path(user)
 						%td{:style => "margin-left:10px;"}= link_to 'Bloquear', block_users_path(:id => user.id), method: :put, data: { confirm: "Você tem certeza?"}
@@ -18,7 +17,17 @@
 					%td= link_to 'Deletar', user, method: :delete, data: { confirm: "Você tem certeza?"}
 
 	%h2 Administrar Patrocinadores
-
+	%ol.users_list.offset1
+		%table{:cellpadding => 20}
+			- @sponsors.each do |sponsor|
+				%tr
+					- if sponsor.is_blocked == false
+						%td= link_to sponsor.full_name, edit_user_path(sponsor)
+						%td{:style => "margin-left:10px;"}= link_to 'Bloquear', block_users_path(:id => sponsor.id), method: :put, data: { confirm: "Você tem certeza?"}
+					- else
+						%td{:style => "color:red"}= link_to sponsor.full_name, edit_user_path(sponsor), :style => "color:red;"
+						%td= link_to 'Desbloquear', block_users_path(:id => sponsor.id), method: :put, data: { confirm: "Você tem certeza?"}
+					%td= link_to 'Deletar', sponsor, method: :delete, data: { confirm: "Você tem certeza?"}
 	%h2 Administrar prêmios
 	%ol.users_list.offset1
 		%table{:cellpadding => 20}

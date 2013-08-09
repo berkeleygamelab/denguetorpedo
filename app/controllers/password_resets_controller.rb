@@ -5,11 +5,11 @@ class PasswordResetsController < ApplicationController
   def create
     user = User.find_by_email(params[:email])
     user.send_password_reset if user
-    redirect_to root_url, :notice => "Email sent with password reset instructions."
+    redirect_to root_url, :alert => "Email sent with password reset instructions."
   end
 
   def edit
-    @user = @current_user
+    @user = User.find_by_password_reset_token!(params[:id])
 
     # if params[:id] != @current_user.id
     #   head :not_found and return
@@ -17,7 +17,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @user = @current_user
+    @user = User.find_by_password_reset_token!(params[:id])
     if @user.authenticate(params[:user][:current_password])
       if params[:user][:password] != params[:user][:password_confirmation]
         flash[:alert] = "Password and password confirmation do not match."
@@ -36,7 +36,7 @@ class PasswordResetsController < ApplicationController
       redirect_to :back
     end
     
-    #@user = User.find_by_password_reset_token!(params[:id])
+    
     #if @user.password_reset_sent_at < 2.hours.ago
     #  redirect_to new_password_reset_path, :alert => "Password reset has expired."
     #elsif @user.update_attributes(params[:user])

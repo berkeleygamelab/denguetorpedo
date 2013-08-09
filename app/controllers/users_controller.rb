@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.ordinary_users.order(:first_name)
+    @sponsors = User.where(:role => "lojista")
     @prizes = Prize.where(:is_badge => false)
     authorize! :assign_roles, User
   end
@@ -116,10 +117,14 @@ class UsersController < ApplicationController
     user_last_name = params[:user][:last_name]
     user_middle_name = params[:user][:middle_name]
     user_nickname = params[:user][:nickname]
-    if user_profile_phone_number != @current_user.phone_number
+
+
+
+    @user = User.find(params[:id])
+    if user_profile_phone_number != @user.phone_number
       if user_profile_phone_number == user_profile_phone_number_confirmation
-        @current_user.phone_number = user_profile_phone_number
-        @current_user.is_fully_registered = true
+        @user.phone_number = user_profile_phone_number
+        @user.is_fully_registered = true
       else
         @user = @current_user
         @confirm = 0
@@ -130,18 +135,18 @@ class UsersController < ApplicationController
     end
     
     if user_profile_photo
-      @current_user.profile_photo = user_profile_photo
+      @user.profile_photo = user_profile_photo
     end
     
     if not user_email.blank?
-      @current_user.email = user_email
+      @user.email = user_email
     end
 
-    @current_user.gender = params[:user][:gender]
+    @user.gender = params[:user][:gender]
 
     # if a house exists with the same house name or house address, inform the user for confirmation
     if params[:user][:confirm] == "0" && !house_name.blank? && House.find_by_name(house_name) && (house_name != @current_user.house.name)
-      @user = @current_user
+      # @user = @current_user
       @user.house.name = house_name
 
       @confirm = 1
@@ -149,9 +154,9 @@ class UsersController < ApplicationController
       render "edit"
     else
       house_address = params[:user][:location][:street_type] + " " + params[:user][:location][:street_name] + " " + params[:user] [:location][:street_number]
-      @current_user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
+      @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
       
-      location = @current_user.house.location
+      location = @user.house.location
       # location.address = house_address
       location.street_type = params[:user][:location][:street_type]
       location.street_name = params[:user][:location][:street_name]
@@ -164,34 +169,33 @@ class UsersController < ApplicationController
         return
       end
 
-      @current_user.display = display
-      @current_user.first_name = user_first_name
-      @current_user.middle_name = user_middle_name
-      @current_user.last_name = user_last_name
-      @current_user.nickname = user_nickname
-      @user = @current_user
+      @user.display = display
+      @user.first_name = user_first_name
+      @user.middle_name = user_middle_name
+      @user.last_name = user_last_name
+      @user.nickname = user_nickname
 
-      if !@current_user.house.save
+      if !@user.house.save
         flash[:notice] = "There was an error with your house info. Please enter casa information again."
         render "edit"
         return
       end
       if params[:user][:house_attributes][:phone_number]
-        @current_user.house.phone_number = params[:user][:house_attributes][:phone_number]
+        @user.house.phone_number = params[:user][:house_attributes][:phone_number]
         @current_user.house.save
       end
 
 
       recruiter = User.find_by_id(params[:recruitment_id])
       if recruiter
-        @current_user.recruiter = recruiter
+        @user.recruiter = recruiter
         recruiter.points += 100
-        @current_user.is_fully_registered = true
+        @user.is_fully_registered = true
       end
 
       if @current_user.carrier != params[:user][:carrier]
         if params[:user][:carrier] == params[:carrier_confirmation]
-          @current_user.carrier = params[:user][:carrier]
+          @user.carrier = params[:user][:carrier]
         else
           flash[:alert] = "operadoras não coincidem."
           render "edit"
@@ -200,8 +204,8 @@ class UsersController < ApplicationController
       end
 
 
-      if @current_user.save
-        redirect_to edit_user_path(@current_user), :flash => { :notice => 'Perfil atualizado com sucesso!' }
+      if @user.save
+        redirect_to edit_user_path(@user), :flash => { :notice => 'Perfil atualizado com sucesso!' }
       else
         @user.house = House.new(name: house_name)
         @user.house.location = Location.new

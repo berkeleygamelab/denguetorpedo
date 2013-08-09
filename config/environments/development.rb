@@ -29,7 +29,7 @@ Dengue::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { host: "http://localhost:5000" }
+  config.action_mailer.default_url_options = { host: "127.0.0.1", port: "5000", protocol: "http"}
   
   config.log_level = :debug
    

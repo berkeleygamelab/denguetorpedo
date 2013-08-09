@@ -55,14 +55,14 @@ Dengue::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
-  config.action_mailer.default_url_options = { host: "http://denguetorpedo.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: "denguetorpedo.herokuapp.com", protocol: "http" }
   
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
   # Gmail SMTP
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "denguetorpedo.herokuapp.com" }
+  # config.action_mailer.default_url_options = { host: "denguetorpedo.herokuapp.com" }
   
   config.action_mailer.delivery_method = :smtp
   # Gmail SMTP server setup

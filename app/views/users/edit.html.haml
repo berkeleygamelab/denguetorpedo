@@ -37,24 +37,25 @@
   - if flash[:alert]
     %h2.alert{style: "margin: 10px; width:700px;background-color:transparent;"}
       = flash[:alert]
-  - if @current_user.role == "admin" or @current_user.role == "coordenador"
-    #role_specific.offset9
-      %h2 Configurações de administrador
-      %p.link
-        = link_to "Registrar patrocinador, verificador e visitante", "/users/special_new"
-      %p.link
-        = link_to "Registrar novos prêmios ", "/premios/new"
-      %p.link
-        = link_to "Registrar notícias da comunidade", new_notice_path
-      %p.link
-        = link_to "Administrar usuários, patrocinadores e prêmios", "/users"
-      %p.link
-        = link_to "Administrar celulares"
-  - elsif @current_user.role == "lojista"
-    #role_specific.offset9
-      %h2 Configurações de patrocinador
-      %p.link
-        = link_to "Ver cupons", "/coupons"
+  - if @user == @current_user
+    - if @current_user.role == "admin" or @current_user.role == "coordenador"
+      #role_specific.offset9
+        %h2 Configurações de administrador
+        %p.link
+          = link_to "Registrar patrocinador, verificador e visitante", "/users/special_new"
+        %p.link
+          = link_to "Registrar novos prêmios ", "/premios/new"
+        %p.link
+          = link_to "Registrar notícias da comunidade", new_notice_path
+        %p.link
+          = link_to "Administrar usuários, patrocinadores e prêmios", "/users"
+        %p.link
+          = link_to "Administrar celulares"
+    - elsif @current_user.role == "lojista"
+      #role_specific.offset9
+        %h2 Configurações de patrocinador
+        %p.link
+          = link_to "Ver cupons", "/coupons"
         
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
