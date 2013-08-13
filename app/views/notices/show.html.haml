@@ -4,18 +4,22 @@
 	.span1.neighborhood_news_thumb{:style => "width:250px;height:250px;margin-top:10px;"}
 		= image_tag(@notice.photo.url(:large))
 	.span8.neighborhood_news_content
-		.row
+		.row.span8
 			%h2 Descrição resumida
 			= @notice.summary
-		.row
+		.row.span8
 			%h2 Descrição da atividade
-			= @notice.description
-		.row
+			.span8
+				= @notice.description
+		.row.span8
 			%h2 Local da atividade
 			= @notice.location
-		.row
+		.row.span8
 			%h2 Data da atividade
 			= @notice.date.strftime("%d/%m/%Y %H:%M")
+		.row.span8
+			%h2 Hora da atividade
+			= @notice.date.strftime("%H:%M")
 .row.offset1
 	- if @current_user.role == "admin" or @current_user.role == "coordenador"
 		= link_to "Editar", edit_notice_path(@notice), :style => "font-size:15px;"

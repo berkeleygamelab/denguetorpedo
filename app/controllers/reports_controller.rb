@@ -82,7 +82,7 @@ class ReportsController < ApplicationController
     
       if @report.save
         if @current_user != nil and params[:before_photo]
-          @current_user.update_attribute(:points, @current_user.points + 100)
+          # @current_user.update_attribute(:points, @current_user.points + 100)
         end
         
         flash[:notice] = 'Foco marcado com sucesso!'
@@ -157,41 +157,65 @@ class ReportsController < ApplicationController
   def update
     if request.put?
       @report = Report.find(params[:report_id])
-      if !params[:eliminate] and @report.after_photo.nil?
+
+      if params[:elimination_type] == ""
+        flash[:error] = "Você tem que escolher um tipo de foco."
+        redirect_to :back
+        return
+      end
+
+      if @report.elimination_type.nil? and params[:elimination_type]
+        @report.elimination_type = params[:elimination_type]
+        @report.save
+        flash[:notice] = "Tipo de foco atualizado com sucesso."
+        @current_user.update_attribute(:points, @current_user.points + 50)
+        redirect_to :back
+        return
+      end
+ 
+      
+      if !params[:eliminate] and @report.after_photo_file_size.nil?
         flash[:error] = 'Você tem que carregar uma foto do foco eliminado.'
         redirect_to(:back)
         return
       end
 
-      
-      if params[:eliminate] and params[:eliminate][:after_photo] != nil
-        # user uploaded an after photo
-        @report.after_photo = params[:eliminate][:after_photo]
-        @current_user.points += 400
-        @current_user.total_points += 400
-        @current_user.save
-        @report.save
-      end
-
-
-      if params[:elimination_type] == ""
-        flash[:error] = "Você tem que escolher um tipo de foco e um método de eliminação."
-        redirect_to :back
-        return
-      end
- 
       if params[:selected_elimination_method] == ""
-        flash[:error] = "Você tem que escolher um tipo de foco e um método de eliminação."
+        # @report.elimination_type = params[:elimination_type]
+        # @report.save
+
+        if @report.after_photo_file_size.nil?
+          if params[:eliminate] and params[:eliminate][:after_photo] != nil
+          # user uploaded an after photo
+            @report.after_photo = params[:eliminate][:after_photo]
+            @current_user.points += 400
+            @current_user.total_points += 400
+            @current_user.save
+            @report.save
+          end
+        end
+
+        flash[:error] = "Você tem que escolher um método de eliminação."
         redirect_to :back
         return
       end
       
+      if @report.after_photo_file_size.nil?
+        if params[:eliminate] and params[:eliminate][:after_photo] != nil 
+          # user uploaded an after photo
+          @report.after_photo = params[:eliminate][:after_photo]
+          @current_user.points += 400
+          @current_user.total_points += 400
+          @current_user.save
+          @report.save
+        end
+      end
 
       if !params[:eliminate]
 
         @report.update_attribute(:status_cd, 1)
         @report.update_attribute(:eliminator_id, @current_user.id)
-        @report.elimination_type = params[:elimination_type]
+        # @report.elimination_type = params[:elimination_type]
         @report.elimination_method = params[:selected_elimination_method]
         @report.touch(:eliminated_at)
         @report.save
@@ -200,7 +224,6 @@ class ReportsController < ApplicationController
         return
       end
 
-      @report = Report.find(params[:report_id])
                          
       if params[:eliminate][:after_photo] != nil
         # user uploaded an after photo
@@ -220,7 +243,7 @@ class ReportsController < ApplicationController
         
         # @report.elimination_type = EliminationMethods.getEliminationTypeFromMethodSelect(params["method_of_elimination"])
         # @report.elimination_method = params["method_of_elimination"]
-        @report.elimination_type = params[:elimination_type]
+        # @report.elimination_type = params[:elimination_type]
         @report.elimination_method = params[:selected_elimination_method]
         
         if @report.save
@@ -255,7 +278,11 @@ class ReportsController < ApplicationController
   end
   
   def destroy
-    @current_user.created_reports.find(params[:id]).destroy
+    # @current_user.created_reports.find(params[:id]).destroy
+
+    if @current_user.admin? or @current_user.create_report.find_by_id(params[:id])
+      Report.find(params[:id]).destroy
+    end
     redirect_to(:back)
   end
 

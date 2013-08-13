@@ -29,6 +29,12 @@ class Location < ActiveRecord::Base
   belongs_to :neighborhood
   has_many :reports
 
+  before_save :geocode
+
+  def geocode
+    self.address = street_type + " " + street_name + " " + street_number
+  end
+
   def neighborhood_name
     self.neighborhood && self.neighborhood.name
   end

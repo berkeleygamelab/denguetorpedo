@@ -35,4 +35,12 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Group Buy In Completed!!!"
   end
 
+  def send_contact(title, email, name, message)
+    @title = title
+    @email = email
+    @name = name
+    @message = message
+    mail from: @email, to: "denguetorpedo@gmail.com", subject: "[Contato DT] " + @title
+  end
+  
 end

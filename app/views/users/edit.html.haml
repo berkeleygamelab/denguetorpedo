@@ -121,11 +121,11 @@
     
       %br
       %br
-      = link_to "Alterar minha senha", edit_password_reset_path(@current_user), :id => "reset_password_link", :style => "font-weight:bold;margin-left:0px;"
+      = link_to "Alterar minha senha", edit_password_reset_path(@user), :id => "reset_password_link", :style => "font-weight:bold;margin-left:0px;"
      
 
     %br
-    - if @current_user.role == "lojista"
+    - if @user.role == "lojista"
       %h1 Configurações da estabelecimento
     - else
       %h1 Configurações da casa
@@ -141,10 +141,10 @@
         = location_form.text_field:neighborhood, value: "Maré" if @user.location
     
       = f.fields_for :house do |house_form|
-        - if @current_user.role == "lojista"
+        - if @user.role == "lojista"
           = house_form.label "Nome do estabelecimento"
           = house_form.text_field :name
-        - elsif @current_user.role == "verificador"
+        - elsif @user.role == "verificador"
           = house_form.label "Nome do organização"
           = house_form.text_field :name
         - else
@@ -152,18 +152,18 @@
           = house_form.text_field :name, :placeholder => "ex. Maria Santos ou Maria e Paulo", :maxlength => 16
 
         
-        - if @current_user.role == "lojista"
+        - if @user.role == "lojista"
           = house_form.label "Telefone comercial"
           = house_form.text_field :phone_number
           = house_form.label "Logo digital (opcional)"
-        - elsif @current_user.role == "verificador"
+        - elsif @user.role == "verificador"
           = house_form.label "Fodo do organização"
         - else
           = house_form.label "Foto da casa (opcional)"
         = house_form.file_field :profile_photo
 
     %br
-    - if @current_user.is_fully_registered == false
+    - if @user.is_fully_registered == false
       %h1 Alguém o convidou a se inscrever no DT?
       %select#recruitment{:name => "recruitment_type"}
         %option NINGUÉM

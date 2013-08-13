@@ -8,8 +8,9 @@
   %h1 Alterar minha senha
   = form_for @user, :url => password_reset_path(params[:id]) do |f|
     = f.error_messages
-    = f.label :current_password, "Senha antiga"
-    = f.password_field :current_password
+    - if @forgot == 0
+      = f.label :current_password, "Senha antiga"
+      = f.password_field :current_password    
 
     = f.label :password, "Nova senha"
     = f.password_field :password

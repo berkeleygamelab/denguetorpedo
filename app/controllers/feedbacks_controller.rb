@@ -25,7 +25,7 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/new.json
   def new
     @feedback = Feedback.new
-
+    @title = params[:title]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @feedback }
@@ -41,11 +41,16 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(params[:feedback])
-
+    UserMailer.send_contact(params[:feedback][:title], params[:feedback][:email], params[:feedback][:name], params[:feedback][:message]).deliver
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to root_url, notice: 'Feedback was successfully created.' }
-        format.json { render json: @feedback, status: :created, location: @feedback }
+        if @current_user
+          format.html { redirect_to :back, alert: 'Feedback was successfully created.' }
+          format.json { render json: @feedback, status: :created, location: @feedback }
+        else
+          format.html { redirect_to root_url, notice: 'Feedback was successfully created.' }
+          format.json { render json: @feedback, status: :created, location: @feedback }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }

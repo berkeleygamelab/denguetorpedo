@@ -54,6 +54,10 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'aws-sdk'
 
+
+# for geocoding transformation
+gem 'proj4rb'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

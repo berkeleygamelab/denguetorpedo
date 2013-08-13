@@ -1,8 +1,11 @@
-.reset_password_form.offset1
-  %h1 Reset Password
+.reset_password_form.offset1{:style => "margin-top:20px;"}
+  
+  %h1 Redefinir sua senha
+
   %ul
     = form_tag password_resets_path, :method => :post do
-      %li= label_tag :email
+      %li= label_tag :email, "Digite o seu e-mail cadastrado", style: "margin-top:20px;"
       %li= text_field_tag :email
-      %li= submit_tag "Submit"
+      %br
+      %li= submit_tag "Submeta"
   

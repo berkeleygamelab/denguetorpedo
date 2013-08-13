@@ -1,10 +1,11 @@
 #user_reports
-  - if @reports.nil?
-    %h3
-      No reports in this area.
-  -else 
-    - for report in @reports
-      - if report.status == :reported
-        = render :partial => 'reports/open.html.haml', :object => report
-      - if report.status == :eliminated
-        = render :partial => 'reports/resolved.html.haml', :object => report
+	- if @reports.nil?
+		%h3
+			No reports in this area.
+	- else
+		- for report in @reports
+			- if report.status == :reported
+				- if report.reporter == @current_user or report.elimination_type
+					= render :partial => "reports/open.html.haml", :object => report
+			- if report.status == :eliminated
+				= render :partial => "reports/resolved.html.haml", :object => report

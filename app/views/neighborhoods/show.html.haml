@@ -52,6 +52,30 @@
             %li.neighborhood_participant_photo_thumb.span3
               = image_tag("default_images/profile_default_image.png")
               Futuro participante
+
+      %h2 Notícias da comunidade
+      #neighborhood_news{style: "height:310px;overflow-x:scroll;width:660px;"} 
+        %ul
+          - @notices.each do |notice|
+            %a{:href => notice_path(notice)}
+              %li.span4.neighborhood_news_title{:style => "height:250px;"}
+                .row
+                  .span4
+                    = notice.title
+                %br
+                .row
+                  .span1.neighborhood_news_thumb
+                    = image_tag(notice.photo.url(:medium))
+                  .span3.neighborhood_news_content{style: 'width: 170px;'}
+                    = notice.summary
+                .row{style: 'margin-top: 20px;margin-left:10px;'}
+                  = notice.location
+                .row{style: 'margin-left:10px;margin-top:10px;'}
+                  Data
+                  = notice.date.strftime("%d/%m/%Y")
+                .row{style: "margin-left:10px;"}
+                  Hora
+                  = notice.date.strftime("%H:%M")
   - else 
     .span11.offset1
       %ul#neighborhood_house_list
@@ -68,14 +92,39 @@
               = image_tag("default_images/house_default_image.png")
               Futura casa
 
-  #neighborhood_right_panel.span5{:style => "margin-top:-165px;margin-left:-50px;"}
+      %h2 Notícias da comunidade
+      #neighborhood_news{style: "height:310px;overflow-x:scroll;width:660px;"}  
+        %ul
+          - @notices.each do |notice|
+            %a{:href => notice_path(notice)}
+              %li.span4.neighborhood_news_title{:style => "height:250px;"}
+                .row
+                  .span4
+                    = notice.title
+                %br
+                .row
+                  .span1.neighborhood_news_thumb
+                    = image_tag(notice.photo.url(:medium))
+                  .span3.neighborhood_news_content{style: 'width: 170px;'}
+                    = notice.summary
+                .row{style: 'margin-top: 20px;margin-left:10px;'}
+                  = notice.location
+                .row{style: 'margin-left:10px;margin-top:10px;'}
+                  Data
+                  = notice.date.strftime("%d/%m/%Y")
+                .row{style: "margin-left:10px;"}
+                  Hora
+                  = notice.date.strftime("%H:%M")
+  
+
+  #neighborhood_right_panel.span5{:style => "margin-top:-165px;margin-left:0px;"}
     %h2 Destaques da comunidade
     .row
       %h3{:style => "margin-left:10px;"} Coordenadores comunitários
       #neighborhood_coordinator.span5
         - @coordinators.each do |coordinator|
           - if coordinator.posts.count > 0
-            .neighborhood_profile_box
+            .neighborhood_profile_box{style: "margin-bottom:10px;"}
               .span1.neighborhood_pf_picture
                 = image_tag(coordinator.profile_photo.url(:small))                     
               .neighborhood_quote{:style => "margin-top:-8px;padding-left:10px;"}
@@ -106,28 +155,6 @@
     /         - @random_sponsors.each do |sponsor|
     /           %li.span1.sponsor_thumb
     /             = image_tag sponsor
- 
-        
-  .span12.offset1{:style => "width:650px;"}
-    #neighborhood_news
-      %h2 Notícias da comunidade
-      %ul
-        - @notices.each do |notice|
-          %a{:href => notice_path(notice)}
-            %li.span4.neighborhood_news_title{:style => "height:250px;"}
-              .row
-                .span4
-                  = notice.title
-              %br
-              .row
-                .span1.neighborhood_news_thumb
-                  = image_tag(notice.photo.url(:medium))
-                .span3.neighborhood_news_content{style: 'width: 170px;'}
-                  = notice.summary
-              .row{style: 'margin-top: 20px;margin-left:10px;'}
-                = notice.location
-              .row{style: 'margin-left:10px;'}
-                = notice.date
 
 .row
   .offset1.span12{:style => "width:650px;"}

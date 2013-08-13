@@ -32,11 +32,14 @@
             .user_points_bg
               = @user.total_points
       .row{:style => "margin-top:15px;"}
-        .span4.offset8{:style => "position:absolute;"}
+        .span4.offset8{:style => "position:absolute;font-size:14px;"}
           - if @user.recruiter
-            %h3{:style => "font-size:14px;"} Recrutado por #{@user.recruiter.display_name}
+            Recrutado por 
+            = link_to @user.recruiter.first_name, user_path(@user.recruiter)
+            %br
           - if @user.recruitees.count > 0
-            %h3{:style => "font-size:14px;"} Recrutei  #{@user.recruitees.last.display_name}
+            Recrutei 
+            = link_to @user.recruitees.last.first_name, user_path(@user.recruitees.last)
       .row{:style => "margin-top:25px;"}
         .user_force_position.span2.offset4{:style => "margin-left:244px;"}
           %h3.user_house

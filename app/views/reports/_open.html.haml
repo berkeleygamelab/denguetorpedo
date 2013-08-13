@@ -10,35 +10,22 @@
         - elsif open.isVerified == "f"
           = image_tag 'icons/reports icon/x.png', :width => 25, :height => 25, :style => "float:right;"
         - else
-          - if @current_user.role == "verificador" or @current_user.role == "admin"
-            = link_to (image_tag 'icons/reports icon/x.png', :width => 25, :height => 25), problem_reports_path(:id => open.id), method: :post, :style => "float:right;"
-            = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"  
-        .countdown.countdownHolder{:style => "width:130px;height: 20px;background-color:#ff6600; border: none;float:right;margin-top:3px;"}
-        %p{:style => "float:right; color:white;margin-top:3px;"}
-          Tempo restante
-          / %span.countHours
-          /   %span.position
-          /     %span.digit.static
-          /   %span.position
-          /     %span.digit.static
-          / %span.countDiv.countDiv1
-          / %span.countMinutes
-          /   %span.position
-          /     %span.digit.static
-          /   %span.position
-          /     %span.digit.static
-          / %span.countDiv.countDiv2
-          / %span.countSeconds
-          /   %span.position
-          /     %span.digit.static
-          /   %span.position
-          /     %span.digit.static
-          / %span.countDiv.countDiv3
+          - if open.elimination_type
+            - if @current_user.role == "verificador" or @current_user.role == "admin"
+              = link_to (image_tag 'icons/reports icon/x.png', :width => 25, :height => 25), problem_reports_path(:id => open.id), method: :post, :style => "float:right;"
+              = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"
+        - if open.elimination_type
+          .countdown.countdownHolder{:style => "width:130px;height: 20px;background-color:#ff6600; border: none;float:right;margin-top:3px;"}
+          %p{:style => "float:right; color:white;margin-top:5px;"}
+          - if open.created_at + 3600 * 24 * 2 < Time.new
+            Tempo expirado
+          - else
+            Tempo restante
 
-        :javascript
-          var newYear = new Date('#{open.created_at + 3600 * 24 * 2}'); 
-          
-          $(".countdown").countdown({until: newYear});
+          :javascript
+            var newYear = new Date('#{open.created_at + 3600 * 24 * 2}'); 
+            
+            $(".countdown").countdown({until: newYear});
         
   .row
     .span8{:style => "margin-top:10px;"}
@@ -61,43 +48,44 @@
                 = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => true}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', open.id
                   = f.file_field :before_photo
-                  = submit_tag "Carregue!"
+                  = submit_tag "Carregue!", :disabled => open.created_at + 3600 * 24 * 2 < Time.new
                   
             - else
               .eliminate_prompt{:style => "margin-top:5px;"}
                 = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', open.id
                   
-                  = select_tag "elimination_type", options_for_select(@elimination_types), :prompt => "Tipo de foco", :style => "width:430px;"
-                  = select_tag "prantinho", options_for_select(@prantinho), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;"
-                  = select_tag "pneu", options_for_select(@pneu), :style => "display:none;width:430px;", :class => "elimination_methods", :prompt => "Método de eliminação"
-                  = select_tag "lixo", options_for_select(@lixo), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "pequenos", options_for_select(@pequenos), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "grandes", options_for_select(@grandes), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "calha", options_for_select(@calha), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "registros", options_for_select(@registros), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "laje", options_for_select(@laje), :style => "display:none;", :class => "elimination_methods"
-                  = select_tag "piscinas", options_for_select(@piscinas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "pocas", options_for_select(@pocas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "ralos", options_for_select(@ralos), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
-                  = select_tag "plantas", options_for_select(@plantas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;"
+                  = select_tag "elimination_type", options_for_select(@elimination_types, open.elimination_type), :prompt => "Tipo de foco", :style => "width:430px;", class: "elimination_type", :disabled => open.reporter != @current_user
+                  = select_tag "prantinho", options_for_select(@prantinho), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "pneu", options_for_select(@pneu), :style => "display:none;width:430px;", :class => "elimination_methods", :prompt => "Método de eliminação", disabled: open.elimination_type.nil?
+                  = select_tag "lixo", options_for_select(@lixo), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "pequenos", options_for_select(@pequenos), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "grandes", options_for_select(@grandes), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "calha", options_for_select(@calha), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "registros", options_for_select(@registros), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "laje", options_for_select(@laje), :style => "display:none;", :class => "elimination_methods", disabled: open.elimination_type.nil?
+                  = select_tag "piscinas", options_for_select(@piscinas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "pocas", options_for_select(@pocas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "ralos", options_for_select(@ralos), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "plantas", options_for_select(@plantas), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
                   = hidden_field_tag "selected_elimination_method"
                   / # = select_tag "method_of_elimination", options_from_collection_for_select(@elimination_type), :style => "width: 355px;" 
                   
 
-                  - if open.after_photo
+                  - if open.after_photo_file_size
                     .rp_report_people
+                      Foto carregada:
                       = link_to "#{open.after_photo_file_name}", open.after_photo.url, :class => "user"
 
-                  %h3{:style => "font-size: 14px;"} Carregue uma foto do foco eliminado
-
-                  
-                  = f.file_field :after_photo
-                  = submit_tag "Submeta!", :style => "margin-left:5px;"
+                  - if open.elimination_type
+                    %h3{:style => "font-size: 14px;"} Carregue uma foto do foco eliminado
+                    = f.file_field :after_photo, :disabled => open.after_photo_file_size
+                  = submit_tag "Submeta!", :style => "margin-left:5px;", :disabled => open.created_at + 3600 * 24 * 2 < Time.new, :disabled => open.isVerified == "f"
 
                   .row.rp_report_people
-                    Marcado por:
-                    =link_to open.reporter.display_name + " " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
+                    - if open.elimination_type
+                      Marcado por:
+                      =link_to open.reporter.display_name + " " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
 
                     - if open.isVerified == "t"
                       Verificado por:
@@ -109,17 +97,3 @@
       .rp_report_options
         - if @current_user != nil && open.reporter.id == @current_user.id || @current_user.admin?
           =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), open, :confirm => "Você tem certeza?", :method => :delete, :style => "margin-right:5px;"
-                  
-  
-
-    
-
-
-
-
-
-
-
-
-
-
