@@ -48,7 +48,7 @@ class FeedbacksController < ApplicationController
           format.html { redirect_to :back, notice: 'Mensagem enviada com sucesso!' }
           format.json { render json: @feedback, status: :created, location: @feedback }
         else
-          format.html { redirect_to root_url, alert: 'Feedback was successfully created.' }
+          format.html { redirect_to root_url, alert: 'Mensagem enviada com sucesso!' }
           format.json { render json: @feedback, status: :created, location: @feedback }
         end
       else
