@@ -1,4 +1,9 @@
 <div class="row offset1">
+	<% if flash[:notice] %>
+  <h2 class="notice" style="margin: 10px; width: 700px;">
+    <%= flash[:notice] %>
+  </h2>
+  <% end %>
 	<h1>Contato DT</h1>
 	<br>
 	<%= render 'form' %>

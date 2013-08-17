@@ -6,17 +6,18 @@
 	.span8.neighborhood_news_content
 		.row.span8
 			%h2 Descrição resumida
+			.span8{style: "word-wrap:breakword;"}
 			= @notice.summary
 		.row.span8
 			%h2 Descrição da atividade
-			.span8
+			.span8{style: "word-wrap: break-word;"}
 				= @notice.description
 		.row.span8
 			%h2 Local da atividade
 			= @notice.location
 		.row.span8
 			%h2 Data da atividade
-			= @notice.date.strftime("%d/%m/%Y %H:%M")
+			= @notice.date.strftime("%d/%m/%Y")
 		.row.span8
 			%h2 Hora da atividade
 			= @notice.date.strftime("%H:%M")

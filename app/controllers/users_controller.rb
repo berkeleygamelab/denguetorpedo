@@ -190,6 +190,8 @@ class UsersController < ApplicationController
       if recruiter
         @user.recruiter = recruiter
         recruiter.points += 100
+        recruiter.total_points += 100
+        recruiter.save
         @user.is_fully_registered = true
       end
 

@@ -30,5 +30,6 @@ class HomeController < ApplicationController
     @opened_reports_in_neighborhood = @selected_neighborhood.open_reports.count
     @eliminated_reports_in_neighborhood = @selected_neighborhood.eliminated_reports.count
   end
+
 end
 

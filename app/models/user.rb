@@ -69,6 +69,10 @@ class User < ActiveRecord::Base
   has_many :recruitees, :through => :recruitee_relationships, :source => :recruitee
   belongs_to :house
 
+  has_many :reports, :class_name => "Report", :dependent => :nullify
+  has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id", :dependent => :nullify
+  has_many :verified_reports, :class_name => "Report", :foreign_key => "verifier_id", :dependent => :nullify
+  
   # associations helpers
   def location
     house && house.location

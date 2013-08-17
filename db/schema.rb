@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130803212723) do
+ActiveRecord::Schema.define(:version => 20130814185009) do
 
   create_table "badges", :force => true do |t|
     t.integer  "user_id"
@@ -203,6 +203,9 @@ ActiveRecord::Schema.define(:version => 20130803212723) do
     t.string   "isVerified"
     t.integer  "verifier_id"
     t.datetime "verified_at"
+    t.integer  "resolved_verifier_id"
+    t.datetime "resolved_verified_at"
+    t.string   "is_resolved_verified"
   end
 
   create_table "users", :force => true do |t|

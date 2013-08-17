@@ -93,7 +93,7 @@
               Futura casa
 
       %h2 Notícias da comunidade
-      #neighborhood_news{style: "height:310px;overflow-x:scroll;width:660px;"}  
+      #neighborhood_news{style: "height:310px;overflow-x:scroll;width:690px;"}  
         %ul
           - @notices.each do |notice|
             %a{:href => notice_path(notice)}
@@ -129,8 +129,8 @@
                 = image_tag(coordinator.profile_photo.url(:small))                     
               .neighborhood_quote{:style => "margin-top:-8px;padding-left:10px;"}
                 .neighborhood_person_name
-                  = coordinator.display_name
-                .neighborhodd_post
+                  = link_to coordinator.display_name, user_path(coordinator)
+                .neighborhood_post
                   = coordinator.posts.last.content
                 / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
             
@@ -143,9 +143,12 @@
             .neighborhood_profile_box
               .span1.neighborhood_pf_picture
                 = image_tag(verifier.profile_photo.url(:small))
-              .span3.neighborhood_quote
+              .neighborhood_quote{:style => "margin-top:-8px;padding-left:10px;"}
                 .neighborhood_person_name
-                  = verifier.display_name            
+                  = link_to verifier.display_name, user_path(verifier)    
+                .neighboorhood_past
+                  = verifier.posts.last.content
+
                 / “O Dengue Torpedo me inspirou!” 
     / .row
     /   %h3{:style => "margin-left:10px;"} Patrocinadores
@@ -163,7 +166,7 @@
       %ul{:style => "height:120px; overflow-x:auto;"}
         - @sponsors.each do |sponsor|
           %li{:style => "width:100px; height:100px;display:inline;"}
-            = link_to image_tag sponsor.house.profile_photo.url(:medium), :width => 100, :height => 100
+            = link_to image_tag(sponsor.house.profile_photo.url(:medium), :width => 100, :height => 100), sponsor_path(sponsor)
 
         / %li.span4.neighborhood_news_title{:style => "height:250px;"}
         /   .row

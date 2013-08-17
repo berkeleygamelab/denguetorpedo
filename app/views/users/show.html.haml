@@ -31,16 +31,25 @@
               %h2 total
             .user_points_bg
               = @user.total_points
-      .row{:style => "margin-top:15px;"}
-        .span4.offset8{:style => "position:absolute;font-size:14px;"}
-          - if @user.recruiter
-            Recrutado por 
-            = link_to @user.recruiter.first_name, user_path(@user.recruiter)
-            %br
-          - if @user.recruitees.count > 0
-            Recrutei 
-            = link_to @user.recruitees.last.first_name, user_path(@user.recruitees.last)
-      .row{:style => "margin-top:25px;"}
+          .row{style: "margin-top:126px;position:absolute;"}
+            .span4{style: "margin-left:36px;"}
+              - if @user.recruiter
+                Recrutado por 
+                = link_to @user.recruiter.first_name, user_path(@user.recruiter), class: "users"
+                %br
+              - if @user.recruitees.count > 0
+                Recrutei 
+                = link_to @user.recruitees.last.first_name, user_path(@user.recruitees.last), class: "users"
+      / .row{:style => "margin-top:15px;"}
+      /   .span4.offset8{:style => "position:absolute;font-size:14px;"}
+      /     - if @user.recruiter
+      /       Recrutado por 
+      /       = link_to @user.recruiter.first_name, user_path(@user.recruiter)
+      /       %br
+      /     - if @user.recruitees.count > 0
+      /       Recrutei 
+      /       = link_to @user.recruitees.last.first_name, user_path(@user.recruitees.last)
+      .row{:style => "margin-top:43px;"}
         .user_force_position.span2.offset4{:style => "margin-left:244px;"}
           %h3.user_house
             - if @house
@@ -50,7 +59,7 @@
                 = link_to "Casa " + @house.name, house_path(@house)
             - else 
               = link_to "Create My House", edit_user_path(@user)
-        .span2{:style => "margin-left:14px;"}
+        .span2{:style => "margin-left:25px;"}
           %h3.user_neighborhood 
             =link_to @neighborhood.name, neighborhood_path(@neighborhood)
     

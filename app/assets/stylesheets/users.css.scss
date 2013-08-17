@@ -173,7 +173,7 @@ ul#user_right_panel {
   }
 
   #user_top_text {
-    z-index: 0;
+    z-index: 1;
     position: absolute;
     h3 {
       font-size: 12px;
@@ -560,4 +560,8 @@ ul#coupons_list {
   max-height: 500px;
   overflow: auto;
   margin-top: 20px;
+}
+
+a.users {
+  color: blue;
 }

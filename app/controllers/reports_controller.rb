@@ -169,6 +169,7 @@ class ReportsController < ApplicationController
         @report.save
         flash[:notice] = "Tipo de foco atualizado com sucesso."
         @current_user.update_attribute(:points, @current_user.points + 50)
+        @current_user.update_attribute(:total_points, @current_user.total_points + 50)
         redirect_to :back
         return
       end
@@ -247,9 +248,6 @@ class ReportsController < ApplicationController
         @report.elimination_method = params[:selected_elimination_method]
         
         if @report.save
-          if @current_user != nil
-            @current_user.update_attribute(:points, @current_user.points + 400)
-          end
           flash[:notice] = 'Você eliminou o foco!'
           redirect_to(:back)
         else
@@ -288,10 +286,17 @@ class ReportsController < ApplicationController
 
   def verify
     @report = Report.find(params[:id])
-    @report.isVerified = true
-    @report.verifier_id = @current_user.id
-    @report.verified_at = DateTime.now
 
+    if @report.status_cd == 1
+      @report.is_resolved_Verified = true
+      @report.resolved_verifier_id = @current_user.id
+      @report.resolved_verified_at = DateTime.now
+    elsif @report.status_cd == 0
+      @report.isVerified = true
+      @report.verifier_id = @current_user.id
+      @report.verified_at = DateTime.now
+    end
+    
     if @report.save
       redirect_to reports_path
     else

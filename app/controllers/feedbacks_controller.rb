@@ -45,10 +45,10 @@ class FeedbacksController < ApplicationController
     respond_to do |format|
       if @feedback.save
         if @current_user
-          format.html { redirect_to :back, alert: 'Feedback was successfully created.' }
+          format.html { redirect_to :back, notice: 'Mensagem enviada com sucesso!' }
           format.json { render json: @feedback, status: :created, location: @feedback }
         else
-          format.html { redirect_to root_url, notice: 'Feedback was successfully created.' }
+          format.html { redirect_to root_url, alert: 'Feedback was successfully created.' }
           format.json { render json: @feedback, status: :created, location: @feedback }
         end
       else
