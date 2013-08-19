@@ -46,7 +46,7 @@
 /**
  * You can use these classes to hide parts
  * of the countdown that you don't need.
- 
+ */
 
 .countDays{ /* display:none !important;*/ }
 .countDiv0{ /* display:none !important;*/ }
