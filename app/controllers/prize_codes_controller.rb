@@ -72,5 +72,10 @@ class PrizeCodesController < ApplicationController
   def list
   end
 
+  def sponsor
+    @sponsor = User.find(params[:id])
+    @prizes = @sponsor.prizes
+  end
+
 
 end

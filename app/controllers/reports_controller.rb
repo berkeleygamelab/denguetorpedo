@@ -288,11 +288,11 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
 
     if @report.status_cd == 1
-      @report.is_resolved_Verified = true
+      @report.is_resolved_verified = true
       @report.resolved_verifier_id = @current_user.id
       @report.resolved_verified_at = DateTime.now
     elsif @report.status_cd == 0
-      @report.isVerified = true
+      @report.isverified = true
       @report.verifier_id = @current_user.id
       @report.verified_at = DateTime.now
     end

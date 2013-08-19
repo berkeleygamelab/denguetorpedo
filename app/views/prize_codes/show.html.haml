@@ -9,8 +9,13 @@
     .status
       .name
         = link_to @prize.user.house.name
+      
       .pontos
         #{@prize.cost} pontos
+      .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:transparent; border: none;float:right;margin-top:-4px;margin-right:0px;font-size:26px;"}
+      :javascript
+              var newYear = new Date('#{@deadline}'.replace(/-/g, "/"));
+              $(".countdown").countdown({until: newYear, compact: 'true', description: ''});
     .content{:style => "padding:10px;"}
       - if @prize.prize_photo_file_name.nil?
         = image_tag("default_images/prize_default_image.jpg", :class => "coupons")

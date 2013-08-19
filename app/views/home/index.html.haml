@@ -59,8 +59,8 @@
             %li.span4.neighborhood_news_title
               .row
                 .span5
-                  - if notice.title.size > 35
-                    = notice.title[0..35] + "..."
+                  - if notice.title.size > 30
+                    = notice.title[0..30] + "..."
                   - else
                     = notice.title
 %br          

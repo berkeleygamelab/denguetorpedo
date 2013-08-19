@@ -14,7 +14,7 @@
               = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"
         - if open.elimination_type
           - if open.created_at + 3600 * 24 * 2 > Time.new
-            .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:transparent; border: none;float:right;margin-top:-4px;margin-right:0px;font-size:30px;"}
+            .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:transparent; border: none;float:right;margin-top:1px;margin-right:0px;font-size:20px;"}
             .span{style: "margin-top:3px; margin-right:10px;"}
               Tempo restante
               :javascript
@@ -77,7 +77,7 @@
                   - if open.elimination_type
                     %h3{:style => "font-size: 14px;"} Carregue uma foto do foco eliminado
                     = f.file_field :after_photo, :disabled => open.after_photo_file_size
-                  = submit_tag "Submeta!", :style => "margin-left:5px;", :disabled => open.created_at + 3600 * 24 * 2 < Time.new, :disabled => open.isVerified == "f"
+                  = submit_tag "Submeta!", :style => "margin-left:5px;", :disabled => open.created_at + 3600 * 24 * 2 < Time.new or open.isVerified == "f"
 
                   .row.rp_report_people
                     - if open.elimination_type and open.reporter_id
