@@ -2,7 +2,7 @@
 	.status.possible
 		.name
 			= link_to prize.user.house.name, "sponsors/#{prize.user.id}"
-		.points
+		.points{style: "width:140px;height:20px;"}
 			#{prize.cost} pontos
 	.prize_content
 		- if prize.prize_photo_file_name.nil?
