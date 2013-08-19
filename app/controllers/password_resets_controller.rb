@@ -25,27 +25,28 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @user = User.find_by_password_reset_token!(params[:id])
+    
 
     if params[:user][:current_password]
-      if @user.authenticate(params[:user][:current_password])
+      if @current_user.authenticate(params[:user][:current_password])
         if params[:user][:password] != params[:user][:password_confirmation]
           flash[:alert] = "Password and password confirmation do not match."
           redirect_to :back
           return
         end
-        if @user.update_attributes(params[:user])
+        if @current_user.update_attributes(params[:user])
           flash[:notice] = "Password has been reset!"
-          redirect_to edit_user_path(@user)
+          redirect_to edit_user_path(@current_user)
         else
           flash[:alert] = "There was an error updating your password."
-          redirect_to edit_user_path(@user)
+          redirect_to edit_user_path(@current_user)
         end
       else
         flash[:alert] = "You have entered a wrong password."
         redirect_to :back
       end
     else
+      @user = User.find_by_password_reset_token!(params[:id])
       if @user.update_attributes(params[:user])
         flash[:notice] = "Password has been reset!"
         redirect_to root_url

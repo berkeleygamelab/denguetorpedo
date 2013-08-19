@@ -14,7 +14,7 @@
               = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"
         - if open.elimination_type
           - if open.created_at + 3600 * 24 * 2 > Time.new
-            .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:#ff6600; border: none;float:right;margin-top:3px;margin-right:10px;font-size:12px;"}
+            .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:transparent; border: none;float:right;margin-top:-4px;margin-right:0px;font-size:30px;"}
             .span{style: "margin-top:3px; margin-right:10px;"}
               Tempo restante
               :javascript

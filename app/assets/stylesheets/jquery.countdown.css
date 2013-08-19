@@ -1,9 +1,9 @@
 .countdownHolder{
 	width:450px;
 	margin:0 auto;
-	font: 40px/1.5 'Open Sans Condensed',sans-serif;
+	font: 30px 'Open Sans Condensed',sans-serif;
 	text-align:center;
-	letter-spacing:-3px;
+	letter-spacing:0px;
 }
 
 .position{
@@ -46,7 +46,7 @@
 /**
  * You can use these classes to hide parts
  * of the countdown that you don't need.
- */
+ 
 
 .countDays{ /* display:none !important;*/ }
 .countDiv0{ /* display:none !important;*/ }
