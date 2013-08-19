@@ -3,14 +3,14 @@
     %h1
       - if @house.user.role == "verificador"
         - if @house.user.gender == true
-          #{@house.name} (verificador)
+          #{@house.name} - verificador
         - else
-          #{@house.name} (verificadora)
+          #{@house.name} - verificadora
       - elsif @house.user.role == "coordenador"
         - if @house.user.gender == true
-          Casa #{@house.name} (coordenador)
+          Casa #{@house.name} - coordenador
         - else
-          Casa #{@house.name} (coordenadora)
+          Casa #{@house.name} - coordenadora
       - else
         Casa #{@house.name}
 .row
@@ -50,7 +50,7 @@
     .row
       .span10
         %h2 Moradores
-        - for member in @house.members.slice(0, 5)
+        - for member in @house.members.slice(0, 7)
           #house_members.span1
             .row
               - if (member.profile_photo_file_name.nil?)

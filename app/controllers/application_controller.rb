@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def require_login
-    head :forbidden and return if @current_user.nil?
+    # head :u and return if @current_user.nil?
   end
 
 

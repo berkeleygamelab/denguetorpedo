@@ -38,6 +38,25 @@ $(document).ready(function() {
 		}
 	});
 
+	$("#user_gender_true").click(function() {
+		if ($("#role_title").html() == "Configurações de coordenadora") {
+			$("#role_title").html("Configurações de coordenador");
+		} else if ($("#role_title").html() == "Configurações de verificadora") {
+			$("#role_title").html("Configurações de verificador");
+		} else if ($("#role_title").html() == "Configurações de moradora") {
+			$("#role_title").html("Configurações de morador");
+		}
+	});
+
+	$("#user_gender_false").click(function() {
+		if ($("#role_title").html() == "Configurações de coordenador") {
+			$("#role_title").html("Configurações de coordenadora");
+		} else if ($("#role_title").html() == "Configurações de verificador") {
+			$("#role_title").html("Configurações de verificadora");
+		} else if ($("#role_title").html() == "Configurações de morador") {
+			$("#role_title").html("Configurações de moradora");
+		}
+	});
 	
 
 	$("select#role").change(function() {

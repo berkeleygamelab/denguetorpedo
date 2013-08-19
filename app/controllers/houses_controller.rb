@@ -1,3 +1,4 @@
+# encoding: utf-8
 class HousesController < ApplicationController
   
   def show
@@ -22,7 +23,8 @@ class HousesController < ApplicationController
     # @neighbors = House.joins(:location).joins(:user).where(:locations => {:neighborhood_id => @house.neighborhood.id}, :users => {:role}).limit(5)
     
     excluded_roles = ["lojista", "verficidador"]
-    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => 2}).where('users.role NOT IN (?)', excluded_roles)[0..7]
+    @mare = Neighborhood.find_by_name('Maré')
+    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => @mare.id}).where('users.role NOT IN (?)', excluded_roles)[0..7]
     @highlightHouseItem = ""
     
     if (@current_user != nil && @current_user.house_id == @house.id)

@@ -1,29 +1,3 @@
-/ .row
-/   .span15.offset1
-/     %h1
-/       Prize codes for
-/       = @prize.prize_name
-/     %p Listed below are the prize codes that have not expired/been redeemed yet. If you wish to set a prize code as redeemed, please click on the link next to each prize code to render the code as inactive.
-/     %br
-/     %br
-
-/ .row
-/   .span14.offset2
-/     %div#prize_codes
-/       %table
-/         %th Code
-/         %th User Name
-/         %th Set Code as Redeemed
-/         - @prize_codes.each do |prize_code|
-/           - unless prize_code.expired or prize_code.redeemed
-/             %tr
-/               %td
-/                 = prize_code.code
-/               %td
-/                 = link_to prize_code.user.username, user_path(prize_code.user_id)
-/               %td
-/                 = link_to "Set as Redeemed", :controller => "prize_codes", :action => "redeem", :id => params[:id], :prize_id => params[:prize_id], :prize_code_id => prize_code.id
-
 .row.offset1
   %h1
     Cupom
@@ -34,7 +8,7 @@
   .coupons
     .status
       .name
-        = link_to @prize.user.full_name
+        = link_to @prize.user.house.name
       .pontos
         #{@prize.cost} pontos
     .content{:style => "padding:10px;"}
@@ -59,11 +33,11 @@
       .statement{:style => "margin-bottom:10px;"}
         • Para retirar o seu prêmio compareça ao estabelecimento de porte desse cupom e de um documento válido com foto (ex. RG). Você pode tirar fotos do momento do resgate do prêmio e publicar no seu blog no site Dengue Torpedo.  Assim, você acumula mais 5 pontos. Em caso de dúvida escreva para contato@denguetorpedo.com
       .statement{:style => "margin-bottom: 20px;"}
-        • Prazo: O cupom é válido em até 7 dias após a impressão. 
+        • Prazo: O cupom é válido em até 7 dias. (até #{@deadline.strftime("%d/%m/%Y")})
 
       .statement
         • Endereço: #{@prize.user.house.location.address}
-
+      %br
       .map{:style => "width:200px; height:200px; border:1px solid #aaaaaa;"}
 
 

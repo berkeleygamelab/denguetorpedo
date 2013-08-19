@@ -131,8 +131,9 @@ class EliminationMethods
   end
 
   def self.ralos
-    @ralos = ["Regar semanalmente com água sanitária na proporção de uma colher de sopa para um litro de água",
-        "Retire a  água acumulada nas folhas", "Outro método"]
+    @ralos = ["Jogue água sanitária ou desinfetante semenalmente.",
+        "Elimina entupimento", "Vedar ralos não utilizados", "Outro método"]
+
   end
 
   def self.plantas

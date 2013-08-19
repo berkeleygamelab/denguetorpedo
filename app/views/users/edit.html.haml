@@ -57,11 +57,32 @@
       #role_specific.offset9
         %h2 Configurações de patrocinador
         %p.link
-          = link_to "Ver cupons", "/coupons"
+          = link_to "Códigos de controle dos prêmios", "/coupons"
         
   = form_for(@user, :url => {:action => "update", :html => {:autocomplete => "off", :multipart => true}}) do |f|
     = f.error_messages
-    %h1 Configurações de usuário    
+    - if @user.role == "coordenador"
+      - if @user.gender == true
+        %h1{id: "role_title"} Configurações de coordenador   
+      - else
+        %h1{id: "role_title"} Configurações de coordenadora
+    - elsif @user.role == "verificador"
+      - if @user.gender == true
+        %h1{id: "role_title"} Configurações de verificador
+      - else
+        %h1{id: "role_title"} Configurações de coordenadora
+    - elsif @user.role == "lojista"
+      %h1{id: "role_title"} Configurações de patrocinador
+    - elsif @user.role == "visitante"
+      %h1{id: "role_title"} Configurações de visitante
+    - elsif @user.role == "admin"
+      %h1{id: "role_title"} Configurações de administrador
+    - else
+      - if @user.gender == true
+        %h1{id: "role_title"} Configurações de morador
+      - else
+        %h1{id: "role_title"} Configurações de moradora
+
     
     /= f.label "Nome de usuário"
     / = f.label @current_user.username, {style: "font-weight: bold;"}

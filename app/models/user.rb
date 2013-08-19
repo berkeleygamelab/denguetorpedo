@@ -156,7 +156,37 @@ class User < ActiveRecord::Base
     else
       display_name = self.first_name + " " + self.last_name + " (" + self.nickname + ")"
     end
+
+    # if display_name.size > 33
+    #   return display_name[0..33] + "..."
+    # else
+    #   return display_name
+    # end
     return display_name
+  end
+
+  def shorter_display_name
+    if self.display == "firstmiddlelast"
+      display_name = self.first_name + " " + self.middle_name + " " + self.last_name
+    elsif self.display == "firstlast"
+      display_name = self.first_name + " " + self.last_name
+    elsif self.display == "first"
+      display_name = self.first_name
+    elsif self.display == "nicname"
+      display_name = self.nickname
+    else
+      display_name = self.first_name + " " + self.last_name + " (" + self.nickname + ")"
+      if display_name.size > 27
+        return display_name[0..27] + "...)"
+      else
+        return display_name
+      end
+    end
+    if display_name.size > 30
+      return display_name[0..30] + "..."
+    else
+      return display_name
+    end
   end
 
   def full_name

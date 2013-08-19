@@ -3,21 +3,21 @@
     #user_top_text
       .row
         .span9.offset4{ :style => "margin-top: -10px;"}
-          %h1.user_name.span9
+          %h1.user_name.span10{:title => @user.display_name}
             - if @user.role == "lojista"
-              #{@user.display_name} (patrocinador)
+              #{@user.shorter_display_name} (patrocinador)
             - elsif @user.role == "verificador"
               - if @user.gender == true
-                #{@user.display_name} (verificador)
+                #{@user.shorter_display_name} - verificador
               - else
-                #{@user.display_name} (verificadora)
+                #{@user.shorter_display_name} (verificadora)
             -elsif @user.role == "coordenador"
               - if @user.gender == true
-                #{@user.display_name} (coordenador)
+                #{@user.shorter_display_name} - coordenador
               - else
-                #{@user.display_name} (coordenadora)
+                #{@user.shorter_display_name} (coordenadora)
             - else
-              = @user.display_name
+              = @user.shorter_display_name
         .span7.offset7{:style => "margin-top:-40px;"}
           .span2.user_points
             %h2 pontos         
