@@ -227,10 +227,10 @@ ActiveRecord::Schema.define(:version => 20130814185009) do
     t.boolean  "is_verifier",                :default => false
     t.boolean  "is_fully_registered",        :default => false
     t.boolean  "is_health_agent",            :default => false
-    t.string   "first_name"
-    t.string   "middle_name"
-    t.string   "last_name"
-    t.string   "nickname"
+    t.string   "first_name",                 :default => ""
+    t.string   "middle_name",                :default => ""
+    t.string   "last_name",                  :default => ""
+    t.string   "nickname",                   :default => ""
     t.string   "display",                    :default => "firstmiddlelast"
     t.string   "role",                       :default => "morador"
     t.integer  "total_points",               :default => 0

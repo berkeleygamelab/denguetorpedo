@@ -27,6 +27,7 @@ class HousesController < ApplicationController
     @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => @mare.id}).where('users.role NOT IN (?)', excluded_roles)[0..6]
     @highlightHouseItem = ""
     
+    @marker = [{"lat" => @house.location.latitude, "lng" => @house.location.longitude}].to_json
     if (@current_user != nil && @current_user.house_id == @house.id)
       @highlightHouseItem = "nav_highlight"
     end 

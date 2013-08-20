@@ -100,7 +100,7 @@
       #house_reports.span6
         .row
           .span6{:style => "margin-left:-5px;"}
-            = gmaps(markers: { data: nil },  map_options: nil)
+            = gmaps4rails(@marker)
         .row
           .span6
             #report_status_bar
