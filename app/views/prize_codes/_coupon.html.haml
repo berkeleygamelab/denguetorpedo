@@ -8,7 +8,7 @@
 		- if coupon.prize.prize_photo_file_name.nil?
 			= link_to image_tag("default_images/prize_default_image.jpg", :class => "prizes"), prize_code_path(coupon)
 		- else
-			= link_to image_tag(prize.prize_photo.url(:large), :class => "prizes"), prize_code_path(coupon)
+			= link_to image_tag(coupon.prize.prize_photo.url(:large), :class => "prizes"), prize_code_path(coupon)
 		.description
 			= link_to coupon.prize.prize_name, prize_code_path(coupon)		
 		.stock
