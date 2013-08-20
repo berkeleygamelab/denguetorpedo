@@ -1,15 +1,19 @@
 %li.span3.prizes.redeemed
 	.status.redeemed
-		.name
-			#{redeemed.user.house.name}
+		.name{style: "width:150px;height:20px;"}
+			= link_to redeemed.sponsor_name, "/sponsors/#{redeemed.user.id}"
 		.points
 			#{redeemed.cost} pontos
 	.prize_content
 		- if redeemed.prize_photo_file_name.nil?
-			= image_tag("default_images/prize_default_image.jpg", :class => "prizes, expired")
+			= image_tag("default_images/prize_default_image.jpg", :class => "prizes")
 		- else
-			= image_tag(redeemed.prize_photo.url(:large), :class => "prizes grey")
+			= image_tag(redeemed.prize_photo.url(:large), :class => "prizes")
 		.description
 			#{redeemed.description}
 		.stock
-			Estoque: #{redeemed.stock}
+			
+			- if redeemed.stock == 0
+				Estoque: #{redeemed.stock}
+			- else
+				Prazo expirado

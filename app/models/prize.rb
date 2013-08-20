@@ -92,4 +92,13 @@ class Prize < ActiveRecord::Base
     return true
   end
 
+  def sponsor_name
+    if self.user.house.name.size > 20
+      return self.user.house.name[0..17].strip + "..."
+    else
+      return self.user.house.name
+    end
+
+  end
+
 end

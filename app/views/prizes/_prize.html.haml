@@ -1,7 +1,7 @@
 %li.span3.prizes.possible
 	.status.possible
-		.name{style: "width:140px;height:20px;"}
-			= link_to prize.user.house.name, "/sponsors/#{prize.user.id}"
+		.name{style: "width:150px;height:20px;"}
+			= link_to prize.sponsor_name, "/sponsors/#{prize.user.id}"
 		.points
 			#{prize.cost} pontos
 	.prize_content
@@ -15,4 +15,4 @@
 			Estoque: #{prize.stock}
 		.redeem_by
 			- if prize.expire_on
-				Prazo: #{prize.expire_on.to_date}
+				Prazo: #{prize.expire_on.strftime("%d/%m/%Y")}
