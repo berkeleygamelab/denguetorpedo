@@ -43,4 +43,8 @@ class PrizeCode < ActiveRecord::Base
     @account.sms.messages.create(:from => '+15109854798', :to => phone_number , :body  => body)
     self.destoy
   end
+
+  def expired?
+    return self.created_at + 3600 * 24 * 7 < Time.new
+  end
 end

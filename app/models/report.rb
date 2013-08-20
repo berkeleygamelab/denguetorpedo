@@ -114,4 +114,8 @@ class Report < ActiveRecord::Base
     point = Geokit::LatLng.new(location.latitude, location.longitude)
     return calculated_bounds.contains?(point)
   end
+
+  def expired?
+    self.created_at and self.created_at + 3600 * 24 * 2 < Time.new
+  end
 end

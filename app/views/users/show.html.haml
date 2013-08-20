@@ -164,9 +164,7 @@
                 Honrarias + Camiseta + Adesivo + Carimbo digital 7200 pontos 
       %ul#coupons_list
         - @coupons.each do |coupon|
-          %a{:href => "coupons/#{coupon.id}"}
-            %li
-              = render :partial => "prizes/prize", :object => coupon.prize
+          = render :partial => "prize_codes/coupon", :object => coupon
 
 
 

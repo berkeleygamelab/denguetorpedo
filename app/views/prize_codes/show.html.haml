@@ -1,8 +1,9 @@
 .row.offset1
   %h1
     Cupom
-  %button{:style => "position:absolute;top:7px;left:629px;"}
-    = link_to "Imprimir", prize_code_path(@prize_code) + ".pdf"
+  - if not @prize_code.expired?
+    %button{:style => "position:absolute;top:7px;left:629px;"}
+      = link_to "Imprimir", prize_code_path(@prize_code) + ".pdf"
 %br
 .row.offset1
   .coupons

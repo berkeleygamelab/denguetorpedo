@@ -1,0 +1,18 @@
+%li.span3.prizes.possible
+	.status.possible
+		.name{style: "width:140px;height:20px;"}
+			= link_to coupon.prize.user.house.name, "/sponsors/#{coupon.prize.user.id}"
+		.points
+			#{coupon.prize.cost} pontos
+	.prize_content
+		- if coupon.prize.prize_photo_file_name.nil?
+			= link_to image_tag("default_images/prize_default_image.jpg", :class => "prizes"), prize_code_path(coupon)
+		- else
+			= link_to image_tag(prize.prize_photo.url(:large), :class => "prizes"), prize_code_path(coupon)
+		.description
+			= link_to coupon.prize.prize_name, prize_code_path(coupon)		
+		.stock
+			= coupon.code
+		.redeem_by
+			- if coupon.prize.expire_on
+				Prazo: #{coupon.prize.expire_on.to_date}
