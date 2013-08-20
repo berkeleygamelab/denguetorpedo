@@ -13,10 +13,14 @@
       
       .pontos
         #{@prize.cost} pontos
-      .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:transparent; border: none;float:right;margin-top:-4px;margin-right:0px;font-size:26px;"}
-      :javascript
-              var newYear = new Date('#{@deadline}'.replace(/-/g, "/"));
-              $(".countdown").countdown({until: newYear, compact: 'true', description: ''});
+      - if @prize_code.expired?
+        .countdown.countdownHolder{:style => "width:200px;height: 20px;background-color:transparent; border: none;float:right;margin-top:6x;margin-right:20px;font-size:16px;"}
+          Tempo de resgate expirado
+      - else
+        .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:transparent; border: none;float:right;margin-top:-4px;margin-right:0px;font-size:26px;"}
+        :javascript
+                var newYear = new Date('#{@deadline}'.replace(/-/g, "/"));
+                $(".countdown").countdown({until: newYear, compact: 'true', description: ''});
     .content{:style => "padding:10px;"}
       - if @prize.prize_photo_file_name.nil?
         = image_tag("default_images/prize_default_image.jpg", :class => "coupons")
@@ -39,7 +43,7 @@
       .statement{:style => "margin-bottom:10px;"}
         • Para retirar o seu prêmio compareça ao estabelecimento de porte desse cupom e de um documento válido com foto (ex. RG). Você pode tirar fotos do momento do resgate do prêmio e publicar no seu blog no site Dengue Torpedo.  Assim, você acumula mais 5 pontos. Em caso de dúvida escreva para contato@denguetorpedo.com
       .statement{:style => "margin-bottom: 20px;"}
-        • Prazo: O cupom é válido em até 7 dias. (até #{@deadline.strftime("%d/%m/%Y")})
+        • Resgate até: O cupom é válido em até 7 dias. (até #{@deadline.strftime("%d/%m/%Y")})
 
       .statement
         • Endereço: #{@prize.user.house.location.address}

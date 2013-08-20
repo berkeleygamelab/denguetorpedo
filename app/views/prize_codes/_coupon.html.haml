@@ -1,7 +1,7 @@
 %li.span3.prizes.possible
 	.status.possible
-		.name{style: "width:140px;height:20px;"}
-			= link_to coupon.prize.user.house.name, "/sponsors/#{coupon.prize.user.id}"
+		.name{style: "width:150px;height:20px;"}
+			= link_to coupon.prize.sponsor_name, "/sponsors/#{coupon.prize.user.id}"
 		.points
 			#{coupon.prize.cost} pontos
 	.prize_content
@@ -15,4 +15,4 @@
 			= coupon.code
 		.redeem_by
 			- if coupon.prize.expire_on
-				Prazo: #{coupon.prize.expire_on.to_date}
+				Resgate até: #{coupon.created_at.strftime("%d/%m/%Y")}
