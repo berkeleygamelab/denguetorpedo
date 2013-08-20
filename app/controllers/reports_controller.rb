@@ -278,7 +278,7 @@ class ReportsController < ApplicationController
   def destroy
     # @current_user.created_reports.find(params[:id]).destroy
 
-    if @current_user.admin? or @current_user.create_report.find_by_id(params[:id])
+    if @current_user.admin? or @current_user.created_reports.find_by_id(params[:id])
       Report.find(params[:id]).destroy
     end
     redirect_to(:back)
