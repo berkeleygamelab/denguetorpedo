@@ -153,10 +153,11 @@ ul#house_list {
 }
 
 #sponsors {
-  width: 950px;
+  width: 800px;
   margin-top: 5px;
   margin-bottom: 20px;
-  
+  max-height: 350px;
+  overflow: auto;
   ul {
     padding: 9px;
     li {

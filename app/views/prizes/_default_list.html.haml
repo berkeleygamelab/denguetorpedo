@@ -2,7 +2,7 @@
   %h2 Para a você
   %ul.prizes_list
     - @individual.each do |individual|
-      - if individual.stock == 0 or individual.expire_on < Time.new
+      - if individual.stock == 0 or individual.expire_on and individual.expire_on < Time.new
         = render :partial =>  'prizes/redeemed', :object => individual 
       - else
         = render :partial => 'prizes/prize', :object => individual
@@ -11,7 +11,7 @@
   %h2 Para a comunidade
   %ul.prizes_list
     - @community.each do |community|
-      - if community.stock == 0 or community.expire_on < Time.new
+      - if community.stock == 0 or community.expire_on and community.expire_on < Time.new
         = render :partial => "prizes/redeemed", :object => community
       - else
         = render :partial => "prizes/prize", :object => community
