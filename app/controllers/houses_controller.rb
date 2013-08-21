@@ -24,7 +24,7 @@ class HousesController < ApplicationController
     
     excluded_roles = ["lojista", "verficidador"]
     @mare = Neighborhood.find_by_name('Maré')
-    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => @mare.id}).where('users.role NOT IN (?)', excluded_roles)[0..6]
+    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => 1}).where('users.role NOT IN (?) AND houses.id != ?', excluded_roles, 1).uniq.shuffle[0..6]
     @highlightHouseItem = ""
     
     @marker = [{"lat" => @house.location.latitude, "lng" => @house.location.longitude}].to_json
