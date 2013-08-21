@@ -39,18 +39,23 @@ class ReportsController < ApplicationController
     Report.order("created_at DESC").each do |report|
       if params[:view] == 'recent' || params[:view] == 'make_report'
         reports_with_status_filtered << report
-        locations << report.location
+        if report.location.latitude
+          locations << report.location
+        end
       elsif params[:view] == 'open' && report.status == :reported
         reports_with_status_filtered << report
-        locations << report.location
+        if report.location.latitude
+          locations << report.location
+        end
       elsif params[:view] == 'eliminate' && report.status == :eliminated
         reports_with_status_filtered << report
-        locations << report.location
+        if report.location.latitude
+          locations << report.location
+        end
       end
     end
     
-    # @map_json = locations.to_gmaps4rails
-    @map_json = nil
+    @map_json = locations.map { |location| {"lat" => location.latitude, "lng" => location.longitude} }.to_json
     @reports = reports_with_status_filtered
     @open_feed = @reports
     @eliminate_feed = @reports
@@ -65,7 +70,14 @@ class ReportsController < ApplicationController
     if request.post?
 
       address = params[:street_type] + " " + params[:street_name] + " " + params[:street_number]
-      location = Location.find_or_create(address)
+
+      location = Location.find_by_address(address)
+  
+      if location.nil?
+        location = Location.new(:street_type => params[:street_type], :street_name => params[:street_name], :street_number => params[:street_number])
+        location.save
+      end
+      
       if !params[:before_photo] and !params[:report]
         flash[:error] = "Você tem que carregar uma foto do foco encontrado."
         flash[:address] = address

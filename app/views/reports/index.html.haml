@@ -37,6 +37,6 @@
           .report_map_search
             %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
             %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 330px;'}
-      .row{:style => "width:300px; height: 300px;"}
-        / # = gmaps4rails(@map_json
+      .row
+        = gmaps4rails(@map_json)
 
