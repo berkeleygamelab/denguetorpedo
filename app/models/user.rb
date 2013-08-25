@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
   end
 
   def self.ordinary_users
-    return User.where("role = 'morador' OR role = 'verificador'")
+    return User.where("role = 'morador' OR role = 'verificador' OR role = 'coordenador'")
   end
 
   def get_nickname

@@ -128,7 +128,7 @@ class PrizesController < ApplicationController
     @prize = Prize.find(params[:id])
     respond_to do |format|
       if @prize.update_attributes(params[:prize])
-        format.html { redirect_to @prize, notice: 'Prize was successfully updated.' }
+        format.html { redirect_to @prize, notice: 'O prêmio foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -35,7 +35,7 @@ class PasswordResetsController < ApplicationController
           return
         end
         if @current_user.update_attributes(params[:user])
-          flash[:notice] = "Password has been reset!"
+          flash[:notice] = "A senha foi alterada! "
           redirect_to edit_user_path(@current_user)
         else
           flash[:alert] = "There was an error updating your password."
@@ -48,7 +48,7 @@ class PasswordResetsController < ApplicationController
     else
       @user = User.find_by_password_reset_token!(params[:id])
       if @user.update_attributes(params[:user])
-        flash[:notice] = "Password has been reset!"
+        flash[:notice] = "A senha foi alterada!"
         redirect_to root_url
       else
         flash[:alert] = "There was an error updating your password."

@@ -153,27 +153,31 @@ class UsersController < ApplicationController
       flash[:notice] = "Uma casa com esse nome já existe. Você quer se juntar a essa casa? Se sim, clique confirmar. Se não, clique cancelar e escolha outro nome de casa."
       render "edit"
     else
-      house_address = params[:user][:location][:street_type] + " " + params[:user][:location][:street_name] + " " + params[:user] [:location][:street_number]
-      @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
-      
-      location = @user.house.location
-      # location.address = house_address
-      location.street_type = params[:user][:location][:street_type]
-      location.street_name = params[:user][:location][:street_name]
-      location.street_number = params[:user] [:location][:street_number]
-      location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
-
-      if !location.save
-        flash[:notice] = "There was an error with your address. Please enter a valid address."
-        render "edit"
-        return
-      end
-
       @user.display = display
       @user.first_name = user_first_name
       @user.middle_name = user_middle_name
       @user.last_name = user_last_name
       @user.nickname = user_nickname
+
+      if @user.role != "visitante"
+        house_address = params[:user][:location][:street_type] + " " + params[:user][:location][:street_name] + " " + params[:user] [:location][:street_number]
+        @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
+        
+        location = @user.house.location
+        # location.address = house_address
+        location.street_type = params[:user][:location][:street_type]
+        location.street_name = params[:user][:location][:street_name]
+        location.street_number = params[:user] [:location][:street_number]
+        location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
+
+        if !location.save
+          flash[:notice] = "There was an error with your address. Please enter a valid address."
+          render "edit"
+          return
+        end
+      end
+
+      
 
       if !@user.house.save
         flash[:notice] = "There was an error with your house info. Please enter casa information again."
