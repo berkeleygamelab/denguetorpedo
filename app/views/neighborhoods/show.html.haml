@@ -52,13 +52,16 @@
             %a{:href => notice_path(notice)}
               %li.span5.neighborhood_news_title{:style => "height:270px;"}
                 .row
-                  .span4
-                    = notice.title
+                  .span5
+                    - if notice.title.size > 38
+                      = notice.title[0..35] + "..."
+                    - else
+                      = notice.title
                 %br
                 .row
                   .span1.neighborhood_news_thumb
                     = image_tag(notice.photo.url(:medium))
-                  .span3.neighborhood_news_content
+                  .span3.neighborhood_news_content{style: "height:150px;"}
                     = notice.summary
                 .row{style: 'margin-top: 20px;margin-left:10px;'}
                   = notice.location
@@ -89,7 +92,7 @@
         %ul
           - @notices.each do |notice|
             %a{:href => notice_path(notice)}
-              %li.span4.neighborhood_news_title{:style => "height:250px;"}
+              %li.span4.neighborhood_news_title{:style => "height:270px;"}
                 .row
                   .span5
                     - if notice.title.size > 38
@@ -100,11 +103,11 @@
                 .row
                   .span1.neighborhood_news_thumb
                     = image_tag(notice.photo.url(:medium))
-                  .span3.neighborhood_news_content{style: 'width: 170px;'}
+                  .span3.neighborhood_news_content
                     = notice.summary
                 .row{style: 'margin-top: 20px;margin-left:10px;'}
                   = notice.location
-                .row{style: 'margin-left:10px;margin-top:10px;'}
+                .row{style: 'margin-left:10px;'}
                   Data
                   = notice.date.strftime("%d/%m/%Y")
                 .row{style: "margin-left:10px;"}
