@@ -33,6 +33,8 @@ class NeighborhoodsController < ApplicationController
     
     @coordinators = @participants.where(:role => "coordenador")
     @verifiers = @participants.where(:role => "verificador")
+    @coordinator_blogs = @participants.where(:role => "coordenador").map { |coor| coor.posts.last }.select{ |x| !x.nil?}.sort { |x, y| y.created_at <=> x.created_at}
+    @verifier_blogs = @participants.where(:role => "verificador").map { |veri| veri.posts.last }.select{ |x| !x.nil?}.sort { |x, y| y.created_at <=> x.created_at }
     # @notices = Notice.where(:)
 
     @sponsors = @neighborhood.members.where(:role => "lojista")

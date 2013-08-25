@@ -114,32 +114,32 @@
     .row
       %h3{:style => "margin-left:10px;"} Coordenadores comunitários
       #neighborhood_coordinator.span5
-        - @coordinators.each do |coordinator|
-          - if coordinator.posts.count > 0
+        - @coordinator_blogs.each do |blog|
+          - if blog
             .neighborhood_profile_box{style: "margin-bottom:10px;"}
               .span1.neighborhood_pf_picture
-                = image_tag(coordinator.profile_photo.url(:small))                     
+                = image_tag(blog.user.profile_photo.url(:small))                     
               .neighborhood_quote{:style => "margin-top:-8px;padding-left:10px;"}
                 .neighborhood_person_name
-                  = link_to coordinator.display_name, user_path(coordinator)
+                  = link_to blog.user.display_name, user_path(blog.user)
                 .neighborhood_post
-                  = auto_link(coordinator.posts.last.content)
+                  = auto_link(blog.content)
                 / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
             
               
     .row
       %h3{:style => "margin-left:10px;"} Verificadores
       #neighborhood_health_agent.span5
-        - @verifiers.each do |verifier|
-          - if verifier.posts.count > 0
+        - @verifier_blogs.each do |blog|
+          - if blog
             .neighborhood_profile_box
               .span1.neighborhood_pf_picture
-                = image_tag(verifier.profile_photo.url(:small))
+                = image_tag(blog.user.profile_photo.url(:small))
               .neighborhood_quote{:style => "margin-top:-8px;padding-left:10px;"}
                 .neighborhood_person_name
-                  = link_to verifier.display_name, user_path(verifier)    
+                  = link_to blog.user.display_name, user_path(blog.user)    
                 .neighboorhood_past
-                  = auto_link(verifier.posts.last.content)
+                  = auto_link(blog.content)
 
                 / “O Dengue Torpedo me inspirou!” 
     / .row

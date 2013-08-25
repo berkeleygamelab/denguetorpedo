@@ -10,7 +10,7 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-group :production do
+group :staging, :production do
   gem 'pg'
 end
 
@@ -54,6 +54,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'aws-sdk'
 
+gem 'leaflet-rails'
 
 # for geocoding transformation
 # gem 'proj4rb'
