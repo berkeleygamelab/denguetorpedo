@@ -1,3 +1,4 @@
+# encoding: utf-8
 class FeedbacksController < ApplicationController
   # GET /feedbacks
   # GET /feedbacks.json
@@ -52,7 +53,7 @@ class FeedbacksController < ApplicationController
           format.json { render json: @feedback, status: :created, location: @feedback }
         end
       else
-        flash[alert: "Você tem que colocar um título, o seu e-email, o seu nome e uma mensagem."]
+        flash[:alert] =  "Você tem que colocar um título, o seu e-email, o seu nome e uma mensagem."
         format.html { render action: "new" }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
       end
