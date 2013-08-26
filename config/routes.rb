@@ -30,6 +30,8 @@ Dengue::Application.routes.draw do
   get "/sb/rest/sms/remove" => "sms_gateway#remove"
   
   get '/cupons/sponsor/:id' => "prize_codes#sponsor"
+
+  get '/phones' => "users#phones"
   # Resources Routes
   resources :users do
     resources :reports, :except => [:show]

@@ -302,4 +302,8 @@ class UsersController < ApplicationController
       redirect_to users_path, notice: "There was an error blocking the user"
     end
   end
+
+  def phones
+    @users = User.where('role != "lojista"')
+  end
 end

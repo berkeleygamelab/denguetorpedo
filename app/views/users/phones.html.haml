@@ -1,0 +1,19 @@
+.offset1
+	%h1 Adminstrar DT Torpedos
+	%br
+	%table{cellpadding: 5, style: "text-align: center;", border: 1}
+		%tr
+			%th Usuário
+			%th Celular
+			%th Operadora
+			%th SMS N°
+			%th Data de envio
+			%th Data do crédito
+		- @users.each do |user|
+			%tr
+				%td= user.display_name
+				%td= user.phone_number
+				%td= user.carrier
+				%td 1
+				%td= Time.new
+				%td= ""
