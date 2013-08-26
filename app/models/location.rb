@@ -34,7 +34,7 @@ class Location < ActiveRecord::Base
   BASE_URI = "http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Geocode/DBO.Loc_composto/GeocodeServer/findAddressCandidates"
 
   def geocode(address = "")
-    self.address = street_type + " " + street_name + " " + street_number
+    self.address = self.street_type + " " + self.street_name + " " + self.street_number
     uri = URI.parse(URI.escape("#{BASE_URI}?f=pjson&outSR=4326&Street=#{self.address}"))
 
     result = JSON.parse(Net::HTTP.get(uri))["candidates"].first

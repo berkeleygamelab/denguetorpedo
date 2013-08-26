@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -16,7 +17,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def require_login
-    flash[:alert] = "Login to see this page." if @current_user.nil?
+    flash[:alert] = "Faça o seu login para visualizar essa página." if @current_user.nil?
     redirect_to root_url if @current_user.nil?
     # head :u and return if @current_user.nil?
   end

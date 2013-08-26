@@ -1,6 +1,9 @@
-<h1>Editing feedback</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @feedback %> |
-<%= link_to 'Back', feedbacks_path %>
+<div class="row offset1">
+	<% if flash[:notice] %>
+  <h2 class="notice" style="margin: 10px; width: 700px;">
+    <%= flash[:notice] %>
+  </h2>
+  <% end %>
+	<h1>Enviar uma mensagem a Dengue Torpedo</h1>
+	<br>
+	<%= render 'form' %>

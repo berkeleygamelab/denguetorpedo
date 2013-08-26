@@ -19,6 +19,7 @@
           %th Código
           %th Usuário
           %th Celular
+          %th Operadora
         - prize.prize_codes.each do |cupon|
           %tr
             %td{style: "text-align:center;"}
@@ -26,3 +27,5 @@
             %td= cupon.code
             %td= cupon.user.display_name
             %td= cupon.user.phone_number
+            %td{style: "text-align:center;"}
+              = cupon.user.carrier

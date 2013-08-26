@@ -78,16 +78,27 @@ class ReportsController < ApplicationController
         location.save
       end
       
-      if !params[:before_photo] and !params[:report]
-        flash[:error] = "Você tem que carregar uma foto do foco encontrado."
+      if params[:report][:report] == ""
+        flash[:error] = "Você tem que descrever o local e/ou o foco."
         flash[:address] = address
         @report = Report.new(:location => location)
         redirect_to :back
         return
       end
 
-      @report = Report.create_from_user("", :status => :reported, :reporter => @current_user, :location => location)
+      if !params[:before_photo] and !params[:report]
+        flash[:error] = "Você tem que carregar uma foto do foco encontrado."
+        flash[:address] = address
+        @report = Report.new(:location => location)
+        @report.report = params[:report][:report]
+        redirect_to :back
+        return
+      end
 
+
+
+      @report = Report.create_from_user("", :status => :reported, :reporter => @current_user, :location => location)
+      @report.report = params[:report][:report]
       
 
       @report.before_photo = params[:report][:before_photo]
@@ -186,6 +197,10 @@ class ReportsController < ApplicationController
         return
       end
  
+      if params[:report_description]
+        @report.report = params[:report_description]
+        @report.save
+      end
       
       if !params[:eliminate] and @report.after_photo_file_size.nil?
         flash[:error] = 'Você tem que carregar uma foto do foco eliminado.'

@@ -30,9 +30,12 @@
   .row
     .span2.rp_before_photo 
       =image_tag open.before_photo(:medium)
-    .span5
-            
-        
+    .span5{style: "margin-top:9px;"}
+      - if open.elimination_type
+        %p{style: "margin-bottom:12px;"}= open.report
+
+      - else     
+        = text_area_tag("report_description", open.report, style: "width:430px;")
       / .row.rp_report_people
       /   Marcado por:
       /   =link_to open.reporter.display_name + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
@@ -48,6 +51,7 @@
                   = submit_tag "Carregue!", :disabled => open.created_at + 3600 * 24 * 2 < Time.new
                   
             - else
+
               .eliminate_prompt{:style => "margin-top:5px;"}
                 = form_for(:eliminate, :url => {:controller => "reports", :action => "update", :html => {:autocomplete => "off", :multipart => false}}, :method=>:put) do |f|
                   = hidden_field_tag 'report_id', open.id
@@ -77,7 +81,10 @@
                   - if open.elimination_type
                     %h3{:style => "font-size: 14px;"} Carregue uma foto do foco eliminado
                     = f.file_field :after_photo, :disabled => open.after_photo_file_size
-                  = submit_tag "Submeta!", :style => "margin-left:5px;", :disabled => open.created_at + 3600 * 24 * 2 < Time.new or open.isVerified == "f"
+                    %br
+                  = submit_tag "Enviar!", :style => "margin-left:5px;margin-top:5px;", :disabled => @current_user.role == "verificador" or open.created_at + 3600 * 24 * 2 < Time.new
+
+
 
                   .row.rp_report_people
                     - if open.elimination_type and open.reporter_id
