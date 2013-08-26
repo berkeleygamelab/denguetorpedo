@@ -12,6 +12,7 @@
 //= require gmaps4rails/gmaps4rails.openlayers.js
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require_tree .
 //= require leaflet
 

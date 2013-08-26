@@ -6,7 +6,7 @@
 			%th Usuário
 			%th Celular
 			%th Operadora
-			%th SMS N°
+			%th Torpedos
 			%th Data de envio
 			%th Data do crédito
 		- @users.each do |user|
@@ -15,5 +15,5 @@
 				%td= user.phone_number
 				%td= user.carrier
 				%td 1
-				%td= Time.new
+				%td= Time.new.strftime("%d/%m/%Y %H:%M:%S")
 				%td= ""

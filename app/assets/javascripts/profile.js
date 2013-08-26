@@ -71,6 +71,8 @@ $(document).ready(function() {
 			$("#house_inputs input").prop("disabled", false);
 			$("label.commercial").show();
 			$("input.commercial").show();
+			$("#house_inputs").show();
+			$("#visitor_desc").hide();
 
 		} else if ($("select#role").val() == "verificador") {
 			$("h1#configuration").html("Configurações da organização");
@@ -81,8 +83,10 @@ $(document).ready(function() {
 			$("#house_inputs input").prop("disabled", false);
 			$("label.commercial").hide();
 			$("input.commercial").hide();
+			$("#house_inputs").show();
+			$("#visitor_desc").hide();
 		} else {
-			$("h1#configuration").html("Configurações da casa");
+			$("h1#configuration").html("Apresentação pessoal");
 			$("label#house_name").html("Nome da casa (máximo 16 caracteres)");
 			$("label#house_picture").html("Foto da casa");
 			$("input#house_name").attr("placeholder", "ex. Maria Santos ou Maria e Paulo");
@@ -92,7 +96,11 @@ $(document).ready(function() {
 			$("#house_inputs input").prop("disabled", true);
 			$("label.commercial").hide();
 			$("input.commercial").hide();
+			$("#house_inputs").hide();
+			$("#visitor_desc").show();
 		}
 	});
+
+
 
 });

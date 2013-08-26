@@ -82,6 +82,7 @@
         = house_form.text_field :phone_number, :class => "commercial", :placeholder => "21xxxxxxxx"
         = house_form.label "Logo digital", :id => "house_picture"
         = house_form.file_field :profile_photo
-
+    .indent#visitor_desc{style: "display:none;"}
+      = text_area_tag "bio", nil, rows: 10, placeholder: "Descreva suas informações pessoais e profissionais."
     %br
     = f.submit "Fazer inscrição"
