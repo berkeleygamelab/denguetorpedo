@@ -304,6 +304,6 @@ class UsersController < ApplicationController
   end
 
   def phones
-    @users = User.where('role != "lojista"')
+    @users = User.ordinary_users
   end
 end
