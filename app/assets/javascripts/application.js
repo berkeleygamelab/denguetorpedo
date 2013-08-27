@@ -18,9 +18,9 @@
 
 
 //TopUp
-TopUp.host = "http://localhost:5000/";
-TopUp.images_path = "assets/top_up/";
-TopUp.players_path = "assets/players/";
+// TopUp.host = "http://localhost:5000/";
+// TopUp.images_path = "assets/top_up/";
+// TopUp.players_path = "assets/players/";
 
 
 //gmaps
