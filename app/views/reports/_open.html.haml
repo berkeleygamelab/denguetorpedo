@@ -18,7 +18,8 @@
             .span{style: "margin-top:3px; margin-right:10px;"}
               Tempo restante
               :javascript
-                var newYear = new Date('#{open.created_at + 3600 * 24 * 2}'.replace(/-/g, "/"));
+                var newYear = new Date('#{open.created_at + 3600 * 24 * 2}');
+                newYear = new Date(#{(open.created_at + 3600 * 53).strftime("%s").to_i * 1000});
                 $(".countdown").countdown({until: newYear, format: 'HMS', compact: 'true'});
           - else
             .span{style: "margin-top:3px; margin-right:10px;"}
