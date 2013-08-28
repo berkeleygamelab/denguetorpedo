@@ -120,7 +120,7 @@
           %li
             .badge_box
               .span2{:style => "margin-top:10px;margin-left:75px"}
-                = image_tag("badges/orange_star.fw.png")
+                = image_tag("badges/de_olho.png")
               .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
                 De olho no mosquito
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
@@ -130,7 +130,7 @@
           %li
             .badge_box
               .span2{:style => "margin-top:10px;margin-left:75px"}
-                = image_tag("badges/blue_black_star.fw.png")
+                = image_tag("badges/exterminador.png")
               .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
                 Exterminador de mosquitos
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
@@ -139,7 +139,7 @@
           %li
             .badge_box
               .span2{:style => "margin-top:10px;margin-left:75px"}
-                = image_tag("badges/guerreiro_dt.fw.png")
+                = image_tag("badges/guerreiro.png")
               .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
                 Guerreiro DT
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
@@ -148,7 +148,7 @@
           %li
             .badge_box
               .span2{:style => "margin-top:10px;margin-left:75px"}
-                = image_tag("badges/blue_star.fw.png")
+                = image_tag("badges/saudavel.png")
               .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
                 Comunidade Saudavel
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
@@ -157,13 +157,13 @@
           %li
             .badge_box
               .span2{:style => "margin-top:10px;margin-left:75px; margin-bottom:9px;"}
-                = image_tag("badges/golden_star.fw.png")
+                = image_tag("badges/cuido.png")
               .row.span4{:style => "font-size:16px;weight:bold;color:#FF6600;"}
                 Eu cuido da Comunidade!
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;"}
                 Honrarias + Camiseta + Adesivo + Carimbo digital 7200 pontos 
       %ul#coupons_list
-        - @coupons.each do |coupon|
+        - @coupons.reverse.each do |coupon|
           = render :partial => "prize_codes/coupon", :object => coupon
 
 

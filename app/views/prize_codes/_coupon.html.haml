@@ -10,9 +10,13 @@
 		- else
 			= link_to image_tag(coupon.prize.prize_photo.url(:large), :class => "prizes"), prize_code_path(coupon)
 		.description
-			= link_to coupon.prize.prize_name, prize_code_path(coupon)		
-		.stock
-			= coupon.code
-		.redeem_by
-			- if coupon.prize.expire_on
-				Resgate até: #{coupon.created_at.strftime("%d/%m/%Y")}
+			- if coupon.user == @current_user
+				= link_to coupon.prize.prize_name, prize_code_path(coupon)	
+			- else
+				coupon.prize.prize_name	
+		- if coupon.user == @current_user
+			.stock
+				= coupon.code
+			.redeem_by
+				- if coupon.prize.expire_on
+					Resgate até: #{coupon.created_at.strftime("%d/%m/%Y")}

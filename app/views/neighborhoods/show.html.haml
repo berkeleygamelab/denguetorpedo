@@ -20,6 +20,8 @@
           %br eliminados
 %br
 %br
+
+
 .row
   #neighborhood_view{:style => "font-weight:bold;"}
     .span.offset1
@@ -45,32 +47,7 @@
               = image_tag("default_images/profile_default_image.png")
               Futuro participante
 
-      %h2 Notícias da comunidade
-      #neighborhood_news{style: "height:310px;overflow-x:scroll;width:660px;"} 
-        %ul
-          - @notices.each do |notice|
-            %a{:href => notice_path(notice)}
-              %li.span5.neighborhood_news_title{:style => "height:270px;"}
-                .row
-                  .span5
-                    - if notice.title.size > 33
-                      = notice.title[0..30] + "..."
-                    - else
-                      = notice.title
-                %br
-                .row{style: "height:140px;"}
-                  .span1.neighborhood_news_thumb
-                    = image_tag(notice.photo.url(:medium))
-                  .span3.neighborhood_news_content{style: "height:150px;"}
-                    = notice.summary
-                .row{style: 'margin-top: 20px;margin-left:10px;'}
-                  = notice.location
-                .row{style: 'margin-left:10px;'}
-                  Data
-                  = notice.date.strftime("%d/%m/%Y")
-                .row{style: "margin-left:10px;"}
-                  Hora
-                  = notice.date.strftime("%H:%M")
+      
   - else 
     .span11.offset1
       %ul#neighborhood_house_list
@@ -86,35 +63,6 @@
             %li.neighborhood_house_photo_thumb.span3
               = image_tag("default_images/house_default_image.png")
               Futura casa
-
-      %h2 Notícias da comunidade
-      #neighborhood_news{style: "height:310px;overflow-x:scroll;width:690px;"}  
-        %ul
-          - @notices.each do |notice|
-            %a{:href => notice_path(notice)}
-              %li.span4.neighborhood_news_title{:style => "height:270px;"}
-                .row
-                  .span5
-                    - if notice.title.size > 33
-                      = notice.title[0..30] + "..."
-                    - else
-                      = notice.title
-                %br
-                .row{style: "height:140px;"}
-                  .span1.neighborhood_news_thumb
-                    = image_tag(notice.photo.url(:medium))
-                  .span3.neighborhood_news_content
-                    = notice.summary
-                .row{style: 'margin-top: 20px;margin-left:10px;'}
-                  = notice.location
-                .row{style: 'margin-left:10px;'}
-                  Data
-                  = notice.date.strftime("%d/%m/%Y")
-                .row{style: "margin-left:10px;"}
-                  Hora
-                  = notice.date.strftime("%H:%M")
-  
-
   #neighborhood_right_panel.span5{:style => "margin-top:-165px;margin-left:0px;"}
     %h2 Destaques da comunidade
     .row
@@ -129,9 +77,7 @@
                 .neighborhood_person_name
                   = link_to blog.user.display_name, user_path(blog.user)
                 .neighborhood_post
-                  = auto_link(blog.content)
-                / “Mutirão na praça da escola sábado dia 21 de manhã, vamos participar, gente!”
-            
+                  = auto_link(blog.content)            
               
     .row
       %h3{:style => "margin-left:10px;"} Verificadores
@@ -146,64 +92,42 @@
                   = link_to blog.user.display_name, user_path(blog.user)    
                 .neighboorhood_past
                   = auto_link(blog.content)
-
-                / “O Dengue Torpedo me inspirou!” 
-    / .row
-    /   %h3{:style => "margin-left:10px;"} Patrocinadores
-    /   #neighborhood_sponsors.span4
-    /     .neighborhood_sponsor_box
-    /       %ul
-    /         - @random_sponsors.each do |sponsor|
-    /           %li.span1.sponsor_thumb
-    /             = image_tag sponsor
-
-.row
-  .offset1.span12{:style => "width:650px;"}
-    #neighborhood_sponsors{:style => "margin-top:20px;"}
-      %h2 Patrocinadores
-      %ul{:style => "height:120px; overflow-x:auto;"}
-        - @sponsors.each do |sponsor|
-          %li{:style => "width:100px; height:100px;display:inline;"}
-            - if sponsor.house.profile_photo_file_name.nil?
-              .logo_box{style: "width: 98px; height: 78px;padding-top:20px;margin-right: 5px;"}
-                = sponsor.house.name
-            - else
-              = link_to image_tag(sponsor.house.profile_photo.url(:medium), :width => 100, :height => 100), sponsor_path(sponsor)
-
-        / %li.span4.neighborhood_news_title{:style => "height:250px;"}
-        /   .row
-        /     .span4
-        /       Oficina: criando logos digitais
-        /   %br
-        /   .row
-        /     .span1.neighborhood_news_thumb
-        /       = image_tag 'rails.png'            
-        /     .span3.neighborhood_news_content{style: 'width: 170px;'}
-        /       Faremos no fim de semana do dia 28 uma oficina na Redes da Maré onde você poderá aprender a criar logotipos no computador usando programas gráficos, como o Photoshop. Inscreva-se!
-          
-        / %li.span4.neighborhood_news_title{:style => "height:250px;"}
-        /   .row
-        /     .span4
-        /       Exposição de Fotografias
-        /   %br
-        /   .row
-        /     .span1.neighborhood_news_thumb
-        /       = image_tag 'camera.png'            
-        /     .span3.neighborhood_news_content
-        /       As imagens feitas pelos participantes da oficina de fotografia realizada no mês passado estão em exposição na Redes da Maré. Confira!
-          
-        / %li.span4.neighborhood_news_title{:style => "height:250px;"}
-        /   .row
-        /     .span4
-        /       Palestra sobre Dengue e Saúde
-        /   %br
-        /   .row
-        /     .span1.neighborhood_news_thumb
-        /       = image_tag 'dengue.jpg'            
-        /     .span3.neighborhood_news_content
-        /       Na próxima semana, o professor Carlos Chagas vem à nossa comunidade para nos explicar mais e tirar dúvidas sobre dengue, tratamento e prevenção.
-                   
-      
-      
-    
-    
+  .span11.offset1            
+    %h2 Notícias da comunidade
+    #neighborhood_news{style: "height:310px;overflow-x:scroll;width:690px;"}  
+      %ul
+        - @notices.each do |notice|
+          %a{:href => notice_path(notice)}
+            %li.span4.neighborhood_news_title{:style => "height:270px;"}
+              .row
+                .span5
+                  - if notice.title.size > 33
+                    = notice.title[0..30] + "..."
+                  - else
+                    = notice.title
+              %br
+              .row{style: "height:140px;"}
+                .span1.neighborhood_news_thumb
+                  = image_tag(notice.photo.url(:medium))
+                .span3.neighborhood_news_content
+                  = notice.summary
+              .row{style: 'margin-top: 20px;margin-left:10px;'}
+                = notice.location
+              .row{style: 'margin-left:10px;'}
+                Data
+                = notice.date.strftime("%d/%m/%Y")
+              .row{style: "margin-left:10px;"}
+                Hora
+                = notice.date.strftime("%H:%M")
+  .row
+    .offset1.span12{:style => "width:650px;"}
+      #neighborhood_sponsors{:style => "margin-top:20px;"}
+        %h2 Patrocinadores
+        %ul{:style => "height:120px; overflow-x:auto;"}
+          - @sponsors.each do |sponsor|
+            %li{:style => "width:100px; height:100px;display:inline;"}
+              - if sponsor.house.profile_photo_file_name.nil?
+                .logo_box{style: "width: 98px; height: 78px;padding-top:20px;margin-right: 5px;"}
+                  = link_to sponsor.house.name, sponsor_path(sponsor)
+              - else
+                = link_to image_tag(sponsor.house.profile_photo.url(:medium), :width => 100, :height => 100), sponsor_path(sponsor)

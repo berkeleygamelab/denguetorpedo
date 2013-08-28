@@ -42,16 +42,6 @@
             %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 330px;'}
       .row
         #map{style: "height: 300px;margin-left:10px; margin-top:10px;"}
-        :javascript
-          var map;
-          require(["esri/map"], function(Map) { 
-            // code to create the map and add a basemap will go here 
-            map = new Map("map", {
-              center: [-22.85542888699996, -43.24281030199995],
-              zoom: 10,
-              basemap: "streets"
-            });
-          });
 
 
 
