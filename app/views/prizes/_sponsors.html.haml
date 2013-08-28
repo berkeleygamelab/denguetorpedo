@@ -1,9 +1,0 @@
-.span4{ :style => "margin-top:-42px;height:467px;"}
-	%select{:id => "sponsors_select", :onchange => "location = this.options[this.selectedIndex].value;", :style => "width:263px;"}
-		%option Patrocinador (#{@sponsors.count})
-		- @sponsors.each do |sponsor|
-			%option{:value => sponsor_path(sponsor)} #{sponsor.house.name}
-	.sponsors_box{ :style => "background-color:white;height:420px;width:255px;padding:5px;overflow-y:auto;"}
-		- @sponsors.shuffle.each do |sponsor|
-			.sponsors
-				= link_to image_tag(sponsor.house.profile_photo.url(:small), :width => 75, :height => 75), "sponsors/#{sponsor.id}"
