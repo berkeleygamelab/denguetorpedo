@@ -42,6 +42,30 @@
             %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 330px;'}
       .row
         #map{style: "height: 300px;margin-left:10px; margin-top:10px;"}
+        :javascript
+          var map;
+
+          require(["esri/map", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "dojo/domReady!"], function(Map, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol) {
+            var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
+
+            var point = new Point(662255.283176082, 7464968.42407467, new esri.SpatialReference({wkid: 29193}));
+            map = new Map("map", {
+              center: point,
+              zoom: 8,
+              extent: customExtent
+            });
+            
+            var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
+            map.addLayer(tiled);
+
+            map.on("load", function() {
+              var marker = new Point(662255.283176082, 7464968.42407467);
+              var graphic = new Graphic(marker, new SimpleMarkerSymbol());
+              map.graphics.add(graphic);
+            });
+            
+            
+          });
 
 
 
