@@ -29,10 +29,11 @@
 	%h2 Administrar patrocinadores
 	.row
 		%table.users_table.span12{:cellpadding => 10, border: 1}
-			%col{style: "width:55%;"}
-			%col{style: "width:15%;"}
-			%col{style: "width:15%;"}
-			%col{style: "width:15%;"}
+			%colgroup
+				%col{style: "width:55%;"}
+				%col{style: "width:15%;"}
+				%col{style: "width:15%;"}
+				%col{style: "width:15%;"}
 			- @sponsors.each do |sponsor|
 				%tr
 					- if sponsor.is_blocked == false

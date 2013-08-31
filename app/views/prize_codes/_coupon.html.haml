@@ -13,7 +13,7 @@
 			- if coupon.user == @current_user
 				= link_to coupon.prize.prize_name, prize_code_path(coupon)	
 			- else
-				coupon.prize.prize_name	
+				= coupon.prize.prize_name	
 		- if coupon.user == @current_user
 			.stock
 				= coupon.code

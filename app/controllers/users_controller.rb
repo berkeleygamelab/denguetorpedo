@@ -15,8 +15,9 @@ class UsersController < ApplicationController
     else
       @users = User.where(:role => "morador").where('lower(first_name) LIKE lower(?)', params[:q] + "%").order(:first_name)
       @sponsors = User.where(:role => "lojista").where('lower(first_name) LIKE lower(?)', params[:q] + "%").order(:first_name)
+      @sponsors = House.where('lower(name) LIKE lower(?)', params[:q] + "%").map { |house| house.user }.compact
       @verifiers = User.where(:role => "verificador").where('lower(first_name) LIKE lower(?)', params[:q] + "%").order(:first_name)
-      @visitors = User.where(:role => "visitante").where('lower(first_name) LIKE #lower(?)', params[:q] + "%").order(:first_name)
+      @visitors = User.where(:role => "visitante").where('lower(first_name) LIKE lower(?)', params[:q] + "%").order(:first_name)
     end
     @prizes = Prize.where(:is_badge => false)
     authorize! :assign_roles, User

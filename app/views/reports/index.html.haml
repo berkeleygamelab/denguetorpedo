@@ -39,95 +39,104 @@
         .span6
           .report_map_search
             - if params[:view] == 'make_report'
-              %h2{style: 'margin-left:10px;font-size:15px;'}2 - Clique na localização correta para adicionar um marcador.
+              %h2{style: 'margin-left:10px;font-size:15px;line-height:25px;'}2. Clique na localização correta para adicionar um marcador.
             - else
               %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
               %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 330px;'}
-      .row
-        #map{style: "height: 300px;margin-left:10px; margin-top:10px;"}
-        
+      #map{style: "height: 440px;width:440px;margin-left:10px; margin-top:10px;"}
+      
 
-        - if params[:view] == 'make_report'
-          :javascript
-            var map, tb;
-            require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol) {
-              var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
+      - if params[:view] == 'make_report'
+        :javascript
+          var map, tb;
+          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol) {
+            var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
-              var point = new Point(662255.283176082, 7464968.42407467, new esri.SpatialReference({wkid: 29193}));
-              map = new Map("map", {
-                center: point,
-                zoom: 8,
-                extent: customExtent
-              });
+            var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
+            map = new Map("map", {
+              center: point,
+              zoom: 6,
+              extent: customExtent
+            });
+            
+            var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
+            map.addLayer(tiled);
+
+            map.on("load", function() {
               
-              var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
-              map.addLayer(tiled);
+              tb = new Draw(map);
+              tb.on("draw-end", addGraphic);
+              tb.activate("point");
+            });   
 
-              map.on("load", function() {
-                var marker = new Point(662255.283176082, 7464968.42407467);
-                var graphic = new Graphic(marker, new SimpleMarkerSymbol());
-                map.graphics.add(graphic);
-                tb = new Draw(map);
-                tb.on("draw-end", addGraphic);
-                tb.activate("point");
-              });   
+            function addGraphic(evt) {
+              map.graphics.clear();
+              map.enableMapNavigation();
 
-              function addGraphic(evt) {
-                map.graphics.clear();
-                map.enableMapNavigation();
+              // figure out which symbol to use
+              var symbol;
+              symbol = new SimpleMarkerSymbol();
+              $("input#x").val(evt.geometry.x);
+              $("input#y").val(evt.geometry.y);
+              map.graphics.add(new Graphic(evt.geometry, symbol));
+              map.centerAt(evt.mapPoint);
+            }
 
-                // figure out which symbol to use
-                var symbol;
-                symbol = new SimpleMarkerSymbol();
-                alert(evt.geometry.x);
-                map.graphics.add(new Graphic(evt.geometry, symbol));
-              }
+            $("#street_type").change(function() {
 
-              $("#street_type").change(function() {
+            });
+            $("#street_name").change(function() {
+            });
 
-              });
-              $("#street_name").change(function() {
-              });
+            $("#street_number").change(function() {
+              $.ajax({
+                url: "http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Geocode/DBO.Loc_composto/GeocodeServer/findAddressCandidates",
+                type: "GET",
+                dataType: "jsonp",
+                data: {"f": "pjson", "Street": $("#street_type").val() + " " + $("#street_name").val() + " " + $("#street_number").val()},
+                success: function(m) {
+                  map.graphics.clear();
+                  var candidates = m.candidates;
+                  
 
-              $("#street_number").change(function() {
-                $.ajax({
-                  url: "http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Geocode/DBO.Loc_composto/GeocodeServer/findAddressCandidates",
-                  type: "GET",
-                  data: {"f": "pjson", "outSR": 4326, "Street": "Beco Felicidade 7"},
-                  success: function(m) {
-                    console.log(JSON.stringify(m));
-                  },
-                  error: function(m) {
-                    console.log(JSON.stringify(m));
+                  if (candidates.length > 0) {
+                    map.graphics.add(new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), new SimpleMarkerSymbol()));
+                    $("input#x").val(candidates[0].location.x);
+                    $("input#y").val(candidates[0].location.y);
+                    map.centerAt(new Point(candidates[0].location.x, candidates[0].location.y), new esri.SpatialReference({wkid: 29193}));
                   }
-                });
+                },
+                error: function(m) {
+                  console.log(JSON.stringify(m));
+                }
               });
-
-
             });
-        - else
-          :javascript
-            var map;
 
-            require(["esri/map", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "dojo/domReady!"], function(Map, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol) {
-              var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
-              var point = new Point(662255.283176082, 7464968.42407467, new esri.SpatialReference({wkid: 29193}));
-              map = new Map("map", {
-                center: point,
-                zoom: 8,
-                extent: customExtent
-              });
-              
-              var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
-              map.addLayer(tiled);
+          });
+      - else
+        :javascript
+          var map;
 
-              map.on("load", function() {
-                var marker = new Point(662255.283176082, 7464968.42407467);
-                var graphic = new Graphic(marker, new SimpleMarkerSymbol());
-                map.graphics.add(graphic);
-              });   
+          require(["esri/map", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "dojo/domReady!"], function(Map, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol) {
+            var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
+
+            var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
+            map = new Map("map", {
+              center: point,
+              zoom: 6,
+              extent: customExtent
             });
+            
+            var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
+            map.addLayer(tiled);
+
+            map.on("load", function() {
+              var marker = new Point(662255.283176082, 7464968.42407467);
+              var graphic = new Graphic(marker, new SimpleMarkerSymbol());
+              map.graphics.add(graphic);
+            });   
+          });
 
 
 

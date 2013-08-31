@@ -1,7 +1,15 @@
 .offset1
 	%h1 Adminstrar DT Torpedos
 	%br
-	%table{cellpadding: 5, style: "text-align: center;", border: 1}
+	%table{cellpadding: 5, border: 1, style: "text-align:center;"}
+		%colgroup
+			%col
+			%col{style: "width:12%;"}
+			%col
+			%col
+			%col
+			%col
+			%col
 		%tr
 			%th Usuário
 			%th Celular
@@ -12,10 +20,13 @@
 			%th Data do crédito
 		- @users.each do |user|
 			%tr
-				%td= user.display_name
+				%td{style: "text-align:left"}= user.display_name
 				%td= user.phone_number.sub(/^0/, "")
 				%td= user.carrier
-				%td
+				- if user.prepaid == true
+					%td Pré
+				- else
+					%td Pós
 				%td 1
 				%td= Time.new.strftime("%d/%m/%Y %H:%M:%S")
 				%td= ""
