@@ -19,6 +19,10 @@
     <%= f.text_field :title, :style => "width:400px;", :maxlength => 60 %>
   </div>
   <div class="field">
+    <%= f.label :institution_name, "Instituição (máx 60 caracteres)"%>
+    <%= f.text_field :institution_name, :style => "width:400px;", :maxlength => 60 %>
+  </div>
+  <div class="field">
     <%= f.label :summary, "Descrição resumida (máx 150 caracteres)" %>
     <%= f.text_area :summary, :maxlength => 150, :rows => 3 %>
   </div>
@@ -27,8 +31,8 @@
     <%= f.text_area :description, :maxlength => 900 %>
   </div>
   <div class="field">
-    <%= f.label :location, "Local da atividade" %>
-    <%= f.text_field :location, :style => "width:600px;" %>
+    <%= f.label :location, "Endereço (máx 60 caracteres)" %>
+    <%= f.text_field :location, :style => "width:600px;", :maxlength => 60 %>
   </div>
   <div class="field">
     <%= f.label :date, "Data da atividade" %>

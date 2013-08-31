@@ -42,7 +42,7 @@
       /   =link_to open.reporter.display_name + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
       - if @current_user != nil
         .row
-          .span5
+          .span8
             - if open.before_photo.url.include?("default_images/report_before_photo.png" )
               %h3{:style => "font-size: 14px;"} Carregue uma foto do foco identificado
               .eliminate_prompt
