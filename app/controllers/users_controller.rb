@@ -6,8 +6,18 @@ class UsersController < ApplicationController
   before_filter :require_login, :only => [:edit, :update]
 
   def index
-    @users = User.ordinary_users.order(:first_name)
-    @sponsors = User.where(:role => "lojista")
+
+    if params[:q].nil? or params[:q] == ""
+      @users = User.where(:role => "morador").order(:first_name)
+      @sponsors = User.where(:role => "lojista").order(:first_name)
+      @verifiers = User.where(:role => "verificador").order(:first_name)
+      @visitors = User.where(:role => "visitante").order(:first_name)
+    else
+      @users = User.where(:role => "morador").where('lower(first_name) LIKE lower(?)', params[:q] + "%").order(:first_name)
+      @sponsors = User.where(:role => "lojista").where('lower(first_name) LIKE lower(?)', params[:q] + "%").order(:first_name)
+      @verifiers = User.where(:role => "verificador").where('lower(first_name) LIKE lower(?)', params[:q] + "%").order(:first_name)
+      @visitors = User.where(:role => "visitante").where('lower(first_name) LIKE #lower(?)', params[:q] + "%").order(:first_name)
+    end
     @prizes = Prize.where(:is_badge => false)
     authorize! :assign_roles, User
   end
@@ -121,10 +131,12 @@ class UsersController < ApplicationController
 
 
     @user = User.find(params[:id])
-    if user_profile_phone_number != @user.phone_number
+    if !user_profile_phone_number.empty? and !user_profile_phone_number_confirmation.empty?
       if user_profile_phone_number == user_profile_phone_number_confirmation
-        @user.phone_number = user_profile_phone_number
-        @user.is_fully_registered = true
+        if user_profile_phone_number != @user.phone_number
+          @user.phone_number = user_profile_phone_number
+          @user.is_fully_registered = true
+        end
       else
         @user = @current_user
         @confirm = 0
@@ -133,6 +145,21 @@ class UsersController < ApplicationController
         return
       end
     end
+
+
+    if !params[:user][:carrier].empty? and !params[:carrier_confirmation].empty?
+      if params[:user][:carrier] == params[:carrier_confirmation]
+        if @current_user.carrier != params[:user][:carrier] 
+          @user.carrier = params[:user][:carrier]
+        end
+      else
+        flash[:alert] = "Operadoras não coincidem."
+        render "edit"
+        return
+      end
+    end
+
+    @user.prepaid = params[:user][:prepaid]
     
     if user_profile_photo
       @user.profile_photo = user_profile_photo
@@ -199,15 +226,7 @@ class UsersController < ApplicationController
         @user.is_fully_registered = true
       end
 
-      if @current_user.carrier != params[:user][:carrier]
-        if params[:user][:carrier] == params[:carrier_confirmation]
-          @user.carrier = params[:user][:carrier]
-        else
-          flash[:alert] = "operadoras não coincidem."
-          render "edit"
-          return
-        end
-      end
+      
 
 
       if @user.save

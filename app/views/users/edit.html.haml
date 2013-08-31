@@ -48,7 +48,9 @@
         %p.link
           = link_to "Registrar notícias da comunidade", new_notice_path
         %p.link
-          = link_to "Administrar usuários, patrocinadores e prêmios", "/users"
+          = link_to "Administrar usuários", "/users"
+        %p.link
+          = link_to "Administrar prêmios", "/premios/admin"
         %p.link
           = link_to "Administrar DT Torpedos", "/phones"
         %p.link
@@ -130,6 +132,10 @@
 
       = f.text_field :phone_number, :placeholder => "* Celular"
       = f.text_field :carrier, :placeholder => "Operadora", :style => "width:150px;"
+      = f.radio_button :prepaid, true, style: "margin-left: 10px;"
+      Pré-pago
+      = f.radio_button :prepaid, false
+      Pós-pago
       %br
       /= f.label :phone_number,  "* Confirmar celular"
       = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular")
@@ -159,7 +165,7 @@
         = location_form.text_field :street_name, value: @user.location.street_name, placeholder: "Nome", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze."
         = location_form.text_field :street_number, value: @user.location.street_number, placeholder: "Número", class: "middle_field"
         %h3#complete_name{:title => "Na fase atual, somente os moradores do Bairro Maré poderão participar."}Bairro <b style="color:blue;">?</b>
-        = location_form.text_field:neighborhood, value: "Maré" if @user.location
+        = location_form.text_field :neighborhood, value: "Maré", readonly: true if @user.location
     
       = f.fields_for :house do |house_form|
         - if @user.role == "lojista"

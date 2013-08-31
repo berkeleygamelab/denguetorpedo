@@ -6,18 +6,20 @@
     = form_for(@report, :url => {:action => "create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
       = f.error_messages
       / = f.label "Escolha o tipo e o método de eliminação do foco"
-      = f.label "Endereço do foco localizado:"
+      = f.label "1 - Endereço do foco localizado:"
       / # = text_field_tag :location, nil, :placeholder => 'Localização', :id => 'report_address', :value => flash[:address]
       = text_field_tag :street_type, "", placeholder: "Rua, Beco etc.", class: "short_field"
       = text_field_tag :street_name, "", placeholder: "Nome", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze.", style: "width:200px;"
       = text_field_tag :street_number, "", placeholder: "Número", class: "middle_field"
       = text_field_tag :neighborhood, "Maré", placeholder: "Maré", class: "short_field"
       %br
-      = f.label "Descrição da localização:"
+      = f.label "3 - Descrição da localização:"
       = f.text_area :report, :placeholder => 'Descreva a localização do foco (max 100 caracteres) Ex: Foco no terreno ao lado; ou, Foco na calçada em frente', :id => 'report_content', :maxlength => 100, :rows => 3
       %br
-      = f.label "Carregue a imagem do foco encontrado:"
+      = f.label "4 - Carregue a imagem do foco encontrado:"
       = f.file_field :before_photo
+      = hidden_field_tag "x"
+      = hidden_field_tag "y"
       %br
       %br
       = f.submit "Enviar!"

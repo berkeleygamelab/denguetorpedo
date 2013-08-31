@@ -1,11 +1,20 @@
 - if flash[:notice] 
 	%h2.notice.offset1{style: "width: 700px;"}  
 		= flash[:notice]
-%h1.offset1 Administrar usuários, patrocinadores e prêmios
 .row.offset1
-	%h2 Administrar usuários
-	%ol.users_list.offset1
-		%table{:cellpadding => 20}
+	%h1.span5{style: "margin-left:0px;"} Administrar usuários
+	%form.span4{action: users_path}
+		%input{type: "text", placeholder: "Buscar usuário", style: "width:436px;margin-top:5px;", name: "q"}
+%br
+
+.row.offset1
+	%h2 Administrar moradores
+	.row
+		%table.users_table.span12{:cellpadding => 10, border: 1}
+			%colgroup
+				%col{style: "width:70%;"}
+				%col{style: "width:15%;"}
+				%col{style: "width:15%;"}
 			- @users.each do |user|
 				%tr
 					- if user.is_blocked == false
@@ -16,9 +25,14 @@
 						%td= link_to 'Desbloquear', block_users_path(:id => user.id), method: :put, data: { confirm: "Você tem certeza?"}
 					%td= link_to 'Deletar', user, method: :delete, data: { confirm: "Você tem certeza?"}
 
-	%h2 Administrar Patrocinadores
-	%ol.users_list.offset1
-		%table{:cellpadding => 20}
+	%br
+	%h2 Administrar patrocinadores
+	.row
+		%table.users_table.span12{:cellpadding => 10, border: 1}
+			%col{style: "width:55%;"}
+			%col{style: "width:15%;"}
+			%col{style: "width:15%;"}
+			%col{style: "width:15%;"}
 			- @sponsors.each do |sponsor|
 				%tr
 					- if sponsor.is_blocked == false
@@ -29,12 +43,49 @@
 						%td{:style => "color:red"}= link_to sponsor.full_name, edit_user_path(sponsor), :style => "color:red;"
 						%td= link_to 'Desbloquear', block_users_path(:id => sponsor.id), method: :put, data: { confirm: "Você tem certeza?"}
 					%td= link_to 'Deletar', sponsor, method: :delete, data: { confirm: "Você tem certeza?"}
-	%h2 Administrar prêmios
-	%ol.users_list.offset1
-		%table{:cellpadding => 20}
-			- @prizes.each do |prize|
+
+	%br
+
+	%h2 Administrar verificadores
+	.row
+		%table.users_table.span12{:cellpadding => 10, border: 1}
+			%col{style: "width:70%;"}
+			%col{style: "width:15%;"}
+			%col{style: "width:15%;"}
+			- @verifiers.each do | verifier|
 				%tr
-					%td= link_to prize.prize_name, prize_path(prize)
-					%td= link_to "Editar", edit_prize_path(prize)
-					%td= link_to 'Deletar', prize, method: :delete, data: { confirm: "Você tem certeza?"}
+					- if verifier.is_blocked == false
+						%td= link_to verifier.full_name, edit_user_path(verifier)
+						%td{:style => "margin-left:10px;"}= link_to 'Bloquear', block_users_path(:id => verifier.id), method: :put, data: { confirm: "Você tem certeza?"}
+					- else
+						%td{:style => "color:red"}= link_to verifier.full_name, edit_user_path(verifier), :style => "color:red;"
+						%td= link_to 'Desbloquear', block_users_path(:id => verifier.id), method: :put, data: { confirm: "Você tem certeza?"}
+					%td= link_to 'Deletar', verifier, method: :delete, data: { confirm: "Você tem certeza?"}
+	%br
+	%h2 Administrar visitantes
+	.row
+		%table.users_table.span12{:cellpadding => 10, border: 1}
+			%col{style: "width:70%;"}
+			%col{style: "width:15%;"}
+			%col{style: "width:15%;"}
+			- @visitors.each do |visitor|
+				%tr
+					- if visitor.is_blocked == false
+						%td= link_to visitor.full_name, edit_user_path(visitor)
+						%td{:style => "margin-left:10px;"}= link_to 'Bloquear', block_users_path(:id => visitor.id), method: :put, data: { confirm: "Você tem certeza?"}
+					- else
+						%td{:style => "color:red"}= link_to visitor.full_name, edit_user_path(visitor), :style => "color:red;"
+						%td= link_to 'Desbloquear', block_users_path(:id => visitor.id), method: :put, data: { confirm: "Você tem certeza?"}
+					%td= link_to 'Deletar', visitor, method: :delete, data: { confirm: "Você tem certeza?"}
+
+
+
+/	%h2 Administrar prêmios
+/	%ol.users_list.offset1
+/			%table{:cellpadding => 20}
+/			- @prizes.each do |prize|
+/				%tr
+/					%td= link_to prize.prize_name, prize_path(prize)
+/					%td= link_to "Editar", edit_prize_path(prize)
+/					%td= link_to 'Deletar', prize, method: :delete, data: { confirm: "Você tem certeza?"}
 
