@@ -5,15 +5,19 @@
 		= image_tag(@notice.photo.url(:large))
 	.span8.neighborhood_news_content
 		.row.span8
+			%h2 Instituição
+			.span8
+				= @notice.institution_name
+		.row.span8
 			%h2 Descrição resumida
 			.span8{style: "word-wrap:breakword;"}
-			= @notice.summary
+				= @notice.summary
 		.row.span8
 			%h2 Descrição da atividade
 			.span8{style: "word-wrap: break-word;"}
 				= @notice.description
 		.row.span8
-			%h2 Local da atividade
+			%h2 Endereço da atividade
 			= @notice.location
 		.row.span8
 			%h2 Data da atividade
