@@ -32,6 +32,8 @@ Dengue::Application.routes.draw do
   get '/cupons/sponsor/:id' => "prize_codes#sponsor"
 
   get '/phones' => "users#phones"
+
+  get '/premios/admin' => "prizes#admin"
   # Resources Routes
   resources :users do
     resources :reports, :except => [:show]
