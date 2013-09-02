@@ -25,7 +25,7 @@
               Tempo expirado
         
   .row
-    .span8{:style => "margin-top:10px;"}
+    .span7{:style => "margin-top:10px;"}
       %h4= open.complete_address
   .row
     .span2.rp_before_photo 
@@ -41,7 +41,7 @@
       /   =link_to open.reporter.display_name + " - " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
       - if @current_user != nil
         .row
-          .span8
+          .span7
             - if open.before_photo.url.include?("default_images/report_before_photo.png" )
               %h3{:style => "font-size: 14px;"} Carregue uma foto do foco identificado
               .eliminate_prompt
@@ -91,12 +91,14 @@
                     - if open.elimination_type and open.reporter_id
                       Marcado por:
                       =link_to open.reporter.display_name + " " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"
+                      %br
 
                     - if open.isVerified == "t" and open.verifier_id
                       Verificado por:
                       = link_to open.verifier.display_name + " " + open.strftime_with(:created_at), user_path(open.verifier), :class => "user"
+                      %br
                     - elsif open.isVerified == "f" and open.verifier_id
-                      %p{:style => "color:red;font-weight:bold;margin-left:50px;margin-top:10px;"}
+                      %p{:style => "color:red;font-weight:bold;margin-top:10px;"}
                         Problema no foco marcado. Entre em contato conosco.
     .row
       .rp_report_options

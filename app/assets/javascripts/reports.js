@@ -75,6 +75,7 @@ $(document).ready(function() {
 		} else {
 			// alert($(this).val());
 			$(this).parent().find("input#selected_elimination_method").val($(this).val());
+			$()
 		}
 		
 	});
