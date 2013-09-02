@@ -17,13 +17,6 @@ class EliminationMethods
     "Plantas ornamentais que acumulam água (ex: bromélias)", 
     "Outro tipo"
   ]
-
-  
-
-
-
-
-
   @elimination_field_select = [
     ["Pratinho de planta", 
       ["Elimine fazendo furos no pratinho", 
@@ -140,6 +133,9 @@ class EliminationMethods
     @plantas = ["Regar semanalmente com água sanitária na proporção de uma colher de sopa para um litro de água",
         "Retire a  água acumulada nas folhas", "Outro método"]
   end
+
+  def self.points
+    @points = {self.prantinho[0] => 200, self.prantinho[1] => 200, self.prantinho[2] => 100, self.prantinho[3] => 50, self.pneu[0] => 50, self.pneu[1] => 450, self.pneu[2] => 100, self.pneu => 100, self.lixo[0] => 0, self.lixo[1] => 450, self.lixo[2] => 350, self.pequenos[0] => 50, self.pequenos[1] => 50, self.grandes[0] => 450, self.grandes[1] => 200, self.grandes[2] => 350, self.calha[0] => 150}
 
   def self.getEliminationTypeFromMethodSelect(method)
     @elimination_field_select.each do |elimination_category|

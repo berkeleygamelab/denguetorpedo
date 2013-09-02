@@ -148,4 +148,9 @@ class PrizesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def admin
+    @prizes = Prize.where(:is_badge => false)
+    @badges = Prize.where(:is_badge => true).order(:cost)
+  end
 end

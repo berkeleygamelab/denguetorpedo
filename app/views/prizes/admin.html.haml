@@ -1,0 +1,34 @@
+- if flash[:notice] 
+	%h2.notice.offset1{style: "width: 700px;"}  
+		= flash[:notice]
+.row.offset1
+	%h1.span5{style: "margin-left:0px;"} Administrar prémios
+	%table.users_table.span12{:cellpadding => 10, border: 1}
+		%colgroup
+			%col{style: "width:70%;"}
+			%col{style: "width:15%;"}
+			%col{style: "width:15%;"}
+		- @prizes.each do |prize|
+			%tr
+				%td
+					=link_to prize.prize_name, prize_path(prize)
+				%td
+					= link_to "Editar", edit_prize_path(prize)
+				%td
+					= link_to "Deletar", prize, method: :delete, data: { confirm: "Você tem certeza?"}
+
+.row.offset1
+	%h1.span5{style: "margin-left:0px;"}Administrar badges
+	%table.users_table.span12{:cellpadding => 10, border: 1}
+		%colgroup
+			%col{style: "width:70%;"}
+			%col{style: "width:15%;"}
+			%col{style: "width:15%;"}
+		- @badges.each do |badge|
+			%tr
+				%td
+					= link_to badge.prize_name, prize_path(badge)
+				%td
+					= link_to "Editar", edit_prize_path(badge)
+				%td
+					= link_to "Deletar", badge, method: :delete, data: { confirm: "Você tem certeza?"}
