@@ -11,6 +11,8 @@ $(document).ready(function() {
 			$(this).parent().find("select#lixo").show();
 		} else if ($(this).val() == "Pequenos Recipientes utilizáveis") {
 			$(this).parent().find("select#pequenos").show();
+		} else if ($(this).val() == "Caixa d'água aberta na residência") {
+			$(this).parent().find("select#caixa").show();
 		} else if ($(this).val() == "Grandes Recipientes Utilizáveis") {
 			$(this).parent().find("select#grandes").show();
 		} else if ($(this).val() == "Calha") {
@@ -41,6 +43,8 @@ $(document).ready(function() {
 			$(this).parent().find("select#lixo").show();
 		} else if ($(this).val() == "Pequenos Recipientes utilizáveis") {
 			$(this).parent().find("select#pequenos").show();
+		} else if ($(this).val() == "Caixa d'água aberta na residência") {
+			$(this).parent().find("select#caixa").show();
 		} else if ($(this).val() == "Grandes Recipientes Utilizáveis") {
 			$(this).parent().find("select#grandes").show();
 		} else if ($(this).val() == "Calha") {

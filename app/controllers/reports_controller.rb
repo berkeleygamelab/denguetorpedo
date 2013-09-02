@@ -27,6 +27,7 @@ class ReportsController < ApplicationController
     @pneu = EliminationMethods.pneu
     @lixo = EliminationMethods.lixo
     @pequenos = EliminationMethods.pequenos
+    @caixa = EliminationMethods.caixa
     @grandes = EliminationMethods.grandes
     @calha = EliminationMethods.calha
     @registros = EliminationMethods.registros
@@ -35,7 +36,7 @@ class ReportsController < ApplicationController
     @pocas = EliminationMethods.pocas
     @ralos = EliminationMethods.ralos
     @plantas = EliminationMethods.plantas
-
+    @points = EliminationMethods.points
     Report.order("created_at DESC").each do |report|
       if params[:view] == 'recent' || params[:view] == 'make_report'
         reports_with_status_filtered << report
