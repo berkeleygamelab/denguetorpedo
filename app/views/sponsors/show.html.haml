@@ -19,7 +19,7 @@
 	%ul.prizes_list{:style => "margin-bottom:20px;overflow:auto;"}
 		- if @prizes
 			- @prizes.each do |prize|
-				- if prize.stock == 0
+				- if prize.stock == 0 or (prize.expire_on and prize.expire_on < Time.new)
 					= render :partial => "prizes/redeemed", :object => prize
 				- else
 					= render :partial => "prizes/prize", :object => prize
