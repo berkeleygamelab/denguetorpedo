@@ -35,7 +35,7 @@ class House < ActiveRecord::Base
   end
   
   def points
-    members.sum(:points)
+    members.sum(:total_points)
   end
 
   def complete_address
