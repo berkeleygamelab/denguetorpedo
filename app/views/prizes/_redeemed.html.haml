@@ -10,7 +10,7 @@
 		- else
 			= image_tag(redeemed.prize_photo.url(:large), :class => "prizes")
 		.description
-			#{redeemed.description}
+			#{redeemed.prize_name}
 		.stock
 			
 			- if redeemed.stock == 0

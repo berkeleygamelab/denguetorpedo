@@ -41,7 +41,7 @@
 
   <div class="field">
     <%= f.label :hour, "Hora da atividade" %>
-    <%= f.datetime_select :hour, :discard_month => true, :discard_day => true, :discard_year => true, :default => {:hour => @notice.date.in_time_zone("Brasilia").hour, :min => @notice.date.min } %>
+    <%= f.datetime_select :hour, :discard_month => true, :discard_day => true, :discard_year => true, :default => {:hour => @notice.date.hour, :min => @notice.date.min } %>
   </div>
 
   <div class="field">

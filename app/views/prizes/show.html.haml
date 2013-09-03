@@ -45,7 +45,7 @@
                       Estoque: #{@prize.stock}
                   - if @prize.expire_on
                     %p
-                      Prazo: #{@prize.expire_on.to_date }
+                      Prazo: #{@prize.expire_on.strftime("%d/%m/%Y") }
       - if @prize.is_badge == false
         .row#prize_instructions_and_cost
           .row#bootstrap_sucks
@@ -85,25 +85,26 @@
             = @prize.redemption_directions
       .row
         #prize_
-      .row#sponsor_area_title_thing
-        .row#seriously_bootstrap
-          .span15
-            %div
-              %h3
-                Patrocinador
-      .row#sponsor_spot
-        .row#more_bootstrap_sucks
-          .span3
-            %div#sponsor_image 
-              = link_to image_tag(@prize.user.house.profile_photo.url(:small), :width => 100)
-          .span7
-            %div#sponsor_info
-              %h4
-                #{@prize.user.house.name}
-              %p
-                = @prize.user.house.location.address
-                
-          .span5
-            %div#sponsor_map
-              mapa
+      - if @prize.is_badge == false
+        .row#sponsor_area_title_thing
+          .row#seriously_bootstrap
+            .span15
+              %div
+                %h3
+                  Patrocinador
+        .row#sponsor_spot
+          .row#more_bootstrap_sucks
+            .span3
+              %div#sponsor_image 
+                = link_to image_tag(@prize.user.house.profile_photo.url(:small), :width => 100)
+            .span7
+              %div#sponsor_info
+                %h4
+                  #{@prize.user.house.name}
+                %p
+                  = @prize.user.house.location.address
+                  
+            .span5
+              %div#sponsor_map
+                mapa
   .row
