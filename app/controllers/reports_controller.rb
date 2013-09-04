@@ -75,7 +75,7 @@ class ReportsController < ApplicationController
       location = Location.find_by_address(address)
   
       if location.nil?
-        location = Location.new(:street_type => params[:street_type], :street_name => params[:street_name], :street_number => params[:street_number])
+        location = Location.new(:street_type => params[:street_type], :street_name => params[:street_name], :street_number => params[:street_number], latitude: params[:x], longitude: params[:y])
         location.save
       end
       

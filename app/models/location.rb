@@ -34,18 +34,20 @@ class Location < ActiveRecord::Base
   BASE_URI = "http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Geocode/DBO.Loc_composto/GeocodeServer/findAddressCandidates"
 
   def geocode(address = "")
-    self.address = self.street_type + " " + self.street_name + " " + self.street_number
-    uri = URI.parse(URI.escape("#{BASE_URI}?f=pjson&outSR=4326&Street=#{self.address}"))
+    if latitude.nil? or longitude.nil?
+      self.address = self.street_type + " " + self.street_name + " " + self.street_number
+      uri = URI.parse(URI.escape("#{BASE_URI}?f=pjson&outSR=29193&Street=#{self.address}"))
 
-    result = JSON.parse(Net::HTTP.get(uri))["candidates"].first
+      result = JSON.parse(Net::HTTP.get(uri))["candidates"].first
 
-    if result
-      self.latitude = result["location"]["y"]
-      self.longitude = result["location"]["x"]
-      [self.latitude.to_s, self.longitude.to_s]
-    else
-      self.latitude = nil
-      self.longitude = nil
+      if result
+        self.latitude = result["location"]["y"]
+        self.longitude = result["location"]["x"]
+        [self.latitude.to_s, self.longitude.to_s]
+      else
+        self.latitude = nil
+        self.longitude = nil
+      end
     end
   end
 

@@ -36,10 +36,11 @@
     
     .span6
       .row
-        .span6
-          .report_map_search
+        .span8
+          .report_map_search{style: "overflow:auto;"}
             - if params[:view] == 'make_report'
               %h2{style: 'margin-left:10px;font-size:15px;line-height:25px;'}2. Clique na localização correta para adicionar um marcador.
+              %input{type: "button", value: "Va para Maré", style: "float:right;margin:-20px 5px 5px 0px;", id: "go_to_mare"}
             - else
               %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
               %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 330px;'}
@@ -49,7 +50,7 @@
       - if params[:view] == 'make_report'
         :javascript
           var map, tb;
-          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol) {
+          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/Color", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, Color) {
             var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
             var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
@@ -74,8 +75,11 @@
               map.enableMapNavigation();
 
               // figure out which symbol to use
-              var symbol;
-              symbol = new SimpleMarkerSymbol();
+              var symbol = new SimpleMarkerSymbol();
+              symbol.setStyle("STYLE_PATH");
+              symbol.setPath("M 10 10 L30 10 L20 30z");
+              symbol.setColor(new Color("red"));
+              
               $("input#x").val(evt.geometry.x);
               $("input#y").val(evt.geometry.y);
               map.graphics.add(new Graphic(evt.geometry, symbol));
@@ -100,10 +104,15 @@
                   
 
                   if (candidates.length > 0) {
-                    map.graphics.add(new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), new SimpleMarkerSymbol()));
+                    var symbol = new SimpleMarkerSymbol();
+                    symbol.setStyle("STYLE_PATH");
+                    symbol.setPath("M 10 10 L30 10 L20 30z");
+                    symbol.setColor(new Color("red"));
+                    map.graphics.add(new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), symbol));
                     $("input#x").val(candidates[0].location.x);
                     $("input#y").val(candidates[0].location.y);
-                    map.centerAt(new Point(candidates[0].location.x, candidates[0].location.y), new esri.SpatialReference({wkid: 29193}));
+                    
+                    map.centerAndZoom(new Point(candidates[0].location.x, candidates[0].location.y, new esri.SpatialReference({"wkid": 29193})), 6);
                   }
                 },
                 error: function(m) {
@@ -111,8 +120,9 @@
                 }
               });
             });
-
-
+            $("input#go_to_mare").click(function() {
+              map.centerAndZoom(new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({"wkid": 29193})), 6)
+            });
           });
       - else
         :javascript
