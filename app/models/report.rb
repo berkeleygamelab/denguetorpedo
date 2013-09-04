@@ -43,6 +43,8 @@ class Report < ActiveRecord::Base
 
   as_enum :status, [:reported, :eliminated]
 
+  scope :sms, where(sms: true)
+
   def self.create_from_user(report_content, params)
     create(:report => report_content) do |r|
       r.reporter_id = params[:reporter] && params[:reporter].id

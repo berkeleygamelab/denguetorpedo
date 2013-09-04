@@ -1,0 +1,17 @@
+.offset1
+	%h1 Adminstrar #{@user.display_name}'s Torpedos
+	%br
+	%table{cellpadding: 5, border: 1, style: "text-align:center;"}
+		%colgroup
+			%col
+			%col
+			%col
+		%tr
+			%th Torpedo Number
+			%th Data de envio
+			%th Data do crédito
+			- @reports.each_with_index do |report, index|
+				%tr
+					%td= index + 1
+					%td= report.created_at.strftime("%d/%m/%Y %H:%M:%S")
+					%td Not credited

@@ -4,23 +4,12 @@
     = form_for(@user) do |f|
       %li= f.error_messages
      
-      //%li= f.label "* Nome"
-      //%li= f.text_field :first_name
-      //%li= f.label "nome do meio"
-      //%li= f.text_field :middle_name
-      //%li= f.label "* Sobrenome"
-      //%li= f.text_field :last_name
       %li= f.text_field :email, :placeholder => "E-mail", :class => "fields"
       %li= f.text_field :first_name, :placeholder => "Nome", :class => "fields"
       %li= f.text_field :middle_name, :placeholder => "Nome do meio", :class => "fields"
       %li= f.text_field :last_name, :placeholder => "Sobrenome", :class => "fields"
-      / # %li= f.label :email_confirmation, "* Confirmar e-mail"
-      / # %li= f.text_field :email_confirmation
-      /%li= f.label :phone_nuber, "* Celular"
       %li= f.text_field :phone_number, :placeholder => "Celular: 021xxxxxxxx", :class => "fields"
-      /%li= f.label :password, "* Senha"
       %li= f.password_field :password, :placeholder => "Senha", :class => "fields"
-      /%li= f.label :password_confirmation, "* Confirmar senha"
       %li= f.password_field :password_confirmation, :placeholder => "Confirmar senha", :class => "fields"
       <br>
       %li= f.submit "Cadastre-se!"

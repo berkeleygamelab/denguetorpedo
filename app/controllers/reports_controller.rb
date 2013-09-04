@@ -344,4 +344,9 @@ class ReportsController < ApplicationController
       redirect_to :back
     end
   end
+
+  def torpedos
+    @user = User.find(params[:id])
+    @reports = @user.reports
+  end
 end

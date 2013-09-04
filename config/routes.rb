@@ -24,6 +24,7 @@ Dengue::Application.routes.draw do
   get "password_resets/new"
   post "reports/sms"
   
+  get "torpedos/:id" => "reports#torpedos"
   # SMS Gateway Routes
   get "/sb/rest/sms/inject" => "sms_gateway#inject"
   get "/sb/rest/sms/notifications" => "sms_gateway#notifications"

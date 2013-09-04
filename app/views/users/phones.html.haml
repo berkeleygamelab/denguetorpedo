@@ -20,13 +20,13 @@
 			%th Data do crédito
 		- @users.each do |user|
 			%tr
-				%td{style: "text-align:left"}= user.display_name
+				%td{style: "text-align:left"}= link_to user.display_name, "torpedos/#{user.id}"
 				%td= user.phone_number.sub(/^0/, "")
 				%td= user.carrier
 				- if user.prepaid == true
 					%td Pré
 				- else
 					%td Pós
-				%td 1
+				%td= user.reports.count
 				%td= Time.new.strftime("%d/%m/%Y %H:%M:%S")
 				%td= ""
