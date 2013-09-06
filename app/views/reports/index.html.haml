@@ -128,7 +128,7 @@
         :javascript
           var map;
 
-          require(["esri/map", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "dojo/domReady!"], function(Map, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol) {
+          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/Color", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, Color) {
             var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
             var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
@@ -142,6 +142,17 @@
             map.addLayer(tiled);
 
             map.on("load", function() {
+              var markers = #{@markers.to_json};
+              for (var i = 0; i < markers.length; i++) {
+                var symbol = new SimpleMarkerSymbol();
+                symbol.setStyle("STYLE_PATH");
+                symbol.setPath("M 10 10 L30 10 L20 30z");
+                symbol.setColor(new Color("red"));
+
+                map.graphics.add(new Graphic(new Point(markers[i].y, markers[i].x), symbol));
+              }
+
+              
             });   
           });
 

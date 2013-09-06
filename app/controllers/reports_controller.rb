@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
     @elimination_types = EliminationMethods.types
     reports_with_status_filtered = []
     locations = []
-    
+
     @prantinho = EliminationMethods.prantinho
     @pneu = EliminationMethods.pneu
     @lixo = EliminationMethods.lixo
@@ -56,7 +56,9 @@ class ReportsController < ApplicationController
       end
     end
     
-    @map_json = locations.map { |location| {"lat" => location.latitude, "lng" => location.longitude} }.to_json
+    # @map_json = locations.map { |location| {"lat" => location.latitude, "lng" => location.longitude} }.to_json
+
+    @markers = locations.map { |location| {x: location.latitude, y: location.longitude}}
     @reports = reports_with_status_filtered
     @open_feed = @reports
     @eliminate_feed = @reports
@@ -335,9 +337,15 @@ class ReportsController < ApplicationController
   def problem
     @report = Report.find(params[:id])
 
-    @report.isVerified = false
-    @report.verifier_id = @current_user.id
-    @report.verified_at = DateTime.now
+    if @report.status_cd == 1
+      @report.is_resolved_verified = false
+      @report.resolved_verifier_id = @current_user.id
+      @report.resolved_verified_at = DateTime.now
+    elsif @report.status_cd == 0
+      @report.isverified = false
+      @report.verifier_id = @current_user.id
+      @report.verified_at = DateTime.now
+    end
     if @report.save
       redirect_to reports_path
     else

@@ -25,7 +25,7 @@
 				%td= user.carrier
 				- if user.prepaid == true
 					%td Pré
-				- else
+				- elsif user.prepaid == false
 					%td Pós
 				%td= user.reports.count
 				%td= Time.new.strftime("%d/%m/%Y %H:%M:%S")

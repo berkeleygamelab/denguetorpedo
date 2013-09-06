@@ -1,7 +1,10 @@
 .rp_report.rp_open_report
   .row
     .rp_report_status.status
-      Em aberto
+      - if open.expired?
+        %del Em aberto
+      - else
+        Em aberto
       .rp_report_options{:style => "margin-top:-3px;"}
         - if open.isVerified == "t"
           = image_tag 'icons/reports icon/check.png', :width => 25, :height => 25, :style => "float:right;"
@@ -57,19 +60,19 @@
                   = hidden_field_tag 'report_id', open.id
                   
                   = select_tag "elimination_type", options_for_select(@elimination_types, open.elimination_type), :prompt => "Tipo de foco", :style => "width:430px;", class: "elimination_type", :disabled => open.elimination_type != nil
-                  = select_tag "prantinho", options_for_select(@prantinho.collect{ |p| [p[1], p[0]]}), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "pneu", options_for_select(@pneu.collect{ |p| [p[1], p[0]]}), :style => "display:none;width:430px;", :class => "elimination_methods", :prompt => "Método de eliminação", disabled: open.elimination_type.nil?
-                  = select_tag "lixo", options_for_select(@lixo.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "pequenos", options_for_select(@pequenos.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "caixa", options_for_select(@caixa.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "grandes", options_for_select(@grandes.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "calha", options_for_select(@calha.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "registros", options_for_select(@registros.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "laje", options_for_select(@laje.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", disabled: open.elimination_type.nil?
-                  = select_tag "piscinas", options_for_select(@piscinas.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "pocas", options_for_select(@pocas.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "ralos", options_for_select(@ralos.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
-                  = select_tag "plantas", options_for_select(@plantas.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: open.elimination_type.nil?
+                  = select_tag "prantinho", options_for_select(@prantinho.collect{ |p| [p[1], p[0]]}), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "pneu", options_for_select(@pneu.collect{ |p| [p[1], p[0]]}), :style => "display:none;width:430px;", :class => "elimination_methods", :prompt => "Método de eliminação", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "lixo", options_for_select(@lixo.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "pequenos", options_for_select(@pequenos.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "caixa", options_for_select(@caixa.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "grandes", options_for_select(@grandes.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "calha", options_for_select(@calha.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "registros", options_for_select(@registros.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "laje", options_for_select(@laje.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "piscinas", options_for_select(@piscinas.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "pocas", options_for_select(@pocas.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "ralos", options_for_select(@ralos.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "plantas", options_for_select(@plantas.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
                   = hidden_field_tag "selected_elimination_method"
                   / # = select_tag "method_of_elimination", options_from_collection_for_select(@elimination_type), :style => "width: 355px;" 
                   
@@ -81,9 +84,9 @@
 
                   - if open.elimination_type
                     %h3{:style => "font-size: 14px;"} Carregue uma foto do foco eliminado
-                    = f.file_field :after_photo, :disabled => open.after_photo_file_size
+                    = f.file_field :after_photo, :disabled => (open.after_photo_file_size or open.expired?)
                   %br
-                  = submit_tag "Enviar!", :style => "margin-left:5px;margin-top:5px;", :disabled => @current_user.role == "verificador" or open.created_at + 3600 * 24 * 2 < Time.new
+                  = submit_tag "Enviar!", :style => "margin-left:5px;margin-top:5px;", :disabled => (@current_user.role == "verificador" or open.created_at + 3600 * 24 * 2 < Time.new)
 
 
 
