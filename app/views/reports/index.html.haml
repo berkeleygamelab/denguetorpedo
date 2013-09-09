@@ -56,9 +56,13 @@
       - if params[:view] == 'make_report'
         :javascript
           var map, tb;
-          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/Color", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, Color) {
+          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "esri/renderers/ClassBreaksRenderer", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, TextSymbol, Color, PictureMarkerSymbol, ClassBreaksRenderer) {
             var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
+            var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
+            var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 64, 64).setOffset(0, 15);
+            var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 64, 64).setOffset(0, 15);
+            var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 64, 64).setOffset(0, 15);
             var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
             map = new Map("map", {
               center: point,
@@ -90,7 +94,7 @@
               
               $("input#x").val(evt.geometry.x);
               $("input#y").val(evt.geometry.y);
-              map.graphics.add(new Graphic(evt.geometry, symbol));
+              map.graphics.add(new Graphic(evt.geometry, blue));
               map.centerAt(evt.mapPoint);
 
             }
@@ -117,7 +121,7 @@
                     symbol.setStyle("STYLE_PATH");
                     symbol.setPath("M 10 10 L30 10 L20 30z");
                     symbol.setColor(new Color("red"));
-                    map.graphics.add(new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), symbol));
+                    map.graphics.add(new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), blue));
                     $("input#x").val(candidates[0].location.x);
                     $("input#y").val(candidates[0].location.y);
                     
@@ -137,7 +141,7 @@
         :javascript
           var map;
 
-          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/Color", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, Color) {
+          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "esri/renderers/ClassBreaksRenderer", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, TextSymbol, Color, PictureMarkerSymbol, ClassBreaksRenderer) {
             var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
             var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
@@ -152,7 +156,7 @@
             var markers = #{@markers.to_json};
             var open_markers = #{@open_markers.to_json};
             var eliminated_markers = #{@eliminated_markers.to_json};
-
+            var counts = #{@counts.to_json};
             map.on("load", function() {
               
               tb = new Draw(map);
@@ -161,32 +165,28 @@
             });
 
 
-
+            var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
+            var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 64, 64).setOffset(0, 15);
+            var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 64, 64).setOffset(0, 15);
+            var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 64, 64).setOffset(0, 15);
             
             map.on("load", function() {
-              for (var i = 0; i < open_markers.length; i++) {
-                var symbol = new SimpleMarkerSymbol();
-                symbol.setStyle("STYLE_PATH");
-                symbol.setPath("M 10 10 L30 10 L20 30z");
-                symbol.setColor(new Color("#FF6600"));
 
-                map.graphics.add(new Graphic(new Point(open_markers[i].y, open_markers[i].x), symbol));
+              for (var i = 0; i < open_markers.length; i++) {
+                var textSymbol = new TextSymbol(1).setColor("#ffffff").setOffset(0, 10);
+                map.graphics.add(new Graphic(new Point(open_markers[i].y, open_markers[i].x), red));
+                map.graphics.add(new Graphic(new Point(open_markers[i].y, open_markers[i].x), textSymbol));
               }
               for (var i = 0; i < eliminated_markers.length; i++) {
-                var symbol = new SimpleMarkerSymbol();
-                symbol.setStyle("STYLE_PATH");
-                
-                symbol.setPath("M 10 10 a 13 13 0 1 0 0.0001 0 M 10, 36 L10, 50z");
-                symbol.setColor(new Color("#4E6868"));
-
-                map.graphics.add(new Graphic(new Point(eliminated_markers[i].y, eliminated_markers[i].x), symbol));
+                var textSymbol = new TextSymbol(3).setColor("#ffffff").setOffset(0, 10);
+                map.graphics.add(new Graphic(new Point(eliminated_markers[i].y, eliminated_markers[i].x), gray));
+                map.graphics.add(new Graphic(new Point(eliminated_markers[i].y, eliminated_markers[i].x), textSymbol));
               }
 
               tb = new Draw(map);
               tb.on("draw-end", addGraphic);
               tb.activate("point");
-
-              
+      
             });
 
 
@@ -217,7 +217,7 @@
               
               $("input#x").val(evt.geometry.x);
               $("input#y").val(evt.geometry.y);
-              blueGraphic = new Graphic(evt.geometry, symbol)
+              blueGraphic = new Graphic(evt.geometry, blue);
               map.graphics.add(blueGraphic);
               map.centerAt(evt.mapPoint);
 
@@ -242,7 +242,7 @@
                     symbol.setStyle("STYLE_PATH");
                     symbol.setPath("M 10 10 L30 10 L20 30z");
                     symbol.setColor(new Color("blue"));
-                    blueGraphic = new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), symbol);
+                    blueGraphic = new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), blue);
                     map.graphics.add(blueGraphic);
                     $("input#x").val(candidates[0].location.x);
                     $("input#y").val(candidates[0].location.y);
