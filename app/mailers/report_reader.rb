@@ -9,11 +9,11 @@ class ReportReader < ActionMailer::Base
     @login = login
     @password = password
     @url = "http://denguetorpedo.herokuapp.com/"
-    mail(:to => email_addrs, :subject => "Welcome to Report Dengue")
+    mail(:to => email_addrs, :subject => "Welcome to Dengue Torpedo")
   end
   
   def user_failed_to_create_notification(email_addrs)
-    mail(:to => email_addrs, :subject => "Report Dengue is unable to create an account for you")
+    mail(:to => email_addrs, :subject => "Dengue Torpedo is unable to create an account for you")
   end
 
   def report_added_notification(email_addrs)
@@ -21,7 +21,7 @@ class ReportReader < ActionMailer::Base
   end
 
   def report_failed_notification(email_addrs)
-    mail(:to => email_addrs, :subject => "Report Dengue has failed to add your report")
+    mail(:to => email_addrs, :subject => "Dengue Torpedo has failed to add your report")
   end
 
   def incomplete_information_notification(email_addrs)

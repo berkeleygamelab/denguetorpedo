@@ -34,16 +34,22 @@
       - else params[:view] == 'make_report'
         = render :partial => "reports/make_report_form"
     
-    .span6
+    .span6{style: "margin-top:-63px;"}
       .row
         .span8
           .report_map_search{style: "overflow:auto;"}
             - if params[:view] == 'make_report'
-              %h2{style: 'margin-left:10px;font-size:15px;line-height:25px;'}2. Clique na localização correta para adicionar um marcador.
+              %h2{style: 'margin-left:10px;font-size:15px;line-height:25px;', title: "O mapa pode não encontrar o seu endereço. Nesse caso, mova o marcador clicando na localização correta."}2. Clique na localização correta para adicionar um marcador.
               %input{type: "button", value: "Va para Maré", style: "float:right;margin:-20px 5px 5px 0px;", id: "go_to_mare"}
             - else
-              %h2{style: 'margin-left: 10px;'} Procurar perto deste endereço
-              %input.span6{:type => 'text', :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'margin-left: 10px; width: 330px;'}
+              %h2{style: 'margin-left: 10px;', title: "Para ajustar, dê um zoom ou arraste o mapa."} Ajuste para filtar os focos.
+              
+
+              %h2{style: 'margin-left: 10px;'} Procure perto do endereço:
+              %svg{display:"inline", style: "width:30px;height:30px;float:left;margin-left:8px;margin-top:2px; "}
+                %path{d: "M 6 6 L18 6 L12 18z", style: "fill:blue;stroke:black;"}
+              %form{id: "address_search_form", style: "margin-bottom:0px;"}
+                %input.span6{:type => 'text', id: "address_search", :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'width: 330px;'}
       #map{style: "height: 440px;width:440px;margin-left:10px; margin-top:10px;"}
       
 
@@ -68,7 +74,9 @@
               tb = new Draw(map);
               tb.on("draw-end", addGraphic);
               tb.activate("point");
-            });   
+            });
+
+
 
             function addGraphic(evt) {
               map.graphics.clear();
@@ -84,6 +92,7 @@
               $("input#y").val(evt.geometry.y);
               map.graphics.add(new Graphic(evt.geometry, symbol));
               map.centerAt(evt.mapPoint);
+
             }
 
             $("#street_type").change(function() {
@@ -140,20 +149,114 @@
             
             var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
             map.addLayer(tiled);
+            var markers = #{@markers.to_json};
+            var open_markers = #{@open_markers.to_json};
+            var eliminated_markers = #{@eliminated_markers.to_json};
 
             map.on("load", function() {
-              var markers = #{@markers.to_json};
-              for (var i = 0; i < markers.length; i++) {
+              
+              tb = new Draw(map);
+              tb.on("draw-end", addGraphic);
+              tb.activate("point");
+            });
+
+
+
+            
+            map.on("load", function() {
+              for (var i = 0; i < open_markers.length; i++) {
                 var symbol = new SimpleMarkerSymbol();
                 symbol.setStyle("STYLE_PATH");
                 symbol.setPath("M 10 10 L30 10 L20 30z");
-                symbol.setColor(new Color("red"));
+                symbol.setColor(new Color("#FF6600"));
 
-                map.graphics.add(new Graphic(new Point(markers[i].y, markers[i].x), symbol));
+                map.graphics.add(new Graphic(new Point(open_markers[i].y, open_markers[i].x), symbol));
+              }
+              for (var i = 0; i < eliminated_markers.length; i++) {
+                var symbol = new SimpleMarkerSymbol();
+                symbol.setStyle("STYLE_PATH");
+                
+                symbol.setPath("M 10 10 a 13 13 0 1 0 0.0001 0 M 10, 36 L10, 50z");
+                symbol.setColor(new Color("#4E6868"));
+
+                map.graphics.add(new Graphic(new Point(eliminated_markers[i].y, eliminated_markers[i].x), symbol));
               }
 
+              tb = new Draw(map);
+              tb.on("draw-end", addGraphic);
+              tb.activate("point");
+
               
-            });   
+            });
+
+
+            map.on("extent-change", function(event) {
+              for(var i = 0; i < markers.length; i++) {
+
+                if (event.extent.contains(new Point(markers[i].y, markers[i].x))) {
+                  $($(".rp_report")[i]).show();
+                } else {
+                  $($(".rp_report")[i]).hide();
+                }
+              }
+            });
+
+            var blueGraphic;
+
+            function addGraphic(evt) {
+              if (blueGraphic) {
+                map.graphics.remove(blueGraphic);
+              }
+              map.enableMapNavigation();
+
+              // figure out which symbol to use
+              var symbol = new SimpleMarkerSymbol();
+              symbol.setStyle("STYLE_PATH");
+              symbol.setPath("M 10 10 L30 10 L20 30z");
+              symbol.setColor(new Color("blue"));
+              
+              $("input#x").val(evt.geometry.x);
+              $("input#y").val(evt.geometry.y);
+              blueGraphic = new Graphic(evt.geometry, symbol)
+              map.graphics.add(blueGraphic);
+              map.centerAt(evt.mapPoint);
+
+            }
+            $("#address_search_form").submit(function(e) {
+              e.preventDefault();
+              $.ajax({
+                url: "http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Geocode/DBO.Loc_composto/GeocodeServer/findAddressCandidates",
+                type: "GET",
+                dataType: "jsonp",
+                data: {"f": "pjson", "Street": $("#address_search").val()},
+                success: function(m) {
+                  
+                  var candidates = m.candidates;
+                  
+
+                  if (candidates.length > 0) {
+                    if (blueGraphic) {
+                      map.graphics.remove(blueGraphic);
+                    }
+                    var symbol = new SimpleMarkerSymbol();
+                    symbol.setStyle("STYLE_PATH");
+                    symbol.setPath("M 10 10 L30 10 L20 30z");
+                    symbol.setColor(new Color("blue"));
+                    blueGraphic = new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), symbol);
+                    map.graphics.add(blueGraphic);
+                    $("input#x").val(candidates[0].location.x);
+                    $("input#y").val(candidates[0].location.y);
+                    
+                    map.centerAndZoom(new Point(candidates[0].location.x, candidates[0].location.y, new esri.SpatialReference({"wkid": 29193})), 6);
+                  }
+                },
+                error: function(m) {
+                  console.log(JSON.stringify(m));
+                }
+              });
+
+            });
+
           });
 
 

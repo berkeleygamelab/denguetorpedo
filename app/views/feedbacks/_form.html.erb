@@ -39,7 +39,14 @@
   </div>
   <div class="field">
     <%= f.label :message, "Mensagem" %>
-    <%= f.text_area :message, placeholder: "Max 3500 caracteres", maxlength: 3500 %>
+    <% if @title == "other_type" %>
+      <%= f.text_area :message, placeholder: "Conte para nós o seu tipo de foco. (Max 3500 caracteres)", maxlength: 3500 %>
+    <% elsif @title == "other_method" %>
+      <%= f.text_area :message, placeholder: "Conte para nós o seu método de eliminação. (Max 3500 caracteres)", maxlength: 3500 %>
+    <% else %>
+      <%= f.text_area :message, placeholder: "Max 3500 caracteres", maxlength: 3500 %>
+    <% end %>
+    
   </div>
   <div class="actions">
     <%= f.submit "Enviar mensagem" %>

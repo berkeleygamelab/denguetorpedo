@@ -22,7 +22,8 @@ class ReportsController < ApplicationController
     @elimination_types = EliminationMethods.types
     reports_with_status_filtered = []
     locations = []
-
+    open_locations = []
+    eliminated_locations = []
     @prantinho = EliminationMethods.prantinho
     @pneu = EliminationMethods.pneu
     @lixo = EliminationMethods.lixo
@@ -41,17 +42,22 @@ class ReportsController < ApplicationController
       if params[:view] == 'recent' || params[:view] == 'make_report'
         reports_with_status_filtered << report
         if report.location.latitude
+          if report.status_cd == 1
+            eliminated_locations << report.location
+          else
+            open_locations << report.location
+          end
           locations << report.location
         end
       elsif params[:view] == 'open' && report.status == :reported
         reports_with_status_filtered << report
         if report.location.latitude
-          locations << report.location
+          open_locations << report.location
         end
       elsif params[:view] == 'eliminate' && report.status == :eliminated
         reports_with_status_filtered << report
         if report.location.latitude
-          locations << report.location
+          eliminated_locations << report.location
         end
       end
     end
@@ -59,6 +65,8 @@ class ReportsController < ApplicationController
     # @map_json = locations.map { |location| {"lat" => location.latitude, "lng" => location.longitude} }.to_json
 
     @markers = locations.map { |location| {x: location.latitude, y: location.longitude}}
+    @open_markers = open_locations.map { |location| {x: location.latitude, y: location.longitude}}
+    @eliminated_markers = eliminated_locations.map { |location| {x: location.latitude, y: location.longitude}}
     @reports = reports_with_status_filtered
     @open_feed = @reports
     @eliminate_feed = @reports
@@ -148,7 +156,7 @@ class ReportsController < ApplicationController
       
       if user.save
         logger.info "new user created and send welcome report"
-        response = 'username: ' + params[:From].delete('+') + ' Temporary password: ' + password + ' To login to the site, go to http://reportdengue.herokuapp.com/login' 
+        response = 'username: ' + params[:From].delete('+') + ' Temporary password: ' + password + ' To login to the site, go to http://www.denguetorpedo.com' 
         @account.sms.messages.create(:from => '+15109854798', :to => params[:From], :body  => response)
       end
     end

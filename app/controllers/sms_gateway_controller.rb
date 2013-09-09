@@ -51,7 +51,7 @@ class SmsGatewayController < ApplicationController
           logger.info "new report failed to add"
           # Send both user and developer an email notifcation that something broke in the system.
           ReportReader.report_failed_notification(user.email).deliver
-          ReportReader.report_failed_notification("jayst088@gmail.com").deliver
+          ReportReader.report_failed_notification("hara0115@gmail.com").deliver
           ReportReader.report_failed_notification("jholston@berkeley.edu").deliver
           Notification.new(:phone => phone_number.to_s, :text => "Nós não pudemos adicionar o seu relato porque houve um erro no nosso sistema. Já estamos trabalhando numa solução.", :board => board.to_s).save
         end

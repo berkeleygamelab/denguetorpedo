@@ -60,7 +60,7 @@
                   = hidden_field_tag 'report_id', open.id
                   
                   = select_tag "elimination_type", options_for_select(@elimination_types, open.elimination_type), :prompt => "Tipo de foco", :style => "width:430px;", class: "elimination_type", :disabled => open.elimination_type != nil
-                  = select_tag "prantinho", options_for_select(@prantinho.collect{ |p| [p[1], p[0]]}), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
+                  = select_tag "prantinho", options_for_select(@prantinho.collect{ |p| [p[1], p[0]]}), :class => "elimination_methods", :prompt => "Método de eliminação", :style => "width:430px;", disabled: (open.elimination_type.nil? or open.expired?), data: { style: "btn-success", width: "430px"}
                   = select_tag "pneu", options_for_select(@pneu.collect{ |p| [p[1], p[0]]}), :style => "display:none;width:430px;", :class => "elimination_methods", :prompt => "Método de eliminação", disabled: (open.elimination_type.nil? or open.expired?)
                   = select_tag "lixo", options_for_select(@lixo.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
                   = select_tag "pequenos", options_for_select(@pequenos.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
@@ -75,7 +75,8 @@
                   = select_tag "plantas", options_for_select(@plantas.collect{ |p| [p[1], p[0]]}), :style => "display:none;", :class => "elimination_methods", :prompt => "Método de eliminação", :style => "display:none;width:430px;", disabled: (open.elimination_type.nil? or open.expired?)
                   = hidden_field_tag "selected_elimination_method"
                   / # = select_tag "method_of_elimination", options_from_collection_for_select(@elimination_type), :style => "width: 355px;" 
-                  
+                  :javascript
+                    $(".selectpicker").selectpicker();
 
                   - if open.after_photo_file_size
                     .rp_report_people
@@ -105,5 +106,5 @@
                         Problema no foco marcado. Entre em contato conosco.
     .row
       .rp_report_options
-        - if @current_user != nil && open.reporter.id == @current_user.id || @current_user.admin?
-          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), open, :confirm => "Você tem certeza?", :method => :delete, :style => "margin-right:5px;"
+        - if (@current_user != nil && open.reporter.id == @current_user.id) or @current_user.admin?
+          =link_to (image_tag 'icons/reports icon/delete2.png', :id=>'user_report_delete'), open, :confirm => "Você tem certeza?", :method => :delete, :style => "margin-right:5px;", remote: true
