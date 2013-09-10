@@ -45,11 +45,11 @@
               %h2{style: 'margin-left: 10px;', title: "Para ajustar, dê um zoom ou arraste o mapa."} Ajuste para filtar os focos.
               
 
-              %h2{style: 'margin-left: 10px;'} Procure perto do endereço:
+              %h2{style: 'margin-left: 10px;'} Ou procure perto do endereço:
               %svg{display:"inline", style: "width:30px;height:30px;float:left;margin-left:8px;margin-top:2px; "}
                 %path{d: "M 6 6 L18 6 L12 18z", style: "fill:blue;stroke:black;"}
               %form{id: "address_search_form", style: "margin-bottom:0px;"}
-                %input.span6{:type => 'text', id: "address_search", :placeholder => "Rua Sgt. Silva Nunes, 1012 - Ramos - Rio de Janeiro ", :style => 'width: 330px;'}
+                %input.span6{:type => 'text', id: "address_search", :placeholder => "Digite um endereço e pressione enter", :style => 'width: 330px;'}
       #map{style: "height: 440px;width:440px;margin-left:10px; margin-top:10px;"}
       
 
@@ -166,9 +166,9 @@
 
 
             var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
-            var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 64, 64).setOffset(0, 15);
-            var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 64, 64).setOffset(0, 15);
-            var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 64, 64).setOffset(0, 15);
+            var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 48, 64).setOffset(0, 15);
+            var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 48, 64).setOffset(0, 15);
+            var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 48, 64).setOffset(0, 15);
             
             map.on("load", function() {
 
@@ -217,7 +217,7 @@
               
               $("input#x").val(evt.geometry.x);
               $("input#y").val(evt.geometry.y);
-              blueGraphic = new Graphic(evt.geometry, blue);
+              blueGraphic = new Graphic(evt.geometry, symbol);
               map.graphics.add(blueGraphic);
               map.centerAt(evt.mapPoint);
 
@@ -242,7 +242,7 @@
                     symbol.setStyle("STYLE_PATH");
                     symbol.setPath("M 10 10 L30 10 L20 30z");
                     symbol.setColor(new Color("blue"));
-                    blueGraphic = new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), blue);
+                    blueGraphic = new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), symbol);
                     map.graphics.add(blueGraphic);
                     $("input#x").val(candidates[0].location.x);
                     $("input#y").val(candidates[0].location.y);

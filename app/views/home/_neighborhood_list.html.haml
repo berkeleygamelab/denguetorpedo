@@ -4,8 +4,8 @@
       %li
         .neighborhood_selection
           .neighborhood_selection_header
-            %h3= link_to "Nº #{index+1} #{neighborhood.name}", root_path(:neighborhood => neighborhood), :remote => true          
-          = link_to image_tag("home_images/neighborhood#{index+1}.jpg"), root_path(:neighborhood => neighborhood), :class => 'neighborhood_selection_photo', :remote => true
+            %h3= link_to "Nº #{index+1} #{neighborhood.name}", "/neighborhoods/2"         
+          = link_to image_tag("home_images/neighborhood#{index+1}.jpg"), "/neighborhoods/2", :class => 'neighborhood_selection_photo'
     
     - if @all_neighborhoods.count < 3
       - (3 - @all_neighborhoods.count).times do

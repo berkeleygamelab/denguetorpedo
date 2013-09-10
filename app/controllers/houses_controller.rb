@@ -1,6 +1,6 @@
 # encoding: utf-8
 class HousesController < ApplicationController
-  
+  before_filter :require_login
   def show
     @house = House.includes(:members, :posts, :location => :neighborhood).find(params[:id])
     head :not_found and return if @house.nil?
@@ -24,7 +24,7 @@ class HousesController < ApplicationController
     
     excluded_roles = ["lojista", "verficidador"]
     @mare = Neighborhood.find_by_name('Maré')
-    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => 1}).where('users.role NOT IN (?) AND houses.id != ?', excluded_roles, 1).uniq.shuffle[0..6]
+    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => 1}).where('users.role NOT IN (?) AND houses.id != ?', excluded_roles, @house.id).uniq.shuffle[0..6]
     @highlightHouseItem = ""
     
     @marker = [{"lat" => @house.location.latitude, "lng" => @house.location.longitude}].to_json
