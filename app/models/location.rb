@@ -20,7 +20,7 @@
 require 'active_support/core_ext'
 
 class Location < ActiveRecord::Base
-  attr_accessible :address, :street_type, :street_name, :street_number
+  attr_accessible :address, :street_type, :street_name, :street_number, :latitude, :longitude
   # acts_as_gmappable :callback => :geocode_results, :validation => true
   # validates :latitude, :uniqueness => { :scope => :longitude }
   # validates :neighborhood_id, :presence => true
@@ -40,8 +40,8 @@ class Location < ActiveRecord::Base
     result = JSON.parse(Net::HTTP.get(uri))["candidates"].first
 
     if result
-      self.latitude = result["location"]["y"]
-      self.longitude = result["location"]["x"]
+      self.latitude = result["location"]["x"]
+      self.longitude = result["location"]["y"]
       [self.latitude.to_s, self.longitude.to_s]
     else
       self.latitude = nil

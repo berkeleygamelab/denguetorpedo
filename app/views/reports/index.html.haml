@@ -174,13 +174,13 @@
 
               for (var i = 0; i < open_markers.length; i++) {
                 var textSymbol = new TextSymbol(1).setColor("#ffffff").setOffset(0, 10);
-                map.graphics.add(new Graphic(new Point(open_markers[i].y, open_markers[i].x), red));
-                map.graphics.add(new Graphic(new Point(open_markers[i].y, open_markers[i].x), textSymbol));
+                map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), red));
+                map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol));
               }
               for (var i = 0; i < eliminated_markers.length; i++) {
                 var textSymbol = new TextSymbol(3).setColor("#ffffff").setOffset(0, 10);
-                map.graphics.add(new Graphic(new Point(eliminated_markers[i].y, eliminated_markers[i].x), gray));
-                map.graphics.add(new Graphic(new Point(eliminated_markers[i].y, eliminated_markers[i].x), textSymbol));
+                map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), gray));
+                map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol));
               }
 
               tb = new Draw(map);
@@ -193,7 +193,7 @@
             map.on("extent-change", function(event) {
               for(var i = 0; i < markers.length; i++) {
 
-                if (event.extent.contains(new Point(markers[i].y, markers[i].x))) {
+                if (event.extent.contains(new Point(markers[i].x, markers[i].y))) {
                   $($(".rp_report")[i]).show();
                 } else {
                   $($(".rp_report")[i]).hide();

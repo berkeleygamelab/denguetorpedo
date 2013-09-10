@@ -1,3 +1,4 @@
 #user_reports
   - for report in @open_feed
-    = render :partial => '/reports/open', :object => report
+  	- if report.reporter == @current_user or report.elimination_type
+    	= render :partial => '/reports/open', :object => report
