@@ -152,53 +152,59 @@
      
 
     %br
-    - if @user.role == "lojista"
-      %h1 Configurações da estabelecimento
+    - if @user.role != "visitante"
+      - if @user.role == "lojista"
+        %h1 Configurações da estabelecimento
+      - else
+        %h1 Configurações da casa
+
+      .indent
+        = f.fields_for :location do |location_form|
+          /= location_form.label "* Endereço da casa"
+          / # = location_form.text_field :address, value: @user.location.address, placeholder: "Endereço da casa", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze." if @user.location
+          = location_form.text_field :street_type, value: @user.location.street_type, placeholder: "Rua, Beco etc.", class: "short_field"
+          = location_form.text_field :street_name, value: @user.location.street_name, placeholder: "Nome", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze."
+          = location_form.text_field :street_number, value: @user.location.street_number, placeholder: "Número", class: "middle_field"
+          %h3#complete_name{:title => "Na fase atual, somente os moradores do Bairro Maré poderão participar."}Bairro <b style="color:blue;">?</b>
+          = location_form.text_field :neighborhood, value: "Maré", readonly: true if @user.location
+      
+        = f.fields_for :house do |house_form|
+          - if @user.role == "lojista"
+            = house_form.label "Nome do estabelecimento"
+            = house_form.text_field :name
+          - elsif @user.role == "verificador"
+            = house_form.label "Nome do organização"
+            = house_form.text_field :name
+          - else
+            = house_form.label "Nome da casa (máximo 13 caracteres)"
+            = house_form.text_field :name, :placeholder => "ex. Maria Santos ou Maria e Paulo", :maxlength => 16
+
+          
+          - if @user.role == "lojista"
+            = house_form.label "Telefone comercial"
+            = house_form.text_field :phone_number
+            = house_form.label "Logo digital (opcional)"
+          - elsif @user.role == "verificador"
+            = house_form.label "Fodo do organização"
+          - else
+            = house_form.label "Foto da casa (opcional)"
+          = house_form.file_field :profile_photo
+      - if @user.is_fully_registered == false
+        %h1 Alguém o convidou a se inscrever no DT?
+        %select#recruitment{:name => "recruitment_type"}
+          %option NINGUÉM
+          %option AVS/ACS
+          %option MORADOR/VIZINHO
+        %br
+          %input{:id => "recruitment", :name => "recruitment", :style => "display:none;"}
+          %input{:type => "hidden", :name => "recruitment_id", :id => "recruitment_id"}
     - else
-      %h1 Configurações da casa
-
-    .indent
-      = f.fields_for :location do |location_form|
-        /= location_form.label "* Endereço da casa"
-        / # = location_form.text_field :address, value: @user.location.address, placeholder: "Endereço da casa", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze." if @user.location
-        = location_form.text_field :street_type, value: @user.location.street_type, placeholder: "Rua, Beco etc.", class: "short_field"
-        = location_form.text_field :street_name, value: @user.location.street_name, placeholder: "Nome", title: "No caso de rua de número, escreva o endereço por extenso. Ex: Rua Dois, Travessa Quatorze."
-        = location_form.text_field :street_number, value: @user.location.street_number, placeholder: "Número", class: "middle_field"
-        %h3#complete_name{:title => "Na fase atual, somente os moradores do Bairro Maré poderão participar."}Bairro <b style="color:blue;">?</b>
-        = location_form.text_field :neighborhood, value: "Maré", readonly: true if @user.location
-    
-      = f.fields_for :house do |house_form|
-        - if @user.role == "lojista"
-          = house_form.label "Nome do estabelecimento"
-          = house_form.text_field :name
-        - elsif @user.role == "verificador"
-          = house_form.label "Nome do organização"
-          = house_form.text_field :name
-        - else
-          = house_form.label "Nome da casa (máximo 13 caracteres)"
-          = house_form.text_field :name, :placeholder => "ex. Maria Santos ou Maria e Paulo", :maxlength => 16
-
-        
-        - if @user.role == "lojista"
-          = house_form.label "Telefone comercial"
-          = house_form.text_field :phone_number
-          = house_form.label "Logo digital (opcional)"
-        - elsif @user.role == "verificador"
-          = house_form.label "Fodo do organização"
-        - else
-          = house_form.label "Foto da casa (opcional)"
-        = house_form.file_field :profile_photo
+      %h2 Apresentação pessoal
+      .indent#visitor_desc
+        = text_area_tag "bio", nil, rows: 10, placeholder: "Descreva suas informações pessoais e profissionais."
 
     %br
-    - if @user.is_fully_registered == false
-      %h1 Alguém o convidou a se inscrever no DT?
-      %select#recruitment{:name => "recruitment_type"}
-        %option NINGUÉM
-        %option AVS/ACS
-        %option MORADOR/VIZINHO
-      %br
-        %input{:id => "recruitment", :name => "recruitment", :style => "display:none;"}
-        %input{:type => "hidden", :name => "recruitment_id", :id => "recruitment_id"}
+    
     %br
     = f.hidden_field :confirm, :value => @confirm
     

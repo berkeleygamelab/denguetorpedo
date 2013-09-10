@@ -319,7 +319,9 @@ class ReportsController < ApplicationController
 
     if @current_user.admin? or @current_user.created_reports.find_by_id(params[:id])
       Report.find(params[:id]).destroy
+      flash[:notice] = "Foco deletado com sucesso."
     end
+
     redirect_to(:back)
   end
 

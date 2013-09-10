@@ -11,7 +11,7 @@
         - elsif open.isVerified == "f"
           = image_tag 'icons/reports icon/x.png', :width => 25, :height => 25, :style => "float:right;"
         - else
-          - if open.elimination_type
+          - if !open.expired? and open.elimination_type
             - if @current_user.role == "verificador" or @current_user.role == "admin"
               = link_to (image_tag 'icons/reports icon/x.png', :width => 25, :height => 25), problem_reports_path(:id => open.id), method: :post, :style => "float:right;"
               = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"
