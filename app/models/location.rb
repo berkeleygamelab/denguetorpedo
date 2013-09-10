@@ -29,8 +29,6 @@ class Location < ActiveRecord::Base
   belongs_to :neighborhood
   has_many :reports
 
-  before_save :geocode
-
   BASE_URI = "http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Geocode/DBO.Loc_composto/GeocodeServer/findAddressCandidates"
 
   def geocode(address = "")
