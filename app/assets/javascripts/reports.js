@@ -1,7 +1,8 @@
 $(document).ready(function() {
+	$("select.elimination_type").each(function() {
+		$(this).parent().find("select.elimination_methods").hide();
 
-	
-	if($(this).val() == "Pratinho de planta") {
+		if($(this).val() == "Pratinho de planta") {
 			$(this).parent().find("select#prantinho").show();
 		} else if ($(this).val() == "Pneu") {
 			$(this).parent().find("select#pneu").show();
@@ -9,10 +10,10 @@ $(document).ready(function() {
 			$(this).parent().find("select#lixo").show();
 		} else if ($(this).val() == "Pequenos Recipientes utilizáveis") {
 			$(this).parent().find("select#pequenos").show();
-		} else if ($(this).val() == "Caixa d'água aberta na residência") {
-			$(this).parent().find("select#caixa").show();
 		} else if ($(this).val() == "Grandes Recipientes Utilizáveis") {
 			$(this).parent().find("select#grandes").show();
+		} else if ($(this).val() == "Caixa d'água aberta na residência") {
+			$(this).parent().find("select#caixa").show();
 		} else if ($(this).val() == "Calha") {
 			$(this).parent().find("select#calha").show();
 		} else if ($(this).val() == "Registros abertos") {
@@ -32,7 +33,7 @@ $(document).ready(function() {
 		} else {
 			$(this).parent().find("select#prantinho").show();
 		}
-
+	});
 	
 
 	$("select.elimination_methods").change(function() {
