@@ -191,31 +191,36 @@
 
 
             map.on("extent-change", function(event) {
-              for(var i = 0; i < markers.length; i++) {
+              if (markers.length > 0) {
+                for(var i = 0; i < markers.length; i++) {
 
-                if (event.extent.contains(new Point(markers[i].x, markers[i].y))) {
-                  $($(".rp_report")[i]).show();
-                } else {
-                  $($(".rp_report")[i]).hide();
+                  if (event.extent.contains(new Point(markers[i].x, markers[i].y))) {
+                    $($(".rp_report")[i]).show();
+                  } else {
+                    $($(".rp_report")[i]).hide();
+                  }
+                }
+              } else {
+                for (var i = 0; i < open_markers.length; i++) {
+                  if (event.extent.contains(new Point(open_markers[i].x, open_markers[i].y))) {
+                    $($(".rp_report")[i]).show();
+                  } else {
+                    $($(".rp_report")[i]).hide();
+                  }
+
+                }
+
+                for (var i = 0;i < eliminated_markers.length; i++) {
+                  if (event.extent.contains(new Point(eliminated_markers[i].x, eliminated_markers[i].y))) {
+                    $($(".rp_report")[i]).show();
+                  } else {
+                    $($(".rp_report")[i]).hide();
+                  }
                 }
               }
+              
 
-              for (var i = 0; i < open_markers.length; i++) {
-                if (event.extent.contains(new Point(open_markers[i].x, open_markers[i].y))) {
-                  $($(".rp_report")[i]).show();
-                } else {
-                  $($(".rp_report")[i]).hide();
-                }
-
-              }
-
-              for (var i = 0;i < eliminated_markers.length; i++) {
-                if (event.extent.contains(new Point(eliminated_markers[i].x, eliminated_markers[i].y))) {
-                  $($(".rp_report")[i]).show();
-                } else {
-                  $($(".rp_report")[i]).hide();
-                }
-              }
+              
             });
 
             var blueGraphic;
