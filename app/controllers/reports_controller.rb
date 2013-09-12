@@ -39,24 +39,20 @@ class ReportsController < ApplicationController
     @plantas = EliminationMethods.plantas
     @points = EliminationMethods.points
     Report.order("created_at DESC").each do |report|
-      if params[:view] == 'recent' || params[:view] == 'make_report'
-        reports_with_status_filtered << report
-        if report.location.latitude
+      if report.location.latitude and (report.reporter == @current_user or report.elimination_type)
+        if params[:view] == 'recent' || params[:view] == 'make_report'
+          reports_with_status_filtered << report
           if report.status_cd == 1
             eliminated_locations << report.location
           else
             open_locations << report.location
           end
           locations << report.location
-        end
-      elsif params[:view] == 'open' && report.status == :reported
-        reports_with_status_filtered << report
-        if report.location.latitude
+        elsif params[:view] == 'open' && report.status == :reported
+          reports_with_status_filtered << report
           open_locations << report.location
-        end
-      elsif params[:view] == 'eliminate' && report.status == :eliminated
-        reports_with_status_filtered << report
-        if report.location.latitude
+        elsif params[:view] == 'eliminate' && report.status == :eliminated
+          reports_with_status_filtered << report
           eliminated_locations << report.location
         end
       end
@@ -333,7 +329,7 @@ class ReportsController < ApplicationController
       @report.resolved_verifier_id = @current_user.id
       @report.resolved_verified_at = DateTime.now
     elsif @report.status_cd == 0
-      @report.isverified = true
+      @report.isVerified = true
       @report.verifier_id = @current_user.id
       @report.verified_at = DateTime.now
     end

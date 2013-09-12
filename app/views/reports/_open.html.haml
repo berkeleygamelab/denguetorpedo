@@ -87,7 +87,7 @@
                     %h3{:style => "font-size: 14px;"} Carregue uma foto do foco eliminado
                     = f.file_field :after_photo, :disabled => (open.after_photo_file_size or open.expired?)
                   %br
-                  = submit_tag "Enviar!", :style => "margin-left:5px;margin-top:5px;", :disabled => (@current_user.role == "verificador" or open.created_at + 3600 * 24 * 2 < Time.new)
+                  = submit_tag "Enviar!", :style => "margin-left:5px;margin-top:5px;", :disabled => ((@current_user.role == "verificador" or @current_user.role == "visitante") or open.created_at + 3600 * 24 * 2 < Time.new)
 
 
 
