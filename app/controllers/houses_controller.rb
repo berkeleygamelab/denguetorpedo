@@ -31,6 +31,11 @@ class HousesController < ApplicationController
     @markers = @house.reports.map { |report| {x: report.location.latitude, y: report.location.longitude, id: report.location.id}}
     @open_markers = @house.created_reports.map { |report| {x: report.location.latitude, y: report.location.longitude, id: report.location.id}}
     @eliminated_markers = @house.eliminated_reports.map { |report| {x: report.location.latitude, y: report.location.longitude, id: report.location.id}}
+
+    # @counts = @house.reports.group(:location_id).count
+    # @open_counts = @house.created_report.group(:location_id).count
+    # @eliminated_reports = @house.eliminated_reports.group(:location_id).count
+
     if (@current_user != nil && @current_user.house_id == @house.id)
       @highlightHouseItem = "nav_highlight"
     end 

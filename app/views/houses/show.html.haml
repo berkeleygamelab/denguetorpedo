@@ -126,7 +126,6 @@
                   map.on("load", function() {
                     var markers = #{@markers.to_json};
                     for (var i = 0; i < markers.length; i++) {
-                      alert(markers[i].x);
                       var symbol = new SimpleMarkerSymbol();
                       symbol.setStyle("STYLE_PATH");
                       symbol.setPath("M 10 10 L30 10 L20 30z");

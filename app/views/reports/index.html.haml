@@ -172,16 +172,32 @@
             var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 48, 64).setOffset(0, 15);
             
             var map_hash = #{@counts.to_json};
+            var open_hash = #{@open_counts.to_json};
+            var eliminated_hash = #{@eliminated_counts.to_json};
             map.on("load", function() {
 
               for (var i = 0; i < open_markers.length; i++) {
-                var count = map_hash[open_markers[i].id];
+                if ("#{params[:view]}" == 'recent') {
+                  var count = map_hash[open_markers[i].id];
+                } else if ("#{params[:view]}" == 'open') {
+                  var count = open_hash[open_markers[i].id];
+                } else {
+                  var count = eliminated_hash[open_markers[i].id];
+                }
+                
                 var textSymbol = new TextSymbol(count).setColor("#ffffff").setOffset(0, 10);
                 map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), red));
                 map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol));
               }
               for (var i = 0; i < eliminated_markers.length; i++) {
-                var count = map_hash[eliminated_markers[i].id];
+                if ("#{params[:view]}" == 'recent') {
+                  var count = map_hash[eliminated_markers[i].id];
+                } else if ("#{params[:view]}" == 'open') {
+                  var count = open_hash[eliminated_markers[i].id];
+                } else {
+                  var count = eliminated_hash[eliminated_markers[i].id];
+                }
+                
                 var textSymbol = new TextSymbol(count).setColor("#ffffff").setOffset(0, 10);
                 map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), gray));
                 map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol));

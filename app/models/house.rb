@@ -21,6 +21,7 @@ class House < ActiveRecord::Base
 
   has_many :members, :class_name => "User"
   has_many :posts, :as => :wall
+  has_many :all_reports, :through => :members
   has_many :created_reports, :through => :members, :conditions => {:status_cd => 0}
   has_many :eliminated_reports, :through => :members, :conditions => {:status_cd => 1}
   belongs_to :location

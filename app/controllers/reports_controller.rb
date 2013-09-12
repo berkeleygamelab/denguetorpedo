@@ -65,6 +65,8 @@ class ReportsController < ApplicationController
     @eliminated_markers = eliminated_locations.map { |location| {x: location.latitude, y: location.longitude, id: location.id}}
     @reports = reports_with_status_filtered
     @counts = Report.group(:location_id).count
+    @open_counts = Report.where(status_cd: 0).group(:location_id).count
+    @eliminated_counts = Report.where(status_cd: 1).group(:location_id).count
     @open_feed = @reports
     @eliminate_feed = @reports
   end
@@ -349,7 +351,7 @@ class ReportsController < ApplicationController
       @report.resolved_verifier_id = @current_user.id
       @report.resolved_verified_at = DateTime.now
     elsif @report.status_cd == 0
-      @report.isverified = false
+      @report.isVerified = false
       @report.verifier_id = @current_user.id
       @report.verified_at = DateTime.now
     end
