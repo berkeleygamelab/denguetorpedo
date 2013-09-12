@@ -104,31 +104,34 @@
               :javascript
                 var map;
 
-                require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/Color", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, Color) {
+                require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, Color, PictureMarkerSymbol) {
                   var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
                   var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
                   map = new Map("map", {
                     center: point,
-                    zoom: 6,
+                    zoom: 5,
                     extent: customExtent
                   });
                   
                   var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
                   map.addLayer(tiled);
-
+                  var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
+                  var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 48, 64).setOffset(0, 15);
+                  var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 48, 64).setOffset(0, 15);
+                  var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 48, 64).setOffset(0, 15);
                   var markers = #{@markers.to_json};
                   var open_markers = #{@open_markers.to_json};
                   var eliminated_markers = #{@eliminated_markers.to_json};
                   map.on("load", function() {
                     var markers = #{@markers.to_json};
                     for (var i = 0; i < markers.length; i++) {
+                      alert(markers[i].x);
                       var symbol = new SimpleMarkerSymbol();
                       symbol.setStyle("STYLE_PATH");
                       symbol.setPath("M 10 10 L30 10 L20 30z");
                       symbol.setColor(new Color("red"));
-
-                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), symbol));
+                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), red));
                     }
                   });
 
@@ -141,7 +144,7 @@
                       symbol.setPath("M 10 10 L30 10 L20 30z");
                       symbol.setColor(new Color("red"));
 
-                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), symbol));
+                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), red));
                     }
                   });
                   $("a#house_open_report_button").click(function() {
@@ -153,7 +156,7 @@
                       symbol.setPath("M 10 10 L30 10 L20 30z");
                       symbol.setColor(new Color("red"));
 
-                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), symbol));
+                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), red));
                     }
                   });
                   $("a#house_resolved_report_button").click(function() {
@@ -165,7 +168,7 @@
                       symbol.setPath("M 10 10 L30 10 L20 30z");
                       symbol.setColor(new Color("red"));
 
-                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), symbol));
+                      map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), gray));
                     }
                   });
                 });

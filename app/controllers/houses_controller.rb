@@ -28,9 +28,9 @@ class HousesController < ApplicationController
     @highlightHouseItem = ""
     
     @marker = [{"lat" => @house.location.latitude, "lng" => @house.location.longitude}].to_json
-    @markers = @house.reports.map { |report| {x: report.location.longitude, y: report.location.latitude}}
-    @open_markers = @house.created_reports.map { |report| {x: report.location.longitude, y: report.location.latitude}}
-    @eliminated_markers = @house.eliminated_reports.map { |report| {x: report.location.longitude, y: report.location.latitude}}
+    @markers = @house.reports.map { |report| {x: report.location.latitude, y: report.location.longitude, id: report.location.id}}
+    @open_markers = @house.created_reports.map { |report| {x: report.location.latitude, y: report.location.longitude, id: report.location.id}}
+    @eliminated_markers = @house.eliminated_reports.map { |report| {x: report.location.latitude, y: report.location.longitude, id: report.location.id}}
     if (@current_user != nil && @current_user.house_id == @house.id)
       @highlightHouseItem = "nav_highlight"
     end 
