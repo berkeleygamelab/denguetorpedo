@@ -9,8 +9,8 @@ class PrizesController < ApplicationController
     @user = current_user
 
     @prizes = Prize.where(:is_badge => false)
-    @available = Prize.where('stock > 0').wherewhere(:is_badge => false)
-    @redeemed = Prize.where('stock = 0').where(:is_badge => false)
+    @available = Prize.where('stock > 0').where('expire_on >= ?', Time.new).where(:is_badge => false)
+    @redeemed = Prize.where('stock = 0 OR expire_on < ?', Time.new).where(:is_badge => false)
     @medals = Prize.where(:is_badge => true)
     @filter = params[:filter]
     @max = params[:max]
