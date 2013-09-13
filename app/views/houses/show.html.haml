@@ -71,9 +71,9 @@
             - for neighbor in @neighbors
               %li
                 - if neighbor.profile_photo_file_name.nil?
-                  = link_to image_tag("default_images/house_small_default_image.png"), house_path(neighbor)
+                  = link_to image_tag("default_images/house_small_default_image.png"), house_path(neighbor), title: "#{neighbor.name}"
                 - else 
-                  = link_to image_tag(neighbor.profile_photo.url(:small), :width => 70, :height => 70), house_path(neighbor)
+                  = link_to image_tag(neighbor.profile_photo.url(:small), :width => 70, :height => 70), house_path(neighbor), title: "#{neighbor.name}"
                   
     /.row
     /  .span8
@@ -96,7 +96,7 @@
     
   .span6
     .row{:style => "margin-top:-37px;"}
-      %h2.span6 Focos marcados perto da casa!
+      %h2.span6 Focos marcados pela casa:
       #house_reports.span6
         .row
           .span6

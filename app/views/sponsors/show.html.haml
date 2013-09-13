@@ -12,7 +12,29 @@
 
 .row.offset1
 	%h2 Mapa
-	.map{:style => "width:200px; height:200px; border:1px solid #aaaaaa;"}
+	#map{:style => "width:400px; height:400px; border:1px solid #aaaaaa;"}
+	:javascript
+		var map;
+		require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "esri/renderers/ClassBreaksRenderer", "esri/dijit/PopupTemplate", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, TextSymbol, Color, PictureMarkerSymbol, ClassBreaksRenderer, PopupTemplate) {
+			var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
+			var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
+			var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
+			var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 48, 64).setOffset(0, 15);
+			var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 48, 64).setOffset(0, 15);
+			var orange = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 48, 64).setOffset(0, 15);
+			var red = new PictureMarkerSymbol(picBaseUrl + "RedPin1LargeB.png", 48, 64).setOffset(0, 15);
+
+			map = new Map("map", {
+				center: point,
+				zoom: 5,
+				extent: customExtent
+			});
+			var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
+			map.addLayer(tiled);
+			map.on("load", function() {
+				map.graphics.add(new Graphic(new Point(#{@sponsor.house.location.latitude}, #{@sponsor.house.location.longitude}), red));
+			});
+		});
 
 	%br
 	%h2 Prêmios

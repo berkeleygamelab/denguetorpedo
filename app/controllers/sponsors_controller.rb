@@ -3,6 +3,9 @@ class SponsorsController < ApplicationController
 		sponsor_id = params[:id]
 		@sponsor = User.find_by_id(sponsor_id)
 		@prizes = @sponsor.prizes
+
+		@sponsor.house.location.latitude ||= 0
+		@sponsor.house.location.longitude ||= 0
 		respond_to do |format|
 			if @sponsor.role != "lojista"
 				raise ActionController::RoutingError.new('Not Found')

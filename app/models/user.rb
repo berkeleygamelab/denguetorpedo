@@ -202,6 +202,10 @@ class User < ActiveRecord::Base
     return User.where("role = 'morador' OR role = 'verificador' OR role = 'coordenador'")
   end
 
+  def self.residents
+    return User.where("role = 'morador' OR role = 'coordenador'")
+  end
+
   def get_nickname
     if self.nickname
       return nickname

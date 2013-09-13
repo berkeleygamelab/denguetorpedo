@@ -19,12 +19,12 @@ class HousesController < ApplicationController
                  # }
                  
     @post = Post.new
-
+    @neigh = Neighborhood.first
     # @neighbors = House.joins(:location).joins(:user).where(:locations => {:neighborhood_id => @house.neighborhood.id}, :users => {:role}).limit(5)
     
-    excluded_roles = ["lojista", "verficidador"]
+    excluded_roles = ["lojista", "verificador"]
     @mare = Neighborhood.find_by_name('Maré')
-    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => 1}).where('users.role NOT IN (?) AND houses.id != ?', excluded_roles, @house.id).uniq.shuffle[0..6]
+    @neighbors = House.joins(:location).joins(:user).where(:locations => { :neighborhood_id => @neigh.id}).where('users.role NOT IN (?) AND houses.id != ?', excluded_roles, @house.id).uniq.shuffle[0..6]
     @highlightHouseItem = ""
     
     @marker = [{"lat" => @house.location.latitude, "lng" => @house.location.longitude}].to_json

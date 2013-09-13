@@ -103,9 +103,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.house ||= House.new
     @user.house.location ||= Location.new
+    @user.house.location.latitude ||= 0
+    @user.house.location.longitude ||= 0
     @highlightAccountItem = "nav_highlight"
     @verifiers = User.where(:role => "verificador").map { |verifier| {:value => verifier.id, :label => verifier.full_name}}.to_json
-    @residents = User.where('role != ?', 'verificador').map { |resident| {:value => resident.id, :label => resident.full_name}}.to_json
+    @residents = User.residents.map { |resident| {:value => resident.id, :label => resident.full_name}}.to_json
     if @user != @current_user
       authorize! :edit, User
     end
@@ -115,11 +117,14 @@ class UsersController < ApplicationController
   
   def update
     puts params
-    house_name = params[:user][:house_attributes][:name]
-    house_address = params[:user][:location][:address]
-    house_neighborhood = params[:user][:location][:neighborhood]
-    house_profile_photo = params[:user][:house_attributes][:profile_photo]
-    
+
+    if @current_user.role != "visitante"
+      house_name = params[:user][:house_attributes][:name]
+      house_address = params[:user][:location][:address]
+      house_neighborhood = params[:user][:location][:neighborhood]
+      house_profile_photo = params[:user][:house_attributes][:profile_photo]
+    end
+
     user_profile_phone_number = params[:user][:phone_number]
     user_profile_phone_number_confirmation = params[:phone_number_confirmation]
     user_profile_photo = params[:user][:profile_photo]
@@ -143,11 +148,16 @@ class UsersController < ApplicationController
         @user = @current_user
         @confirm = 0
         flash[:alert] = "Números do celular não coincidem"
-        render "edit"
+        redirect_to :back
         return
       end
     end
 
+    if params[:user][:carrier].empty?
+      flash[:alert] = "Operadoras are required"
+      redirect_to :back
+      return
+    end
 
     if !params[:user][:carrier].empty? and !params[:carrier_confirmation].empty?
       if params[:user][:carrier] == params[:carrier_confirmation]
@@ -190,6 +200,7 @@ class UsersController < ApplicationController
 
       if @user.role != "visitante"
         house_address = params[:user][:location][:street_type] + " " + params[:user][:location][:street_name] + " " + params[:user] [:location][:street_number]
+
         @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
         
         location = @user.house.location
@@ -198,7 +209,10 @@ class UsersController < ApplicationController
         location.street_name = params[:user][:location][:street_name]
         location.street_number = params[:user] [:location][:street_number]
         location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
-
+        if params[:x] and params[:y]
+          location.latitude = params[:x]
+          location.longitude = params[:y]
+        end
         if !location.save
           flash[:notice] = "There was an error with your address. Please enter a valid address."
           render "edit"
@@ -208,12 +222,12 @@ class UsersController < ApplicationController
 
       
 
-      if !@user.house.save
+      if @user.house and !@user.house.save
         flash[:notice] = "There was an error with your house info. Please enter casa information again."
         render "edit"
         return
       end
-      if params[:user][:house_attributes][:phone_number]
+      if params[:user][:house_attributes] and params[:user][:house_attributes][:phone_number]
         @user.house.phone_number = params[:user][:house_attributes][:phone_number]
         @current_user.house.save
       end
@@ -302,7 +316,7 @@ class UsersController < ApplicationController
     end
 
     if @user.save!
-      redirect_to edit_user_path(@current_user), :flash => { :notice => "Novo usuário criado com sucesso!"}
+      redirect_to "/users/special_new", :flash => { :notice => "Novo usuário criado com sucesso!"}
     else
       @user.house.destroy
       redirect_to :back, :flash => { :notice => "There was an error creating a new user."}

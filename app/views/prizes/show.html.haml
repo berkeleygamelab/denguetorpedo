@@ -19,7 +19,7 @@
               - if @prize.prize_photo_file_name.nil?
                 = image_tag("default_images/prize_default_image.jpg", :width => 300, :height => 300)
               - else
-                = image_tag(@prize.prize_photo.url(:large))
+                = image_tag(@prize.prize_photo.url(:large), width: 300, height: 300)
           .span9
             #prize_cost
               .row#prize_cost{:style => "padding:10px;"}

@@ -18,7 +18,7 @@
       = link_to 'Todos', reports_path(:view => 'recent'), :class=>'bttn reports_feed_button ' + @reports_feed_button_active
       = link_to 'Em aberto', reports_path(:view => 'open'), :class=>'bttn reports_open_button ' + @reports_open_button_active
       = link_to 'Eliminados', reports_path(:view => 'eliminate'), :class=>'bttn reports_resolved_button ' + @reports_resolved_button_active
-      - if @current_user.role == "verificador"
+      - if @current_user.role == "verificador" or @current_user.role == "visitante"
         = link_to "Marcar um foco", "#", :class => 'bttn make_report_button ' + @make_report_button_active, :style => "margin-left:90px;padding-top:13px;background-color:#aaaaaa;color:white;font-weight:bold;height:21px;font-size:25px;pointer-events: none;"
       - else
         = link_to "Marcar um foco", reports_path(:view => 'make_report'), :class => 'bttn make_report_button ' + @make_report_button_active, :style => "margin-left:90px;padding-top:13px;background-color:#60BB50;color:white;font-weight:bold;height:21px;font-size:25px;"
@@ -34,7 +34,7 @@
       - else params[:view] == 'make_report'
         = render :partial => "reports/make_report_form"
     
-    .span6{style: "margin-top:-63px;"}
+    .span7{style: "margin-top:-63px;"}
       .row
         .span8
           .report_map_search{style: "overflow:auto;"}
@@ -49,8 +49,8 @@
               %svg{display:"inline", style: "width:30px;height:30px;float:left;margin-left:8px;margin-top:2px; "}
                 %path{d: "M 6 6 L18 6 L12 18z", style: "fill:blue;stroke:black;"}
               %form{id: "address_search_form", style: "margin-bottom:0px;"}
-                %input.span6{:type => 'text', id: "address_search", :placeholder => "Digite um endereço e pressione enter", :style => 'width: 300px;'}
-                %input{type: "button", value: "Va para Maré", style: "margin-left:10px;margin-bottom:10px;", id: "go_to_mare"}
+                %input.span6{:type => 'text', id: "address_search", :placeholder => "Digite um endereço e pressione enter", :style => 'width: 280px;'}
+                %input{type: "button", value: "Va para Maré", style: "margin-left:325px;margin-bottom:10px;margin-top:-37px;", id: "go_to_mare"}
       #map{style: "height: 440px;width:440px;margin-left:10px; margin-top:10px;"}
       
 
