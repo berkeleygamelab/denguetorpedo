@@ -11,6 +11,9 @@ class PrizesController < ApplicationController
     @prizes = Prize.where(:is_badge => false)
     @available = Prize.where('stock > 0').where('expire_on >= ?', Time.new).where(:is_badge => false)
     @redeemed = Prize.where('stock = 0 OR expire_on < ?', Time.new).where(:is_badge => false)
+
+
+    @redeemed_counts = PrizeCode.count
     @medals = Prize.where(:is_badge => true)
     @filter = params[:filter]
     @max = params[:max]

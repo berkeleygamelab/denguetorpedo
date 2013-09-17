@@ -1,11 +1,16 @@
 .row
   .span4.offset1
     - if flash[:notice] 
-      %h2.notice{style: "margin: 10px; width: 700px;"}  
-        = flash[:notice]
-    - if flash[:error]
-      %h2.alert{style: "margin: 10px; width: 700px;background-color:transparent;"} 
-        = flash[:error]
+      .row#flash_dat_notice
+        #flashNotice 
+          %p
+            = flash[:notice]
+
+    - if flash[:alert] 
+      .row#flash_dat_alert
+        #flashAlert 
+          %p
+            = flash[:alert]
     %h1 Focos marcados
   %br
   .span#report_buttons{:style => "font-size:20px;"}
@@ -51,7 +56,7 @@
               %form{id: "address_search_form", style: "margin-bottom:0px;"}
                 %input.span6{:type => 'text', id: "address_search", :placeholder => "Digite um endereço e pressione enter", :style => 'width: 280px;'}
                 %input{type: "button", value: "Va para Maré", style: "margin-left:325px;margin-bottom:10px;margin-top:-37px;", id: "go_to_mare"}
-      #map{style: "height: 440px;width:440px;margin-left:10px; margin-top:10px;"}
+      #map{style: "height: 800px;width:440px;margin-left:10px; margin-top:10px;"}
       
 
       - if params[:view] == 'make_report'
@@ -145,7 +150,7 @@
           require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "esri/renderers/ClassBreaksRenderer", "esri/dijit/PopupTemplate", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, TextSymbol, Color, PictureMarkerSymbol, ClassBreaksRenderer, PopupTemplate) {
             var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
-            var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
+            var point = new Point(680291.2151545063, 7470751.29586681, new esri.SpatialReference({wkid: 29193}));
             map = new Map("map", {
               center: point,
               zoom: 5,
@@ -171,37 +176,47 @@
             var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 48, 64).setOffset(0, 15);
             var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 48, 64).setOffset(0, 15);
             
-            var map_hash = #{@counts.to_json};
-            var open_hash = #{@open_counts.to_json};
-            var eliminated_hash = #{@eliminated_counts.to_json};
-            map.on("load", function() {
 
-              for (var i = 0; i < open_markers.length; i++) {
-                if ("#{params[:view]}" == 'recent') {
-                  var count = map_hash[open_markers[i].id];
-                } else if ("#{params[:view]}" == 'open') {
-                  var count = open_hash[open_markers[i].id];
-                } else {
-                  var count = eliminated_hash[open_markers[i].id];
+            var grey = new PictureMarkerSymbol("/assets/markers/grey_marker.png", 64, 64).setOffset(15, 15);
+            var mixed = new PictureMarkerSymbol("/assets/markers/mixed_marker.png", 64, 64).setOffset(15, 15);
+            var orange = new PictureMarkerSymbol("/assets/markers/orange_marker.png", 64, 64).setOffset(15, 15);
+            var counts = #{@counts.to_json};
+            var open_counts = #{@open_counts.to_json};
+            var eliminated_counts = #{@eliminated_counts.to_json};
+
+            map.on("load", function() {
+              
+              if ("#{params[:view]}" == 'recent') {
+                for (var i = 0; i < markers.length; i++) {
+                  count = counts[markers[i].id];
+                  open_count = open_counts[markers[i].id];
+                  eliminated_count = eliminated_counts[markers[i].id];
+                  if (open_count && eliminated_count) {
+                    map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), mixed));
+                  } else if (open_count > 0) {
+                    map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), orange));
+                  } else if (eliminated_count > 0) {
+                    map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), grey));
+                  }
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
+                  map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), textSymbol));
                 }
-                
-                var textSymbol = new TextSymbol(count).setColor("#ffffff").setOffset(0, 10);
-                map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), red));
-                map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol));
-              }
-              for (var i = 0; i < eliminated_markers.length; i++) {
-                if ("#{params[:view]}" == 'recent') {
-                  var count = map_hash[eliminated_markers[i].id];
-                } else if ("#{params[:view]}" == 'open') {
-                  var count = open_hash[eliminated_markers[i].id];
-                } else {
-                  var count = eliminated_hash[eliminated_markers[i].id];
+              } else if ("#{params[:view]}" == 'open') {
+                for (var i = 0; i < open_markers.length; i++) {
+                  count = open_counts[open_markers[i].id];
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
+                  map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), orange));
+                  map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol));
                 }
-                
-                var textSymbol = new TextSymbol(count).setColor("#ffffff").setOffset(0, 10);
-                map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), gray));
-                map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol));
+              } else {
+                for (var i = 0; i < eliminated_markers.length; i++) {
+                  count = eliminated_counts[eliminated_markers[i].id];
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
+                  map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), grey));
+                  map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol));
+                }
               }
+              
 
               tb = new Draw(map);
               tb.on("draw-end", addGraphic);

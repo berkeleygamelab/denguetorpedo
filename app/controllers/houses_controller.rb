@@ -36,6 +36,10 @@ class HousesController < ApplicationController
     # @open_counts = @house.created_report.group(:location_id).count
     # @eliminated_reports = @house.eliminated_reports.group(:location_id).count
 
+    @counts = @house.report_counts
+    @open_counts = @house.open_report_counts
+    @eliminated_counts = @house.eliminated_report_counts
+    
     if (@current_user != nil && @current_user.house_id == @house.id)
       @highlightHouseItem = "nav_highlight"
     end 

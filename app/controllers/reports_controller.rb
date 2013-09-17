@@ -84,7 +84,7 @@ class ReportsController < ApplicationController
       location = Location.find_by_address(address)
   
       if params[:x].empty? or params[:y].empty?
-        flash[:error] = "You have to mark a valid location for your foco."
+        flash[:alert] = "Coloque o marcador na localização correta no mapa."
         redirect_to :back
         return
       end
@@ -356,10 +356,14 @@ class ReportsController < ApplicationController
       @report.is_resolved_verified = false
       @report.resolved_verifier_id = @current_user.id
       @report.resolved_verified_at = DateTime.now
+      @report.resolved_verifier.points -= 100
+      @report.resolved_verifier.save
     elsif @report.status_cd == 0
       @report.isVerified = false
       @report.verifier_id = @current_user.id
       @report.verified_at = DateTime.now
+      @report.verifier.points -= 100
+      @report.verifier.save
     end
     if @report.save
       redirect_to reports_path

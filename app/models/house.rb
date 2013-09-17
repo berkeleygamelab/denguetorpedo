@@ -49,6 +49,18 @@ class House < ActiveRecord::Base
     _reports
   end
 
+  def report_counts
+    self.reports.inject(Hash.new(0)) { |h, e| h[e.location_id] += 1; h }
+  end
+
+  def open_report_counts
+    self.created_reports.inject(Hash.new(0)) { |h, e| h[e.location_id] += 1; h }
+  end
+
+  def eliminated_report_counts
+    self.eliminated_reports.inject(Hash.new(0)) { |h, e| h[e.location_id] += 1; h }
+  end
+
   def self.find_or_create(name, address, neighborhood, profile_photo=nil)
     if name.nil? || name.blank?
       return nil

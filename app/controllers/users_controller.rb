@@ -154,9 +154,14 @@ class UsersController < ApplicationController
     end
 
     if params[:user][:carrier].empty?
-      flash[:alert] = "Operadoras are required"
+      flash[:alert] = "Informe a sua operadora."
       redirect_to :back
       return
+    end
+
+    if !params[:user][:prepaid]
+      flash[:alert] = "Marque pré ou pós-pago."
+      redirect_to :back
     end
 
     if !params[:user][:carrier].empty? and !params[:carrier_confirmation].empty?
@@ -170,6 +175,8 @@ class UsersController < ApplicationController
         return
       end
     end
+
+
 
     @user.prepaid = params[:user][:prepaid]
     

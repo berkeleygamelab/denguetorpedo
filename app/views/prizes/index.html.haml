@@ -1,25 +1,22 @@
 .row
   .span8.offset1
     %h1 Prêmios
-  .button_to#how_to{:title => "1. marcar um foco: 50 pontos <br> 2. eliminar um foco: 450 pontos <br> 3. postar no mini blog: 5 pontos (max 100 por mes)"}
-    Como ganhar pontos?
+  .button_to#how_to
+    = link_to "Como ganhar pontos?", "/faq"
 %br
 .row
   #neighborhood_stats.offset1
-    .span3
-      %b= @prizes.count
-      %br Total
     .span4
       .row
         #available_prizes_button.span1 
         .span3
-          %b= @available.count
+          %b= @available.sum(:stock)
           %br Disponiveis
     .span4
       .row
         #neighborhood_resolved_report_button.span1 
         .span3
-          %b= @redeemed.count
+          %b= @redeemed_counts
           %br Resgatados
     / .span2
     /   .house_count

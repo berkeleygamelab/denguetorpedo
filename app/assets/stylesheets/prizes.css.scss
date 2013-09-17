@@ -260,6 +260,7 @@ img.prize_photo {
 
 #flash_dat_notice {
   margin-bottom: 30px;
+  width: 1000px;
 }
 
 #flashNotice {
@@ -267,14 +268,16 @@ img.prize_photo {
 }
 
 #flashNotice p {
-  color: #000;
+  color: white;
   font-weight: bold;
   line-height: 20px;
   padding: 20px;
+  font-size: 20px;
 }
 
 #flash_dat_alert {
   margin-bottom: 30px;
+  width: 1000px;
 }
 
 #flashAlert {
@@ -286,7 +289,9 @@ img.prize_photo {
   font-weight: bold;
   line-height: 20px;
   padding: 20px;
+  font-size: 20px;
 }
+
 
 #prize_cost h6 {
   font-size: 20px;

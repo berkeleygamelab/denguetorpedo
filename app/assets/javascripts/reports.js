@@ -29,9 +29,16 @@ $(document).ready(function() {
 		} else if ($(this).val() == "Plantas ornamentais que acumulam água (ex: bromélias)") {
 			$(this).parent().find("select#plantas").show();
 		} else if ($(this).val() == "Outro tipo") {
-			window.location.href = "/feedbacks/new?title=other_type";
+			// window.location.href = "/feedbacks/new?title=other_type";
 		} else {
 			$(this).parent().find("select#prantinho").show();
+		}
+	});
+
+	$("select.elimination_type").change(function() {
+		alert("hihi");
+		if ($(this).val() == "Outro tipo") {
+			window.location = "/feedbacks/new?title=other_type";
 		}
 	});
 	
@@ -42,7 +49,6 @@ $(document).ready(function() {
 		} else {
 			// alert($(this).val());
 			$(this).parent().find("input#selected_elimination_method").val($(this).val());
-			$()
 		}
 		
 	});
