@@ -29,7 +29,7 @@ class Prize < ActiveRecord::Base
   has_many :group_buy_ins, :dependent => :destroy
   has_many :prize_codes, :dependent => :destroy
   has_many :badges, :dependent => :destroy
-  has_attached_file :prize_photo, :default_url => 'default_images/prize_default_image.jpg', :styles => { :small => "60x60>", :large => "150x150>" }#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
+  has_attached_file :prize_photo, :default_url => 'home_images/logo.png', :styles => { :small => "60x60>", :large => "150x150>" }#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   validates :cost, :presence => true
   validates :description, :presence => true
   validates :prize_name, :presence => true
@@ -99,6 +99,18 @@ class Prize < ActiveRecord::Base
       return self.user.house.name
     end
 
+  end
+
+  def expired?
+    if self.stock == 0 or (self.expire_on and self.expire_on <= Time.new)
+      1
+    else
+      0
+    end
+  end
+
+  def available?
+    not self.expired?
   end
 
 end

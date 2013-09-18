@@ -10,7 +10,7 @@
 		- else
 			= link_to image_tag(prize.prize_photo.url(:large), :class => "prizes"), prize_path(prize)
 		.description
-			= link_to prize.prize_name, prize_path(prize)		
+			= link_to truncate(prize.prize_name, length: 40), prize_path(prize)		
 		.stock
 			Estoque: #{prize.stock}
 		.redeem_by

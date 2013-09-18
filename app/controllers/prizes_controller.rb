@@ -8,7 +8,7 @@ class PrizesController < ApplicationController
 
     @user = current_user
 
-    @prizes = Prize.where(:is_badge => false)
+    @prizes = Prize.where(:is_badge => false).sort { |a, b| a.expired? <=> b.expired? }
     @available = Prize.where('stock > 0').where('expire_on >= ?', Time.new).where(:is_badge => false)
     @redeemed = Prize.where('stock = 0 OR expire_on < ?', Time.new).where(:is_badge => false)
 
@@ -35,8 +35,8 @@ class PrizesController < ApplicationController
     elsif @filter == "community"
       @filtered_prizes = Prize.where(:community_prize => true).where(:is_badge => false)
     else
-      @individual = Prize.where(:community_prize => false, :is_badge => false)
-      @community = Prize.where(:community_prize => true, :is_badge => false)
+      @individual = Prize.where(:community_prize => false, :is_badge => false).sort { |a, b| a.expired? <=> b.expired? }
+      @community = Prize.where(:community_prize => true, :is_badge => false).sort { |a, b| a.available? <=> b.available? }
     end
     respond_to do |format|
       format.html # index.html.erb
