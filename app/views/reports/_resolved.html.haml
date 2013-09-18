@@ -34,11 +34,16 @@
         - if resolved.reporter_id
           Marcado por:
           =link_to resolved.reporter.display_name + " " + resolved.strftime_with(:created_at), user_path(resolved.reporter), :class => "user", :style => "width:100%;"
-          %br
+        - else
+          Marcado por: #{resolved.reporter_name + " " + resolved.strftime_with(:created_at)} 
+        %br
         - if resolved.eliminator_id
           Eliminado por:
           =link_to resolved.eliminator.display_name + " " + resolved.strftime_with(:eliminated_at), user_path(resolved.eliminator), :class => "user", :style => "width:100%;"
-          %br
+        - else
+          -if resolved.eliminated_at
+            Eliminador por: #{resolved.eliminator_name + " " + resolved.strftime_with(:eliminated_at)}
+        %br
         - if resolved.is_resolved_verified == "t" and resolved.resolved_verifier_id
           Verificado por:
           = link_to resolved.resolved_verifier.display_name + " " + resolved.strftime_with(:resolved_verified_at), user_path(resolved.resolved_verifier), :class => "user"

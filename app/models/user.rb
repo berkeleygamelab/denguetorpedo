@@ -52,12 +52,12 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
 
   # associations
-  has_many :created_reports, :class_name => "Report", :foreign_key => "reporter_id", :dependent => :destroy
-  has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id", :dependent => :destroy
+  has_many :created_reports, :class_name => "Report", :foreign_key => "reporter_id", :dependent => :nullify
+  has_many :eliminated_reports, :class_name => "Report", :foreign_key => "eliminator_id", :dependent => :nullify
   has_many :feeds, :dependent => :destroy
   has_many :posts, :dependent => :destroy
   has_many :prize_codes, :dependent => :destroy
-  has_many :badges, :dependent => :destroy
+  has_many :badges
   has_many :prizes, :dependent => :destroy
   # has_many :created_group_buy_ins, :class_name => "GroupBuyIn", :dependent => :destroy
   # has_many :participated_group_buy_ins, :through => :buy_ins, :class_name => "GroupBuyIn", :dependent => :destroy

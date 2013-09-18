@@ -36,7 +36,6 @@ $(document).ready(function() {
 	});
 
 	$("select.elimination_type").change(function() {
-		alert("hihi");
 		if ($(this).val() == "Outro tipo") {
 			window.location = "/feedbacks/new?title=other_type";
 		}

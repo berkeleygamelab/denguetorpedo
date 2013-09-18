@@ -45,6 +45,8 @@ class Report < ActiveRecord::Base
 
   scope :sms, where(sms: true)
 
+  before_save :set_names
+
   def self.create_from_user(report_content, params)
     create(:report => report_content) do |r|
       r.reporter_id = params[:reporter] && params[:reporter].id
@@ -119,5 +121,16 @@ class Report < ActiveRecord::Base
 
   def expired?
     self.created_at and self.created_at + 3600 * 24 * 2 < Time.new
+  end
+
+  def set_names
+    if self.reporter_id
+      self.reporter_name = self.reporter.display_name
+    end
+
+    if self.eliminator_id
+      self.eliminator_name = self.eliminator.display_name
+    end
+
   end
 end
