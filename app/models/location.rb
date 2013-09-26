@@ -29,8 +29,13 @@ class Location < ActiveRecord::Base
   belongs_to :neighborhood
   has_many :reports
 
+  before_save :save_address
+
   BASE_URI = "http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Geocode/DBO.Loc_composto/GeocodeServer/findAddressCandidates"
 
+  def save_address
+    self.address = self.street_type + " " + self.street_name + " " + self.street_number
+  end
   def geocode(address = "")
     self.address = self.street_type + " " + self.street_name + " " + self.street_number
     uri = URI.parse(URI.escape("#{BASE_URI}?f=pjson&outSR=29193&Street=#{self.address}"))

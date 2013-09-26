@@ -162,6 +162,7 @@ class UsersController < ApplicationController
     if !params[:user][:prepaid]
       flash[:alert] = "Marque pré ou pós-pago."
       redirect_to :back
+      return
     end
 
     if !params[:user][:carrier].empty? and !params[:carrier_confirmation].empty?
@@ -209,19 +210,24 @@ class UsersController < ApplicationController
         house_address = params[:user][:location][:street_type] + " " + params[:user][:location][:street_name] + " " + params[:user] [:location][:street_number]
 
         @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
-        
-        location = @user.house.location
-        # location.address = house_address
-        location.street_type = params[:user][:location][:street_type]
-        location.street_name = params[:user][:location][:street_name]
-        location.street_number = params[:user] [:location][:street_number]
-        location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
-        if params[:x] and params[:y]
-          location.latitude = params[:x]
-          location.longitude = params[:y]
-        end
-        if !location.save
-          flash[:notice] = "There was an error with your address. Please enter a valid address."
+        if @user.house
+          location = @user.house.location
+          # location.address = house_address
+          location.street_type = params[:user][:location][:street_type]
+          location.street_name = params[:user][:location][:street_name]
+          location.street_number = params[:user] [:location][:street_number]
+          location.neighborhood = Neighborhood.find_or_create_by_name(params[:user][:location][:neighborhood])
+          if params[:x] and params[:y]
+            location.latitude = params[:x]
+            location.longitude = params[:y]
+          end
+          if !location.save
+            flash[:notice] = "There was an error with your address. Please enter a valid address."
+            render "edit"
+            return
+          end
+        else
+          flash[:alert] = "There was an error with your house info. Please enter casa information again."
           render "edit"
           return
         end

@@ -15,17 +15,18 @@
             - if @current_user.role == "verificador" or @current_user.role == "admin"
               = link_to (image_tag 'icons/reports icon/x.png', :width => 25, :height => 25), problem_reports_path(:id => open.id), method: :post, :style => "float:right;"
               = link_to (image_tag 'icons/reports icon/check.png', :width => 25, :height => 25), verify_reports_path(:id => open.id), method: :post, :style => "float:right;"
-        - if open.elimination_type
-          - if open.created_at + 3600 * 24 * 2 > Time.new
+        
+        - if open.created_at + 3600 * 24 * 2 > Time.new
+          - if open.elimination_type
             .countdown.countdownHolder{:style => "width:150px;height: 20px;background-color:transparent; border: none;float:right;margin-top:1px;margin-right:0px;font-size:20px;"}
             .span{style: "margin-top:3px; margin-right:10px;"}
               Tempo restante
               :javascript
                 var newYear = new Date(#{(open.created_at + 3600 * 53).strftime("%s").to_i * 1000});
                 $(".countdown").countdown({until: newYear, format: 'HMS', compact: 'true'});
-          - else
-            .span{style: "margin-top:3px; margin-right:10px;"}
-              Tempo expirado
+        - else
+          .span{style: "margin-top:3px; margin-right:10px;"}
+            Tempo expirado
         
   .row
     .span7{:style => "margin-top:10px;"}
