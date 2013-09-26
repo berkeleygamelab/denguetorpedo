@@ -254,6 +254,7 @@ class UsersController < ApplicationController
 
       if @user.save
         redirect_to edit_user_path(@user), :flash => { :notice => 'Perfil atualizado com sucesso!' }
+        return
       else
         @user.house = House.new(name: house_name)
         @user.house.location = Location.new

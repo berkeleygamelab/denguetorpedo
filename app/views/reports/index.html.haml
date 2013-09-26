@@ -171,14 +171,14 @@
             var counts = #{@counts.to_json};
 
             var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
-            var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 48, 64).setOffset(0, 15);
-            var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 48, 64).setOffset(0, 15);
-            var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 48, 64).setOffset(0, 15);
+            var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 40, 40).setOffset(0, 15);
+            var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 40, 40).setOffset(0, 15);
+            var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 40, 40).setOffset(0, 15);
             
 
-            var grey = new PictureMarkerSymbol("/assets/markers/grey_marker.png", 64, 64).setOffset(15, 15);
-            var mixed = new PictureMarkerSymbol("/assets/markers/mixed_marker.png", 64, 64).setOffset(15, 15);
-            var orange = new PictureMarkerSymbol("/assets/markers/orange_marker.png", 64, 64).setOffset(15, 15);
+            var grey = new PictureMarkerSymbol("/assets/markers/grey_marker.png", 48, 48).setOffset(15, 15);
+            var mixed = new PictureMarkerSymbol("/assets/markers/mixed_marker.png", 48, 48).setOffset(15, 15);
+            var orange = new PictureMarkerSymbol("/assets/markers/orange_marker.png", 48, 48).setOffset(15, 15);
             var counts = #{@counts.to_json};
             var open_counts = #{@open_counts.to_json};
             var eliminated_counts = #{@eliminated_counts.to_json};
@@ -203,13 +203,13 @@
                   }
                   graphic.setInfoTemplate(template);
                   map.graphics.add(graphic);
-                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
                   map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), textSymbol));
                 }
               } else if ("#{params[:view]}" == 'open') {
                 for (var i = 0; i < open_markers.length; i++) {
                   count = open_counts[open_markers[i].id];
-                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
 
                   
                   map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), orange));
@@ -218,7 +218,7 @@
               } else {
                 for (var i = 0; i < eliminated_markers.length; i++) {
                   count = eliminated_counts[eliminated_markers[i].id];
-                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
                   map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), grey));
                   map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol));
                 }
