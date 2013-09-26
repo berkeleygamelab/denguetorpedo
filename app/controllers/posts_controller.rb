@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class PostsController < ApplicationController
   before_filter :require_login, :except => [:index]
   before_filter :load_wall
@@ -12,11 +14,17 @@ class PostsController < ApplicationController
   end
 
   def create
+
+    
+
     @wall.posts.create params[:post] do |post|
       post.user_id = @current_user.id
-      @current_user.update_attribute(:points, @current_user.points + 5)
-      @current_user.update_attribute(:total_points, @current_user.total_points + 5)
     end
+
+    if params[:post][:content].empty?
+      flash[:alert] = "Descreve a sua idéia."
+    end
+
     redirect_to :back
   end
 

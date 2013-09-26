@@ -147,15 +147,21 @@
         :javascript
           var map;
 
-          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "esri/renderers/ClassBreaksRenderer", "esri/dijit/PopupTemplate", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, TextSymbol, Color, PictureMarkerSymbol, ClassBreaksRenderer, PopupTemplate) {
+          require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/layers/FeatureLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "esri/renderers/ClassBreaksRenderer", "esri/dijit/Popup", "esri/dijit/PopupTemplate", "dojo/dom-construct", "dojo/dom", "esri/InfoTemplate", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, FeatureLayer, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, TextSymbol, Color, PictureMarkerSymbol, ClassBreaksRenderer, Popup, PopupTemplate, domConstruct, dom, InfoTemplate) {
             var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
+
+            var popup = new Popup({
+              highlight: false
+            }, domConstruct.create("div"));
 
             var point = new Point(680291.2151545063, 7470751.29586681, new esri.SpatialReference({wkid: 29193}));
             map = new Map("map", {
               center: point,
               zoom: 5,
-              extent: customExtent
+              extent: customExtent,
+              infoWindow:popup
             });
+
             
             var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
             map.addLayer(tiled);
@@ -163,13 +169,6 @@
             var open_markers = #{@open_markers.to_json};
             var eliminated_markers = #{@eliminated_markers.to_json};
             var counts = #{@counts.to_json};
-            map.on("load", function() {
-              
-              tb = new Draw(map);
-              tb.on("draw-end", addGraphic);
-              tb.activate("point");
-            });
-
 
             var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
             var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 48, 64).setOffset(0, 15);
@@ -185,19 +184,25 @@
             var eliminated_counts = #{@eliminated_counts.to_json};
 
             map.on("load", function() {
-              
+              map.infoWindow.resize(200, 200);
               if ("#{params[:view]}" == 'recent') {
                 for (var i = 0; i < markers.length; i++) {
                   count = counts[markers[i].id];
                   open_count = open_counts[markers[i].id];
                   eliminated_count = eliminated_counts[markers[i].id];
+
+                  var template = new InfoTemplate();
+                  template.setTitle("Foco");
+                  var graphic;
                   if (open_count && eliminated_count) {
-                    map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), mixed));
+                    graphic = new Graphic(new Point(markers[i].x, markers[i].y), mixed);
                   } else if (open_count > 0) {
-                    map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), orange));
+                    graphic = new Graphic(new Point(markers[i].x, markers[i].y), orange);
                   } else if (eliminated_count > 0) {
-                    map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), grey));
+                    graphic = new Graphic(new Point(markers[i].x, markers[i].y), grey);
                   }
+                  graphic.setInfoTemplate(template);
+                  map.graphics.add(graphic);
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
                   map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), textSymbol));
                 }
@@ -205,6 +210,8 @@
                 for (var i = 0; i < open_markers.length; i++) {
                   count = open_counts[open_markers[i].id];
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(0, 25);
+
+                  
                   map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), orange));
                   map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol));
                 }
@@ -223,6 +230,7 @@
               tb.activate("point");
       
             });
+
             $("input#go_to_mare").click(function() {
               map.centerAndZoom(new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({"wkid": 29193})), 5)
             });

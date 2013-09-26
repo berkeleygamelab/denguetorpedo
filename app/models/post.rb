@@ -29,6 +29,8 @@ class Post < ActiveRecord::Base
   validates :user_id, :presence => true
   validates :content, :presence => true, :length => {:minimum => 1, :maximum => 350}
 
+  after_create :give_points
+  after_destroy :remove_points
   after_create do |post|
     Feed.create_from_object(post, post.user_id, :post)
   end
@@ -39,5 +41,15 @@ class Post < ActiveRecord::Base
   
   def strf_created_at
     self.created_at.strftime("%d/%m/%Y")
+  end
+
+  def give_points
+    self.user.update_attribute(:points, self.user.points + 5)
+    self.user.update_attribute(:total_points, self.user.total_points + 5)
+  end
+
+  def remove_points
+    self.user.update_attribute(:points, self.user.points - 5)
+    self.user.update_attribute(:total_points, self.user.total_points - 5)
   end
 end

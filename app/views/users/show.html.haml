@@ -1,3 +1,14 @@
+- if flash[:notice] 
+  .row#flash_dat_notice
+    #flashNotice 
+      %p
+        = flash[:notice]
+
+- if flash[:alert] 
+  .row#flash_dat_alert{style: "width: 724px; margin-left:65px;"}
+    #flashAlert 
+      %p
+        = flash[:alert]
 #content{style: "min-height:700px;"}
   #user_top_bar 
     #user_top_text

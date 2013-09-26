@@ -11,10 +11,11 @@
     .span4
       .report_content
         = resolved_report.report
-      %a Marcado:
-      %a.user
-        = link_to resolved_report.reporter.display_name + " - " + resolved_report.strftime_with(:created_at), user_path(resolved_report.reporter)
-      %br
+      - if resolved_report.reporter
+        %a Marcado:
+        %a.user
+          = link_to resolved_report.reporter.display_name + " - " + resolved_report.strftime_with(:created_at), user_path(resolved_report.reporter)
+        %br
       %a Eliminado: 
       %a.user
         - if resolved_report.eliminator_id

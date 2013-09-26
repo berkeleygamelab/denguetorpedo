@@ -6,7 +6,7 @@ pdf.image @prize_code.prize.prize_photo.path, width: 200, height: 200
 
 pdf.move_down(20)
 
-pdf.text "Oferecido por: #{@prize.user.full_name}"
+pdf.text "Oferecido por: #{@prize.user.house.name}"
 pdf.text "Resgatado por: #{@prize_code.user.full_name}"
 
 pdf.move_down(10)

@@ -16,7 +16,11 @@
       %li
         = image_tag("icons/house_icon.png")
         - if @current_user.house && @current_user.house.id
-          = link_to 'Minha Casa', house_path(@current_user.house), :class => highlight_active_link(house_path(@current_user.house))
+          - if @current_user.role != "lojista"
+            = link_to 'Minha Casa', house_path(@current_user.house), :class => highlight_active_link(house_path(@current_user.house))
+          - else
+            Minha Casa
+
         - else
           - if @current_user.role != "visitante"
             = link_to 'Minha Casa', edit_user_path(@current_user), :class => highlight_active_link(edit_user_path(@current_user))

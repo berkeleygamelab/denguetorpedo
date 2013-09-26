@@ -30,6 +30,10 @@ $(document).ready(function() {
 			$(this).parent().find("select#plantas").show();
 		} else if ($(this).val() == "Outro tipo") {
 			// window.location.href = "/feedbacks/new?title=other_type";
+			$(this).find("option").filter(function() {
+				return $(this).text() == "Tipo de foco";
+			}).prop("selected", true);
+			$(this).parent().find("select#prantinho").show();
 		} else {
 			$(this).parent().find("select#prantinho").show();
 		}
@@ -41,12 +45,16 @@ $(document).ready(function() {
 		}
 	});
 	
-
+	$("select.elimination_methods").each(function() {
+		$(this).find("option").filter(function() {
+			return $(this).text() == "Método de eliminação";
+		}).prop("selected", true);
+	});
 	$("select.elimination_methods").change(function() {
 		if ($(this).val() == "Outro método") {
 			window.location.href = "/feedbacks/new?title=other_method";
 		} else {
-			// alert($(this).val());
+			alert($(this).val());
 			$(this).parent().find("input#selected_elimination_method").val($(this).val());
 		}
 		

@@ -84,7 +84,7 @@ class ReportsController < ApplicationController
       location = Location.find_by_address(address)
   
       if params[:x].empty? or params[:y].empty?
-        flash[:alert] = "Coloque o marcador na localização correta no mapa."
+        flash[:alert] = "Você precisa marcar uma localização válida para o seu foco."
         redirect_to :back
         return
       end

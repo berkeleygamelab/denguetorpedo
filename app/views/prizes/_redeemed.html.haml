@@ -10,7 +10,7 @@
 		- else
 			= image_tag(redeemed.prize_photo.url(:large), :class => "prizes")
 		.description
-			#{redeemed.prize_name}
+			= truncate(redeemed.prize_name, length: 35)
 		.stock
 			
 			- if redeemed.stock == 0

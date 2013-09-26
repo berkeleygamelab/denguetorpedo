@@ -1,0 +1,56 @@
+.row
+	.span14.offset1
+		%h1
+			Manual de Conduta
+		%p 
+			Observar, encontrar e eliminar focos de dengue é a principal atividade do Dengue Torpedo. 
+			Mas atenção, nem sempre essa tarefa é fácil!
+			Alguns focos da dengue não ficam em locais fáceis, como lajes, terrenos baldios etc. 
+			Alguns focos ficam em locais que não podemos entrar, como a casa de um vizinho.
+			Para ajudar nesses casos, o Dengue Torpedo cria procedimentos com o objetivo de evitar problemas desnecessários. 
+
+		%br
+		.accordion#accordion1
+			.accordion-group
+				.accordion-heading{style: "padding:10px;"}
+					%a{href: 'javascript:$("#group").collapse("toggle");', style: "font-size:20px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+						Local com provável foco
+				#group.collapse.in.accordion-body
+					.accordion-inner
+						%h2
+							Na casa de outra pessoa
+						#casa
+							Se você acha que algum vizinho ou comércio tem um foco de dengue, mas você não tem certeza, você pode conversar com o dono da casa ou do estabelecimento e convidá-lo a participar do Dengue Torpedo. Dentro do Dengue Torpedo esse é o recrutamento. Com essa ação você consegue pontos e ainda recruta um parceiro na luta contra a dengue. 
+							Se essa estratégia não funcionar você deve comunicar o Agente de Vigilância em Saúde (AVS) da sua área. 
+							Mas atenção, é importante evitar qualquer conflito em sua vizinhança, acusando seu vizinho de ter focos de dengue em sua casa. Nesse caso informe o AVS que irá tomar as devidas providências, podendo inclusive confirmar a existência do foco. 
+							Uma outra solução é convidar seu vizinho a participar das palestras sobre Dengue oferecidas em sua região e sensibilizá-lo a eliminar os focos que ele possa ter em sua residência ou entregar algum dos materiais educativos sobre como eliminar os focos de dengue. 
+							Consulte a página da sua comunidade!
+						%h2
+							Em grandes áreas
+
+						#areas
+							Se você encontrar uma área com muitos focos, como ruas com pontos de água ou lixo acumulados ou grandes terrenos baldios, você pode organizar mutirões de limpeza contra a Dengue. Converse com seus vizinhos ou outros participantes do Dengue Torpedo para planejar essa ação. Você também pode solicitar o auxílio dos verificadores ou coordenadores comunitários nessa tarefa. 
+							Use o seu blog para pensar em uma ação coletiva!
+		.accordion-group	
+			.accordion-heading{style: "padding:10px;"}		
+				%a{href: 'javascript:$("#focos").collapse("toggle");', style: "font-size:20px;font-weight:bold;", data: { parent: "#accordion1"}}
+					Focos de difícil acesso
+
+			#focos.collapse.in.accordion-body
+				.accordion-inner
+					Se o foco que você encontrou estiver em um local de difícil acesso, como na laje da sua residência, você pode solicitar a ajuda de outro usuário ou de um AVS. 
+					Os pontos de eliminação serão dados para a pessoa que eliminou o foco. Mas você receberá os pontos pela identificação do foco.
+		%br
+		.accordion-group
+			.accordion-heading{style: "padding:10px;"}
+				%a{href: 'javascript:$("#casos").collapse("toggle");', style: "font-size:20px;font-weight:bold;", data: { parent: "#accordion1"}}
+					Casos de fraude ou mau uso
+
+			#casos.collapse.in.accordion-body
+				.accordion-inner
+					Você pode perceber que algum participante do Dengue Torpedo está fraudando o jogo, fingindo identificar focos ou ainda criando focos para eliminá-los. Nesses casos você deve falar com os coordenadores do Dengue Torpedo através da página de contato. 
+					Caso seja confirmado o mau uso o usuário será suspenso do Dengue Torpedo por um tempo, e se ele voltar a cometer o mesmo erro ele será banido do site. As informações serão mantidas em sigilo, ninguém vai saber quem fez a denúncia.
+
+
+:javascript
+	$(".collapse").collapse();
