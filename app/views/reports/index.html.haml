@@ -192,7 +192,7 @@
                   eliminated_count = eliminated_counts[markers[i].id];
 
                   var template = new InfoTemplate();
-                  template.setTitle("Foco");
+                  template.setTitle(markers[i].address);
                   var graphic;
                   if (open_count && eliminated_count) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), mixed);
@@ -209,7 +209,7 @@
               } else if ("#{params[:view]}" == 'open') {
                 for (var i = 0; i < open_markers.length; i++) {
                   var template = new InfoTemplate();
-                  template.setTitle("Foco");
+                  template.setTitle(open_markers[i].address);
                   count = open_counts[open_markers[i].id];
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
 
@@ -221,7 +221,7 @@
               } else {
                 for (var i = 0; i < eliminated_markers.length; i++) {
                   var template = new InfoTemplate();
-                  template.setTitle("Foco");
+                  template.setTitle(eliminated_markers[i].address);
 
                   count = eliminated_counts[eliminated_markers[i].id];
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
