@@ -208,18 +208,27 @@
                 }
               } else if ("#{params[:view]}" == 'open') {
                 for (var i = 0; i < open_markers.length; i++) {
+                  var template = new InfoTemplate();
+                  template.setTitle("Foco");
                   count = open_counts[open_markers[i].id];
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
 
-                  
-                  map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), orange));
+                  var graphic = new Graphic(new Point(open_markers[i].x, open_markers[i].y), orange);
+                  graphic.setInfoTemplate(template);
+                  map.graphics.add(graphic);
                   map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol));
                 }
               } else {
                 for (var i = 0; i < eliminated_markers.length; i++) {
+                  var template = new InfoTemplate();
+                  template.setTitle("Foco");
+
                   count = eliminated_counts[eliminated_markers[i].id];
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
-                  map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), grey));
+
+                  var graphic = new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), grey);
+                  graphic.setInfoTemplate(template);
+                  map.graphics.add(graphic);
                   map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol));
                 }
               }

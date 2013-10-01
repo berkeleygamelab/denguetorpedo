@@ -6,6 +6,9 @@ class SponsorsController < ApplicationController
 
 		@sponsor.house.location.latitude ||= 0
 		@sponsor.house.location.longitude ||= 0
+		@latitude = @sponsor.house.location.latitude
+		@longitude = @sponsor.house.location.longitude
+		
 		respond_to do |format|
 			if @sponsor.role != "lojista"
 				raise ActionController::RoutingError.new('Not Found')

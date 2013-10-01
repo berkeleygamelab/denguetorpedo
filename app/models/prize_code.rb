@@ -47,4 +47,8 @@ class PrizeCode < ActiveRecord::Base
   def expired?
     return self.created_at + 3600 * 24 * 7 < Time.new
   end
+
+  def expire_date
+    self.created_at + 3600 * 24 * 7
+  end
 end
