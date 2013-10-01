@@ -222,12 +222,12 @@ class UsersController < ApplicationController
             location.longitude = params[:y]
           end
           if !location.save
-            flash[:notice] = "There was an error with your address. Please enter a valid address."
+            flash[:notice] = "Insira um endereço válido."
             render "edit"
             return
           end
         else
-          flash[:alert] = "There was an error with your house info. Please enter casa information again."
+          flash[:alert] = "Insira um nome da casa válido."
           render "edit"
           return
         end
