@@ -1,16 +1,14 @@
 .row
-	.span14.offset1
-		%h1
+	.span15.offset1
+		%h1{style: "margin-left:10px;"}
 			Manual de Conduta
-		%p 
-			Observar, encontrar e eliminar focos de dengue é a principal atividade do Dengue Torpedo. 
-			Mas atenção, nem sempre essa tarefa é fácil!
+		%br
+		%ul{style: "margin-left: 10px;"}
+			%p • Observar, encontrar e eliminar focos de dengue é a principal atividade do Dengue Torpedo. Mas atenção, nem sempre essa tarefa é fácil!
+			%p • Alguns focos da dengue não ficam em locais fáceis, como lajes, terrenos baldios etc. 
+			%p • Alguns focos ficam em locais que não podemos entrar, como a casa de um vizinho.
 			%br
-			Alguns focos da dengue não ficam em locais fáceis, como lajes, terrenos baldios etc. 
-			%br
-			Alguns focos ficam em locais que não podemos entrar, como a casa de um vizinho.
-			%br
-			Para ajudar nesses casos, o Dengue Torpedo cria procedimentos com o objetivo de evitar problemas desnecessários. 
+			%p Para ajudar nesses casos, o Dengue Torpedo cria procedimentos com o objetivo de evitar problemas desnecessários. 
 
 		%br
 		.accordion#accordion1
@@ -19,7 +17,7 @@
 					%a{href: 'javascript:$("#group").collapse("toggle");', style: "font-size:20px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
 						Local com provável foco
 				#group.collapse.in.accordion-body
-					.accordion-inner
+					.accordion-inner{style: "padding: 9px 25px;"}
 						%h2
 							Na casa de outra pessoa
 						#casa
@@ -50,7 +48,7 @@
 					Focos de difícil acesso
 
 			#focos.collapse.in.accordion-body
-				.accordion-inner
+				.accordion-inner{style: "padding: 9px 25px;"}
 					%p
 						Se o foco que você encontrou estiver em um local de difícil acesso, como na laje da sua residência, você pode solicitar a ajuda de outro usuário ou de um Agente de Vigilância em Saúde ( AVS). 
 					%br
@@ -63,7 +61,7 @@
 					Casos de fraude ou mau uso
 
 			#casos.collapse.in.accordion-body
-				.accordion-inner
+				.accordion-inner{style: "padding: 9px 25px;"}
 					%p
 						Os focos marcados e eliminados no Dengue Torpedo são constantemente verificados pela equipe do jogo e também pelos verificadores, que são os Agentes Comunitários de Saúde e os Agentes de Vigilância em Saúde.
 					%br

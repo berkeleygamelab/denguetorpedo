@@ -15,7 +15,7 @@
 		.row.span8
 			%h2 Descrição da atividade
 			.span8{style: "word-wrap: break-word;"}
-				= @notice.description
+				= simple_format(@notice.description)
 		.row.span8
 			%h2 Endereço da atividade
 			= @notice.location

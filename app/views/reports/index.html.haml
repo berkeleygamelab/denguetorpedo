@@ -39,7 +39,7 @@
       - else params[:view] == 'make_report'
         = render :partial => "reports/make_report_form"
     
-    .span7{style: "margin-top:-63px;"}
+    .span7{style: "margin-top:-150px;"}
       .row
         .span8
           .report_map_search{style: "overflow:auto;"}
@@ -56,7 +56,7 @@
               %form{id: "address_search_form", style: "margin-bottom:0px;"}
                 %input.span6{:type => 'text', id: "address_search", :placeholder => "Digite um endereço e pressione enter", :style => 'width: 280px;'}
                 %input{type: "button", value: "Va para Maré", style: "margin-left:325px;margin-bottom:10px;margin-top:-37px;", id: "go_to_mare"}
-      #map{style: "height: 800px;width:440px;margin-left:10px; margin-top:10px;"}
+      #map{style: "height: 500px;width:440px;margin-left:10px; margin-top:10px;"}
       
 
       - if params[:view] == 'make_report'
@@ -157,7 +157,7 @@
             var point = new Point(680291.2151545063, 7470751.29586681, new esri.SpatialReference({wkid: 29193}));
             map = new Map("map", {
               center: point,
-              zoom: 5,
+              zoom: 4,
               extent: customExtent,
               infoWindow:popup
             });
@@ -193,15 +193,15 @@
 
                   var template = new InfoTemplate();
                   template.setTitle(markers[i].address);
-                  template.content = "<p>Open: </p><br><p>Expired: </p><br><p>Eliminated: </p>";
+                  template.content = "<p>Em aberto: </p><br><p>Expirados: </p><br><p>Eliminados: </p>";
                   var graphic;
                   var textGraphic;
                   if (open_count && eliminated_count) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), mixed);
-                    template.content = "<p>Open: " + open_count + "</p><br><p>Expired: </p><br><p>Eliminated: " + eliminated_count + "</p>";
+                    template.content = "<p>Em aberto: " + open_count + "</p><br><p>Expirados: </p><br><p>Eliminados: " + eliminated_count + "</p>";
                   } else if (open_count > 0) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), orange);
-                    template.content = "<p>Open: " + open_count + "</p><br><p>Expired: </p>";
+                    template.content = "<p>Em aberto: " + open_count + "</p><br><p>Expirados: </p>";
                   } else if (eliminated_count > 0) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), grey);
                   }
@@ -253,7 +253,7 @@
             });
 
             $("input#go_to_mare").click(function() {
-              map.centerAndZoom(new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({"wkid": 29193})), 5)
+              map.centerAndZoom(new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({"wkid": 29193})), 4)
             });
 
             map.on("extent-change", function(event) {
@@ -335,7 +335,7 @@
                     $("input#x").val(candidates[0].location.x);
                     $("input#y").val(candidates[0].location.y);
                     
-                    map.centerAndZoom(new Point(candidates[0].location.x, candidates[0].location.y, new esri.SpatialReference({"wkid": 29193})), 5);
+                    map.centerAndZoom(new Point(candidates[0].location.x, candidates[0].location.y, new esri.SpatialReference({"wkid": 29193})), 4);
                   }
                 },
                 error: function(m) {
