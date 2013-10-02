@@ -6,7 +6,7 @@
 			#{prize.cost} pontos
 	.prize_content
 		- if prize.prize_photo_file_name.nil?
-			= link_to image_tag("default_images/prize_default_image.jpg", :class => "prizes"), prize_path(prize)
+			= link_to image_tag("home_images/logo.png", :class => "prizes"), prize_path(prize)
 		- else
 			= link_to image_tag(prize.prize_photo.url(:large), :class => "prizes"), prize_path(prize)
 		.description

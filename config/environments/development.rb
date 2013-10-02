@@ -32,6 +32,8 @@ Dengue::Application.configure do
   config.action_mailer.default_url_options = { host: "127.0.0.1", port: "5000", protocol: "http"}
   
   config.log_level = :debug
+
+  # config.i18n.available_locales = :pt
    
   # Gmail SMTP
   config.action_mailer.delivery_method = :smtp

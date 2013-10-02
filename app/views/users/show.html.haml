@@ -132,7 +132,7 @@
               .span2{:style => "margin-top:10px;margin-left:75px"}
                 = image_tag("badges/de_olho.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                Carimbo digital 100 pontos
+                50 pontos
         
         - if @user.points >= 800
           %li
@@ -140,28 +140,28 @@
               .span2{:style => "margin-top:20px;margin-left:75px"}
                 = image_tag("badges/exterminador.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                Adesivo pequeno + Carimbo digital 800 pontos
+                100 pontos
         - if @user.points >= 1600
           %li
             .badge_box
               .span2{:style => "margin-top:20px;margin-left:75px"}
                 = image_tag("badges/guerreiro.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                Adesivo grande + Carimbo digital 1600 pontos
+                200 pontos
         - if @user.points >= 3600
           %li
             .badge_box
               .span2{:style => "margin-top:20px;margin-left:75px"}
                 = image_tag("badges/saudavel.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                Adesivo + Camiseta + Carimbo digital 3600 pontos
+                500 pontos
         - if @user.points >= 7200
           %li
             .badge_box
               .span2{:style => "margin-top:20px;margin-left:75px;"}
                 = image_tag("badges/cuido.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                Honrarias + Camiseta + Adesivo + Carimbo digital 7200 pontos 
+                1000 pontos 
       %ul#coupons_list{style: "margin-left:10px;"}
         - @coupons.reverse.each do |coupon|
           = render :partial => "prize_codes/coupon", :object => coupon

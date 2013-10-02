@@ -198,6 +198,8 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails-i18n (0.7.4)
+      i18n (~> 0.5)
     rails_autolink (1.1.0)
       rails (> 3.1)
     railties (3.2.13)
@@ -321,6 +323,7 @@ DEPENDENCIES
   prawn-layout
   prawnto_2
   rails (~> 3.2.1)
+  rails-i18n
   rails_autolink
   rmagick
   rspec-rails
