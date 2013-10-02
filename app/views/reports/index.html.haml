@@ -193,12 +193,15 @@
 
                   var template = new InfoTemplate();
                   template.setTitle(markers[i].address);
+                  template.content = "<p>Open: </p><br><p>Expired: </p><br><p>Eliminated: </p>";
                   var graphic;
                   var textGraphic;
                   if (open_count && eliminated_count) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), mixed);
+                    template.content = "<p>Open: " + open_count + "</p><br><p>Expired: </p><br><p>Eliminated: " + eliminated_count + "</p>";
                   } else if (open_count > 0) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), orange);
+                    template.content = "<p>Open: " + open_count + "</p><br><p>Expired: </p>";
                   } else if (eliminated_count > 0) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), grey);
                   }
@@ -214,6 +217,7 @@
                 for (var i = 0; i < open_markers.length; i++) {
                   var template = new InfoTemplate();
                   template.setTitle(open_markers[i].address);
+                  template.content = "<p>Open: </p><br><p>Expired: </p><br><p>Eliminated: </p>";
                   count = open_counts[open_markers[i].id];
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(-11, 8);
 
@@ -228,7 +232,7 @@
                 for (var i = 0; i < eliminated_markers.length; i++) {
                   var template = new InfoTemplate();
                   template.setTitle(eliminated_markers[i].address);
-
+                  template.content = "<p>Open: </p><br><p>Expired: </p><br><p>Eliminated: </p>";
                   count = eliminated_counts[eliminated_markers[i].id];
                   textSymbol = new TextSymbol(count).setColor("#000000").setOffset(-11, 8);
 
