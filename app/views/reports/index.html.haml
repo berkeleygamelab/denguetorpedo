@@ -176,9 +176,9 @@
             var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 40, 40).setOffset(0, 15);
             
 
-            var grey = new PictureMarkerSymbol("/assets/markers/grey_marker.png", 48, 48).setOffset(15, 15);
-            var mixed = new PictureMarkerSymbol("/assets/markers/mixed_marker.png", 48, 48).setOffset(15, 15);
-            var orange = new PictureMarkerSymbol("/assets/markers/orange_marker.png", 48, 48).setOffset(15, 15);
+            var grey = new PictureMarkerSymbol("/assets/markers/grey_marker.png", 48, 48).setOffset(0, 0);
+            var mixed = new PictureMarkerSymbol("/assets/markers/mixed_marker.png", 48, 48).setOffset(0, 0);
+            var orange = new PictureMarkerSymbol("/assets/markers/orange_marker.png", 48, 48).setOffset(0, 0);
             var counts = #{@counts.to_json};
             var open_counts = #{@open_counts.to_json};
             var eliminated_counts = #{@eliminated_counts.to_json};
@@ -194,6 +194,7 @@
                   var template = new InfoTemplate();
                   template.setTitle(markers[i].address);
                   var graphic;
+                  var textGraphic;
                   if (open_count && eliminated_count) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), mixed);
                   } else if (open_count > 0) {
@@ -201,22 +202,27 @@
                   } else if (eliminated_count > 0) {
                     graphic = new Graphic(new Point(markers[i].x, markers[i].y), grey);
                   }
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(-11, 8);
+                  textGraphic = new Graphic(new Point(markers[i].x, markers[i].y), textSymbol);
                   graphic.setInfoTemplate(template);
+                  textGraphic.setInfoTemplate(template);
                   map.graphics.add(graphic);
-                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
-                  map.graphics.add(new Graphic(new Point(markers[i].x, markers[i].y), textSymbol));
+                  
+                  map.graphics.add(textGraphic);
                 }
               } else if ("#{params[:view]}" == 'open') {
                 for (var i = 0; i < open_markers.length; i++) {
                   var template = new InfoTemplate();
                   template.setTitle(open_markers[i].address);
                   count = open_counts[open_markers[i].id];
-                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(-11, 8);
 
                   var graphic = new Graphic(new Point(open_markers[i].x, open_markers[i].y), orange);
+                  var textGraphic = new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol);
                   graphic.setInfoTemplate(template);
+                  textGraphic.setInfoTemplate(template);
                   map.graphics.add(graphic);
-                  map.graphics.add(new Graphic(new Point(open_markers[i].x, open_markers[i].y), textSymbol));
+                  map.graphics.add(textGraphic);
                 }
               } else {
                 for (var i = 0; i < eliminated_markers.length; i++) {
@@ -224,12 +230,14 @@
                   template.setTitle(eliminated_markers[i].address);
 
                   count = eliminated_counts[eliminated_markers[i].id];
-                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(4, 23);
+                  textSymbol = new TextSymbol(count).setColor("#000000").setOffset(-11, 8);
 
                   var graphic = new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), grey);
+                  var textGraphic = new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol);
                   graphic.setInfoTemplate(template);
+                  textGraphic.setInfoTemplate(template);
                   map.graphics.add(graphic);
-                  map.graphics.add(new Graphic(new Point(eliminated_markers[i].x, eliminated_markers[i].y), textSymbol));
+                  map.graphics.add(textGraphic);
                 }
               }
               
