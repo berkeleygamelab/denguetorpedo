@@ -1,15 +1,14 @@
 #register.offset1
   %h1 Inscreva-se
   = form_for(@user) do |f|
-    = f.error_messages
-    = f.label "Celular"
-    
-    %li= f.text_field :email, :placeholder => "E-mail"
-    %li= f.text_field :first_name, :placeholder => "Nome"
-    %li= f.text_field :middle_name, :placeholder => "Nome do meio"
-    %li= f.text_field :last_name, :placeholder => "Sobrenome"
-    %li= f.text_field :phone_number, :placeholder => "Celular: 021xxxxxxxx"
-    %li= f.password_field :password, :placeholder => "Senha", :class => "fields"
-    %li= f.password_field :password_confirmation, :placeholder => "Confirmar senha", :class => "fields"
+    %ul
+      %li= f.error_messages      
+      %li= f.text_field :email, :placeholder => "E-mail", :class => "fields"
+      %li= f.text_field :first_name, :placeholder => "Nome", :class => "fields"
+      %li= f.text_field :middle_name, :placeholder => "Nome do meio", :class => "fields"
+      %li= f.text_field :last_name, :placeholder => "Sobrenome", :class => "fields"
+      %li= f.text_field :phone_number, :placeholder => "Celular: 021xxxxxxxx", :class => "fields"
+      %li= f.password_field :password, :placeholder => "Senha", :class => "fields", :class => "fields"F
+      %li= f.password_field :password_confirmation, :placeholder => "Confirmar senha", :class => "fields"
     %br
     = f.submit "Fazer inscrição"

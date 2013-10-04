@@ -99,6 +99,10 @@ class Location < ActiveRecord::Base
     self.formatted_address || self.address
   end
 
+  def info
+    {x: self.latitude, y: self.longitude, id: self.id, address: self.address}
+  end
+
 
   def self.find_or_create(address, neighborhood=nil)
     # construct the Location object using the argument

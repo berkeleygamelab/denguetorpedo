@@ -60,9 +60,9 @@ class ReportsController < ApplicationController
     
     # @map_json = locations.map { |location| {"lat" => location.latitude, "lng" => location.longitude} }.to_json
 
-    @markers = locations.map { |location| {x: location.latitude, y: location.longitude, id: location.id, address: location.address}}
-    @open_markers = open_locations.map { |location| {x: location.latitude, y: location.longitude, id: location.id, address: location.address}}
-    @eliminated_markers = eliminated_locations.map { |location| {x: location.latitude, y: location.longitude, id: location.id, address: location.address}}
+    @markers = locations.map { |location| location.info}
+    @open_markers = open_locations.map { |location| location.info}
+    @eliminated_markers = eliminated_locations.map { |location| location.info}
     @reports = reports_with_status_filtered
     @counts = Report.group(:location_id).count
     @open_counts = Report.where(status_cd: 0).group(:location_id).count

@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     end
 
     if params[:post][:content].empty?
-      flash[:alert] = "Descreve a sua idéia."
+      flash[:alert] = "Descreva a sua idéia."
     end
 
     redirect_to :back
