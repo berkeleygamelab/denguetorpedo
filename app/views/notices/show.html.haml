@@ -1,4 +1,10 @@
 .row.offset1
+	- if flash[:notice] 
+		.row#flash_dat_notice
+			#flashNotice 
+				%p
+					= flash[:notice]
+.row.offset1
 	%h1 #{@notice.title}
 .row.offset1
 	.span1.neighborhood_news_thumb{:style => "width:250px;height:250px;margin-top:10px;"}

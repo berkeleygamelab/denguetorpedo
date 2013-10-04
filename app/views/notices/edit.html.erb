@@ -1,6 +1,13 @@
-
-
 <div class="offset1">
+	<% if flash[:notice] %>
+    <div class="row" id="flash_dat_notice">
+    	<div id="flashNotice">
+    		<p>
+    			<%= flash[:notice] %>
+    		</p>
+    	</div>
+    </div>
+	<% end %>
 	<h1>Editar Notícia</h1>
 	<%= render 'form' %>
 </div>
