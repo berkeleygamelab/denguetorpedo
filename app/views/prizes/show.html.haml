@@ -111,7 +111,7 @@
                 require(["esri/map", "esri/toolbars/draw", "esri/tasks/locator", "esri/layers/ArcGISTiledMapServiceLayer", "esri/SpatialReference", "esri/geometry/Point", "esri/config", "esri/graphic", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol", "dojo/_base/Color", "esri/symbols/PictureMarkerSymbol", "esri/symbols/TextSymbol", "dojo/domReady!"], function(Map, Draw, Locator, Tiled, SpatialReference, Point, Geometry, Graphic, SimpleMarkerSymbol, SimpleLineSymbol, Color, PictureMarkerSymbol, TextSymbol) {
                   var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
-                  var point = new Point(#{@latitude}, #{@longtidue}, new esri.SpatialReference({wkid: 29193});
+                  var point = new Point(#{@latitude}, #{@longitude}, new esri.SpatialReference({wkid: 29193});
                   map = new Map("map", {
                     center: point,
                     zoom: 5,
@@ -120,8 +120,6 @@
                   
                   var tiled = new Tiled("http://pgeo2.rio.rj.gov.br/ArcGIS2/rest/services/Basico/mapa_basico_utm/MapServer");
                   map.addLayer(tiled);
-
-
 
                   var grey = new PictureMarkerSymbol("/assets/markers/grey_marker.png", 64, 64).setOffset(15, 15);
                   var orange = new PictureMarkerSymbol("/assets/markers/orange_marker.png", 64, 64).setOffset(15, 15);
