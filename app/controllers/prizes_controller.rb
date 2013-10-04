@@ -17,7 +17,7 @@ class PrizesController < ApplicationController
     @medals = Prize.where(:is_badge => true)
     @filter = params[:filter]
     @max = params[:max]
-    @sponsors = User.where(:role => 'lojista').sort { |x, y| x.house.name <=> y.house.name}
+    @sponsors = User.where(:role => 'lojista').where(is_blocked: false).sort { |x, y| x.house.name <=> y.house.name}
     if @filter == "pontos"
       if @max == "500"
         @filtered_prizes = Prize.where('cost <= 500').where(:is_badge => false)
