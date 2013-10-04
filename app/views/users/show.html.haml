@@ -132,36 +132,36 @@
               .span2{:style => "margin-top:10px;margin-left:75px"}
                 = image_tag("badges/de_olho.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                50 pontos
+                100 pontos
         
-        - if @user.points >= 800
+        - if @user.points >= 450
           %li
             .badge_box
               .span2{:style => "margin-top:20px;margin-left:75px"}
                 = image_tag("badges/exterminador.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                100 pontos
-        - if @user.points >= 1600
+                450 pontos
+        - if @user.points >= 900
           %li
             .badge_box
               .span2{:style => "margin-top:20px;margin-left:75px"}
                 = image_tag("badges/guerreiro.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                200 pontos
-        - if @user.points >= 3600
+                900 pontos
+        - if @user.points >= 1350
           %li
             .badge_box
               .span2{:style => "margin-top:20px;margin-left:75px"}
                 = image_tag("badges/saudavel.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                500 pontos
-        - if @user.points >= 7200
+                1350 pontos
+        - if @user.points >= 1800
           %li
             .badge_box
               .span2{:style => "margin-top:20px;margin-left:75px;"}
                 = image_tag("badges/cuido.png")
               .row.span4{:style => "font-size:14px;weight:bold;color:#4E6868;text-align:center;margin-top:8px;"}
-                1000 pontos 
+                1800 pontos 
       %ul#coupons_list{style: "margin-left:10px;"}
         - @coupons.reverse.each do |coupon|
           = render :partial => "prize_codes/coupon", :object => coupon

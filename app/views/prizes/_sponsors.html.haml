@@ -6,4 +6,4 @@
 	.sponsors_box{ :style => "background-color:white;height:420px;width:255px;padding:5px;overflow-y:auto;"}
 		- @sponsors.shuffle.each do |sponsor|
 			.sponsors
-				= link_to image_tag(sponsor.house.profile_photo.url(:medium), :width => 75, :height => 75), "sponsors/#{sponsor.id}"
+				= link_to image_tag(sponsor.house.profile_photo.url(:medium), :width => 65, :height => 65), "sponsors/#{sponsor.id}"

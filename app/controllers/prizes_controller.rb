@@ -14,7 +14,7 @@ class PrizesController < ApplicationController
 
 
     @redeemed_counts = PrizeCode.count
-    @medals = Prize.where(:is_badge => true)
+    @medals = Prize.where(:is_badge => true).order(:cost)
     @filter = params[:filter]
     @max = params[:max]
     @sponsors = User.where(:role => 'lojista').where(is_blocked: false).sort { |x, y| x.house.name <=> y.house.name}
