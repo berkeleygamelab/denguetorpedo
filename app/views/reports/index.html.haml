@@ -69,7 +69,7 @@
             var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 64, 64).setOffset(0, 15);
             var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 64, 64).setOffset(0, 15);
             var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 64, 64).setOffset(0, 15);
-            var point = new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({wkid: 29193}));
+            var point = new Point(680291.2151545063, 7470751.29586681, new esri.SpatialReference({wkid: 29193}));
             map = new Map("map", {
               center: point,
               zoom: 5,
@@ -210,7 +210,6 @@
                   graphic.setInfoTemplate(template);
                   textGraphic.setInfoTemplate(template);
                   map.graphics.add(graphic);
-                  
                   map.graphics.add(textGraphic);
                 }
               } else if ("#{params[:view]}" == 'open') {
@@ -253,7 +252,7 @@
             });
 
             $("input#go_to_mare").click(function() {
-              map.centerAndZoom(new Point(680291.2151545063, 7471401.29586681, new esri.SpatialReference({"wkid": 29193})), 4)
+              map.centerAndZoom(new Point(point.x, point.y, new esri.SpatialReference({"wkid": 29193})), 4)
             });
 
             map.on("extent-change", function(event) {
