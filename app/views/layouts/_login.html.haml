@@ -13,11 +13,9 @@
      
 - else
   #logged_in
-    .row
-      %h3.span6
+    .span3{style: "margin-top:1px;text-align:right;"}
+      %h3
         Olá #{@current_user.display_name}!
-    .row
-      #dashboard_search
-        %input{:type => 'text', :placeholder => "Busca"}
+    .span2
       = image_tag("icons/logout4.png")
       = link_to "Sair", logout_path, :class => "logout_button"

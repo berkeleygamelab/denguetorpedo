@@ -26,7 +26,7 @@
 class User < ActiveRecord::Base
 
   ROLES = ["morador", "logista", "visitante"]
-  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :profile_photo, :display, :is_verifier, :is_fully_registered, :is_health_agent, :role, :gender, :is_blocked
+  attr_accessible :first_name, :last_name, :middle_name, :nickname, :email, :password, :password_confirmation, :auth_token, :phone_number, :phone_number_confirmation, :profile_photo, :display, :is_verifier, :is_fully_registered, :is_health_agent, :role, :gender, :is_blocked
   has_secure_password
   has_attached_file :profile_photo, :styles => { :small => "60x60>", :large => "150x150>" }, :default_url => 'default_images/profile_default_image.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   
@@ -38,10 +38,11 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
   validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
   validates :points, :numericality => { :only_integer => true }
-  validates :phone_number, :numericality => true, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true
-  validates :phone_number, :uniqueness => true
+  validates :phone_number, :numericality => true, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true, :uniqueness => true, :confirmation => true
   validates :email, :format => { :with => EMAIL_REGEX }, :allow_nil => true
   validates :email, :uniqueness => true, :unless => "email.nil?"
+  validates :house_id, presence: { on: :update, if: :not_visitor }
+  validates :house_id, presence: { on: :special_create, if: :not_visitor }
   # validates :house_id, presence: true, on: :update
 #  validates :is_fully_registered, :presence => true
 #  validates :is_community_coordinator, :presence => true
@@ -196,6 +197,10 @@ class User < ActiveRecord::Base
     end
     name = name + " " + self.last_name
     return name
+  end
+
+  def not_visitor
+    return self.role != "visitante"
   end
 
   def self.ordinary_users

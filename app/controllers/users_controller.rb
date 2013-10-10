@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def special_new
-    @user = User.new
+    @user ||= User.new
     @user.house ||= House.new
     @user.house.location ||= Location.new
   end
@@ -292,10 +292,10 @@ class UsersController < ApplicationController
 
   def special_create
     head :not_found and return if @current_user.role != "admin" and @current_user.role != "coordenador"
-    if User.find_by_email(params[:user][:email])
-      redirect_to :back, :flash => { :notice => "Este e-mail já foi registrado por outro usuário."}
-      return
-    end
+    # if User.find_by_email(params[:user][:email])
+    #   redirect_to :back, :flash => { :notice => "Este e-mail já foi registrado por outro usuário."}
+    #   return
+    # end
     
     @user = User.new(params[:user])
 
@@ -311,7 +311,12 @@ class UsersController < ApplicationController
       @user.house = House.find_or_create(house_name, house_address, house_neighborhood, house_profile_photo)
 
       if @user.house == nil
-        redirect_to :back, :flash => { :notice => "There was an error creating the house."}
+        if params[:user][:role] == "lojista"
+          flash[:alert] = "There was an error creating the store."      
+        else
+          flash[:alert] = "There was an error creating the house."
+        end
+        render special_new_users_path(@user)
         return
       end
       @user.house.house_type = params[:user][:role]
@@ -329,11 +334,12 @@ class UsersController < ApplicationController
       end
     end
 
-    if @user.save!
+    if @user.save
       redirect_to "/users/special_new", :flash => { :notice => "Novo usuário criado com sucesso!"}
     else
-      @user.house.destroy
-      redirect_to :back, :flash => { :notice => "There was an error creating a new user."}
+      @user.house.destroy if @user.house
+      # redirect_to special_new_users_path(@user), :flash => { :alert => @user.errors.full_messages.join(', ') }
+      render special_new_users_path(@user), flash: { alert: @user.errors.full_messages.join(', ')}
     end
   end
 

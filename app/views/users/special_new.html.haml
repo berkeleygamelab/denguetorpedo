@@ -1,7 +1,5 @@
 .user_form.offset1
-  - if flash[:notice] 
-    %h2.notice{style: "margin: 10px; width: 700px;"}  
-      = flash[:notice]
+  = render partial: "layouts/messages"
   %h1 Registrar patrocinador, verificador e visitante
   %br
   = form_for(@user, :url => {:action => "special_create", :html => {:autocomplete => "off", :multipart => true}}) do |f|
@@ -15,9 +13,9 @@
 
     .indent
       %select#role{:name => "user[role]"}
-        %option{:value => "lojista"} Patrocinador
-        %option{:value => "verificador"} Verificador
-        %option{:value => "visitante"} Visitante
+        %option{:value => "lojista", :selected => @user.role == "lojista"} Patrocinador
+        %option{:value => "verificador", :selected => @user.role == "verificador"} Verificador
+        %option{:value => "visitante", :selected => @user.role == "visitante"} Visitante
       %h2#complete_name{:title => "O Nome Completo é utilizado para realizar o resgate do prêmio nos estabelecimentos patrocinadores. É importante informar o nome correto para evitar problemas no momento do resgate dos prêmios. Em caso de dúvida leia nossa Política de Privacidade e a página de Perguntas Frequentes. ", :style => "font-weight:bold;"} Nome completo (igual ao do RG ou CPF) <b style="color:blue;">?</b>    
       .indent
         /= f.label :first_name, "* Nome"
@@ -52,7 +50,8 @@
       = f.text_field :phone_number, :placeholder => "* Celular", :id => "phone_number"
       %br
       /= f.label :phone_number,  "* Confirmar celular"
-      = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular", :id => "confirmation")
+      / # = text_field_tag("phone_number_confirmation", nil, :placeholder => "Confirmar celular", :id => "confirmation")
+      = f.text_field :phone_number_confirmation, placeholder: "Confirmar celular", id: "confirmation"
       %br
       /= f.label :email,  "* Email"
       

@@ -1,0 +1,11 @@
+- if flash[:notice] 
+  .row#flash_dat_notice
+    #flashNotice 
+      %p
+        = flash[:notice]
+
+- if flash[:alert] 
+  .row#flash_dat_alert
+    #flashAlert 
+      %p
+        = flash[:alert]

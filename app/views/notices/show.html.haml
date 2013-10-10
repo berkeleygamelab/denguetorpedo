@@ -8,7 +8,10 @@
 	%h1 #{@notice.title}
 .row.offset1
 	.span1.neighborhood_news_thumb{:style => "width:250px;height:250px;margin-top:10px;"}
-		= image_tag(@notice.photo.url(:large))
+		- if @notice.photo_file_name
+			= image_tag(@notice.photo.url(:large), width: 250, height: 250)
+		- else
+			= image_tag("default_images/house_default_image.png", width: 250, height: 250)
 	.span8.neighborhood_news_content
 		.row.span8
 			%h2 Instituição
