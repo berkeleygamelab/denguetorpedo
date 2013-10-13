@@ -2,11 +2,12 @@ require 'spec_helper'
 
 describe "prizes/new" do
   before(:each) do
+    @user = FactoryGirl.create(:user)
     assign(:prize, stub_model(Prize,
       :prize_name => "MyString",
       :cost => 1,
       :stock => 1,
-      :user_id => 1,
+      :user_id => @user.id,
       :description => "MyText",
       :redemption_directions => "MyText"
     ).as_new_record)

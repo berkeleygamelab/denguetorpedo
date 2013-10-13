@@ -23,6 +23,8 @@ class PrizeCode < ActiveRecord::Base
   validates :user, :presence => true
   validates :prize, :presence => true
 
+  before_validation :generate_activation_code
+
   # TODO: more stuff
 
   def self.send_no(phone_number)
@@ -50,5 +52,10 @@ class PrizeCode < ActiveRecord::Base
 
   def expire_date
     self.created_at + 3600 * 24 * 7
+  end
+
+  def generate_activation_code(size = 12)
+    charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
+    self.code = (0...size).map{ charset.to_a[rand(charset.size)] }.join
   end
 end

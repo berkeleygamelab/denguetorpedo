@@ -7,6 +7,7 @@ describe "notices/edit" do
       :description => "MyText",
       :location => "MyString"
     ))
+    @neighborhoods = Neighborhood.all
   end
 
   it "renders the edit notice form" do

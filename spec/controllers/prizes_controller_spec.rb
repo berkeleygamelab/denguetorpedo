@@ -23,8 +23,16 @@ describe PrizesController do
   # This should return the minimal set of attributes required to create a valid
   # Prize. As you add validations to Prize, be sure to
   # update the return value of this method accordingly.
+
+  before(:each) do
+    
+    @location = Location.create(latitude: 0, longitude: 0)
+    @house = FactoryGirl.create(:house, location_id: @location.id)
+    @user = FactoryGirl.create(:user, house_id: @house.id)
+    controller.stub!(:require_login).and_return(true)
+  end
   def valid_attributes
-    {}
+    { :cost => 30, :description => "Description", :prize_name => "Prize", :stock => 5, :user_id => @user.id }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -35,24 +43,43 @@ describe PrizesController do
   end
 
   describe "GET index" do
-    it "assigns all prizes as @prizes" do
-      prize = Prize.create! valid_attributes
+    before(:each) do
+      @prize = Prize.create! valid_attributes
+    end
+    it "should be successful" do
+      @prize.user.house.location.stub(:latitude).and_return(0)
+      @prize.user.house.location.stub(:longitude).and_return(0)
+
       get :index, {}, valid_session
-      assigns(:prizes).should eq([prize])
+      response.should be_success
+    end
+
+    it "assigns all prizes as @prizes" do
+      get :index, {}, valid_session
+      assigns(:prizes).should eq([@prize])
     end
   end
 
   describe "GET show" do
+
+    before(:each) do
+      @prize = Prize.create! valid_attributes
+      
+    end
+
+    it "should be successful" do
+      get :show, id: @prize.id
+      response.should be_success
+    end
     it "assigns the requested prize as @prize" do
-      prize = Prize.create! valid_attributes
-      get :show, {:id => prize.to_param}, valid_session
-      assigns(:prize).should eq(prize)
+      get :show, id: @prize.id     
+      assigns(:prize).should eq(@prize)
     end
   end
 
   describe "GET new" do
     it "assigns a new prize as @prize" do
-      get :new, {}, valid_session
+      get :new
       assigns(:prize).should be_a_new(Prize)
     end
   end
@@ -60,7 +87,7 @@ describe PrizesController do
   describe "GET edit" do
     it "assigns the requested prize as @prize" do
       prize = Prize.create! valid_attributes
-      get :edit, {:id => prize.to_param}, valid_session
+      get :edit, {:id => prize.id}, valid_session
       assigns(:prize).should eq(prize)
     end
   end
@@ -147,16 +174,18 @@ describe PrizesController do
   end
 
   describe "DELETE destroy" do
+    before(:each) do
+      @prize = Prize.create! valid_attributes
+    end
+
     it "destroys the requested prize" do
-      prize = Prize.create! valid_attributes
       expect {
-        delete :destroy, {:id => prize.to_param}, valid_session
+        delete :destroy, {:id => @prize.id}, valid_session
       }.to change(Prize, :count).by(-1)
     end
 
     it "redirects to the prizes list" do
-      prize = Prize.create! valid_attributes
-      delete :destroy, {:id => prize.to_param}, valid_session
+      delete :destroy, {:id => @prize.id}, valid_session
       response.should redirect_to(prizes_url)
     end
   end

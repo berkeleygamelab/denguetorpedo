@@ -2,12 +2,13 @@ require 'spec_helper'
 
 describe "prizes/index" do
   before(:each) do
+    @user = FactoryGirl.create(:user)
     assign(:prizes, [
       stub_model(Prize,
         :prize_name => "Prize Name",
         :cost => 1,
         :stock => 2,
-        :user_id => 3,
+        :user_id => @user.id,
         :description => "MyText",
         :redemption_directions => "MyText"
       ),
@@ -15,11 +16,12 @@ describe "prizes/index" do
         :prize_name => "Prize Name",
         :cost => 1,
         :stock => 2,
-        :user_id => 3,
+        :user_id => @user.id,
         :description => "MyText",
         :redemption_directions => "MyText"
       )
     ])
+    @available = Prize.all
   end
 
   it "renders a list of prizes" do

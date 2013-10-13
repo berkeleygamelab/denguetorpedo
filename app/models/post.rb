@@ -17,7 +17,7 @@
 #
 
 class Post < ActiveRecord::Base
-  attr_accessible :content, :title
+  attr_accessible :content, :title, :user_id, :parent_id
   acts_as_nested_set
 
   # associations
@@ -26,6 +26,7 @@ class Post < ActiveRecord::Base
   belongs_to :wall, :polymorphic => true
 
   # validations
+  validates :title, presence: true
   validates :user_id, :presence => true
   validates :content, :presence => true, :length => {:minimum => 1, :maximum => 350}
 

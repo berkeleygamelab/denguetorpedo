@@ -2,11 +2,14 @@ require 'spec_helper'
 
 describe "prizes/show" do
   before(:each) do
+    @user = FactoryGirl.create(:user)
+    @house = FactoryGirl.create(:house)
+    @user.house = @house
     @prize = assign(:prize, stub_model(Prize,
       :prize_name => "Prize Name",
       :cost => 1,
       :stock => 2,
-      :user_id => 3,
+      :user_id => @user.id,
       :description => "MyText",
       :redemption_directions => "MyText"
     ))
