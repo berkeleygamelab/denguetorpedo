@@ -69,6 +69,7 @@ ul#neighborhood_house_list {
   margin-top: 10px;
   font-size: 16px;
   overflow:auto;  
+  overflow-y:scroll;
   
   li.neighborhood_house_photo_thumb {
     display: inline-block;

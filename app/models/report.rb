@@ -132,5 +132,11 @@ class Report < ActiveRecord::Base
       self.eliminator_name = self.eliminator.display_name
     end
 
+  def self.invalidateExpired
+    Report.where("created_at < ?", (Time.now - 3.days)).where(:status_cd => 0).each do |report|
+      report.status_cd =1
+      report.report = "This report has expired, it was not resolved within three days"
+      report.save!
+    end
   end
 end

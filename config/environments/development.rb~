@@ -1,4 +1,3 @@
-$stdout.sync = true
 Dengue::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -13,7 +12,6 @@ Dengue::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-  
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
@@ -30,11 +28,9 @@ Dengue::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { host: "127.0.0.1", port: "5000", protocol: "http"}
+  config.action_mailer.default_url_options = { host: "http://denguetorpedo.herokuapp.com" }
   
   config.log_level = :debug
-
-  # config.i18n.available_locales = :pt
    
   # Gmail SMTP
   config.action_mailer.delivery_method = :smtp
@@ -54,6 +50,11 @@ Dengue::Application.configure do
   
   # S3 Credential
   config.paperclip_defaults = {
-    :storage => :filesystem
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['S3_BUCKET_NAME'],
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+    }
   }
 end
