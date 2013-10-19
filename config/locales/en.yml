@@ -41,18 +41,22 @@ en:
         phone_number: "celular"
         first_name: "nome"
         last_name: "sobrenome"
+      feedback:
+        title: "Título"
+        name: "Nome"
+        message: "Mensagem"
     errors:
       template:
         header:
           one: "1 erro impediu que o %{model} fosse salvo"
           other: "%{count} erros impediram que o %{model}  fosse salvo"
       messages:
-        blank: "é obrigatório"
-        confirmation: "não confere"
+        blank: "é obrigatório."
+        confirmation: "não confere."
         empty: "é obrigatório."
-        exclusion: "está reservado"
-        invalid: "não é válido"
-        taken: "já está em uso"
-        too_long: "é muito longo (mínimo de %{count} caracteres)"
-        too_short: "é muito curto (mínimo de %{count} caracteres)"
-        not_a_number: "não é um número"
+        exclusion: "está reservado."
+        invalid: "não é válido."
+        taken: "já está em uso."
+        too_long: "é muito longo. (mínimo de %{count} caracteres)"
+        too_short: "é muito curto. (mínimo de %{count} caracteres)"
+        not_a_number: "não é um número."
