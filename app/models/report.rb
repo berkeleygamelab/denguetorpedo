@@ -131,6 +131,7 @@ class Report < ActiveRecord::Base
     if self.eliminator_id
       self.eliminator_name = self.eliminator.display_name
     end
+  end
 
   def self.invalidateExpired
     Report.where("created_at < ?", (Time.now - 3.days)).where(:status_cd => 0).each do |report|

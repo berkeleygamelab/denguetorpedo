@@ -3,7 +3,7 @@
 require 'nexmo'
 
 class ReportReader < ActionMailer::Base
-  default from: "reportdengue@gmail.com"
+  default from: "denguetorpedo@gmail.com"
 
   def welcome_new_user_notification(login, password, email_addrs)
     @login = login

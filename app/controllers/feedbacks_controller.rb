@@ -42,10 +42,10 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(params[:feedback])
-    UserMailer.send_contact(params[:feedback][:title], params[:feedback][:email], params[:feedback][:name], params[:feedback][:message]).deliver
     respond_to do |format|
       if @feedback.save
         if @current_user
+          UserMailer.send_contact(params[:feedback][:title], params[:feedback][:email], params[:feedback][:name], params[:feedback][:message]).deliver
           format.html { redirect_to :back, notice: 'Mensagem enviada com sucesso!' }
           format.json { render json: @feedback, status: :created, location: @feedback }
         else
