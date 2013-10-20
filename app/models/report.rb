@@ -23,7 +23,7 @@
 
 
 class Report < ActiveRecord::Base
-  attr_accessible :report, :elimination_type, :elimination_method, :verifier_id, :reporter_name, :eliminator_name, :location_id
+  attr_accessible :report, :elimination_type, :elimination_method, :verifier_id, :reporter_name, :eliminator_name, :location_id, :reporter, :location
 
   has_attached_file :before_photo, :styles => {:medium => "150x150>", :thumb => "100x100>"}, :default_url => 'default_images/report_before_photo.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
   has_attached_file :after_photo, :styles => {:medium => "150x150>", :thumb => "100x100>"}, :default_url => 'default_images/report_after_photo.png'#, :storage => STORAGE, :s3_credentials => S3_CREDENTIALS
@@ -39,7 +39,7 @@ class Report < ActiveRecord::Base
   validates :location_id, :presence => true
   validates :status, :presence => true
 
-  validates :before_photo, :presence => true
+  # validates :before_photo, :presence => true
 
   as_enum :status, [:reported, :eliminated]
 

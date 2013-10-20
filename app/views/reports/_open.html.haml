@@ -22,7 +22,7 @@
             .span{style: "margin-top:3px; margin-right:10px;"}
               Tempo restante
               :javascript
-                var newYear = new Date(#{(open.created_at + 3600 * 49).strftime("%s").to_i * 1000});
+                var newYear = new Date(#{(open.created_at + 3600 * 48).strftime("%s").to_i * 1000});
                 $(".countdown").countdown({until: newYear, format: 'HMS', compact: 'true'});
         - else
           .span{style: "margin-top:3px; margin-right:10px;"}
@@ -92,7 +92,7 @@
 
 
 
-                  .row.rp_report_people
+                  .row.rp_report_people{style: "width:430px;"}
                     - if open.elimination_type and open.reporter_id
                       Marcado por:
                       =link_to open.reporter.display_name + " " + open.strftime_with(:created_at), user_path(open.reporter), :class => "user"

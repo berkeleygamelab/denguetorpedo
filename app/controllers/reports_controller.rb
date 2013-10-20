@@ -343,6 +343,7 @@ class ReportsController < ApplicationController
     end
     
     if @report.save
+      flash[:notice] = "O foco foi verificado."
       redirect_to reports_path
     else
       redirect_to :back
@@ -366,6 +367,7 @@ class ReportsController < ApplicationController
       @report.verifier.save
     end
     if @report.save
+      flash[:notice] = "O foco foi verificado."
       redirect_to reports_path
     else
       redirect_to :back
@@ -375,5 +377,37 @@ class ReportsController < ApplicationController
   def torpedos
     @user = User.find(params[:id])
     @reports = @user.reports
+  end
+
+  def gateway
+    @user = User.find_by_phone_number(params[:from])
+
+    respond_to do |format|
+      if @user
+        @location = Location.find_by_address(params[:body])
+
+        @location = Location.new(address: params[:body])
+
+        if params[:body]
+          streets = params[:body].split(' ') if params[:body]
+          if streets.size  >= 3
+            @location.street_type = streets[0]
+            @location.street_number = streets[streets.size - 1]
+            @location.street_name = streets[1..streets.size-2].join(' ')
+          end
+          
+        end
+        @location.save
+        @report = Report.new(reporter: @user, location: @location)
+        @report.status_cd = 0
+        if @report.save
+          format.json { render json: {message: "success"} }
+        else
+          format.json { render json: { message: @report.errors.full_messages}, status: 401}
+        end
+      else
+        format.json { render json: { message: "failure"}, status: 404}
+      end
+    end
   end
 end

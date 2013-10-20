@@ -55,6 +55,7 @@ Dengue::Application.routes.draw do
       put 'update'
       post 'verify'
       post 'problem'
+      post 'gateway'
     end
   #put 'reports' => 'reports#update'
   end

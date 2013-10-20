@@ -35,16 +35,21 @@ en:
 #   					password:
 #   						confirmation: "Password match"
   activerecord:
+    model:
+      user: "Usuário"
     attributes:
       user:
         password: "senha"
         phone_number: "celular"
         first_name: "nome"
         last_name: "sobrenome"
+        password_confirmation: "Confirmação de senha"
       feedback:
         title: "Título"
         name: "Nome"
         message: "Mensagem"
+      report:
+        before_photo: "A foto do foco"
     errors:
       template:
         header:
