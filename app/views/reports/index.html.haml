@@ -44,7 +44,7 @@
         .span8
           .report_map_search{style: "overflow:auto;"}
             - if params[:view] == 'make_report'
-              %h2{style: 'margin-left:10px;font-size:15px;line-height:25px;', title: "O mapa pode não encontrar o seu endereço. Nesse caso, mova o marcador clicando na localização correta."}2. Clique na localização correta para adicionar um marcador.
+              %h2{style: 'margin-left:10px;font-size:15px;line-height:25px;', title: "O mapa pode não encontrar o seu endereço. Nesse caso, mova o marcador clicando na localização correta."}2. Ajuste o marcador na localização correta clicando no mapa.
               %input{type: "button", value: "Va para Maré", style: "float:right;margin:-20px 5px 5px 0px;", id: "go_to_mare"}
             - else
               %h2{style: 'margin-left: 10px;', title: "Para ajustar, dê um zoom ou arraste o mapa."} Ajuste para filtar os focos.

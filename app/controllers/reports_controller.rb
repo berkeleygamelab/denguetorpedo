@@ -82,7 +82,7 @@ class ReportsController < ApplicationController
       address = params[:street_type] + " " + params[:street_name] + " " + params[:street_number]
 
       location = Location.find_by_address(address)
-  
+      
       if params[:x].empty? or params[:y].empty?
         flash[:alert] = "Você precisa marcar uma localização válida para o seu foco."
         redirect_to :back
@@ -92,6 +92,9 @@ class ReportsController < ApplicationController
       if location.nil?
         location = Location.new(:street_type => params[:street_type], :street_name => params[:street_name], :street_number => params[:street_number], latitude: params[:x], longitude: params[:y])
         location.save
+      else
+        location.latitude = params[:x]
+        location.latitude = params[:y]
       end
       
       if params[:report][:report] == ""

@@ -2,9 +2,9 @@
   <% if @feedback.errors.any? %>
     <div id="error_explanation">
       <% if @feedback.errors.count == 1 %>
-        <h2><%= pluralize(@feedback.errors.count, "erro") %> impediu que o contato fosse enviada:</h2>
+        <h2><%= pluralize(@feedback.errors.count, "erro") %> impediu que a mensagem fosse enviada:</h2>
       <% else %>
-        <h2><%= pluralize(@feedback.errors.count, "erro") %> impediram que o contatos fosse enviada:</h2>
+        <h2><%= pluralize(@feedback.errors.count, "erro") %> impediram que a mensagem fosse enviada:</h2>
       <% end %>
       <ul>
       <% @feedback.errors.full_messages.each do |msg| %>

@@ -98,7 +98,7 @@
 / 			.edu_explanation
 / 				15 - Evite ter bromélias em casa. Mantendo-as, é indispensável tratá-las com água sanitária na proporção de uma colher de sopa para um litro de água, regando, no mínimo, duas vezes por semana. Tire sempre a água acumulada nas folhas.
 
-/ 		.edu_box{style: "margin-top:20px;"}
+/ 		.edu_box{style: "margin-top:18px;"}
 / 			fonte:
 / 			= link_to "http://www.riocontradengue.rj.gov.br/site/Conteudo/Eliminar.aspx", "http://www.riocontradengue.rj.gov.br/site/Conteudo/Eliminar.aspx", class: "users"
 / 			.offset1
@@ -180,8 +180,8 @@
 		%h1 Como é o ciclo de vida do mosquito da dengue e quais seus principais criadouros?
 		.accordion#accordion1
 			.accordion-group
-				.accordion-heading{style: "padding:10px;"}
-					%a{href: 'javascript:$("#collapse1").collapse("toggle");', style: "font-size:20px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse1").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
 						Ciclo de vida
 				#collapse1.collapse.in.accordion-body
 					.accordion-inner{style: "padding: 9px 25px;"}
@@ -203,8 +203,8 @@
 						%p
 							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/oportunista.html">http://www.ioc.fiocruz.br/dengue/textos/oportunista.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
 			.accordion-group
-				.accordion-heading{style: "padding:10px;"}
-					%a{href: 'javascript:$("#collapse2").collapse("toggle");', style: "font-size:20px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse2").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
 						Alimentação
 				#collapse2.collapse.in.accordion-body
 					.accordion-inner{style: "padding: 9px 25px;"}
@@ -214,8 +214,8 @@
 						%p
 							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/oportunista.html">http://www.ioc.fiocruz.br/dengue/textos/oportunista.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
 			.accordion-group
-				.accordion-heading{style: "padding:10px;"}
-					%a{href: 'javascript:$("#collapse3").collapse("toggle");', style: "font-size:20px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse3").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
 						Reprodução e desova
 				#collapse3.collapse.in.accordion-body
 					.accordion-inner{style: "padding: 9px 25px;"}
@@ -228,8 +228,9 @@
 						%br
 						%p
 							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/oportunista.html">http://www.ioc.fiocruz.br/dengue/textos/oportunista.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
-				.accordion-heading{style: "padding:10px;"}
-					%a{href: 'javascript:$("#collapse4").collapse("toggle");', style: "font-size:20px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse4").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
 						Ovos
 				#collapse4.collapse.in.accordion-body
 					.accordion-inner{style: "padding: 9px 25px;"}
@@ -240,9 +241,9 @@
 						%br
 						= image_tag "natureza.png"
 						%br
-						%p{style: "color: red; font-size:16px;"}
+						%p{style: "color: red; font-size:16px;margin-top:10px;"}
 							Na natureza, os ovos do A. aegypti podem sobreviver até 450 dias fora d’água.
-						}
+						%br
 						%p
 							Os ovos adquirem resistência ao ressecamento muito rapidamente, em apenas 15h após a postura. A partir de então, podem resistir a longos períodos de dessecação – até 450 dias, segundo estudos. Esta resistência é uma grande vantagem para o mosquito, pois permite que os ovos sobrevivam por muitos meses em ambientes secos, até que o próximo período chuvoso e quente propicie a eclosão.
 						%br
@@ -251,21 +252,106 @@
 						%br
 						%p
 							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/oportunista.html">http://www.ioc.fiocruz.br/dengue/textos/oportunista.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
-				.accordion-heading{style: "padding:10px;"}
-					%a{href: 'javascript:$("#collapse5").collapse("toggle");', style: "font-size:20px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse5").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
 						Acesse o infográfico 
 				#collapse5.collapse.in.accordion-body
 					.accordion-inner{style: "padding: 9px 25px;"}
+						= link_to "http://www.ioc.fiocruz.br/dengue/textos/infografico.html", "http://www.ioc.fiocruz.br/dengue/textos/infografico.html"
 						%p
-							Entenda o ciclo reprodutivo do mosquito transmissor do vírus da dengue
-						%p
-							O acasalamento do Aedes aegypti se dá dentro ou ao redor das habitações, geralmente nos primeiros dias depois que o mosquito chega à fase adulta. É preciso somente uma cópula para a reprodução ser concretizada, pois a fêmea guarda o esperma na espermateca. Após a cópula, as fêmeas precisam realizar a hematofogia (alimentação com sangue) importante para o desenvolvimento completo dos ovos e sua maturação nos ovários Normalmente, as fêmeas do Aedes aegypti encontram-se aptas para a postura de ovos três dias após a ingestão de sangue, passando então a procurar local para desovar.
-						%p
-							A desova acontece, preferencialmente, em criadouros com água limpa e parada. Os ovos são depositados nas paredes do criadouro, bem próximo à superfície da água, porém não diretamente sobre o líquido. Daí a importância de lavar, com escova ou palha de aço, as paredes dos recipientes que não podem ser eliminados, onde o ovo pode permanecer grudado. 
+							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/">http://www.ioc.fiocruz.br/dengue </a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+						%br
+						%iframe{width: "800", height: "500", src: "//www.youtube.com/embed/uG4yIp6ZwDg", frameborder: "0"}
 						%br
 						%p
-							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/oportunista.html">http://www.ioc.fiocruz.br/dengue/textos/oportunista.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+							Fonte: <a href="http://auladengue.ioc.fiocruz.br">http://auladengue.ioc.fiocruz.br/ </a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
 		%h1 O mosquito da Dengue, curiosidades do Aedes aegypti.
+		.accordion#accordion2
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse6").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+						Qual a origem do mosquito Aedes aegypti?
+				#collapse6.collapse.in.accordion-body
+					.accordion-inner{style: "padding: 9px 25px;"}
+						%p
+							O A. aegypti é originário do Egito. A dispersão pelo mundo ocorreu da África: primeiro da costa leste do continente para as Américas, depois da costa oeste para a Ásia.
+						%br
+						%iframe{width: "800", height: "500", src: "//www.youtube.com/embed/-zkg4hLZLwg", frameborder: "0"}
+						%br
+						%p
+							Fonte: <a href="http://auladengue.ioc.fiocruz.br/">http://auladengue.ioc.fiocruz.br/</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse7").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+						Por que o nome A. aegypti?
+				#collapse7.collapse.in.accordion-body
+					.accordion-inner{style: "padding: 9px 25px;"}
+						%p
+							O vetor foi descrito cientificamente pela primeira vez em 1762, quando foi denominado Culex aegypti. Culex significa “mosquito” e aegypti, egípcio, portanto: mosquito egípcio. O gênero Aedes só foi descrito em 1818. Logo verificou- se que a espécie aegypti,  descrita anos antes, apresenta características morfológicas e biológicas semelhantes às de espécies do gênero Aedes – e não às do já conhecido gênero Culex. Então, foi estabelecido o nome Aedes aegypti.
+						%br
+						%p
+							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html">http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse8").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+						Quantas pessoas um mosquito é capaz de infectar?
+				#collapse8.collapse.in.accordion-body
+					.accordion-inner{style: "padding: 9px 25px;"}
+						%p
+							Os mosquitos fêmea sugam sangue para produzir ovos. Se o mosquito da dengue estiver infectivo, poderá transmitir o vírus da dengue neste processo. Em geral, mosquitos sugam uma só pessoa a cada lote de ovos que produzem. O mosquito da dengue tem uma peculiaridade que se chama “discordância gonotrófica”, que significa que é capaz de picar mais de uma pessoa para um mesmo lote de ovos que produz. Há relato de que um só mosquito da dengue infectivo transmitiu dengue para cinco pessoas de uma mesma família, no mesmo dia.
+						%br
+						%p
+							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html">http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse9").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+						Por que só a fêmea pica?
+				#collapse9.collapse.in.accordion-body
+					.accordion-inner{style: "padding: 9px 25px;"}
+						%p
+							A fêmea precisa de sangue para a produção de ovos. Tanto o macho quanto a fêmea se alimentam de substâncias que contêm açúcar (néctar, seiva, entre outros), mas como o macho não produz ovos, não necessita de sangue. Embora possam ocasionalmente se alimentar com sangue antes da cópula, as fêmeas intensificam a voracidade pela hematofagia após a fecundação, quando precisam ingerir sangue para realizar o desenvolvimento completo dos ovos e maturação nos ovários. Normalmente, três dias após a ingestão de sangue as fêmeas já estão aptas para a postura, passando então a procurar local para desovar.
+						%br
+						%p
+							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html">http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse10").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+						É verdade que o mosquito A. aegypti já foi erradicado e depois reintroduzido no Brasil?
+				#collapse10.collapse.in.accordion-body
+					.accordion-inner{style: "padding: 9px 25px;"}
+						%p
+							No início do século 20, a identificação do A. aegypti como transmissor da febre amarela urbana impulsionou a execução de rígidas medidas de controle que levaram, em 1955, à erradicação do mosquito no país. Em 1958, o país foi considerado livre do vetor pela Organização Mundial de Saúde (OMS). No entanto, a erradicação não recobriu a totalidade do continente americano e o vetor permaneceu em áreas como Venezuela, sul dos Estados Unidos, Guianas e Suriname, além de toda a extensão insular que engloba Caribe e Cuba.
+						%br
+						%p
+							A hipótese mais provável para explicar a re-introdução do mosquito no Brasil é a chamada dispersão passiva dos vetores, através de deslocamentos humanos marítimos ou terrestres – dinâmica facilitada pela grande resistência do ovo do vetor ao ressecamento. No Brasil, o relaxamento das medidas de controle após a erradicação do A. aegypti permitiu sua reintrodução no país no final da década de 1960. Hoje o mosquito é encontrado em todos os Estados brasileiros.
+						%br
+						%p
+							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html">http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+			.accordion-group
+				.accordion-heading{style: "padding:10px;padding-left:30px;"}
+					%a{href: 'javascript:$("#collapse11").collapse("toggle");', style: "font-size:18px;font-weight:bold;", class: "accordion-heading", data: { parent: "#accordion1"}}
+						A dengue ocorre só no Brasil?
+				#collapse11.collapse.in.accordion-body
+					.accordion-inner{style: "padding: 9px 25px;"}
+						%p
+							Não. Há registro da doença em diversos países das Américas, bem como na África, Ásia, Austrália  e Polinésia Pacífica.
+						%br
+						%p
+							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html">http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+						%br
+						%iframe{width: "800", height: "500", src: "//www.youtube.com/embed/uG4yIp6ZwDg", frameborder: "0"}
+						%br
+						%p
+							Fonte: <a href="http://auladengue.ioc.fiocruz.br/">http://auladengue.ioc.fiocruz.br/</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+						%br
+						%p
+							Fonte: <a href="http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html">http://www.ioc.fiocruz.br/dengue/textos/curiosidades.html</a> - Instituto Oswaldo Cruz (IOC/Fiocruz)
+
+
+
+			
+
 
 
 :javascript

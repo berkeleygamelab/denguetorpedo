@@ -37,7 +37,7 @@ en:
   activerecord:
     models:
       user: Usuário
-      feedback: Contato
+      feedback: Mensagem
     attributes:
       user:
         password: "senha"
