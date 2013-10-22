@@ -31,5 +31,10 @@ class HomeController < ApplicationController
     @eliminated_reports_in_neighborhood = @selected_neighborhood.eliminated_reports.count
   end
 
+  respond_to do |format|
+    format.html
+    format.json { render json: { user: @user }}
+  end
+
 end
 

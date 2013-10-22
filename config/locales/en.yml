@@ -35,8 +35,9 @@ en:
 #   					password:
 #   						confirmation: "Password match"
   activerecord:
-    model:
-      user: "Usuário"
+    models:
+      user: Usuário
+      feedback: Contato
     attributes:
       user:
         password: "senha"
@@ -53,7 +54,7 @@ en:
     errors:
       template:
         header:
-          one: "1 erro impediu que o %{model} fosse salvo"
+          one: "1 erro impediu que o %{model.model_name.human} fosse salvo"
           other: "%{count} erros impediram que o %{model}  fosse salvo"
       messages:
         blank: "é obrigatório."

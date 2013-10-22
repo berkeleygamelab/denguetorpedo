@@ -102,7 +102,7 @@ class ReportsController < ApplicationController
         return
       end
 
-      if !params[:before_photo] and !params[:report]
+      if !params[:before_photo]
         flash[:error] = "Você tem que carregar uma foto do foco encontrado."
         flash[:address] = address
         @report = Report.new(:location => location)
@@ -398,7 +398,7 @@ class ReportsController < ApplicationController
           
         end
         @location.save
-        @report = Report.new(reporter: @user, location: @location)
+        @report = Report.new(reporter: @user, location: @location, sms: true)
         @report.status_cd = 0
         if @report.save
           format.json { render json: {message: "success"} }

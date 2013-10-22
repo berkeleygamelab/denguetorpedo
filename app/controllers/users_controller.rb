@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     end
     @prizes = Prize.where(:is_badge => false)
     authorize! :assign_roles, User
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { users: @users}}
+    end
   end
   
   def show

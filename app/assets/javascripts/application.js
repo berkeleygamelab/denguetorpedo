@@ -24,21 +24,21 @@
 
 
 //gmaps
-//function gmaps4rails_callback() {
-//    google.maps.event.addListener(Gmaps4Rails.map, 'idle', function () {
-//        var bounds = Gmaps4Rails.map.getBounds();
-//        drawItems(bounds);
-//    });
-//  }
-//function drawItems(theBounds) {
-//    var url = '/venues.json/?sw_y=' + theBounds.getSouthWest().lng() + 
-//                           '&sw_x=' + theBounds.getSouthWest().lat() + 
-//                           '&ne_y=' + theBounds.getNorthEast().lng() +
-//                           '&ne_x=' + theBounds.getNorthEast().lat();
-//    $.get(url, function(newItemData) {
-//        Gmaps4Rails.replace_markers(newItemData);
-//    });
-//}
+function gmaps4rails_callback() {
+   google.maps.event.addListener(Gmaps4Rails.map, 'idle', function () {
+       var bounds = Gmaps4Rails.map.getBounds();
+       drawItems(bounds);
+   });
+ }
+function drawItems(theBounds) {
+   var url = '/venues.json/?sw_y=' + theBounds.getSouthWest().lng() + 
+                          '&sw_x=' + theBounds.getSouthWest().lat() + 
+                          '&ne_y=' + theBounds.getNorthEast().lng() +
+                          '&ne_x=' + theBounds.getNorthEast().lat();
+   $.get(url, function(newItemData) {
+       Gmaps4Rails.replace_markers(newItemData);
+   });
+}
 
 
 // TRANSITION
@@ -59,13 +59,13 @@
       return support && {
         end: (function () {
           var transitionEnd = "TransitionEnd"
-          // if ( $.browser.webkit ) {
-          //       transitionEnd = "webkitTransitionEnd"
-          // } else if ( $.browser.mozilla ) {
-          //       transitionEnd = "transitionend"
-          // } else if ( $.browser.opera ) {
-          //       transitionEnd = "oTransitionEnd"
-          // }
+          if ( $.browser.webkit ) {
+                transitionEnd = "webkitTransitionEnd"
+          } else if ( $.browser.mozilla ) {
+                transitionEnd = "transitionend"
+          } else if ( $.browser.opera ) {
+                transitionEnd = "oTransitionEnd"
+          }
           return transitionEnd
         }())
       }
