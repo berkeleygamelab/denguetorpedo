@@ -36,8 +36,9 @@ class User < ActiveRecord::Base
   # validation needs to be done.
   validates :first_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
   validates :last_name, presence: true, :length => { :minimum => 2, :maximum => 16 }
-  validates :password, :length => { :minimum => 4, :message => "should contain at least 4 characters" }, :if => "id.nil? || password"
-  validates :points, :numericality => { :only_integer => true }
+  validates :password, :length => { :minimum => 4}, :if => "id.nil? || password"
+  validates :points, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0 }
+  validates :total_points, :numericality => { :only_integer => true, :greater_than_or_equal_to => 0}
   validates :phone_number, :length => { :minimum => 10, :maximum => 20 }, :allow_nil => true, :uniqueness => true, :confirmation => true
   validates :email, :format => { :with => EMAIL_REGEX }, :allow_nil => true
   validates :email, :uniqueness => true, :unless => "email.nil?"

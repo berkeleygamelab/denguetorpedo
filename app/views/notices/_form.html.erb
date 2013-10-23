@@ -1,7 +1,11 @@
 <%= form_for(@notice) do |f| %>
   <% if @notice.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+      <% if @notice.errors.count == 1 %>
+        <h2><%= pluralize(@notice.errors.count, "erro") %> impediu que a notícias da comunidade fosse enviada:</h2>
+      <% else %>
+        <h2><%= pluralize(@notice.errors.count, "erro") %> impediram que a notícias da comunidade fosse enviada:</h2>
+      <% end %>
 
       <ul>
       <% @notice.errors.full_messages.each do |msg| %>

@@ -40,10 +40,11 @@ en:
       feedback: Mensagem
     attributes:
       user:
-        password: "senha"
-        phone_number: "celular"
-        first_name: "nome"
-        last_name: "sobrenome"
+        password: "Senha"
+        phone_number: "Celular"
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        password_digest: "Senha"
         password_confirmation: "Confirmação de senha"
       feedback:
         title: "Título"
@@ -54,8 +55,8 @@ en:
     errors:
       template:
         header:
-          one: "1 erro impediu que o %{model.model_name.human} fosse salvo"
-          other: "%{count} erros impediram que o %{model}  fosse salvo"
+          one: "1 erro impediu que o %{model.model_name.human} fosse salvo."
+          other: "%{count} erros impediram que o %{model}  fosse salvo."
       messages:
         blank: "é obrigatório."
         confirmation: "não confere."
@@ -65,4 +66,149 @@ en:
         taken: "já está em uso."
         too_long: "é muito longo. (mínimo de %{count} caracteres)"
         too_short: "é muito curto. (mínimo de %{count} caracteres)"
-        not_a_number: "não é um número."
+        not_a_number: "deve ser um número."
+      models:
+        user:
+          header:
+            one: "Gogogogo"
+          attributes:
+            password_digest:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longo. (mínimo de %{count} caracteres)"
+              too_short: "é muito curto. (mínimo de %{count} caracteres)"
+              not_a_number: "não é um número."
+            password_confirmation:
+              blank: "é obrigatório."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservado."
+              invalid: "não é válido."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+        feedback:
+          attributes:
+            message:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+        report:
+          attributes:
+            before_photo:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+            after_photo:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+            description:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+        prize:
+          attributes:
+            description:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+        post:
+          attributes:
+            content:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+        notice:
+          attributes:
+            date:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+            description:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+            summary:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+            photo:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."
+            institution_name:
+              blank: "é obrigatória."
+              confirmation: "não confere."
+              empty: "é obrigatória."
+              exclusion: "está reservada."
+              invalid: "não é válida."
+              taken: "já está em uso."
+              too_long: "é muito longa. (mínimo de %{count} caracteres)"
+              too_short: "é muito curta. (mínimo de %{count} caracteres)"
+              not_a_number: "deve ser um número."

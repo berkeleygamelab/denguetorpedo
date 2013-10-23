@@ -5,7 +5,6 @@
         #flashNotice 
           %p
             = flash[:notice]
-
     - if flash[:alert] 
       .row#flash_dat_alert
         #flashAlert 
@@ -66,9 +65,9 @@
             var customExtent = new esri.geometry.Extent(667070.412263838,7456962.88258577,688175.480935968,7475960.60361382, new esri.SpatialReference({"wkid":29193}));
 
             var picBaseUrl = "http://static.arcgis.com/images/Symbols/Shapes/";
-            var gray = new PictureMarkerSymbol(picBaseUrl + "BlackPin1LargeB.png", 64, 64).setOffset(0, 15);
-            var blue = new PictureMarkerSymbol(picBaseUrl + "BluePin1LargeB.png", 64, 64).setOffset(0, 15);
-            var red = new PictureMarkerSymbol(picBaseUrl + "OrangePin1LargeB.png", 64, 64).setOffset(0, 15);
+            var grey = new PictureMarkerSymbol("/assets/markers/grey_marker.png", 48, 48).setOffset(0, 0);
+            var mixed = new PictureMarkerSymbol("/assets/markers/mixed_marker.png", 48, 48).setOffset(0, 0);
+            var orange = new PictureMarkerSymbol("/assets/markers/orange_marker.png", 48, 48).setOffset(0, 0);
             var point = new Point(680291.2151545063, 7470751.29586681, new esri.SpatialReference({wkid: 29193}));
             map = new Map("map", {
               center: point,
@@ -100,7 +99,7 @@
               
               $("input#x").val(evt.geometry.x);
               $("input#y").val(evt.geometry.y);
-              map.graphics.add(new Graphic(evt.geometry, red));
+              map.graphics.add(new Graphic(evt.geometry, orange));
               map.centerAt(evt.mapPoint);
 
             }
@@ -127,7 +126,7 @@
                     symbol.setStyle("STYLE_PATH");
                     symbol.setPath("M 10 10 L30 10 L20 30z");
                     symbol.setColor(new Color("red"));
-                    map.graphics.add(new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), red));
+                    map.graphics.add(new Graphic(new Point(candidates[0].location.x, candidates[0].location.y), orange));
                     $("input#x").val(candidates[0].location.x);
                     $("input#y").val(candidates[0].location.y);
                     

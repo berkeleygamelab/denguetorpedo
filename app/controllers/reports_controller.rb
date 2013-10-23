@@ -78,9 +78,13 @@ class ReportsController < ApplicationController
   def create    
 
     if request.post?
-
       address = params[:street_type] + " " + params[:street_name] + " " + params[:street_number]
-
+      flash[:street_type] = params[:street_type]
+      flash[:street_name] = params[:street_name]
+      flash[:street_number] = params[:street_number]
+      flash[:description] = params[:report][:report]
+      flash[:x] = params[:x]
+      flash[:y] = params[:y]
       location = Location.find_by_address(address)
       
       if params[:x].empty? or params[:y].empty?
@@ -98,16 +102,15 @@ class ReportsController < ApplicationController
       end
       
       if params[:report][:report] == ""
-        flash[:error] = "Você tem que descrever o local e/ou o foco."
+        flash[:alert] = "Você tem que descrever o local e/ou o foco."
         flash[:address] = address
         @report = Report.new(:location => location)
         redirect_to :back
         return
       end
 
-      if !params[:before_photo]
-        flash[:error] = "Você tem que carregar uma foto do foco encontrado."
-        flash[:address] = address
+      if !params[:report][:before_photo] and params[:report]
+        flash[:alert] = "Você tem que carregar uma foto do foco encontrado."  
         @report = Report.new(:location => location)
         @report.report = params[:report][:report]
         redirect_to :back
@@ -130,7 +133,8 @@ class ReportsController < ApplicationController
         flash[:notice] = 'Foco marcado com sucesso!'
         redirect_to :action=>'index', view: 'recent'
       else
-        render "new"
+        flash[:alert] = "here"
+        redirect_to :back
       end
     end
   end
